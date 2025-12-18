@@ -251,7 +251,7 @@
             margin: 20px 0;
         }
 
-        /* === 核心组件：双栏交互实验室 === */
+        /* === 核心组件：上下结构交互实验室 === */
         .lab-card {
             background: var(--color-white);
             border: 1px solid var(--border-color);
@@ -275,45 +275,37 @@
 
         .lab-body {
             display: grid;
-            grid-template-columns: 1fr 1.3fr;
-            height: 400px;
+            grid-template-rows: auto auto;
+            height: auto;
         }
 
         .panel {
-            position: relative;
             overflow: hidden;
             display: flex;
             flex-direction: column;
         }
         
         .panel-label {
-            position: absolute;
-            top: 0;
-            right: 0;
             background: #EEEEEE;
             padding: 4px 10px;
             font-size: 11px;
             color: #666;
-            border-bottom-left-radius: 6px;
-            z-index: 10;
-            pointer-events: none;
+            border-bottom: 1px solid var(--border-color);
+            font-weight: 600;
         }
 
-        .html-editor, .html-viewer {
+        .html-editor {
             background: #F9F9FA;
-            border-right: 1px solid var(--border-color);
             padding: 25px 20px;
             font-family: var(--font-mono);
             font-size: 13px;
             color: #555;
             overflow-y: auto;
             white-space: pre-wrap;
-        }
-
-        .html-editor {
             outline: none;
-            border-bottom: 1px solid var(--border-color);
+            height: 250px;
             line-height: 1.5;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .html-editor:focus {
@@ -362,7 +354,6 @@
         .preview-box {
             background: #FFFFFF;
             padding: 30px;
-            border-top: 1px solid var(--border-color);
             min-height: 200px;
             position: relative;
             isolation: isolate; 

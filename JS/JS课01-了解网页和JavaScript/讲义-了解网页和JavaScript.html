@@ -34,34 +34,34 @@
             color: var(--color-text);
             display: flex;
             line-height: 1.7;
-            font-size: 16px;
+            font-size: 24px;
         }
-        .sidebar { width: 260px; height: 100vh; position: fixed; background: #fafbfc; border-right: 1px solid var(--border-color); padding: 30px 18px; overflow-y: auto; z-index: 10; }
-        .sidebar h3 { font-size: 11px; color: var(--color-text-light); text-transform: uppercase; margin: 18px 0 8px 12px; letter-spacing: 1px; font-weight: 600; }
+        .sidebar { width: 320px; height: 100vh; position: fixed; background: #fafbfc; border-right: 1px solid var(--border-color); padding: 30px 18px; overflow-y: auto; z-index: 10; }
+        .sidebar h3 { font-size: 17px; color: var(--color-text-light); text-transform: uppercase; margin: 18px 0 8px 12px; letter-spacing: 1px; font-weight: 600; }
         .sidebar-nav { display: flex; flex-direction: column; gap: 2px; }
-        .sidebar a { display: block; padding: 8px 12px; border-radius: 4px; color: var(--color-text); text-decoration: none; font-size: 14px; transition: all 0.15s; border-left: 2px solid transparent; }
+        .sidebar a { display: block; padding: 10px 14px; border-radius: 4px; color: var(--color-text); text-decoration: none; font-size: 21px; transition: all 0.15s; border-left: 2px solid transparent; }
         .sidebar a:hover { background: #f3f4f6; }
         .sidebar a.active { background: #f3f4f6; color: var(--color-heading); border-left-color: var(--color-accent); font-weight: 500; }
-        .sidebar a.sub-link { padding-left: 28px; font-size: 14px; color: #555; }
+        .sidebar a.sub-link { padding-left: 32px; font-size: 21px; color: #555; }
         .content {
-            margin-left: 260px;
+            margin-left: 320px;
             padding: 60px clamp(32px, 5vw, 90px);
             width: 100%;
-            max-width: min(1600px, calc(100vw - 260px));
+            max-width: min(1600px, calc(100vw - 320px));
         }
         section { margin-bottom: 70px; scroll-margin-top: 40px; }
-        h1 { font-size: 38px; font-weight: 700; letter-spacing: -0.5px; color: var(--color-heading); }
-        h2 { font-size: 28px; margin: 50px 0 24px; padding-bottom: 12px; border-bottom: 2px solid var(--color-heading); color: var(--color-heading); font-weight: 600; }
-        h3 { font-size: 20px; margin: 30px 0 18px; color: var(--color-heading); font-weight: 600; }
+        h1 { font-size: 57px; font-weight: 700; letter-spacing: -0.5px; color: var(--color-heading); }
+        h2 { font-size: 42px; margin: 50px 0 24px; padding-bottom: 12px; border-bottom: 2px solid var(--color-heading); color: var(--color-heading); font-weight: 600; }
+        h3 { font-size: 30px; margin: 30px 0 18px; color: var(--color-heading); font-weight: 600; }
         p { margin-bottom: 16px; color: var(--color-text); line-height: 1.8; }
-        code { font-family: var(--font-mono); background: #f6f8fa; padding: 3px 7px; border-radius: 3px; font-size: 0.9em; color: #24292e; border: 1px solid #e1e4e8; }
+        code { font-family: var(--font-mono); background: #f6f8fa; padding: 4px 8px; border-radius: 3px; font-size: 0.9em; color: #24292e; border: 1px solid #e1e4e8; }
         pre { 
             background: var(--code-bg); 
-            padding: 20px 24px; 
+            padding: 24px 28px; 
             border-radius: 8px; 
             overflow-x: auto; 
             font-family: var(--font-mono); 
-            font-size: 15px;
+            font-size: 21px;
             line-height: 1.6;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
             border: 1px solid #21252b;
