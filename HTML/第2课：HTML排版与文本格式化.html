@@ -36,6 +36,7 @@
 
         /* === 侧边栏 === */
         .sidebar {
+            display: none;
             width: 260px;
             height: 100vh;
             position: fixed;
@@ -91,9 +92,8 @@
 
         /* === 主内容区 === */
         .content {
-            margin-left: 260px;
+            margin-left: 0;
             padding: 60px 80px;
-            max-width: 900px;
             width: 100%;
         }
 
@@ -244,7 +244,7 @@
             margin: 20px 0;
         }
 
-        /* === 核心组件：双栏交互实验室 === */
+        /* === 核心组件：上下结构实验室 === */
         .lab-card {
             background: var(--color-white);
             border: 1px solid var(--border-color);
@@ -268,8 +268,8 @@
 
         .lab-body {
             display: grid;
-            grid-template-columns: 1fr 1.3fr;
-            height: 400px;
+            grid-template-rows: auto auto;
+            height: auto;
         }
 
         .panel {
@@ -292,21 +292,19 @@
             pointer-events: none;
         }
 
-        .html-editor, .html-viewer {
+        .html-editor {
             background: #F9F9FA;
-            border-right: 1px solid var(--border-color);
             padding: 25px 20px;
             font-family: var(--font-mono);
             font-size: 13px;
             color: #555;
             overflow-y: auto;
             white-space: pre-wrap;
-        }
-
-        .html-editor {
             outline: none;
             border-bottom: 1px solid var(--border-color);
             line-height: 1.5;
+            height: 250px;
+            resize: vertical;
         }
 
         .html-editor:focus {

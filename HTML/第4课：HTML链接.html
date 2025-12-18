@@ -36,6 +36,7 @@
 
         /* === 侧边栏 === */
         .sidebar {
+            display: none;
             width: 260px;
             height: 100vh;
             position: fixed;
@@ -91,9 +92,8 @@
 
         /* === 主内容区 === */
         .content {
-            margin-left: 260px;
+            margin-left: 0;
             padding: 60px 80px;
-            max-width: 900px;
             width: 100%;
         }
 
@@ -256,7 +256,7 @@
             margin-bottom: 30px;
         }
 
-        /* === 双栏交互实验室样式 === */
+        /* === 上下结构实验室样式 === */
         .lab-card {
             background: var(--color-white);
             border-radius: 10px;
@@ -276,19 +276,19 @@
 
         .lab-body {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto;
             gap: 0;
-            height: 400px;
+            height: auto;
         }
 
         .panel {
             padding: 0;
             overflow: hidden;
-            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
         }
 
         .panel:last-child {
-            border-right: none;
+            border-bottom: none;
         }
 
         .panel-label {
@@ -302,10 +302,10 @@
 
         .html-editor {
             width: 100%;
-            height: calc(100% - 30px);
+            height: 250px;
             padding: 16px;
             border: none;
-            resize: none;
+            resize: vertical;
             font-family: var(--font-mono);
             font-size: 14px;
             line-height: 1.5;
@@ -316,7 +316,7 @@
 
         .preview-box {
             width: 100%;
-            height: calc(100% - 30px);
+            min-height: 200px;
             padding: 20px;
             overflow-y: auto;
             background: var(--color-white);

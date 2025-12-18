@@ -852,38 +852,120 @@
     &lt;input type="reset" value="重置"&gt;
 &lt;/form&gt;</code></pre>
             
-            <div class="example-box">
-                <h3>表单分组效果预览</h3>
-                <form>
-                    <fieldset>
-                        <legend>个人信息</legend>
-                        
-                        <label for="username">用户名：</label>
-                        <input type="text" id="username" name="username" placeholder="请输入用户名">
-                        
-                        <br><br>
-                        
-                        <label for="email">邮箱：</label>
-                        <input type="email" id="email" name="email" placeholder="请输入邮箱">
-                    </fieldset>
-                    
-                    <fieldset>
-                        <legend>密码信息</legend>
-                        
-                        <label for="password">密码：</label>
-                        <input type="password" id="password" name="password" placeholder="请输入密码">
-                        
-                        <br><br>
-                        
-                        <label for="confirm-password">确认密码：</label>
-                        <input type="password" id="confirm-password" name="confirm-password" placeholder="请确认密码">
-                    </fieldset>
-                    
-                    <br>
-                    
-                    <input type="submit" value="注册">
-                    <input type="reset" value="重置">
-                </form>
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>上下结构实验室：表单分组</span>
+                    <span id="badge-3" class="status-badge">未运行</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel">
+                        <div class="panel-label">HTML (可编辑)</div>
+                        <div class="html-editor" id="html-3" contenteditable="true">
+&lt;form&gt;
+    &lt;fieldset&gt;
+        &lt;legend&gt;个人信息&lt;/legend&gt;
+        
+        &lt;label for="username"&gt;用户名：&lt;/label&gt;
+        &lt;input type="text" id="username" name="username" placeholder="请输入用户名"&gt;
+        
+        &lt;br&gt;&lt;br&gt;
+        
+        &lt;label for="email"&gt;邮箱：&lt;/label&gt;
+        &lt;input type="email" id="email" name="email" placeholder="请输入邮箱"&gt;
+    &lt;/fieldset&gt;
+    
+    &lt;fieldset&gt;
+        &lt;legend&gt;密码信息&lt;/legend&gt;
+        
+        &lt;label for="password"&gt;密码：&lt;/label&gt;
+        &lt;input type="password" id="password" name="password" placeholder="请输入密码"&gt;
+        
+        &lt;br&gt;&lt;br&gt;
+        
+        &lt;label for="confirm-password"&gt;确认密码：&lt;/label&gt;
+        &lt;input type="password" id="confirm-password" name="confirm-password" placeholder="请确认密码"&gt;
+    &lt;/fieldset&gt;
+    
+    &lt;br&gt;
+    
+    &lt;input type="submit" value="注册"&gt;
+    &lt;input type="reset" value="重置"&gt;
+&lt;/form&gt;
+                        </div>
+                        <!-- 隐藏的原始代码，用于重置功能 -->
+                        <div id="original-3" style="display: none;">
+&lt;form&gt;
+    &lt;fieldset&gt;
+        &lt;legend&gt;个人信息&lt;/legend&gt;
+        
+        &lt;label for="username"&gt;用户名：&lt;/label&gt;
+        &lt;input type="text" id="username" name="username" placeholder="请输入用户名"&gt;
+        
+        &lt;br&gt;&lt;br&gt;
+        
+        &lt;label for="email"&gt;邮箱：&lt;/label&gt;
+        &lt;input type="email" id="email" name="email" placeholder="请输入邮箱"&gt;
+    &lt;/fieldset&gt;
+    
+    &lt;fieldset&gt;
+        &lt;legend&gt;密码信息&lt;/legend&gt;
+        
+        &lt;label for="password"&gt;密码：&lt;/label&gt;
+        &lt;input type="password" id="password" name="password" placeholder="请输入密码"&gt;
+        
+        &lt;br&gt;&lt;br&gt;
+        
+        &lt;label for="confirm-password"&gt;确认密码：&lt;/label&gt;
+        &lt;input type="password" id="confirm-password" name="confirm-password" placeholder="请确认密码"&gt;
+    &lt;/fieldset&gt;
+    
+    &lt;br&gt;
+    
+    &lt;input type="submit" value="注册"&gt;
+    &lt;input type="reset" value="重置"&gt;
+&lt;/form&gt;
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-label">预览效果</div>
+                        <div class="preview-box" id="preview-3">
+                            <form>
+                                <fieldset>
+                                    <legend>个人信息</legend>
+                                    
+                                    <label for="username">用户名：</label>
+                                    <input type="text" id="username" name="username" placeholder="请输入用户名">
+                                    
+                                    <br><br>
+                                    
+                                    <label for="email">邮箱：</label>
+                                    <input type="email" id="email" name="email" placeholder="请输入邮箱">
+                                </fieldset>
+                                
+                                <fieldset>
+                                    <legend>密码信息</legend>
+                                    
+                                    <label for="password">密码：</label>
+                                    <input type="password" id="password" name="password" placeholder="请输入密码">
+                                    
+                                    <br><br>
+                                    
+                                    <label for="confirm-password">确认密码：</label>
+                                    <input type="password" id="confirm-password" name="confirm-password" placeholder="请确认密码">
+                                </fieldset>
+                                
+                                <br>
+                                
+                                <input type="submit" value="注册">
+                                <input type="reset" value="重置">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyHTML('3')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHTML('3')">↺ 重置</button>
+                </div>
             </div>
         </section>
 
@@ -933,27 +1015,87 @@
             <pre><code>&lt;label for="phone"&gt;手机号：&lt;/label&gt;
 &lt;input type="tel" id="phone" name="phone" pattern="^1[3-9]\d{9}$" title="请输入有效的11位手机号" placeholder="请输入11位手机号"&gt;</code></pre>
             
-            <div class="example-box">
-                <h3>表单验证效果预览</h3>
-                <form>
-                    <label for="username">用户名：</label>
-                    <input type="text" id="username" name="username" required placeholder="请输入用户名">
-                    
-                    <br><br>
-                    
-                    <label for="password">密码：</label>
-                    <input type="password" id="password" name="password" minlength="6" maxlength="20" placeholder="请输入6-20位密码">
-                    
-                    <br><br>
-                    
-                    <label for="phone">手机号：</label>
-                    <input type="tel" id="phone" name="phone" pattern="^1[3-9]\d{9}$" title="请输入有效的11位手机号" placeholder="请输入11位手机号">
-                    
-                    <br><br>
-                    
-                    <input type="submit" value="提交">
-                    <input type="reset" value="重置">
-                </form>
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>上下结构实验室：表单验证基础</span>
+                    <span id="badge-4" class="status-badge">未运行</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel">
+                        <div class="panel-label">HTML (可编辑)</div>
+                        <div class="html-editor" id="html-4" contenteditable="true">
+&lt;form&gt;
+    &lt;label for="username"&gt;用户名：&lt;/label&gt;
+    &lt;input type="text" id="username" name="username" required placeholder="请输入用户名"&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="password"&gt;密码：&lt;/label&gt;
+    &lt;input type="password" id="password" name="password" minlength="6" maxlength="20" placeholder="请输入6-20位密码"&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="phone"&gt;手机号：&lt;/label&gt;
+    &lt;input type="tel" id="phone" name="phone" pattern="^1[3-9]\d{9}$" title="请输入有效的11位手机号" placeholder="请输入11位手机号"&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;input type="submit" value="提交"&gt;
+    &lt;input type="reset" value="重置"&gt;
+&lt;/form&gt;
+                        </div>
+                        <!-- 隐藏的原始代码，用于重置功能 -->
+                        <div id="original-4" style="display: none;">
+&lt;form&gt;
+    &lt;label for="username"&gt;用户名：&lt;/label&gt;
+    &lt;input type="text" id="username" name="username" required placeholder="请输入用户名"&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="password"&gt;密码：&lt;/label&gt;
+    &lt;input type="password" id="password" name="password" minlength="6" maxlength="20" placeholder="请输入6-20位密码"&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="phone"&gt;手机号：&lt;/label&gt;
+    &lt;input type="tel" id="phone" name="phone" pattern="^1[3-9]\d{9}$" title="请输入有效的11位手机号" placeholder="请输入11位手机号"&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;input type="submit" value="提交"&gt;
+    &lt;input type="reset" value="重置"&gt;
+&lt;/form&gt;
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-label">预览效果</div>
+                        <div class="preview-box" id="preview-4">
+                            <form>
+                                <label for="username">用户名：</label>
+                                <input type="text" id="username" name="username" required placeholder="请输入用户名">
+                                
+                                <br><br>
+                                
+                                <label for="password">密码：</label>
+                                <input type="password" id="password" name="password" minlength="6" maxlength="20" placeholder="请输入6-20位密码">
+                                
+                                <br><br>
+                                
+                                <label for="phone">手机号：</label>
+                                <input type="tel" id="phone" name="phone" pattern="^1[3-9]\d{9}$" title="请输入有效的11位手机号" placeholder="请输入11位手机号">
+                                
+                                <br><br>
+                                
+                                <input type="submit" value="提交">
+                                <input type="reset" value="重置">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyHTML('4')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHTML('4')">↺ 重置</button>
+                </div>
             </div>
         </section>
 
