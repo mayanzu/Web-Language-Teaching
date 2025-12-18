@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 长度单位 / 边框 / 表格 / 表单 - 编程练习</title>
+    <style>
+        :root {
+            --color-text: #1D1D1F;
+            --color-text-light: #86868B;
+            --color-accent: #0066CC;
+            --color-bg: #F5F5F7;
+            --color-white: #FFFFFF;
+            --border-color: #D2D2D7;
+            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-mono: 'SF Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--font-stack);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1180px;
+            margin: 0 auto;
+            background: var(--color-white);
+            border-radius: 16px;
+            padding: 48px;
+            box-shadow: 0 18px 45px rgba(15,23,42,0.08);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 28px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        h1 { font-size: 38px; color: var(--color-accent); margin-bottom: 12px; }
+        .subtitle { font-size: 18px; color: var(--color-text-light); }
+
+        .exercise {
+            margin-bottom: 48px;
+            padding: 32px;
+            background: #FAFAFA;
+            border-radius: 14px;
+            border-left: 5px solid var(--color-accent);
+        }
+
+        .exercise h2 { font-size: 24px; margin-bottom: 12px; color: var(--color-text); }
+
+        .task-box {
+            background: var(--color-white);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .task-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--color-accent);
+            margin-bottom: 10px;
+        }
+
+        .requirement {
+            background: #FFF9E6;
+            padding: 16px;
+            border-radius: 10px;
+            border-left: 3px solid #FFB800;
+            margin: 16px 0;
+        }
+
+        .requirement li { margin-left: 22px; margin-bottom: 8px; }
+
+        .demo-area {
+            margin-top: 18px;
+            padding: 22px;
+            background: #FBFBFD;
+            border: 2px dashed var(--border-color);
+            border-radius: 12px;
+        }
+
+        .hint {
+            background: #E8F5E9;
+            color: #2E7D32;
+            padding: 14px;
+            border-radius: 10px;
+            margin-top: 16px;
+            font-size: 14px;
+        }
+
+        code {
+            background: rgba(0,0,0,0.05);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: #D6336C;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            background: var(--color-accent);
+            color: var(--color-white);
+            border-radius: 999px;
+            font-size: 12px;
+            margin-left: 10px;
+            font-weight: 600;
+        }
+
+        .unit-panel {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+        }
+
+        .unit-card {
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            background: var(--color-white);
+            text-align: center;
+        }
+
+        .border-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 18px;
+        }
+
+        .border-card {
+            padding: 24px;
+            border-radius: 18px;
+            background: var(--color-white);
+            text-align: center;
+        }
+
+        .table-wrapper { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 14px 16px; text-align: left; }
+
+        .form-grid { display: grid; gap: 18px; }
+        .form-grid label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; }
+        .form-grid input, .form-grid select { padding: 12px 14px; border-radius: 12px; border: 1px solid var(--border-color); font-size: 15px; }
+        .plan-options { display: flex; gap: 14px; flex-wrap: wrap; }
+        .plan-option { padding: 12px 18px; border: 1px solid var(--border-color); border-radius: 999px; }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            color: var(--color-text-light);
+            font-size: 14px;
+        }
+
+        /* ==========================================
+           🎯 学生作答区域
+           覆盖讲义下半部分：长度单位 / 边框与阴影 / 表格 / 表单
+        ========================================== */
+
+        /*
+        练习 1：单位与响应式
+        - 控制 html 根字号，比较 px 与 rem
+        - 使用 vw/vh 为 .unit-card 添加弹性内边距
+        */
+
+
+        /*
+        练习 2：边框与阴影
+        - 为不同 .border-card 设置 solid / dashed / dotted / gradient border
+        - 添加多层 box-shadow 体现层级
+        */
+
+
+        /*
+        练习 3：表格样式
+        - 完成斑马纹、hover 高亮、表头背景
+        - 使用 :nth-child 和 :last-child 加强对齐
+        */
+
+
+        /*
+        练习 4：表单状态
+        - 美化输入框 focus / error / success
+        - 自定义按钮与下拉菜单；实现选项 pill 状态
+        */
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧱 CSS 长度 / 边框 / 表单练习</h1>
+            <p class="subtitle">对应讲义下半部分：长度单位、边框进阶、表格强化、表单体验</p>
+            <p style="margin-top: 12px; color: #666; font-size: 14px;">
+                ⏰ 建议完成时间：30 分钟 | 🛠️ 建议使用浏览器 DevTools 检查不同状态效果
+            </p>
+        </header>
+
+        <section class="exercise">
+            <h2>📝 练习 1：长度单位实验 <span class="badge">Units</span></h2>
+            <div class="task-box">
+                <div class="task-title">任务说明</div>
+                <p>通过调整根字号、比较 px / rem / vw / vh，体会响应式排版的差异。</p>
+                <div class="requirement">
+                    <strong>📋 要求：</strong>
+                    <ul>
+                        <li>将 <code>html</code> 根字号改为 18px，再让 <code>.unit-card.rem</code> 使用 <code>1.5rem</code> 字号</li>
+                        <li><code>.unit-card.px</code> 保持 24px 字号，用于对比</li>
+                        <li><code>.unit-card.vw</code> 的 padding 使用 vw/vh 组合，确保在不同宽度下有弹性间距</li>
+                        <li>统一将卡片标题加粗，说明文字颜色设为 #6B7280</li>
+                    </ul>
+                </div>
+                <div class="demo-area">
+                    <div class="unit-panel">
+                        <div class="unit-card px">
+                            <h3>PX 固定</h3>
+                            <p>始终 24px，不随用户设置变化。</p>
+                        </div>
+                        <div class="unit-card rem">
+                            <h3>REM 自适应</h3>
+                            <p>随根字号成比例缩放。</p>
+                        </div>
+                        <div class="unit-card vw">
+                            <h3>视口单位</h3>
+                            <p>适合 hero banner、首屏模块。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hint">💡 提示：记得为 <code>.unit-card</code> 统一设定过渡效果，观察在调试器中修改根字号的反应。</div>
+            </div>
+        </section>
+
+        <section class="exercise">
+            <h2>📝 练习 2：边框 & 阴影层级 <span class="badge">Borders</span></h2>
+            <div class="task-box">
+                <div class="task-title">任务说明</div>
+                <p>结合 border 样式、border-radius 与 box-shadow，打造富有层次感的卡片。</p>
+                <div class="requirement">
+                    <strong>📋 要求：</strong>
+                    <ul>
+                        <li>.border-card.basic 使用 3px solid 边框和 12px 圆角</li>
+                        <li>.border-card.dashed 使用 3px dashed 边框，并让四个角分别不同半径（不对称圆角）</li>
+                        <li>.border-card.gradient 通过 <code>border-image: linear-gradient(...)</code> 做渐变描边，并添加柔和阴影</li>
+                        <li>所有卡片 hover 时提高阴影、略微上移</li>
+                    </ul>
+                </div>
+                <div class="demo-area">
+                    <div class="border-grid">
+                        <div class="border-card basic">Standard Card</div>
+                        <div class="border-card dashed">Dashed Fun</div>
+                        <div class="border-card gradient">Gradient Badge</div>
+                    </div>
+                </div>
+                <div class="hint">💡 提示：渐变描边可参考讲义第 11 章的 PRO PLAN badge。</div>
+            </div>
+        </section>
+
+        <section class="exercise">
+            <h2>📝 练习 3：表格美化升级 <span class="badge">Tables</span></h2>
+            <div class="task-box">
+                <div class="task-title">任务说明</div>
+                <p>基于讲义第 12-13 章，实现斑马纹 + Hover + 状态标签的综合表格。</p>
+                <div class="requirement">
+                    <strong>📋 要求：</strong>
+                    <ul>
+                        <li>使用 <code>.report-table thead</code> 设定深色背景、白色文字</li>
+                        <li><code>.report-table tbody tr:nth-child(even)</code> 添加浅色底，<code>:hover</code> 高亮</li>
+                        <li>让最后一列 <code>.status</code> 文本右对齐，并根据 data-status 添加不同背景（success/warning/danger）</li>
+                        <li>为整表添加圆角 + 阴影，保持与讲义示例一致</li>
+                    </ul>
+                </div>
+                <div class="demo-area table-wrapper">
+                    <table class="report-table">
+                        <thead>
+                            <tr>
+                                <th>项目</th>
+                                <th>负责人</th>
+                                <th>进度</th>
+                                <th class="status">状态</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>视觉重构</td>
+                                <td>Lisa</td>
+                                <td>80%</td>
+                                <td class="status" data-status="success">按计划</td>
+                            </tr>
+                            <tr>
+                                <td>移动端适配</td>
+                                <td>Tom</td>
+                                <td>45%</td>
+                                <td class="status" data-status="warning">需跟进</td>
+                            </tr>
+                            <tr>
+                                <td>支付串接</td>
+                                <td>Eric</td>
+                                <td>20%</td>
+                                <td class="status" data-status="danger">已延迟</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="hint">💡 提示：可通过 <code>[data-status="success"]</code> 这种属性选择器快速套用不同色块。</div>
+            </div>
+        </section>
+
+        <section class="exercise">
+            <h2>📝 练习 4：表单交互体验 <span class="badge">Forms</span></h2>
+            <div class="task-box">
+                <div class="task-title">任务说明</div>
+                <p>综合第 14-17 章，为输入框、按钮、选择器和计划选项设计一致的交互状态。</p>
+                <div class="requirement">
+                    <strong>📋 要求：</strong>
+                    <ul>
+                        <li>为 <code>.form-grid input</code> 设置圆角 12px、柔和阴影；Focus 时边框染成品牌色并添加外发光</li>
+                        <li>编写 <code>.field.success</code>、<code>.field.error</code> 两种状态，分别改变边框/说明文字颜色</li>
+                        <li><code>.primary-btn</code> 使用渐变背景 + 轻微 hover 动画；<code>.select-plan</code> 需移除默认箭头并添加自定义背景图</li>
+                        <li>Plan 选择 pill 支持激活态（.plan-option.active）并可用 <code>:focus-within</code> 触发</li>
+                    </ul>
+                </div>
+                <div class="demo-area">
+                    <form class="form-grid" autocomplete="off">
+                        <label class="field">
+                            邮箱
+                            <input type="email" placeholder="you@example.com">
+                            <small>用于接收通知</small>
+                        </label>
+                        <label class="field">
+                            密码
+                            <input type="password" placeholder="至少 8 位字符">
+                            <small>包含大小写与数字</small>
+                        </label>
+                        <label class="field">
+                            套餐选择
+                            <select class="select-plan">
+                                <option>Starter</option>
+                                <option>Pro</option>
+                                <option>Enterprise</option>
+                            </select>
+                        </label>
+                        <div>
+                            <span style="display:block; font-weight:600; margin-bottom:10px;">付款周期</span>
+                            <div class="plan-options">
+                                <button class="plan-option" type="button">按月</button>
+                                <button class="plan-option" type="button">按季</button>
+                                <button class="plan-option" type="button">按年</button>
+                            </div>
+                        </div>
+                        <div style="margin-top:10px;">
+                            <button class="primary-btn" type="button">提交订阅</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="hint">💡 提示：可参考讲义中按钮与下拉菜单的代码实验，注意 focus / hover / active 各状态的一致性。</div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            ✅ 完成自测：是否掌握 rem/vw、渐变描边、表格状态标签、表单焦点与验证反馈？
+        </footer>
+    </div>
+</body>
+</html>

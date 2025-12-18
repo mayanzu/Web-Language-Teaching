@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第5课：函数 - 练习题</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f5f5f7;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1d1d1f;
+            margin-bottom: 10px;
+            border-bottom: 3px solid #0066cc;
+            padding-bottom: 10px;
+        }
+        .intro {
+            color: #86868b;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        .task {
+            background: #fafafa;
+            border-left: 4px solid #0066cc;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .task h2 {
+            color: #0066cc;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .requirements {
+            background: white;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+        }
+        .requirements ul {
+            margin-left: 20px;
+        }
+        .requirements li {
+            margin-bottom: 6px;
+            color: #333;
+        }
+        code {
+            background: #e8e8ed;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9em;
+            color: #d63384;
+        }
+        .hint {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 12px;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #856404;
+        }
+        pre {
+            background: #f6f8fa;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 10px 0;
+            font-size: 13px;
+            border: 1px solid #e1e4e8;
+        }
+        .step {
+            background: white;
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 6px;
+            border: 1px solid #e1e4e8;
+        }
+        .step h4 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📦 第5课：函数 - 练习</h1>
+        <p class="intro">创建几个简单的函数，练习函数声明、参数传递和返回值的使用。</p>
+
+        <div class="task">
+            <h2>📋 任务要求</h2>
+            <p style="margin-bottom: 10px;">创建三个函数：1) 两数相加 2) 问候语生成 3) 判断是否成年，并在按钮点击时调用这些函数。</p>
+            
+            <div class="requirements">
+                <strong>知识点：</strong>
+                <ul>
+                    <li>函数声明：<code>function 函数名(参数) { ... }</code></li>
+                    <li>参数传递和使用</li>
+                    <li>返回值：<code>return</code></li>
+                    <li>函数调用</li>
+                </ul>
+            </div>
+
+            <h3 style="color: #0066cc; margin-top: 25px; margin-bottom: 15px;">📝 实现步骤</h3>
+            
+            <div class="step">
+                <h4>步骤 1：创建 HTML 结构</h4>
+                <p style="color: #666; margin-bottom: 8px;">创建包含以下元素的 HTML：</p>
+                <ul style="margin-left: 20px; color: #555;">
+                    <li>一个标题 <code>&lt;h1&gt;函数练习&lt;/h1&gt;</code></li>
+                    <li>三个按钮：测试加法、测试问候、测试判断成年</li>
+                    <li>结果显示区域 <code>&lt;div id="result"&gt;&lt;/div&gt;</code></li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <h4>步骤 2：声明加法函数（关键代码）</h4>
+                <p style="color: #666; margin-bottom: 8px;">创建一个函数，接收两个数字参数，返回它们的和：</p>
+                <pre>function add(a, b) {
+  const sum = a + b;
+  return sum;
+}</pre>
+                <div class="hint">
+                    💡 函数使用 <code>function</code> 关键字声明，<code>a</code> 和 <code>b</code> 是参数
+                </div>
+            </div>
+
+            <div class="step">
+                <h4>步骤 3：声明问候函数（关键代码）</h4>
+                <p style="color: #666; margin-bottom: 8px;">创建一个函数，接收一个名字参数，返回问候语：</p>
+                <pre>function greet(name) {
+  return `你好，${name}！欢迎学习 JavaScript。`;
+}</pre>
+                <div class="hint">
+                    💡 函数可以返回字符串，使用模板字符串可以插入参数值
+                </div>
+            </div>
+
+            <div class="step">
+                <h4>步骤 4：声明判断成年函数（关键代码）</h4>
+                <p style="color: #666; margin-bottom: 8px;">创建一个函数，接收年龄参数，返回是否成年的布尔值：</p>
+                <pre>function isAdult(age) {
+  if (age >= 18) {
+    return true;
+  } else {
+    return false;
+  }
+  // 或者更简洁的写法：return age >= 18;
+}</pre>
+                <div class="hint">
+                    💡 函数可以返回布尔值，<code>return</code> 会立即结束函数执行
+                </div>
+            </div>
+
+            <div class="step">
+                <h4>步骤 5：调用函数（关键代码）</h4>
+                <p style="color: #666; margin-bottom: 8px;">为三个按钮添加点击事件，调用对应的函数：</p>
+                <pre>const resultDiv = document.getElementById('result');
+
+// 测试加法
+document.getElementById('addBtn').addEventListener('click', function() {
+  const result = add(10, 20);
+  resultDiv.textContent = `10 + 20 = ${result}`;
+});
+
+// 测试问候
+document.getElementById('greetBtn').addEventListener('click', function() {
+  const message = greet("小明");
+  resultDiv.textContent = message;
+});
+
+// 测试判断成年
+document.getElementById('adultBtn').addEventListener('click', function() {
+  const check = isAdult(16);
+  resultDiv.textContent = `16岁是否成年：${check}`;
+});</pre>
+                <div class="hint">
+                    💡 调用函数时传入具体的值（实参），函数会返回结果
+                </div>
+            </div>
+
+            <h3 style="color: #0066cc; margin-top: 25px; margin-bottom: 10px;">🧪 测试</h3>
+            <div style="background: #e3f2fd; padding: 15px; border-radius: 6px;">
+                <ol style="margin-left: 20px; line-height: 1.8;">
+                    <li>点击"测试加法"，查看是否显示 30</li>
+                    <li>点击"测试问候"，查看是否显示问候语</li>
+                    <li>点击"测试判断成年"，查看是否显示 false</li>
+                    <li>尝试修改调用函数时的参数值</li>
+                </ol>
+            </div>
+
+            <h3 style="color: #ff6b6b; margin-top: 25px; margin-bottom: 10px;">🎯 进阶挑战（可选）</h3>
+            <div style="background: #ffe8e8; padding: 15px; border-radius: 6px;">
+                <ul style="margin-left: 20px;">
+                    <li>添加输入框，让用户输入参数值，而不是使用固定值</li>
+                    <li>创建一个函数 <code>multiply(a, b)</code> 实现乘法</li>
+                    <li>创建一个函数 <code>getMax(a, b)</code> 返回两个数中的较大值</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 颜色与文字排版 - 参考答案</title>
+    <style>
+        :root {
+            --color-text: #1D1D1F;
+            --color-text-light: #86868B;
+            --color-accent: #0066CC;
+            --color-bg: #F5F5F7;
+            --color-white: #FFFFFF;
+            --border-color: #D2D2D7;
+            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-mono: 'SF Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { font-size: 16px; }
+
+        body {
+            font-family: var(--font-stack);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1180px;
+            margin: 0 auto;
+            background: var(--color-white);
+            border-radius: 16px;
+            padding: 48px;
+            box-shadow: 0 18px 45px rgba(15,23,42,0.08);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 28px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        h1 { font-size: 38px; color: var(--color-accent); margin-bottom: 12px; }
+        .subtitle { font-size: 18px; color: var(--color-text-light); }
+
+        .exercise {
+            margin-bottom: 48px;
+            padding: 32px;
+            background: #FAFAFA;
+            border-radius: 14px;
+            border-left: 5px solid var(--color-accent);
+        }
+
+        .exercise h2 {
+            font-size: 24px;
+            margin-bottom: 12px;
+            color: var(--color-text);
+        }
+
+        .task-box {
+            background: var(--color-white);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .task-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--color-accent);
+            margin-bottom: 10px;
+        }
+
+        .requirement {
+            background: #FFF9E6;
+            padding: 16px;
+            border-radius: 10px;
+            border-left: 3px solid #FFB800;
+            margin: 16px 0;
+        }
+
+        .requirement li {
+            margin-left: 22px;
+            margin-bottom: 8px;
+        }
+
+        .demo-area {
+            margin-top: 18px;
+            padding: 22px;
+            background: #FBFBFD;
+            border: 2px dashed var(--border-color);
+            border-radius: 12px;
+        }
+
+        .hint {
+            background: #E8F5E9;
+            color: #2E7D32;
+            padding: 14px;
+            border-radius: 10px;
+            margin-top: 16px;
+            font-size: 14px;
+        }
+
+        code {
+            background: rgba(0,0,0,0.05);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: #D6336C;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            background: var(--color-accent);
+            color: var(--color-white);
+            border-radius: 999px;
+            font-size: 12px;
+            margin-left: 10px;
+            font-weight: 600;
+        }
+
+        .palette-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+        }
+
+        .palette-card {
+            border-radius: 12px;
+            padding: 18px;
+            border: 2px solid currentColor;
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+
+        .palette-card:hover { transform: translateY(-4px); }
+
+        .palette-chip {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            border: 4px solid currentColor;
+        }
+
+        .type-panel { display: flex; flex-wrap: wrap; gap: 18px; }
+        .type-card {
+            flex: 1;
+            min-width: 260px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 18px;
+            background: var(--color-white);
+        }
+
+        .quote-box {
+            border-left: 4px solid var(--color-accent);
+            padding: 18px 28px;
+            background: var(--color-white);
+            border-radius: 10px;
+            font-size: 18px;
+        }
+
+        .overflow-demo {
+            width: 240px;
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            background: var(--color-white);
+            border-radius: 10px;
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            color: var(--color-text-light);
+            font-size: 14px;
+        }
+
+        /* ==========================================
+           ✅ 参考答案 CSS
+        ========================================== */
+
+        /* 练习 1：色彩面板 */
+        .palette-card.primary {
+            color: #0F62FE;
+            background: rgba(15, 98, 254, 0.08);
+        }
+
+        .palette-card.warning {
+            color: hsl(32, 95%, 45%);
+            background: hsla(32, 85%, 90%, 0.95);
+        }
+
+        .palette-card.success {
+            color: var(--color-accent);
+            background: linear-gradient(135deg, rgba(0, 102, 204, 0.08), rgba(0, 102, 204, 0.18));
+        }
+
+        .palette-card p {
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+        }
+
+        /* 练习 2：字体与行高 */
+        .type-title {
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .type-body {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #4B5563;
+        }
+
+        .type-card.serif {
+            font-family: "Times New Roman", "Songti SC", Georgia, serif;
+        }
+
+        .type-card.serif .type-body {
+            font-size: 18px;
+        }
+
+        .type-card.modern {
+            font-family: "Inter", "Segoe UI", "Microsoft YaHei", sans-serif;
+        }
+
+        .type-card.modern .type-title {
+            font-size: 1.4rem;
+            letter-spacing: 0.02em;
+        }
+
+        .type-card.clean {
+            font-family: "Noto Sans SC", "PingFang SC", sans-serif;
+        }
+
+        .type-card.clean .type-body {
+            line-height: 1.8;
+            color: #6B7280;
+        }
+
+        /* 练习 3：文本装饰与间距 */
+        .quote-box {
+            text-align: center;
+            background: #F5F5F7;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            box-shadow: 0 8px 20px rgba(15,23,42,0.08);
+        }
+
+        .quote-heading {
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .quote-body {
+            text-transform: none;
+            letter-spacing: 0;
+            line-height: 1.6;
+            font-size: 1rem;
+            margin: 14px 0 18px;
+        }
+
+        .quote-author {
+            text-transform: lowercase;
+            letter-spacing: 0.3em;
+            border-top: 1px dashed #d1d5db;
+            margin-top: 18px;
+            padding-top: 12px;
+            display: inline-block;
+            width: 100%;
+            text-align: right;
+        }
+
+        /* 练习 4：文本溢出 */
+        .overflow-demo {
+            width: 220px;
+            font-size: 1rem;
+            padding: 10px 12px;
+            border-radius: 12px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            transition: white-space 0.2s ease;
+        }
+
+        .overflow-demo:hover {
+            white-space: normal;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎨 CSS 颜色与文字排版练习 · 参考答案</h1>
+            <p class="subtitle">示例解法：可根据课堂需要调整数值或配色</p>
+            <p style="margin-top: 12px; color: #666; font-size: 14px;">
+                ✅ 建议先完成原版练习，再对照此页检验思路
+            </p>
+        </header>
+
+        <section class="exercise">
+            <h2>📝 练习 1：色彩面板 <span class="badge">Color</span></h2>
+            <div class="task-box">
+                <div class="task-title">任务说明</div>
+                <p>为三张色卡设置不同的颜色表示法，掌握 color / background-color / border-color 的配合。</p>
+                <div class="requirement">
+                    <strong>📋 要求：</strong>
+                    <ul>
+                        <li>.palette-card.primary：文字颜色 #0F62FE，背景使用 rgba(15,98,254,0.08)</li>
+                        <li>.palette-card.warning：文字使用 HSL(32, 95%, 45%)，背景调低饱和度</li>
+                        <li>.palette-card.success：color 设为 CSS 变量 <code>var(--color-accent)</code>，背景使用 <code>linear-gradient</code></li>
+                        <li>让 .palette-chip 使用 <code>currentColor</code>，同时给卡片设置 2px 边框</li>
+                    </ul>
+                </div>
+                <div class="demo-area">
+                    <div class="palette-grid">
+                        <div class="palette-card primary">
+                            <div class="palette-chip"></div>
+                            <h3>Primary 蓝</h3>
+                            <p>十六进制 + RGBA 背景</p>
+                        </div>
+                        <div class="palette-card warning">
+                            <div class="palette-chip"></div>
+                            <h3>Warning 橙</h3>
+                            <p>HSL / HSLA 调整</p>
+                        </div>
+                        <div class="palette-card success">
+                            <div class="palette-chip"></div>
+                            <h3>Success 品牌色</h3>
+                            <p>变量 + 渐变背景</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hint">💡 提示：可使用 <code>.palette-card { border: 2px solid currentColor; }</code> 让边框也继承颜色。</div>
+            </div>
+        </section>
+
+        <section class="exercise">
+            <h2>📝 练习 2：字体系统 <span class="badge">Typography</span></h2>
+            <div class="task-box">
+                <div class="task-title">任务说明</div>
+                <p>通过 font-family / font-size / font-weight / line-height 组合实现不同的排版风格。</p>
+                <div class="requirement">
+                    <strong>📋 要求：</strong>
+                    <ul>
+                        <li>.type-card.serif 使用衬线字体，正文 18px，标题加粗</li>
+                        <li>.type-card.modern 需写出三个字体候选，使用 rem 控制字号</li>
+                        <li>.type-card.clean 调整 line-height: 1.8，并将摘要文字设为 #6B7280</li>
+                        <li>对 .type-card 内的 <code>.type-title</code>、<code>.type-body</code> 分别设置字重与字号</li>
+                    </ul>
+                </div>
+                <div class="demo-area type-panel">
+                    <article class="type-card serif">
+                        <h3 class="type-title">经典衬线标题</h3>
+                        <p class="type-body">Serif 字体适合正文阅读，行距一般设为 1.5-1.7，更贴合传统印刷排版。</p>
+                    </article>
+                    <article class="type-card modern">
+                        <h3 class="type-title">Modern Fallback</h3>
+                        <p class="type-body">当第一种字体缺失时，浏览器会自动回退到下一种，确保排版风格一致。</p>
+                    </article>
+                    <article class="type-card clean">
+                        <h3 class="type-title">无衬线资讯</h3>
+                        <p class="type-body">选择易读的字体、合理的行高与字号组合，可以大幅提升资讯类页面的效率。</p>
+                    </article>
+                </div>
+                <div class="hint">💡 提示：可以定义 <code>.type-title</code> 与 <code>.type-body</code> 的通用样式，再用修饰类覆盖。</div>
+            </div>
+        </section>
+
+        <section class="exercise">
+            <h2>📝 练习 3：文本装饰与间距 <span class="badge">Text Style</span></h2>
+            <div class="task-box">
+                <div class="task-title">任务说明</div>
+                <p>使用 text-align / text-transform / text-decoration / letter-spacing / word-spacing 等属性塑造排版氛围。</p>
+                <div class="requirement">
+                    <strong>📋 要求：</strong>
+                    <ul>
+                        <li>.quote-box 居中对齐，背景 #F5F5F7，使用大写变换 + 0.2em 的 letter-spacing</li>
+                        <li>.quote-body 维持正常大小写，但设置 1.6 的 line-height</li>
+                        <li>.quote-author 放在右下角，使用 <code>text-transform: lowercase;</code> 并添加顶部虚线</li>
+                        <li>为 .quote-box 添加细微阴影 <code>0 8px 20px rgba(15,23,42,0.08)</code></li>
+                    </ul>
+                </div>
+                <div class="demo-area">
+                    <div class="quote-box">
+                        <p class="quote-heading">Typography Shapes Emotion</p>
+                        <p class="quote-body">通过字间距与装饰线的细节控制，我们可以让一段普通文本呈现出品牌专属的语气。</p>
+                        <p class="quote-author">DESIGN TEAM</p>
+                    </div>
+                </div>
+                <div class="hint">💡 提示：可利用 <code>text-transform</code> 区分标题与作者的语气。</div>
+            </div>
+        </section>
+
+        <section class="exercise">
+            <h2>📝 练习 4：文本溢出处理 <span class="badge">Overflow</span></h2>
+            <div class="task-box">
+                <div class="task-title">任务说明</div>
+                <p>为资讯卡片设置固定宽度，并使用“溢出三件套”保证界面整齐。</p>
+                <div class="requirement">
+                    <strong>📋 要求：</strong>
+                    <ul>
+                        <li>让 .overflow-demo 固定宽度 220px，字号使用 1rem（可在 html 上修改基准）</li>
+                        <li>组合 <code>white-space: nowrap;</code>、<code>overflow: hidden;</code>、<code>text-overflow: ellipsis;</code></li>
+                        <li>为卡片添加 10px 内边距及圆角 12px</li>
+                        <li>可选：增加 <code>.overflow-demo:hover</code> 时显示完整文本（使用 normal white-space）</li>
+                    </ul>
+                </div>
+                <div class="demo-area">
+                    <p class="overflow-demo">
+                        本段文字用于测试文本溢出处理是否正确：当内容较长时，应显示省略号以保持布局整洁。
+                    </p>
+                </div>
+                <div class="hint">💡 提示：想要 hover 展开可结合 <code>transition</code> 实现平滑体验。</div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            📌 最佳使用方式：完成原版后，逐条比对此答案，找出差异并记录调整原因。
+        </footer>
+    </div>
+</body>
+</html>

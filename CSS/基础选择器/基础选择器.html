@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS基础选择器练�?/title>
+    <style>
+        /* 1. 元素选择器：选择所有指定类型的HTML元素 */
+        p {
+            color: blue; /* 设置文字颜色为蓝�?*/
+        }
+
+        /* 2. ID选择器：使用#符号选择特定ID的元�?*/
+        #special {
+            background-color: lightyellow; /* 设置背景颜色为浅黄色 */
+            padding: 10px; /* 设置内边距为10像素 */
+        }
+
+        /* 3. 类选择器：使用.符号选择所有具有指定类的元�?*/
+        .highlight {
+            font-weight: bold; /* 设置字体为粗�?*/
+            color: red; /* 设置文字颜色为红�?*/
+        }
+
+        /* 4. 通用选择器：使用*选择所有元�?*/
+        * {
+            margin: 5px; /* 设置外边距为5像素 */
+            font-family: Arial, sans-serif; /* 设置字体为Arial或无衬线字体 */
+        }
+
+        /* 5. 分组选择器：使用逗号分隔多个选择�?*/
+        h1, h2, h3 {
+            text-decoration: underline; /* 添加下划线装�?*/
+            color: green; /* 设置文字颜色为绿�?*/
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS基础选择器练�?/h1>
+    
+    <h2>元素选择器示�?/h2>
+    <p>这个段落使用了元素选择器（p），文字颜色为蓝色�?/p>
+    
+    <h2>ID选择器示�?/h2>
+    <p id="special">这个段落有ID�?special"，使用ID选择器设置了浅黄色背景�?/p>
+    
+    <h2>类选择器示�?/h2>
+    <p class="highlight">这个段落有class�?highlight"，使用类选择器设置了红色粗体文字�?/p>
+    <div class="highlight">这个div也有class�?highlight"，同样会应用类选择器的样式�?/div>
+    
+    <h2>分组选择器示�?/h2>
+    <h1>这是一个一级标�?/h1>
+    <h2>这是一个二级标�?/h2>
+    <h3>这是一个三级标�?/h3>
+    
+    <h2>综合练习</h2>
+    <div>
+        <p>普通段落（元素选择器生效）</p>
+        <p class="highlight">带highlight类的段落（类选择器生效）</p>
+        <p id="special" class="highlight">同时有ID和class的段落（ID和类选择器都会生效）</p>
+    </div>
+</body>
+</html>

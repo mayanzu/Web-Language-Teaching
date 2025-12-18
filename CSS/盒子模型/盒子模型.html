@@ -1,0 +1,2064 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 盒子模型：网页布局的基石</title>
+    <style>
+        /* ============================================
+           Apple Developer 风格：与常见样式讲义保持一致
+           ============================================ */
+        :root {
+            --color-text: #1D1D1F;
+            --color-text-light: #86868B;
+            --color-heading: #111;
+            --color-accent: #0066CC;
+            --color-accent-hover: #0055B3;
+            --color-bg: #F5F5F7;
+            --color-white: #FFFFFF;
+            --border-color: #D2D2D7;
+            --code-bg: #f6f8fa;
+            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-mono: 'SF Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
+            --shadow-card: 0 8px 24px rgba(0,0,0,0.06);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-stack);
+            background: var(--color-bg);
+            color: var(--color-text);
+            display: flex;
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* === 侧边栏 === */
+        .sidebar {
+            width: 260px;
+            height: 100vh;
+            position: fixed;
+            background: rgba(255,255,255,0.95);
+            border-right: 1px solid var(--border-color);
+            padding: 30px 18px;
+            overflow-y: auto;
+            backdrop-filter: blur(12px);
+            z-index: 10;
+        }
+        .sidebar h3 {
+            font-size: 13px;
+            color: var(--color-text-light);
+            text-transform: uppercase;
+            margin: 18px 0 8px 12px;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+        .sidebar-nav { display: flex; flex-direction: column; gap: 3px; }
+        .sidebar a {
+            display: block; padding: 9px 12px; border-radius: 8px;
+            color: var(--color-text); text-decoration: none; font-size: 15px;
+            transition: all 0.2s; border-left: 3px solid transparent;
+        }
+        .sidebar a:hover { background: #E8E8ED; }
+        .sidebar a.active {
+            background: #E1F0FF; color: var(--color-accent);
+            border-left-color: var(--color-accent); font-weight: 600;
+        }
+        .sidebar a.sub-link { padding-left: 28px; font-size: 14px; color: #555; }
+
+        /* === 主内容区 === */
+        .content {
+            margin-left: 260px;
+            padding: 60px clamp(32px, 5vw, 90px);
+            width: 100%;
+            max-width: min(1600px, calc(100vw - 260px));
+        }
+
+        section { margin-bottom: 70px; scroll-margin-top: 40px; }
+        h1 { font-size: 48px; font-weight: 700; letter-spacing: -0.5px; }
+        h2 { font-size: 36px; margin: 60px 0 30px; padding-bottom: 15px; border-bottom: 1px solid var(--border-color); color: var(--color-heading); }
+        h3 { font-size: 26px; margin: 35px 0 18px; color: var(--color-heading); }
+        h4 { font-size: 20px; margin: 24px 0 12px; color: #333; }
+        p { margin-bottom: 16px; color: #333; }
+        code { font-family: var(--font-mono); background: rgba(27,31,35,0.05); padding: 3px 6px; border-radius: 4px; font-size: 0.92em; color: #d63384; }
+
+        .intro { font-size: 21px; color: var(--color-text-light); margin: 15px 0 40px; font-weight: 300; max-width: 780px; }
+        .hero-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f4ff 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 18px;
+            padding: 32px;
+            box-shadow: var(--shadow-card);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        .hero-card .stat { display: flex; flex-direction: column; gap: 6px; }
+        .hero-card .stat span:first-child { font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--color-text-light); }
+        .hero-card .stat strong { font-size: 28px; color: var(--color-accent); }
+
+        .pill-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+        .pill { padding: 6px 14px; border-radius: 999px; font-size: 13px; background: #E8F1FF; color: var(--color-accent); }
+
+        /* === 信息组件 === */
+        .tip-box, .warning-box, .note-box {
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin: 20px 0;
+            border-left: 4px solid;
+            background: #fff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+        }
+        .tip-box { border-color: var(--color-accent); background: #eef6ff; }
+        .warning-box { border-color: #FF9800; background: #fff7e6; }
+        .note-box { border-color: #34A853; background: #edf9f0; }
+        .tip-title { font-weight: 700; color: var(--color-accent); margin-bottom: 6px; display: block; }
+
+        .prop-table {
+            width: 100%; border-collapse: collapse;
+            background: #fff; margin: 20px 0; border: 1px solid var(--border-color);
+            border-radius: 10px; overflow: hidden; box-shadow: 0 3px 8px rgba(0,0,0,0.03);
+        }
+        .prop-table th, .prop-table td { padding: 14px 16px; text-align: left; border-bottom: 1px solid #eee; }
+        .prop-table th { background: #fbfbfd; font-weight: 600; color: #555; }
+        .prop-table tr:last-child td { border-bottom: none; }
+
+        /* === 交互式代码实验室 === */
+        .lab-card {
+            background: var(--color-white);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+            margin: 35px 0 50px;
+        }
+        .lab-header {
+            background: #fbfbfd;
+            padding: 14px 22px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 13px; font-weight: 600; color: #666;
+        }
+        .status-badge { font-size: 11px; padding: 4px 10px; border-radius: 999px; }
+        .status-badge.beginner { background: #E8F5E9; color: #2E7D32; }
+        .status-badge.advanced { background: #FFF3E0; color: #BF360C; }
+
+        .lab-body { display: grid; grid-template-columns: 1fr 1.2fr; height: 360px; }
+        .panel { position: relative; display: flex; flex-direction: column; overflow: hidden; }
+        .panel-label { position: absolute; top: 0; right: 0; background: #F0F0F0; padding: 5px 12px; font-size: 11px; color: #777; border-bottom-left-radius: 8px; }
+        .html-viewer {
+            background: #FAFAFA;
+            border-right: 1px solid var(--border-color);
+            padding: 20px;
+            font-family: var(--font-mono);
+            white-space: pre-wrap;
+            font-size: 13px;
+            color: #555;
+            overflow-y: auto;
+        }
+        .css-editor {
+            background: #FFFFFF;
+            padding: 20px;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: #1D1D1F;
+            outline: none;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            line-height: 1.6;
+        }
+        .action-bar {
+            padding: 14px 20px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+        .btn {
+            padding: 8px 18px;
+            border-radius: 8px;
+            border: 1px solid transparent;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-run { background: var(--color-accent); color: #fff; }
+        .btn-run:hover { background: var(--color-accent-hover); box-shadow: 0 2px 6px rgba(0,102,204,0.3); }
+        .btn-reset { background: #fff; color: #555; border-color: #d1d1d6; }
+        .btn-reset:hover { color: #111; border-color: #999; }
+        .preview-box { background: #fff; padding: 30px; min-height: 180px; border-top: 1px solid var(--border-color); }
+
+        .key-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px; margin-top: 25px;
+        }
+        .key-points li { list-style: none; padding: 14px 18px; border-radius: 12px; background: #fff; border: 1px solid var(--border-color); box-shadow: 0 2px 6px rgba(0,0,0,0.02); }
+
+        .diagram-wrapper { display: flex; justify-content: center; margin: 30px 0 15px; }
+        .model-diagram { display: inline-flex; }
+        .box-margin { background: #FDE8D8; padding: 28px; border: 1px dashed #FF9800; position: relative; }
+        .box-border { background: #FDF485; padding: 26px; border: 1px solid #FFC107; position: relative; }
+        .box-padding { background: #C4EBC8; padding: 24px; position: relative; }
+        .box-content { background: #BBDEFB; width: 140px; height: 70px; display: flex; align-items: center; justify-content: center; color: #1565C0; font-weight: 600; }
+        .label { position: absolute; top: 5px; left: 5px; font-size: 11px; font-weight: 600; opacity: 0.8; background: rgba(255,255,255,0.7); padding: 2px 6px; border-radius: 3px; }
+
+        .checklist { list-style: none; padding-left: 0; }
+        .checklist li { padding-left: 28px; position: relative; margin-bottom: 10px; }
+        .checklist li::before {
+            content: "✔"; position: absolute; left: 0; top: 0;
+            color: var(--color-accent); font-size: 14px;
+        }
+
+        /* 移动端优化 */
+        @media (max-width: 900px) {
+            body { flex-direction: column; }
+            .sidebar { position: static; width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--border-color); }
+            .content { margin-left: 0; padding: 30px 20px; }
+            .lab-body { grid-template-columns: 1fr; height: auto; }
+            .html-viewer { min-height: 120px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="sidebar-nav">
+            <h3>全貌</h3>
+            <a href="#intro" class="active">👋 盒子模型概览</a>
+            <a href="#starter" class="sub-link">为什么万物皆盒子</a>
+
+            <h3>Part 1 盒子结构</h3>
+            <a href="#part1">1. 拆解盒子的四层</a>
+            <a href="#padding-lab" class="sub-link">实验01：Padding 泡沫</a>
+            <a href="#border-lab" class="sub-link">实验02：Border + Margin</a>
+            <a href="#padding-detail" class="sub-link">Padding 四个方向</a>
+            <a href="#border-detail" class="sub-link">Border 样式大全</a>
+            <a href="#margin-detail" class="sub-link">Margin 特殊行为</a>
+
+            <h3>Part 2 尺寸与盒模型</h3>
+            <a href="#part2">2. 宽度从谁开始算</a>
+            <a href="#box-sizing" class="sub-link">实验03：content-box vs border-box</a>
+            <a href="#metrics" class="sub-link">属性速查表</a>
+            <a href="#width-height" class="sub-link">宽高控制方式</a>
+            <a href="#overflow" class="sub-link">Overflow 溢出处理</a>
+
+            <h3>Part 3 实战场景</h3>
+            <a href="#part3">3. 间距与排版技巧</a>
+            <a href="#stack-lab" class="sub-link">实验04：Margin 折叠</a>
+            <a href="#card-lab" class="sub-link">实验05：信息卡片</a>
+            <a href="#button-group" class="sub-link">实验09：按钮组</a>
+            <a href="#nav-bar" class="sub-link">实验10：导航栏</a>
+            <a href="#grid-cards" class="sub-link">实验11：卡片网格</a>
+        </div>
+    </nav>
+
+    <main class="content">
+        <header id="intro">
+            <h1>CSS 盒子模型入门</h1>
+            <p class="intro">别被“模型”吓到了。CSS 世界里的每个元素——标题、图片、按钮、表单——都是一个个盒子叠加出来的。掌握盒子的厚度、内衬与外距，就掌握了布局的节奏感。</p>
+            <div class="pill-list">
+                <span class="pill">Content</span>
+                <span class="pill">Padding</span>
+                <span class="pill">Border</span>
+                <span class="pill">Margin</span>
+                <span class="pill">box-sizing</span>
+            </div>
+            <div class="hero-card">
+                <div class="stat">
+                    <span>布局 80% 问题都源自盒子</span>
+                    <strong>4 层结构</strong>
+                </div>
+                <div class="stat">
+                    <span>记住一条配置</span>
+                    <strong>* { box-sizing: border-box; }</strong>
+                </div>
+                <div class="stat">
+                    <span>今日目标</span>
+                    <strong>读懂盒子的真实宽度</strong>
+                </div>
+            </div>
+        </header>
+
+        <section id="starter">
+            <div class="tip-box">
+                <span class="tip-title">💡 最生活化的比喻</span>
+                <p>把元素当成快递：<strong>内容</strong>是要寄的物品，<strong>Padding</strong> 是防震泡沫，<strong>Border</strong> 是纸箱厚度，<strong>Margin</strong> 是货架上箱子之间的空隙。改变任何一层，整体尺寸都会跟着变化。</p>
+            </div>
+            <ul class="key-points">
+                <li>所有块级、行内块级元素都遵守盒子模型。</li>
+                <li>内容区才会展示文字和图片，Padding 会撑开背景色。</li>
+                <li>Border 会参与实际尺寸，Margin 只影响与邻居的距离。</li>
+                <li>想精准控制宽高，必须理解 box-sizing 的计算方式。</li>
+            </ul>
+        </section>
+
+        <!-- Part 1 -->
+        <section id="part1">
+            <h2>第一部分：盒子的组成（四层结构）</h2>
+            <p>先通过直观的示意图记住名称，再用表格快速对照常见属性。</p>
+
+            <div class="diagram-wrapper">
+                <div class="model-diagram">
+                    <div class="box-margin">
+                        <span class="label">Margin</span>
+                        <div class="box-border">
+                            <span class="label">Border</span>
+                            <div class="box-padding">
+                                <span class="label">Padding</span>
+                                <div class="box-content">Content</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p style="text-align:center; color:#666; font-size:14px;">👆 盒子的上帝视角：从内到外 4 层</p>
+
+            <table class="prop-table">
+                <thead>
+                    <tr><th>层级</th><th>作用</th><th>常见属性</th><th>调试 Tips</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Content 内容区</td>
+                        <td>真实放置文字、图片的区域</td>
+                        <td><code>width</code> / <code>height</code></td>
+                        <td>内容背景、文字颜色都在这里生效</td>
+                    </tr>
+                    <tr>
+                        <td>Padding 内边距</td>
+                        <td>内容与边框之间的“呼吸空间”</td>
+                        <td><code>padding</code> / <code>padding-left</code></td>
+                        <td>会继承内容区背景色，撑开整体尺寸</td>
+                    </tr>
+                    <tr>
+                        <td>Border 边框</td>
+                        <td>盒子的边界线条</td>
+                        <td><code>border</code> / <code>border-radius</code></td>
+                        <td>宽度参与计算；可用 dashed/double 展示不同风格</td>
+                    </tr>
+                    <tr>
+                        <td>Margin 外边距</td>
+                        <td>盒子与其他盒子之间的间隔</td>
+                        <td><code>margin</code> / <code>margin:auto</code></td>
+                        <td>不会改变背景；垂直方向存在折叠现象</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="note-box">
+                <strong>调试建议：</strong>
+                <ul class="checklist">
+                    <li>善用浏览器 DevTools 查看盒模型面板。</li>
+                    <li>背景色配合透明边框能快速观察 Padding 的厚度。</li>
+                    <li>设置 <code>outline: 1px dashed #ccc;</code>，辅助观察 Margin 空隙。</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="padding-lab">
+            <h3>1.1 Padding：内容的呼吸空间</h3>
+            <p>Padding（内边距）是内容区和边框之间的缓冲区。想象一下，你在阅读一本书，如果文字紧贴页面边缘，阅读体验会很糟糕。Padding 就像书页的留白，让内容有"呼吸的空间"。</p>
+            
+            <div class="note-box">
+                <strong>💡 Padding 的三个关键特性：</strong>
+                <ul style="margin-top: 10px; padding-left: 20px; line-height: 1.8;">
+                    <li><strong>背景色延伸：</strong>Padding 区域会继承元素的背景色，这让它看起来像内容区的一部分。</li>
+                    <li><strong>撑开盒子：</strong>在默认的 <code>content-box</code> 模式下，Padding 会增加元素的总尺寸。</li>
+                    <li><strong>不可为负：</strong>与 Margin 不同，Padding 值不能是负数。</li>
+                </ul>
+            </div>
+
+            <h4>适用场景</h4>
+            <ul class="key-points">
+                <li>按钮和链接：增加点击区域，提升用户体验</li>
+                <li>卡片和容器：让内容与边框保持距离</li>
+                <li>表单元素：让输入框的文字不贴边</li>
+                <li>导航菜单：创建舒适的悬停区域</li>
+            </ul>
+
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 01：Padding 泡沫让内容呼吸</span>
+                    <span class="status-badge beginner">Beginner Friendly</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;div class="box"&gt;
+  我是内容
+&lt;/div&gt;
+                    </div>
+                    <div class="panel css-editor" id="css-1" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+.box {
+  /* 背景色：浅青色 */
+  background-color: #81ecec;
+  
+  /* 文字颜色：深灰色 */
+  color: #333;
+  
+  /* 内容区宽度：150像素 */
+  width: 150px;
+
+  /* 🔧 实验重点：打开下面的 padding 观察区别 */
+  /* 内边距会让文字与边缘产生距离 */
+  /* 同时背景色也会扩展到 padding 区域 */
+  /* padding: 20px; */
+}
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyCSS('1')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="removeCSS('1')">↺ 重置</button>
+                </div>
+                <div class="preview-box" id="preview-1">
+                    <div class="box">我是内容</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="border-lab">
+            <h3>1.2 Border + Margin：定义边界与距离</h3>
+            <p><strong>Border（边框）</strong>是盒子的"皮肤"，它定义了元素的边界。边框有三个关键属性：宽度（width）、样式（style）和颜色（color）。</p>
+            <p><strong>Margin（外边距）</strong>则是盒子与外界的"社交距离"，它控制元素与相邻元素之间的间隔。</p>
+
+            <table class="prop-table">
+                <thead>
+                    <tr><th>属性</th><th>Border 特点</th><th>Margin 特点</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>背景色</strong></td>
+                        <td>显示在边框的颜色区域</td>
+                        <td>完全透明，不显示背景</td>
+                    </tr>
+                    <tr>
+                        <td><strong>尺寸影响</strong></td>
+                        <td>参与盒子总宽度计算</td>
+                        <td>只影响外部间距，不计入宽度</td>
+                    </tr>
+                    <tr>
+                        <td><strong>负值</strong></td>
+                        <td>不支持负值</td>
+                        <td>支持负值，可产生重叠效果</td>
+                    </tr>
+                    <tr>
+                        <td><strong>折叠现象</strong></td>
+                        <td>不会折叠</td>
+                        <td>垂直方向会发生折叠（取较大值）</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="tip-box">
+                <span class="tip-title">🎨 设计师的思维</span>
+                <p>Border 是视觉的"分割线"，用于区分不同区域；Margin 是布局的"留白"，用于创造视觉节奏。好的设计往往是 80% 的留白 + 20% 的内容。</p>
+            </div>
+
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 02：Border + Margin 塑造层次</span>
+                    <span class="status-badge beginner">Beginner Friendly</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;div class="box"&gt;盒子 A&lt;/div&gt;
+&lt;div class="box"&gt;盒子 B&lt;/div&gt;
+                    </div>
+                    <div class="panel css-editor" id="css-2" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+.box {
+  /* 内容宽度设为 110px */
+  width: 110px;
+  
+  /* 背景色：桃红色 */
+  background-color: #fab1a0;
+  
+  /* 内边距：让文字与边框保持距离 */
+  padding: 12px;
+  
+  /* 边框：4像素宽的红色实线边框 */
+  /* 尝试改成 dashed(虚线) 或 dotted(点线) */
+  border: 4px solid #d63031;
+  
+  /* 外边距：控制盒子之间的间距 */
+  /* 这里只设置底部间距，盒子会垂直排列 */
+  margin-bottom: 12px;
+}
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyCSS('2')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="removeCSS('2')">↺ 重置</button>
+                </div>
+                <div class="preview-box" id="preview-2">
+                    <div class="box">盒子 A</div>
+                    <div class="box">盒子 B</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="padding-detail">
+            <h3>📏 深入理解：Padding 的四个方向</h3>
+            <p>Padding 可以分别控制四个方向，有多种写法：</p>
+            
+            <table class="prop-table">
+                <thead>
+                    <tr><th>写法</th><th>含义</th><th>示例</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>padding: 20px;</code></td>
+                        <td>四个方向都是 20px</td>
+                        <td>上、右、下、左全部 20px</td>
+                    </tr>
+                    <tr>
+                        <td><code>padding: 10px 20px;</code></td>
+                        <td>上下 10px，左右 20px</td>
+                        <td>垂直和水平分别设置</td>
+                    </tr>
+                    <tr>
+                        <td><code>padding: 10px 15px 20px;</code></td>
+                        <td>上 10px，左右 15px，下 20px</td>
+                        <td>三个值：上、左右、下</td>
+                    </tr>
+                    <tr>
+                        <td><code>padding: 5px 10px 15px 20px;</code></td>
+                        <td>上、右、下、左（顺时针）</td>
+                        <td>四个值：按顺时针记忆</td>
+                    </tr>
+                    <tr>
+                        <td><code>padding-top: 10px;</code></td>
+                        <td>单独设置某一边</td>
+                        <td>更精确的控制</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 03：Padding 的多种写法</span>
+                    <span class="status-badge beginner">基础练习</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;div class="demo demo1"&gt;统一 Padding&lt;/div&gt;
+&lt;div class="demo demo2"&gt;上下 vs 左右&lt;/div&gt;
+&lt;div class="demo demo3"&gt;四个方向不同&lt;/div&gt;
+                    </div>
+                    <div class="panel css-editor" id="css-3a" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+.demo {
+  /* 基础样式 */
+  background: #dfe6e9;
+  border: 2px solid #2d3436;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+/* 方式1：四边相同 */
+.demo1 {
+  /* 上、右、下、左都是 20px */
+  padding: 20px;
+}
+
+/* 方式2：垂直和水平分开 */
+.demo2 {
+  /* 上下 10px，左右 30px */
+  padding: 10px 30px;
+}
+
+/* 方式3：四个方向分别设置 */
+.demo3 {
+  /* 上5px 右15px 下25px 左35px (顺时针) */
+  padding: 5px 15px 25px 35px;
+  /* 提示：观察文字与边框的距离 */
+}
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyCSS('3a')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="removeCSS('3a')">↺ 重置</button>
+                </div>
+                <div class="preview-box" id="preview-3a">
+                    <div class="demo demo1">统一 Padding</div>
+                    <div class="demo demo2">上下 vs 左右</div>
+                    <div class="demo demo3">四个方向不同</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="border-detail">
+            <h3>🎨 深入理解：Border 的样式与技巧</h3>
+            <p>Border 不只是简单的线条，它有丰富的样式、宽度和颜色组合。</p>
+
+            <table class="prop-table">
+                <thead>
+                    <tr><th>样式值</th><th>效果</th><th>常用场景</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>solid</code></td>
+                        <td>实线边框</td>
+                        <td>最常用，清晰明确</td>
+                    </tr>
+                    <tr>
+                        <td><code>dashed</code></td>
+                        <td>虚线边框</td>
+                        <td>分隔区域、草稿状态</td>
+                    </tr>
+                    <tr>
+                        <td><code>dotted</code></td>
+                        <td>点状边框</td>
+                        <td>轻量分隔、装饰</td>
+                    </tr>
+                    <tr>
+                        <td><code>double</code></td>
+                        <td>双线边框</td>
+                        <td>强调、复古风格（需宽度≥3px）</td>
+                    </tr>
+                    <tr>
+                        <td><code>groove / ridge</code></td>
+                        <td>3D 凹槽/凸起</td>
+                        <td>复古网页、特殊效果</td>
+                    </tr>
+                    <tr>
+                        <td><code>none / hidden</code></td>
+                        <td>无边框</td>
+                        <td>移除默认边框</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 04：Border 样式大全</span>
+                    <span class="status-badge beginner">视觉对比</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;div class="border-grid"&gt;
+  &lt;div class="b-solid"&gt;solid&lt;/div&gt;
+  &lt;div class="b-dashed"&gt;dashed&lt;/div&gt;
+  &lt;div class="b-dotted"&gt;dotted&lt;/div&gt;
+  &lt;div class="b-double"&gt;double&lt;/div&gt;
+  &lt;div class="b-groove"&gt;groove&lt;/div&gt;
+  &lt;div class="b-ridge"&gt;ridge&lt;/div&gt;
+&lt;/div&gt;
+                    </div>
+                    <div class="panel css-editor" id="css-4a" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* 网格容器 */
+.border-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+/* 共同样式 */
+.border-grid > div {
+  /* 内边距让文字居中 */
+  padding: 20px;
+  /* 浅色背景 */
+  background: #f8f9fa;
+  /* 文字居中 */
+  text-align: center;
+  /* 字体样式 */
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* 实线边框 */
+.b-solid { border: 3px solid #0984e3; }
+
+/* 虚线边框 */
+.b-dashed { border: 3px dashed #6c5ce7; }
+
+/* 点状边框 */
+.b-dotted { border: 3px dotted #00b894; }
+
+/* 双线边框（需要较宽的宽度才能看清） */
+.b-double { border: 5px double #d63031; }
+
+/* 3D凹槽效果 */
+.b-groove { border: 5px groove #fdcb6e; }
+
+/* 3D凸起效果 */
+.b-ridge { border: 5px ridge #e17055; }
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyCSS('4a')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="removeCSS('4a')">↺ 重置</button>
+                </div>
+                <div class="preview-box" id="preview-4a">
+                    <div class="border-grid">
+                        <div class="b-solid">solid</div>
+                        <div class="b-dashed">dashed</div>
+                        <div class="b-dotted">dotted</div>
+                        <div class="b-double">double</div>
+                        <div class="b-groove">groove</div>
+                        <div class="b-ridge">ridge</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <span class="tip-title">💡 Border 的单边技巧</span>
+                <p>你可以只给某一边加边框：<code>border-left: 4px solid #0066CC;</code> 常用于侧边强调、引用块、导航活跃状态等设计。</p>
+            </div>
+        </section>
+
+        <section id="margin-detail">
+            <h3>🔄 深入理解：Margin 的特殊行为</h3>
+            <p>Margin 有一些"反直觉"的特性，理解它们能避免 90% 的布局问题。</p>
+
+            <div class="warning-box">
+                <strong>重点：Margin 的三大特性</strong>
+                <ul style="margin-top: 10px; padding-left: 20px;">
+                    <li><strong>不占背景：</strong>Margin 是透明的，不会显示元素背景色。</li>
+                    <li><strong>可以为负：</strong>负 Margin 会让元素"入侵"邻居的空间。</li>
+                    <li><strong>垂直折叠：</strong>上下相邻的 Margin 会合并，取较大值。</li>
+                </ul>
+            </div>
+
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 05：负 Margin 的神奇效果</span>
+                    <span class="status-badge advanced">进阶技巧</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;div class="container"&gt;
+  &lt;div class="overlap-box"&gt;我使用了负 Margin&lt;/div&gt;
+  &lt;div class="normal-box"&gt;我是普通盒子&lt;/div&gt;
+&lt;/div&gt;
+                    </div>
+                    <div class="panel css-editor" id="css-5a" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+.container {
+  /* 容器样式：添加边框便于观察 */
+  border: 2px dashed #ccc;
+  padding: 20px;
+  background: #f5f5f7;
+}
+
+.overlap-box {
+  /* 背景和边框 */
+  background: #74b9ff;
+  border: 3px solid #0984e3;
+  padding: 15px;
+  
+  /* 关键：负 margin 让盒子"突出"容器 */
+  /* 尝试改成 -10px, -30px 观察变化 */
+  margin-top: -30px;
+  margin-left: -30px;
+  
+  /* 字体样式 */
+  color: white;
+  font-weight: bold;
+}
+
+.normal-box {
+  /* 普通盒子作为对比 */
+  background: #dfe6e9;
+  padding: 15px;
+  margin-top: 15px;
+  border: 2px solid #636e72;
+}
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyCSS('5a')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="removeCSS('5a')">↺ 重置</button>
+                </div>
+                <div class="preview-box" id="preview-5a">
+                    <div class="container">
+                        <div class="overlap-box">我使用了负 Margin</div>
+                        <div class="normal-box">我是普通盒子</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 06：Margin Auto 居中技巧</span>
+                    <span class="status-badge beginner">常用技巧</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;div class="centered"&gt;我水平居中了！&lt;/div&gt;
+                    </div>
+                    <div class="panel css-editor" id="css-6a" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+.centered {
+  /* 必须设置宽度，否则会占满整行 */
+  width: 300px;
+  
+  /* margin: auto 的魔法 */
+  /* 左右 margin 设为 auto 会自动居中 */
+  /* 这是块级元素水平居中的经典方法 */
+  margin: 20px auto;
+  
+  /* 装饰样式 */
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0 10px 25px rgba(118, 75, 162, 0.3);
+}
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyCSS('6a')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="removeCSS('6a')">↺ 重置</button>
+                </div>
+                <div class="preview-box" id="preview-6a">
+                    <div class="centered">我水平居中了！</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 2 -->
+        <section id="part2">
+            <h2>第二部分：盒子的尺寸谁说了算？</h2>
+            <p>默认情况下，<code>width</code> 只指内容区。Padding 和 Border 会在外层继续叠加，导致“明明写 200px 却变宽”的困惑。</p>
+
+            <div class="warning-box">
+                <strong>⚠️ 新手大坑：</strong>
+                设置 <code>width: 300px</code> 不等于盒子宽 300px。真实宽度 = 内容 + Padding × 2 + Border × 2。布局爆掉往往就是忘了把这些算进去。
+            </div>
+
+            <h4>动手实验：对比两种模式</h4>
+            <p>下面的实验将直观展示 content-box 和 border-box 的区别。两个盒子都设置了 <code>width: 200px</code>，但最终宽度却不同！</p>
+
+            <div class="lab-card" id="box-sizing">
+                <div class="lab-header">
+                    <span>实验 03：content-box vs border-box</span>
+                    <span class="status-badge advanced">核心概念</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;div class="box standard"&gt;我是标准盒子&lt;/div&gt;
+&lt;br&gt;
+&lt;div class="box magic"&gt;我是救星盒子&lt;/div&gt;
+                    </div>
+                    <div class="panel css-editor" id="css-3" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+.box {
+  /* 宽度设为 200px，但要注意！ */
+  /* 这个值的含义取决于 box-sizing 属性 */
+  width: 200px;
+  
+  /* 内边距：为内容留出呼吸空间 */
+  /* 左右各 20px，共占用 40px */
+  padding: 20px;
+  
+  /* 边框：10px 宽的蓝色实线 */
+  /* 左右各 10px，共占用 20px */
+  border: 10px solid #0984e3;
+  
+  /* 背景色和文字色 */
+  background: #74b9ff;
+  color: #fff;
+  
+  /* 盒子之间的垂直间距 */
+  margin-bottom: 20px;
+}
+
+/* 标准盒模型 (content-box) */
+.standard {
+  /* 默认值：width 只计算内容区 */
+  box-sizing: content-box;
+  /* 真实占用宽度 = 内容200 + 内边距40 + 边框20 = 260px */
+  /* 结果：比设想的宽了 60px！ */
+}
+
+/* 救星：border-box 盒模型 */
+.magic {
+  /* 推荐使用：width 包含 padding 和 border */
+  box-sizing: border-box;
+  /* 真实占用宽度 = 200px（浏览器自动调整内容区） */
+  /* 结果：符合预期！你设多宽就是多宽 */
+}
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyCSS('3')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="removeCSS('3')">↺ 重置</button>
+                </div>
+                <div class="preview-box" id="preview-3">
+                    <div class="box standard">我是标准盒子 (260px)</div>
+                    <br>
+                    <div class="box magic">我是魔法盒子 (200px)</div>
+                </div>
+            </div>
+
+            <table class="prop-table" id="metrics">
+                <thead>
+                    <tr><th>属性</th><th>含义</th><th>工作方式</th><th>使用建议</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>box-sizing</code></td>
+                        <td>决定 width/height 是否包含 Padding & Border</td>
+                        <td><code>content-box</code>（默认）或 <code>border-box</code></td>
+                        <td><code>* { box-sizing: border-box; }</code> 一劳永逸</td>
+                    </tr>
+                    <tr>
+                        <td><code>min-width / max-width</code></td>
+                        <td>限制盒子可缩/可长的范围</td>
+                        <td>常与响应式布局配合</td>
+                        <td>卡片、按钮防止太小或太宽</td>
+                    </tr>
+                    <tr>
+                        <td><code>outline</code></td>
+                        <td>额外“描边”，不参与尺寸</td>
+                        <td>可叠加在 Border 外</td>
+                        <td>调试阶段善用 <code>outline: 1px dashed</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="tip-box">
+                <span class="tip-title">💡 设计系统常备代码</span>
+                <pre style="background: var(--code-bg); padding: 16px; border-radius: 8px; font-family: var(--font-mono);">*, *::before, *::after {
+  box-sizing: border-box;
+}</pre>
+                <p>把这段挪到 CSS 的第一行，你的所有组件都会“听话”。</p>
+            </div>
+        </section>
+
+        <section id="width-height">
+            <h3>2.1 宽度与高度：谁在最终说了算</h3>
+            <p>在 CSS 中，<code>width</code> 和 <code>height</code> 默认只描述内容区的尺寸（在 <code>content-box</code> 模式下）。Padding 与 Border 会额外增加元素的总尺寸。使用 <code>box-sizing: border-box</code> 可以让 <code>width</code>/<code>height</code> 包含内边距与边框，通常更易于布局。</p>
+
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 03b：宽高计算实战</span>
+                    <span class="status-badge beginner">实践理解</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;div class="demo-box"&gt;示例盒子&lt;/div&gt;
+                    </div>
+                    <div class="panel css-editor" id="css-12a" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+.demo-box {
+  width: 200px;
+  padding: 20px;
+  border: 8px solid #0066CC;
+  background: #E8F1FF;
+  color: #003a66;
+  margin-bottom: 12px;
+}
+
+/* 切换 box-sizing 观察差异 */
+.demo-box.box-content { box-sizing: content-box; }
+.demo-box.box-border { box-sizing: border-box; }
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyCSS('12a')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="removeCSS('12a')">↺ 重置</button>
+                    <button class="btn" onclick="setBoxSizingPreview('preview-12a','content')">设置 content-box</button>
+                    <button class="btn" onclick="setBoxSizingPreview('preview-12a','border')">设置 border-box</button>
+                </div>
+                <div class="preview-box" id="preview-12a">
+                    <div class="demo-box">示例盒子</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="overflow">
+            <h3>2.2 溢出处理（Overflow）</h3>
+            <p>当子内容超出容器尺寸时，浏览器的默认行为是显示超出的部分（<code>overflow: visible</code>）。你可以使用 <code>overflow: hidden</code> 隐藏超出区域，使用 <code>overflow: auto</code> 在需要时显示滚动条，或使用 <code>overflow: scroll</code> 强制显示滚动条。</p>
+
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 04b：Overflow 行为观察</span>
+                    <span class="status-badge beginner">实践理解</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;div class="scroll-wrap"&gt;
+  &lt;div class="long-content"&gt;这是很长的一段文本，用以触发溢出。重复内容以便看到滚动效果。&lt;/div&gt;
+&lt;/div&gt;
+                    </div>
+                    <div class="panel css-editor" id="css-12b" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+.scroll-wrap { width: 320px; border: 1px solid #ddd; padding: 12px; background: #fff; }
+.long-content { width: 100%; height: 120px; background: #f7fbff; }
+
+/* 尝试切换以下属性观察效果 */
+.scroll-wrap.visible { overflow: visible; }
+.scroll-wrap.hidden { overflow: hidden; }
+.scroll-wrap.auto { overflow: auto; max-height: 120px; }
+.scroll-wrap.scroll { overflow: scroll; max-height: 120px; }
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyCSS('12b')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="removeCSS('12b')">↺ 重置</button>
+                    <button class="btn" onclick="setOverflowMode('preview-12b','visible')">visible</button>
+                    <button class="btn" onclick="setOverflowMode('preview-12b','hidden')">hidden</button>
+                    <button class="btn" onclick="setOverflowMode('preview-12b','auto')">auto</button>
+                    <button class="btn" onclick="setOverflowMode('preview-12b','scroll')">scroll</button>
+                    <button class="btn" id="cycle-btn-12b" onclick="cycleOverflow('preview-12b')">▶ 自动轮播</button>
+                    <button class="btn" onclick="stopCycleOverflow('preview-12b')">■ 停止</button>
+                </div>
+                <div class="preview-box" id="preview-12b">
+                    <div class="scroll-wrap">
+                        <div class="long-content">这是很长的一段文本，用以触发溢出。这是很长的一段文本，用以触发溢出。重复内容以便看到滚动效果。</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Part 3 -->
+        <section id="part3">
+            <h2>第三部分：间距管理与实战场景</h2>
+            <p>真正的页面中，盒子不会单独存在。要么堆叠、要么并排。Margin 折叠、双列布局、信息卡片是最常遇到的场景。</p>
+
+            <div class="warning-box">
+                <strong>Margin 折叠速记：</strong>相邻块级元素的垂直 Margin 会取较大的那个，而不是相加。父子元素也会折叠（除非父元素有 padding/border/overflow）。
+            </div>
+        </section>
+
+        <section id="stack-lab">
+            <h3>3.1 理解 Margin 折叠（Margin Collapse）</h3>
+            <p>Margin 折叠是 CSS 中最"反直觉"的特性之一，但理解它能解决 90% 的垂直间距问题。</p>
+
+            <h4>什么是 Margin 折叠？</h4>
+            <p>当两个垂直相邻的块级元素的 margin 相遇时，它们不会相加，而是会<strong>合并（折叠）成一个 margin</strong>，其大小为两者中的较大值。</p>
+
+            <table class="prop-table">
+                <thead>
+                    <tr><th>场景</th><th>折叠情况</th><th>解决方案</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>相邻兄弟元素</td>
+                        <td>上下 margin 折叠</td>
+                        <td>只设置一侧 margin，或使用 padding</td>
+                    </tr>
+                    <tr>
+                        <td>父子元素</td>
+                        <td>子元素的 margin 会"穿透"父元素</td>
+                        <td>给父元素加 <code>padding</code>/<code>border</code>/<code>overflow:hidden</code></td>
+                    </tr>
+                    <tr>
+                        <td>空元素</td>
+                        <td>自身的上下 margin 折叠</td>
+                        <td>给元素添加 <code>min-height</code> 或内容</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="tip-box">
+                <span class="tip-title">💡 为什么会有 Margin 折叠？</span>
+                <p>这是 CSS 的设计理念：让文本段落之间的间距更自然。如果你有多个 <code>&lt;p&gt;</code> 标签，每个都有 <code>margin: 20px 0</code>，折叠机制确保段落间只有 20px 而不是 40px 的间距。</p>
+            </div>
+
+            <div class="warning-box">
+                <strong>⚠️ Margin 折叠的三个条件（同时满足才折叠）：</strong>
+                <ul style="margin-top: 10px; padding-left: 20px; line-height: 1.8;">
+                    <li>必须是<strong>块级元素</strong>（display: block/list-item/table）</li>
+                    <li>必须是<strong>垂直方向</strong>的 margin（左右不折叠）</li>
+                    <li>必须是<strong>普通文档流</strong>（float、position: absolute/fixed 不折叠）</li>
+                </ul>
+            </div>
+
+            <h4>实战中的常见问题</h4>
+            <ul class="key-points">
+                <li><strong>卡片内容顶部留白消失：</strong>子元素的 margin-top 穿透了父元素，给父元素加 <code>padding-top: 1px</code> 即可。</li>
+                <li><strong>两个卡片之间间距不对：</strong>上面卡片的 margin-bottom 和下面卡片的 margin-top 折叠了，统一使用 margin-bottom 管理间距。</li>
+                <li><strong>容器内第一个元素上移：</strong>典型的父子折叠，给容器加 <code>overflow: hidden</code> 或 <code>display: flow-root</code>。</li>
+            </ul>
+
+
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 04：观察 Margin 折叠现象</span>
+                    <span class="status-badge advanced">Debug Skill</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;div class="stack"&gt;
+  &lt;p&gt;第 1 段&lt;/p&gt;
+  &lt;p&gt;第 2 段&lt;/p&gt;
+&lt;/div&gt;
+                    </div>
+                    <div class="panel css-editor" id="css-4" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+.stack {
+  /* 容器边框：便于观察 */
+  border: 1px solid #ccc;
+  
+  /* 容器外边距 */
+  margin-top: 40px;
+  
+  /* 容器内边距：阻止子元素 margin 折叠 */
+  /* 🔧 实验：尝试注释掉这行，观察 margin 折叠现象 */
+  /* 当父元素有 padding/border 时，子元素 margin 不会穿透 */
+  padding: 20px;
+}
+
+.stack p {
+  /* 段落背景色 */
+  background: #f0f9ff;
+  
+  /* 段落上下外边距：各 20px */
+  /* 重点：相邻两个 <p> 的 margin 会折叠！ */
+  /* 两段之间的实际间距不是 40px，而是 20px */
+  margin: 20px 0;
+}
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyCSS('4')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="removeCSS('4')">↺ 重置</button>
+                </div>
+                <div class="preview-box" id="preview-4">
+                    <div class="stack">
+                        <p>第 1 段</p>
+                        <p>第 2 段</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="card-lab">
+            <h3>3.2 设计卡片组件：盒模型的综合应用</h3>
+            <p>卡片（Card）是现代 Web 设计中最常用的组件之一。从社交媒体的帖子、电商的商品列表，到 SaaS 产品的定价表，卡片无处不在。</p>
+
+            <h4>优秀卡片设计的四个要素</h4>
+            <div class="note-box">
+                <strong>🎨 设计原则：</strong>
+                <ul style="margin-top: 10px; padding-left: 20px; line-height: 1.8;">
+                    <li><strong>合理的 Padding：</strong>内容与边框保持 24-32px 的距离，让卡片有"呼吸感"。</li>
+                    <li><strong>微妙的 Border：</strong>使用 1px 的浅色边框（#E0E0E0），而不是纯黑线条。</li>
+                    <li><strong>柔和的圆角：</strong>8-16px 的 border-radius 让卡片更现代、友好。</li>
+                    <li><strong>层次感阴影：</strong>使用多层 box-shadow 营造"浮在纸面"的感觉。</li>
+                </ul>
+            </div>
+
+            <h4>卡片设计的盒模型分析</h4>
+            <table class="prop-table">
+                <thead>
+                    <tr><th>层级</th><th>CSS 属性</th><th>设计目的</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Content</td>
+                        <td><code>width: 260px;</code></td>
+                        <td>固定宽度，确保卡片在网格中整齐排列</td>
+                    </tr>
+                    <tr>
+                        <td>Padding</td>
+                        <td><code>padding: 24px;</code></td>
+                        <td>内容与边框保持距离，视觉上更舒适</td>
+                    </tr>
+                    <tr>
+                        <td>Border</td>
+                        <td><code>border: 1px solid #DFE6F2;</code></td>
+                        <td>定义边界，使用浅色避免过于突兀</td>
+                    </tr>
+                    <tr>
+                        <td>Shadow</td>
+                        <td><code>box-shadow: 0 12px 30px rgba(...)</code></td>
+                        <td>创造深度，让卡片"浮"起来</td>
+                    </tr>
+                    <tr>
+                        <td>Radius</td>
+                        <td><code>border-radius: 16px;</code></td>
+                        <td>柔和边角，更符合现代审美</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="tip-box">
+                <span class="tip-title">💡 响应式卡片的技巧</span>
+                <p>使用 <code>max-width</code> 而不是固定 <code>width</code>，让卡片在小屏幕上自适应：</p>
+                <pre style="background: var(--code-bg); padding: 12px; border-radius: 6px; font-family: var(--font-mono); margin-top: 8px;">.card {
+  width: 100%;
+  max-width: 320px; /* 限制最大宽度 */
+  padding: 24px;
+  box-sizing: border-box; /* 关键！ */
+}</pre>
+            </div>
+
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 05：打造信息卡片</span>
+                    <span class="status-badge beginner">UI 练习</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;div class="card"&gt;
+  &lt;h3&gt;Starter Plan&lt;/h3&gt;
+  &lt;p class="price"&gt;$19 / mo&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;10 GB Storage&lt;/li&gt;
+    &lt;li&gt;Responsive Layout&lt;/li&gt;
+    &lt;li&gt;Priority Support&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+                    </div>
+                    <div class="panel css-editor" id="css-5" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+.card {
+  /* 卡片固定宽度 */
+  width: 260px;
+  
+  /* 白色背景 */
+  background: #fff;
+  
+  /* 圆角：让卡片更现代 */
+  border-radius: 16px;
+  
+  /* 内边距：内容与边框保持距离 */
+  /* 这是卡片设计的关键，让内容有呼吸感 */
+  padding: 24px;
+  
+  /* 细边框：增加层次 */
+  border: 1px solid #dfe6f2;
+  
+  /* 阴影：让卡片"浮"起来 */
+  /* 参数：x偏移 y偏移 模糊半径 颜色 */
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+/* 卡片标题 */
+.card h3 { 
+  /* 标题下方留白 */
+  margin-bottom: 8px; 
+}
+
+/* 价格样式 */
+.card .price {
+  /* 放大字号：突出重点 */
+  font-size: 28px;
+  
+  /* 使用主题色 */
+  color: var(--color-accent);
+  
+  /* 价格下方留白 */
+  margin-bottom: 12px;
+}
+
+/* 特性列表 */
+.card ul {
+  /* 移除默认列表样式 */
+  list-style: none;
+  padding: 0;
+}
+
+/* 列表项 */
+.card li { 
+  /* 项目间距 */
+  margin-bottom: 8px;
+  
+  /* 左侧留空：为自定义符号预留位置 */
+  padding-left: 18px;
+  
+  /* 相对定位：配合伪元素绝对定位 */
+  position: relative;
+}
+
+/* 自定义列表符号 */
+.card li::before {
+  /* 使用圆点符号 */
+  content: "•";
+  
+  /* 绝对定位到左侧 */
+  position: absolute;
+  left: 0;
+  
+  /* 符号使用主题色 */
+  color: var(--color-accent);
+}
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyCSS('5')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="removeCSS('5')">↺ 重置</button>
+                </div>
+                <div class="preview-box" id="preview-5">
+                    <div class="card">
+                        <h3>Starter Plan</h3>
+                        <p class="price">$19 / mo</p>
+                        <ul>
+                            <li>10 GB Storage</li>
+                            <li>Responsive Layout</li>
+                            <li>Priority Support</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="button-group">
+            <h3>🎯 实战案例：按钮组布局</h3>
+            <p>盒模型在按钮设计中的应用——让按钮有合适的点击区域和视觉层次。</p>
+
+            <h4>按钮设计中的盒模型思维</h4>
+            <p>按钮是用户交互的核心元素，一个好的按钮不仅要好看，更要好用。盒模型的每一层都影响着按钮的用户体验：</p>
+
+            <div class="note-box">
+                <strong>🎨 按钮设计的黄金法则：</strong>
+                <ul style="margin-top: 10px; padding-left: 20px; line-height: 1.8;">
+                    <li><strong>Padding 决定点击区域：</strong>移动端至少 44×44px（Apple HIG 标准），桌面端至少 32×32px。Padding 太小会导致误点。</li>
+                    <li><strong>Border 创造视觉层次：</strong>主要按钮用填充色，次要按钮用边框，创造清晰的操作优先级。</li>
+                    <li><strong>Margin 控制组间距：</strong>相关按钮间距 8-12px，不相关按钮间距 20-30px。</li>
+                    <li><strong>Box-shadow 提供深度反馈：</strong>悬停时增强阴影，让用户感知"可点击"。</li>
+                </ul>
+            </div>
+
+            <table class="prop-table">
+                <thead>
+                    <tr><th>按钮类型</th><th>Padding</th><th>Border</th><th>使用场景</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>主要按钮</strong>（Primary）</td>
+                        <td>12px 24px</td>
+                        <td>无边框，用背景色强调</td>
+                        <td>主要操作：提交表单、确认购买</td>
+                    </tr>
+                    <tr>
+                        <td><strong>次要按钮</strong>（Secondary）</td>
+                        <td>12px 24px</td>
+                        <td>浅灰色背景，无明显边框</td>
+                        <td>次要操作：取消、返回</td>
+                    </tr>
+                    <tr>
+                        <td><strong>边框按钮</strong>（Outline）</td>
+                        <td>10px 22px（边框占用2px）</td>
+                        <td>2px 实线边框</td>
+                        <td>低优先级：了解更多、查看详情</td>
+                    </tr>
+                    <tr>
+                        <td><strong>文字按钮</strong>（Text）</td>
+                        <td>8px 16px（较小）</td>
+                        <td>无边框，悬停时下划线</td>
+                        <td>内联操作：编辑、删除</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="tip-box">
+                <span class="tip-title">💡 无障碍设计提示</span>
+                <p>WCAG 2.1 标准要求：触摸目标至少 44×44 CSS 像素。如果按钮文字少，用 <code>min-width: 120px</code> 确保足够的点击区域。同时保持按钮之间至少 8px 的间距，避免误触。</p>
+            </div>
+
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 09：专业按钮组设计</span>
+                    <span class="status-badge beginner">UI 组件</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;div class="btn-group"&gt;
+  &lt;button class="btn-primary"&gt;主要操作&lt;/button&gt;
+  &lt;button class="btn-secondary"&gt;次要操作&lt;/button&gt;
+  &lt;button class="btn-outline"&gt;边框按钮&lt;/button&gt;
+&lt;/div&gt;
+                    </div>
+                    <div class="panel css-editor" id="css-9a" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* 按钮组容器 */
+.btn-group {
+  /* 按钮横向排列 */
+  display: flex;
+  
+  /* 按钮之间的间距 */
+  gap: 12px;
+  
+  /* 在 flex 布局中换行 */
+  flex-wrap: wrap;
+}
+
+/* 按钮通用样式 */
+.btn-group button {
+  /* 关键：内边距决定点击区域大小 */
+  /* 垂直 12px，水平 24px */
+  /* 移动端建议至少 44x44px 的点击区域 */
+  padding: 12px 24px;
+  
+  /* 去除默认边框 */
+  border: none;
+  
+  /* 圆角：现代化设计 */
+  border-radius: 8px;
+  
+  /* 字体样式 */
+  font-size: 15px;
+  font-weight: 600;
+  
+  /* 鼠标样式：提示可点击 */
+  cursor: pointer;
+  
+  /* 过渡动画：让hover效果更平滑 */
+  transition: all 0.2s;
+}
+
+/* 主要按钮：突出显示 */
+.btn-primary {
+  /* 深蓝色背景 */
+  background: #0066CC;
+  
+  /* 白色文字 */
+  color: white;
+  
+  /* 阴影：增加立体感 */
+  box-shadow: 0 2px 8px rgba(0, 102, 204, 0.3);
+}
+
+.btn-primary:hover {
+  /* 悬停时颜色加深 */
+  background: #0055b3;
+  
+  /* 阴影加强 */
+  box-shadow: 0 4px 12px rgba(0, 102, 204, 0.4);
+  
+  /* 轻微上移：视觉反馈 */
+  transform: translateY(-2px);
+}
+
+/* 次要按钮：低调风格 */
+.btn-secondary {
+  /* 浅灰色背景 */
+  background: #E8E8ED;
+  
+  /* 深色文字 */
+  color: #333;
+}
+
+.btn-secondary:hover {
+  /* 悬停时稍微加深 */
+  background: #D1D1D6;
+}
+
+/* 边框按钮：最低调 */
+.btn-outline {
+  /* 透明背景 */
+  background: transparent;
+  
+  /* 文字使用主题色 */
+  color: #0066CC;
+  
+  /* 边框：关键属性 */
+  /* 2px宽的实线边框 */
+  border: 2px solid #0066CC;
+}
+
+.btn-outline:hover {
+  /* 悬停时填充背景 */
+  background: #E1F0FF;
+}
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyCSS('9a')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="removeCSS('9a')">↺ 重置</button>
+                </div>
+                <div class="preview-box" id="preview-9a">
+                    <div class="btn-group">
+                        <button class="btn-primary">主要操作</button>
+                        <button class="btn-secondary">次要操作</button>
+                        <button class="btn-outline">边框按钮</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="nav-bar">
+            <h3>🧭 实战案例：导航栏设计</h3>
+            <p>导航栏是盒模型的典型应用场景——需要平衡间距、边框和背景。</p>
+
+            <h4>导航栏的盒模型解剖</h4>
+            <p>导航栏看似简单，实则考验对盒模型的理解。从整体容器到单个链接，每一层都需要精心设计：</p>
+
+            <table class="prop-table">
+                <thead>
+                    <tr><th>元素</th><th>关键属性</th><th>设计意图</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>导航容器</strong>（.navbar）</td>
+                        <td><code>padding: 16px 32px</code></td>
+                        <td>上下留白小，左右留白大，适应宽屏</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><code>border-bottom: 1px</code></td>
+                        <td>与内容区分隔，不能太粗（1-2px）</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><code>box-shadow: 0 2px 8px</code></td>
+                        <td>轻微阴影，让导航"浮"在内容上方</td>
+                    </tr>
+                    <tr>
+                        <td><strong>菜单链接</strong>（.nav-menu a）</td>
+                        <td><code>padding: 10px 16px</code></td>
+                        <td>增大点击区域，提升可用性</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><code>border-radius: 6px</code></td>
+                        <td>悬停时背景不会显得生硬</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><code>gap: 8px</code></td>
+                        <td>链接之间的最小间距</td>
+                    </tr>
+                    <tr>
+                        <td><strong>活跃状态</strong>（.active）</td>
+                        <td><code>border-left: 3px</code></td>
+                        <td>左侧色条标识当前页面</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><code>background: #E1F0FF</code></td>
+                        <td>浅色背景区分活跃项</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="note-box">
+                <strong>📱 响应式导航的盒模型策略：</strong>
+                <ul style="margin-top: 10px; padding-left: 20px; line-height: 1.8;">
+                    <li><strong>桌面端：</strong>横向布局，链接 <code>padding: 10px 16px</code>，利用水平空间。</li>
+                    <li><strong>平板端：</strong>减小 padding 至 <code>8px 12px</code>，缩小 logo 和间距。</li>
+                    <li><strong>移动端：</strong>改为汉堡菜单，链接全宽显示，<code>padding: 14px 20px</code>（增加垂直点击区域）。</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <strong>⚠️ 常见错误：</strong>
+                <ul style="margin-top: 10px; padding-left: 20px; line-height: 1.8;">
+                    <li><strong>忘记给链接加 padding：</strong>只有文字可点击，用户体验差。链接应该是整个矩形区域都可点。</li>
+                    <li><strong>导航栏 padding 不一致：</strong>左右内边距应该和页面主内容对齐，保持视觉连贯。</li>
+                    <li><strong>活跃状态不明显：</strong>只改变文字颜色不够，要用背景色 + 边框双重标识。</li>
+                </ul>
+            </div>
+
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 10：响应式导航栏</span>
+                    <span class="status-badge advanced">完整组件</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;nav class="navbar"&gt;
+  &lt;div class="nav-brand"&gt;MyLogo&lt;/div&gt;
+  &lt;ul class="nav-menu"&gt;
+    &lt;li&gt;&lt;a href="#" class="active"&gt;首页&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;产品&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;关于&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;联系&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+                    </div>
+                    <div class="panel css-editor" id="css-10a" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* 导航栏容器 */
+.navbar {
+  /* 背景：白色带透明度 */
+  background: rgba(255, 255, 255, 0.95);
+  
+  /* 底部边框：分隔作用 */
+  border-bottom: 1px solid #E8E8ED;
+  
+  /* 内边距：上下小，左右大 */
+  padding: 16px 32px;
+  
+  /* 弹性布局：左右分布 */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  /* 阴影：增加层次 */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Logo/品牌 */
+.nav-brand {
+  /* 字体加粗 */
+  font-weight: 700;
+  font-size: 20px;
+  
+  /* 主题色 */
+  color: #0066CC;
+}
+
+/* 菜单列表 */
+.nav-menu {
+  /* 移除默认列表样式 */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  
+  /* 横向排列 */
+  display: flex;
+  
+  /* 项目间距 */
+  gap: 8px;
+}
+
+/* 菜单链接 */
+.nav-menu a {
+  /* 去除下划线 */
+  text-decoration: none;
+  
+  /* 文字颜色 */
+  color: #333;
+  
+  /* 关键：内边距创建点击区域 */
+  /* 上下 10px，左右 16px */
+  padding: 10px 16px;
+  
+  /* 圆角 */
+  border-radius: 6px;
+  
+  /* 过渡效果 */
+  transition: all 0.2s;
+  
+  /* 字体大小 */
+  font-size: 15px;
+  
+  /* 显示为块级元素：让padding生效 */
+  display: block;
+}
+
+/* 链接悬停效果 */
+.nav-menu a:hover {
+  /* 浅灰色背景 */
+  background: #F5F5F7;
+  
+  /* 文字变色 */
+  color: #0066CC;
+}
+
+/* 活跃状态 */
+.nav-menu a.active {
+  /* 主题色背景 */
+  background: #E1F0FF;
+  
+  /* 主题色文字 */
+  color: #0066CC;
+  
+  /* 左侧强调边框 */
+  border-left: 3px solid #0066CC;
+  
+  /* 字体加粗 */
+  font-weight: 600;
+}
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyCSS('10a')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="removeCSS('10a')">↺ 重置</button>
+                </div>
+                <div class="preview-box" id="preview-10a" style="padding: 0;">
+                    <nav class="navbar">
+                        <div class="nav-brand">MyLogo</div>
+                        <ul class="nav-menu">
+                            <li><a href="#" class="active">首页</a></li>
+                            <li><a href="#">产品</a></li>
+                            <li><a href="#">关于</a></li>
+                            <li><a href="#">联系</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </section>
+
+        <section id="grid-cards">
+            <h3>📱 实战案例：响应式卡片网格</h3>
+            <p>综合运用盒模型知识，打造现代化的卡片布局系统。</p>
+
+            <h4>网格布局中的盒模型协奏曲</h4>
+            <p>卡片网格是现代 Web 设计的标配，从 Dribbble 的作品集、Airbnb 的房源列表，到 GitHub 的仓库卡片，无处不在。成功的网格布局需要协调三个层次的盒模型：</p>
+
+            <div class="note-box">
+                <strong>🏗️ 三层盒模型架构：</strong>
+                <ul style="margin-top: 10px; padding-left: 20px; line-height: 1.8;">
+                    <li><strong>容器层（Grid Container）：</strong>使用 <code>display: grid</code> 和 <code>gap</code> 控制卡片之间的间距。Gap 统一管理间距，比单独给每张卡片设置 margin 更清晰。</li>
+                    <li><strong>卡片层（Grid Item）：</strong>用 <code>padding</code> 控制内容与边框的距离，用 <code>border</code> 和 <code>box-shadow</code> 创造层次感。</li>
+                    <li><strong>内容层（Card Content）：</strong>卡片内部元素用 <code>margin</code> 控制垂直节奏（如标题与描述的间距）。</li>
+                </ul>
+            </div>
+
+            <h4>响应式网格的盒模型技巧</h4>
+            <table class="prop-table">
+                <thead>
+                    <tr><th>屏幕尺寸</th><th>列数</th><th>卡片 Padding</th><th>Grid Gap</th><th>容器 Padding</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>桌面端（>1200px）</td>
+                        <td>3-4 列</td>
+                        <td>32px 24px</td>
+                        <td>24px</td>
+                        <td>40px</td>
+                    </tr>
+                    <tr>
+                        <td>平板端（768-1200px）</td>
+                        <td>2-3 列</td>
+                        <td>24px 20px</td>
+                        <td>20px</td>
+                        <td>30px</td>
+                    </tr>
+                    <tr>
+                        <td>移动端（<768px）</td>
+                        <td>1 列</td>
+                        <td>20px 16px</td>
+                        <td>16px</td>
+                        <td>20px</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="tip-box">
+                <span class="tip-title">💡 auto-fit vs auto-fill</span>
+                <p>实验中使用了 <code>repeat(auto-fit, minmax(220px, 1fr))</code>，这是响应式网格的精髓：</p>
+                <ul style="margin-top: 8px; padding-left: 20px; line-height: 1.8;">
+                    <li><code>auto-fit</code>：自动调整列数，剩余空间会被现有列平分（卡片会变宽）</li>
+                    <li><code>auto-fill</code>：尽可能多地创建列，剩余空间留空（卡片宽度固定）</li>
+                    <li><code>minmax(220px, 1fr)</code>：卡片最窄 220px，最宽占据剩余空间</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <strong>⚠️ Box-sizing 的关键作用：</strong>
+                <p style="margin-top: 10px;">如果不设置 <code>box-sizing: border-box</code>，卡片的 padding 和 border 会增加总宽度，导致网格计算错误，卡片换行或溢出。这是网格布局最常见的 bug！</p>
+                <pre style="background: var(--code-bg); padding: 10px; border-radius: 6px; font-family: var(--font-mono); margin-top: 8px;">/* 所有项目必备 */
+*, *::before, *::after {
+  box-sizing: border-box;
+}</pre>
+            </div>
+
+            <h4>卡片悬停效果的盒模型魔法</h4>
+            <p>实验中的悬停效果巧妙运用了多个盒模型属性：</p>
+            <ul class="key-points">
+                <li><strong>transform: translateY(-4px)：</strong>让卡片"浮起"，但不影响布局（不会挤压其他卡片）</li>
+                <li><strong>box-shadow 增强：</strong>从淡阴影到深阴影，强化"浮起"的视觉效果</li>
+                <li><strong>border-color 高亮：</strong>边框变色标识当前悬停项</li>
+                <li><strong>transition 过渡：</strong>让所有变化平滑进行，避免突兀</li>
+            </ul>
+
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 11：三列卡片网格</span>
+                    <span class="status-badge advanced">综合应用</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;div class="grid-container"&gt;
+  &lt;div class="grid-card"&gt;
+    &lt;div class="card-icon"&gt;🚀&lt;/div&gt;
+    &lt;h4&gt;快速部署&lt;/h4&gt;
+    &lt;p&gt;一键部署到全球CDN&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="grid-card"&gt;
+    &lt;div class="card-icon"&gt;🔒&lt;/div&gt;
+    &lt;h4&gt;安全可靠&lt;/h4&gt;
+    &lt;p&gt;企业级安全防护&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="grid-card"&gt;
+    &lt;div class="card-icon"&gt;⚡&lt;/div&gt;
+    &lt;h4&gt;极速响应&lt;/h4&gt;
+    &lt;p&gt;99.9% 可用性保证&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+                    </div>
+                    <div class="panel css-editor" id="css-11a" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* 网格容器 */
+.grid-container {
+  /* CSS Grid 布局 */
+  display: grid;
+  
+  /* 三列，每列自适应，最小220px */
+  /* 小屏幕会自动变成单列或双列 */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  
+  /* 卡片之间的间距 */
+  gap: 24px;
+  
+  /* 容器内边距 */
+  padding: 20px;
+}
+
+/* 单个卡片 */
+.grid-card {
+  /* 白色背景 */
+  background: white;
+  
+  /* 边框 */
+  border: 1px solid #E8E8ED;
+  
+  /* 圆角 */
+  border-radius: 12px;
+  
+  /* 内边距：让内容有呼吸空间 */
+  /* 这是卡片设计的核心 */
+  padding: 32px 24px;
+  
+  /* 文字居中 */
+  text-align: center;
+  
+  /* 过渡：让悬停效果平滑 */
+  transition: all 0.3s;
+  
+  /* 阴影：初始很淡 */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* 卡片悬停效果 */
+.grid-card:hover {
+  /* 边框高亮 */
+  border-color: #0066CC;
+  
+  /* 阴影加强：视觉上"浮起" */
+  box-shadow: 0 8px 24px rgba(0, 102, 204, 0.12);
+  
+  /* 轻微上移 */
+  transform: translateY(-4px);
+}
+
+/* 图标容器 */
+.card-icon {
+  /* 图标大小 */
+  font-size: 48px;
+  
+  /* 下方留白 */
+  margin-bottom: 16px;
+}
+
+/* 卡片标题 */
+.grid-card h4 {
+  /* 移除默认外边距 */
+  margin: 0 0 8px 0;
+  
+  /* 字体样式 */
+  font-size: 18px;
+  font-weight: 600;
+  color: #1D1D1F;
+}
+
+/* 卡片描述 */
+.grid-card p {
+  /* 移除默认外边距 */
+  margin: 0;
+  
+  /* 字体样式 */
+  font-size: 14px;
+  color: #86868B;
+  line-height: 1.5;
+}
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyCSS('11a')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="removeCSS('11a')">↺ 重置</button>
+                </div>
+                <div class="preview-box" id="preview-11a" style="background: #F5F5F7; padding: 0;">
+                    <div class="grid-container">
+                        <div class="grid-card">
+                            <div class="card-icon">🚀</div>
+                            <h4>快速部署</h4>
+                            <p>一键部署到全球CDN</p>
+                        </div>
+                        <div class="grid-card">
+                            <div class="card-icon">🔒</div>
+                            <h4>安全可靠</h4>
+                            <p>企业级安全防护</p>
+                        </div>
+                        <div class="grid-card">
+                            <div class="card-icon">⚡</div>
+                            <h4>极速响应</h4>
+                            <p>99.9% 可用性保证</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h3>🎓 盒模型调试技巧总结</h3>
+            <div class="tip-box">
+                <span class="tip-title">💡 Chrome DevTools 盒模型面板</span>
+                <p>按 F12 打开开发者工具，选择元素后，在 Styles 面板底部可以看到盒模型可视化图。不同颜色代表：</p>
+                <ul style="margin-top: 10px; padding-left: 20px; line-height: 1.8;">
+                    <li><strong style="color: #0066CC;">蓝色</strong>：Content 内容区</li>
+                    <li><strong style="color: #34A853;">绿色</strong>：Padding 内边距</li>
+                    <li><strong style="color: #F5A623;">黄色</strong>：Border 边框</li>
+                    <li><strong style="color: #D0021B;">橙色</strong>：Margin 外边距</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <strong>⚡ 常见问题快速排查</strong>
+                <ul style="margin-top: 10px; padding-left: 20px; line-height: 1.8;">
+                    <li><strong>布局宽度超出：</strong>检查是否忘记设置 <code>box-sizing: border-box</code></li>
+                    <li><strong>垂直间距异常：</strong>可能是 Margin 折叠，父元素加 padding 或 border 可解决</li>
+                    <li><strong>点击区域太小：</strong>增加 padding，移动端至少 44x44px</li>
+                    <li><strong>背景色不够大：</strong>Margin 不会显示背景，改用 Padding</li>
+                </ul>
+            </div>
+
+            <div class="tip-box">
+                <span class="tip-title">🚀 Checklist：上线前确认盒子 OK</span>
+                <ul class="checklist">
+                    <li>所有交互元素是否有足够 Padding，触摸范围至少 44px。</li>
+                    <li>卡片布局是否统一使用 <code>border-box</code>，避免断行。</li>
+                    <li>上下相邻块是否因为 Margin 折叠导致间距消失？</li>
+                    <li>是否用 DevTools 的 Box Model 面板验证真实尺寸？</li>
+                    <li>按钮、卡片的 padding 是否统一，保持设计一致性？</li>
+                    <li>圆角、阴影、边框是否配合得当，形成视觉层次？</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function applyCSS(id) {
+            const editor = document.getElementById(`css-${id}`);
+            if (!editor) return;
+            const previewId = `preview-${id}`;
+            let rawCss = editor.innerText;
+            const labelText = "CSS (可编辑)";
+            if (rawCss.indexOf(labelText) !== -1) {
+                rawCss = rawCss.replace(labelText, "");
+            }
+            const lines = rawCss.split('\n');
+            let scopedCss = "";
+            lines.forEach(line => {
+                const trimmed = line.trim();
+                if (!trimmed || trimmed.startsWith('/*') || trimmed.startsWith('//')) {
+                    scopedCss += line + "\n";
+                    return;
+                }
+                if (trimmed === '}' || (trimmed.includes(':') && !trimmed.endsWith('{'))) {
+                    scopedCss += line + "\n";
+                    return;
+                }
+                if (trimmed.endsWith('{') || trimmed.endsWith(',')) {
+                    const selectors = line.split(',');
+                    const scopedSelectors = selectors.map(sel => {
+                        const s = sel.trim();
+                        if (s === '{' || !s) return s;
+                        if (s.includes('#' + previewId)) return s;
+                        return `#${previewId} ${s}`;
+                    });
+                    scopedCss += scopedSelectors.join(',') + "\n";
+                } else {
+                    scopedCss += line + "\n";
+                }
+            });
+            let styleTag = document.getElementById(`style-tag-${id}`);
+            if (!styleTag) {
+                styleTag = document.createElement('style');
+                styleTag.id = `style-tag-${id}`;
+                document.head.appendChild(styleTag);
+            }
+            styleTag.innerHTML = scopedCss;
+        }
+
+        function removeCSS(id) {
+            const styleTag = document.getElementById(`style-tag-${id}`);
+            if (styleTag) { styleTag.remove(); }
+        }
+
+        // === 交互扩展：用于新加的实验控制按钮 ===
+        function setBoxSizingPreview(previewId, mode) {
+            const wrap = document.getElementById(previewId);
+            if (!wrap) return;
+            const box = wrap.querySelector('.demo-box');
+            if (!box) return;
+            box.classList.remove('box-content', 'box-border');
+            if (mode === 'content') box.classList.add('box-content');
+            if (mode === 'border') box.classList.add('box-border');
+        }
+
+        function setOverflowMode(previewId, mode) {
+            const wrap = document.getElementById(previewId);
+            if (!wrap) return;
+            const target = wrap.querySelector('.scroll-wrap');
+            if (!target) return;
+            // 清理已有类
+            target.classList.remove('visible','hidden','auto','scroll');
+            if (mode) target.classList.add(mode);
+        }
+
+        // 自动轮播状态存储（全局小表）
+        const _overflowCycles = {};
+
+        function cycleOverflow(previewId, interval = 1800) {
+            const wrap = document.getElementById(previewId);
+            if (!wrap) return;
+            const btn = document.getElementById(`cycle-btn-${previewId.split('-').pop()}`) || null;
+            const modes = ['visible','hidden','auto','scroll'];
+            let idx = 0;
+            stopCycleOverflow(previewId);
+            _overflowCycles[previewId] = setInterval(() => {
+                setOverflowMode(previewId, modes[idx]);
+                idx = (idx + 1) % modes.length;
+            }, interval);
+            if (btn) btn.textContent = '⏸ 自动轮播';
+        }
+
+        function stopCycleOverflow(previewId) {
+            if (_overflowCycles[previewId]) {
+                clearInterval(_overflowCycles[previewId]);
+                delete _overflowCycles[previewId];
+            }
+            const btn = document.getElementById(`cycle-btn-${previewId.split('-').pop()}`) || null;
+            if (btn) btn.textContent = '▶ 自动轮播';
+        }
+
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section, header');
+            const navLinks = document.querySelectorAll('.sidebar a');
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (current && link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

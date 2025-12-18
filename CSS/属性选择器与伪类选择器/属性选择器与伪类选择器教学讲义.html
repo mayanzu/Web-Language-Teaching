@@ -1,0 +1,1496 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 选择器教学 - 互动对比版</title>
+    <style>
+        /* ============================================
+           基础页面样式 (Apple Developer 风格)
+           ============================================ */
+        :root {
+            --color-text: #1D1D1F;
+            --color-text-light: #86868B;
+            --color-accent: #0066CC;
+            --color-bg: #F5F5F7;
+            --color-white: #FFFFFF;
+            --border-color: #D2D2D7;
+            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-mono: 'SF Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--font-stack);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            display: flex;
+        }
+
+        /* 侧边栏 */
+        .sidebar {
+            width: 240px;
+            height: 100vh;
+            position: fixed;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(10px);
+            border-right: 1px solid var(--border-color);
+            padding: 40px 20px;
+            overflow-y: auto;
+        }
+        .sidebar h3 { font-size: 14px; color: var(--color-text-light); text-transform: uppercase; margin-bottom: 10px; padding-left: 10px; }
+        .sidebar a {
+            display: block;
+            padding: 10px 12px;
+            color: var(--color-text);
+            text-decoration: none;
+            font-size: 14px;
+            border-radius: 6px;
+            margin-bottom: 2px;
+        }
+        .sidebar a:hover { background: #E8E8ED; }
+        .sidebar a.active { background: var(--color-accent); color: white; }
+
+        /* 主内容 */
+        .content {
+            margin-left: 240px;
+            padding: 60px 80px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        section { margin-bottom: 80px; scroll-margin-top: 40px; }
+        h1 { font-size: 40px; font-weight: 700; margin-bottom: 10px; }
+        .intro { font-size: 20px; color: var(--color-text-light); margin-bottom: 60px; }
+        h2 { font-size: 28px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; margin-bottom: 25px; }
+        p { margin-bottom: 15px; }
+
+        /* === 核心组件：代码实验室 === */
+        .lab-card {
+            background: var(--color-white);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-top: 25px;
+        }
+
+        .lab-header {
+            background: #FAFAFA;
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--color-text-light);
+        }
+
+        /* 左右分栏 */
+        .lab-body {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr; /* 左侧HTML窄一点，右侧CSS宽一点 */
+            height: 350px; /* 固定高度 */
+        }
+
+        /* 代码面板 */
+        .panel {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .panel-label {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #EEEEEE;
+            padding: 4px 10px;
+            font-size: 11px;
+            color: #555;
+            border-bottom-left-radius: 6px;
+            z-index: 10;
+        }
+
+        /* HTML 只读区 */
+        .html-viewer {
+            background: #F5F5F7;
+            border-right: 1px solid var(--border-color);
+            padding: 20px;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: #444;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+
+        /* CSS 编辑区 */
+        .css-editor {
+            background: #FFFFFF;
+            padding: 20px;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: #1D1D1F;
+            outline: none;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* 操作栏 */
+        .action-bar {
+            padding: 15px 20px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .btn {
+            padding: 8px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .btn-run {
+            background: var(--color-accent);
+            color: white;
+        }
+        .btn-run:hover { background: #0055b3; }
+
+        .btn-reset {
+            background: white;
+            color: var(--color-text-light);
+            border-color: var(--border-color);
+        }
+        .btn-reset:hover { border-color: #999; color: #333; }
+
+        /* 预览区 */
+        .preview-box {
+            background: #FFFFFF;
+            padding: 30px;
+            border-top: 1px solid var(--border-color);
+            min-height: 150px;
+            position: relative;
+        }
+        
+        .preview-label {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 11px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* 状态提示 */
+        .status-badge {
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .status-active { background: #E8F5E9; color: #2E7D32; opacity: 1; }
+        .status-inactive { background: #FFEBEE; color: #C62828; opacity: 1; }
+
+    </style>
+</head>
+<body>
+
+    <nav class="sidebar">
+        <h3>课程大纲</h3>
+        <a href="#intro" class="active">🎯 开始之前</a>
+        <a href="#part1">1. 基础属性选择器</a>
+        <a href="#part1-1" style="padding-left:25px; font-size:13px;">1.1 什么是属性？</a>
+        <a href="#part1-2" style="padding-left:25px; font-size:13px;">1.2 存在匹配 [属性]</a>
+        <a href="#part1-3" style="padding-left:25px; font-size:13px;">1.3 精确匹配 [属性="值"]</a>
+        <a href="#part2">2. 字符串匹配选择器</a>
+        <a href="#part2-1" style="padding-left:25px; font-size:13px;">2.1 开头匹配 ^=</a>
+        <a href="#part2-2" style="padding-left:25px; font-size:13px;">2.2 结尾匹配 $=</a>
+        <a href="#part2-3" style="padding-left:25px; font-size:13px;">2.3 包含匹配 *=</a>
+        <a href="#part3">3. 交互状态伪类</a>
+        <a href="#part3-0" style="padding-left:25px; font-size:13px;">3.0 什么是伪类？</a>
+        <a href="#part3-1" style="padding-left:25px; font-size:13px;">3.1 悬停 :hover</a>
+        <a href="#part3-2" style="padding-left:25px; font-size:13px;">3.2 焦点 :focus</a>
+        <a href="#part3-3" style="padding-left:25px; font-size:13px;">3.3 激活 :active</a>
+        <a href="#part3-4">4. LVHA 链接伪类</a>
+        <a href="#part3-4-1" style="padding-left:25px; font-size:13px;">4.1 什么是 LVHA？</a>
+        <a href="#part3-4-2" style="padding-left:25px; font-size:13px;">4.2 顺序很重要</a>
+        <a href="#part3-4-3" style="padding-left:25px; font-size:13px;">4.3 实战应用</a>
+        <a href="#part4">5. 结构位置伪类</a>
+        <a href="#part4-1" style="padding-left:25px; font-size:13px;">5.1 第一个/最后一个</a>
+        <a href="#part4-2" style="padding-left:25px; font-size:13px;">5.2 第N个子元素</a>
+        <a href="#part4-3" style="padding-left:25px; font-size:13px;">5.3 奇数偶数行</a>
+        <a href="#part5">6. 排除逻辑伪类</a>
+        <a href="#part5-1" style="padding-left:25px; font-size:13px;">6.1 :not() 的用法</a>
+        <a href="#part6">7. 伪元素选择器</a>
+        <a href="#part6-0" style="padding-left:25px; font-size:13px;">7.0 什么是伪元素？</a>
+        <a href="#part6-1" style="padding-left:25px; font-size:13px;">7.1 ::before 与 ::after</a>
+        <a href="#part6-2" style="padding-left:25px; font-size:13px;">7.2 ::first-letter</a>
+        <a href="#part6-3" style="padding-left:25px; font-size:13px;">7.3 ::first-line</a>
+        <a href="#summary">📚 总结与实践</a>
+    </nav>
+
+    <main class="content">
+        <header>
+            <h1>CSS 选择器实验室</h1>
+            <p class="intro">观察 HTML 结构，编写并运行 CSS，见证样式从无到有的过程。</p>
+        </header>
+
+        <section id="intro" style="background: #F5F5F7; padding: 30px; border-radius: 12px; border-left: 4px solid var(--color-accent);">
+            <h2>🎯 开始之前：你需要知道的基础概念</h2>
+            
+            <h3 style="font-size: 20px; margin-top: 25px; color: #333;">1️⃣ 什么是 CSS 选择器？</h3>
+            <p style="font-size: 16px; line-height: 1.8;">
+                想象你在一个教室里，老师说："<strong>穿红色衣服的同学</strong>，请站起来。"<br>
+                这里的"穿红色衣服"就是一个<strong>选择条件</strong>，CSS 选择器的作用就是这样——<br>
+                <strong>帮你在网页中找到符合条件的元素</strong>，然后给它们添加样式。
+            </p>
+
+            <h3 style="font-size: 20px; margin-top: 25px; color: #333;">2️⃣ 什么是属性（Attribute）？</h3>
+            <p style="font-size: 16px; line-height: 1.8;">
+                在 HTML 中，属性就像是给元素贴的<strong>"标签"</strong>，用来描述它的特征。<br>
+                比如：<code style="background:#fff; padding:2px 5px; border:1px solid #ddd;">&lt;button disabled&gt;</code> 
+                这里的 <code>disabled</code> 就是一个属性，表示"这个按钮被禁用了"。
+            </p>
+            <div style="background: white; padding: 15px; margin-top: 10px; border-radius: 6px; font-family: monospace; font-size: 14px;">
+                &lt;input <span style="color:#0066CC;">type</span>="<span style="color:#34C759;">text</span>" <span style="color:#0066CC;">placeholder</span>="<span style="color:#34C759;">请输入用户名</span>"&gt;
+                <div style="margin-top: 8px; color: #666; font-size: 13px;">
+                    ↑ 这里有两个属性：type 和 placeholder
+                </div>
+            </div>
+
+            <h3 style="font-size: 20px; margin-top: 25px; color: #333;">3️⃣ 什么是伪类（Pseudo-class）？</h3>
+            <p style="font-size: 16px; line-height: 1.8;">
+                伪类是一种<strong>特殊的选择器</strong>，它会根据元素的<strong>状态</strong>或<strong>位置</strong>来选择。<br>
+                比如：<code>:hover</code> 表示"鼠标悬停时"，<code>:first-child</code> 表示"第一个孩子"。<br>
+                <strong>重点：</strong>伪类前面有一个冒号 <code>:</code>
+            </p>
+
+            <h3 style="font-size: 20px; margin-top: 25px; color: #333;">4️⃣ 如何使用这个实验室？</h3>
+            <ul style="font-size: 16px; line-height: 2; margin-left: 20px;">
+                <li>📖 <strong>左侧</strong>：HTML 代码（只读，不能修改）</li>
+                <li>✏️ <strong>右侧</strong>：CSS 代码（可以编辑，你可以修改试试）</li>
+                <li>▶️ <strong>点击"运行代码"</strong>：查看样式效果</li>
+                <li>↺ <strong>点击"重置"</strong>：恢复到初始状态</li>
+            </ul>
+            
+            <p style="margin-top: 20px; padding: 15px; background: #E8F5E9; border-radius: 6px; font-size: 15px;">
+                💡 <strong>学习建议：</strong>先运行一次代码看效果，再尝试修改 CSS 中的颜色、数字等，观察变化！
+            </p>
+        </section>
+
+        <section id="part1">
+            <h2>1. 基础属性选择器</h2>
+            
+            <div id="part1-1" style="background: #FAFAFA; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
+                <h3 style="font-size: 22px; color: var(--color-text); margin-bottom: 10px;">📌 1.1 HTML 属性是什么？</h3>
+                <p style="font-size: 16px; line-height: 1.8;">
+                    HTML 元素可以有很多<strong>属性</strong>，就像人有姓名、年龄、性别一样。<br>
+                    比如一个按钮：
+                </p>
+                <pre style="background: white; padding: 12px; border-radius: 6px; overflow-x: auto; font-size: 14px;">
+&lt;button <span style="color:#FF3B30;">disabled</span>&gt;我被禁用了&lt;/button&gt;
+&lt;input <span style="color:#FF3B30;">type</span>="<span style="color:#34C759;">password</span>" <span style="color:#FF3B30;">placeholder</span>="<span style="color:#34C759;">请输入密码</span>"&gt;</pre>
+                <p style="font-size: 15px; margin-top: 10px;">
+                    ✅ <code>disabled</code>、<code>type</code>、<code>placeholder</code> 都是属性<br>
+                    ✅ 属性可以有值（如 <code>type="password"</code>），也可以没有值（如 <code>disabled</code>）
+                </p>
+            </div>
+
+            <div id="part1-2" style="margin-bottom: 25px;">
+                <h3 style="font-size: 22px; color: #333; margin-bottom: 10px;">📌 1.2 存在匹配：<code>[属性名]</code></h3>
+                <p style="font-size: 16px; line-height: 1.8;">
+                    <strong>语法：</strong><code>[disabled]</code><br>
+                    <strong>含义：</strong>选择<strong>所有带有 disabled 属性的元素</strong>，不管它的值是什么。<br>
+                    <strong>应用场景：</strong>让所有禁用的按钮变成灰色，提示用户"这个按钮不能点"。
+                </p>
+                <div style="background: #F5F5F7; padding: 12px; border-left: 3px solid var(--color-accent); margin-top: 10px; font-size: 15px;">
+                    💡 <strong>记忆技巧：</strong>只要这个元素<strong>"有"</strong>这个属性，不管值是啥，都会被选中。
+                </div>
+            </div>
+
+            <div id="part1-3" style="margin-bottom: 25px;">
+                <h3 style="font-size: 22px; color: #333; margin-bottom: 10px;">📌 1.3 精确匹配：<code>[属性="值"]</code></h3>
+                <p style="font-size: 16px; line-height: 1.8;">
+                    <strong>语法：</strong><code>input[type="password"]</code><br>
+                    <strong>含义：</strong>选择<strong>type 属性等于 "password" 的 input 元素</strong>。<br>
+                    <strong>应用场景：</strong>给密码输入框加上特殊的红色边框，提醒用户"这是敏感信息"。
+                </p>
+                <div style="background: #F5F5F7; padding: 12px; border-left: 3px solid var(--color-text-light); margin-top: 10px; font-size: 15px;">
+                    ⚠️ <strong>注意：</strong>等号两边不能有空格，<code>type="password"</code> ✅，<code>type = "password"</code> ❌
+                </div>
+            </div>
+
+            <p style="color:#666; font-size:16px; margin-top: 30px;">
+                👇 <strong>动手实践：</strong>点击"运行代码"，观察按钮和输入框的变化。然后试着修改颜色值！
+            </p>
+
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 01：精确匹配与存在匹配</span>
+                    <span id="badge-1" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
+                </div>
+                
+                <div class="lab-body">
+                    <div class="panel html-viewer">
+<div class="panel-label">HTML (只读)</div>
+&lt;!-- 1. 普通按钮 --&gt;
+&lt;button&gt;普通按钮&lt;/button&gt;
+
+&lt;!-- 2. 禁用按钮 (有 disabled 属性) --&gt;
+&lt;button disabled&gt;我被禁用了&lt;/button&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;!-- 3. 文本框 (type="text") --&gt;
+&lt;input type="text" value="普通文本"&gt;
+
+&lt;!-- 4. 密码框 (type="password") --&gt;
+&lt;input type="password" value="123456"&gt;
+                    </div>
+
+                    <div class="panel css-editor" id="css-1" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* --- 实验目标 --- */
+/* 1. 让禁用的按钮变成灰色，鼠标变成禁止符号 */
+/* 2. 给密码输入框加上红色边框，以示区分 */
+
+/* [属性名] 选择所有带有 disabled 属性的元素 */
+[disabled] {
+    background-color: #f5f5f5; /* 浅灰背景 */
+    color: #aaaaaa;            /* 灰色文字 */
+    border: 1px dashed #ccc;   /* 虚线边框 */
+    cursor: not-allowed;       /* 禁止鼠标 */
+}
+
+/* [属性名="值"] 精确选择 type 等于 password 的元素 */
+input[type="password"] {
+    border: 2px solid #FF3B30; /* 红色边框 */
+    background-color: #FFF0F0; /* 浅红背景 */
+    color: red;
+}
+                    </div>
+                </div>
+
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyCSS(1)">▶ 运行代码 (Run)</button>
+                    <button class="btn btn-reset" onclick="removeCSS(1)">↺ 重置 (Reset)</button>
+                </div>
+
+                <div class="preview-box" id="preview-1">
+                    <span class="preview-label">效果预览</span>
+                    <div style="padding-top: 20px;">
+                        <button style="margin-right:10px; padding: 5px 10px;">普通按钮</button>
+                        <button disabled style="padding: 5px 10px;">我被禁用了</button>
+                        <br><br>
+                        <input type="text" value="普通文本" style="padding: 5px;">
+                        <input type="password" value="123456" style="padding: 5px;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="part2">
+            <h2>2. 字符串匹配选择器</h2>
+            
+            <div style="background: #FAFAFA; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
+                <h3 style="font-size: 20px; color: var(--color-text);">🤔 为什么需要字符串匹配？</h3>
+                <p style="font-size: 16px; line-height: 1.8;">
+                    有时候属性值很长，比如网址 <code>https://www.example.com/page.html</code>。<br>
+                    如果每次都要写完整的值，太麻烦了！<br>
+                    CSS 提供了<strong>模糊匹配</strong>的方法，只需要匹配<strong>开头</strong>、<strong>结尾</strong>或<strong>中间的一部分</strong>就行。
+                </p>
+            </div>
+
+            <div id="part2-1" style="margin-bottom: 25px;">
+                <h3 style="font-size: 22px; color: #333;">📌 2.1 开头匹配：<code>[属性^="开头"]</code></h3>
+                <p style="font-size: 16px; line-height: 1.8;">
+                    <strong>符号：</strong><code>^=</code> (键盘 Shift+6，像一个"箭头向上")<br>
+                    <strong>含义：</strong>选择属性值<strong>以某个字符串开头</strong>的元素<br>
+                    <strong>例子：</strong><code>a[href^="https"]</code> → 选择所有以 https 开头的链接
+                </p>
+                <div style="background: #F5F5F7; padding: 12px; border-left: 3px solid var(--color-accent); margin-top: 10px;">
+                    ✅ <strong>实际应用：</strong>把所有 HTTPS 安全链接显示成绿色，提示用户"这是安全网站"
+                </div>
+            </div>
+
+            <div id="part2-2" style="margin-bottom: 25px;">
+                <h3 style="font-size: 22px; color: #333;">📌 2.2 结尾匹配：<code>[属性$="结尾"]</code></h3>
+                <p style="font-size: 16px; line-height: 1.8;">
+                    <strong>符号：</strong><code>$=</code> (美元符号，像"结束"的意思)<br>
+                    <strong>含义：</strong>选择属性值<strong>以某个字符串结尾</strong>的元素<br>
+                    <strong>例子：</strong><code>a[href$=".pdf"]</code> → 选择所有指向 PDF 文件的链接
+                </p>
+                <div style="background: #F5F5F7; padding: 12px; border-left: 3px solid var(--color-accent); margin-top: 10px;">
+                    ✅ <strong>实际应用：</strong>给 PDF 链接加上橙色和"[PDF文档]"标签，方便用户识别
+                </div>
+            </div>
+
+            <div id="part2-3" style="margin-bottom: 25px;">
+                <h3 style="font-size: 22px; color: #333;">📌 2.3 包含匹配：<code>[属性*="包含"]</code></h3>
+                <p style="font-size: 16px; line-height: 1.8;">
+                    <strong>符号：</strong><code>*=</code> (星号，代表"任意位置")<br>
+                    <strong>含义：</strong>选择属性值<strong>包含某个字符串</strong>的元素（不管在开头、中间还是结尾）<br>
+                    <strong>例子：</strong><code>img[src*="logo"]</code> → 选择所有图片路径中包含 "logo" 的图片
+                </p>
+                <div style="background: #F5F5F7; padding: 12px; border-left: 3px solid var(--color-accent); margin-top: 10px;">
+                    ✅ <strong>实际应用：</strong>找出所有 logo 图片，统一设置宽度
+                </div>
+            </div>
+
+            <table style="width: 100%; border-collapse: collapse; margin-top: 20px; background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                <thead style="background: #1D1D1F; color: white;">
+                    <tr>
+                        <th style="padding: 12px; text-align: left; border: 1px solid var(--border-color);">选择器</th>
+                        <th style="padding: 12px; text-align: left; border: 1px solid var(--border-color);">含义</th>
+                        <th style="padding: 12px; text-align: left; border: 1px solid var(--border-color);">记忆技巧</th>
+                    </tr>
+                </thead>
+                <tbody style="font-size: 15px;">
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><code>^=</code></td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">以...开头</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">箭头向上 ↑ = 从头开始</td>
+                    </tr>
+                    <tr style="background: #f9f9f9;">
+                        <td style="padding: 10px; border: 1px solid #ddd;"><code>$=</code></td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">以...结尾</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">$ = 结束符号</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><code>*=</code></td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">包含...</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">* = 通配符，任意位置</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 02：智能链接样式</span>
+                    <span id="badge-2" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
+                </div>
+                
+                <div class="lab-body">
+                    <div class="panel html-viewer">
+<div class="panel-label">HTML (只读)</div>
+&lt;div class="link-list"&gt;
+  &lt;!-- 安全链接 (https开头) --&gt;
+  &lt;a href="https://bank.com"&gt;安全支付&lt;/a&gt;
+  &lt;br&gt;
+  
+  &lt;!-- 普通链接 (http开头) --&gt;
+  &lt;a href="http://game.com"&gt;网页游戏&lt;/a&gt;
+  &lt;br&gt;
+  
+  &lt;!-- PDF文件 (pdf结尾) --&gt;
+  &lt;a href="report.pdf"&gt;下载报告&lt;/a&gt;
+&lt;/div&gt;
+                    </div>
+
+                    <div class="panel css-editor" id="css-2" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* 1. ^= (开头匹配) */
+/* 选中所有 href 以 "https" 开头的链接，设为绿色 */
+a[href^="https"] {
+    color: #34C759; /* 绿色 */
+    font-weight: bold;
+}
+
+/* 2. $= (结尾匹配) */
+/* 选中所有 href 以 ".pdf" 结尾的链接 */
+a[href$=".pdf"] {
+    color: #FF9500; /* 橙色 */
+}
+/* 高级技巧：使用伪元素自动加文字 */
+a[href$=".pdf"]::after {
+    content: " [PDF文档]";
+    font-size: 12px;
+    color: #999;
+}
+
+/* 基础样式优化（方便查看） */
+a { text-decoration: none; font-size: 16px; line-height: 2; color: #333; }
+                    </div>
+                </div>
+
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyCSS(2)">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="removeCSS(2)">↺ 重置</button>
+                </div>
+
+                <div class="preview-box" id="preview-2">
+                    <span class="preview-label">效果预览</span>
+                    <div style="padding-top: 20px;">
+                        <a href="https://bank.com" onclick="return false;">安全支付</a><br>
+                        <a href="http://game.com" onclick="return false;">网页游戏</a><br>
+                        <a href="report.pdf" onclick="return false;">下载报告</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="part3">
+            <h2>3. 交互状态伪类</h2>
+            
+            <div id="part3-0" style="background: #FAFAFA; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
+                <h3 style="font-size: 20px; color: var(--color-text);">🎭 3.0 什么是"伪类"？</h3>
+                <p style="font-size: 16px; line-height: 1.8;">
+                    <strong>伪类（Pseudo-class）</strong>就像是元素的<strong>"状态标签"</strong>。<br>
+                    比如：一个按钮有很多状态——
+                </p>
+                <ul style="font-size: 15px; line-height: 2; margin-left: 20px;">
+                    <li>🖱️ <strong>正常状态</strong>：鼠标没碰它</li>
+                    <li>✨ <strong>悬停状态</strong>：鼠标移上去了（hover）</li>
+                    <li>👆 <strong>激活状态</strong>：正在被点击（active）</li>
+                    <li>🔍 <strong>焦点状态</strong>：被选中了（focus）</li>
+                </ul>
+                <p style="font-size: 16px; margin-top: 15px;">
+                    <strong>重点：</strong>伪类前面有一个<strong>冒号</strong> <code>:</code>，比如 <code>:hover</code>、<code>:focus</code>
+                </p>
+                <div style="background: #F5F5F7; padding: 12px; border-left: 3px solid var(--color-accent); margin-top: 10px;">
+                    💡 <strong>为什么叫"伪"类？</strong><br>
+                    因为它不是真正的 class 属性，而是浏览器根据用户操作<strong>自动添加</strong>的"虚拟类"。
+                </div>
+            </div>
+
+            <div id="part3-1" style="margin-bottom: 25px;">
+                <h3 style="font-size: 22px; color: #333;">📌 3.1 悬停状态：<code>:hover</code></h3>
+                <p style="font-size: 16px; line-height: 1.8;">
+                    <strong>语法：</strong><code>button:hover { }</code><br>
+                    <strong>触发条件：</strong>当鼠标<strong>移动到元素上方</strong>时<br>
+                    <strong>应用场景：</strong>按钮变色、链接下划线、图片放大等
+                </p>
+                <div style="background: #F5F5F7; padding: 12px; border-left: 3px solid var(--color-accent); margin-top: 10px;">
+                    ✅ <strong>最常用场景：</strong>给按钮添加悬停效果，提升用户体验
+                </div>
+            </div>
+
+            <div id="part3-2" style="margin-bottom: 25px;">
+                <h3 style="font-size: 22px; color: #333;">📌 3.2 焦点状态：<code>:focus</code></h3>
+                <p style="font-size: 16px; line-height: 1.8;">
+                    <strong>语法：</strong><code>input:focus { }</code><br>
+                    <strong>触发条件：</strong>当元素<strong>被点击或通过 Tab 键选中</strong>时<br>
+                    <strong>应用场景：</strong>输入框高亮、文本框边框变色
+                </p>
+                <div style="background: #F5F5F7; padding: 12px; border-left: 3px solid var(--color-accent); margin-top: 10px;">
+                    ✅ <strong>用户体验：</strong>让用户知道"我现在正在操作这个输入框"
+                </div>
+            </div>
+
+            <div id="part3-3" style="margin-bottom: 25px;">
+                <h3 style="font-size: 22px; color: #333;">📌 3.3 激活状态：<code>:active</code></h3>
+                <p style="font-size: 16px; line-height: 1.8;">
+                    <strong>语法：</strong><code>button:active { }</code><br>
+                    <strong>触发条件：</strong>当元素<strong>正在被点击</strong>（鼠标按下但还没松开）<br>
+                    <strong>应用场景：</strong>按钮按下效果、链接点击反馈
+                </p>
+                <div style="background: #F5F5F7; padding: 12px; border-left: 3px solid var(--color-text-light); margin-top: 10px;">
+                    ⚠️ <strong>持续时间：</strong>只在鼠标按下的<strong>瞬间</strong>出现，很短暂！
+                </div>
+            </div>
+
+            <div style="background: #F5F5F7; padding: 15px; border-radius: 8px; margin-top: 20px;">
+                <strong>📝 三者对比：</strong>
+                <table style="width: 100%; margin-top: 10px; font-size: 14px;">
+                    <tr>
+                        <td style="padding: 5px;"><code>:hover</code></td>
+                        <td style="padding: 5px;">→ 鼠标<strong>悬停</strong>（移上去）</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px;"><code>:focus</code></td>
+                        <td style="padding: 5px;">→ 元素<strong>被选中</strong>（可以输入）</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px;"><code>:active</code></td>
+                        <td style="padding: 5px;">→ 正在<strong>点击</strong>（按下瞬间）</td>
+                    </tr>
+                </table>
+            </div>
+
+            <p style="color:#666; font-size:16px; margin-top: 25px;">
+                👇 <strong>动手实验：</strong>运行代码后，用鼠标悬停按钮、点击输入框，观察变化！
+            </p>
+
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 03：悬停与焦点</span>
+                    <span id="badge-3" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
+                </div>
+                
+                <div class="lab-body">
+                    <div class="panel html-viewer">
+<div class="panel-label">HTML (只读)</div>
+&lt;!-- 一个普通的按钮 --&gt;
+&lt;button class="magic-btn"&gt;
+  鼠标悬停我
+&lt;/button&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;!-- 一个普通的输入框 --&gt;
+&lt;input class="magic-input" placeholder="点击输入..."&gt;
+                    </div>
+
+                    <div class="panel css-editor" id="css-3" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* --- 按钮的基础样式 --- */
+.magic-btn {
+    padding: 10px 20px;
+    background: #fff;
+    border: 1px solid #ccc;
+    transition: 0.3s; /* 让变化有动画过程 */
+}
+
+/* 1. :hover (鼠标悬停) */
+/* 当鼠标移上去时，变蓝并放大 */
+.magic-btn:hover {
+    background-color: #0066CC;
+    color: white;
+    transform: scale(1.1);
+    border-color: #0066CC;
+}
+
+/* 2. :focus (获得焦点) */
+/* 当输入框被点击激活时 */
+.magic-input:focus {
+    outline: none;
+    border: 2px solid #0066CC;
+    background-color: #E8F2FF;
+}
+                    </div>
+                </div>
+
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyCSS(3)">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="removeCSS(3)">↺ 重置</button>
+                </div>
+
+                <div class="preview-box" id="preview-3">
+                    <span class="preview-label">效果预览</span>
+                    <div style="padding-top: 20px;">
+                        <button class="magic-btn">鼠标悬停我</button>
+                        <br><br>
+                        <input class="magic-input" placeholder="点击输入..." style="padding: 5px;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="part3-4">
+            <h2>4. LVHA 链接伪类</h2>
+            
+            <div id="part3-4-1" style="background: #FAFAFA; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
+                <h3 style="font-size: 20px; color: var(--color-text);">🔗 4.1 什么是 LVHA？</h3>
+                <p style="font-size: 16px; line-height: 1.8;">
+                    LVHA 是四个链接状态伪类的<strong>首字母缩写</strong>，专门用来控制<strong>超链接（&lt;a&gt;标签）</strong>在不同状态下的样式：
+                </p>
+                <div style="background: white; padding: 20px; margin-top: 15px; border-radius: 6px;">
+                    <table style="width: 100%; font-size: 15px; line-height: 2;">
+                        <tr>
+                            <td style="padding: 8px; width: 80px;"><strong style="color: var(--color-text); font-size: 24px;">L</strong></td>
+                            <td style="padding: 8px;"><code>:link</code></td>
+                            <td style="padding: 8px;">→ 未访问过的链接（<strong>Link</strong>）</td>
+                        </tr>
+                        <tr style="background: #f9f9f9;">
+                            <td style="padding: 8px;"><strong style="color: var(--color-text); font-size: 24px;">V</strong></td>
+                            <td style="padding: 8px;"><code>:visited</code></td>
+                            <td style="padding: 8px;">→ 已访问过的链接（<strong>Visited</strong>）</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 8px;"><strong style="color: var(--color-text); font-size: 24px;">H</strong></td>
+                            <td style="padding: 8px;"><code>:hover</code></td>
+                            <td style="padding: 8px;">→ 鼠标悬停的链接（<strong>Hover</strong>）</td>
+                        </tr>
+                        <tr style="background: #f9f9f9;">
+                            <td style="padding: 8px;"><strong style="color: var(--color-text); font-size: 24px;">A</strong></td>
+                            <td style="padding: 8px;"><code>:active</code></td>
+                            <td style="padding: 8px;">→ 正在点击的链接（<strong>Active</strong>）</td>
+                        </tr>
+                    </table>
+                </div>
+                <div style="background: #F5F5F7; padding: 12px; border-left: 3px solid var(--color-accent); margin-top: 15px;">
+                    💡 <strong>记忆口诀：</strong>"<strong>L</strong>ove <strong>H</strong>ate" 或 "<strong>L</strong>o<strong>V</strong>e <strong>H</strong>ates <strong>A</strong>ll"（爱恨情仇）
+                </div>
+            </div>
+
+            <div id="part3-4-2" style="margin-bottom: 25px;">
+                <h3 style="font-size: 22px; color: #333;">📌 4.2 顺序为什么重要？</h3>
+                <p style="font-size: 16px; line-height: 1.8;">
+                    CSS 有一个规则：<strong>后写的样式会覆盖先写的样式</strong>（如果优先级相同）。<br>
+                    如果顺序写错，某些状态就会失效！
+                </p>
+                <div style="background: #FAFAFA; padding: 15px; border-left: 3px solid var(--color-text-light); margin-top: 15px;">
+                    <strong>❌ 错误示例（顺序混乱）：</strong>
+                    <pre style="background: white; padding: 10px; margin-top: 8px; border-radius: 4px; font-family: monospace; font-size: 14px;">a:hover { color: blue; }
+a:link { color: green; }  ← 写在后面，会覆盖 hover！
+
+结果：hover 效果失效 ❌</pre>
+                </div>
+                <div style="background: #F5F5F7; padding: 15px; border-left: 3px solid var(--color-accent); margin-top: 15px;">
+                    <strong>✅ 正确顺序（LVHA）：</strong>
+                    <pre style="background: white; padding: 10px; margin-top: 8px; border-radius: 4px; font-family: monospace; font-size: 14px;">a:link    { }  ← 1️⃣ 先写 link
+a:visited { }  ← 2️⃣ 再写 visited
+a:hover   { }  ← 3️⃣ 然后 hover
+a:active  { }  ← 4️⃣ 最后 active</pre>
+                </div>
+                <div style="background: #F5F5F7; padding: 12px; border-left: 3px solid var(--color-accent); margin-top: 15px;">
+                    💡 <strong>为什么这样排列？</strong><br>
+                    因为一个链接可能<strong>同时处于多个状态</strong>（比如"已访问 + 正在悬停"），<br>
+                    按 LVHA 顺序，最具体的状态（active）会显示在最上层。
+                </div>
+            </div>
+
+            <div id="part3-4-3" style="margin-bottom: 25px;">
+                <h3 style="font-size: 22px; color: #333;">📌 4.3 实际应用场景</h3>
+                <ul style="font-size: 15px; line-height: 2; margin-left: 20px;">
+                    <li><strong>:link</strong> → 设置默认的链接颜色（通常是蓝色）</li>
+                    <li><strong>:visited</strong> → 已访问的链接变紫色，帮助用户记住"我看过这个页面"</li>
+                    <li><strong>:hover</strong> → 鼠标悬停时加下划线或变色，提示"这是可点击的"</li>
+                    <li><strong>:active</strong> → 点击瞬间变色，给用户"按下按钮"的反馈</li>
+                </ul>
+            </div>
+
+            <p style="color:#666; font-size:16px; margin-top: 25px;">
+                👇 <strong>实验任务：</strong>运行代码，点击链接并观察颜色变化。然后回到页面再次悬停，看看已访问链接的样式！
+            </p>
+
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 3.5：LVHA 链接状态</span>
+                    <span id="badge-3-5" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
+                </div>
+                
+                <div class="lab-body">
+                    <div class="panel html-viewer">
+<div class="panel-label">HTML (只读)</div>
+&lt;div class="link-demo"&gt;
+  &lt;h4&gt;试试点击下面的链接：&lt;/h4&gt;
+  
+  &lt;a href="#link1"&gt;链接 1：关于我们&lt;/a&gt;
+  &lt;br&gt;
+  &lt;a href="#link2"&gt;链接 2：产品介绍&lt;/a&gt;
+  &lt;br&gt;
+  &lt;a href="#link3"&gt;链接 3：联系方式&lt;/a&gt;
+  
+  &lt;p style="margin-top: 20px; color: #666; font-size: 14px;"&gt;
+    💡 提示：点击链接后，它会变成已访问状态（紫色）
+  &lt;/p&gt;
+&lt;/div&gt;
+                    </div>
+
+                    <div class="panel css-editor" id="css-3-5" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* === LVHA 顺序（必须按这个顺序写！） === */
+
+/* 1. :link - 未访问的链接 */
+a:link {
+    color: #0066CC;           /* 蓝色 */
+    text-decoration: none;    /* 去掉下划线 */
+}
+
+/* 2. :visited - 已访问的链接 */
+a:visited {
+    color: #9C27B0;           /* 紫色 */
+}
+
+/* 3. :hover - 鼠标悬停 */
+a:hover {
+    color: #FF9500;           /* 橙色 */
+    text-decoration: underline; /* 加下划线 */
+    font-weight: bold;        /* 加粗 */
+}
+
+/* 4. :active - 正在点击 */
+a:active {
+    color: #F44336;           /* 红色 */
+    transform: scale(0.95);   /* 稍微缩小 */
+}
+
+/* 基础样式 */
+.link-demo a {
+    display: block;
+    padding: 8px 0;
+    font-size: 16px;
+    transition: all 0.2s;     /* 平滑过渡 */
+}
+                    </div>
+                </div>
+
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyCSS('3-5')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="removeCSS('3-5')">↺ 重置</button>
+                </div>
+
+                <div class="preview-box" id="preview-3-5">
+                    <span class="preview-label">效果预览</span>
+                    <div style="padding-top: 20px;">
+                        <div class="link-demo">
+                            <h4>试试点击下面的链接：</h4>
+                            <a href="#link1">链接 1：关于我们</a><br>
+                            <a href="#link2">链接 2：产品介绍</a><br>
+                            <a href="#link3">链接 3：联系方式</a>
+                            <p style="margin-top: 20px; color: #666; font-size: 14px;">
+                                💡 提示：点击链接后，它会变成已访问状态（紫色）
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="part4">
+            <h2>5. 结构位置伪类</h2>
+            
+            <div style="background: #FAFAFA; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
+                <h3 style="font-size: 20px; color: var(--color-text);">🏗️ 什么是"结构位置"？</h3>
+                <p style="font-size: 16px; line-height: 1.8;">
+                    想象一个家庭有 5 个孩子，我们想让<strong>老大穿红衣服</strong>、<strong>老幺穿蓝衣服</strong>、<strong>老二老四穿黄衣服</strong>（偶数）。<br>
+                    这就是<strong>结构位置选择器</strong>的作用——<strong>根据元素的排列顺序</strong>来选择。
+                </p>
+                <div style="background: white; padding: 12px; margin-top: 10px; border-radius: 6px; font-family: monospace; font-size: 14px;">
+                    &lt;ul&gt;<br>
+                    &nbsp;&nbsp;&lt;li&gt;第1个孩子&lt;/li&gt; <span style="color: #999;">← :first-child</span><br>
+                    &nbsp;&nbsp;&lt;li&gt;第2个孩子&lt;/li&gt; <span style="color: #999;">← :nth-child(2)</span><br>
+                    &nbsp;&nbsp;&lt;li&gt;第3个孩子&lt;/li&gt;<br>
+                    &nbsp;&nbsp;&lt;li&gt;第4个孩子&lt;/li&gt;<br>
+                    &nbsp;&nbsp;&lt;li&gt;第5个孩子&lt;/li&gt; <span style="color: #999;">← :last-child</span><br>
+                    &lt;/ul&gt;
+                </div>
+            </div>
+
+            <div id="part4-1" style="margin-bottom: 25px;">
+                <h3 style="font-size: 22px; color: #333;">📌 4.1 第一个和最后一个</h3>
+                <p style="font-size: 16px; line-height: 1.8;">
+                    <strong>:first-child</strong> → 选择<strong>第一个孩子</strong><br>
+                    <strong>:last-child</strong> → 选择<strong>最后一个孩子</strong>
+                </p>
+                <div style="background: #F5F5F7; padding: 12px; border-left: 3px solid var(--color-accent); margin-top: 10px;">
+                    ✅ <strong>常见用法：</strong>
+                    <ul style="margin-top: 8px; margin-left: 20px; line-height: 1.8;">
+                        <li>让列表第一项加粗显示</li>
+                        <li>去掉最后一个元素的底边框（避免多余的线）</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div id="part4-2" style="margin-bottom: 25px;">
+                <h3 style="font-size: 22px; color: #333;">📌 4.2 选择第 N 个：<code>:nth-child(N)</code></h3>
+                <p style="font-size: 16px; line-height: 1.8;">
+                    <strong>语法：</strong><code>li:nth-child(3)</code> → 选择第 3 个 li<br>
+                    <strong>N 可以是：</strong>
+                </p>
+                <ul style="font-size: 15px; line-height: 2; margin-left: 20px;">
+                    <li><code>:nth-child(1)</code> → 第 1 个</li>
+                    <li><code>:nth-child(3)</code> → 第 3 个</li>
+                    <li><code>:nth-child(2n)</code> → 所有偶数（2, 4, 6...）</li>
+                    <li><code>:nth-child(2n+1)</code> → 所有奇数（1, 3, 5...）</li>
+                </ul>
+                <div style="background: #F5F5F7; padding: 12px; border-left: 3px solid var(--color-accent); margin-top: 10px;">
+                    💡 <strong>公式解释：</strong><code>2n</code> 表示"2的倍数"，<code>2n+1</code> 表示"2的倍数加1"
+                </div>
+            </div>
+
+            <div id="part4-3" style="margin-bottom: 25px;">
+                <h3 style="font-size: 22px; color: #333;">📌 4.3 快捷方式：奇数偶数</h3>
+                <p style="font-size: 16px; line-height: 1.8;">
+                    CSS 提供了两个<strong>快捷关键字</strong>，不用写复杂的公式：
+                </p>
+                <table style="width: 100%; border-collapse: collapse; margin-top: 15px; background: white;">
+                    <thead style="background: #1D1D1F; color: white;">
+                        <tr>
+                            <th style="padding: 10px; text-align: left; border: 1px solid var(--border-color);">写法</th>
+                            <th style="padding: 10px; text-align: left; border: 1px solid var(--border-color);">等价于</th>
+                            <th style="padding: 10px; text-align: left; border: 1px solid var(--border-color);">含义</th>
+                        </tr>
+                    </thead>
+                    <tbody style="font-size: 15px;">
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid #ddd;"><code>:nth-child(odd)</code></td>
+                            <td style="padding: 10px; border: 1px solid #ddd;"><code>:nth-child(2n+1)</code></td>
+                            <td style="padding: 10px; border: 1px solid #ddd;">奇数行（1, 3, 5...）</td>
+                        </tr>
+                        <tr style="background: #f9f9f9;">
+                            <td style="padding: 10px; border: 1px solid #ddd;"><code>:nth-child(even)</code></td>
+                            <td style="padding: 10px; border: 1px solid #ddd;"><code>:nth-child(2n)</code></td>
+                            <td style="padding: 10px; border: 1px solid #ddd;">偶数行（2, 4, 6...）</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div style="background: #F5F5F7; padding: 12px; border-left: 3px solid var(--color-accent); margin-top: 15px;">
+                    ✅ <strong>经典应用：</strong>"<strong>斑马纹表格</strong>" —— 偶数行灰色背景，方便阅读
+                </div>
+            </div>
+
+            <p style="color:#666; font-size:16px; margin-top: 25px;">
+                👇 <strong>观察实验：</strong>运行代码，看看第一个、最后一个和偶数行的样式变化！
+            </p>
+
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 04：选中第 N 个元素</span>
+                    <span id="badge-4" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
+                </div>
+                
+                <div class="lab-body">
+                    <div class="panel html-viewer">
+<div class="panel-label">HTML (只读)</div>
+&lt;ul class="list-demo"&gt;
+  &lt;li&gt;Item 1 (第一个)&lt;/li&gt;
+  &lt;li&gt;Item 2 (偶数)&lt;/li&gt;
+  &lt;li&gt;Item 3 (第三个)&lt;/li&gt;
+  &lt;li&gt;Item 4 (偶数)&lt;/li&gt;
+  &lt;li&gt;Item 5 (最后)&lt;/li&gt;
+&lt;/ul&gt;
+                    </div>
+
+                    <div class="panel css-editor" id="css-4" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* 基础样式：给列表加个边框 */
+.list-demo li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    list-style: none;
+}
+
+/* 1. :first-child (第一个) */
+.list-demo li:first-child {
+    font-weight: bold;
+    color: red;
+}
+
+/* 2. :last-child (最后一个) */
+.list-demo li:last-child {
+    border-bottom: none; /* 去掉底边框 */
+    color: blue;
+}
+
+/* 3. :nth-child(even) (偶数行 2,4,6...) */
+/* 也可以写 :nth-child(odd) 代表奇数 */
+.list-demo li:nth-child(even) {
+    background-color: #f9f9f9; /* 斑马纹背景 */
+}
+                    </div>
+                </div>
+
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyCSS(4)">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="removeCSS(4)">↺ 重置</button>
+                </div>
+
+                <div class="preview-box" id="preview-4">
+                    <span class="preview-label">效果预览</span>
+                    <div style="padding-top: 10px;">
+                        <ul class="list-demo" style="padding: 0; border: 1px solid #ddd; max-width: 300px;">
+                            <li>Item 1 (第一个)</li>
+                            <li>Item 2 (偶数)</li>
+                            <li>Item 3 (第三个)</li>
+                            <li>Item 4 (偶数)</li>
+                            <li>Item 5 (最后)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="part5">
+            <h2>6. 排除逻辑伪类 :not()</h2>
+            
+            <div style="background: #FAFAFA; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
+                <h3 style="font-size: 20px; color: var(--color-text);">🚫 什么是"排除逻辑"？</h3>
+                <p style="font-size: 16px; line-height: 1.8;">
+                    有时候我们想：<strong>"选择所有按钮，但是不包括主按钮"</strong>。<br>
+                    如果一个个写 class 会很麻烦，这时候就用 <code>:not()</code>。
+                </p>
+                <div style="background: white; padding: 15px; margin-top: 10px; border-radius: 6px;">
+                    <strong style="font-size: 16px;">举例说明：</strong>
+                    <pre style="background: #f5f5f5; padding: 10px; margin-top: 8px; border-radius: 4px; font-size: 14px;">
+教室里有 10 个学生，老师说：
+"<strong>除了班长</strong>之外，所有人都去操场集合！"
+
+这就是 :not() 的逻辑 → 排除某一个，选择其他所有人。</pre>
+                </div>
+            </div>
+
+            <div id="part5-1" style="margin-bottom: 25px;">
+                <h3 style="font-size: 22px; color: #333;">📌 5.1 :not() 的用法</h3>
+                <p style="font-size: 16px; line-height: 1.8;">
+                    <strong>语法：</strong><code>元素:not(排除条件)</code><br>
+                    <strong>例子：</strong>
+                </p>
+                <ul style="font-size: 15px; line-height: 2; margin-left: 20px;">
+                    <li><code>button:not(.primary)</code> → 选择所有按钮，<strong>但排除</strong> class="primary" 的</li>
+                    <li><code>li:not(:first-child)</code> → 选择所有 li，<strong>但排除</strong>第一个</li>
+                    <li><code>input:not([type="submit"])</code> → 选择所有 input，<strong>但排除</strong>提交按钮</li>
+                </ul>
+                
+                <div style="background: #F5F5F7; padding: 15px; border-left: 3px solid var(--color-accent); margin-top: 15px;">
+                    ✅ <strong>实际场景：</strong>
+                    <p style="margin-top: 8px; line-height: 1.8;">
+                        网页有 4 个按钮："取消"、"保存"、"删除"、"确认"。<br>
+                        我们想让前 3 个普通按钮都是白底灰字，只有"确认"按钮是蓝底白字。<br>
+                        用 <code>:not()</code> 可以一次性设置好 3 个普通按钮，不用一个个写！
+                    </p>
+                </div>
+
+                <div style="background: #F5F5F7; padding: 12px; border-left: 3px solid var(--color-accent); margin-top: 15px;">
+                    💡 <strong>记忆技巧：</strong><code>:not()</code> = "不是...的" = "除了...之外"
+                </div>
+
+                <div style="background: #F5F5F7; padding: 12px; border-left: 3px solid var(--color-text-light); margin-top: 15px;">
+                    ⚠️ <strong>注意：</strong>括号里只能写<strong>简单选择器</strong>，不能写太复杂的组合（比如后代选择器）
+                </div>
+            </div>
+
+            <div style="background: #F5F5F7; padding: 15px; border-radius: 8px; margin-top: 20px;">
+                <strong>📝 对比学习：</strong>
+                <table style="width: 100%; margin-top: 10px; font-size: 15px; line-height: 1.8;">
+                    <tr>
+                        <td style="padding: 8px; width: 40%;"><strong>传统写法（麻烦）</strong></td>
+                        <td style="padding: 8px;"><strong>使用 :not()（简洁）</strong></td>
+                    </tr>
+                    <tr style="background: white;">
+                        <td style="padding: 8px; vertical-align: top;">
+                            <code>.btn-cancel { }</code><br>
+                            <code>.btn-save { }</code><br>
+                            <code>.btn-delete { }</code><br>
+                            <span style="color: #999; font-size: 13px;">需要给 3 个按钮分别写 class</span>
+                        </td>
+                        <td style="padding: 8px; vertical-align: top;">
+                            <code>button:not(.primary) { }</code><br>
+                            <span style="color: #999; font-size: 13px;">一行搞定！</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <p style="color:#666; font-size:16px; margin-top: 25px;">
+                👇 <strong>实验任务：</strong>运行代码，观察普通按钮和主按钮的区别。然后试着在 CSS 里把颜色改成其他的！
+            </p>
+
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 05：除了...之外</span>
+                    <span id="badge-5" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
+                </div>
+                
+                <div class="lab-body">
+                    <div class="panel html-viewer">
+<div class="panel-label">HTML (只读)</div>
+&lt;div&gt;
+  &lt;button&gt;取消&lt;/button&gt;
+  &lt;button&gt;保存&lt;/button&gt;
+  &lt;button&gt;提交&lt;/button&gt;
+  
+  &lt;!-- 这是一个特殊的按钮 --&gt;
+  &lt;button class="primary"&gt;主要操作&lt;/button&gt;
+&lt;/div&gt;
+                    </div>
+
+                    <div class="panel css-editor" id="css-5" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* 场景：我们想让所有普通按钮都是白底灰字，
+   但是 class="primary" 的按钮要保留特殊样式 */
+
+/* 1. 选中所有 button，但排除 .primary */
+button:not(.primary) {
+    background-color: white;
+    border: 1px solid #ddd;
+    color: #666;
+}
+
+/* 2. 给主要按钮单独设置 (这行只是为了对比) */
+.primary {
+    background-color: #0066CC;
+    color: white;
+    border: none;
+}
+
+/* 统一加点内边距 */
+button { padding: 8px 16px; margin-right: 5px; border-radius: 4px; }
+                    </div>
+                </div>
+
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyCSS(5)">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="removeCSS(5)">↺ 重置</button>
+                </div>
+
+                <div class="preview-box" id="preview-5">
+                    <span class="preview-label">效果预览</span>
+                    <div style="padding-top: 20px;">
+                        <button>取消</button>
+                        <button>保存</button>
+                        <button>提交</button>
+                        <button class="primary">主要操作</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="part6">
+            <h2>7. 伪元素选择器</h2>
+            
+            <div id="part6-0" style="background: #FAFAFA; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
+                <h3 style="font-size: 20px; color: var(--color-text);">✨ 7.0 什么是"伪元素"？</h3>
+                <p style="font-size: 16px; line-height: 1.8;">
+                    <strong>伪元素（Pseudo-element）</strong>可以让你<strong>在 HTML 中不存在的地方创建元素</strong>。<br>
+                    就像<strong>"魔法"</strong>一样，用 CSS 就能凭空变出新内容！
+                </p>
+                <div style="background: white; padding: 15px; margin-top: 15px; border-radius: 6px;">
+                    <strong style="font-size: 16px;">🤔 伪类 vs 伪元素的区别：</strong>
+                    <table style="width: 100%; margin-top: 10px; font-size: 15px; border-collapse: collapse;">
+                        <tr style="background: #F5F5F7;">
+                            <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>伪类</strong></td>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">选择<strong>已有元素</strong>的某种<strong>状态</strong></td>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">一个冒号 <code>:hover</code></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>伪元素</strong></td>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);"><strong>创建新元素</strong>（虚拟的）</td>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">两个冒号 <code>::before</code></td>
+                        </tr>
+                    </table>
+                </div>
+                <div style="background: #F5F5F7; padding: 12px; border-left: 3px solid var(--color-accent); margin-top: 15px;">
+                    💡 <strong>注意：</strong>CSS3 规定伪元素用<strong>两个冒号</strong> <code>::</code>，但为了兼容性，一个冒号 <code>:</code> 也能用。
+                </div>
+            </div>
+
+            <div id="part6-1" style="margin-bottom: 25px;">
+                <h3 style="font-size: 22px; color: #333;">📌 7.1 ::before 和 ::after（最常用）</h3>
+                <p style="font-size: 16px; line-height: 1.8;">
+                    <strong>::before</strong> → 在元素<strong>内容前面</strong>插入内容<br>
+                    <strong>::after</strong> → 在元素<strong>内容后面</strong>插入内容
+                </p>
+                <div style="background: white; padding: 15px; margin-top: 10px; border-radius: 6px; font-family: monospace; font-size: 14px;">
+                    &lt;p&gt;Hello&lt;/p&gt;<br>
+                    <span style="color: #999;">↓ 应用伪元素后</span><br>
+                    <span style="color: #0066CC;">[before内容]</span> Hello <span style="color: #34C759;">[after内容]</span>
+                </div>
+                <div style="background: #F5F5F7; padding: 12px; border-left: 3px solid var(--color-accent); margin-top: 15px;">
+                    ✅ <strong>实际应用：</strong>
+                    <ul style="margin-top: 8px; margin-left: 20px; line-height: 1.8;">
+                        <li>给链接自动加图标（如箭头、外链标志）</li>
+                        <li>制作引号、标签、徽章</li>
+                        <li>添加装饰性元素（不占用 HTML 结构）</li>
+                    </ul>
+                </div>
+                <div style="background: #F5F5F7; padding: 12px; border-left: 3px solid var(--color-text-light); margin-top: 15px;">
+                    ⚠️ <strong>重要：</strong>必须有 <code>content</code> 属性，否则伪元素不会显示！<br>
+                    即使不想显示内容，也要写 <code>content: "";</code>
+                </div>
+            </div>
+
+            <div id="part6-2" style="margin-bottom: 25px;">
+                <h3 style="font-size: 22px; color: #333;">📌 7.2 ::first-letter（首字母）</h3>
+                <p style="font-size: 16px; line-height: 1.8;">
+                    <strong>语法：</strong><code>p::first-letter { }</code><br>
+                    <strong>作用：</strong>选择元素的<strong>第一个字母</strong>，常用于制作<strong>首字下沉</strong>效果（杂志风格）
+                </p>
+                <div style="background: #E3F2FD; padding: 12px; border-left: 3px solid #2196F3; margin-top: 10px;">
+                    ✅ <strong>经典应用：</strong>新闻文章、小说的首字母放大并变色
+                </div>
+            </div>
+
+            <div id="part6-3" style="margin-bottom: 25px;">
+                <h3 style="font-size: 22px; color: #333;">📌 7.3 ::first-line（首行）</h3>
+                <p style="font-size: 16px; line-height: 1.8;">
+                    <strong>语法：</strong><code>p::first-line { }</code><br>
+                    <strong>作用：</strong>选择元素的<strong>第一行文本</strong>，无论第一行有多长
+                </p>
+                <div style="background: #FFF3E0; padding: 12px; border-left: 3px solid #FF9500; margin-top: 10px;">
+                    ✅ <strong>应用场景：</strong>让段落的第一行字体稍大或变色，突出重点
+                </div>
+            </div>
+
+            <p style="color:#666; font-size:16px; margin-top: 25px;">
+                👇 <strong>魔法时间：</strong>运行代码，看看伪元素如何"凭空"创造内容！
+            </p>
+
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 06：伪元素的魔法</span>
+                    <span id="badge-6" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
+                </div>
+                
+                <div class="lab-body">
+                    <div class="panel html-viewer">
+<div class="panel-label">HTML (只读)</div>
+&lt;!-- 示例 1：自动添加引号 --&gt;
+&lt;blockquote class="quote"&gt;
+  成功的秘诀在于坚持自己的目标和信念。
+&lt;/blockquote&gt;
+
+&lt;!-- 示例 2：链接加图标 --&gt;
+&lt;a href="#" class="external-link"&gt;访问外部网站&lt;/a&gt;
+
+&lt;!-- 示例 3：首字母放大 --&gt;
+&lt;p class="article"&gt;
+  这是一篇文章的开头。我们将使用伪元素
+  让第一个字母变得特别醒目，就像杂志
+  封面那样。
+&lt;/p&gt;
+                    </div>
+
+                    <div class="panel css-editor" id="css-6" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* === 示例 1：用伪元素添加引号 === */
+.quote::before {
+    content: "“";          /* 左引号 */
+    color: #0066CC;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.quote::after {
+    content: "”";
+    color: #0066CC;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.quote {
+    font-style: italic;
+    color: #555;
+    padding: 10px 20px;
+    background: #F5F5F7;
+    border-radius: 6px;
+}
+
+/* === 示例 2：链接后面加箭头 === */
+.external-link::after {
+    content: " ↗";         /* 箭头符号 */
+    color: #FF9500;
+    font-size: 14px;
+}
+
+.external-link {
+    color: #0066CC;
+    text-decoration: none;
+    display: block;
+    margin: 20px 0;
+}
+
+/* === 示例 3：首字母放大 === */
+.article::first-letter {
+    font-size: 48px;       /* 字号放大 */
+    font-weight: bold;
+    color: #F44336;        /* 红色 */
+    float: left;           /* 文字环绕 */
+    line-height: 40px;
+    margin-right: 5px;
+}
+
+.article {
+    line-height: 1.8;
+    color: #333;
+}
+                    </div>
+                </div>
+
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyCSS(6)">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="removeCSS(6)">↺ 重置</button>
+                </div>
+
+                <div class="preview-box" id="preview-6">
+                    <span class="preview-label">效果预览</span>
+                    <div style="padding-top: 20px;">
+                        <blockquote class="quote">
+                            成功的秘诀在于坚持自己的目标和信念。
+                        </blockquote>
+                        <a href="#" class="external-link" onclick="return false;">访问外部网站</a>
+                        <p class="article">
+                            这是一篇文章的开头。我们将使用伪元素让第一个字母变得特别醒目，就像杂志封面那样。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="summary" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px; border-radius: 12px; color: white; margin-top: 60px;">
+            <h2 style="color: white; border: none; font-size: 32px; margin-bottom: 20px;">📚 课程总结</h2>
+            
+            <div style="background: rgba(255,255,255,0.15); padding: 25px; border-radius: 8px; margin-bottom: 20px;">
+                <h3 style="font-size: 22px; margin-bottom: 15px;">🎯 今天学到了什么？</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; font-size: 14px;">
+                    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 6px;">
+                        <strong>1️⃣ 属性选择器</strong><br>
+                        <code style="background: rgba(0,0,0,0.2); padding: 2px 5px; border-radius: 3px;">[disabled]</code> 有这个属性的<br>
+                        <code style="background: rgba(0,0,0,0.2); padding: 2px 5px; border-radius: 3px;">[type="text"]</code> 属性值相等的
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 6px;">
+                        <strong>2️⃣ 字符串匹配</strong><br>
+                        <code style="background: rgba(0,0,0,0.2); padding: 2px 5px; border-radius: 3px;">^=</code> 开头匹配<br>
+                        <code style="background: rgba(0,0,0,0.2); padding: 2px 5px; border-radius: 3px;">$=</code> 结尾匹配<br>
+                        <code style="background: rgba(0,0,0,0.2); padding: 2px 5px; border-radius: 3px;">*=</code> 包含匹配
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 6px;">
+                        <strong>3️⃣ 交互伪类</strong><br>
+                        <code style="background: rgba(0,0,0,0.2); padding: 2px 5px; border-radius: 3px;">:hover</code> 鼠标悬停<br>
+                        <code style="background: rgba(0,0,0,0.2); padding: 2px 5px; border-radius: 3px;">:focus</code> 获得焦点<br>
+                        <code style="background: rgba(0,0,0,0.2); padding: 2px 5px; border-radius: 3px;">:active</code> 正在点击
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 6px;">
+                        <strong>4️⃣ LVHA 链接伪类</strong><br>
+                        <code style="background: rgba(0,0,0,0.2); padding: 2px 5px; border-radius: 3px;">:link</code> 未访问<br>
+                        <code style="background: rgba(0,0,0,0.2); padding: 2px 5px; border-radius: 3px;">:visited</code> 已访问<br>
+                        顺序：LVHA
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 6px;">
+                        <strong>5️⃣ 结构伪类</strong><br>
+                        <code style="background: rgba(0,0,0,0.2); padding: 2px 5px; border-radius: 3px;">:first-child</code> 第一个<br>
+                        <code style="background: rgba(0,0,0,0.2); padding: 2px 5px; border-radius: 3px;">:last-child</code> 最后一个<br>
+                        <code style="background: rgba(0,0,0,0.2); padding: 2px 5px; border-radius: 3px;">:nth-child()</code> 第N个
+                    </div>
+                    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 6px;">
+                        <strong>6️⃣ 排除与伪元素</strong><br>
+                        <code style="background: rgba(0,0,0,0.2); padding: 2px 5px; border-radius: 3px;">:not()</code> 排除选择<br>
+                        <code style="background: rgba(0,0,0,0.2); padding: 2px 5px; border-radius: 3px;">::before</code> 前插入<br>
+                        <code style="background: rgba(0,0,0,0.2); padding: 2px 5px; border-radius: 3px;">::after</code> 后插入
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.15); padding: 25px; border-radius: 8px; margin-bottom: 20px;">
+                <h3 style="font-size: 22px; margin-bottom: 15px;">💡 快速记忆口诀</h3>
+                <div style="font-size: 16px; line-height: 2.2;">
+                    📌 <strong>[属性]</strong> 有就选，<strong>[属性="值"]</strong> 要相等<br>
+                    📌 <strong>^</strong> 是开头，<strong>$</strong> 是结尾，<strong>*</strong> 是包含<br>
+                    📌 <strong>:hover</strong> 悬浮变，<strong>:focus</strong> 焦点亮，<strong>:active</strong> 点击闪<br>
+                    📌 <strong>LVHA</strong> 爱恨情仇，链接顺序不能错<br>
+                    📌 <strong>:first</strong> 是老大，<strong>:last</strong> 是老幺，<strong>:nth</strong> 选第几<br>
+                    📌 <strong>:not()</strong> 是排除，反向选择更轻松<br>
+                    📌 <strong>::before</strong> 在前插，<strong>::after</strong> 在后加，<strong>content</strong> 不能忘
+                </div>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.15); padding: 25px; border-radius: 8px;">
+                <h3 style="font-size: 22px; margin-bottom: 15px;">🚀 进阶练习建议</h3>
+                <ol style="font-size: 16px; line-height: 2; margin-left: 20px;">
+                    <li>回到每个实验，<strong>修改 CSS 代码</strong>中的颜色、大小，观察效果变化</li>
+                    <li>尝试组合使用，比如：<code style="background: rgba(0,0,0,0.2); padding: 2px 5px; border-radius: 3px;">button[disabled]:hover</code></li>
+                    <li>打开浏览器开发者工具（F12），查看元素的实时状态</li>
+                    <li>自己写一个简单的列表或表格，应用今天学到的选择器</li>
+                </ol>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px; font-size: 18px;">
+                <p>✨ <strong>恭喜你完成了 CSS 选择器的学习！</strong> ✨</p>
+                <p style="margin-top: 10px; font-size: 16px; opacity: 0.9;">
+                    记住：<strong>多动手实践</strong>比看 100 遍文档更有用！
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        /**
+         * 运行 CSS 代码
+         * @param {number} id - 实验的 ID
+         */
+        function applyCSS(id) {
+            // 1. 获取用户编辑的 CSS 文本
+            const editor = document.getElementById(`css-${id}`);
+            // 使用 textContent 获取纯文本，避免获取到 HTML 标签
+            let rawCss = editor.innerText;
+            
+            // 替换非断行空格 (nbsp) 为普通空格，防止从别处复制时出错
+            rawCss = rawCss.replace(/\u00a0/g, " ");
+
+            // 2. 准备样式隔离 (CSS Scoping)
+            // 我们的目标是：用户写 "p { color: red }"
+            // 系统自动改成 "#preview-1 p { color: red }"
+            // 这样样式就只会影响 ID 为 preview-1 的盒子内部
+            const previewId = `preview-${id}`;
+            
+            // 正则替换：在每个选择器前面加上 #preview-N
+            // 逻辑：找到所有不是大括号、不是逗号的字符串（即选择器），在它前面加前缀
+            // 修正：去掉了 [^\r\n] 的限制，允许选择器换行
+            const scopedCss = rawCss.replace(
+                /([^,{}]+)(,(?=[^}]*{)|\s*{)/g, 
+                `#${previewId} $1$2`
+            );
+
+            // 3. 查找是否已经存在这个 Style 标签，如果不存在就创建
+            let styleTag = document.getElementById(`style-tag-${id}`);
+            if (!styleTag) {
+                styleTag = document.createElement('style');
+                styleTag.id = `style-tag-${id}`;
+                document.head.appendChild(styleTag);
+            }
+            
+            // 4. 注入 CSS
+            styleTag.innerHTML = scopedCss;
+
+            // 5. 更新 UI 状态 (显示绿色标签)
+            updateStatus(id, true);
+        }
+
+        /**
+         * 移除 CSS 代码 (重置)
+         * @param {number} id - 实验的 ID
+         */
+        function removeCSS(id) {
+            // 1. 找到对应的 style 标签并移除
+            const styleTag = document.getElementById(`style-tag-${id}`);
+            if (styleTag) {
+                styleTag.remove();
+            }
+
+            // 2. 更新 UI 状态 (显示红色标签)
+            updateStatus(id, false);
+        }
+
+        /**
+         * 更新右上角的状态标签
+         */
+        function updateStatus(id, isActive) {
+            const badge = document.getElementById(`badge-${id}`);
+            if (isActive) {
+                badge.innerText = "当前状态：样式已应用 (Styled)";
+                badge.className = "status-badge status-active";
+            } else {
+                badge.innerText = "当前状态：无样式 (Raw)";
+                badge.className = "status-badge status-inactive";
+            }
+        }
+
+        // 导航滚动监听 (装饰性功能)
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.sidebar a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 250) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                // 修复：使用精确匹配，防止 'part1' 同时高亮 'part1-1'
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

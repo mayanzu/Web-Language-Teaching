@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第6课：数组和对象 - JavaScript的数据结构</title>
+  <style>
+    :root {
+      --color-text: #1D1D1F;
+      --color-text-light: #86868B;
+      --color-heading: #111;
+      --color-accent: #0066CC;
+      --color-accent-hover: #0055B3;
+      --color-bg: #F5F5F7;
+      --color-white: #FFFFFF;
+      --border-color: #D2D2D7;
+      --code-bg: #f6f8fa;
+      --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --font-mono: 'SF Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
+      --shadow-card: 0 8px 24px rgba(0,0,0,0.06);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-stack); background: var(--color-bg); color: var(--color-text); display: flex; line-height: 1.7; font-size: 16px; }
+    .sidebar { width: 260px; height: 100vh; position: fixed; background: rgba(255,255,255,0.95); border-right: 1px solid var(--border-color); padding: 30px 18px; overflow-y: auto; backdrop-filter: blur(12px); z-index: 10; }
+    .sidebar h3 { font-size: 13px; color: var(--color-text-light); text-transform: uppercase; margin: 18px 0 8px 12px; letter-spacing: 0.5px; font-weight: 600; }
+    .sidebar-nav { display: flex; flex-direction: column; gap: 3px; }
+    .sidebar a { display: block; padding: 9px 12px; border-radius: 8px; color: var(--color-text); text-decoration: none; font-size: 15px; transition: all 0.2s; border-left: 3px solid transparent; }
+    .sidebar a:hover { background: #E8E8ED; }
+    .sidebar a.active { background: #E1F0FF; color: var(--color-accent); border-left-color: var(--color-accent); font-weight: 600; }
+    .content { margin-left: 260px; padding: 60px clamp(32px, 5vw, 90px); width: 100%; max-width: min(1600px, calc(100vw - 260px)); }
+    section { margin-bottom: 70px; scroll-margin-top: 40px; }
+    h1 { font-size: 42px; font-weight: 700; letter-spacing: -0.5px; }
+    h2 { font-size: 30px; margin: 50px 0 24px; padding-bottom: 15px; border-bottom: 1px solid var(--border-color); color: var(--color-heading); }
+    h3 { font-size: 22px; margin: 30px 0 18px; color: var(--color-heading); }
+    p { margin-bottom: 16px; color: #333; }
+    code { font-family: var(--font-mono); background: rgba(27,31,35,0.05); padding: 3px 6px; border-radius: 4px; font-size: 0.92em; color: #d63384; }
+    pre { background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px; margin: 16px 0; }
+    pre > code { background: none; padding: 0; color: inherit; display: block; }
+    .intro { font-size: 19px; color: var(--color-text-light); margin: 15px 0 30px; font-weight: 300; max-width: 780px; }
+    .pill-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    .pill { padding: 6px 14px; border-radius: 999px; font-size: 13px; background: #E8F1FF; color: var(--color-accent); }
+    .tip-box, .note-box, .warning-box { border-radius: 10px; padding: 18px 22px; margin: 20px 0; border-left: 4px solid; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.03); }
+    .tip-box { border-color: var(--color-accent); background: #eef6ff; }
+    .note-box { border-color: #34A853; background: #edf9f0; }
+    .warning-box { border-color: #FF9800; background: #fff7e6; }
+    .tip-title { font-weight: 700; color: var(--color-accent); margin-bottom: 6px; display: block; }
+    .prop-table { width: 100%; border-collapse: collapse; background: #fff; margin: 20px 0; border: 1px solid var(--border-color); border-radius: 10px; overflow: hidden; box-shadow: 0 3px 8px rgba(0,0,0,0.03); }
+    .prop-table th, .prop-table td { padding: 14px 16px; text-align: left; border-bottom: 1px solid #eee; }
+    .prop-table th { background: #fbfbfd; font-weight: 600; color: #555; }
+    .prop-table tr:last-child td { border-bottom: none; }
+    .checklist { list-style: none; padding-left: 0; }
+    .checklist li { padding-left: 28px; position: relative; margin-bottom: 10px; }
+    .checklist li::before { content: "✔"; position: absolute; left: 0; top: 0; color: var(--color-accent); font-size: 14px; }
+    .lab-card { background: var(--color-white); border: 1px solid var(--border-color); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-card); margin: 35px 0 40px; }
+    .lab-header { background: #fbfbfd; padding: 14px 22px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; font-size: 13px; font-weight: 600; color: #666; }
+    .status-badge { font-size: 11px; padding: 4px 10px; border-radius: 999px; }
+    .status-badge.beginner { background: #E8F5E9; color: #2E7D32; }
+    .status-badge.advanced { background: #FFF3E0; color: #BF360C; }
+    .lab-body { padding: 20px 22px 24px; background: #fff; }
+    .lab-steps { margin: 0 0 10px 18px; }
+    .lab-steps li { margin-bottom: 6px; }
+    .lab-body.split { display: grid; grid-template-columns: 1fr 1.2fr; min-height: 320px; padding: 0; }
+    .panel { position: relative; display: flex; flex-direction: column; overflow: hidden; }
+    .panel-label { position: absolute; top: 0; right: 0; background: #F0F0F0; padding: 5px 12px; font-size: 11px; color: #777; border-bottom-left-radius: 8px; }
+    .html-viewer { background: #FAFAFA; border-right: 1px solid var(--border-color); padding: 20px; font-family: var(--font-mono); white-space: pre-wrap; font-size: 13px; color: #555; overflow-y: auto; }
+    .code-editor { background: #FFFFFF; padding: 20px; font-family: var(--font-mono); font-size: 13px; color: #1D1D1F; outline: none; overflow-y: auto; white-space: pre-wrap; line-height: 1.6; }
+    .action-bar { padding: 14px 20px; background: #fff; display: flex; align-items: center; gap: 15px; border-top: 1px solid var(--border-color); }
+    .btn { padding: 8px 18px; border-radius: 8px; border: 1px solid transparent; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.2s; }
+    .btn-run { background: var(--color-accent); color: #fff; }
+    .btn-run:hover { background: var(--color-accent-hover); box-shadow: 0 2px 6px rgba(0,102,204,0.3); }
+    .btn-reset { background: #fff; color: #555; border-color: #d1d1d6; }
+    .btn-reset:hover { color: #111; border-color: #999; }
+    .preview-box { background: #fff; padding: 20px; min-height: 140px; border-top: 1px solid var(--border-color); font-family: var(--font-mono); font-size: 13px; }
+    @media (max-width: 900px) {
+      body { flex-direction: column; }
+      .sidebar { position: static; width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--border-color); }
+      .content { margin-left: 0; padding: 30px 20px; }
+      .lab-body.split { grid-template-columns: 1fr; min-height: auto; }
+      .html-viewer { min-height: 120px; }
+    }
+  </style>
+</head>
+<body>
+  <aside class="sidebar">
+    <h3>目录导航</h3>
+    <nav class="sidebar-nav">
+      <a href="#intro" class="active">🎯 第6课概览</a>
+      <a href="#why-data-structures">一、为什么需要数组和对象</a>
+      <a href="#array-basics">二、数组基础</a>
+      <a href="#array-methods" class="sub-link">数组方法</a>
+      <a href="#array-iteration" class="sub-link">数组遍历</a>
+      <a href="#object-basics">三、对象基础</a>
+      <a href="#object-operations" class="sub-link">对象操作</a>
+      <a href="#json">四、JSON数据格式</a>
+      <a href="#nested">五、嵌套结构</a>
+      <a href="#practical">六、综合实战</a>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <section id="intro">
+      <h1>第6课:数组和对象</h1>
+      <p class="intro">如果说变量是存储单个数据的盒子,那么数组就是一排编号的盒子,对象就是带标签的盒子。本课学习如何用数组管理列表数据,用对象组织复杂信息,它们是JavaScript中最重要的数据结构。</p>
+      <div class="pill-list">
+        <span class="pill">数组创建与访问</span>
+        <span class="pill">数组方法</span>
+        <span class="pill">数组遍历</span>
+        <span class="pill">对象属性与方法</span>
+        <span class="pill">JSON数据格式</span>
+        <span class="pill">嵌套结构</span>
+      </div>
+      <div class="lab-card" style="margin-top: 30px;">
+        <div class="lab-header">
+          <span>今日目标</span>
+          <span class="status-badge beginner">Suitable for Beginners</span>
+        </div>
+        <div class="lab-body">
+          <ul class="checklist">
+            <li>理解数组和对象的本质:管理多个数据的容器</li>
+            <li>掌握数组的创建、访问、修改和常用方法</li>
+            <li>学会使用数组遍历方法处理列表数据</li>
+            <li>理解对象的属性和方法,掌握对象操作技巧</li>
+            <li>了解JSON格式及其在数据传输中的应用</li>
+            <li>掌握数组和对象的嵌套使用</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="why-data-structures">
+      <h2>一、为什么需要数组和对象?</h2>
+      <p>假设你要管理一个班级30个学生的信息,如果用单个变量:</p>
+      <pre><code>let student1 = "张三";
+let student2 = "李四";
+let student3 = "王五";
+// ... 要写30个变量!</code></pre>
+      <p>这样做有几个问题:变量太多难以管理、无法批量处理、代码重复冗长。<strong>数组和对象就是为了解决这些问题而生。</strong></p>
+      
+      <div class="tip-box">
+        <span class="tip-title">💡 生活中的类比</span>
+        <ul class="checklist">
+          <li><strong>数组 = 编号的储物柜:</strong>每个柜子有编号(索引),按顺序排列,适合存储同类物品(如学生名单、成绩列表)</li>
+          <li><strong>对象 = 带标签的文件夹:</strong>每个资料有名称标签(属性名),方便查找,适合存储不同类型的相关信息(如用户信息:姓名、年龄、邮箱)</li>
+          <li><strong>JSON = 通用数据格式:</strong>就像快递单,不同公司都能看懂的标准格式,用于程序间传递数据</li>
+        </ul>
+      </div>
+
+      <p>使用数组和对象后,代码变得简洁高效:</p>
+      <pre><code>// 用数组管理学生列表
+const students = ["张三", "李四", "王五", /*...*/];
+
+// 用对象管理单个学生的详细信息
+const student = {
+  name: "张三",
+  age: 18,
+  grade: "高一",
+  score: 95
+};</code></pre>
+
+      <p>数组和对象让我们能够:</p>
+      <ul class="checklist">
+        <li><strong>批量管理:</strong>用一个变量管理多个相关数据</li>
+        <li><strong>结构化组织:</strong>让复杂数据井井有条</li>
+        <li><strong>高效操作:</strong>提供丰富的方法进行增删改查</li>
+        <li><strong>数据传输:</strong>通过JSON格式在前后端传递数据</li>
+      </ul>
+    </section>
+
+    <section id="array-basics">
+      <h2>二、数组基础</h2>
+      
+      <h3>2.1 什么是数组?</h3>
+      <p>数组（Array）是一种<strong>有序的数据集合</strong>,可以存储多个值。每个值都有一个索引（下标）,从0开始。可以把数组想象成一排编号的盒子,每个盒子可以放一个数据。</p>
+      
+      <table class="prop-table">
+        <thead>
+          <tr><th>概念</th><th>说明</th><th>示例</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>索引 (Index)</strong></td>
+            <td>元素在数组中的位置编号,从0开始</td>
+            <td>fruits[0] 表示第1个元素</td>
+          </tr>
+          <tr>
+            <td><strong>元素 (Element)</strong></td>
+            <td>数组中存储的每一个值</td>
+            <td>"苹果"、"香蕉" 都是元素</td>
+          </tr>
+          <tr>
+            <td><strong>长度 (Length)</strong></td>
+            <td>数组包含的元素个数</td>
+            <td>fruits.length 返回元素数量</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>2.2 创建和访问数组</h3>
+      
+      <pre><code>// 创建数组
+const fruits = ["苹果", "香蕉", "橙子"];
+const numbers = [1, 2, 3, 4, 5];
+const mixed = [1, "hello", true, null];  // 可以包含不同类型
+
+// 空数组
+const empty = [];
+
+// 访问元素
+console.log(fruits[0]);  // "苹果"（第一个元素）
+console.log(fruits[1]);  // "香蕉"（第二个元素）
+console.log(fruits[2]);  // "橙子"（第三个元素）
+
+// 数组长度
+console.log(fruits.length);  // 3</code></pre>
+
+      <div class="tip-box">
+        <span class="tip-title">💡 数组的特点</span>
+        <ul class="checklist">
+          <li>索引从0开始，最后一个元素的索引是 <code>length - 1</code></li>
+          <li>可以存储任意类型的数据</li>
+          <li>长度可以动态改变</li>
+          <li>是引用类型（传递引用而非值）</li>
+        </ul>
+      </div>
+
+      <h3>1.2 修改数组元素</h3>
+      <pre><code>const colors = ["红", "绿", "蓝"];
+
+// 修改元素
+colors[1] = "黄";
+console.log(colors);  // ["红", "黄", "蓝"]
+
+// 添加元素（通过索引）
+colors[3] = "紫";
+console.log(colors);  // ["红", "黄", "蓝", "紫"]
+
+// 获取最后一个元素
+const last = colors[colors.length - 1];
+console.log(last);  // "紫"</code></pre>
+
+      <h3>1.3 多维数组</h3>
+      <pre><code>// 二维数组（数组的数组）
+const matrix = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9]
+];
+
+console.log(matrix[0][0]);  // 1
+console.log(matrix[1][2]);  // 6
+console.log(matrix[2][1]);  // 8</code></pre>
+    </section>
+
+    <section id="array-methods">
+      <h2>三、数组的常用方法</h2>
+      <p>JavaScript为数组提供了丰富的内置方法,让数据操作变得简单高效。掌握这些方法是操作数组的关键。</p>
+      
+      <h3>3.1 添加和删除元素</h3>
+      <pre><code>const arr = ["a", "b", "c"];
+
+// push()方法：在数组末尾添加一个或多个元素
+// 返回新数组的长度
+arr.push("d");
+console.log(arr);  // ["a", "b", "c", "d"]
+
+// pop()方法：删除并返回数组最后一个元素
+// 原数组会被修改
+const last = arr.pop();
+console.log(last);  // "d"
+console.log(arr);   // ["a", "b", "c"]
+
+// unshift()方法：在数组开头添加一个或多个元素
+// 返回新数组的长度
+arr.unshift("z");
+console.log(arr);  // ["z", "a", "b", "c"]
+
+// shift()方法：删除并返回数组第一个元素
+// 原数组会被修改
+const first = arr.shift();
+console.log(first);  // "z"
+console.log(arr);    // ["a", "b", "c"]</code></pre>
+
+      <h3>3.2 splice：万能方法</h3>
+      <p><code>splice()</code> 方法可以删除、插入和替换元素,是操作数组最强大的方法之一。</p>
+      
+      <pre><code>const numbers = [1, 2, 3, 4, 5];
+
+// splice()方法参数：(起始索引, 删除数量, 新元素...)
+// 删除元素：splice(起始索引, 删除数量)
+numbers.splice(2, 1);  // 从索引2开始删除1个元素
+console.log(numbers);  // [1, 2, 4, 5]
+
+// 插入元素：splice(起始索引, 0, 新元素...)
+numbers.splice(2, 0, 3);  // 在索引2处插入3
+console.log(numbers);  // [1, 2, 3, 4, 5]
+
+// 替换元素：splice(起始索引, 删除数量, 新元素...)
+numbers.splice(1, 2, 10, 20);  // 从索引1开始，删除2个，插入10和20
+console.log(numbers);  // [1, 10, 20, 4, 5]</code></pre>
+      <h3>3.3 查找和判断</h3>
+      <pre><code>const fruits = ["苹果", "香蕉", "橙子", "香蕉"];
+
+// indexOf()方法：查找元素第一次出现的索引
+// 如果找不到返回-1
+console.log(fruits.indexOf("香蕉"));     // 1（第一次出现）
+console.log(fruits.indexOf("葡萄"));     // -1（不存在）
+
+// includes()方法：判断数组是否包含某个元素
+// 返回布尔值
+console.log(fruits.includes("苹果"));    // true
+console.log(fruits.includes("葡萄"));    // false
+
+// find()方法：查找满足条件的第一个元素
+// 参数是回调函数，返回第一个使回调函数返回true的元素
+const numbers = [1, 5, 10, 15, 20];
+const found = numbers.find(num => num > 10);
+console.log(found);  // 15
+
+// findIndex()方法：查找满足条件的第一个元素的索引
+// 如果找不到返回-1
+const index = numbers.findIndex(num => num > 10);
+console.log(index);  // 3dIndex(num => num > 10);
+console.log(index);  // 3</code></pre>
+
+      <h3>3.4 数组转换方法</h3>
+      <p>这些方法用于将数组转换为其他形式,是数据处理的核心方法。</p>
+      
+      <pre><code>const arr = [1, 2, 3, 4, 5];
+
+// map()方法：转换每个元素，返回新数组
+// (在第5课已学习，这里复习)
+const doubled = arr.map(num => num * 2);
+console.log(doubled);  // [2, 4, 6, 8, 10]
+
+// filter()方法：筛选符合条件的元素
+// (在第5课已学习，这里复习)
+const evens = arr.filter(num => num % 2 === 0);
+console.log(evens);  // [2, 4]
+
+// reduce()方法：累积计算，归约为单个值
+// (在第5课已学习，这里复习)
+const sum = arr.reduce((total, num) => total + num, 0);
+console.log(sum);  // 15
+
+// join()方法：将数组所有元素用分隔符连接成字符串
+// 参数是分隔符，默认为逗号
+const str = arr.join(", ");
+console.log(str);  // "1, 2, 3, 4, 5"
+
+// slice()方法：提取数组的一部分，返回新数组
+// 参数：(起始索引, 结束索引)，不包括结束索引
+// 不会修改原数组
+const sub = arr.slice(1, 3);
+console.log(sub);  // [2, 3]</code></pre>
+
+      <h3>3.5 排序和反转</h3>
+      <pre><code>const numbers = [3, 1, 4, 1, 5, 9];
+
+// sort()方法：对数组进行排序（会修改原数组）
+// 参数是比较函数：(a, b) => a - b 表示升序
+numbers.sort((a, b) => a - b);  // 升序
+console.log(numbers);  // [1, 1, 3, 4, 5, 9]
+
+// 降序排列：返回 b - a
+numbers.sort((a, b) => b - a);  // 降序
+console.log(numbers);  // [9, 5, 4, 3, 1, 1]
+
+// reverse()方法：反转数组（会修改原数组）
+const arr = [1, 2, 3, 4, 5];
+arr.reverse();
+console.log(arr);  // [5, 4, 3, 2, 1]</code></pre>
+
+      <div class="lab-card">
+        <div class="lab-header">
+          <span>🔬 实验1：待办事项管理器</span>
+          <span class="status-badge beginner">基础</span>
+        </div>
+        <div class="lab-body split">
+          <div class="panel">
+            <span class="panel-label">HTML</span>
+            <div class="html-viewer">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;待办事项&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h3&gt;📝 待办事项管理&lt;/h3&gt;
+  &lt;div&gt;
+    &lt;input id="taskInput" placeholder="输入新任务"&gt;
+    &lt;button onclick="addTask()"&gt;添加&lt;/button&gt;
+    &lt;button onclick="removeLastTask()"&gt;删除最后一个&lt;/button&gt;
+    &lt;button onclick="showTasks()"&gt;显示全部&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div id="output" style="margin-top:15px;padding:10px;background:#f9f9f9;border-radius:5px;white-space:pre-line;"&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+          </div>
+          <div class="panel">
+            <span class="panel-label">JavaScript (可编辑)</span>
+            <div class="code-editor" contenteditable="true" id="lab1-code">// 待办事项数组
+const tasks = ["学习JavaScript", "完成作业"];
+
+function addTask() {
+  const input = document.getElementById('taskInput');
+  const task = input.value.trim();
+  
+  if (task) {
+    tasks.push(task);
+    input.value = '';
+    document.getElementById('output').innerText = 
+      `✅ 已添加：${task}\n当前共${tasks.length}个任务`;
+  } else {
+    document.getElementById('output').innerText = 
+      "⚠️ 请输入任务内容！";
+  }
+}
+
+function removeLastTask() {
+  if (tasks.length > 0) {
+    const removed = tasks.pop();
+    document.getElementById('output').innerText = 
+      `🗑️ 已删除：${removed}\n剩余${tasks.length}个任务`;
+  } else {
+    document.getElementById('output').innerText = "📭 任务列表已空！";
+  }
+}
+
+function showTasks() {
+  if (tasks.length === 0) {
+    document.getElementById('output').innerText = "📭 暂无任务";
+  } else {
+    const taskList = tasks.map((task, index) => 
+      `${index + 1}. ${task}`
+    ).join('\n');
+    document.getElementById('output').innerText = 
+      `当前任务列表：\n${taskList}`;
+  }
+}</div>
+          </div>
+        </div>
+        <div class="action-bar">
+          <button class="btn btn-run" onclick="runLab1()">▶ 运行代码</button>
+          <button class="btn btn-reset" onclick="resetLab1()">↻ 重置</button>
+          <span style="color:#999;font-size:13px;">测试数组的添加、删除和显示功能</span>
+        </div>
+        <div class="preview-box" id="lab1-preview"></div>
+      </div>
+    </section>
+
+    <section id="array-iteration">
+      <h2>四、数组遍历方法</h2>
+      <p>遍历就是依次访问数组的每个元素。掌握数组遍历方法是处理列表数据的核心技能。</p>
+      
+      <h3>4.1 for循环遍历</h3>
+      <pre><code>const numbers = [10, 20, 30, 40, 50];
+
+// 传统for循环
+for (let i = 0; i < numbers.length; i++) {
+  console.log(`索引${i}: ${numbers[i]}`);
+}
+
+// for...of循环（ES6）
+for (let num of numbers) {
+  console.log(num);
+}</code></pre>
+
+      <h3>4.2 forEach方法</h3>
+      <p>forEach()方法在第5课已经学习过，这里是复习。</p>
+      
+      <pre><code>const fruits = ["苹果", "香蕉", "橙子"];
+
+// forEach()方法：遍历每个元素（第5课已学）
+fruits.forEach(function(fruit, index) {
+  console.log(`${index}: ${fruit}`);
+});
+
+// 箭头函数版本
+fruits.forEach((fruit, index) => {
+  console.log(`${index}: ${fruit}`);
+});</code></pre>
+
+      <h3>4.3 高级遍历方法</h3>
+      <pre><code>const numbers = [1, 2, 3, 4, 5];
+
+// every()方法：检查是否所有元素都满足条件
+// 返回布尔值，所有元素都满足才返回true
+const allPositive = numbers.every(num => num > 0);
+console.log(allPositive);  // true
+
+// some()方法：检查是否至少有一个元素满足条件
+// 返回布尔值，只要有一个满足就返回true
+const hasEven = numbers.some(num => num % 2 === 0);
+console.log(hasEven);  // true
+
+// map()方法：转换为新数组（第5课已学，这里复习）
+const squared = numbers.map(num => num * num);
+console.log(squared);  // [1, 4, 9, 16, 25]</code></pre>
+    </section>
+
+    <section id="object-basics">
+      <h2>五、对象基础</h2>
+      
+      <h3>5.1 什么是对象?</h3>
+      <p>对象（Object）是一种<strong>无序的键值对集合</strong>,用于存储结构化数据。每个键值对称为对象的属性。如果说数组是按编号存储,对象就是按名称(标签)存储。</p>
+      
+      <table class="prop-table">
+        <thead>
+          <tr><th>概念</th><th>说明</th><th>示例</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>属性 (Property)</strong></td>
+            <td>对象中的键值对,键是属性名,值是属性值</td>
+            <td>name: "张三"</td>
+          </tr>
+          <tr>
+            <td><strong>方法 (Method)</strong></td>
+            <td>属性值为函数的属性</td>
+            <td>greet: function() { }</td>
+          </tr>
+          <tr>
+            <td><strong>访问方式</strong></td>
+            <td>点语法或方括号语法</td>
+            <td>obj.name 或 obj["name"]</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>5.2 创建和访问对象</h3>
+      
+      <pre><code>// 创建对象
+const person = {
+  name: "张三",
+  age: 25,
+  city: "北京",
+  isStudent: false
+};
+
+// 访问属性
+console.log(person.name);      // "张三"（点语法）
+console.log(person["age"]);    // 25（方括号语法）
+
+// 空对象
+const empty = {};</code></pre>
+
+      <div class="note-box">
+        <span class="tip-title">📌 对象的特点</span>
+        <ul class="checklist">
+          <li>键（key）通常是字符串，值（value）可以是任意类型</li>
+          <li>无序的键值对集合</li>
+          <li>引用类型</li>
+          <li>可以包含方法（函数作为值）</li>
+        </ul>
+      </div>
+
+      <h3>4.2 对象方法</h3>
+      <pre><code>const calculator = {
+  x: 10,
+  y: 5,
+  
+  // 方法：对象中的函数
+  add: function() {
+    return this.x + this.y;
+  },
+  
+  // ES6简写语法
+  subtract() {
+    return this.x - this.y;
+  },
+  
+  // 箭头函数（注意：this行为不同）
+  multiply: () => {
+    // 箭头函数没有自己的this
+    return "使用箭头函数时this不指向对象";
+  }
+};
+
+console.log(calculator.add());       // 15
+console.log(calculator.subtract());  // 5</code></pre>
+
+      <h3>4.3 this关键字</h3>
+      <pre><code>const user = {
+  name: "李四",
+  greet: function() {
+    console.log(`你好，我是${this.name}`);
+  },
+  
+  introduce() {
+    console.log(`我的名字是${this.name}`);
+  }
+};
+
+user.greet();      // "你好，我是李四"
+user.introduce();  // "我的名字是李四"</code></pre>
+    </section>
+
+    <section id="object-operations">
+      <h2>六、对象的高级操作</h2>
+      <p>除了基本的属性访问,JavaScript还提供了许多强大的对象操作方法,让对象管理更加灵活。</p>
+      
+      <h3>6.1 添加、修改、删除属性</h3>
+      <pre><code>const person = {
+  name: "王五",
+  age: 30
+};
+
+// 添加新属性
+person.city = "上海";
+person["country"] = "中国";
+
+// 修改属性
+person.age = 31;
+
+// 删除属性
+delete person.country;
+
+console.log(person);
+// { name: "王五", age: 31, city: "上海" }</code></pre>
+
+      <h3>5.2 检查属性</h3>
+      <pre><code>const car = {
+  brand: "Tesla",
+  model: "Model 3",
+  year: 2023
+};
+
+// in 操作符
+console.log("brand" in car);    // true
+console.log("color" in car);    // false
+
+// hasOwnProperty 方法
+console.log(car.hasOwnProperty("model"));  // true
+console.log(car.hasOwnProperty("price"));  // false</code></pre>
+
+      <h3>6.3 遍历对象</h3>
+      <pre><code>const student = {
+  name: "赵六",
+  age: 20,
+  grade: "大二"
+};
+
+// for...in 循环
+for (let key in student) {
+  console.log(`${key}: ${student[key]}`);
+}
+
+// Object.keys()方法：获取对象所有键，返回数组
+const keys = Object.keys(student);
+console.log(keys);  // ["name", "age", "grade"]
+
+// Object.values()方法：获取对象所有值，返回数组
+const values = Object.values(student);
+console.log(values);  // ["赵六", 20, "大二"]
+
+// Object.entries()方法：获取对象所有键值对，返回二维数组
+const entries = Object.entries(student);
+console.log(entries);
+// [["name", "赵六"], ["age", 20], ["grade", "大二"]]
+
+// 遍历键值对
+Object.entries(student).forEach(([key, value]) => {
+  console.log(`${key}: ${value}`);
+});</code></pre>
+
+      <h3>6.4 对象复制</h3>
+      <pre><code>const original = { x: 1, y: 2 };
+
+// Object.assign()方法：浅拷贝对象
+// 第一个参数是目标对象，后面的是源对象
+const copy1 = Object.assign({}, original);
+
+// 浅拷贝：展开运算符（ES6）
+const copy2 = { ...original };
+
+// 合并对象
+const obj1 = { a: 1, b: 2 };
+const obj2 = { b: 3, c: 4 };
+const merged = { ...obj1, ...obj2 };
+console.log(merged);  // { a: 1, b: 3, c: 4 }</code></pre>
+
+      <div class="lab-card">
+        <div class="lab-header">
+          <span>🔬 实验2：学生信息管理</span>
+          <span class="status-badge beginner">基础</span>
+        </div>
+        <div class="lab-body split">
+          <div class="panel">
+            <span class="panel-label">HTML</span>
+            <div class="html-viewer">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;学生管理&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h3&gt;👨‍🎓 学生信息管理&lt;/h3&gt;
+  &lt;div&gt;
+    &lt;input id="nameInput" placeholder="姓名"&gt;
+    &lt;input id="ageInput" placeholder="年龄" type="number"&gt;
+    &lt;input id="majorInput" placeholder="专业"&gt;
+    &lt;button onclick="updateStudent()"&gt;更新信息&lt;/button&gt;
+    &lt;button onclick="showStudent()"&gt;显示信息&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div id="output" style="margin-top:15px;padding:10px;background:#f0f8ff;border-radius:5px;white-space:pre-line;"&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+          </div>
+          <div class="panel">
+            <span class="panel-label">JavaScript (可编辑)</span>
+            <div class="code-editor" contenteditable="true" id="lab2-code">// 学生对象
+const student = {
+  name: "小明",
+  age: 20,
+  major: "计算机科学",
+  
+  getInfo() {
+    return `姓名：${this.name}\n年龄：${this.age}岁\n专业：${this.major}`;
+  }
+};
+
+function updateStudent() {
+  const name = document.getElementById('nameInput').value;
+  const age = document.getElementById('ageInput').value;
+  const major = document.getElementById('majorInput').value;
+  
+  if (name) student.name = name;
+  if (age) student.age = parseInt(age);
+  if (major) student.major = major;
+  
+  document.getElementById('output').innerText = 
+    "✅ 信息已更新！\n点击'显示信息'查看";
+}
+
+function showStudent() {
+  const info = student.getInfo();
+  const propCount = Object.keys(student).length - 1;
+  
+  document.getElementById('output').innerText = 
+    `📋 学生信息：\n${info}\n\n共有${propCount}个属性`;
+}</div>
+          </div>
+        </div>
+        <div class="action-bar">
+          <button class="btn btn-run" onclick="runLab2()">▶ 运行代码</button>
+          <button class="btn btn-reset" onclick="resetLab2()">↻ 重置</button>
+          <span style="color:#999;font-size:13px;">测试对象属性的修改和方法调用</span>
+        </div>
+        <div class="preview-box" id="lab2-preview"></div>
+      </div>
+    </section>
+
+    <section id="json">
+      <h2>七、JSON数据格式</h2>
+      
+      <h3>7.1 什么是JSON?</h3>
+      <p>JSON（JavaScript Object Notation）是一种<strong>轻量级的数据交换格式</strong>,是前后端通信的标准语言。就像快递单的标准格式,让不同的程序都能读懂彼此的数据。</p>
+      
+      <div class="tip-box">
+        <span class="tip-title">💡 为什么需要JSON?</span>
+        <ul class="checklist">
+          <li>前端JavaScript对象无法直接传给后端</li>
+          <li>需要一种文本格式,方便网络传输</li>
+          <li>JSON既是JavaScript原生支持,又是跨语言通用格式</li>
+          <li>几乎所有编程语言都能解析JSON</li>
+        </ul>
+      </div>
+
+      <h3>7.2 JSON的语法规则</h3>
+      <div class="note-box">
+        <span class="tip-title">💡 JSON的特点</span>
+        <ul class="checklist">
+          <li>键必须用双引号包裹</li>
+          <li>值可以是：字符串、数字、对象、数组、布尔值、null</li>
+          <li>不能包含函数、undefined、Symbol</li>
+          <li>广泛用于数据传输和存储</li>
+        </ul>
+      </div>
+
+      <h3>7.3 JSON与JavaScript对象的转换</h3>
+      <pre><code>// JavaScript对象
+const person = {
+  name: "小红",
+  age: 22,
+  hobbies: ["读书", "旅游"]
+};
+
+// JSON.stringify()方法：将JavaScript对象转换为JSON字符串
+// 用于数据传输或存储
+const jsonString = JSON.stringify(person);
+console.log(jsonString);
+// '{"name":"小红","age":22,"hobbies":["读书","旅游"]}'
+
+// JSON.parse()方法：将JSON字符串转换为JavaScript对象
+// 用于接收和解析数据
+const jsonStr = '{"name":"小刚","age":25,"city":"北京"}';
+const obj = JSON.parse(jsonStr);
+console.log(obj.name);  // "小刚"
+
+// JSON.stringify()的第三个参数：格式化输出
+// 第二个参数为null，第三个参数指定缩进空格数
+const formatted = JSON.stringify(person, null, 2);
+console.log(formatted);
+/*
+{
+  "name": "小红",
+  "age": 22,
+  "hobbies": [
+    "读书",
+    "旅游"
+  ]
+}
+*/</code></pre>
+
+      <h3>7.4 深拷贝技巧</h3>
+      <pre><code>const original = {
+  name: "原对象",
+  data: { x: 1, y: 2 }
+};
+
+// 使用JSON实现深拷贝（有局限性）
+// 先转成JSON字符串，再解析回对象，得到完全独立的副本
+const deepCopy = JSON.parse(JSON.stringify(original));
+
+deepCopy.data.x = 100;
+console.log(original.data.x);  // 1（不受影响）
+console.log(deepCopy.data.x);  // 100
+
+// 注意：这种方法无法复制函数、undefined等特殊值</code></pre>
+    </section>
+
+    <section id="nested">
+      <h2>八、嵌套结构的实战应用</h2>
+      <p>实际开发中,数据往往是数组和对象的组合嵌套。掌握嵌套结构的处理是操作复杂数据的关键能力。</p>
+      
+      <h3>8.1 数组中包含对象</h3>
+      <p>最常见的数据结构：对象数组，用于表示列表数据。</p>
+      
+      <pre><code>const students = [
+  { name: "张三", age: 20, score: 85 },
+  { name: "李四", age: 21, score: 92 },
+  { name: "王五", age: 19, score: 78 }
+];
+
+// 访问元素
+console.log(students[0].name);  // "张三"
+console.log(students[1].score);  // 92
+
+// 遍历
+students.forEach(student => {
+  console.log(`${student.name}: ${student.score}分`);
+});
+
+// 筛选
+const topStudents = students.filter(s => s.score >= 90);
+console.log(topStudents);  // [{ name: "李四", age: 21, score: 92 }]
+
+// 计算平均分
+const avgScore = students.reduce((sum, s) => sum + s.score, 0) / students.length;
+console.log(avgScore);  // 85</code></pre>
+
+      <h3>7.2 对象包含数组</h3>
+      <pre><code>const班级 = {
+  name: "高三(1)班",
+  teacher: "王老师",
+  students: ["张三", "李四", "王五"],
+  scores: {
+    math: [85, 92, 78],
+    english: [88, 90, 82]
+  },
+  
+  getAverage(subject) {
+    const scores = this.scores[subject];
+    const sum = scores.reduce((a, b) => a + b, 0);
+    return sum / scores.length;
+  }
+};
+
+console.log(班级.students[0]);  // "张三"
+console.log(班级.getAverage("math"));  // 85</code></pre>
+
+      <h3>7.3 复杂嵌套结构</h3>
+      <pre><code>const company = {
+  name: "科技公司",
+  departments: [
+    {
+      name: "研发部",
+      employees: [
+        { name: "张工", position: "工程师", salary: 15000 },
+        { name: "李工", position: "架构师", salary: 25000 }
+      ]
+    },
+    {
+      name: "市场部",
+      employees: [
+        { name: "王经理", position: "市场经理", salary: 18000 }
+      ]
+    }
+  ],
+  
+  getTotalSalary() {
+    let total = 0;
+    this.departments.forEach(dept => {
+      dept.employees.forEach(emp => {
+        total += emp.salary;
+      });
+    });
+    return total;
+  }
+};
+
+console.log(company.getTotalSalary());  // 58000</code></pre>
+
+      <div class="lab-card">
+        <div class="lab-header">
+          <span>🔬 实验3：学生成绩分析系统</span>
+          <span class="status-badge advanced">进阶</span>
+        </div>
+        <div class="lab-body split">
+          <div class="panel">
+            <span class="panel-label">HTML</span>
+            <div class="html-viewer">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;成绩分析&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h3&gt;📊 学生成绩分析系统&lt;/h3&gt;
+  &lt;div&gt;
+    &lt;button onclick="showAll()"&gt;显示全部学生&lt;/button&gt;
+    &lt;button onclick="showTopStudent()"&gt;最高分学生&lt;/button&gt;
+    &lt;button onclick="showAverage()"&gt;计算平均分&lt;/button&gt;
+    &lt;button onclick="showPassed()"&gt;及格学生&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div id="output" style="margin-top:15px;padding:12px;background:#f5f5f5;border-radius:5px;white-space:pre-line;"&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+          </div>
+          <div class="panel">
+            <span class="panel-label">JavaScript (可编辑)</span>
+            <div class="code-editor" contenteditable="true" id="lab3-code">// 学生数据（数组包含对象）
+const students = [
+  { name: "张三", age: 20, score: 85, grade: "A" },
+  { name: "李四", age: 21, score: 92, grade: "A+" },
+  { name: "王五", age: 19, score: 78, grade: "B" },
+  { name: "赵六", age: 20, score: 65, grade: "C" },
+  { name: "孙七", age: 22, score: 95, grade: "A+" }
+];
+
+function showAll() {
+  const list = students.map(s => 
+    `${s.name}（${s.age}岁）- ${s.score}分 [${s.grade}]`
+  ).join('\n');
+  document.getElementById('output').innerText = 
+    `📋 全部学生（${students.length}人）：\n${list}`;
+}
+
+function showTopStudent() {
+  const top = students.reduce((max, s) => 
+    s.score > max.score ? s : max
+  );
+  document.getElementById('output').innerText = 
+    `🏆 最高分学生：\n${top.name} - ${top.score}分 [${top.grade}]`;
+}
+
+function showAverage() {
+  const avg = students.reduce((sum, s) => sum + s.score, 0) / students.length;
+  document.getElementById('output').innerText = 
+    `📈 平均分：${avg.toFixed(2)}分`;
+}
+
+function showPassed() {
+  const passed = students.filter(s => s.score >= 60);
+  const list = passed.map(s => `${s.name}: ${s.score}分`).join('\n');
+  document.getElementById('output').innerText = 
+    `✅ 及格学生（${passed.length}/${students.length}人）：\n${list}`;
+}</div>
+          </div>
+        </div>
+        <div class="action-bar">
+          <button class="btn btn-run" onclick="runLab3()">▶ 运行代码</button>
+          <button class="btn btn-reset" onclick="resetLab3()">↻ 重置</button>
+          <span style="color:#999;font-size:13px;">综合运用数组方法和对象操作</span>
+        </div>
+        <div class="preview-box" id="lab3-preview"></div>
+      </div>
+    </section>
+
+    <section id="practical">
+      <h2>九、综合实战:图书管理系统</h2>
+      
+      <p>让我们综合运用数组和对象的所有知识:数组方法、对象操作、数据遍历、嵌套结构等,构建一个功能完整的图书管理系统。</p>
+      
+      <div class="tip-box">
+        <span class="tip-title">🎯 本案例涵盖的知识点</span>
+        <ul class="checklist">
+          <li>使用对象数组存储图书信息</li>
+          <li>数组的增删改查操作</li>
+          <li>数组遍历和筛选方法</li>
+          <li>对象属性的访问和修改</li>
+          <li>数据统计和计算</li>
+          <li>DOM操作与数据结构结合</li>
+        </ul>
+      </div>
+
+      <div class="lab-card">
+        <div class="lab-header">
+          <span>🔬 实验4：图书管理系统</span>
+          <span class="status-badge advanced">综合</span>
+        </div>
+        <div class="lab-body split">
+          <div class="panel">
+            <span class="panel-label">HTML</span>
+            <div class="html-viewer">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;图书管理&lt;/title&gt;
+  &lt;style&gt;
+    .book-manager { max-width: 500px; padding: 20px; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .input-row { display: flex; gap: 8px; margin-bottom: 10px; }
+    .input-row input { flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 6px; }
+    .btn-group { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin: 12px 0; }
+    .book-btn { padding: 10px; background: #0066CC; color: white; border: none; border-radius: 6px; cursor: pointer; }
+    .book-btn:hover { background: #0055B3; }
+    #book-result { margin-top: 15px; padding: 12px; background: #f9f9f9; border-radius: 6px; min-height: 100px; white-space: pre-line; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="book-manager"&gt;
+    &lt;h3&gt;📚 图书管理系统&lt;/h3&gt;
+    &lt;div class="input-row"&gt;
+      &lt;input id="bookTitle" placeholder="书名"&gt;
+      &lt;input id="bookAuthor" placeholder="作者"&gt;
+      &lt;input id="bookYear" type="number" placeholder="出版年份"&gt;
+    &lt;/div&gt;
+    &lt;div class="btn-group"&gt;
+      &lt;button class="book-btn" onclick="addBook()"&gt;➕ 添加图书&lt;/button&gt;
+      &lt;button class="book-btn" onclick="showAllBooks()"&gt;📖 显示全部&lt;/button&gt;
+      &lt;button class="book-btn" onclick="searchByAuthor()"&gt;🔍 按作者搜索&lt;/button&gt;
+      &lt;button class="book-btn" onclick="showStats()"&gt;📊 统计信息&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div id="book-result"&gt;等待操作...&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+          </div>
+          <div class="panel">
+            <span class="panel-label">JavaScript (可编辑)</span>
+            <div class="code-editor" contenteditable="true" id="lab4-code">// 图书库（对象数组）
+const library = [
+  { title: "JavaScript高级程序设计", author: "Nicholas", year: 2020 },
+  { title: "你不知道的JavaScript", author: "Kyle", year: 2019 }
+];
+
+function addBook() {
+  const title = document.getElementById('bookTitle').value;
+  const author = document.getElementById('bookAuthor').value;
+  const year = parseInt(document.getElementById('bookYear').value);
+  
+  if (!title || !author || !year) {
+    document.getElementById('book-result').innerText = 
+      "⚠️ 请填写完整信息！";
+    return;
+  }
+  
+  library.push({ title, author, year });
+  document.getElementById('book-result').innerText = 
+    `✅ 已添加《${title}》\n当前共${library.length}本图书`;
+  
+  // 清空输入框
+  document.getElementById('bookTitle').value = '';
+  document.getElementById('bookAuthor').value = '';
+  document.getElementById('bookYear').value = '';
+}
+
+function showAllBooks() {
+  if (library.length === 0) {
+    document.getElementById('book-result').innerText = "📭 图书库为空";
+    return;
+  }
+  
+  const bookList = library.map((book, index) => 
+    `${index + 1}. 《${book.title}》\n   作者：${book.author} | ${book.year}年`
+  ).join('\n\n');
+  
+  document.getElementById('book-result').innerText = 
+    `📚 图书列表（共${library.length}本）：\n\n${bookList}`;
+}
+
+function searchByAuthor() {
+  const author = document.getElementById('bookAuthor').value;
+  
+  if (!author) {
+    document.getElementById('book-result').innerText = 
+      "⚠️ 请在作者栏输入要搜索的作者名";
+    return;
+  }
+  
+  const results = library.filter(book => 
+    book.author.includes(author)
+  );
+  
+  if (results.length === 0) {
+    document.getElementById('book-result').innerText = 
+      `❌ 未找到作者"${author}"的图书`;
+  } else {
+    const list = results.map(b => 
+      `《${b.title}》- ${b.author} (${b.year})`
+    ).join('\n');
+    document.getElementById('book-result').innerText = 
+      `🔍 搜索结果（${results.length}本）：\n${list}`;
+  }
+}
+
+function showStats() {
+  const total = library.length;
+  const years = library.map(b => b.year);
+  const newest = Math.max(...years);
+  const oldest = Math.min(...years);
+  const authors = [...new Set(library.map(b => b.author))];
+  
+  document.getElementById('book-result').innerText = 
+    `📊 统计信息：\n` +
+    `总图书数：${total}本\n` +
+    `最新出版：${newest}年\n` +
+    `最早出版：${oldest}年\n` +
+    `作者数量：${authors.length}位\n` +
+    `作者列表：${authors.join(', ')}`;
+}</div>
+          </div>
+        </div>
+        <div class="action-bar">
+          <button class="btn btn-run" onclick="runLab4()">▶ 运行代码</button>
+          <button class="btn btn-reset" onclick="resetLab4()">↻ 重置</button>
+          <span style="color:#999;font-size:13px;">完整的图书管理系统，包含增删查改功能</span>
+        </div>
+        <div class="preview-box" id="lab4-preview"></div>
+      </div>
+
+      <div class="tip-box">
+        <span class="tip-title">💡 案例知识点总结</span>
+        <ul class="checklist">
+          <li>使用对象数组存储结构化数据</li>
+          <li>数组方法：push, filter, map的综合应用</li>
+          <li>ES6特性：解构赋值、模板字符串、展开运算符</li>
+          <li>数据验证和用户提示</li>
+          <li>Set数据结构去重</li>
+        </ul>
+      </div>
+    </section>
+
+    <section style="margin-top:80px;padding-top:40px;border-top:2px solid var(--border-color);">
+      <h2>🎯 课程总结</h2>
+      <div class="note-box">
+        <span class="tip-title">本课重点回顾</span>
+        <ul class="checklist">
+          <li><strong>数组：</strong>有序的数据集合，索引从0开始，支持丰富的操作方法</li>
+          <li><strong>数组方法：</strong>push/pop、map/filter/reduce、forEach、find、sort等</li>
+          <li><strong>对象：</strong>键值对集合，用于描述实体的属性和方法</li>
+          <li><strong>对象操作：</strong>属性访问、添加/删除、遍历、Object静态方法</li>
+          <li><strong>JSON：</strong>数据交换格式，JSON.stringify()和JSON.parse()</li>
+          <li><strong>嵌套结构：</strong>数组包含对象、对象包含数组的复杂数据结构</li>
+        </ul>
+      </div>
+      
+      <div class="tip-box">
+        <span class="tip-title">💪 练习建议</span>
+        <p>1. 尝试修改实验代码，添加更多功能（如编辑、删除）</p>
+        <p>2. 使用不同的数组方法解决同一个问题</p>
+        <p>3. 创建更复杂的嵌套数据结构</p>
+        <p>4. 练习JSON数据的解析和生成</p>
+        <p>5. 结合之前学过的函数和控制结构，构建实用的数据处理工具</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // ===== 实验1：待办事项管理器 =====
+    const lab1OriginalCode = document.getElementById('lab1-code').innerText;
+    
+    function runLab1() {
+      const code = document.getElementById('lab1-code').innerText;
+      const previewFrame = document.getElementById('lab1-preview');
+      
+      try {
+        eval(code);
+        previewFrame.innerHTML = '<div style="color:#28a745;">✅ 代码已加载！在上方测试待办事项管理功能</div>';
+      } catch (e) {
+        previewFrame.innerHTML = '<div style="color:#dc3545;">❌ 错误：' + e.message + '</div>';
+      }
+    }
+    
+    function resetLab1() {
+      document.getElementById('lab1-code').innerText = lab1OriginalCode;
+      document.getElementById('lab1-preview').innerHTML = '';
+    }
+
+    // ===== 实验2：学生信息管理 =====
+    const lab2OriginalCode = document.getElementById('lab2-code').innerText;
+    
+    function runLab2() {
+      const code = document.getElementById('lab2-code').innerText;
+      const previewFrame = document.getElementById('lab2-preview');
+      
+      try {
+        eval(code);
+        previewFrame.innerHTML = '<div style="color:#28a745;">✅ 代码已加载！输入信息并点击按钮测试</div>';
+      } catch (e) {
+        previewFrame.innerHTML = '<div style="color:#dc3545;">❌ 错误：' + e.message + '</div>';
+      }
+    }
+    
+    function resetLab2() {
+      document.getElementById('lab2-code').innerText = lab2OriginalCode;
+      document.getElementById('lab2-preview').innerHTML = '';
+    }
+
+    // ===== 实验3：学生成绩分析系统 =====
+    const lab3OriginalCode = document.getElementById('lab3-code').innerText;
+    
+    function runLab3() {
+      const code = document.getElementById('lab3-code').innerText;
+      const previewFrame = document.getElementById('lab3-preview');
+      
+      try {
+        eval(code);
+        previewFrame.innerHTML = '<div style="color:#28a745;">✅ 代码已加载！点击按钮查看不同的分析结果</div>';
+      } catch (e) {
+        previewFrame.innerHTML = '<div style="color:#dc3545;">❌ 错误：' + e.message + '</div>';
+      }
+    }
+    
+    function resetLab3() {
+      document.getElementById('lab3-code').innerText = lab3OriginalCode;
+      document.getElementById('lab3-preview').innerHTML = '';
+    }
+
+    // ===== 实验4：图书管理系统 =====
+    const lab4OriginalCode = document.getElementById('lab4-code').innerText;
+    
+    function runLab4() {
+      const code = document.getElementById('lab4-code').innerText;
+      const previewFrame = document.getElementById('lab4-preview');
+      
+      try {
+        eval(code);
+        previewFrame.innerHTML = '<div style="color:#28a745;">✅ 图书管理系统已就绪！可以添加、查看和搜索图书</div>';
+      } catch (e) {
+        previewFrame.innerHTML = '<div style="color:#dc3545;">❌ 错误：' + e.message + '</div>';
+      }
+    }
+    
+    function resetLab4() {
+      document.getElementById('lab4-code').innerText = lab4OriginalCode;
+      document.getElementById('lab4-preview').innerHTML = '';
+    }
+
+    // 侧边栏导航激活
+    document.querySelectorAll('.sidebar a').forEach(link => {
+      link.addEventListener('click', function() {
+        document.querySelectorAll('.sidebar a').forEach(a => a.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+
+    // 初始化时运行所有实验
+    window.addEventListener('load', () => {
+      runLab1();
+      runLab2();
+      runLab3();
+      runLab4();
+    });
+  </script>
+</body>
+</html>

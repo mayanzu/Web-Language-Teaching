@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第7课：DOM操作入门 - 练习题</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f5f5f7;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1d1d1f;
+            margin-bottom: 10px;
+            border-bottom: 3px solid #0066cc;
+            padding-bottom: 10px;
+        }
+        .intro {
+            color: #86868b;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        .task {
+            background: #fafafa;
+            border-left: 4px solid #0066cc;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .task h2 {
+            color: #0066cc;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .requirements {
+            background: white;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+        }
+        .requirements ul {
+            margin-left: 20px;
+        }
+        .requirements li {
+            margin-bottom: 6px;
+            color: #333;
+        }
+        code {
+            background: #e8e8ed;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9em;
+            color: #d63384;
+        }
+        .hint {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 12px;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #856404;
+        }
+        pre {
+            background: #f6f8fa;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 10px 0;
+            font-size: 13px;
+            border: 1px solid #e1e4e8;
+        }
+        .step {
+            background: white;
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 6px;
+            border: 1px solid #e1e4e8;
+        }
+        .step h4 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 第7课：DOM操作入门 - 练习</h1>
+        <p class="intro">创建一个简单的个人名片编辑器，练习选择元素、修改内容和样式。</p>
+
+        <div class="task">
+            <h2>📋 任务要求</h2>
+            <p style="margin-bottom: 10px;">创建一个网页，包含一张个人名片（姓名、职业、简介），点击按钮可以修改名片内容和样式（颜色、字体大小等）。</p>
+            
+            <div class="requirements">
+                <strong>知识点：</strong>
+                <ul>
+                    <li>选择元素：<code>getElementById()</code>、<code>querySelector()</code></li>
+                    <li>修改内容：<code>innerText</code> 或 <code>textContent</code></li>
+                    <li>修改样式：<code>element.style.属性名</code></li>
+                </ul>
+            </div>
+
+            <h3 style="color: #0066cc; margin-top: 25px; margin-bottom: 15px;">📝 实现步骤</h3>
+            
+            <div class="step">
+                <h4>步骤 1：创建 HTML 结构</h4>
+                <p style="color: #666; margin-bottom: 8px;">创建包含以下元素的 HTML：</p>
+                <pre>&lt;div id="card" style="padding: 20px; border: 2px solid #0066cc; border-radius: 8px;"&gt;
+  &lt;h2 id="name"&gt;张三&lt;/h2&gt;
+  &lt;p id="job"&gt;Web开发工程师&lt;/p&gt;
+  &lt;p id="bio"&gt;热爱编程，喜欢学习新技术。&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div style="margin-top: 20px;"&gt;
+  &lt;button id="changeNameBtn"&gt;修改姓名&lt;/button&gt;
+  &lt;button id="changeColorBtn"&gt;改变颜色&lt;/button&gt;
+  &lt;button id="changeSizeBtn"&gt;放大字体&lt;/button&gt;
+&lt;/div&gt;</pre>
+            </div>
+
+            <div class="step">
+                <h4>步骤 2：选择元素（关键代码）</h4>
+                <p style="color: #666; margin-bottom: 8px;">使用 <code>getElementById()</code> 选择需要操作的元素：</p>
+                <pre>// 选择名片中的元素
+const nameElement = document.getElementById('name');
+const jobElement = document.getElementById('job');
+const bioElement = document.getElementById('bio');
+const cardElement = document.getElementById('card');
+
+// 选择按钮
+const changeNameBtn = document.getElementById('changeNameBtn');
+const changeColorBtn = document.getElementById('changeColorBtn');
+const changeSizeBtn = document.getElementById('changeSizeBtn');</pre>
+                <div class="hint">
+                    💡 <code>getElementById()</code> 通过元素的 id 属性选择元素，参数不需要 # 号
+                </div>
+            </div>
+
+            <div class="step">
+                <h4>步骤 3：修改文本内容（关键代码）</h4>
+                <p style="color: #666; margin-bottom: 8px;">使用 <code>innerText</code> 或 <code>textContent</code> 修改元素内容：</p>
+                <pre>changeNameBtn.addEventListener('click', function() {
+  // 修改姓名
+  nameElement.innerText = "李四";
+  
+  // 也可以使用 textContent
+  // nameElement.textContent = "李四";
+});</pre>
+                <div class="hint">
+                    💡 <code>innerText</code> 和 <code>textContent</code> 都可以修改元素的文本内容
+                </div>
+            </div>
+
+            <div class="step">
+                <h4>步骤 4：修改样式（关键代码）</h4>
+                <p style="color: #666; margin-bottom: 8px;">使用 <code>element.style.属性名</code> 修改元素样式：</p>
+                <pre>changeColorBtn.addEventListener('click', function() {
+  // 修改文字颜色
+  nameElement.style.color = "red";
+  jobElement.style.color = "blue";
+  
+  // 修改背景色
+  cardElement.style.backgroundColor = "#f0f8ff";
+});</pre>
+                <div class="hint">
+                    💡 CSS 中的 <code>background-color</code> 在 JavaScript 中写成驼峰式：<code>backgroundColor</code>
+                </div>
+            </div>
+
+            <div class="step">
+                <h4>步骤 5：修改字体大小（关键代码）</h4>
+                <p style="color: #666; margin-bottom: 8px;">使用 <code>style.fontSize</code> 修改字体大小：</p>
+                <pre>changeSizeBtn.addEventListener('click', function() {
+  // 修改字体大小（注意要带单位）
+  nameElement.style.fontSize = "32px";
+  jobElement.style.fontSize = "18px";
+  bioElement.style.fontSize = "16px";
+});</pre>
+                <div class="hint">
+                    💡 设置样式值时要加单位，如 <code>"32px"</code>、<code>"2em"</code> 等
+                </div>
+            </div>
+
+            <div class="step">
+                <h4>步骤 6：使用 querySelector（可选）</h4>
+                <p style="color: #666; margin-bottom: 8px;">也可以使用 <code>querySelector()</code> 选择元素：</p>
+                <pre>// 使用 querySelector 选择（需要加 # 号）
+const name = document.querySelector('#name');
+
+// 选择 class（需要加 . 号）
+const card = document.querySelector('.card');
+
+// 选择标签
+const firstH2 = document.querySelector('h2');</pre>
+                <div class="hint">
+                    💡 <code>querySelector()</code> 使用 CSS 选择器语法，更灵活但稍慢
+                </div>
+            </div>
+
+            <h3 style="color: #0066cc; margin-top: 25px; margin-bottom: 10px;">🧪 测试</h3>
+            <div style="background: #e3f2fd; padding: 15px; border-radius: 6px;">
+                <ol style="margin-left: 20px; line-height: 1.8;">
+                    <li>保存并打开网页</li>
+                    <li>点击"修改姓名"，查看姓名是否变成"李四"</li>
+                    <li>点击"改变颜色"，查看颜色是否改变</li>
+                    <li>点击"放大字体"，查看字体是否变大</li>
+                </ol>
+            </div>
+
+            <h3 style="color: #ff6b6b; margin-top: 25px; margin-bottom: 10px;">🎯 进阶挑战（可选）</h3>
+            <div style="background: #ffe8e8; padding: 15px; border-radius: 6px;">
+                <ul style="margin-left: 20px;">
+                    <li>添加输入框，让用户输入新的姓名和职业</li>
+                    <li>添加"重置"按钮，恢复原始内容和样式</li>
+                    <li>添加按钮切换边框样式（实线/虚线）</li>
+                    <li>使用 <code>querySelectorAll()</code> 选择所有 <code>&lt;p&gt;</code> 标签</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

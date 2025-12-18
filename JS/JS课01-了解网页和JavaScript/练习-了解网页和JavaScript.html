@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第1课：了解网页和 JavaScript - 练习题</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f5f5f7;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1d1d1f;
+            margin-bottom: 10px;
+            border-bottom: 3px solid #0066cc;
+            padding-bottom: 10px;
+        }
+        .intro {
+            color: #86868b;
+            margin-bottom: 40px;
+            font-size: 16px;
+        }
+        .task {
+            background: #fafafa;
+            border-left: 4px solid #0066cc;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 4px;
+        }
+        .task h2 {
+            color: #0066cc;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .task-desc {
+            color: #555;
+            margin-bottom: 15px;
+        }
+        .requirements {
+            background: white;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .requirements ul {
+            margin-left: 20px;
+        }
+        .requirements li {
+            margin-bottom: 8px;
+            color: #333;
+        }
+        code {
+            background: #e8e8ed;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9em;
+            color: #d63384;
+        }
+        .preview-area {
+            border: 2px dashed #ccc;
+            padding: 20px;
+            margin-top: 15px;
+            background: white;
+            min-height: 120px;
+        }
+        .hint {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 12px;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #856404;
+        }
+        .difficulty {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        .easy { background: #d4edda; color: #155724; }
+        .medium { background: #fff3cd; color: #856404; }
+        .hard { background: #f8d7da; color: #721c24; }
+        
+        pre {
+            background: #f6f8fa;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 10px 0;
+            font-size: 13px;
+            border: 1px solid #e1e4e8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 第1课：了解网页和 JavaScript - 综合练习</h1>
+        <p class="intro">本练习是一道综合任务，你需要创建一个完整的 HTML 文件，包含 JavaScript 代码。请按照步骤指导完成，最后将完整的 HTML 代码保存并在浏览器中测试。</p>
+
+        <!-- 综合练习 -->
+        <div class="task">
+            <h2>综合练习：制作一个"点击变色"互动网页 <span class="difficulty easy">适合初学者</span></h2>
+            <p class="task-desc">你将创建一个包含标题和按钮的网页。当点击按钮时，标题会改变文字和颜色。这个练习将帮助你理解 HTML、CSS 和 JavaScript 如何配合工作。</p>
+            
+            <div class="requirements">
+                <strong>📋 最终效果：</strong>
+                <ul>
+                    <li>页面上有一个标题显示"欢迎学习 JavaScript"</li>
+                    <li>有一个按钮，文字是"点击我变色"</li>
+                    <li>点击按钮后，标题文字变成"太棒了！"</li>
+                    <li>同时标题颜色从蓝色变成绿色</li>
+                </ul>
+            </div>
+
+            <h3 style="color: #0066cc; margin-top: 30px;">📝 详细步骤指导</h3>
+            
+            <div style="background: white; padding: 20px; border-radius: 8px; margin: 15px 0;">
+                <h4 style="color: #333; margin-bottom: 15px;">第 1 步：创建 HTML 基础结构</h4>
+                <p style="color: #666; margin-bottom: 10px;">新建一个 HTML 文件，写入以下代码：</p>
+                <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;我的第一个互动网页&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  
+  &lt;!-- 接下来的内容将在这里添加 --&gt;
+  
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+            </div>
+
+            <div style="background: white; padding: 20px; border-radius: 8px; margin: 15px 0;">
+                <h4 style="color: #333; margin-bottom: 15px;">第 2 步：添加 CSS 样式</h4>
+                <p style="color: #666; margin-bottom: 10px;">在 <code>&lt;head&gt;</code> 标签里，<code>&lt;/head&gt;</code> 之前，添加样式代码：</p>
+                <pre>&lt;style&gt;
+  h1 {
+    color: blue;
+    font-size: 32px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+&lt;/style&gt;</pre>
+                <div class="hint">
+                    💡 解释：<code>&lt;style&gt;</code> 标签用来写 CSS 代码。<code>color: blue;</code> 设置文字颜色为蓝色，<code>font-size</code> 设置字体大小。
+                </div>
+            </div>
+
+            <div style="background: white; padding: 20px; border-radius: 8px; margin: 15px 0;">
+                <h4 style="color: #333; margin-bottom: 15px;">第 3 步：添加页面内容</h4>
+                <p style="color: #666; margin-bottom: 10px;">在 <code>&lt;body&gt;</code> 标签里面，添加标题和按钮：</p>
+                <pre>&lt;h1 id="title"&gt;欢迎学习 JavaScript&lt;/h1&gt;
+&lt;button id="btn"&gt;点击我变色&lt;/button&gt;</pre>
+                <div class="hint">
+                    💡 注意：<code>id="title"</code> 和 <code>id="btn"</code> 是给元素起的名字，JavaScript 会用这些名字来找到它们。
+                </div>
+            </div>
+
+            <div style="background: white; padding: 20px; border-radius: 8px; margin: 15px 0;">
+                <h4 style="color: #333; margin-bottom: 15px;">第 4 步：添加 JavaScript 代码</h4>
+                <p style="color: #666; margin-bottom: 10px;">在按钮代码下面，<code>&lt;/body&gt;</code> 之前，添加 <code>&lt;script&gt;</code> 标签：</p>
+                <pre>&lt;script&gt;
+  const title = document.getElementById('title');
+  const btn = document.getElementById('btn');
+  
+  btn.addEventListener('click', function() {
+    title.textContent = '太棒了！';
+    title.style.color = 'green';
+  });
+&lt;/script&gt;</pre>
+                <div class="hint">
+                    💡 解释：<br>
+                    • <code>document.getElementById('title')</code> 找到 id 为 'title' 的元素（标题）<br>
+                    • <code>btn.addEventListener('click', ...)</code> 给按钮添加点击事件<br>
+                    • <code>title.textContent = '太棒了！'</code> 修改标题文字<br>
+                    • <code>title.style.color = 'green'</code> 修改标题颜色为绿色
+                </div>
+            </div>
+
+            <h3 style="color: #0066cc; margin-top: 30px;">🧪 如何测试</h3>
+            <div style="background: #e3f2fd; padding: 15px; border-radius: 6px; margin: 15px 0;">
+                <ol style="margin-left: 20px; color: #0d47a1; line-height: 1.8;">
+                    <li>将以上步骤的代码按顺序写到你的 HTML 文件中</li>
+                    <li>保存文件，命名为 <code>interactive-page.html</code></li>
+                    <li>双击文件，用浏览器打开</li>
+                    <li>检查：页面上是否有蓝色标题和按钮？</li>
+                    <li>点击"点击我变色"按钮</li>
+                    <li>检查：标题文字是否变成"太棒了！"？颜色是否变成绿色？</li>
+                </ol>
+            </div>
+
+            <h3 style="color: #4caf50; margin-top: 30px;">💡 常见问题</h3>
+            <div style="background: #e8f5e9; padding: 15px; border-radius: 6px; margin: 15px 0;">
+                <p style="color: #2e7d32; font-weight: bold;">Q: 点击按钮没有反应？</p>
+                <ul style="margin-left: 20px; color: #1b5e20; line-height: 1.8; margin-top: 5px;">
+                    <li>确保 <code>&lt;script&gt;</code> 标签在按钮代码的后面</li>
+                    <li>检查 id 是否拼写正确，区分大小写</li>
+                    <li>按 F12 打开控制台，看看有没有错误提示</li>
+                </ul>
+                
+                <p style="color: #2e7d32; font-weight: bold; margin-top: 15px;">Q: 样式没有生效？</p>
+                <ul style="margin-left: 20px; color: #1b5e20; line-height: 1.8; margin-top: 5px;">
+                    <li>确保 <code>&lt;style&gt;</code> 标签写在 <code>&lt;head&gt;</code> 里面</li>
+                    <li>检查 CSS 代码的花括号 <code>{}</code> 是否完整</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="background: #f5f5f5; padding: 20px; border-radius: 8px; margin-top: 40px; border: 2px solid #0066cc;">
+            <h3 style="color: #0066cc; margin-bottom: 10px;">📤 提交作业</h3>
+            <p style="color: #333; line-height: 1.8;">
+                <strong>请将你完成的完整 HTML 代码保存为文件，确保：</strong>
+            </p>
+            <ul style="margin-left: 20px; color: #333; line-height: 1.8; margin-top: 10px;">
+                <li>✅ 文件能在浏览器中正常打开</li>
+                <li>✅ 页面显示蓝色标题和按钮</li>
+                <li>✅ 点击按钮后标题文字会改变</li>
+                <li>✅ 点击按钮后标题颜色会变成绿色</li>
+                <li>✅ 代码格式整齐，有适当的缩进</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

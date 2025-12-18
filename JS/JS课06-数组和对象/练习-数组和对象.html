@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第6课：数组和对象 - 练习题</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f5f5f7;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1d1d1f;
+            margin-bottom: 10px;
+            border-bottom: 3px solid #0066cc;
+            padding-bottom: 10px;
+        }
+        .intro {
+            color: #86868b;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        .task {
+            background: #fafafa;
+            border-left: 4px solid #0066cc;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .task h2 {
+            color: #0066cc;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .requirements {
+            background: white;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+        }
+        .requirements ul {
+            margin-left: 20px;
+        }
+        .requirements li {
+            margin-bottom: 6px;
+            color: #333;
+        }
+        code {
+            background: #e8e8ed;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9em;
+            color: #d63384;
+        }
+        .hint {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 12px;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #856404;
+        }
+        pre {
+            background: #f6f8fa;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 10px 0;
+            font-size: 13px;
+            border: 1px solid #e1e4e8;
+        }
+        .step {
+            background: white;
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 6px;
+            border: 1px solid #e1e4e8;
+        }
+        .step h4 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 第6课：数组和对象 - 练习</h1>
+        <p class="intro">创建一个购物清单管理器，练习数组的创建、访问、增删操作和遍历，以及对象的创建和属性访问。</p>
+
+        <div class="task">
+            <h2>📋 任务要求</h2>
+            <p style="margin-bottom: 10px;">创建一个购物清单，可以添加商品（push）、删除最后一个商品（pop）、删除第一个商品（shift）、在开头添加商品（unshift），并能显示所有商品。同时创建商品对象，包含名称和价格属性。</p>
+            
+            <div class="requirements">
+                <strong>知识点：</strong>
+                <ul>
+                    <li>数组的创建和访问：<code>const arr = []</code>、<code>arr[0]</code></li>
+                    <li>数组方法：<code>push()</code>、<code>pop()</code>、<code>shift()</code>、<code>unshift()</code></li>
+                    <li>数组遍历：<code>for</code> 循环或 <code>forEach()</code></li>
+                    <li>对象的创建和属性访问：<code>const obj = {}</code>、<code>obj.key</code></li>
+                </ul>
+            </div>
+
+            <h3 style="color: #0066cc; margin-top: 25px; margin-bottom: 15px;">📝 实现步骤</h3>
+            
+            <div class="step">
+                <h4>步骤 1：创建 HTML 结构</h4>
+                <p style="color: #666; margin-bottom: 8px;">创建包含以下元素的 HTML：</p>
+                <ul style="margin-left: 20px; color: #555;">
+                    <li>一个输入框：<code>&lt;input id="itemInput" placeholder="输入商品名称"&gt;</code></li>
+                    <li>四个按钮：添加到末尾、删除最后一个、删除第一个、添加到开头、显示全部</li>
+                    <li>结果显示区域：<code>&lt;div id="result"&gt;&lt;/div&gt;</code></li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <h4>步骤 2：创建数组（关键代码）</h4>
+                <p style="color: #666; margin-bottom: 8px;">创建一个空数组存储购物清单：</p>
+                <pre>// 创建空数组
+const shoppingList = [];
+
+// 获取页面元素
+const itemInput = document.getElementById('itemInput');
+const resultDiv = document.getElementById('result');</pre>
+                <div class="hint">
+                    💡 数组使用 <code>[]</code> 创建，可以存储多个值
+                </div>
+            </div>
+
+            <div class="step">
+                <h4>步骤 3：实现添加到末尾（关键代码）</h4>
+                <p style="color: #666; margin-bottom: 8px;">使用 <code>push()</code> 方法在数组末尾添加元素：</p>
+                <pre>document.getElementById('pushBtn').addEventListener('click', function() {
+  const item = itemInput.value;
+  if (item) {
+    shoppingList.push(item);  // 添加到数组末尾
+    itemInput.value = '';  // 清空输入框
+    resultDiv.textContent = `已添加：${item}，当前清单：${shoppingList}`;
+  }
+});</pre>
+                <div class="hint">
+                    💡 <code>push()</code> 在数组末尾添加一个元素
+                </div>
+            </div>
+
+            <div class="step">
+                <h4>步骤 4：实现删除最后一个（关键代码）</h4>
+                <p style="color: #666; margin-bottom: 8px;">使用 <code>pop()</code> 方法删除并返回数组最后一个元素：</p>
+                <pre>document.getElementById('popBtn').addEventListener('click', function() {
+  if (shoppingList.length > 0) {
+    const removed = shoppingList.pop();  // 删除并返回最后一个元素
+    resultDiv.textContent = `已删除：${removed}，剩余：${shoppingList}`;
+  } else {
+    resultDiv.textContent = '清单已空！';
+  }
+});</pre>
+                <div class="hint">
+                    💡 <code>pop()</code> 删除并返回数组最后一个元素
+                </div>
+            </div>
+
+            <div class="step">
+                <h4>步骤 5：实现其他数组方法</h4>
+                <p style="color: #666; margin-bottom: 8px;">参考上面的代码，实现：</p>
+                <ul style="margin-left: 20px; color: #555; margin-top: 8px;">
+                    <li><code>shift()</code> - 删除第一个元素</li>
+                    <li><code>unshift()</code> - 在开头添加元素</li>
+                </ul>
+                <div class="hint">
+                    💡 <code>shift()</code> 和 <code>pop()</code> 类似，但删除第一个；<code>unshift()</code> 和 <code>push()</code> 类似，但添加到开头
+                </div>
+            </div>
+
+            <div class="step">
+                <h4>步骤 6：遍历数组显示（关键代码）</h4>
+                <p style="color: #666; margin-bottom: 8px;">使用 <code>forEach()</code> 遍历数组并显示所有商品：</p>
+                <pre>document.getElementById('showBtn').addEventListener('click', function() {
+  if (shoppingList.length === 0) {
+    resultDiv.textContent = '清单为空！';
+    return;
+  }
+  
+  let display = '购物清单：\n';
+  shoppingList.forEach(function(item, index) {
+    display += `${index + 1}. ${item}\n`;
+  });
+  
+  resultDiv.textContent = display;
+});</pre>
+                <div class="hint">
+                    💡 <code>forEach()</code> 可以遍历数组的每个元素，第一个参数是元素值，第二个是索引
+                </div>
+            </div>
+
+            <div class="step">
+                <h4>步骤 7：创建对象（进阶）</h4>
+                <p style="color: #666; margin-bottom: 8px;">尝试创建包含商品信息的对象：</p>
+                <pre>// 创建商品对象
+const product = {
+  name: "苹果",
+  price: 5.5,
+  quantity: 10
+};
+
+// 访问对象属性
+console.log(product.name);   // "苹果"
+console.log(product.price);  // 5.5
+
+// 修改对象属性
+product.quantity = 20;</pre>
+                <div class="hint">
+                    💡 对象使用 <code>{}</code> 创建，包含键值对，使用 <code>对象.属性名</code> 访问属性
+                </div>
+            </div>
+
+            <h3 style="color: #0066cc; margin-top: 25px; margin-bottom: 10px;">🧪 测试</h3>
+            <div style="background: #e3f2fd; padding: 15px; border-radius: 6px;">
+                <ol style="margin-left: 20px; line-height: 1.8;">
+                    <li>输入"苹果"，点击"添加到末尾"</li>
+                    <li>输入"香蕉"，点击"添加到末尾"</li>
+                    <li>点击"显示全部"，查看清单</li>
+                    <li>点击"删除最后一个"，再查看清单</li>
+                    <li>测试其他按钮功能</li>
+                </ol>
+            </div>
+
+            <h3 style="color: #ff6b6b; margin-top: 25px; margin-bottom: 10px;">🎯 进阶挑战（可选）</h3>
+            <div style="background: #ffe8e8; padding: 15px; border-radius: 6px;">
+                <ul style="margin-left: 20px;">
+                    <li>改进：存储对象而不是字符串，每个商品包含名称和价格</li>
+                    <li>添加一个按钮显示商品总数（使用 <code>array.length</code>）</li>
+                    <li>添加清空全部功能（将数组设为 <code>[]</code>）</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第8课：事件处理</title>
+  <style>
+    :root{--color-text:#1D1D1F;--color-text-light:#86868B;--color-heading:#111;--color-accent:#0066CC;--color-accent-hover:#0055B3;--color-bg:#F5F5F7;--color-white:#FFFFFF;--border-color:#D2D2D7;--code-bg:#f6f8fa;--font-stack:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;--font-mono:'SF Mono','Menlo','Monaco','Courier New',monospace;--shadow-card:0 8px 24px rgba(0,0,0,.06);}*{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;}body{font-family:var(--font-stack);background:var(--color-bg);color:var(--color-text);display:flex;line-height:1.7;font-size:16px;}.sidebar{width:260px;height:100vh;position:fixed;background:rgba(255,255,255,.95);border-right:1px solid var(--border-color);padding:30px 18px;overflow-y:auto;backdrop-filter:blur(12px);z-index:10;}.sidebar h3{font-size:13px;color:var(--color-text-light);text-transform:uppercase;margin:18px 0 8px 12px;letter-spacing:.5px;font-weight:600;}.sidebar-nav{display:flex;flex-direction:column;gap:3px;}.sidebar a{display:block;padding:9px 12px;border-radius:8px;color:var(--color-text);text-decoration:none;font-size:15px;transition:all .2s;border-left:3px solid transparent;}.sidebar a:hover{background:#E8E8ED;}.sidebar a.active{background:#E1F0FF;color:var(--color-accent);border-left-color:var(--color-accent);font-weight:600;}.sidebar a.sub-link{padding-left:28px;font-size:14px;color:#555;}.content{margin-left:260px;padding:60px clamp(32px,5vw,90px);width:100%;max-width:min(1600px,calc(100vw - 260px));}section{margin-bottom:70px;scroll-margin-top:40px;}h1{font-size:42px;font-weight:700;letter-spacing:-.5px;}h2{font-size:30px;margin:50px 0 24px;padding-bottom:15px;border-bottom:1px solid var(--border-color);color:var(--color-heading);}h3{font-size:22px;margin:30px 0 18px;color:var(--color-heading);}p{margin-bottom:16px;color:#333;}code{font-family:var(--font-mono);background:rgba(27,31,35,.05);padding:3px 6px;border-radius:4px;font-size:.92em;color:#d63384;}pre>code{background:none;padding:0;color:inherit;display:block;}.intro{font-size:19px;color:var(--color-text-light);margin:15px 0 30px;font-weight:300;max-width:780px;}.pill-list{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;}.pill{padding:6px 14px;border-radius:999px;font-size:13px;background:#E8F1FF;color:var(--color-accent);}.tip-box,.note-box{border-radius:10px;padding:18px 22px;margin:20px 0;border-left:4px solid;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.03);}.tip-box{border-color:var(--color-accent);background:#eef6ff;}.note-box{border-color:#34A853;background:#edf9f0;}.tip-title{font-weight:700;color:var(--color-accent);margin-bottom:6px;display:block;}.checklist{list-style:none;padding-left:0;}.checklist li{padding-left:28px;position:relative;margin-bottom:10px;}.checklist li::before{content:"✔";position:absolute;left:0;top:0;color:var(--color-accent);font-size:14px;}.lab-card{background:var(--color-white);border:1px solid var(--border-color);border-radius:16px;overflow:hidden;box-shadow:var(--shadow-card);margin:35px 0 40px;}.lab-header{background:#fbfbfd;padding:14px 22px;border-bottom:1px solid var(--border-color);display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:600;color:#666;}.status-badge{font-size:11px;padding:4px 10px;border-radius:999px;}.status-badge.beginner{background:#E8F5E9;color:#2E7D32;}.status-badge.advanced{background:#FFF3E0;color:#BF360C;}.lab-body{padding:20px 22px 24px;background:#fff;}.lab-steps{margin:0 0 10px 18px;}.lab-steps li{margin-bottom:6px;}pre{background:var(--code-bg);padding:14px 16px;border-radius:10px;overflow-x:auto;font-family:var(--font-mono);font-size:13px;}
+  </style>
+</head>
+<body>
+<nav class="sidebar">
+  <div class="sidebar-nav">
+    <h3>全貌</h3>
+    <a href="#intro" class="active">🎛️ 第8课概览</a>
+    <h3>Part 1 事件基础</h3>
+    <a href="#what">1. 什么是事件</a>
+    <h3>Part 2 监听事件</h3>
+    <a href="#listen">2. addEventListener</a>
+    <h3>Part 3 常见事件类型</h3>
+    <a href="#types">3. click / input 等</a>
+    <h3>Part 4 实战</h3>
+    <a href="#lab">4. 小交互：切换背景色</a>
+    <a href="#summary" class="sub-link">小结</a>
+  </div>
+</nav>
+<main class="content">
+  <header id="intro">
+    <h1>第8课：事件处理</h1>
+    <p class="intro">点击按钮、输入文字、移动鼠标、提交表单……这些用户操作在浏览器中都会触发「事件」。本课你将学会监听这些事件，并用函数来响应它们。</p>
+    <div class="pill-list">
+      <span class="pill">click 点击</span>
+      <span class="pill">input 输入</span>
+      <span class="pill">addEventListener</span>
+      <span class="pill">事件回调函数</span>
+    </div>
+  </header>
+  <section id="what">
+    <h2>一、什么是事件？</h2>
+    <p>事件就是「在浏览器中发生的一件事」，比如：</p>
+    <ul class="checklist">
+      <li>用户点击了一个按钮（<code>click</code>）。</li>
+      <li>用户在输入框中输入内容（<code>input</code>）。</li>
+      <li>页面加载完成（<code>load</code>）。</li>
+    </ul>
+  </section>
+  <section id="listen">
+    <h2>二、如何监听事件？</h2>
+    <p>最常用的方式是使用 <code>addEventListener</code>：</p>
+    <pre><code>const btn = document.querySelector('button');
+
+btn.addEventListener('click', function () {
+  console.log('按钮被点击了！');
+});</code></pre>
+    <ul class="checklist">
+      <li>第一个参数是事件类型，如 <code>'click'</code>。</li>
+      <li>第二个参数是一个函数（回调函数），事件发生时会被调用。</li>
+    </ul>
+  </section>
+  <section id="types">
+    <h2>三、常见的事件类型</h2>
+    <ul class="checklist">
+      <li><code>click</code>：鼠标点击。</li>
+      <li><code>input</code>：输入框内容发生变化。</li>
+      <li><code>submit</code>：表单提交。</li>
+      <li><code>change</code>：值改变并失去焦点（如下拉框）。</li>
+    </ul>
+  </section>
+  <section id="lab">
+    <h2>四、实验：点击按钮切换背景颜色</h2>
+    <div class="lab-card">
+      <div class="lab-header">
+        <span>实验 09：事件驱动的样式变化</span>
+        <span class="status-badge beginner">Hands-on</span>
+      </div>
+      <div class="lab-body">
+        <ol class="lab-steps">
+          <li>新建一个 HTML 文件，包含一个按钮，按钮文字为「切换背景色」。</li>
+          <li>使用 <code>querySelector</code> 选中该按钮。</li>
+          <li>给按钮添加 <code>click</code> 事件监听。</li>
+          <li>在事件回调函数中，切换 <code>document.body.style.backgroundColor</code> 的值（例如在白色和浅蓝色之间切换）。</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+  <section id="summary">
+    <h2>五、本课小结</h2>
+    <ul class="checklist">
+      <li>事件是用户与网页交互时触发的各种「动作」。</li>
+      <li>使用 <code>addEventListener</code> 可以给元素绑定事件处理函数。</li>
+      <li>结合 DOM 操作和事件，可以做出各种交互效果。</li>
+    </ul>
+    <div class="note-box">
+      <strong>结课小结：</strong>经过 8 节课，你已经完成了从「认识网页」到「用 JS 操作和互动网页」的完整入门路径。</div>
+  </section>
+</main>
+</body>
+</html>

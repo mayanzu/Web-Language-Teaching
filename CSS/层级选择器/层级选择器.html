@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>练习题：CSS 子代选择器、后代选择器与兄弟选择�?/title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>练习：CSS 子代选择器、后代选择器与兄弟选择�?/h1>
+        <p>请不要修改下方提供的 HTML 结构，只编写 CSS 来完成要求�?/p>
+
+        <h2>要求</h2>
+        <ol>
+            <li>使用子代选择器：�?container 的直接子元素 p 的文字颜色设为蓝色�?/li>
+            <li>使用后代选择器：�?box 内的所�?span 元素的背景色设为浅黄色�?/li>
+            <li>使用相邻兄弟选择器：将紧跟在 h2 后面�?p 段落文字设为红色�?/li>
+            <li>使用通用兄弟选择器：�?h3 后面所有的兄弟 li 元素的文字设为绿色�?/li>
+            <li>使用子代选择器：�?nav > ul > li 的直接子元素 a 的文字装饰设为无下划线�?/li>
+            <li>使用后代选择器：�?article 内的所�?blockquote 的边框设为蓝色实线�?/li>
+            <li>使用相邻兄弟选择器：将紧跟在 .highlight 后面�?p 段落文字加粗�?/li>
+        </ol>
+
+        <!-- 说明：请把你�?CSS 写在独立�?CSS 文件�?<style> 中，本题不提供任何现成样式�?-->
+
+        <hr>
+
+        <!-- 练习�?HTML 结构（请勿更改结构，仅可添加你自己的 CSS�?-->
+        <!-- 你需要通过子代选择器、后代选择器和兄弟选择器来选中这些元素完成上方要求 -->
+        <div class="box">
+            <h2>章节标题</h2>
+            <p>紧跟�?h2 后面的段�?/p>
+            <div>这是一�?div 元素</div>
+            <p>这是另一个段�?/p>
+
+            <h3>小节标题</h3>
+            <div>这是一�?div</div>
+            <li>列表�?1</li>
+            <li>列表�?2</li>
+            <p>段落元素</p>
+            <li>列表�?3</li>
+
+            <div class="nested">
+                <p>嵌套的段�?/p>
+                <div>
+                    <p>更深层的段落</p>
+                    <span>嵌套�?span 元素</span>
+                </div>
+            </div>
+
+            <nav>
+                <ul>
+                    <li><a href="#">导航链接 1</a></li>
+                    <li><a href="#">导航链接 2</a></li>
+                    <li>
+                        <a href="#">导航链接 3</a>
+                        <ul>
+                            <li><a href="#">子链�?1</a></li>
+                            <li><a href="#">子链�?2</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+
+            <article>
+                <h4>文章标题</h4>
+                <p>文章段落</p>
+                <blockquote>引用内容</blockquote>
+                <div>
+                    <blockquote>嵌套的引用内�?/blockquote>
+                </div>
+            </article>
+
+            <p class="highlight">高亮段落</p>
+            <p>紧跟�?highlight 后面的段�?/p>
+            <div>中间�?div</div>
+            <p>另一个段�?/p>
+
+            <span>独立�?span 元素</span>
+        </div>
+
+        <p>container 的直接子元素段落</p>
+        <div>
+            <p>container 的后代段落（非直接子元素�?/p>
+        </div>
+    </div>
+</body>
+</html>

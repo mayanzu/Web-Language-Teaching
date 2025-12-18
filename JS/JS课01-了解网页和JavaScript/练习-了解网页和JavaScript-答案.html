@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第1课：了解网页和 JavaScript - 练习答案</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f5f5f7;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1d1d1f;
+            margin-bottom: 10px;
+            border-bottom: 3px solid #34a853;
+            padding-bottom: 10px;
+        }
+        .intro {
+            color: #86868b;
+            margin-bottom: 40px;
+            font-size: 16px;
+        }
+        .task {
+            background: #fafafa;
+            border-left: 4px solid #34a853;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 4px;
+        }
+        .task h2 {
+            color: #34a853;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .task-desc {
+            color: #555;
+            margin-bottom: 15px;
+        }
+        code {
+            background: #e8e8ed;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9em;
+            color: #d63384;
+        }
+        .difficulty {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        .easy { background: #d4edda; color: #155724; }
+        .medium { background: #fff3cd; color: #856404; }
+        
+        pre {
+            background: #f6f8fa;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 10px 0;
+            font-size: 13px;
+            border: 1px solid #e1e4e8;
+            line-height: 1.5;
+        }
+        .demo-btn {
+            background: #0066cc;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .demo-btn:hover {
+            background: #0055b3;
+        }
+        .explanation {
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            border-left: 4px solid #4caf50;
+        }
+        .explanation h4 {
+            color: #2e7d32;
+            margin-bottom: 8px;
+        }
+        .explanation ul {
+            margin-left: 20px;
+            color: #1b5e20;
+        }
+        .explanation li {
+            margin-bottom: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✅ 第1课：了解网页和 JavaScript - 参考答案</h1>
+        <p class="intro">这是综合练习的参考答案和详细解释。代码只是一种参考，只要能实现功能就是正确的！</p>
+
+        <!-- 答案 -->
+        <div class="task">
+            <h2>综合练习答案：点击变色互动网页 <span class="difficulty easy">完整实现</span></h2>
+            <p class="task-desc"><strong>完整代码：</strong></p>
+            <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;我的第一个互动网页&lt;/title&gt;
+  &lt;style&gt;
+    h1 {
+      color: blue;
+      font-size: 32px;
+    }
+    
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1 id="title"&gt;欢迎学习 JavaScript&lt;/h1&gt;
+  &lt;button id="btn"&gt;点击我变色&lt;/button&gt;
+  
+  &lt;script&gt;
+    const title = document.getElementById('title');
+    const btn = document.getElementById('btn');
+    
+    btn.addEventListener('click', function() {
+      title.textContent = '太棒了！';
+      title.style.color = 'green';
+    });
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+            
+            <button class="demo-btn" onclick="demoBasic()">🔍 点击查看效果演示</button>
+            <div id="demo-basic" style="margin-top: 15px; padding: 20px; background: #f9f9f9; border-radius: 8px; display: none;">
+                <h1 id="demo-basic-title" style="color: blue; font-size: 32px;">欢迎学习 JavaScript</h1>
+                <button class="demo-btn" onclick="demoBasicAction()" style="padding: 10px 20px; font-size: 16px; margin-top: 10px;">点击我变色</button>
+            </div>
+            
+            <div class="explanation">
+                <h4>💡 代码逐行解析：</h4>
+                <ul>
+                    <li><strong>&lt;style&gt; 部分：</strong>
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li><code>h1 { color: blue; }</code> - 设置标题初始颜色为蓝色</li>
+                            <li><code>font-size: 32px;</code> - 设置字体大小</li>
+                            <li><code>button { padding: 10px 20px; }</code> - 设置按钮内边距，让按钮更大</li>
+                            <li><code>cursor: pointer;</code> - 鼠标移到按钮上时显示手型光标</li>
+                        </ul>
+                    </li>
+                    <li style="margin-top: 10px;"><strong>&lt;body&gt; 部分：</strong>
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li><code>&lt;h1 id="title"&gt;</code> - 创建标题，给它 id 方便 JS 查找</li>
+                            <li><code>&lt;button id="btn"&gt;</code> - 创建按钮，给它 id</li>
+                        </ul>
+                    </li>
+                    <li style="margin-top: 10px;"><strong>&lt;script&gt; 部分：</strong>
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li><code>document.getElementById('title')</code> - 通过 id 查找标题元素</li>
+                            <li><code>btn.addEventListener('click', function() {...})</code> - 给按钮添加点击事件监听器</li>
+                            <li><code>title.textContent = '太棒了！'</code> - 修改标题文字内容</li>
+                            <li><code>title.style.color = 'green'</code> - 通过 JavaScript 修改 CSS 颜色</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="explanation" style="margin-top: 20px;">
+                <h4>🔍 关键知识点：</h4>
+                <ul>
+                    <li><strong>HTML、CSS、JavaScript 的配合：</strong>
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li>HTML 定义结构（有什么元素）</li>
+                            <li>CSS 定义样式（元素长什么样）</li>
+                            <li>JavaScript 定义行为（点击后做什么）</li>
+                        </ul>
+                    </li>
+                    <li style="margin-top: 10px;"><strong>两种设置样式的方法：</strong>
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li>方法1：在 <code>&lt;style&gt;</code> 中写 CSS（如 <code>h1 { color: blue; }</code>）- 初始样式</li>
+                            <li>方法2：用 JavaScript 动态修改（如 <code>title.style.color = 'green'</code>）- 交互后的样式</li>
+                        </ul>
+                    </li>
+                    <li style="margin-top: 10px;"><strong>为什么要用 id？</strong>id 像元素的"身份证号"，让 JavaScript 能准确找到它。每个 id 在页面中必须唯一。</li>
+                    <li style="margin-top: 10px;"><strong>事件监听器的作用：</strong><code>addEventListener</code> 就像给按钮安装一个"侦听器"，时刻监听用户是否点击，点击后立即执行函数里的代码。</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="background: #e3f2fd; padding: 20px; border-radius: 8px; margin-top: 40px;">
+            <h3 style="color: #1565c0; margin-bottom: 10px;">🎯 学习要点总结</h3>
+            <ul style="margin-left: 20px; color: #0d47a1; line-height: 1.8;">
+                <li><strong>HTML 结构：</strong>定义网页的内容和框架</li>
+                <li><strong>CSS 样式：</strong>控制网页的外观（颜色、大小、间距等）</li>
+                <li><strong>JavaScript 行为：</strong>让网页能响应用户操作</li>
+                <li><strong>getElementById()：</strong>通过 id 查找页面元素</li>
+                <li><strong>addEventListener()：</strong>给元素添加事件监听器</li>
+                <li><strong>textContent：</strong>修改元素的文字内容</li>
+                <li><strong>style.color：</strong>通过 JavaScript 动态修改 CSS 样式</li>
+            </ul>
+        </div>
+
+        <div style="background: #fff3e0; padding: 20px; border-radius: 8px; margin-top: 20px;">
+            <h3 style="color: #e65100; margin-bottom: 10px;">⚠️ 常见错误及解决方法</h3>
+            <div style="margin-top: 15px;">
+                <p style="color: #bf360c; font-weight: bold;">错误 1：样式没有生效</p>
+                <pre style="background: #ffebee; padding: 10px; border-radius: 6px; margin: 10px 0;">// ❌ 错误：style 标签位置错误
+&lt;body&gt;
+  &lt;style&gt;...&lt;/style&gt;  &lt;!-- ❌ 不应该在 body 里 --&gt;
+&lt;/body&gt;</pre>
+                <pre style="background: #e8f5e9; padding: 10px; border-radius: 6px; margin: 10px 0;">// ✅ 正确：style 标签在 head 里
+&lt;head&gt;
+  &lt;style&gt;...&lt;/style&gt;  &lt;!-- ✅ 应该在 head 里 --&gt;
+&lt;/head&gt;</pre>
+
+                <p style="color: #bf360c; font-weight: bold; margin-top: 20px;">错误 2：JavaScript 找不到元素</p>
+                <pre style="background: #ffebee; padding: 10px; border-radius: 6px; margin: 10px 0;">// ❌ 错误：script 在元素之前
+&lt;script&gt;
+  const btn = document.getElementById('btn');  // ❌ 此时按钮还不存在
+&lt;/script&gt;
+&lt;button id="btn"&gt;点击我&lt;/button&gt;</pre>
+                <pre style="background: #e8f5e9; padding: 10px; border-radius: 6px; margin: 10px 0;">// ✅ 正确：script 在元素之后
+&lt;button id="btn"&gt;点击我&lt;/button&gt;
+&lt;script&gt;
+  const btn = document.getElementById('btn');  // ✅ 能找到按钮
+&lt;/script&gt;</pre>
+
+                <p style="color: #bf360c; font-weight: bold; margin-top: 20px;">错误 3：id 不匹配</p>
+                <pre style="background: #ffebee; padding: 10px; border-radius: 6px; margin: 10px 0;">// ❌ 错误：id 大小写不一致
+&lt;h1 id="Title"&gt;标题&lt;/h1&gt;  &lt;!-- ❌ 大写 T --&gt;
+&lt;script&gt;
+  const title = document.getElementById('title');  // ❌ 小写 t，找不到！
+&lt;/script&gt;</pre>
+                <pre style="background: #e8f5e9; padding: 10px; border-radius: 6px; margin: 10px 0;">// ✅ 正确：id 完全一致
+&lt;h1 id="title"&gt;标题&lt;/h1&gt;  &lt;!-- ✅ 小写 --&gt;
+&lt;script&gt;
+  const title = document.getElementById('title');  // ✅ 小写，能找到
+&lt;/script&gt;</pre>
+            </div>
+        </div>
+
+        <div style="background: #e8f5e9; padding: 20px; border-radius: 8px; margin-top: 20px;">
+            <h3 style="color: #2e7d32; margin-bottom: 10px;">🚀 继续学习</h3>
+            <p style="color: #1b5e20;">恭喜你完成第一课！你已经学会了：</p>
+            <ul style="margin-left: 20px; color: #1b5e20; line-height: 1.8; margin-top: 10px;">
+                <li>如何用 HTML 创建网页结构</li>
+                <li>如何用 CSS 设置样式</li>
+                <li>如何用 JavaScript 实现交互</li>
+                <li>如何让 HTML、CSS、JavaScript 三者配合工作</li>
+            </ul>
+            <p style="color: #1b5e20; margin-top: 15px;">接下来可以学习更多 JavaScript 语法，如变量、数据类型、控制结构等！</p>
+        </div>
+    </div>
+
+    <script>
+        // 演示功能
+        function demoBasic() {
+            const demo = document.getElementById('demo-basic');
+            demo.style.display = demo.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function demoBasicAction() {
+            const title = document.getElementById('demo-basic-title');
+            title.textContent = '太棒了！';
+            title.style.color = 'green';
+        }
+    </script>
+</body>
+</html>

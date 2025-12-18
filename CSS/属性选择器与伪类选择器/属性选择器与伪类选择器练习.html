@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 选择器随堂练习 - 属性选择器与伪类</title>
+    <style>
+        /* ============================================
+           基础页面样式 (Apple Developer 风格)
+           ============================================ */
+        :root {
+            --color-text: #1D1D1F;
+            --color-text-light: #86868B;
+            --color-accent: #0066CC;
+            --color-bg: #F5F5F7;
+            --color-white: #FFFFFF;
+            --border-color: #D2D2D7;
+            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-mono: 'SF Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--font-stack);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid var(--color-accent);
+        }
+
+        h1 {
+            font-size: 36px;
+            color: var(--color-accent);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: var(--color-text-light);
+        }
+
+        .exercise {
+            margin-bottom: 50px;
+            padding: 30px;
+            background: #FAFAFA;
+            border-radius: 12px;
+            border-left: 5px solid var(--color-accent);
+        }
+
+        .exercise h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--color-text);
+        }
+
+        .task-box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .task-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--color-accent);
+        }
+
+        .requirement {
+            background: #FFF9E6;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+            border-left: 3px solid #FFB800;
+        }
+
+        .requirement li {
+            margin: 8px 0;
+            margin-left: 20px;
+        }
+
+        .demo-area {
+            margin-top: 20px;
+            padding: 20px;
+            background: white;
+            border: 2px dashed var(--border-color);
+            border-radius: 8px;
+        }
+
+        code {
+            background: #F5F5F7;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            color: #D73A49;
+        }
+
+        .hint {
+            background: #E8F5E9;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #2E7D32;
+        }
+
+        /* 练习用的示例元素样式 */
+        .demo-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .demo-list li {
+            padding: 10px;
+            margin: 5px 0;
+            background: #f0f0f0;
+            border-radius: 4px;
+        }
+
+        .demo-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        .demo-table th,
+        .demo-table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .demo-table th {
+            background: #F5F5F7;
+            font-weight: 600;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .menu-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .menu-list li {
+            padding: 8px 15px;
+            margin: 3px 0;
+            background: white;
+            border: 1px solid #ddd;
+            cursor: pointer;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="url"] {
+            padding: 10px;
+            margin: 8px 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .link-list a {
+            display: block;
+            padding: 8px;
+            margin: 5px 0;
+            color: #0066CC;
+            text-decoration: none;
+        }
+
+        .footer {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid var(--border-color);
+            text-align: center;
+            color: var(--color-text-light);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            background: var(--color-accent);
+            color: white;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        /* 学生需要完成的部分 - 留空 */
+        /* ========================================== */
+        /* 🎯 学生作答区域 - 请在下方编写 CSS 代码
+        /* ========================================== */
+
+        /* 
+        练习 1: LVHA 链接伪类
+        注意：必须按照 L-V-H-A 的顺序编写！
+        */
+
+
+        /* 
+        练习 2: 结构位置伪类（奇偶行）
+        使用 :nth-child(odd), :nth-child(even), :first-child, :last-child
+        */
+
+
+        /* 
+        练习 3: :not() 排除逻辑伪类
+        使用 :not() 实现"反向选择"
+        */
+
+
+        /* 
+        练习 4: 伪元素选择器
+        使用 ::before, ::after, ::first-letter, ::first-line
+        */
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎓 CSS 选择器随堂练习</h1>
+            <p class="subtitle">属性选择器与伪类选择器 - 实战训练</p>
+            <p style="margin-top: 15px; font-size: 14px; color: #666;">
+                ⏰ 建议完成时间：20-30分钟 | 📝 请直接在 &lt;style&gt; 标签中编写 CSS
+            </p>
+        </header>
+
+        <!-- ==================== 练习 1 ==================== -->
+        <div class="exercise">
+            <h2>📝 练习 1: LVHA 链接伪类 <span class="badge">重点</span></h2>
+            
+            <div class="task-box">
+                <div class="task-title">任务说明</div>
+                <p>按照 LVHA 顺序为导航链接添加完整的状态样式：</p>
+                
+                <div class="requirement">
+                    <strong>📋 要求（必须按 LVHA 顺序编写）：</strong>
+                    <ul>
+                        <li><strong>:link</strong> - 未访问的链接设为蓝色 <code>#0066CC</code></li>
+                        <li><strong>:visited</strong> - 已访问的链接设为紫色 <code>#6B46C1</code></li>
+                        <li><strong>:hover</strong> - 鼠标悬停时设为红色 <code>#FF3B30</code>，添加下划线</li>
+                        <li><strong>:active</strong> - 点击时设为深红色 <code>#D73A49</code>，字体加粗</li>
+                    </ul>
+                </div>
+
+                <div class="demo-area">
+                    <div class="nav-links">
+                        <a href="https://www.example.com" target="_blank">示例网站</a><br>
+                        <a href="https://www.test.com" target="_blank">测试网站</a><br>
+                        <a href="https://www.demo.com" target="_blank">演示网站</a><br>
+                    </div>
+                    <p style="margin-top: 15px; font-size: 13px; color: #666;">
+                        💡 点击链接后再回来，观察 :visited 效果
+                    </p>
+                </div>
+
+                <div class="hint">
+                    💡 <strong>提示：</strong> 顺序很重要！必须按 <code>.nav-links a:link { }</code> → <code>:visited</code> → <code>:hover</code> → <code>:active</code> 顺序编写
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 练习 2 ==================== -->
+        <div class="exercise">
+            <h2>📝 练习 2: 结构位置伪类（奇偶行）<span class="badge">重点</span></h2>
+            
+            <div class="task-box">
+                <div class="task-title">任务说明</div>
+                <p>使用结构伪类为表格添加斑马纹效果和位置样式：</p>
+                
+                <div class="requirement">
+                    <strong>📋 要求：</strong>
+                    <ul>
+                        <li>使用 <code>:nth-child(odd)</code> 给奇数行（1、3、5）设置背景色 <code>#F9F9F9</code></li>
+                        <li>使用 <code>:nth-child(even)</code> 给偶数行（2、4）设置背景色 <code>#E8F4FD</code></li>
+                        <li>使用 <code>:first-child</code> 给第一行添加左边框 <code>4px solid green</code></li>
+                        <li>使用 <code>:last-child</code> 给最后一行添加左边框 <code>4px solid red</code></li>
+                    </ul>
+                </div>
+
+                <div class="demo-area">
+                    <table class="demo-table score-table">
+                        <thead>
+                            <tr>
+                                <th>姓名</th>
+                                <th>语文</th>
+                                <th>数学</th>
+                                <th>英语</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>张三</td>
+                                <td>95</td>
+                                <td>88</td>
+                                <td>92</td>
+                            </tr>
+                            <tr>
+                                <td>李四</td>
+                                <td>87</td>
+                                <td>90</td>
+                                <td>85</td>
+                            </tr>
+                            <tr>
+                                <td>王五</td>
+                                <td>92</td>
+                                <td>94</td>
+                                <td>89</td>
+                            </tr>
+                            <tr>
+                                <td>赵六</td>
+                                <td>88</td>
+                                <td>86</td>
+                                <td>91</td>
+                            </tr>
+                            <tr>
+                                <td>钱七</td>
+                                <td>90</td>
+                                <td>92</td>
+                                <td>88</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="hint">
+                    💡 <strong>提示：</strong> 使用 <code>.score-table tbody tr:nth-child(odd)</code>, <code>:nth-child(even)</code>, <code>:first-child</code>, <code>:last-child</code>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 练习 3 ==================== -->
+        <div class="exercise">
+            <h2>📝 练习 3: :not() 排除逻辑伪类 <span class="badge">重点</span></h2>
+            
+            <div class="task-box">
+                <div class="task-title">任务说明</div>
+                <p>使用 <code>:not()</code> 选择器实现"反向选择"样式：</p>
+                
+                <div class="requirement">
+                    <strong>📋 要求：</strong>
+                    <ul>
+                        <li>给所有<strong>不是第一个</strong>的列表项添加上边框 <code>1px solid #ddd</code></li>
+                        <li>给所有<strong>不是 .special 类</strong>的列表项设置灰色文字 <code>#666</code></li>
+                        <li>给所有<strong>不是 type="text" 的输入框</strong>添加黄色背景 <code>#FFF9E6</code></li>
+                    </ul>
+                </div>
+
+                <div class="demo-area">
+                    <h4>菜单列表：</h4>
+                    <ul class="demo-list menu-items">
+                        <li>首页</li>
+                        <li class="special">特别推荐</li>
+                        <li>新闻</li>
+                        <li>关于我们</li>
+                    </ul>
+
+                    <h4 style="margin-top: 20px;">输入框：</h4>
+                    <input type="text" placeholder="文本框" style="display: block; margin: 5px 0;">
+                    <input type="email" placeholder="邮箱" style="display: block; margin: 5px 0;">
+                    <input type="password" placeholder="密码" style="display: block; margin: 5px 0;">
+                </div>
+
+                <div class="hint">
+                    💡 <strong>提示：</strong> 使用 <code>.menu-items li:not(:first-child)</code>, <code>li:not(.special)</code>, <code>input:not([type="text"])</code>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 练习 4 ==================== -->
+        <div class="exercise">
+            <h2>📝 练习 4: 伪元素选择器 <span class="badge">重点</span></h2>
+            
+            <div class="task-box">
+                <div class="task-title">任务说明</div>
+                <p>使用伪元素为内容添加装饰效果：</p>
+                
+                <div class="requirement">
+                    <strong>📋 要求：</strong>
+                    <ul>
+                        <li>使用 <code>::before</code> 在每个标题前添加 "📌 " 符号（<code>content: "📌 ";</code>）</li>
+                        <li>使用 <code>::after</code> 在每个链接后添加 " →" 符号，颜色设为灰色</li>
+                        <li>使用 <code>::first-letter</code> 将段落首字母放大到 <code>24px</code>，颜色改为蓝色 <code>#0066CC</code></li>
+                        <li>使用 <code>::first-line</code> 将段落第一行改为粗体</li>
+                    </ul>
+                </div>
+
+                <div class="demo-area">
+                    <h3 class="article-title">重要通知</h3>
+                    <p class="article-text">
+                        各位同学请注意，明天上午将进行CSS选择器测试。请大家认真复习本节课所学的内容，
+                        包括LVHA链接伪类、结构位置伪类、排除逻辑伪类和伪元素选择器。
+                        考试时间为上午9点到10点，请准时参加。
+                    </p>
+                    
+                    <h3 class="article-title" style="margin-top: 20px;">相关链接</h3>
+                    <div class="article-links">
+                        <a href="#" onclick="return false;" style="display: block; margin: 5px 0;">查看课程资料</a>
+                        <a href="#" onclick="return false;" style="display: block; margin: 5px 0;">下载练习题</a>
+                    </div>
+                </div>
+
+                <div class="hint">
+                    💡 <strong>提示：</strong> 
+                    <ul style="margin-top: 8px; font-size: 13px;">
+                        <li><code>.article-title::before { content: "📌 "; }</code></li>
+                        <li><code>.article-links a::after { content: " →"; color: #999; }</code></li>
+                        <li><code>.article-text::first-letter { font-size: 24px; color: #0066CC; }</code></li>
+                        <li><code>.article-text::first-line { font-weight: bold; }</code></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 知识回顾 ==================== -->
+        <div class="exercise" style="background: #E8F5E9; border-left-color: #4CAF50;">
+            <h2>📚 知识回顾</h2>
+            
+            <div style="background: white; padding: 20px; border-radius: 8px; margin-top: 15px;">
+                <h4 style="color: #4CAF50; margin-bottom: 10px;">本次练习涉及的选择器：</h4>
+                
+                <table style="width: 100%; font-size: 14px; line-height: 2;">
+                    <tr>
+                        <td style="padding: 8px; font-weight: bold; width: 200px;">LVHA 链接伪类</td>
+                        <td style="padding: 8px;">
+                            <code>:link</code> → <code>:visited</code> → <code>:hover</code> → <code>:active</code><br>
+                            ⚠️ 顺序不能乱！
+                        </td>
+                    </tr>
+                    <tr style="background: #f9f9f9;">
+                        <td style="padding: 8px; font-weight: bold;">结构位置伪类</td>
+                        <td style="padding: 8px;">
+                            <code>:first-child</code> - 第一个<br>
+                            <code>:last-child</code> - 最后一个<br>
+                            <code>:nth-child(odd)</code> - 奇数位<br>
+                            <code>:nth-child(even)</code> - 偶数位
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 8px; font-weight: bold;">排除逻辑伪类</td>
+                        <td style="padding: 8px;">
+                            <code>:not(选择器)</code> - 排除符合条件的元素
+                        </td>
+                    </tr>
+                    <tr style="background: #f9f9f9;">
+                        <td style="padding: 8px; font-weight: bold;">伪元素选择器</td>
+                        <td style="padding: 8px;">
+                            <code>::before</code> - 在元素前插入内容<br>
+                            <code>::after</code> - 在元素后插入内容<br>
+                            <code>::first-letter</code> - 首字母<br>
+                            <code>::first-line</code> - 首行
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- ==================== 提交说明 ==================== -->
+        <footer class="footer">
+            <h3 style="margin-bottom: 15px;">📤 完成提示</h3>
+            <p style="line-height: 2;">
+                1️⃣ 在 &lt;style&gt; 标签的"学生作答区域"编写 CSS 代码<br>
+                2️⃣ 保存文件后在浏览器中打开查看效果<br>
+                3️⃣ 对照要求检查是否完成所有任务<br>
+                4️⃣ 完成后提交给老师<br>
+            </p>
+            <p style="margin-top: 20px; font-size: 14px; color: #999;">
+                💪 坚持练习，你会越来越熟练！
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

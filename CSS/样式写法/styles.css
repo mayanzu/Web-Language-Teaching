@@ -1,0 +1,52 @@
+/* 
+===========================================
+CSS 外部样式表示例 - 基础样式
+===========================================
+外部样式表写在独立的.css文件中
+通过<link>标签链接到HTML文件
+适用于多个页面的样式，便于维护和复用
+*/
+
+/* 基础样式：字体、颜色、背景 */
+/* body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+} */
+
+/* 标题样式：颜色、对齐 */
+/* h1 {
+    color: blue;
+    text-align: center;
+}
+
+h2 {
+    color: green;
+} */
+
+/* 段落样式：边距 */
+
+
+/* 图片样式：边框
+img {
+    border: 2px solid black;
+}
+
+/* 链接样式：颜色、下划线 */
+/* a {
+    color: red;
+    text-decoration: underline;
+} */
+
+/* 特殊样式类 */
+/* .highlight {
+    background-color: yellow;
+    color: black;
+} */
+
+/* .big-text {
+    font-size: 24px;
+} */
+
+/* .center {
+    text-align: center;
+} */

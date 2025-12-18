@@ -1,0 +1,1742 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 层级选择器 - 教学讲义</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
+    <style>
+        /* ============================================
+           Apple Developer Documentation Style System
+           ============================================ */
+
+        :root {
+            --color-text-primary: #1D1D1F;
+            --color-text-secondary: #6E6E73;
+            --color-text-tertiary: #86868B;
+            --color-accent-blue: #0066CC;
+            --color-accent-blue-hover: #0055B3;
+            --color-background: #FBFBFD;
+            --color-surface: #FFFFFF;
+            --color-border: #E5E5E7;
+            --color-code-bg: #FAFAFA;
+            --color-code-border: #E8E8ED;
+            
+            --color-info-bg: #F5F5F7;
+            --color-info-border: #86868B;
+            
+            --color-success: #34C759;
+            --color-warning: #FF9500;
+            --color-error: #FF3B30;
+            
+            --gradient-primary: linear-gradient(135deg, #0066CC 0%, #0055B3 100%);
+            --gradient-code: linear-gradient(135deg, #FAFAFA 0%, #F5F5F7 100%);
+            
+            --font-system: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            --font-mono: 'SF Mono', 'Monaco', 'Consolas', 'Courier New', monospace;
+            
+            --spacing-xs: 4px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+            --spacing-2xl: 48px;
+            
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+            --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.15);
+            
+            --transition-fast: 0.15s ease;
+            --transition-normal: 0.25s ease;
+            --transition-slow: 0.4s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-system);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background: var(--color-background);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            font-size: 17px;
+        }
+
+        /* ============================================
+           Layout
+           ============================================ */
+
+        .tutorial-nav {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 240px;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border-right: 1px solid var(--color-border);
+            overflow-y: auto;
+            z-index: 1000;
+            padding: var(--spacing-lg) 0 var(--spacing-lg) 0;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .tutorial-nav::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .tutorial-nav::-webkit-scrollbar-thumb {
+            background: var(--color-border);
+            border-radius: 3px;
+            transition: var(--transition-normal);
+        }
+
+        .tutorial-nav::-webkit-scrollbar-thumb:hover {
+            background: var(--color-accent-blue);
+        }
+
+        .tutorial-nav ul {
+            list-style: none;
+            padding: 0 var(--spacing-md);
+        }
+
+        .tutorial-nav li {
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .tutorial-nav a {
+            display: block;
+            padding: var(--spacing-md) var(--spacing-lg);
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: var(--radius-md);
+            transition: var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tutorial-nav a::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 0;
+            height: 100%;
+            background: var(--gradient-primary);
+            transition: var(--transition-normal);
+            z-index: -1;
+        }
+
+        .tutorial-nav a:hover {
+            color: white;
+            transform: translateX(4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .tutorial-nav a:hover::before {
+            width: 100%;
+        }
+
+        .tutorial-nav a.active {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: var(--shadow-md);
+            transform: translateX(4px);
+        }
+
+        .tutorial-content {
+            flex: 1;
+            margin-left: 240px;
+            padding: var(--spacing-xl) var(--spacing-xl) var(--spacing-2xl) var(--spacing-xl);
+            max-width: 1200px;
+        }
+
+        .tutorial-header {
+            margin-bottom: var(--spacing-xl);
+            padding-bottom: var(--spacing-lg);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .tutorial-header h1 {
+            font-size: 40px;
+            font-weight: 700;
+            letter-spacing: -0.015em;
+            color: var(--color-text-primary);
+            margin-bottom: var(--spacing-sm);
+            line-height: 1.15;
+        }
+
+        .tutorial-header p {
+            font-size: 19px;
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+        }
+
+        /* ============================================
+           Sections
+           ============================================ */
+
+        .section {
+            margin-bottom: var(--spacing-2xl);
+            scroll-margin-top: var(--spacing-lg);
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--color-text-primary);
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.25;
+        }
+
+        .subsection-title {
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: -0.015em;
+            color: var(--color-text-primary);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.4;
+            margin-top: var(--spacing-xl);
+        }
+
+        p {
+            font-size: 17px;
+            line-height: 1.7;
+            color: var(--color-text-secondary);
+            margin-bottom: var(--spacing-md);
+        }
+
+        strong {
+            color: var(--color-text-primary);
+            font-weight: 600;
+        }
+
+        code {
+            font-family: var(--font-mono);
+            font-size: 15px;
+            background: var(--color-code-bg);
+            color: #AD3DA4;
+            font-weight: 500;
+            padding: 3px 8px;
+            border-radius: 5px;
+            border: 1px solid var(--color-code-border);
+        }
+
+        /* ============================================
+           Code Blocks
+           ============================================ */
+
+        .code-block {
+            background: var(--color-surface);
+            border: 1px solid var(--color-code-border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            margin: var(--spacing-xl) 0;
+            position: relative;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition-normal);
+        }
+
+        .code-block:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .code-block-title {
+            background: var(--gradient-code);
+            padding: var(--spacing-lg) var(--spacing-xl);
+            border-bottom: 1px solid var(--color-code-border);
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .code-block-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, var(--color-accent-blue) 50%, transparent 100%);
+            opacity: 0.3;
+        }
+
+        .code-block-title .copy-button {
+            margin-right: var(--spacing-md);
+        }
+
+        .code-block pre {
+            margin: 0;
+            padding: var(--spacing-xl);
+            padding-left: var(--spacing-2xl);
+            background: linear-gradient(135deg, #FFFFFF 0%, #FAFAFA 100%);
+            overflow-x: auto;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--color-text-primary);
+            border: none;
+            position: relative;
+        }
+
+        .code-block pre::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--gradient-primary);
+            border-radius: 0 2px 2px 0;
+        }
+
+        .code-block code {
+            background: transparent;
+            border: none;
+            padding: 0;
+            font-size: inherit;
+            color: inherit;
+            display: block;
+            padding-left: var(--spacing-md);
+        }
+
+        .copy-button {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            padding: 10px 18px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--color-text-secondary);
+            cursor: pointer;
+            transition: var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .copy-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            transition: var(--transition-normal);
+            z-index: -1;
+        }
+
+        .copy-button:hover {
+            color: white;
+            border-color: var(--color-accent-blue);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .copy-button:hover::before {
+            left: 0;
+        }
+
+        .copy-button.copied {
+            background: var(--gradient-primary);
+            border-color: var(--color-accent-blue);
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* 统一代码示例、HTML结构、CSS代码三部分的内外边距 */
+        .css-example, .html-structure, .css-code {
+            margin: var(--spacing-lg) 0;
+            padding: var(--spacing-md);
+            background: var(--color-surface);
+            border: 1px solid var(--color-code-border);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .css-example-header, .html-structure-header, .css-code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--color-text-secondary);
+        }
+
+        
+
+        /* 统一代码内容区域样式 */
+        .code-content {
+            margin: 0;
+            padding: var(--spacing-lg);
+            padding-left: var(--spacing-xl);
+            background: #FFFFFF;
+            overflow-x: auto;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--color-text-primary);
+            border: 1px solid var(--color-code-border);
+            border-radius: var(--radius-md);
+        }
+
+        .preview-content {
+            padding: var(--spacing-lg);
+            background: white;
+        }
+
+        .preview-content p {
+            margin: var(--spacing-md) 0;
+            line-height: 1.6;
+        }
+
+        .preview-content .box,
+        .preview-content .container {
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+            background: #f9f9f9;
+            border-radius: var(--radius-sm);
+        }
+
+        .preview-content .box p,
+        .preview-content .container p {
+            margin: var(--spacing-md) 0;
+        }
+
+        .preview-content .box div,
+        .preview-content .container div {
+            margin: var(--spacing-md) 0;
+            padding-left: var(--spacing-lg);
+        }
+
+        .btn {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            padding: 8px 16px;
+            margin-right: var(--spacing-md);
+            font-size: 13px;
+            cursor: pointer;
+            color: var(--color-text-secondary);
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .btn:hover {
+            background: var(--color-code-bg);
+            border-color: var(--color-accent-blue);
+            color: var(--color-accent-blue);
+        }
+
+        /* ============================================
+           Tables
+           ============================================ */
+
+        .table-container {
+            overflow-x: auto;
+            margin: var(--spacing-xl) 0;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--color-surface);
+            font-size: 15px;
+        }
+
+        thead {
+            background: var(--color-code-bg);
+        }
+
+        th {
+            padding: var(--spacing-md) var(--spacing-lg);
+            text-align: left;
+            border-bottom: 2px solid var(--color-border);
+            font-weight: 600;
+            color: var(--color-text-primary);
+            font-size: 14px;
+        }
+
+        td {
+            padding: var(--spacing-md) var(--spacing-lg);
+            border-bottom: 1px solid var(--color-border);
+            color: var(--color-text-secondary);
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        tbody tr:hover {
+            background: var(--color-background);
+        }
+
+        /* ============================================
+           Callouts
+           ============================================ */
+
+        .callout {
+            background: var(--color-info-bg);
+            border-left: 3px solid var(--color-accent-blue);
+            border-radius: var(--radius-sm);
+            padding: var(--spacing-md) var(--spacing-lg);
+            margin: var(--spacing-lg) 0;
+        }
+
+        .callout strong {
+            display: block;
+            color: var(--color-text-primary);
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .callout p {
+            margin: 0;
+            color: var(--color-text-secondary);
+            font-size: 16px;
+        }
+
+        /* ============================================
+           Responsive
+           ============================================ */
+
+        @media (max-width: 1200px) {
+            .tutorial-nav {
+                width: 220px;
+            }
+
+            .tutorial-content {
+                margin-left: 220px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .tutorial-nav {
+                width: 200px;
+            }
+
+            .tutorial-content {
+                margin-left: 200px;
+                padding: var(--spacing-lg) var(--spacing-lg);
+            }
+
+            .code-block pre {
+                padding: var(--spacing-lg);
+                padding-left: var(--spacing-xl);
+            }
+
+            .code-block-title {
+                padding: var(--spacing-md) var(--spacing-lg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .tutorial-nav {
+                position: static;
+                width: 100%;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid var(--color-border);
+                box-shadow: none;
+                backdrop-filter: none;
+                background: var(--color-surface);
+            }
+
+            .tutorial-nav ul {
+                display: flex;
+                flex-wrap: wrap;
+                gap: var(--spacing-sm);
+                padding: var(--spacing-md);
+            }
+
+            .tutorial-nav li {
+                margin: 0;
+            }
+
+            .tutorial-nav a {
+                padding: var(--spacing-sm) var(--spacing-md);
+                border-radius: var(--radius-sm);
+                transform: none;
+                box-shadow: none;
+            }
+
+            .tutorial-nav a.active {
+                transform: none;
+            }
+
+            .tutorial-content {
+                margin-left: 0;
+                padding: var(--spacing-lg) var(--spacing-md);
+            }
+
+            .tutorial-header h1 {
+                font-size: 32px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .subsection-title {
+                font-size: 22px;
+            }
+
+            .code-block {
+                margin: var(--spacing-lg) 0;
+            }
+
+            .code-block pre {
+                padding: var(--spacing-lg);
+                padding-left: var(--spacing-xl);
+            }
+
+            .table-container {
+                margin: var(--spacing-lg) 0;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .tutorial-nav ul {
+                justify-content: center;
+            }
+
+            .tutorial-nav a {
+                font-size: 13px;
+                padding: var(--spacing-xs) var(--spacing-sm);
+            }
+
+            .tutorial-content {
+                padding: var(--spacing-md) var(--spacing-sm);
+            }
+
+            .tutorial-header h1 {
+                font-size: 28px;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .subsection-title {
+                font-size: 20px;
+            }
+
+            .code-block-title {
+                padding: var(--spacing-sm) var(--spacing-md);
+                font-size: 13px;
+            }
+
+            .code-block pre {
+                padding: var(--spacing-md);
+                padding-left: var(--spacing-lg);
+                font-size: 13px;
+            }
+
+            .copy-button {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                font-size: 16px;
+            }
+
+            .tutorial-content {
+                padding: var(--spacing-md) var(--spacing-sm);
+            }
+
+            .tutorial-header h1 {
+                font-size: 26px;
+            }
+
+            .section-title {
+                font-size: 22px;
+            }
+
+            .subsection-title {
+                font-size: 18px;
+            }
+
+            .code-block {
+                border-radius: var(--radius-md);
+            }
+
+            .code-block pre {
+                padding: var(--spacing-sm);
+                padding-left: var(--spacing-md);
+            }
+
+            .table-container {
+                border-radius: var(--radius-sm);
+            }
+
+            th, td {
+                padding: var(--spacing-sm);
+                font-size: 14px;
+            }
+        }
+
+        /* ============================================
+           High Resolution Display Optimization
+           ============================================ */
+
+        @media (min-width: 1440px) {
+            body {
+                font-size: 18px;
+            }
+
+            .tutorial-nav {
+                width: 260px;
+                box-shadow: 2px 0 20px rgba(0, 0, 0, 0.08);
+            }
+
+            .tutorial-content {
+                margin-left: 260px;
+                max-width: 1400px;
+                padding: var(--spacing-2xl) calc(var(--spacing-2xl) * 1.5) var(--spacing-2xl) calc(var(--spacing-2xl) * 1.5);
+            }
+
+            .tutorial-header h1 {
+                font-size: 48px;
+                line-height: 1.1;
+            }
+
+            .tutorial-header p {
+                font-size: 21px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .subsection-title {
+                font-size: 28px;
+            }
+
+            .code-block {
+                box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+            }
+
+            .table-container {
+                box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04);
+            }
+
+            .code-block pre {
+                font-size: 15px;
+                line-height: 1.9;
+            }
+
+            .table-container {
+                margin: var(--spacing-2xl) 0;
+            }
+
+            th, td {
+                padding: var(--spacing-lg) var(--spacing-xl);
+                font-size: 16px;
+            }
+
+            .callout {
+                padding: var(--spacing-lg) var(--spacing-xl);
+                margin: var(--spacing-xl) 0;
+                box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+            }
+
+            .callout strong {
+                font-size: 17px;
+            }
+
+            .callout p {
+                font-size: 17px;
+            }
+        }
+
+        @media (min-width: 2560px) {
+            .tutorial-nav {
+                width: 320px;
+            }
+
+            .tutorial-content {
+                margin-left: 320px;
+                max-width: 2000px;
+                padding: calc(var(--spacing-2xl) * 1.5) calc(var(--spacing-2xl) * 2.5) calc(var(--spacing-2xl) * 1.5) calc(var(--spacing-2xl) * 2.5);
+            }
+
+            .tutorial-header h1 {
+                font-size: 64px;
+                letter-spacing: -0.025em;
+            }
+
+            .tutorial-header p {
+                font-size: 26px;
+            }
+
+            .section-title {
+                font-size: 48px;
+            }
+
+            .subsection-title {
+                font-size: 36px;
+            }
+
+            .code-block:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 6px 28px rgba(0, 0, 0, 0.08);
+            }
+
+            .table-container:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+            }
+        }
+
+        /* Prism 覆盖 */
+        pre[class*="language-"] { /* 统一代码块容器样式 */
+            background: transparent !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            font-family: var(--font-mono) !important;
+            font-size: 14px !important;
+            line-height: 1.8 !important;
+            color: var(--color-text-primary) !important;
+        }
+
+        code[class*="language-"] { /* 统一代码内容样式 */
+            background: transparent !important;
+            color: inherit !important;
+        }
+
+        /* 改进的代码高亮颜色 */
+        .token.comment,
+        .token.prolog,
+        .token.doctype,
+        .token.cdata {
+            color: #6A737D;
+            font-style: italic;
+        }
+
+        .token.punctuation {
+            color: #586069;
+        }
+
+        .token.property,
+        .token.tag,
+        .token.constant,
+        .token.symbol,
+        .token.deleted {
+            color: #22863A;
+        }
+
+        .token.selector,
+        .token.attr-name,
+        .token.string,
+        .token.char,
+        .token.builtin,
+        .token.inserted {
+            color: #032F62;
+        }
+
+        .token.operator,
+        .token.entity,
+        .token.url,
+        .language-css .token.string,
+        .style .token.string,
+        .token.variable {
+            color: #D73A49;
+        }
+
+        .token.atrule,
+        .token.attr-value,
+        .token.function,
+        .token.class-name {
+            color: #6F42C1;
+        }
+
+        .token.keyword {
+            color: #D73A49;
+            font-weight: 600;
+        }
+
+        .token.regex,
+        .token.important {
+            color: #E36209;
+        }
+
+        .token.important,
+        .token.bold {
+            font-weight: bold;
+        }
+
+        .token.italic {
+            font-style: italic;
+        }
+
+        .token.entity {
+            cursor: help;
+        }
+
+        /* 行号样式 */
+        .line-numbers .line-numbers-rows {
+            border-right: 1px solid var(--color-border);
+            padding-right: var(--spacing-md);
+        }
+
+        .line-numbers-rows > span:before {
+            color: var(--color-text-tertiary);
+        }
+
+        /* 代码块内联样式 */
+        code {
+            font-family: var(--font-mono);
+            font-size: 14px;
+            background: var(--color-code-bg);
+            color: #AD3DA4;
+            font-weight: 500;
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid var(--color-code-border);
+            transition: var(--transition-fast);
+        }
+
+        code:hover {
+            background: rgba(173, 61, 164, 0.1);
+            border-color: #AD3DA4;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        ::selection {
+            background: var(--color-accent-blue);
+            color: white;
+        }
+
+        /* ============================================
+           Animations & Effects
+           ============================================ */
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .section {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .code-block {
+            animation: slideInLeft 0.5s ease-out;
+        }
+
+        .callout {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .callout::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 102, 204, 0.05) 0%, transparent 50%);
+            opacity: 0;
+            transition: var(--transition-normal);
+        }
+
+        .callout:hover::before {
+            opacity: 1;
+        }
+
+        .tutorial-nav a::after {
+            content: '';
+            position: absolute;
+            right: var(--spacing-md);
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            background: currentColor;
+            border-radius: 50%;
+            opacity: 0;
+            transition: var(--transition-normal);
+        }
+
+        .tutorial-nav a.active::after {
+            opacity: 1;
+        }
+
+        /* 代码块语法高亮增强 */
+        .code-block pre:hover {
+            box-shadow: inset 0 0 0 1px rgba(0, 102, 204, 0.1);
+        }
+
+        /* 表格行悬停增强 */
+        tbody tr {
+            transition: var(--transition-fast);
+        }
+
+        tbody tr:hover {
+            background: linear-gradient(90deg, var(--color-background) 0%, rgba(0, 102, 204, 0.02) 100%);
+            transform: scale(1.01);
+        }
+
+        /* 按钮增强效果 */
+        .btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: var(--transition-normal);
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* 页面加载动画 */
+        body {
+            animation: fadeInUp 0.8s ease-out;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="tutorial-nav">
+        <ul>
+            <li><a href="#review">复习：基本选择器与交并集选择器</a></li>
+            <li><a href="#introduction" class="active">介绍</a></li>
+            <li><a href="#descendant-selector">后代选择器</a></li>
+            <li><a href="#child-selector">子代选择器</a></li>
+            <li><a href="#adjacent-sibling-selector">相邻兄弟选择器</a></li>
+            <li><a href="#general-sibling-selector">通用兄弟选择器</a></li>
+            <li><a href="#practice">实践应用</a></li>
+        </ul>
+    </nav>
+
+    <main class="tutorial-content">
+        <header class="tutorial-header">
+            <h1>CSS 层级选择器</h1>
+            <p>从零开始学习CSS层级选择器，掌握后代、子代和兄弟选择器的用法</p>
+        </header>
+
+        <section id="review" class="section">
+            <h2 class="section-title">复习：基本选择器与交并集选择器</h2>
+            <p>在学习层级选择器之前，我们先回顾一下基本选择器和交并集选择器的用法。</p>
+
+            <h3 class="subsection-title">基本选择器</h3>
+            <div class="code-block">
+                <div class="code-block-title">
+                    <span>CSS示例</span>
+                    <button class="copy-button" onclick="copyCode(this)">复制</button>
+                </div>
+                <pre><code class="language-css">/* 元素选择器 */
+p {
+  color: blue;
+}
+
+/* 类选择器 */
+.highlight {
+  background-color: yellow;
+}
+
+/* ID选择器 */
+#header {
+  font-size: 24px;
+}</code></pre>
+            </div>
+
+            <p>对应的HTML结构：</p>
+            <div class="code-block">
+                <div class="code-block-title">
+                    <span>HTML结构</span>
+                    <button class="copy-button" onclick="copyCode(this)">复制</button>
+                </div>
+                <pre><code class="language-html">&lt;p&gt;这是一个普通段落&lt;/p&gt;
+&lt;p class="highlight"&gt;这是一个高亮段落&lt;/p&gt;
+&lt;div id="header"&gt;页面标题&lt;/div&gt;</code></pre>
+            </div>
+
+            <h3 class="subsection-title">交并集选择器</h3>
+            <div class="code-block">
+                <div class="code-block-title">
+                    <span>CSS示例</span>
+                    <button class="copy-button" onclick="copyCode(this)">复制</button>
+                </div>
+                <pre><code class="language-css">/* 交集选择器：同时具有两个类 */
+.button.primary {
+  background-color: blue;
+  color: white;
+}
+
+/* 并集选择器：具有任意一个类 */
+.button, .link {
+  text-decoration: none;
+}</code></pre>
+            </div>
+
+            <p>对应的HTML结构：</p>
+            <div class="code-block">
+                <div class="code-block-title">
+                    <span>HTML结构</span>
+                    <button class="copy-button" onclick="copyCode(this)">复制</button>
+                </div>
+                <pre><code class="language-html">&lt;button class="button primary"&gt;主要按钮&lt;/button&gt;
+&lt;a class="link" href="#"&gt;链接&lt;/a&gt;</code></pre>
+            </div>
+
+            <h3 class="subsection-title">交互式演示：基本选择器</h3>
+            <div class="code-block">
+                <div class="code-block-title">
+                    <span>CSS代码</span>
+                    <button class="copy-button" onclick="copyCode(this)">复制</button>
+                </div>
+                <pre><code class="language-css">p {
+  color: blue;
+}
+
+.highlight {
+  background-color: yellow;
+}
+
+#header {
+  font-size: 24px;
+}</code></pre>
+            </div>
+            <div class="code-block">
+                        <div class="code-block-title">
+                            <span>效果预览</span>
+                            <button class="copy-button" onclick="refreshPreview(this)">刷新</button>
+                        </div>
+                <div class="preview-content" id="preview-basic-selectors">
+                    <p>这是一个普通段落</p>
+                    <p class="highlight">这是一个高亮段落</p>
+                    <div id="header">页面标题</div>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">交互式演示：交并集选择器</h3>
+            <div class="code-block">
+                <div class="code-block-title">
+                    <span>CSS代码</span>
+                    <button class="copy-button" onclick="copyCode(this)">复制</button>
+                </div>
+                <pre><code class="language-css">.button.primary {
+  background-color: blue;
+  color: white;
+}
+
+.button, .link {
+  text-decoration: none;
+}</code></pre>
+            </div>
+            <div class="code-block">
+                        <div class="code-block-title">
+                            <span>效果预览</span>
+                            <button class="copy-button" onclick="refreshPreview(this)">刷新</button>
+                        </div>
+                    <div class="preview-content" id="preview-intersection-union">
+                        <button class="button primary">主要按钮</button>
+                        <a class="link" href="#">链接</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="introduction" class="section">
+            <h2 class="section-title">介绍</h2>
+            <p>CSS层级选择器允许你根据元素在文档结构中的位置来选择元素。它们是CSS中基础但非常重要的选择器类型，让样式应用更加精确和灵活。</p>
+            
+            <div class="callout">
+                <strong>为什么重要？</strong>
+                <p>层级选择器让你能够精确控制样式应用，避免不必要的样式冲突，提高代码的可维护性。理解层级选择器是掌握CSS的关键。</p>
+            </div>
+        </section>
+
+        <section id="descendant-selector" class="section">
+            <h2 class="section-title">后代选择器（Descendant Selector）</h2>
+            <p>后代选择器使用空格来选择某个元素的后代元素。后代元素可以是子元素、孙元素等任意层级的后代。</p>
+
+            <div class="callout">
+                <strong>简单理解</strong>
+                <p>后代选择器就像是"家族选择器"，它会选择指定祖先元素的所有后代，无论嵌套多少层。</p>
+            </div>
+
+            <h3 class="subsection-title">语法</h3>
+            <div class="code-block">
+                <div class="code-block-title">
+                    <span>语法格式</span>
+                    <button class="copy-button" onclick="copyCode(this)">复制</button>
+                </div>
+                <pre><code class="language-css">ancestor descendant {
+    /* CSS 规则 */
+}</code></pre>
+            </div>
+
+            <h3 class="subsection-title">示例</h3>
+            <p>选择 <code>.box</code> 内的所有 <code>span</code> 元素，将其背景色设为浅黄色。</p>
+            <div class="code-block">
+                <div class="code-block-title">
+                    <span>CSS示例</span>
+                    <button class="copy-button" onclick="copyCode(this)">复制</button>
+                </div>
+                <pre><code class="language-css">.box span {
+    background-color: lightyellow;
+}</code></pre>
+            </div>
+
+            <p>对应的HTML结构：</p>
+            <div class="code-block">
+                <div class="code-block-title">
+                    <span>HTML结构</span>
+                    <button class="copy-button" onclick="copyCode(this)">复制</button>
+                </div>
+                <pre><code class="language-html">&lt;div class="box"&gt;
+    &lt;p&gt;这是一个段落，包含 &lt;span&gt;span 元素&lt;/span&gt;。&lt;/p&gt;
+    &lt;div&gt;
+        &lt;p&gt;嵌套段落中的 &lt;span&gt;另一个 span&lt;/span&gt;。&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>选择器</th>
+                            <th>描述</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>article p</code></td>
+                            <td>选择article内的所有段落</td>
+                            <td>无论嵌套几层都会选中</td>
+                        </tr>
+                        <tr>
+                            <td><code>nav a</code></td>
+                            <td>选择导航栏内的所有链接</td>
+                            <td>包括子菜单中的链接</td>
+                        </tr>
+                        <tr>
+                            <td><code>.container .highlight</code></td>
+                            <td>选择容器内的所有高亮元素</td>
+                            <td>类选择器的组合使用</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 class="subsection-title">交互式演示</h3>
+            <div class="code-block">
+                <div class="code-block-title">
+                    <span>CSS代码</span>
+                    <button class="copy-button" onclick="copyCode(this)">复制</button>
+                </div>
+                <pre><code class="language-css">.box span {
+    background-color: lightyellow;
+    padding: 2px 4px;
+}
+
+.container a {
+    color: #0066cc;
+}</code></pre>
+            </div>
+            <div class="code-block">
+                        <div class="code-block-title">
+                            <span>效果预览</span>
+                            <button class="copy-button" onclick="refreshPreview(this)">刷新</button>
+                        </div>
+                    <div class="preview-content" id="preview-descendant">
+                        <div class="box">
+                            <p>这是一个段落，包含 <span>span 元素</span>。</p>
+                            <div>
+                                <p>嵌套段落中的 <span>另一个 span</span>。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="child-selector" class="section">
+            <h2 class="section-title">子代选择器（Child Selector）</h2>
+            <p>子代选择器使用 <code>&gt;</code> 来选择某个元素的直接子元素。与后代选择器不同，它只选择直接的子元素。</p>
+
+            <div class="callout">
+                <strong>简单理解</strong>
+                <p>子代选择器就像是"直系子女"，只选择直接的孩子，不选择孙子孙女。</p>
+            </div>
+
+            <h3 class="subsection-title">语法</h3>
+            <div class="code-block">
+                <div class="code-block-title">
+                    <span>语法格式</span>
+                    <button class="copy-button" onclick="copyCode(this)">复制</button>
+                </div>
+                <pre><code class="language-css">parent > child {
+    /* CSS 规则 */
+}</code></pre>
+            </div>
+
+            <h3 class="subsection-title">示例</h3>
+            <div class="code-block">
+                <div class="code-block-title">
+                    <span>CSS示例</span>
+                    <button class="copy-button" onclick="copyCode(this)">复制</button>
+                </div>
+                <pre><code class="language-css">.article > h2,
+.article > p {
+    font-weight: bold;
+    color: #0066cc;
+    padding: 8px;
+    margin: 8px 0;
+}</code></pre>
+            </div>
+
+            <p>对应的HTML结构：</p>
+            <div class="code-block">
+                <div class="code-block-title">
+                    <span>HTML结构</span>
+                    <button class="copy-button" onclick="copyCode(this)">复制</button>
+                </div>
+                <pre><code class="language-html">&lt;!-- 演示子代选择器只选择直接子元素 --&gt;
+&lt;div class="article"&gt;
+    &lt;!-- 这些是.article的直接子元素，会被.article > h2, .article > p选中 --&gt;
+    &lt;h2&gt;直接子元素标题（加粗蓝色）&lt;/h2&gt;
+    &lt;p&gt;直接子元素段落（加粗蓝色）&lt;/p&gt;
+    
+    &lt;div class="content"&gt;
+        &lt;!-- 这些元素在.content内，不是.article的直接子元素，不会受影响 --&gt;
+        &lt;h2&gt;嵌套在div中的标题（正常样式）&lt;/h2&gt;
+        &lt;p&gt;嵌套在div中的段落（正常样式）&lt;/p&gt;
+        &lt;div&gt;
+            &lt;h2&gt;更深层嵌套的标题（正常样式）&lt;/h2&gt;
+            &lt;p&gt;更深层嵌套的段落（正常样式）&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;p&gt;另一个直接子元素段落（加粗蓝色）&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+
+            <h3 class="subsection-title">交互式演示</h3>
+            <div class="code-block">
+                <div class="code-block-title">
+                    <span>CSS代码</span>
+                    <button class="copy-button" onclick="copyCode(this)">复制</button>
+                </div>
+                <pre><code class="language-css">/* 选择.article的直接子元素h2和p */
+.article > h2,
+.article > p {
+    font-weight: bold;
+    color: #0066cc;
+    padding: 8px;
+    margin: 8px 0;
+}</code></pre>
+            </div>
+            <div class="code-block">
+                        <div class="code-block-title">
+                            <span>效果预览</span>
+                            <button class="copy-button" onclick="refreshPreview(this)">刷新</button>
+                        </div>
+                    <div class="preview-content" id="preview-child">
+                        <div class="article">
+                            <h2>直接子元素标题（加粗蓝色）</h2>
+                            <p>直接子元素段落（加粗蓝色）</p>
+                            
+                            <div class="content">
+                                <h2>嵌套在div中的标题（正常样式）</h2>
+                                <p>嵌套在div中的段落（正常样式）</p>
+                                <div>
+                                    <h2>更深层嵌套的标题（正常样式）</h2>
+                                    <p>更深层嵌套的段落（正常样式）</p>
+                                </div>
+                            </div>
+                            
+                            <p>另一个直接子元素段落（加粗蓝色）</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="adjacent-sibling-selector" class="section">
+            <h2 class="section-title">相邻兄弟选择器（Adjacent Sibling Selector）</h2>
+            <p>相邻兄弟选择器使用 <code>+</code> 来选择紧跟在指定元素后面的第一个兄弟元素。</p>
+
+            <div class="callout">
+                <strong>简单理解</strong>
+                <p>相邻兄弟选择器就像是"紧挨着的弟弟妹妹"，只选择紧跟在后面的第一个兄弟元素。</p>
+            </div>
+
+            <h3 class="subsection-title">语法</h3>
+            <div class="code-block">
+                <div class="code-block-title">
+                    <span>语法格式</span>
+                    <button class="copy-button" onclick="copyCode(this)">复制</button>
+                </div>
+                <pre><code class="language-css">element + sibling {
+    /* CSS 规则 */
+}</code></pre>
+            </div>
+
+            <h3 class="subsection-title">示例</h3>
+            <div class="code-block">
+                <div class="code-block-title">
+                    <span>CSS示例</span>
+                    <button class="copy-button" onclick="copyCode(this)">复制</button>
+                </div>
+                <pre><code class="language-css">h2 + p {
+    color: red;
+}
+
+.highlight + p {
+    font-weight: bold;
+}</code></pre>
+            </div>
+
+            <p>对应的HTML结构：</p>
+            <div class="code-block">
+                <div class="code-block-title">
+                    <span>HTML结构</span>
+                    <button class="copy-button" onclick="copyCode(this)">复制</button>
+                </div>
+                <pre><code class="language-html">&lt;h2&gt;章节标题&lt;/h2&gt;
+&lt;p&gt;紧跟在h2后的段落（红色）&lt;/p&gt;
+&lt;p&gt;不紧跟h2的段落（不受影响）&lt;/p&gt;
+
+&lt;p class="highlight"&gt;高亮段落&lt;/p&gt;
+&lt;p&gt;紧跟在高亮段落后的段落（加粗）&lt;/p&gt;
+&lt;p&gt;另一个段落（不受影响）&lt;/p&gt;</code></pre>
+            </div>
+
+            <h3 class="subsection-title">交互式演示</h3>
+            <div class="code-block">
+                <div class="code-block-title">
+                    <span>CSS代码</span>
+                    <button class="copy-button" onclick="copyCode(this)">复制</button>
+                </div>
+                <pre><code class="language-css">/* 选择紧跟在h2后面的p */
+h2 + p {
+    color: red;
+    font-style: italic;
+    padding: 10px;
+    background: #ffe6e6;
+}
+
+/* 选择紧跟在.highlight后面的p */
+.highlight + p {
+    font-weight: bold;
+    background: #fff3cd;
+    padding: 10px;
+    color: #856404;
+}</code></pre>
+            </div>
+            <div class="code-block">
+                        <div class="code-block-title">
+                            <span>效果预览</span>
+                            <button class="copy-button" onclick="refreshPreview(this)">刷新</button>
+                        </div>
+                    <div class="preview-content" id="preview-adjacent">
+                        <h2>章节标题</h2>
+                        <p>紧跟在h2后的段落（红色斜体）</p>
+                        <p>不紧跟h2的段落（不受影响）</p>
+                        
+                        <p class="highlight">高亮段落</p>
+                        <p>紧跟在高亮段落后的段落（加粗黄色）</p>
+                        <p>另一个段落（不受影响）</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="general-sibling-selector" class="section">
+            <h2 class="section-title">通用兄弟选择器（General Sibling Selector）</h2>
+            <p>通用兄弟选择器使用 <code>~</code> 来选择指定元素后面的所有兄弟元素。</p>
+
+            <div class="callout">
+                <strong>简单理解</strong>
+                <p>通用兄弟选择器就像是"所有的弟弟妹妹"，选择指定元素之后的所有兄弟元素。</p>
+            </div>
+
+            <h3 class="subsection-title">语法</h3>
+            <div class="code-block">
+                <div class="code-block-title">
+                    <span>语法格式</span>
+                    <button class="copy-button" onclick="copyCode(this)">复制</button>
+                </div>
+                <pre><code class="language-css">element ~ siblings {
+    /* CSS 规则 */
+}</code></pre>
+            </div>
+
+            <h3 class="subsection-title">示例</h3>
+            <div class="code-block">
+                <div class="code-block-title">
+                    <span>CSS示例</span>
+                    <button class="copy-button" onclick="copyCode(this)">复制</button>
+                </div>
+                <pre><code class="language-css">h3 ~ li {
+    color: green;
+}
+
+.active ~ .item {
+    background-color: #e3f2fd;
+}</code></pre>
+            </div>
+
+            <p>对应的HTML结构：</p>
+            <div class="code-block">
+                <div class="code-block-title">
+                    <span>HTML结构</span>
+                    <button class="copy-button" onclick="copyCode(this)">复制</button>
+                </div>
+                <pre><code class="language-html">&lt;h3&gt;小节标题&lt;/h3&gt;
+&lt;li&gt;列表项1（绿色）&lt;/li&gt;
+&lt;li&gt;列表项2（绿色）&lt;/li&gt;
+&lt;p&gt;段落元素&lt;/p&gt;
+&lt;li&gt;列表项3（绿色）&lt;/li&gt;
+&lt;li&gt;列表项4（绿色）&lt;/li&gt;
+
+&lt;div class="active"&gt;激活的项目&lt;/div&gt;
+&lt;div class="item"&gt;项目1（蓝色背景）&lt;/div&gt;
+&lt;div class="item"&gt;项目2（蓝色背景）&lt;/div&gt;
+&lt;div&gt;普通div（不受影响）&lt;/div&gt;
+&lt;div class="item"&gt;项目3（蓝色背景）&lt;/div&gt;</code></pre>
+            </div>
+
+            <h3 class="subsection-title">交互式演示</h3>
+            <div class="code-block">
+                <div class="code-block-title">
+                    <span>CSS代码</span>
+                    <button class="copy-button" onclick="copyCode(this)">复制</button>
+                </div>
+                <pre><code class="language-css">/* 选择h3后面所有的li兄弟元素 */
+h3 ~ li {
+    color: green;
+    font-weight: bold;
+    padding: 8px;
+    margin: 5px 0;
+}
+
+/* 选择.active后面所有的.item兄弟元素 */
+.active ~ .item {
+    background-color: #e3f2fd;
+    border-left: 4px solid #0066cc;
+    padding: 10px;
+    margin: 8px 0;
+}</code></pre>
+            </div>
+            <div class="code-block">
+                <div class="code-block-title">
+                    <span>效果预览</span>
+                    <button class="copy-button" onclick="refreshPreview(this)">刷新</button>
+                </div>
+                <div class="preview-content" id="preview-general">
+                    <h3>小节标题</h3>
+                    <li>列表项1（绿色加粗）</li>
+                    <li>列表项2（绿色加粗）</li>
+                    <p>段落元素</p>
+                    <li>列表项3（绿色加粗）</li>
+                    <li>列表项4（绿色加粗）</li>
+
+                    <div class="active">激活的项目</div>
+                    <div class="item">项目1（蓝色背景）</div>
+                    <div class="item">项目2（蓝色背景）</div>
+                    <div>普通div（不受影响）</div>
+                    <div class="item">项目3（蓝色背景）</div>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <section id="practice" class="section">
+            <h2 class="section-title">实践应用</h2>
+            <p>层级选择器在实际开发中有许多应用场景。</p>
+
+            <div class="callout">
+                <strong>最佳实践</strong>
+                <p>层级选择器可以与其他选择器组合使用，创建精确的样式控制。例如：<code>.nav > ul > li > a:hover</code></p>
+            </div>
+
+            <h3 class="subsection-title">常见应用场景</h3>
+            <div class="code-block">
+                <div class="code-block-title">
+                    <span>实际应用示例</span>
+                    <button class="copy-button" onclick="copyCode(this)">复制</button>
+                </div>
+                <pre><code class="language-css">/* 导航菜单：直接子元素 */
+nav > ul > li {
+    display: inline-block;
+}
+
+nav > ul > li > a {
+    text-decoration: none;
+}
+
+/* 文章布局：相邻兄弟 */
+article > h2 + p {
+    font-size: 1.1em;
+    color: #666;
+}
+
+/* 列表样式：通用兄弟 */
+.list > li ~ li {
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}</code></pre>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script>
+        function copyCode(button) {
+            const codeBlock = button.closest('.code-block');
+            const code = codeBlock.querySelector('code').innerText;
+            
+            navigator.clipboard.writeText(code).then(() => {
+                const originalText = button.innerText;
+                button.innerText = '已复制';
+                button.classList.add('copied');
+                setTimeout(() => {
+                    button.innerText = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(err => console.error('复制失败:', err));
+        }
+
+        function refreshPreview(button) {
+            // 获取预览内容容器
+            const previewContainer = button.closest('.code-block').querySelector('.preview-content');
+            const codeBlock = button.closest('.code-block').previousElementSibling;
+            const code = codeBlock.querySelector('code').innerText;
+            const previewId = previewContainer.id;
+            
+            // 移除旧样式
+            const oldStyle = document.getElementById(`style-${previewId.split('-')[1]}`);
+            if (oldStyle) oldStyle.remove();
+            
+            // 添加新样式 - 将选择器限制在预览容器内
+            const style = document.createElement('style');
+            style.id = `style-${previewId.split('-')[1]}`;
+            
+            // 处理CSS代码，为每个选择器添加预览容器前缀
+            let processedCode = code.replace(/([^}]+)\{([^}]+)\}/g, (match, selector, rules) => {
+                // 为选择器添加预览容器前缀
+                const newSelectors = selector.split(',').map(sel => {
+                    return `#${previewId} ${sel.trim()}`;
+                }).join(', ');
+                return newSelectors + '{' + rules + '}';
+            });
+            
+            style.textContent = processedCode;
+            document.head.appendChild(style);
+            
+            button.innerText = '已刷新';
+            setTimeout(() => button.innerText = '刷新', 2000);
+        }
+
+        // 导航高亮
+        function updateActiveNav() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.tutorial-nav a');
+            
+            let current = '';
+            sections.forEach(section => {
+                if (section.offsetTop - 100 <= window.pageYOffset) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // 平滑滚动
+        document.querySelectorAll('.tutorial-nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        window.addEventListener('scroll', updateActiveNav);
+        
+        Prism.highlightAll();
+    </script>
+</body>
+</html>

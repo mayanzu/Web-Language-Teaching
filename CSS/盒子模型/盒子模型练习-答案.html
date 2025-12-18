@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 盒子模型 - 练习题答案</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f5f5f7;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1d1d1f;
+            margin-bottom: 10px;
+            border-bottom: 3px solid #28a745;
+            padding-bottom: 10px;
+        }
+        .intro {
+            color: #86868b;
+            margin-bottom: 40px;
+            font-size: 16px;
+        }
+        .answer-block {
+            background: #fafafa;
+            border-left: 4px solid #28a745;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 4px;
+        }
+        .answer-block h2 {
+            color: #28a745;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        .preview-area {
+            border: 2px solid #28a745;
+            padding: 20px;
+            margin: 15px 0;
+            background: white;
+            border-radius: 4px;
+        }
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .code-block .comment { color: #6a9955; }
+        .code-block .selector { color: #d7ba7d; }
+        .code-block .property { color: #9cdcfe; }
+        .code-block .value { color: #ce9178; }
+        .code-block .tag { color: #569cd6; }
+        
+        .explanation {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 4px;
+        }
+        .explanation h4 {
+            color: #2e7d32;
+            margin-bottom: 8px;
+        }
+        .explanation p, .explanation ul {
+            color: #1b5e20;
+            font-size: 14px;
+        }
+        .explanation ul {
+            margin-left: 20px;
+            margin-top: 8px;
+        }
+        code {
+            background: #e8e8ed;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9em;
+            color: #d63384;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✅ CSS 盒子模型 - 练习题答案</h1>
+        <p class="intro">以下是 4 道练习题的完整答案，包括代码实现、效果预览和知识点讲解。建议先独立完成练习，再对照答案学习。</p>
+
+        <!-- ============ 练习1 ============ -->
+        <div class="answer-block">
+            <h2>练习1：理解盒子的四层结构</h2>
+            
+            <div class="preview-area">
+                <style>
+                    .info-box-1 {
+                        width: 300px;
+                        background-color: #e3f2fd;
+                        color: #1565c0;
+                        padding: 20px;  /* 内边距 - 显示背景色 */
+                        border: 2px solid #2196f3;  /* 边框 */
+                        margin: 20px 0;  /* 外边距 - 透明的 */
+                        border-radius: 8px;
+                    }
+                </style>
+                <div class="info-box-1">这是一条提示信息</div>
+            </div>
+
+            <div class="code-block"><span class="comment">/* CSS */</span>
+<span class="selector">.info-box</span> {
+    <span class="property">width</span>: <span class="value">300px</span>;  <span class="comment">/* Content 层的宽度 */</span>
+    <span class="property">background-color</span>: <span class="value">#e3f2fd</span>;
+    <span class="property">color</span>: <span class="value">#1565c0</span>;
+    <span class="property">padding</span>: <span class="value">20px</span>;  <span class="comment">/* Padding 层 - 会显示背景色 */</span>
+    <span class="property">border</span>: <span class="value">2px solid #2196f3</span>;  <span class="comment">/* Border 层 */</span>
+    <span class="property">margin</span>: <span class="value">20px 0</span>;  <span class="comment">/* Margin 层 - 透明的，不显示背景色 */</span>
+    <span class="property">border-radius</span>: <span class="value">8px</span>;
+}
+
+<span class="comment">/* HTML */</span>
+&lt;<span class="tag">div</span> <span class="property">class</span>=<span class="value">"info-box"</span>&gt;这是一条提示信息&lt;/<span class="tag">div</span>&gt;</div>
+
+            <div class="explanation">
+                <h4>💡 知识点：</h4>
+                <ul>
+                    <li><strong>Content（内容区）：</strong>宽度 300px，实际显示文字的区域</li>
+                    <li><strong>Padding（内边距）：</strong>20px，会显示背景色 #e3f2fd，让文字与边框保持距离</li>
+                    <li><strong>Border（边框）：</strong>2px 的蓝色实线，是盒子的边界</li>
+                    <li><strong>Margin（外边距）：</strong>20px（上下），完全透明，用于与其他元素保持距离</li>
+                    <li><strong>实际总宽度：</strong>content-box 模式下 = 300 + 40(padding) + 4(border) = 344px</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ============ 练习2 ============ -->
+        <div class="answer-block">
+            <h2>练习2：理解 box-sizing 属性</h2>
+            
+            <div class="preview-area">
+                <style>
+                    .box-content-2 {
+                        width: 200px;
+                        padding: 20px;
+                        border: 10px solid #0066cc;
+                        background: #e3f2fd;
+                        box-sizing: content-box;  /* 默认值 */
+                        margin-bottom: 20px;
+                    }
+                    .box-border-2 {
+                        width: 200px;
+                        padding: 20px;
+                        border: 10px solid #0066cc;
+                        background: #e3f2fd;
+                        box-sizing: border-box;  /* 推荐使用 */
+                    }
+                </style>
+                <div class="box-content-2">content-box 模式<br>真实宽度 = 200 + 40 + 20 = 260px</div>
+                <div class="box-border-2">border-box 模式<br>真实宽度 = 200px</div>
+            </div>
+
+            <div class="code-block"><span class="comment">/* CSS */</span>
+<span class="selector">.box-content</span> {
+    <span class="property">width</span>: <span class="value">200px</span>;
+    <span class="property">padding</span>: <span class="value">20px</span>;
+    <span class="property">border</span>: <span class="value">10px solid #0066cc</span>;
+    <span class="property">background</span>: <span class="value">#e3f2fd</span>;
+    <span class="property">box-sizing</span>: <span class="value">content-box</span>;  <span class="comment">/* 默认值，width 只包含 content */</span>
+    <span class="property">margin-bottom</span>: <span class="value">20px</span>;
+}
+
+<span class="selector">.box-border</span> {
+    <span class="property">width</span>: <span class="value">200px</span>;
+    <span class="property">padding</span>: <span class="value">20px</span>;
+    <span class="property">border</span>: <span class="value">10px solid #0066cc</span>;
+    <span class="property">background</span>: <span class="value">#e3f2fd</span>;
+    <span class="property">box-sizing</span>: <span class="value">border-box</span>;  <span class="comment">/* width 包含 padding 和 border */</span>
+}
+
+<span class="comment">/* HTML */</span>
+&lt;<span class="tag">div</span> <span class="property">class</span>=<span class="value">"box-content"</span>&gt;content-box 模式&lt;/<span class="tag">div</span>&gt;
+&lt;<span class="tag">div</span> <span class="property">class</span>=<span class="value">"box-border"</span>&gt;border-box 模式&lt;/<span class="tag">div</span>&gt;</div>
+
+            <div class="explanation">
+                <h4>💡 知识点：</h4>
+                <ul>
+                    <li><strong>content-box（默认）：</strong>width 只设置内容区宽度，实际宽度 = 200 + 40(padding) + 20(border) = 260px</li>
+                    <li><strong>border-box（推荐）：</strong>width 包含 padding 和 border，实际宽度就是 200px</li>
+                    <li><strong>为什么推荐 border-box？</strong>
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li>更符合直觉：设置 width: 200px 就是 200px</li>
+                            <li>布局更稳定：添加 padding/border 不会破坏布局</li>
+                            <li>计算更简单：不需要手动减去 padding 和 border</li>
+                        </ul>
+                    </li>
+                    <li><strong>最佳实践：</strong>在全局样式中设置 <code>* { box-sizing: border-box; }</code></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ============ 练习3 ============ -->
+        <div class="answer-block">
+            <h2>练习3：使用 margin: auto 实现居中</h2>
+            
+            <div class="preview-area">
+                <style>
+                    .center-card-3 {
+                        width: 400px;
+                        margin: 40px auto;  /* 水平居中 */
+                        background: white;
+                        padding: 30px;
+                        border: 1px solid #e0e0e0;
+                        border-radius: 12px;
+                        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                    }
+                    .center-card-3 h3 {
+                        color: #333;
+                        margin-bottom: 10px;
+                    }
+                    .center-card-3 p {
+                        color: #666;
+                        line-height: 1.6;
+                    }
+                </style>
+                <div class="center-card-3">
+                    <h3>水平居中的卡片</h3>
+                    <p>使用 margin: auto 可以让设置了固定宽度的块级元素在父容器中水平居中。这是一种非常经典且实用的居中方式。</p>
+                </div>
+            </div>
+
+            <div class="code-block"><span class="comment">/* CSS */</span>
+<span class="selector">.center-card</span> {
+    <span class="property">width</span>: <span class="value">400px</span>;  <span class="comment">/* 必须设置宽度 */</span>
+    <span class="property">margin</span>: <span class="value">40px auto</span>;  <span class="comment">/* 左右 auto 实现水平居中 */</span>
+    <span class="property">background</span>: <span class="value">white</span>;
+    <span class="property">padding</span>: <span class="value">30px</span>;
+    <span class="property">border</span>: <span class="value">1px solid #e0e0e0</span>;
+    <span class="property">border-radius</span>: <span class="value">12px</span>;
+    <span class="property">box-shadow</span>: <span class="value">0 4px 12px rgba(0,0,0,0.1)</span>;
+}
+
+<span class="selector">.center-card h3</span> {
+    <span class="property">color</span>: <span class="value">#333</span>;
+    <span class="property">margin-bottom</span>: <span class="value">10px</span>;
+}
+
+<span class="selector">.center-card p</span> {
+    <span class="property">color</span>: <span class="value">#666</span>;
+    <span class="property">line-height</span>: <span class="value">1.6</span>;
+}
+
+<span class="comment">/* HTML */</span>
+&lt;<span class="tag">div</span> <span class="property">class</span>=<span class="value">"center-card"</span>&gt;
+    &lt;<span class="tag">h3</span>&gt;水平居中的卡片&lt;/<span class="tag">h3</span>&gt;
+    &lt;<span class="tag">p</span>&gt;使用 margin: auto 可以让...&lt;/<span class="tag">p</span>&gt;
+&lt;/<span class="tag">div</span>&gt;</div>
+
+            <div class="explanation">
+                <h4>💡 知识点：</h4>
+                <ul>
+                    <li><strong>margin: auto 的工作原理：</strong>浏览器会自动计算左右外边距，使元素居中</li>
+                    <li><strong>生效条件：</strong>
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li>元素必须是块级元素（display: block）</li>
+                            <li>必须设置固定宽度（width）</li>
+                            <li>不能设置 float 或 position: absolute</li>
+                        </ul>
+                    </li>
+                    <li><strong>简写形式：</strong>
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li><code>margin: 0 auto;</code> → 上下 0，左右居中</li>
+                            <li><code>margin: 40px auto;</code> → 上下 40px，左右居中</li>
+                        </ul>
+                    </li>
+                    <li><strong>注意：</strong>margin: auto 只能实现水平居中，不能垂直居中（垂直居中需要用 Flexbox 或 Grid）</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ============ 练习4 ============ -->
+        <div class="answer-block">
+            <h2>练习4：制作产品卡片（综合应用）</h2>
+            
+            <div class="preview-area">
+                <style>
+                    .product-card-4 {
+                        width: 280px;
+                        margin: 0 auto;  /* 水平居中 */
+                        background: white;
+                        padding: 24px;
+                        border: 1px solid #e0e0e0;
+                        border-radius: 12px;
+                        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+                        box-sizing: border-box;  /* 确保宽度计算正确 */
+                    }
+                    .product-card-4 .icon {
+                        font-size: 48px;
+                        text-align: center;
+                        margin-bottom: 16px;
+                    }
+                    .product-card-4 h3 {
+                        color: #333;
+                        font-size: 18px;
+                        margin-bottom: 8px;
+                        text-align: center;
+                    }
+                    .product-card-4 .price {
+                        font-size: 24px;
+                        color: #0066cc;
+                        font-weight: 600;
+                        text-align: center;
+                        margin-bottom: 12px;
+                    }
+                    .product-card-4 p {
+                        color: #666;
+                        font-size: 14px;
+                        line-height: 1.5;
+                        text-align: center;
+                        margin-bottom: 20px;
+                    }
+                    .product-card-4 button {
+                        width: 100%;
+                        padding: 12px;
+                        background: #0066cc;
+                        color: white;
+                        border: none;
+                        border-radius: 8px;
+                        font-size: 15px;
+                        font-weight: 600;
+                        cursor: pointer;
+                        transition: background 0.3s;
+                    }
+                    .product-card-4 button:hover {
+                        background: #0052a3;
+                    }
+                </style>
+                <div class="product-card-4">
+                    <div class="icon">🎨</div>
+                    <h3>创意设计工具包</h3>
+                    <div class="price">¥199</div>
+                    <p>专业的设计工具套装，包含多种创意资源，助你创作出色作品。</p>
+                    <button>立即购买</button>
+                </div>
+            </div>
+
+            <div class="code-block"><span class="comment">/* CSS */</span>
+<span class="selector">.product-card</span> {
+    <span class="property">width</span>: <span class="value">280px</span>;
+    <span class="property">margin</span>: <span class="value">0 auto</span>;  <span class="comment">/* 水平居中 */</span>
+    <span class="property">background</span>: <span class="value">white</span>;
+    <span class="property">padding</span>: <span class="value">24px</span>;  <span class="comment">/* 内边距让内容与边框保持距离 */</span>
+    <span class="property">border</span>: <span class="value">1px solid #e0e0e0</span>;
+    <span class="property">border-radius</span>: <span class="value">12px</span>;
+    <span class="property">box-shadow</span>: <span class="value">0 4px 12px rgba(0,0,0,0.08)</span>;
+    <span class="property">box-sizing</span>: <span class="value">border-box</span>;  <span class="comment">/* 确保总宽度就是 280px */</span>
+}
+
+<span class="selector">.product-card .icon</span> {
+    <span class="property">font-size</span>: <span class="value">48px</span>;
+    <span class="property">text-align</span>: <span class="value">center</span>;
+    <span class="property">margin-bottom</span>: <span class="value">16px</span>;  <span class="comment">/* 与标题的间距 */</span>
+}
+
+<span class="selector">.product-card h3</span> {
+    <span class="property">color</span>: <span class="value">#333</span>;
+    <span class="property">font-size</span>: <span class="value">18px</span>;
+    <span class="property">margin-bottom</span>: <span class="value">8px</span>;  <span class="comment">/* 与价格的间距 */</span>
+    <span class="property">text-align</span>: <span class="value">center</span>;
+}
+
+<span class="selector">.product-card .price</span> {
+    <span class="property">font-size</span>: <span class="value">24px</span>;
+    <span class="property">color</span>: <span class="value">#0066cc</span>;
+    <span class="property">font-weight</span>: <span class="value">600</span>;
+    <span class="property">text-align</span>: <span class="value">center</span>;
+    <span class="property">margin-bottom</span>: <span class="value">12px</span>;  <span class="comment">/* 与描述的间距 */</span>
+}
+
+<span class="selector">.product-card p</span> {
+    <span class="property">color</span>: <span class="value">#666</span>;
+    <span class="property">font-size</span>: <span class="value">14px</span>;
+    <span class="property">line-height</span>: <span class="value">1.5</span>;
+    <span class="property">text-align</span>: <span class="value">center</span>;
+    <span class="property">margin-bottom</span>: <span class="value">20px</span>;  <span class="comment">/* 与按钮的间距 */</span>
+}
+
+<span class="selector">.product-card button</span> {
+    <span class="property">width</span>: <span class="value">100%</span>;  <span class="comment">/* 全宽按钮 */</span>
+    <span class="property">padding</span>: <span class="value">12px</span>;  <span class="comment">/* 按钮内边距 */</span>
+    <span class="property">background</span>: <span class="value">#0066cc</span>;
+    <span class="property">color</span>: <span class="value">white</span>;
+    <span class="property">border</span>: <span class="value">none</span>;
+    <span class="property">border-radius</span>: <span class="value">8px</span>;
+    <span class="property">font-size</span>: <span class="value">15px</span>;
+    <span class="property">font-weight</span>: <span class="value">600</span>;
+    <span class="property">cursor</span>: <span class="value">pointer</span>;
+    <span class="property">transition</span>: <span class="value">background 0.3s</span>;
+}
+
+<span class="selector">.product-card button:hover</span> {
+    <span class="property">background</span>: <span class="value">#0052a3</span>;  <span class="comment">/* 悬停时颜色变深 */</span>
+}
+
+<span class="comment">/* HTML */</span>
+&lt;<span class="tag">div</span> <span class="property">class</span>=<span class="value">"product-card"</span>&gt;
+    &lt;<span class="tag">div</span> <span class="property">class</span>=<span class="value">"icon"</span>&gt;🎨&lt;/<span class="tag">div</span>&gt;
+    &lt;<span class="tag">h3</span>&gt;创意设计工具包&lt;/<span class="tag">h3</span>&gt;
+    &lt;<span class="tag">div</span> <span class="property">class</span>=<span class="value">"price"</span>&gt;¥199&lt;/<span class="tag">div</span>&gt;
+    &lt;<span class="tag">p</span>&gt;专业的设计工具套装...&lt;/<span class="tag">p</span>&gt;
+    &lt;<span class="tag">button</span>&gt;立即购买&lt;/<span class="tag">button</span>&gt;
+&lt;/<span class="tag">div</span>&gt;</div>
+
+            <div class="explanation">
+                <h4>💡 知识点：</h4>
+                <ul>
+                    <li><strong>box-sizing: border-box：</strong>确保卡片总宽度就是 280px，padding 不会增加额外宽度</li>
+                    <li><strong>Padding 的作用：</strong>24px 的 padding 让内容与卡片边框保持舒适距离</li>
+                    <li><strong>Margin 控制间距：</strong>使用 margin-bottom 控制卡片内各元素之间的垂直间距
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li>图标与标题：16px</li>
+                            <li>标题与价格：8px（较近，视觉相关）</li>
+                            <li>价格与描述：12px</li>
+                            <li>描述与按钮：20px（较远，视觉分组）</li>
+                        </ul>
+                    </li>
+                    <li><strong>视觉层次：</strong>通过 border、box-shadow、border-radius 创建卡片的立体感</li>
+                    <li><strong>交互反馈：</strong>按钮的 hover 效果提升用户体验</li>
+                    <li><strong>最佳实践：</strong>这个卡片综合运用了盒模型的所有知识点：
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li>Content：各种内容元素（图标、文字、按钮）</li>
+                            <li>Padding：内容与边框的距离（24px）</li>
+                            <li>Border：卡片边界（1px 浅灰色）</li>
+                            <li>Margin：卡片水平居中（margin: 0 auto）</li>
+                            <li>Box-sizing：简化宽度计算（border-box）</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ============ 总结 ============ -->
+        <div style="margin-top: 50px; padding: 20px; background: #e3f2fd; border-radius: 8px; border-left: 4px solid #0066cc;">
+            <h3 style="color: #0066cc; margin-bottom: 15px;">📚 核心知识点总结</h3>
+            
+            <div style="margin-bottom: 20px;">
+                <h4 style="color: #333; margin-bottom: 8px;">1. 盒子模型的四层结构</h4>
+                <ul style="margin-left: 20px; color: #555; line-height: 1.8;">
+                    <li><strong>Content（内容区）：</strong>实际显示内容的区域，由 width 和 height 控制</li>
+                    <li><strong>Padding（内边距）：</strong>内容与边框之间的空间，会显示元素的背景色</li>
+                    <li><strong>Border（边框）：</strong>盒子的边界线，可设置粗细、样式、颜色</li>
+                    <li><strong>Margin（外边距）：</strong>盒子与其他元素之间的空间，完全透明</li>
+                </ul>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <h4 style="color: #333; margin-bottom: 8px;">2. box-sizing 属性</h4>
+                <ul style="margin-left: 20px; color: #555; line-height: 1.8;">
+                    <li><strong>content-box（默认）：</strong>width 只设置内容区，实际宽度 = width + padding + border</li>
+                    <li><strong>border-box（推荐）：</strong>width 包含 padding 和 border，更符合直觉</li>
+                    <li><strong>全局设置：</strong><code>* { box-sizing: border-box; }</code> 可以让所有元素使用 border-box</li>
+                </ul>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <h4 style="color: #333; margin-bottom: 8px;">3. margin: auto 居中技巧</h4>
+                <ul style="margin-left: 20px; color: #555; line-height: 1.8;">
+                    <li>必须设置固定宽度（width）</li>
+                    <li>必须是块级元素（display: block）</li>
+                    <li>左右 margin 设为 auto 即可水平居中</li>
+                    <li>常用写法：<code>margin: 0 auto;</code> 或 <code>margin: 40px auto;</code></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 style="color: #333; margin-bottom: 8px;">4. 实战应用建议</h4>
+                <ul style="margin-left: 20px; color: #555; line-height: 1.8;">
+                    <li><strong>布局稳定：</strong>总是使用 <code>box-sizing: border-box</code></li>
+                    <li><strong>间距控制：</strong>用 padding 控制内部间距，margin 控制外部间距</li>
+                    <li><strong>视觉层次：</strong>合理运用 border、box-shadow、border-radius 创建层次感</li>
+                    <li><strong>响应式设计：</strong>使用 max-width 代替固定 width，让布局更灵活</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第3课：运算符和表达式 - 练习答案</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            padding: 40px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #0066cc;
+            margin-bottom: 20px;
+        }
+        .input-group {
+            margin: 20px 0;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #0066cc;
+            border-radius: 5px;
+            margin-right: 10px;
+            width: 120px;
+        }
+        button {
+            background-color: #0066cc;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #0055aa;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            font-size: 24px;
+            font-weight: bold;
+            min-height: 80px;
+            border: 2px solid #0066cc;
+            text-align: center;
+            line-height: 40px;
+        }
+        .answer-note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="answer-note">
+        <strong>📝 答案说明：</strong>这是练习题的参考答案。本练习考察四则运算符（+、-、*、/）的使用，以及 Number() 类型转换。
+    </div>
+
+    <h1>🧮 简单计算器</h1>
+    
+    <div class="input-group">
+        <label>第一个数字：</label>
+        <input type="number" id="num1" placeholder="输入数字" value="10">
+        
+        <label>第二个数字：</label>
+        <input type="number" id="num2" placeholder="输入数字" value="5">
+    </div>
+    
+    <div>
+        <button id="addBtn">+ 加法</button>
+        <button id="subBtn">- 减法</button>
+        <button id="mulBtn">× 乘法</button>
+        <button id="divBtn">÷ 除法</button>
+    </div>
+    
+    <div id="result">请选择运算</div>
+
+    <script>
+        // 获取页面元素
+        const num1Input = document.getElementById('num1');
+        const num2Input = document.getElementById('num2');
+        const resultDiv = document.getElementById('result');
+        
+        const addBtn = document.getElementById('addBtn');
+        const subBtn = document.getElementById('subBtn');
+        const mulBtn = document.getElementById('mulBtn');
+        const divBtn = document.getElementById('divBtn');
+        
+        // 加法运算
+        addBtn.addEventListener('click', function() {
+            // 获取输入框的值并转换为数字
+            const a = Number(num1Input.value);
+            const b = Number(num2Input.value);
+            
+            // 进行加法运算
+            const sum = a + b;
+            
+            // 显示结果
+            resultDiv.textContent = `${a} + ${b} = ${sum}`;
+        });
+        
+        // 减法运算
+        subBtn.addEventListener('click', function() {
+            const a = Number(num1Input.value);
+            const b = Number(num2Input.value);
+            
+            // 进行减法运算
+            const difference = a - b;
+            
+            resultDiv.textContent = `${a} - ${b} = ${difference}`;
+        });
+        
+        // 乘法运算
+        mulBtn.addEventListener('click', function() {
+            const a = Number(num1Input.value);
+            const b = Number(num2Input.value);
+            
+            // 进行乘法运算
+            const product = a * b;
+            
+            resultDiv.textContent = `${a} × ${b} = ${product}`;
+        });
+        
+        // 除法运算
+        divBtn.addEventListener('click', function() {
+            const a = Number(num1Input.value);
+            const b = Number(num2Input.value);
+            
+            // 检查除数是否为0（进阶功能）
+            if (b === 0) {
+                resultDiv.textContent = '错误：不能除以0！';
+                return;
+            }
+            
+            // 进行除法运算
+            const quotient = a / b;
+            
+            resultDiv.textContent = `${a} ÷ ${b} = ${quotient}`;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第2课：变量和数据类型 - 练习题</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #f5f5f7;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #1d1d1f;
+            margin-bottom: 10px;
+            border-bottom: 3px solid #0066cc;
+            padding-bottom: 10px;
+        }
+        .intro {
+            color: #86868b;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        .task {
+            background: #fafafa;
+            border-left: 4px solid #0066cc;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .task h2 {
+            color: #0066cc;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .requirements {
+            background: white;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+        }
+        .requirements ul {
+            margin-left: 20px;
+        }
+        .requirements li {
+            margin-bottom: 6px;
+            color: #333;
+        }
+        code {
+            background: #e8e8ed;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9em;
+            color: #d63384;
+        }
+        .hint {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 12px;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #856404;
+        }
+        pre {
+            background: #f6f8fa;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 10px 0;
+            font-size: 13px;
+            border: 1px solid #e1e4e8;
+        }
+        .step {
+            background: white;
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 6px;
+            border: 1px solid #e1e4e8;
+        }
+        .step h4 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📦 第2课：变量和数据类型 - 练习</h1>
+        <p class="intro">制作一个"学生信息展示器"，练习 const 声明、三种基本数据类型和模板字符串的使用。</p>
+
+        <div class="task">
+            <h2>📋 任务要求</h2>
+            <p style="margin-bottom: 10px;">创建一个网页，点击按钮后显示学生信息（姓名、年龄、是否团员）。</p>
+            
+            <div class="requirements">
+                <strong>知识点：</strong>
+                <ul>
+                    <li>使用 <code>const</code> 声明常量</li>
+                    <li>字符串类型（String）、数字类型（Number）、布尔类型（Boolean）</li>
+                    <li>模板字符串拼接（<code>`${变量}`</code>）</li>
+                </ul>
+            </div>
+
+            <h3 style="color: #0066cc; margin-top: 25px; margin-bottom: 15px;">📝 实现步骤</h3>
+            
+            <div class="step">
+                <h4>步骤 1：创建 HTML 结构</h4>
+                <p style="color: #666; margin-bottom: 8px;">创建一个 HTML 文件，包含以下元素：</p>
+                <ul style="margin-left: 20px; color: #555;">
+                    <li>一个标题 <code>&lt;h1&gt;</code></li>
+                    <li>一个按钮 <code>&lt;button id="showBtn"&gt;</code></li>
+                    <li>一个显示区域 <code>&lt;div id="result"&gt;</code></li>
+                </ul>
+                <div class="hint" style="margin-top: 8px;">
+                    💡 在 <code>&lt;head&gt;</code> 中添加简单的 CSS，设置 body 的 padding、按钮的样式等
+                </div>
+            </div>
+
+            <div class="step">
+                <h4>步骤 2：声明变量（关键代码）</h4>
+                <p style="color: #666; margin-bottom: 8px;">在 <code>&lt;script&gt;</code> 标签中声明三种类型的变量：</p>
+                <pre>// 字符串类型 - 用引号包裹
+const studentName = "李华";
+
+// 数字类型 - 不用引号
+const studentAge = 16;
+
+// 布尔类型 - true 或 false
+const isLeagueMember = true;</pre>
+                <div class="hint">
+                    💡 注意：字符串用引号，数字不用引号，布尔值是关键字 true/false
+                </div>
+            </div>
+
+            <div class="step">
+                <h4>步骤 3：使用模板字符串拼接信息（关键代码）</h4>
+                <p style="color: #666; margin-bottom: 8px;">获取页面元素，添加点击事件，使用模板字符串拼接信息：</p>
+                <pre>const showBtn = document.getElementById('showBtn');
+const resultDiv = document.getElementById('result');
+
+showBtn.addEventListener('click', function() {
+  // 使用模板字符串（反引号 ` 和 ${} ）
+  let message = `姓名：${studentName}
+年龄：${studentAge} 岁
+是否团员：${isLeagueMember}`;
+  
+  resultDiv.textContent = message;
+});</pre>
+                <div class="hint">
+                    💡 <strong>关键：</strong>模板字符串使用反引号 ` (键盘 Esc 下方)，用 <code>${变量名}</code> 插入变量值
+                </div>
+            </div>
+
+            <h3 style="color: #0066cc; margin-top: 25px; margin-bottom: 10px;">🧪 测试</h3>
+            <div style="background: #e3f2fd; padding: 15px; border-radius: 6px;">
+                <ol style="margin-left: 20px; line-height: 1.8;">
+                    <li>保存文件并用浏览器打开</li>
+                    <li>点击按钮，查看是否正确显示信息</li>
+                    <li>尝试修改变量的值，刷新页面测试</li>
+                </ol>
+            </div>
+
+            <h3 style="color: #ff6b6b; margin-top: 25px; margin-bottom: 10px;">🎯 进阶挑战（可选）</h3>
+            <div style="background: #ffe8e8; padding: 15px; border-radius: 6px;">
+                <ul style="margin-left: 20px;">
+                    <li>添加 <code>studentGrade</code> 变量存储年级（字符串）</li>
+                    <li>添加 <code>studentScore</code> 变量存储分数（数字）</li>
+                    <li>将它们也显示在结果中</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

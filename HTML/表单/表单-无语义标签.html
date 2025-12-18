@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>我的自我介绍</title>
+</head>
+<body>
+    <h2>基本信息</h2>
+    <ul>
+        <li>姓名：小明</li>
+        <li>班级：高二三班</li>
+        <li>爱好：
+            <ul>
+                <li>打篮球</li>
+                <li>读书</li>
+                <li>听音乐</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>搜索</h2>
+    <p>在下面输入关键词，点击相应按钮将在新标签页打开搜索结果</p>
+
+    <form action="https://www.baidu.com/s" target="_blank">
+        搜索内容：
+        <input type="text" name="wd" placeholder="在百度中搜索">
+        <button>百度搜索</button>
+    </form>
+
+    <form action="https://search.jd.com/Search" target="_blank">
+        搜索内容：
+        <input type="text" name="keyword" placeholder="在京东中搜索">
+        <button>京东搜索</button>
+    </form>
+
+    <h2>自我介绍表单</h2>
+    <p>请填写下面的内容</p>
+
+    <form action="https://search.jd.com/Search" target="_blank">
+        <fieldset>
+            <legend>个人信息</legend>
+            <label for="stu_name">姓名：</label>
+            <input type="text" name="student_name"  id="stu_name" placeholder="例如：小明">
+            <br><br>
+
+            <label for="stu_class">班级：</label>
+            <input type="text" name="student_class" id="stu_class" placeholder="例如：高二三班">
+            <br><br>
+        </fieldset>
+        
+
+        年级：
+        <select name="grade_level">
+            <option value="">请选择年级</option>
+            <option value="高一">高一</option>
+            <option value="高二" selected>高二</option>
+            <option value="高三">高三</option>
+        </select>
+        <br><br>
+
+        我最喜欢的学科：
+        <label><input type="radio" name="fav_subject" value="语文" checked> 语文</label>
+        <label><input type="radio" name="fav_subject" value="数学"> 数学</label>
+        <input type="radio" name="fav_subject" value="英语"> 英语
+        <input type="radio" name="fav_subject" value="物理"> 物理
+        <input type="radio" name="fav_subject" value="化学"> 化学
+        <input type="radio" name="fav_subject" value="生物"> 生物
+        <input type="radio" name="fav_subject" value="历史"> 历史
+        <br><br>
+
+        爱好（可多选）：
+        <input type="checkbox" name="hobby" value="打篮球"> 打篮球
+        <input type="checkbox" name="hobby" value="读书"> 读书
+        <input type="checkbox" name="hobby" value="听音乐"> 听音乐
+        <input type="checkbox" name="hobby" value="画画"> 画画
+        <input type="checkbox" name="hobby" value="编程"> 编程
+        <br><br>
+
+        我的技能：
+        <select name="skills">
+            <option value="篮球">篮球</option>
+            <option value="吉他">吉他</option>
+            <option value="编程">编程</option>
+            <option value="绘画">绘画</option>
+            <option value="写作">写作</option>
+            <option value="演讲">演讲</option>
+        </select>
+        <br><br>
+
+        我想展示的特长：
+        <input type="text" name="talent" placeholder="例如：吉他、数学解题、跑步等">
+        <br><br>
+
+        自我介绍：<br>
+        <textarea name="intro_text" rows="6" cols="60" placeholder="例如：'我是小明，喜欢在篮球场上追风……'">
+        </textarea>
+        <br><br>
+
+        我的目标：
+        <select name="goal">
+            <option value="提高成绩" selected>提高成绩</option>
+            <option value="参加比赛">参加比赛</option>
+            <option value="学会新技能">学会新技能</option>
+        </select>
+        <br><br>
+
+        <input type="submit" value="提交并保存">
+        <input type="reset" value="重置表单">
+    </form>
+
+    <h2>我的学习目标</h2>
+    <ol>
+        <li>提高英语口语水平</li>
+        <li>数学成绩进步10分</li>
+        <li>参加物理竞赛</li>
+        <li>掌握编程基础</li>
+    </ol>
+
+    <h2>我的特长和技能</h2>
+    <dl>
+        <dt>体育特长</dt>
+        <dd>校篮球队主力队员，曾获市级比赛三等奖</dd>
+        <dt>学科特长</dt>
+        <dd>数学和物理成绩优异，经常参加竞赛</dd>
+        <dt>其他技能</dt>
+        <dd>会弹吉他，正在学习编程</dd>
+    </dl>
+
+    <h3>淘宝首页</h3>
+    <iframe src="https://www.taobao.com/" frameborder="10" width="80%"></iframe>
+    <h3>网页自身</h3>
+    <iframe src="表单-无语义标签.html" frameborder="10" width="80%"></iframe>
+    <h3>在线地图</h3>
+    <iframe src="https://ditu.baidu.com/@13055509.22436854,3707132.9187251134,17.47z" frameborder="10" width="80%"></iframe>
+</body>
+</html>
