@@ -7,21 +7,27 @@
   
     <link rel='stylesheet' href='../统一讲义样式模板.css'>\n</head>
 <body>
-  <aside class="sidebar">
-    <h3>目录导航</h3>
-    <nav class="sidebar-nav">
-      <a href="#intro" class="sidebar-link active">📦 第28课概览</a>
-      <a href="#why-data-structures" class="sidebar-link">一、为什么需要数组和对象</a>
-      <a href="#array-basics" class="sidebar-link">二、数组基础</a>
-      <a href="#array-methods" class="sub-link">数组方法</a>
-      <a href="#array-iteration" class="sub-link">数组遍历</a>
-      <a href="#object-basics" class="sidebar-link">三、对象基础</a>
-      <a href="#object-operations" class="sub-link">对象操作</a>
-      <a href="#json" class="sidebar-link">四、JSON数据格式</a>
-      <a href="#nested" class="sidebar-link">五、嵌套结构</a>
-      <a href="#practical" class="sidebar-link">六、综合实战</a>
-    </nav>
-  </aside>
+<nav class="sidebar">
+    <div class="sidebar-nav">
+        <h3>课程概览</h3>
+        <a href="#intro" class="sidebar-link active">📦 第28课概览</a>
+
+        <h3>核心概念</h3>
+        <a href="#why-data-structures" class="sidebar-link">1. 为什么需要数组和对象</a>
+        <a href="#array-basics" class="sidebar-link">2. 数组基础</a>
+        <a href="#array-methods" class="sub-link">数组方法</a>
+        <a href="#array-iteration" class="sub-link">数组遍历</a>
+        <a href="#object-basics" class="sidebar-link">3. 对象基础</a>
+        <a href="#object-operations" class="sub-link">对象操作</a>
+
+        <h3>进阶主题</h3>
+        <a href="#json" class="sidebar-link">4. JSON数据格式</a>
+        <a href="#nested" class="sidebar-link">5. 嵌套结构</a>
+
+        <h3>实战应用</h3>
+        <a href="#practical" class="sidebar-link">6. 综合实战</a>
+    </div>
+</nav>
 
   <main class="content">
     <section id="intro">
@@ -304,23 +310,14 @@ console.log(arr);  // [5, 4, 3, 2, 1]</code></pre>
         <div class="lab-body split">
           <div class="panel">
             <span class="panel-label">HTML</span>
-            <div class="html-viewer">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-  &lt;meta charset="UTF-8"&gt;
-  &lt;title&gt;待办事项&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;h3&gt;📝 待办事项管理&lt;/h3&gt;
+            <div class="html-viewer">  &lt;h3&gt;📝 待办事项管理&lt;/h3&gt;
   &lt;div&gt;
     &lt;input id="taskInput" placeholder="输入新任务"&gt;
     &lt;button onclick="addTask()"&gt;添加&lt;/button&gt;
     &lt;button onclick="removeLastTask()"&gt;删除最后一个&lt;/button&gt;
     &lt;button onclick="showTasks()"&gt;显示全部&lt;/button&gt;
   &lt;/div&gt;
-  &lt;div id="output" style="margin-top:15px;padding:10px;background:#f9f9f9;border-radius:5px;white-space:pre-line;"&gt;&lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;</div>
+  &lt;div id="output" style="margin-top:15px;padding:10px;background:#f9f9f9;border-radius:5px;white-space:pre-line;"&gt;&lt;/div&gt;</div>
           </div>
           <div class="panel">
             <span class="panel-label">JavaScript (可编辑)</span>
@@ -613,14 +610,7 @@ console.log(merged);  // { a: 1, b: 3, c: 4 }</code></pre>
         <div class="lab-body split">
           <div class="panel">
             <span class="panel-label">HTML</span>
-            <div class="html-viewer">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-  &lt;meta charset="UTF-8"&gt;
-  &lt;title&gt;学生管理&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;h3&gt;👨‍🎓 学生信息管理&lt;/h3&gt;
+            <div class="html-viewer">  &lt;h3&gt;👨‍🎓 学生信息管理&lt;/h3&gt;
   &lt;div&gt;
     &lt;input id="nameInput" placeholder="姓名"&gt;
     &lt;input id="ageInput" placeholder="年龄" type="number"&gt;
@@ -628,9 +618,7 @@ console.log(merged);  // { a: 1, b: 3, c: 4 }</code></pre>
     &lt;button onclick="updateStudent()"&gt;更新信息&lt;/button&gt;
     &lt;button onclick="showStudent()"&gt;显示信息&lt;/button&gt;
   &lt;/div&gt;
-  &lt;div id="output" style="margin-top:15px;padding:10px;background:#f0f8ff;border-radius:5px;white-space:pre-line;"&gt;&lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;</div>
+  &lt;div id="output" style="margin-top:15px;padding:10px;background:#f0f8ff;border-radius:5px;white-space:pre-line;"&gt;&lt;/div&gt;</div>
           </div>
           <div class="panel">
             <span class="panel-label">JavaScript (可编辑)</span>
@@ -845,23 +833,14 @@ console.log(company.getTotalSalary());  // 58000</code></pre>
         <div class="lab-body split">
           <div class="panel">
             <span class="panel-label">HTML</span>
-            <div class="html-viewer">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-  &lt;meta charset="UTF-8"&gt;
-  &lt;title&gt;成绩分析&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;h3&gt;📊 学生成绩分析系统&lt;/h3&gt;
+            <div class="html-viewer">  &lt;h3&gt;📊 学生成绩分析系统&lt;/h3&gt;
   &lt;div&gt;
     &lt;button onclick="showAll()"&gt;显示全部学生&lt;/button&gt;
     &lt;button onclick="showTopStudent()"&gt;最高分学生&lt;/button&gt;
     &lt;button onclick="showAverage()"&gt;计算平均分&lt;/button&gt;
     &lt;button onclick="showPassed()"&gt;及格学生&lt;/button&gt;
   &lt;/div&gt;
-  &lt;div id="output" style="margin-top:15px;padding:12px;background:#f5f5f5;border-radius:5px;white-space:pre-line;"&gt;&lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;</div>
+  &lt;div id="output" style="margin-top:15px;padding:12px;background:#f5f5f5;border-radius:5px;white-space:pre-line;"&gt;&lt;/div&gt;</div>
           </div>
           <div class="panel">
             <span class="panel-label">JavaScript (可编辑)</span>
@@ -938,23 +917,7 @@ function showPassed() {
         <div class="lab-body split">
           <div class="panel">
             <span class="panel-label">HTML</span>
-            <div class="html-viewer">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-  &lt;meta charset="UTF-8"&gt;
-  &lt;title&gt;图书管理&lt;/title&gt;
-  &lt;style&gt;
-    .book-manager { max-width: 500px; padding: 20px; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-    .input-row { display: flex; gap: 8px; margin-bottom: 10px; }
-    .input-row input { flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 6px; }
-    .btn-group { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin: 12px 0; }
-    .book-btn { padding: 10px; background: #0066CC; color: white; border: none; border-radius: 6px; cursor: pointer; }
-    .book-btn:hover { background: #0055B3; }
-    #book-result { margin-top: 15px; padding: 12px; background: #f9f9f9; border-radius: 6px; min-height: 100px; white-space: pre-line; }
-  &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;div class="book-manager"&gt;
+            <div class="html-viewer">  &lt;div class="book-manager"&gt;
     &lt;h3&gt;📚 图书管理系统&lt;/h3&gt;
     &lt;div class="input-row"&gt;
       &lt;input id="bookTitle" placeholder="书名"&gt;
@@ -969,8 +932,16 @@ function showPassed() {
     &lt;/div&gt;
     &lt;div id="book-result"&gt;等待操作...&lt;/div&gt;
   &lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;</div>
+  
+  &lt;style&gt;
+    .book-manager { max-width: 500px; padding: 20px; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .input-row { display: flex; gap: 8px; margin-bottom: 10px; }
+    .input-row input { flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 6px; }
+    .btn-group { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin: 12px 0; }
+    .book-btn { padding: 10px; background: #0066CC; color: white; border: none; border-radius: 6px; cursor: pointer; }
+    .book-btn:hover { background: #0055B3; }
+    #book-result { margin-top: 15px; padding: 12px; background: #f9f9f9; border-radius: 6px; min-height: 100px; white-space: pre-line; }
+  &lt;/style&gt;</div>
           </div>
           <div class="panel">
             <span class="panel-label">JavaScript (可编辑)</span>

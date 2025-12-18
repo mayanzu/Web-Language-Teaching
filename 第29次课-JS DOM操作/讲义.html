@@ -7,20 +7,26 @@
   
     <link rel='stylesheet' href='../统一讲义样式模板.css'>\n</head>
 <body>
-  <aside class="sidebar">
-    <h3>目录导航</h3>
-    <nav class="sidebar-nav">
-      <a href="#intro" class="sidebar-link active">📦 第29课概览</a>
-      <a href="#why-dom" class="sidebar-link">一、为什么需要DOM操作</a>
-      <a href="#what-is-dom" class="sidebar-link">二、DOM是什么</a>
-      <a href="#select-elements" class="sidebar-link">三、选择元素的方法</a>
-      <a href="#read-content" class="sidebar-link">四、读取元素内容</a>
-      <a href="#modify-content" class="sidebar-link">五、修改元素内容</a>
-      <a href="#style-operation" class="sidebar-link">六、操作元素样式</a>
-      <a href="#create-delete" class="sidebar-link">七、创建和删除元素</a>
-      <a href="#practical" class="sidebar-link">八、综合实战</a>
-    </nav>
-  </aside>
+<nav class="sidebar">
+    <div class="sidebar-nav">
+        <h3>课程概览</h3>
+        <a href="#intro" class="sidebar-link active">📦 第29课概览</a>
+
+        <h3>DOM基础</h3>
+        <a href="#why-dom" class="sidebar-link">1. 为什么需要DOM操作</a>
+        <a href="#what-is-dom" class="sidebar-link">2. DOM是什么</a>
+
+        <h3>核心操作</h3>
+        <a href="#select-elements" class="sidebar-link">3. 选择元素的方法</a>
+        <a href="#read-content" class="sidebar-link">4. 读取元素内容</a>
+        <a href="#modify-content" class="sidebar-link">5. 修改元素内容</a>
+        <a href="#style-operation" class="sidebar-link">6. 操作元素样式</a>
+        <a href="#create-delete" class="sidebar-link">7. 创建和删除元素</a>
+
+        <h3>实战应用</h3>
+        <a href="#practical" class="sidebar-link">8. 综合实战</a>
+    </div>
+</nav>
 <main class="content">
     <section id="intro">
       <h1>第29课：JS DOM操作</h1>
@@ -305,23 +311,14 @@ const allParagraphs = document.getElementsByTagName('p');</code></pre>
         <div class="lab-body split">
           <div class="panel">
             <span class="panel-label">HTML</span>
-            <div class="html-viewer">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-  &lt;meta charset="UTF-8"&gt;
-  &lt;title&gt;元素选择&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;h3 id="title"&gt;🎯 元素选择练习&lt;/h3&gt;
+            <div class="html-viewer">  &lt;h3 id="title"&gt;🎯 元素选择练习&lt;/h3&gt;
   &lt;div class="box"&gt;盒子1&lt;/div&gt;
   &lt;div class="box"&gt;盒子2&lt;/div&gt;
   &lt;div class="box special"&gt;特殊盒子&lt;/div&gt;
   &lt;button onclick="selectById()"&gt;选择标题(ID)&lt;/button&gt;
   &lt;button onclick="selectByClass()"&gt;选择所有盒子&lt;/button&gt;
   &lt;button onclick="selectSpecial()"&gt;选择特殊盒子&lt;/button&gt;
-  &lt;div id="output" style="margin-top:15px;padding:10px;background:#f0f0f0;border-radius:5px;"&gt;&lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;</div>
+  &lt;div id="output" style="margin-top:15px;padding:10px;background:#f0f0f0;border-radius:5px;"&gt;&lt;/div&gt;</div>
           </div>
           <div class="panel">
             <span class="panel-label">JavaScript (可编辑)</span>
@@ -554,14 +551,7 @@ img.removeAttribute('alt');
         <div class="lab-body split">
           <div class="panel">
             <span class="panel-label">HTML</span>
-            <div class="html-viewer">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-  &lt;meta charset="UTF-8"&gt;
-  &lt;title&gt;内容编辑&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;h3&gt;✏️ 动态内容编辑器&lt;/h3&gt;
+            <div class="html-viewer">  &lt;h3&gt;✏️ 动态内容编辑器&lt;/h3&gt;
   &lt;div&gt;
     &lt;input id="titleInput" placeholder="输入新标题"&gt;
     &lt;button onclick="changeTitle()"&gt;修改标题&lt;/button&gt;
@@ -575,9 +565,7 @@ img.removeAttribute('alt');
   &lt;div id="display" style="margin-top:15px;padding:15px;background:#fff3cd;border-radius:5px;"&gt;
     &lt;h2 id="displayTitle"&gt;默认标题&lt;/h2&gt;
     &lt;div id="displayContent"&gt;默认内容&lt;/div&gt;
-  &lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;</div>
+  &lt;/div&gt;</div>
           </div>
           <div class="panel">
             <span class="panel-label">JavaScript (可编辑)</span>
@@ -679,11 +667,15 @@ if (box.classList.contains('highlight')) {
         <div class="lab-body split">
           <div class="panel">
             <span class="panel-label">HTML</span>
-            <div class="html-viewer">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-  &lt;meta charset="UTF-8"&gt;
-  &lt;title&gt;样式操作&lt;/title&gt;
+            <div class="html-viewer">  &lt;h3&gt;🎨 样式切换器&lt;/h3&gt;
+  &lt;div&gt;
+    &lt;button onclick="toggleTheme()"&gt;切换主题&lt;/button&gt;
+    &lt;button onclick="toggleSize()"&gt;切换大小&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div id="display" style="margin-top:15px;padding:15px;background:#f0f0f0;"&gt;
+    这是一段可以改变样式的文本
+  &lt;/div&gt;
+  
   &lt;style&gt;
     .theme-dark {
       background-color: #333;
@@ -693,19 +685,7 @@ if (box.classList.contains('highlight')) {
     .large-text {
       font-size: 20px;
     }
-  &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;h3&gt;🎨 样式切换器&lt;/h3&gt;
-  &lt;div&gt;
-    &lt;button onclick="toggleTheme()"&gt;切换主题&lt;/button&gt;
-    &lt;button onclick="toggleSize()"&gt;切换大小&lt;/button&gt;
-  &lt;/div&gt;
-  &lt;div id="display" style="margin-top:15px;padding:15px;background:#f0f0f0;"&gt;
-    这是一段可以改变样式的文本
-  &lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;</div>
+  &lt;/style&gt;</div>
           </div>
           <div class="panel">
             <span class="panel-label">JavaScript (可编辑)</span>
@@ -769,11 +749,11 @@ box.remove();
         <div class="lab-body split">
           <div class="panel">
             <span class="panel-label">HTML</span>
-            <div class="html-viewer">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-  &lt;meta charset="UTF-8"&gt;
-  &lt;title&gt;待办列表&lt;/title&gt;
+            <div class="html-viewer">  &lt;h3&gt;📝 动态待办列表&lt;/h3&gt;
+  &lt;input id="todoInput" placeholder="输入待办事项"&gt;
+  &lt;button onclick="addTodo()"&gt;添加&lt;/button&gt;
+  &lt;div id="todoList" style="margin-top:15px;"&gt;&lt;/div&gt;
+  
   &lt;style&gt;
     .todo-item {
       padding: 10px;
@@ -791,15 +771,7 @@ box.remove();
       border-radius: 3px;
       cursor: pointer;
     }
-  &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;h3&gt;📝 动态待办列表&lt;/h3&gt;
-  &lt;input id="todoInput" placeholder="输入待办事项"&gt;
-  &lt;button onclick="addTodo()"&gt;添加&lt;/button&gt;
-  &lt;div id="todoList" style="margin-top:15px;"&gt;&lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;</div>
+  &lt;/style&gt;</div>
           </div>
           <div class="panel">
             <span class="panel-label">JavaScript (可编辑)</span>
@@ -870,11 +842,12 @@ function addTodo() {
         <div class="lab-body split">
           <div class="panel">
             <span class="panel-label">HTML</span>
-            <div class="html-viewer">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-  &lt;meta charset="UTF-8"&gt;
-  &lt;title&gt;卡片管理器&lt;/title&gt;
+            <div class="html-viewer">  &lt;h3&gt;🎴 卡片管理器&lt;/h3&gt;
+  &lt;input id="cardTitle" placeholder="卡片标题"&gt;
+  &lt;button onclick="addCard()"&gt;添加卡片&lt;/button&gt;
+  &lt;button onclick="clearAll()"&gt;清空全部&lt;/button&gt;
+  &lt;div id="cardGrid"&gt;&lt;/div&gt;
+  
   &lt;style&gt;
     .card {
       padding: 15px;
@@ -893,16 +866,7 @@ function addTodo() {
       border-radius: 4px;
       cursor: pointer;
     }
-  &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;h3&gt;🎴 卡片管理器&lt;/h3&gt;
-  &lt;input id="cardTitle" placeholder="卡片标题"&gt;
-  &lt;button onclick="addCard()"&gt;添加卡片&lt;/button&gt;
-  &lt;button onclick="clearAll()"&gt;清空全部&lt;/button&gt;
-  &lt;div id="cardGrid"&gt;&lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;</div>
+  &lt;/style&gt;</div>
           </div>
           <div class="panel">
             <span class="panel-label">JavaScript (可编辑)</span>

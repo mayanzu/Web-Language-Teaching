@@ -91,7 +91,7 @@
             </tbody>
         </table>
         <div class="tip-box">
-            <span class="tip-title">💡 一个简单类比</span>
+            <span class="tip-title">一个简单类比</span>
             <p>可以把网页理解成一部话剧：</p>
             <ul class="checklist">
                 <li>HTML = 剧本的大纲：有哪些角色、分几幕、每幕的台词。</li>
@@ -266,7 +266,7 @@ btn.addEventListener('click', function () {
                     <li><strong>图片预览</strong>：点击图片弹出大图浏览器，可以左右切换</li>
                     <li><strong>@提醒</strong>：输入 @ 符号时弹出好友列表供你选择</li>
                 </ul>
-                <p style="margin-top: 10px; color: #666; font-size: 14px;">💡 如果没有 JavaScript，你每次点赞都要刷新整个页面，体验会非常糟糕。</p>
+                <p style="margin-top: 10px; color: #666; font-size: 14px;">如果没有 JavaScript，你每次点赞都要刷新整个页面，体验会非常糟糕。</p>
             </div>
         </div>
 
@@ -284,7 +284,7 @@ btn.addEventListener('click', function () {
                     <li><strong>规格选择</strong>：点击不同颜色/尺码，价格和库存信息实时变化</li>
                     <li><strong>倒计时</strong>：限时抢购的倒计时，每秒自动更新</li>
                 </ul>
-                <p style="margin-top: 10px; color: #666; font-size: 14px;">💡 想象一下，如果每次改数量都要刷新页面，你还会愿意网购吗？</p>
+                <p style="margin-top: 10px; color: #666; font-size: 14px;">想象一下，如果每次改数量都要刷新页面，你还会愿意网购吗？</p>
             </div>
         </div>
 
@@ -302,7 +302,7 @@ btn.addEventListener('click', function () {
                     <li><strong>实时定位</strong>：显示你当前的位置，跟随你移动而更新</li>
                     <li><strong>搜索建议</strong>：输入地点名称时，下方自动显示相关建议</li>
                 </ul>
-                <p style="margin-top: 10px; color: #666; font-size: 14px;">💡 在线地图如果没有 JavaScript，基本上就只能看静态图片，完全无法使用。</p>
+                <p style="margin-top: 10px; color: #666; font-size: 14px;">在线地图如果没有 JavaScript，基本上就只能看静态图片，完全无法使用。</p>
             </div>
         </div>
 
@@ -580,7 +580,7 @@ console.log('这行文字会显示在控制台里');
                         <td><strong>放在 &lt;head&gt; 中<br>但加 defer 属性</strong></td>
                         <td>• 兼具清晰性和性能<br>• 异步下载，不阻塞渲染<br>• 在页面解析完后执行</td>
                         <td>• 需要理解 defer 的工作原理<br>• 旧浏览器可能不支持</td>
-                        <td>⭐ 现代最佳实践</td>
+                        <td>现代最佳实践</td>
                     </tr>
                     </tbody>
                 </table>
@@ -630,7 +630,7 @@ console.log('这行文字会显示在控制台里');
 &lt;head&gt;
   &lt;meta charset="UTF-8"&gt;
   &lt;title&gt;示例&lt;/title&gt;
-  &lt;!-- ⭐ 最佳实践：defer 让脚本在页面解析完后再执行 --&gt;
+  &lt;!-- 最佳实践：defer 让脚本在页面解析完后再执行 --&gt;
   &lt;script src="main.js" defer&gt;&lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
@@ -639,7 +639,7 @@ console.log('这行文字会显示在控制台里');
 &lt;/html&gt;</code></pre>
 
         <div class="tip-box">
-            <span class="tip-title">💡 理解页面加载顺序</span>
+            <span class="tip-title">理解页面加载顺序</span>
             <p>浏览器解析 HTML 的过程是从上到下、逐行执行的：</p>
             <ul class="checklist">
                 <li><strong>遇到 &lt;script&gt; 就停下来</strong>：浏览器会立即下载并执行脚本，暂停解析 HTML</li>
@@ -650,7 +650,7 @@ console.log('这行文字会显示在控制台里');
         </div>
 
         <div class="warning-box">
-            <span class="tip-title" style="color: #E65100;">⚠️ 常见错误示范</span>
+            <span class="tip-title" style="color: #E65100;">常见错误示范</span>
             <p><strong>错误：把需要操作 DOM 的脚本放在 &lt;head&gt; 里</strong></p>
 <pre style="background: var(--code-bg); padding: 10px 14px; border-radius: 8px; overflow-x: auto; font-family: var(--font-mono); font-size: 12px; margin-top: 8px;"><code>&lt;head&gt;
   &lt;script&gt;
@@ -730,7 +730,7 @@ if (titleElement) {
         </div>
         
         <div class="tip-box">
-            <span class="tip-title">💡 代码解释</span>
+            <span class="tip-title">代码解释</span>
             <ul class="checklist">
                 <li><code>document.getElementById('demo-title')</code> 的意思是：在整个网页（document）里，找到 id 为 'demo-title' 的元素</li>
                 <li><code>titleElement.textContent = '...'</code> 的意思是：把这个元素的文字内容改成引号里的内容</li>
@@ -778,7 +778,7 @@ if (btn) {
         </div>
 
         <div class="tip-box">
-            <span class="tip-title">💡 代码解释</span>
+            <span class="tip-title">代码解释</span>
             <ul class="checklist">
                 <li><code>addEventListener('click', function() {...})</code> 的意思是：给元素添加一个事件监听器，监听「点击」事件</li>
                 <li><code>function() {...}</code> 是一个函数，里面的代码会在按钮被点击时执行</li>
