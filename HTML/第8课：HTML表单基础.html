@@ -664,32 +664,102 @@
 &lt;label for="meeting"&gt;会议时间：&lt;/label&gt;
 &lt;input type="datetime-local" id="meeting" name="meeting"&gt;</code></pre>
             
-            <div class="example-box">
-                <h3>文本输入控件效果预览</h3>
-                <form>
-                    <label for="username">用户名：</label>
-                    <input type="text" id="username" name="username" placeholder="请输入用户名">
-                    
-                    <br><br>
-                    
-                    <label for="password">密码：</label>
-                    <input type="password" id="password" name="password" placeholder="请输入密码">
-                    
-                    <br><br>
-                    
-                    <label for="age">年龄：</label>
-                    <input type="number" id="age" name="age" min="0" max="120" step="1">
-                    
-                    <br><br>
-                    
-                    <label for="email">邮箱：</label>
-                    <input type="email" id="email" name="email" placeholder="请输入邮箱">
-                    
-                    <br><br>
-                    
-                    <label for="birthday">生日：</label>
-                    <input type="date" id="birthday" name="birthday">
-                </form>
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>上下结构实验室：文本输入控件</span>
+                    <span id="badge-1" class="status-badge">未运行</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel">
+                        <div class="panel-label">HTML (可编辑)</div>
+                        <div class="html-editor" id="html-1" contenteditable="true">
+&lt;form&gt;
+    &lt;label for="username"&gt;用户名：&lt;/label&gt;
+    &lt;input type="text" id="username" name="username" placeholder="请输入用户名"&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="password"&gt;密码：&lt;/label&gt;
+    &lt;input type="password" id="password" name="password" placeholder="请输入密码"&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="age"&gt;年龄：&lt;/label&gt;
+    &lt;input type="number" id="age" name="age" min="0" max="120" step="1"&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="email"&gt;邮箱：&lt;/label&gt;
+    &lt;input type="email" id="email" name="email" placeholder="请输入邮箱"&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="birthday"&gt;生日：&lt;/label&gt;
+    &lt;input type="date" id="birthday" name="birthday"&gt;
+&lt;/form&gt;
+                        </div>
+                        <!-- 隐藏的原始代码，用于重置功能 -->
+                        <div id="original-1" style="display: none;">
+&lt;form&gt;
+    &lt;label for="username"&gt;用户名：&lt;/label&gt;
+    &lt;input type="text" id="username" name="username" placeholder="请输入用户名"&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="password"&gt;密码：&lt;/label&gt;
+    &lt;input type="password" id="password" name="password" placeholder="请输入密码"&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="age"&gt;年龄：&lt;/label&gt;
+    &lt;input type="number" id="age" name="age" min="0" max="120" step="1"&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="email"&gt;邮箱：&lt;/label&gt;
+    &lt;input type="email" id="email" name="email" placeholder="请输入邮箱"&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="birthday"&gt;生日：&lt;/label&gt;
+    &lt;input type="date" id="birthday" name="birthday"&gt;
+&lt;/form&gt;
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-label">预览效果</div>
+                        <div class="preview-box" id="preview-1">
+                            <form>
+                                <label for="username">用户名：</label>
+                                <input type="text" id="username" name="username" placeholder="请输入用户名">
+                                
+                                <br><br>
+                                
+                                <label for="password">密码：</label>
+                                <input type="password" id="password" name="password" placeholder="请输入密码">
+                                
+                                <br><br>
+                                
+                                <label for="age">年龄：</label>
+                                <input type="number" id="age" name="age" min="0" max="120" step="1">
+                                
+                                <br><br>
+                                
+                                <label for="email">邮箱：</label>
+                                <input type="email" id="email" name="email" placeholder="请输入邮箱">
+                                
+                                <br><br>
+                                
+                                <label for="birthday">生日：</label>
+                                <input type="date" id="birthday" name="birthday">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyHTML('1')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHTML('1')">↺ 重置</button>
+                </div>
             </div>
         </section>
 
@@ -728,28 +798,90 @@
 &lt;input type="checkbox" id="sports" name="hobby" value="sports"&gt;
 &lt;label for="sports"&gt;运动&lt;/label&gt;</code></pre>
             
-            <div class="example-box">
-                <h3>单选按钮与复选框效果预览</h3>
-                <form>
-                    <label>性别：</label>
-                    <input type="radio" id="male" name="gender" value="male" checked>
-                    <label for="male">男</label>
-                    
-                    <input type="radio" id="female" name="gender" value="female">
-                    <label for="female">女</label>
-                    
-                    <br><br>
-                    
-                    <label>爱好：</label>
-                    <input type="checkbox" id="reading" name="hobby" value="reading">
-                    <label for="reading">阅读</label>
-                    
-                    <input type="checkbox" id="music" name="hobby" value="music">
-                    <label for="music">音乐</label>
-                    
-                    <input type="checkbox" id="sports" name="hobby" value="sports">
-                    <label for="sports">运动</label>
-                </form>
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>上下结构实验室：单选按钮与复选框</span>
+                    <span id="badge-2" class="status-badge">未运行</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel">
+                        <div class="panel-label">HTML (可编辑)</div>
+                        <div class="html-editor" id="html-2" contenteditable="true">
+&lt;form&gt;
+    &lt;label&gt;性别：&lt;/label&gt;
+    &lt;input type="radio" id="male" name="gender" value="male" checked&gt;
+    &lt;label for="male"&gt;男&lt;/label&gt;
+    
+    &lt;input type="radio" id="female" name="gender" value="female"&gt;
+    &lt;label for="female"&gt;女&lt;/label&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label&gt;爱好：&lt;/label&gt;
+    &lt;input type="checkbox" id="reading" name="hobby" value="reading"&gt;
+    &lt;label for="reading"&gt;阅读&lt;/label&gt;
+    
+    &lt;input type="checkbox" id="music" name="hobby" value="music"&gt;
+    &lt;label for="music"&gt;音乐&lt;/label&gt;
+    
+    &lt;input type="checkbox" id="sports" name="hobby" value="sports"&gt;
+    &lt;label for="sports"&gt;运动&lt;/label&gt;
+&lt;/form&gt;
+                        </div>
+                        <!-- 隐藏的原始代码，用于重置功能 -->
+                        <div id="original-2" style="display: none;">
+&lt;form&gt;
+    &lt;label&gt;性别：&lt;/label&gt;
+    &lt;input type="radio" id="male" name="gender" value="male" checked&gt;
+    &lt;label for="male"&gt;男&lt;/label&gt;
+    
+    &lt;input type="radio" id="female" name="gender" value="female"&gt;
+    &lt;label for="female"&gt;女&lt;/label&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label&gt;爱好：&lt;/label&gt;
+    &lt;input type="checkbox" id="reading" name="hobby" value="reading"&gt;
+    &lt;label for="reading"&gt;阅读&lt;/label&gt;
+    
+    &lt;input type="checkbox" id="music" name="hobby" value="music"&gt;
+    &lt;label for="music"&gt;音乐&lt;/label&gt;
+    
+    &lt;input type="checkbox" id="sports" name="hobby" value="sports"&gt;
+    &lt;label for="sports"&gt;运动&lt;/label&gt;
+&lt;/form&gt;
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-label">预览效果</div>
+                        <div class="preview-box" id="preview-2">
+                            <form>
+                                <label>性别：</label>
+                                <input type="radio" id="male" name="gender" value="male" checked>
+                                <label for="male">男</label>
+                                
+                                <input type="radio" id="female" name="gender" value="female">
+                                <label for="female">女</label>
+                                
+                                <br><br>
+                                
+                                <label>爱好：</label>
+                                <input type="checkbox" id="reading" name="hobby" value="reading">
+                                <label for="reading">阅读</label>
+                                
+                                <input type="checkbox" id="music" name="hobby" value="music">
+                                <label for="music">音乐</label>
+                                
+                                <input type="checkbox" id="sports" name="hobby" value="sports">
+                                <label for="sports">运动</label>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyHTML('2')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHTML('2')">↺ 重置</button>
+                </div>
             </div>
         </section>
 
@@ -790,15 +922,51 @@
 &lt;button type="reset"&gt;重置&lt;/button&gt;
 &lt;button type="button" onclick="alert('Hello!')"&gt;点击我&lt;/button&gt;</code></pre>
             
-            <div class="example-box">
-                <h3>按钮效果预览</h3>
-                <form>
-                    <input type="text" placeholder="请输入内容">
-                    <br><br>
-                    <input type="submit" value="提交">
-                    <input type="reset" value="重置">
-                    <button type="button" onclick="alert('Hello!')">点击我</button>
-                </form>
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>上下结构实验室：表单按钮</span>
+                    <span id="badge-3" class="status-badge">未运行</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel">
+                        <div class="panel-label">HTML (可编辑)</div>
+                        <div class="html-editor" id="html-3" contenteditable="true">
+&lt;form&gt;
+    &lt;input type="text" placeholder="请输入内容"&gt;
+    &lt;br&gt;&lt;br&gt;
+    &lt;input type="submit" value="提交"&gt;
+    &lt;input type="reset" value="重置"&gt;
+    &lt;button type="button" onclick="alert('Hello!')"&gt;点击我&lt;/button&gt;
+&lt;/form&gt;
+                        </div>
+                        <!-- 隐藏的原始代码，用于重置功能 -->
+                        <div id="original-3" style="display: none;">
+&lt;form&gt;
+    &lt;input type="text" placeholder="请输入内容"&gt;
+    &lt;br&gt;&lt;br&gt;
+    &lt;input type="submit" value="提交"&gt;
+    &lt;input type="reset" value="重置"&gt;
+    &lt;button type="button" onclick="alert('Hello!')"&gt;点击我&lt;/button&gt;
+&lt;/form&gt;
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-label">预览效果</div>
+                        <div class="preview-box" id="preview-3">
+                            <form>
+                                <input type="text" placeholder="请输入内容">
+                                <br><br>
+                                <input type="submit" value="提交">
+                                <input type="reset" value="重置">
+                                <button type="button" onclick="alert('Hello!')">点击我</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyHTML('3')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHTML('3')">↺ 重置</button>
+                </div>
             </div>
         </section>
 

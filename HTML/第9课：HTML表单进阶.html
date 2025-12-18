@@ -244,6 +244,123 @@
             margin: 20px 0;
         }
 
+        /* === 上下结构实验室样式 === */
+        .lab-card {
+            background: var(--color-white);
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            margin: 20px 0;
+            overflow: hidden;
+            max-width: 100%;
+        }
+
+        .lab-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            background: var(--color-bg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .lab-body {
+            display: grid;
+            grid-template-rows: auto auto;
+            gap: 0;
+            max-width: 100%;
+        }
+
+        .panel {
+            padding: 0;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .panel:last-child {
+            border-bottom: none;
+        }
+
+        .panel-label {
+            background: var(--color-bg);
+            padding: 8px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--color-text-light);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .html-editor {
+            width: 100%;
+            height: 300px;
+            padding: 16px;
+            border: none;
+            resize: vertical;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            line-height: 1.5;
+            background: var(--code-bg);
+            color: var(--color-text);
+            outline: none;
+        }
+
+        .preview-box {
+            width: 100%;
+            min-height: 200px;
+            padding: 20px;
+            overflow-y: auto;
+            background: var(--color-white);
+        }
+
+        .action-bar {
+            display: flex;
+            gap: 10px;
+            padding: 16px 20px;
+            background: var(--color-bg);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-run {
+            background: var(--color-accent);
+            color: white;
+            border-color: var(--color-accent);
+        }
+
+        .btn-run:hover {
+            background: #004499;
+        }
+
+        .btn-reset {
+            background: var(--color-white);
+            color: var(--color-text);
+        }
+
+        .btn-reset:hover {
+            background: var(--color-bg);
+        }
+
+        .status-badge {
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            background: #F0F0F0;
+            color: #666;
+        }
+
+        .status-active {
+            background: #E8F5E9;
+            color: #2E7D32;
+            font-weight: 500;
+        }
+
         /* === 表单样式 === */
         form {
             background: var(--color-white);
@@ -323,8 +440,44 @@
             h2 {
                 font-size: 24px;
             }
+            
+            .html-editor {
+                height: 200px;
+            }
         }
     </style>
+    <script>
+        // 上下结构实验室功能
+        function applyHTML(id) {
+            const editor = document.getElementById(`html-${id}`);
+            const preview = document.getElementById(`preview-${id}`);
+            const badge = document.getElementById(`badge-${id}`);
+            
+            if (editor && preview) {
+                preview.innerHTML = editor.innerText;
+                
+                // 更新状态徽章
+                badge.innerText = "运行中 (Active)";
+                badge.className = "status-badge status-active";
+            }
+        }
+        
+        function resetHTML(id) {
+            const editor = document.getElementById(`html-${id}`);
+            const preview = document.getElementById(`preview-${id}`);
+            const badge = document.getElementById(`badge-${id}`);
+            const original = document.getElementById(`original-${id}`);
+            
+            if (editor && preview && original) {
+                editor.innerText = original.innerText;
+                preview.innerHTML = editor.innerText;
+                
+                // 更新状态徽章
+                badge.innerText = "未运行 (Inactive)";
+                badge.className = "status-badge";
+            }
+        }
+    </script>
 </head>
 <body>
     <!-- 侧边栏导航 -->
@@ -424,46 +577,144 @@
     &lt;/optgroup&gt;
 &lt;/select&gt;</code></pre>
             
-            <div class="example-box">
-                <h3>下拉菜单效果预览</h3>
-                <form>
-                    <label for="city">城市：</label>
-                    <select id="city" name="city">
-                        <option value="">请选择城市</option>
-                        <option value="beijing">北京</option>
-                        <option value="shanghai" selected>上海</option>
-                        <option value="guangzhou">广州</option>
-                        <option value="shenzhen">深圳</option>
-                    </select>
-                    
-                    <br><br>
-                    
-                    <label for="hobbies">爱好（多选）：</label>
-                    <select id="hobbies" name="hobbies" multiple size="3">
-                        <option value="reading">阅读</option>
-                        <option value="music">音乐</option>
-                        <option value="sports">运动</option>
-                        <option value="travel">旅行</option>
-                        <option value="cooking">烹饪</option>
-                    </select>
-                    
-                    <br><br>
-                    
-                    <label for="country">国家/地区：</label>
-                    <select id="country" name="country">
-                        <option value="">请选择国家/地区</option>
-                        <optgroup label="亚洲">
-                            <option value="china">中国</option>
-                            <option value="japan">日本</option>
-                            <option value="korea">韩国</option>
-                        </optgroup>
-                        <optgroup label="欧洲">
-                            <option value="uk">英国</option>
-                            <option value="france">法国</option>
-                            <option value="germany">德国</option>
-                        </optgroup>
-                    </select>
-                </form>
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>上下结构实验室：下拉菜单</span>
+                    <span id="badge-1" class="status-badge">未运行</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel">
+                        <div class="panel-label">HTML (可编辑)</div>
+                        <div class="html-editor" id="html-1" contenteditable="true">
+&lt;form&gt;
+    &lt;label for="city"&gt;城市：&lt;/label&gt;
+    &lt;select id="city" name="city"&gt;
+        &lt;option value=""&gt;请选择城市&lt;/option&gt;
+        &lt;option value="beijing"&gt;北京&lt;/option&gt;
+        &lt;option value="shanghai" selected&gt;上海&lt;/option&gt;
+        &lt;option value="guangzhou"&gt;广州&lt;/option&gt;
+        &lt;option value="shenzhen"&gt;深圳&lt;/option&gt;
+    &lt;/select&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="hobbies"&gt;爱好（多选）：&lt;/label&gt;
+    &lt;select id="hobbies" name="hobbies" multiple size="3"&gt;
+        &lt;option value="reading"&gt;阅读&lt;/option&gt;
+        &lt;option value="music"&gt;音乐&lt;/option&gt;
+        &lt;option value="sports"&gt;运动&lt;/option&gt;
+        &lt;option value="travel"&gt;旅行&lt;/option&gt;
+        &lt;option value="cooking"&gt;烹饪&lt;/option&gt;
+    &lt;/select&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="country"&gt;国家/地区：&lt;/label&gt;
+    &lt;select id="country" name="country"&gt;
+        &lt;option value=""&gt;请选择国家/地区&lt;/option&gt;
+        &lt;optgroup label="亚洲"&gt;
+            &lt;option value="china"&gt;中国&lt;/option&gt;
+            &lt;option value="japan"&gt;日本&lt;/option&gt;
+            &lt;option value="korea"&gt;韩国&lt;/option&gt;
+        &lt;/optgroup&gt;
+        &lt;optgroup label="欧洲"&gt;
+            &lt;option value="uk"&gt;英国&lt;/option&gt;
+            &lt;option value="france"&gt;法国&lt;/option&gt;
+            &lt;option value="germany"&gt;德国&lt;/option&gt;
+        &lt;/optgroup&gt;
+    &lt;/select&gt;
+&lt;/form&gt;
+                        </div>
+                        <!-- 隐藏的原始代码，用于重置功能 -->
+                        <div id="original-1" style="display: none;">
+&lt;form&gt;
+    &lt;label for="city"&gt;城市：&lt;/label&gt;
+    &lt;select id="city" name="city"&gt;
+        &lt;option value=""&gt;请选择城市&lt;/option&gt;
+        &lt;option value="beijing"&gt;北京&lt;/option&gt;
+        &lt;option value="shanghai" selected&gt;上海&lt;/option&gt;
+        &lt;option value="guangzhou"&gt;广州&lt;/option&gt;
+        &lt;option value="shenzhen"&gt;深圳&lt;/option&gt;
+    &lt;/select&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="hobbies"&gt;爱好（多选）：&lt;/label&gt;
+    &lt;select id="hobbies" name="hobbies" multiple size="3"&gt;
+        &lt;option value="reading"&gt;阅读&lt;/option&gt;
+        &lt;option value="music"&gt;音乐&lt;/option&gt;
+        &lt;option value="sports"&gt;运动&lt;/option&gt;
+        &lt;option value="travel"&gt;旅行&lt;/option&gt;
+        &lt;option value="cooking"&gt;烹饪&lt;/option&gt;
+    &lt;/select&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="country"&gt;国家/地区：&lt;/label&gt;
+    &lt;select id="country" name="country"&gt;
+        &lt;option value=""&gt;请选择国家/地区&lt;/option&gt;
+        &lt;optgroup label="亚洲"&gt;
+            &lt;option value="china"&gt;中国&lt;/option&gt;
+            &lt;option value="japan"&gt;日本&lt;/option&gt;
+            &lt;option value="korea"&gt;韩国&lt;/option&gt;
+        &lt;/optgroup&gt;
+        &lt;optgroup label="欧洲"&gt;
+            &lt;option value="uk"&gt;英国&lt;/option&gt;
+            &lt;option value="france"&gt;法国&lt;/option&gt;
+            &lt;option value="germany"&gt;德国&lt;/option&gt;
+        &lt;/optgroup&gt;
+    &lt;/select&gt;
+&lt;/form&gt;
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-label">预览效果</div>
+                        <div class="preview-box" id="preview-1">
+                            <form>
+                                <label for="city">城市：</label>
+                                <select id="city" name="city">
+                                    <option value="">请选择城市</option>
+                                    <option value="beijing">北京</option>
+                                    <option value="shanghai" selected>上海</option>
+                                    <option value="guangzhou">广州</option>
+                                    <option value="shenzhen">深圳</option>
+                                </select>
+                                
+                                <br><br>
+                                
+                                <label for="hobbies">爱好（多选）：</label>
+                                <select id="hobbies" name="hobbies" multiple size="3">
+                                    <option value="reading">阅读</option>
+                                    <option value="music">音乐</option>
+                                    <option value="sports">运动</option>
+                                    <option value="travel">旅行</option>
+                                    <option value="cooking">烹饪</option>
+                                </select>
+                                
+                                <br><br>
+                                
+                                <label for="country">国家/地区：</label>
+                                <select id="country" name="country">
+                                    <option value="">请选择国家/地区</option>
+                                    <optgroup label="亚洲">
+                                        <option value="china">中国</option>
+                                        <option value="japan">日本</option>
+                                        <option value="korea">韩国</option>
+                                    </optgroup>
+                                    <optgroup label="欧洲">
+                                        <option value="uk">英国</option>
+                                        <option value="france">法国</option>
+                                        <option value="germany">德国</option>
+                                    </optgroup>
+                                </select>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyHTML('1')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHTML('1')">↺ 重置</button>
+                </div>
             </div>
         </section>
 
@@ -495,20 +746,66 @@
                 此外，<code>&lt;textarea&gt;</code>标签的默认值必须放在开始标签和结束标签之间，而不是使用<code>value</code>属性。</p>
             </div>
             
-            <div class="example-box">
-                <h3>文本域效果预览</h3>
-                <form>
-                    <label for="comments">评论：</label>
-                    <br>
-                    <textarea id="comments" name="comments" rows="5" cols="50" placeholder="请输入您的评论..."></textarea>
-                    
-                    <br><br>
-                    
-                    <label for="feedback">反馈：</label>
-                    <br>
-                    <textarea id="feedback" name="feedback" rows="5" cols="50">请在此输入您的反馈意见...
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>上下结构实验室：文本域</span>
+                    <span id="badge-2" class="status-badge">未运行</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel">
+                        <div class="panel-label">HTML (可编辑)</div>
+                        <div class="html-editor" id="html-2" contenteditable="true">
+&lt;form&gt;
+    &lt;label for="comments"&gt;评论：&lt;/label&gt;
+    &lt;br&gt;
+    &lt;textarea id="comments" name="comments" rows="5" cols="50" placeholder="请输入您的评论..."&gt;&lt;/textarea&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="feedback"&gt;反馈：&lt;/label&gt;
+    &lt;br&gt;
+    &lt;textarea id="feedback" name="feedback" rows="5" cols="50"&gt;请在此输入您的反馈意见...
+感谢您的支持！&lt;/textarea&gt;
+&lt;/form&gt;
+                        </div>
+                        <!-- 隐藏的原始代码，用于重置功能 -->
+                        <div id="original-2" style="display: none;">
+&lt;form&gt;
+    &lt;label for="comments"&gt;评论：&lt;/label&gt;
+    &lt;br&gt;
+    &lt;textarea id="comments" name="comments" rows="5" cols="50" placeholder="请输入您的评论..."&gt;&lt;/textarea&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="feedback"&gt;反馈：&lt;/label&gt;
+    &lt;br&gt;
+    &lt;textarea id="feedback" name="feedback" rows="5" cols="50"&gt;请在此输入您的反馈意见...
+感谢您的支持！&lt;/textarea&gt;
+&lt;/form&gt;
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-label">预览效果</div>
+                        <div class="preview-box" id="preview-2">
+                            <form>
+                                <label for="comments">评论：</label>
+                                <br>
+                                <textarea id="comments" name="comments" rows="5" cols="50" placeholder="请输入您的评论..."></textarea>
+                                
+                                <br><br>
+                                
+                                <label for="feedback">反馈：</label>
+                                <br>
+                                <textarea id="feedback" name="feedback" rows="5" cols="50">请在此输入您的反馈意见...
 感谢您的支持！</textarea>
-                </form>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyHTML('2')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHTML('2')">↺ 重置</button>
+                </div>
             </div>
         </section>
 
