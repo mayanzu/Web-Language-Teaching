@@ -504,7 +504,7 @@ pre.css::before {
         min-height: auto;
     }
     
-    .html-viewer, .html-editor {
+    .code-editor, .preview-box {
         height: 200px;
     }
     
@@ -543,7 +543,7 @@ pre.css::before {
         font-size: 24px;
     }
     
-    .html-editor {
+    .code-editor {
         height: 200px;
     }
 }
