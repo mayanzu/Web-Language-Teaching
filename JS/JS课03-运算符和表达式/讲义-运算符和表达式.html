@@ -6,44 +6,88 @@
     <title>第3课：运算符和表达式 - 让数据动起来</title>
     <style>
         :root {
-            --color-text: #1D1D1F;
-            --color-text-light: #86868B;
-            --color-heading: #111;
-            --color-accent: #0066CC;
-            --color-accent-hover: #0055B3;
-            --color-bg: #F5F5F7;
+            --color-text: #2c3e50;
+            --color-text-light: #7f8c8d;
+            --color-heading: #1a1a1a;
+            --color-accent: #2c3e50;
+            --color-accent-hover: #1a252f;
+            --color-bg: #ffffff;
             --color-white: #FFFFFF;
-            --border-color: #D2D2D7;
+            --border-color: #e1e4e8;
             --code-bg: #f6f8fa;
+            --code-text: #24292e;
+            --code-comment: #6a737d;
+            --code-string: #032f62;
+            --code-keyword: #d73a49;
+            --code-function: #6f42c1;
+            --code-number: #005cc5;
+            --code-operator: #d73a49;
             --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            --font-mono: 'SF Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
-            --shadow-card: 0 8px 24px rgba(0,0,0,0.06);
+            --font-mono: 'Cascadia Code', 'SF Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
+            --shadow-card: 0 2px 8px rgba(0,0,0,0.04);
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
         body { font-family: var(--font-stack); background: var(--color-bg); color: var(--color-text); display: flex; line-height: 1.7; font-size: 16px; }
-        .sidebar { width: 260px; height: 100vh; position: fixed; background: rgba(255,255,255,0.95); border-right: 1px solid var(--border-color); padding: 30px 18px; overflow-y: auto; backdrop-filter: blur(12px); z-index: 10; }
-        .sidebar h3 { font-size: 13px; color: var(--color-text-light); text-transform: uppercase; margin: 18px 0 8px 12px; letter-spacing: 0.5px; font-weight: 600; }
-        .sidebar-nav { display: flex; flex-direction: column; gap: 3px; }
-        .sidebar a { display: block; padding: 9px 12px; border-radius: 8px; color: var(--color-text); text-decoration: none; font-size: 15px; transition: all 0.2s; border-left: 3px solid transparent; }
-        .sidebar a:hover { background: #E8E8ED; }
-        .sidebar a.active { background: #E1F0FF; color: var(--color-accent); border-left-color: var(--color-accent); font-weight: 600; }
+        .sidebar { width: 260px; height: 100vh; position: fixed; background: #fafbfc; border-right: 1px solid var(--border-color); padding: 30px 18px; overflow-y: auto; z-index: 10; }
+        .sidebar h3 { font-size: 11px; color: var(--color-text-light); text-transform: uppercase; margin: 18px 0 8px 12px; letter-spacing: 1px; font-weight: 600; }
+        .sidebar-nav { display: flex; flex-direction: column; gap: 2px; }
+        .sidebar a { display: block; padding: 8px 12px; border-radius: 4px; color: var(--color-text); text-decoration: none; font-size: 14px; transition: all 0.15s; border-left: 2px solid transparent; }
+        .sidebar a:hover { background: #f3f4f6; }
+        .sidebar a.active { background: #f3f4f6; color: var(--color-heading); border-left-color: var(--color-accent); font-weight: 500; }
         .sidebar a.sub-link { padding-left: 28px; font-size: 14px; color: #555; }
         .content { margin-left: 260px; padding: 60px clamp(32px, 5vw, 90px); width: 100%; max-width: min(1600px, calc(100vw - 260px)); }
         section { margin-bottom: 70px; scroll-margin-top: 40px; }
-        h1 { font-size: 42px; font-weight: 700; letter-spacing: -0.5px; }
-        h2 { font-size: 30px; margin: 50px 0 24px; padding-bottom: 15px; border-bottom: 1px solid var(--border-color); color: var(--color-heading); }
-        h3 { font-size: 22px; margin: 30px 0 18px; color: var(--color-heading); }
-        p { margin-bottom: 16px; color: #333; }
-        code { font-family: var(--font-mono); background: rgba(27,31,35,0.05); padding: 3px 6px; border-radius: 4px; font-size: 0.92em; color: #d63384; }
-        pre > code { background: none; padding: 0; color: inherit; display: block; }
+        h1 { font-size: 38px; font-weight: 700; letter-spacing: -0.5px; color: var(--color-heading); }
+        h2 { font-size: 28px; margin: 50px 0 24px; padding-bottom: 12px; border-bottom: 2px solid var(--color-heading); color: var(--color-heading); font-weight: 600; }
+        h3 { font-size: 20px; margin: 30px 0 18px; color: var(--color-heading); font-weight: 600; }
+        p { margin-bottom: 16px; color: var(--color-text); line-height: 1.8; }
+        code { font-family: var(--font-mono); background: #f6f8fa; padding: 3px 7px; border-radius: 3px; font-size: 0.9em; color: #24292e; border: 1px solid #e1e4e8; }
+        pre { 
+            background: var(--code-bg); 
+            padding: 20px 24px; 
+            border-radius: 8px; 
+            overflow-x: auto; 
+            font-family: var(--font-mono); 
+            font-size: 15px;
+            line-height: 1.6;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #21252b;
+            position: relative;
+            margin: 20px 0;
+        }
+        pre > code { 
+            background: none; 
+            padding: 0; 
+            color: var(--code-text); 
+            display: block; 
+            font-size: inherit;
+            border: none;
+        }
+        /* 代码高亮 */
+        pre code .comment { color: var(--code-comment); font-style: italic; opacity: 0.9; }
+        pre code .string { color: var(--code-string); }
+        pre code .keyword { color: var(--code-keyword); }
+        pre code .function { color: var(--code-function); }
+        pre code .number { color: var(--code-number); }
+        pre code .operator { color: var(--code-operator); }
+        
+        /* 代码块标签 */
+        pre::before {
+            content: 'js';
+            position: absolute;
+            top: 10px;
+            right: 14px;
+            font-size: 10px;
+            color: rgba(255,255,255,0.3);
+        }
         .intro { font-size: 19px; color: var(--color-text-light); margin: 15px 0 30px; font-weight: 300; max-width: 780px; }
         .pill-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
-        .pill { padding: 6px 14px; border-radius: 999px; font-size: 13px; background: #E8F1FF; color: var(--color-accent); }
-        .tip-box, .note-box, .warning-box { border-radius: 10px; padding: 18px 22px; margin: 20px 0; border-left: 4px solid; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.03); }
-        .tip-box { border-color: var(--color-accent); background: #eef6ff; }
-        .note-box { border-color: #34A853; background: #edf9f0; }
-        .warning-box { border-color: #FF9800; background: #fff7e6; }
+        .pill { padding: 6px 12px; border-radius: 4px; font-size: 12px; background: #f6f8fa; color: var(--color-text); border: 1px solid var(--border-color); font-weight: 500; }
+        .tip-box, .note-box, .warning-box { border-radius: 6px; padding: 18px 22px; margin: 24px 0; border-left: 3px solid; background: #fafbfc; border: 1px solid var(--border-color); }
+        .tip-box { border-left-color: var(--color-heading); }
+        .note-box { border-left-color: var(--color-heading); }
+        .warning-box { border-left-color: var(--color-heading); }
         .tip-title { font-weight: 700; color: var(--color-accent); margin-bottom: 6px; display: block; }
         .prop-table { width: 100%; border-collapse: collapse; background: #fff; margin: 20px 0; border: 1px solid var(--border-color); border-radius: 10px; overflow: hidden; box-shadow: 0 3px 8px rgba(0,0,0,0.03); }
         .prop-table th, .prop-table td { padding: 14px 16px; text-align: left; border-bottom: 1px solid #eee; }
@@ -54,9 +98,9 @@
         .checklist li::before { content: "✔"; position: absolute; left: 0; top: 0; color: var(--color-accent); font-size: 14px; }
         .lab-card { background: var(--color-white); border: 1px solid var(--border-color); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-card); margin: 35px 0 40px; }
         .lab-header { background: #fbfbfd; padding: 14px 22px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; font-size: 13px; font-weight: 600; color: #666; }
-        .status-badge { font-size: 11px; padding: 4px 10px; border-radius: 999px; }
-        .status-badge.beginner { background: #E8F5E9; color: #2E7D32; }
-        .status-badge.advanced { background: #FFF3E0; color: #BF360C; }
+        .status-badge { font-size: 11px; padding: 4px 10px; border-radius: 3px; border: 1px solid var(--border-color); background: #f6f8fa; color: var(--color-text); }
+        .status-badge.beginner { background: #f6f8fa; color: var(--color-text); }
+        .status-badge.advanced { background: #f6f8fa; color: var(--color-text); }
         .lab-body { padding: 20px 22px 24px; background: #fff; }
         .lab-steps { margin: 0 0 10px 18px; }
         .lab-steps li { margin-bottom: 6px; }
@@ -65,13 +109,13 @@
         .panel { position: relative; display: flex; flex-direction: column; overflow: hidden; }
         .panel-label { position: absolute; top: 0; right: 0; background: #F0F0F0; padding: 5px 12px; font-size: 11px; color: #777; border-bottom-left-radius: 8px; }
         .html-viewer { background: #FAFAFA; border-right: 1px solid var(--border-color); padding: 20px; font-family: var(--font-mono); white-space: pre-wrap; font-size: 13px; color: #555; overflow-y: auto; }
-        .code-editor { background: #FFFFFF; padding: 20px; font-family: var(--font-mono); font-size: 13px; color: #1D1D1F; outline: none; overflow-y: auto; white-space: pre-wrap; line-height: 1.6; }
+        .code-editor { background: var(--code-bg); padding: 20px; font-family: var(--font-mono); font-size: 14px; line-height: 1.6; color: var(--code-text); outline: none; overflow-y: auto; white-space: pre-wrap; }
         .action-bar { padding: 14px 20px; background: #fff; display: flex; align-items: center; gap: 15px; border-top: 1px solid var(--border-color); }
-        .btn { padding: 8px 18px; border-radius: 8px; border: 1px solid transparent; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.2s; }
-        .btn-run { background: var(--color-accent); color: #fff; }
-        .btn-run:hover { background: var(--color-accent-hover); box-shadow: 0 2px 6px rgba(0,102,204,0.3); }
-        .btn-reset { background: #fff; color: #555; border-color: #d1d1d6; }
-        .btn-reset:hover { color: #111; border-color: #999; }
+        .btn { padding: 8px 16px; border-radius: 4px; border: 1px solid var(--border-color); font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.15s; background: #fff; }
+        .btn-run { background: var(--color-heading); color: #fff; border-color: var(--color-heading); }
+        .btn-run:hover { background: var(--color-accent-hover); }
+        .btn-reset { background: #fff; color: var(--color-text); }
+        .btn-reset:hover { background: #f6f8fa; }
         .preview-box { background: #fff; padding: 20px; min-height: 140px; border-top: 1px solid var(--border-color); font-family: var(--font-mono); font-size: 13px; }
 
         @media (max-width: 900px) {
@@ -804,7 +848,88 @@ outputDiv.innerHTML = \`
         if (display) display.textContent = currentCount;
         createGuessGame();
         resetGateLab();
+        highlightAllCode();
     });
+
+    // 简约风格的语法高亮
+    function highlightAllCode() {
+        document.querySelectorAll('pre > code').forEach(codeBlock => {
+            if (codeBlock.classList.contains('highlighted')) return;
+            
+            let code = codeBlock.textContent;
+            
+            // JavaScript 关键字
+            const keywords = /\b(const|let|var|function|return|if|else|for|while|do|switch|case|break|continue|try|catch|finally|throw|new|class|extends|import|export|default|async|await|yield|typeof|instanceof|in|of|delete|void|null|undefined|true|false|this|super)\b/g;
+            
+            // 字符串 (单引号、双引号、反引号)
+            const strings = /(['"`])(?:(?=(\\?))\2.)*?\1/g;
+            
+            // 注释 (单行和多行)
+            const comments = /(\/\/.*$|\/\*[\s\S]*?\*\/)/gm;
+            
+            // 数字
+            const numbers = /\b(\d+\.?\d*|\.\d+)(e[+-]?\d+)?\b/gi;
+            
+            // 函数调用
+            const functions = /\b([a-zA-Z_$][a-zA-Z0-9_$]*)\s*(?=\()/g;
+            
+            // 临时标记以保护已处理的部分
+            const tokens = [];
+            let tokenIndex = 0;
+            
+            // 1. 先处理注释(最高优先级)
+            code = code.replace(comments, match => {
+                const token = `__TOKEN_${tokenIndex++}__`;
+                tokens.push(`<span class="comment">${escapeHtml(match)}</span>`);
+                return token;
+            });
+            
+            // 2. 处理字符串
+            code = code.replace(strings, match => {
+                const token = `__TOKEN_${tokenIndex++}__`;
+                tokens.push(`<span class="string">${escapeHtml(match)}</span>`);
+                return token;
+            });
+            
+            // 3. 处理数字
+            code = code.replace(numbers, match => {
+                const token = `__TOKEN_${tokenIndex++}__`;
+                tokens.push(`<span class="number">${match}</span>`);
+                return token;
+            });
+            
+            // 4. 处理函数调用
+            code = code.replace(functions, match => {
+                const token = `__TOKEN_${tokenIndex++}__`;
+                tokens.push(`<span class="function">${match}</span>`);
+                return token;
+            });
+            
+            // 5. 处理关键字
+            code = code.replace(keywords, match => {
+                const token = `__TOKEN_${tokenIndex++}__`;
+                tokens.push(`<span class="keyword">${match}</span>`);
+                return token;
+            });
+            
+            // 6. HTML转义剩余内容
+            code = escapeHtml(code);
+            
+            // 7. 还原所有token
+            tokens.forEach((replacement, index) => {
+                code = code.replace(`__TOKEN_${index}__`, replacement);
+            });
+            
+            codeBlock.innerHTML = code;
+            codeBlock.classList.add('highlighted');
+        });
+    }
+    
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
 </script>
 </body>
 </html>

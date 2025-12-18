@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第6课：HTML表格基础</title>
+    <style>
+        /* ============================================
+           基础页面样式 (Apple Developer 风格)
+           ============================================ */
+        :root {
+            --color-text: #1D1D1F;
+            --color-text-light: #86868B;
+            --color-heading: #111;
+            --color-accent: #0066CC;
+            --color-bg: #F5F5F7;
+            --color-white: #FFFFFF;
+            --border-color: #D2D2D7;
+            --code-bg: #f6f8fa;
+            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-mono: 'SF Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-stack);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.7;
+            font-size: 16px;
+            display: flex;
+        }
+
+        /* === 侧边栏 === */
+        .sidebar {
+            width: 260px;
+            height: 100vh;
+            position: fixed;
+            background: rgba(255,255,255,0.95);
+            border-right: 1px solid var(--border-color);
+            padding: 30px 18px;
+            overflow-y: auto;
+            backdrop-filter: blur(12px);
+            z-index: 10;
+        }
+
+        .sidebar h3 {
+            font-size: 13px;
+            color: var(--color-text-light);
+            text-transform: uppercase;
+            margin: 18px 0 8px 12px;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .sidebar-nav a {
+            display: block;
+            padding: 8px 12px;
+            color: var(--color-text);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-nav a:hover {
+            background: var(--color-accent);
+            color: white;
+        }
+
+        .sidebar-nav a.active {
+            background: var(--color-accent);
+            color: white;
+            font-weight: 500;
+        }
+
+        .sidebar-nav a.sub-link {
+            padding-left: 32px;
+            font-size: 13px;
+            color: var(--color-text-light);
+        }
+
+        /* === 主内容区 === */
+        .content {
+            margin-left: 260px;
+            padding: 60px 80px;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        /* === 标题样式 === */
+        h1 {
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--color-heading);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--color-heading);
+            margin: 50px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h3 {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--color-heading);
+            margin: 30px 0 15px;
+        }
+
+        /* === 段落和文本 === */
+        p {
+            margin-bottom: 18px;
+            font-size: 16px;
+            color: var(--color-text);
+        }
+
+        strong {
+            font-weight: 600;
+            color: var(--color-heading);
+        }
+
+        em {
+            font-style: italic;
+        }
+
+        /* === 代码样式 === */
+        code {
+            font-family: var(--font-mono);
+            background: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #E53E3E;
+        }
+
+        pre {
+            background: var(--code-bg);
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            line-height: 1.5;
+            border: 1px solid var(--border-color);
+        }
+
+        pre code {
+            background: transparent;
+            padding: 0;
+            color: var(--color-text);
+        }
+
+        /* === 表格样式 === */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: var(--color-white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background: var(--color-bg);
+            font-weight: 600;
+            color: var(--color-heading);
+            font-size: 14px;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* === 列表样式 === */
+        ul, ol {
+            margin: 20px 0 20px 24px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* === 提示框样式 === */
+        .tip-box {
+            background: linear-gradient(135deg, #E6F4FF 0%, #F0F7FF 100%);
+            border-left: 4px solid var(--color-accent);
+            padding: 16px 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .tip-title {
+            font-weight: 600;
+            color: var(--color-accent);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* === 按钮样式 === */
+        button {
+            background: var(--color-accent);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        button:hover {
+            background: #004499;
+        }
+
+        /* === 上下结构实验室样式 === */
+        .lab-card {
+            background: var(--color-white);
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            margin: 20px 0;
+            overflow: hidden;
+            max-width: 100%;
+        }
+
+        .lab-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            background: var(--color-bg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .lab-body {
+            display: grid;
+            grid-template-rows: auto auto;
+            gap: 0;
+            max-width: 100%;
+        }
+
+        .panel {
+            padding: 0;
+            overflow: hidden;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .panel:last-child {
+            border-bottom: none;
+        }
+
+        .panel-label {
+            background: var(--color-bg);
+            padding: 8px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--color-text-light);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .html-editor {
+            width: 100%;
+            height: 300px;
+            padding: 16px;
+            border: none;
+            resize: vertical;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            line-height: 1.5;
+            background: var(--code-bg);
+            color: var(--color-text);
+            outline: none;
+        }
+
+        .preview-box {
+            width: 100%;
+            min-height: 200px;
+            padding: 20px;
+            overflow-y: auto;
+            background: var(--color-white);
+        }
+
+        .action-bar {
+            display: flex;
+            gap: 10px;
+            padding: 16px 20px;
+            background: var(--color-bg);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-run {
+            background: var(--color-accent);
+            color: white;
+            border-color: var(--color-accent);
+        }
+
+        .btn-run:hover {
+            background: #004499;
+        }
+
+        .btn-reset {
+            background: var(--color-white);
+            color: var(--color-text);
+        }
+
+        .btn-reset:hover {
+            background: var(--color-bg);
+        }
+
+        .status-badge {
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            background: #F0F0F0;
+            color: #666;
+        }
+
+        .status-active {
+            background: #E8F5E9;
+            color: #2E7D32;
+            font-weight: 500;
+        }
+
+        /* === 示例框样式 === */
+        .example-box {
+            background: var(--color-white);
+            padding: 24px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            margin: 20px 0;
+        }
+
+        /* === 头部样式 === */
+        header {
+            margin-bottom: 60px;
+        }
+
+        .intro {
+            font-size: 18px;
+            color: var(--color-text-light);
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        /* === 响应式设计 === */
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+            
+            .content {
+                margin-left: 0;
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 32px;
+            }
+            
+            h2 {
+                font-size: 24px;
+            }
+            
+            .html-editor {
+                height: 200px;
+            }
+        }
+    </style>
+    <script>
+        // 上下结构实验室功能
+        function applyHTML(id) {
+            const editor = document.getElementById(`html-${id}`);
+            const preview = document.getElementById(`preview-${id}`);
+            const badge = document.getElementById(`badge-${id}`);
+            
+            if (editor && preview) {
+                preview.innerHTML = editor.innerText;
+                
+                // 更新状态徽章
+                badge.innerText = "运行中 (Active)";
+                badge.className = "status-badge status-active";
+            }
+        }
+        
+        function resetHTML(id) {
+            const editor = document.getElementById(`html-${id}`);
+            const preview = document.getElementById(`preview-${id}`);
+            const badge = document.getElementById(`badge-${id}`);
+            const original = document.getElementById(`original-${id}`);
+            
+            if (editor && preview && original) {
+                editor.innerText = original.innerText;
+                preview.innerHTML = editor.innerText;
+                
+                // 更新状态徽章
+                badge.innerText = "未运行 (Inactive)";
+                badge.className = "status-badge";
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- 侧边栏导航 -->
+    <nav class="sidebar">
+        <div class="sidebar-nav">
+            <h3>课程导航</h3>
+            <a href="#intro">👋 课程概览</a>
+            
+            <h3>Part 1: HTML表格基础</h3>
+            <a href="#table-structure" class="sub-link">1. 表格结构</a>
+            <a href="#table-elements" class="sub-link">2. 表格元素</a>
+            <a href="#table-attributes" class="sub-link">3. 表格属性</a>
+            <a href="#simple-table" class="sub-link">4. 简单表格制作</a>
+            
+            <h3>Part 2: 实战练习</h3>
+            <a href="#exercise" class="sub-link">5. 课后练习</a>
+        </div>
+    </nav>
+
+    <!-- 主内容区 -->
+    <main class="content">
+        <header id="intro">
+            <h1>第6课：HTML表格基础</h1>
+            <p class="intro">
+                在本节课中，我们将学习HTML表格的基础知识。表格是网页中常用的内容组织方式，它可以清晰地展示结构化数据，如课程表、价格表、成绩表等。
+                通过本节课的学习，你将掌握HTML表格的基本结构、常用元素和属性，以及如何创建简单的表格。
+            </p>
+        </header>
+
+        <!-- 第一部分：HTML表格基础 -->
+        <section id="table-structure">
+            <h2>1. 表格结构</h2>
+            <p>
+                HTML表格由行和列组成，形成一个网格结构。表格的基本结构包括：
+            </p>
+            
+            <ul>
+                <li>表格标题：描述表格的内容</li>
+                <li>表头：包含列标题</li>
+                <li>表体：包含表格的主要数据</li>
+                <li>表尾：包含表格的汇总数据（可选）</li>
+            </ul>
+            
+            <h3>1.1 表格的基本语法</h3>
+            <pre><code>&lt;table&gt;
+    &lt;caption&gt;表格标题&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;表头1&lt;/th&gt;
+            &lt;th&gt;表头2&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;数据1&lt;/td&gt;
+            &lt;td&gt;数据2&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;数据3&lt;/td&gt;
+            &lt;td&gt;数据4&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+    &lt;tfoot&gt;
+        &lt;tr&gt;
+            &lt;td&gt;汇总1&lt;/td&gt;
+            &lt;td&gt;汇总2&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tfoot&gt;
+&lt;/table&gt;</code></pre>
+        </section>
+
+        <section id="table-elements">
+            <h2>2. 表格元素</h2>
+            <p>
+                HTML表格使用多种元素来定义其结构，以下是一些常用的表格元素：
+            </p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>元素</th>
+                        <th>描述</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>&lt;table&gt;</code></td>
+                        <td>定义表格的容器</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;caption&gt;</code></td>
+                        <td>定义表格的标题</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;thead&gt;</code></td>
+                        <td>定义表格的表头部分</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;tbody&gt;</code></td>
+                        <td>定义表格的表体部分</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;tfoot&gt;</code></td>
+                        <td>定义表格的表尾部分</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;tr&gt;</code></td>
+                        <td>定义表格的一行</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;th&gt;</code></td>
+                        <td>定义表格的表头单元格</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;td&gt;</code></td>
+                        <td>定义表格的数据单元格</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>2.1 &lt;th&gt; vs &lt;td&gt;</h3>
+            <p>
+                <code>&lt;th&gt;</code>和<code>&lt;td&gt;</code>都用于定义表格的单元格，但它们有以下区别：
+            </p>
+            
+            <ul>
+                <li><code>&lt;th&gt;</code>用于表头单元格，默认居中对齐且加粗显示</li>
+                <li><code>&lt;td&gt;</code>用于数据单元格，默认左对齐且正常显示</li>
+            </ul>
+        </section>
+
+        <section id="table-attributes">
+            <h2>3. 表格属性</h2>
+            <p>
+                虽然HTML5推荐使用CSS来设置表格的样式，但<code>&lt;table&gt;</code>标签仍然支持一些传统的属性，用于控制表格的外观。
+                以下是一些常用的表格属性：
+            </p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>属性</th>
+                        <th>描述</th>
+                        <th>示例</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>border</code></td>
+                        <td>指定表格边框的宽度（像素）</td>
+                        <td><code>border="1"</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>width</code></td>
+                        <td>指定表格的宽度（像素或百分比）</td>
+                        <td><code>width="500"</code>或<code>width="100%"</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>height</code></td>
+                        <td>指定表格的高度（像素或百分比）</td>
+                        <td><code>height="300"</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>cellpadding</code></td>
+                        <td>指定单元格内容与边框之间的间距（像素）</td>
+                        <td><code>cellpadding="5"</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>cellspacing</code></td>
+                        <td>指定单元格之间的间距（像素）</td>
+                        <td><code>cellspacing="0"</code></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="tip-box">
+                <span class="tip-title">💡 样式建议</span>
+                <p>在现代Web开发中，我们通常使用CSS来设置表格的样式，而不是使用HTML属性。CSS提供了更强大、更灵活的样式控制能力。</p>
+            </div>
+        </section>
+
+        <section id="simple-table">
+            <h2>4. 简单表格制作</h2>
+            <p>
+                现在，让我们创建一个简单的学生成绩表格，来实践所学的知识。
+            </p>
+            
+            <h3>4.1 示例：学生成绩表</h3>
+            <pre><code>&lt;table border="1" cellpadding="10" cellspacing="0" width="100%"&gt;
+    &lt;caption&gt;学生成绩表&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;学号&lt;/th&gt;
+            &lt;th&gt;姓名&lt;/th&gt;
+            &lt;th&gt;数学&lt;/th&gt;
+            &lt;th&gt;英语&lt;/th&gt;
+            &lt;th&gt;物理&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;001&lt;/td&gt;
+            &lt;td&gt;张三&lt;/td&gt;
+            &lt;td&gt;85&lt;/td&gt;
+            &lt;td&gt;92&lt;/td&gt;
+            &lt;td&gt;78&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;002&lt;/td&gt;
+            &lt;td&gt;李四&lt;/td&gt;
+            &lt;td&gt;90&lt;/td&gt;
+            &lt;td&gt;88&lt;/td&gt;
+            &lt;td&gt;95&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;003&lt;/td&gt;
+            &lt;td&gt;王五&lt;/td&gt;
+            &lt;td&gt;75&lt;/td&gt;
+            &lt;td&gt;80&lt;/td&gt;
+            &lt;td&gt;85&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+    &lt;tfoot&gt;
+        &lt;tr&gt;
+            &lt;th colspan="2"&gt;平均分&lt;/th&gt;
+            &lt;th&gt;83.3&lt;/th&gt;
+            &lt;th&gt;86.7&lt;/th&gt;
+            &lt;th&gt;86.0&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/tfoot&gt;
+&lt;/table&gt;</code></pre>
+            
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>上下结构实验室：学生成绩表</span>
+                    <span id="badge-1" class="status-badge">未运行</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel">
+                        <div class="panel-label">HTML (可编辑)</div>
+                        <div class="html-editor" id="html-1" contenteditable="true">
+&lt;table border="1" cellpadding="10" cellspacing="0" width="100%"&gt;
+    &lt;caption&gt;学生成绩表&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;学号&lt;/th&gt;
+            &lt;th&gt;姓名&lt;/th&gt;
+            &lt;th&gt;数学&lt;/th&gt;
+            &lt;th&gt;英语&lt;/th&gt;
+            &lt;th&gt;物理&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;001&lt;/td&gt;
+            &lt;td&gt;张三&lt;/td&gt;
+            &lt;td&gt;85&lt;/td&gt;
+            &lt;td&gt;92&lt;/td&gt;
+            &lt;td&gt;78&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;002&lt;/td&gt;
+            &lt;td&gt;李四&lt;/td&gt;
+            &lt;td&gt;90&lt;/td&gt;
+            &lt;td&gt;88&lt;/td&gt;
+            &lt;td&gt;95&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;003&lt;/td&gt;
+            &lt;td&gt;王五&lt;/td&gt;
+            &lt;td&gt;75&lt;/td&gt;
+            &lt;td&gt;80&lt;/td&gt;
+            &lt;td&gt;85&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+    &lt;tfoot&gt;
+        &lt;tr&gt;
+            &lt;th colspan="2"&gt;平均分&lt;/th&gt;
+            &lt;th&gt;83.3&lt;/th&gt;
+            &lt;th&gt;86.7&lt;/th&gt;
+            &lt;th&gt;86.0&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/tfoot&gt;
+&lt;/table&gt;
+                        </div>
+                        <!-- 隐藏的原始代码，用于重置功能 -->
+                        <div id="original-1" style="display: none;">
+&lt;table border="1" cellpadding="10" cellspacing="0" width="100%"&gt;
+    &lt;caption&gt;学生成绩表&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;学号&lt;/th&gt;
+            &lt;th&gt;姓名&lt;/th&gt;
+            &lt;th&gt;数学&lt;/th&gt;
+            &lt;th&gt;英语&lt;/th&gt;
+            &lt;th&gt;物理&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;001&lt;/td&gt;
+            &lt;td&gt;张三&lt;/td&gt;
+            &lt;td&gt;85&lt;/td&gt;
+            &lt;td&gt;92&lt;/td&gt;
+            &lt;td&gt;78&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;002&lt;/td&gt;
+            &lt;td&gt;李四&lt;/td&gt;
+            &lt;td&gt;90&lt;/td&gt;
+            &lt;td&gt;88&lt;/td&gt;
+            &lt;td&gt;95&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;003&lt;/td&gt;
+            &lt;td&gt;王五&lt;/td&gt;
+            &lt;td&gt;75&lt;/td&gt;
+            &lt;td&gt;80&lt;/td&gt;
+            &lt;td&gt;85&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+    &lt;tfoot&gt;
+        &lt;tr&gt;
+            &lt;th colspan="2"&gt;平均分&lt;/th&gt;
+            &lt;th&gt;83.3&lt;/th&gt;
+            &lt;th&gt;86.7&lt;/th&gt;
+            &lt;th&gt;86.0&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/tfoot&gt;
+&lt;/table&gt;
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-label">预览效果</div>
+                        <div class="preview-box" id="preview-1">
+                            <table border="1" cellpadding="10" cellspacing="0" width="100%">
+                                <caption>学生成绩表</caption>
+                                <thead>
+                                    <tr>
+                                        <th>学号</th>
+                                        <th>姓名</th>
+                                        <th>数学</th>
+                                        <th>英语</th>
+                                        <th>物理</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>001</td>
+                                        <td>张三</td>
+                                        <td>85</td>
+                                        <td>92</td>
+                                        <td>78</td>
+                                    </tr>
+                                    <tr>
+                                        <td>002</td>
+                                        <td>李四</td>
+                                        <td>90</td>
+                                        <td>88</td>
+                                        <td>95</td>
+                                    </tr>
+                                    <tr>
+                                        <td>003</td>
+                                        <td>王五</td>
+                                        <td>75</td>
+                                        <td>80</td>
+                                        <td>85</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th colspan="2">平均分</th>
+                                        <th>83.3</th>
+                                        <th>86.7</th>
+                                        <th>86.0</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyHTML('1')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHTML('1')">↺ 重置</button>
+                </div>
+            </div>
+            
+            <h3>4.2 示例：课程表</h3>
+            <pre><code>&lt;table border="1" cellpadding="10" cellspacing="0" width="100%"&gt;
+    &lt;caption&gt;周一课程表&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;时间&lt;/th&gt;
+            &lt;th&gt;第一节&lt;/th&gt;
+            &lt;th&gt;第二节&lt;/th&gt;
+            &lt;th&gt;第三节&lt;/th&gt;
+            &lt;th&gt;第四节&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;上午&lt;/td&gt;
+            &lt;td&gt;数学&lt;/td&gt;
+            &lt;td&gt;英语&lt;/td&gt;
+            &lt;td&gt;物理&lt;/td&gt;
+            &lt;td&gt;化学&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;下午&lt;/td&gt;
+            &lt;td&gt;语文&lt;/td&gt;
+            &lt;td&gt;历史&lt;/td&gt;
+            &lt;td&gt;地理&lt;/td&gt;
+            &lt;td&gt;生物&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+            
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>上下结构实验室：课程表</span>
+                    <span id="badge-2" class="status-badge">未运行</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel">
+                        <div class="panel-label">HTML (可编辑)</div>
+                        <div class="html-editor" id="html-2" contenteditable="true">
+&lt;table border="1" cellpadding="10" cellspacing="0" width="100%"&gt;
+    &lt;caption&gt;周一课程表&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;时间&lt;/th&gt;
+            &lt;th&gt;第一节&lt;/th&gt;
+            &lt;th&gt;第二节&lt;/th&gt;
+            &lt;th&gt;第三节&lt;/th&gt;
+            &lt;th&gt;第四节&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;上午&lt;/td&gt;
+            &lt;td&gt;数学&lt;/td&gt;
+            &lt;td&gt;英语&lt;/td&gt;
+            &lt;td&gt;物理&lt;/td&gt;
+            &lt;td&gt;化学&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;下午&lt;/td&gt;
+            &lt;td&gt;语文&lt;/td&gt;
+            &lt;td&gt;历史&lt;/td&gt;
+            &lt;td&gt;地理&lt;/td&gt;
+            &lt;td&gt;生物&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+                        </div>
+                        <!-- 隐藏的原始代码，用于重置功能 -->
+                        <div id="original-2" style="display: none;">
+&lt;table border="1" cellpadding="10" cellspacing="0" width="100%"&gt;
+    &lt;caption&gt;周一课程表&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;时间&lt;/th&gt;
+            &lt;th&gt;第一节&lt;/th&gt;
+            &lt;th&gt;第二节&lt;/th&gt;
+            &lt;th&gt;第三节&lt;/th&gt;
+            &lt;th&gt;第四节&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;上午&lt;/td&gt;
+            &lt;td&gt;数学&lt;/td&gt;
+            &lt;td&gt;英语&lt;/td&gt;
+            &lt;td&gt;物理&lt;/td&gt;
+            &lt;td&gt;化学&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;下午&lt;/td&gt;
+            &lt;td&gt;语文&lt;/td&gt;
+            &lt;td&gt;历史&lt;/td&gt;
+            &lt;td&gt;地理&lt;/td&gt;
+            &lt;td&gt;生物&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-label">预览效果</div>
+                        <div class="preview-box" id="preview-2">
+                            <table border="1" cellpadding="10" cellspacing="0" width="100%">
+                                <caption>周一课程表</caption>
+                                <thead>
+                                    <tr>
+                                        <th>时间</th>
+                                        <th>第一节</th>
+                                        <th>第二节</th>
+                                        <th>第三节</th>
+                                        <th>第四节</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>上午</td>
+                                        <td>数学</td>
+                                        <td>英语</td>
+                                        <td>物理</td>
+                                        <td>化学</td>
+                                    </tr>
+                                    <tr>
+                                        <td>下午</td>
+                                        <td>语文</td>
+                                        <td>历史</td>
+                                        <td>地理</td>
+                                        <td>生物</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyHTML('2')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHTML('2')">↺ 重置</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 第二部分：实战练习 -->
+        <section id="exercise">
+            <h2>5. 课后练习</h2>
+            <p>
+                请完成以下练习，巩固本节课所学的知识：
+            </p>
+            
+            <ol>
+                <li>创建一个HTML页面，包含一个简单的学生信息表</li>
+                <li>表格应包含以下信息：学号、姓名、性别、年龄、班级</li>
+                <li>使用<code>&lt;caption&gt;</code>为表格添加标题</li>
+                <li>使用<code>&lt;thead&gt;</code>、<code>&lt;tbody&gt;</code>和<code>&lt;tfoot&gt;</code>来组织表格结构</li>
+                <li>为表格添加合适的<code>border</code>、<code>cellpadding</code>和<code>cellspacing</code>属性</li>
+                <li>创建一个课程表，包含周一至周五的课程安排</li>
+            </ol>
+        </section>
+    </main>
+</body>
+</html>

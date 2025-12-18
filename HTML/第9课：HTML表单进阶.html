@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第9课：HTML表单进阶</title>
+    <style>
+        /* ============================================
+           基础页面样式 (Apple Developer 风格)
+           ============================================ */
+        :root {
+            --color-text: #1D1D1F;
+            --color-text-light: #86868B;
+            --color-heading: #111;
+            --color-accent: #0066CC;
+            --color-bg: #F5F5F7;
+            --color-white: #FFFFFF;
+            --border-color: #D2D2D7;
+            --code-bg: #f6f8fa;
+            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-mono: 'SF Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-stack);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.7;
+            font-size: 16px;
+            display: flex;
+        }
+
+        /* === 侧边栏 === */
+        .sidebar {
+            width: 260px;
+            height: 100vh;
+            position: fixed;
+            background: rgba(255,255,255,0.95);
+            border-right: 1px solid var(--border-color);
+            padding: 30px 18px;
+            overflow-y: auto;
+            backdrop-filter: blur(12px);
+            z-index: 10;
+        }
+
+        .sidebar h3 {
+            font-size: 13px;
+            color: var(--color-text-light);
+            text-transform: uppercase;
+            margin: 18px 0 8px 12px;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .sidebar-nav a {
+            display: block;
+            padding: 8px 12px;
+            color: var(--color-text);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-nav a:hover {
+            background: var(--color-accent);
+            color: white;
+        }
+
+        .sidebar-nav a.active {
+            background: var(--color-accent);
+            color: white;
+            font-weight: 500;
+        }
+
+        .sidebar-nav a.sub-link {
+            padding-left: 32px;
+            font-size: 13px;
+            color: var(--color-text-light);
+        }
+
+        /* === 主内容区 === */
+        .content {
+            margin-left: 260px;
+            padding: 60px 80px;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        /* === 标题样式 === */
+        h1 {
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--color-heading);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--color-heading);
+            margin: 50px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h3 {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--color-heading);
+            margin: 30px 0 15px;
+        }
+
+        /* === 段落和文本 === */
+        p {
+            margin-bottom: 18px;
+            font-size: 16px;
+            color: var(--color-text);
+        }
+
+        strong {
+            font-weight: 600;
+            color: var(--color-heading);
+        }
+
+        em {
+            font-style: italic;
+        }
+
+        /* === 代码样式 === */
+        code {
+            font-family: var(--font-mono);
+            background: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #E53E3E;
+        }
+
+        pre {
+            background: var(--code-bg);
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            line-height: 1.5;
+            border: 1px solid var(--border-color);
+        }
+
+        pre code {
+            background: transparent;
+            padding: 0;
+            color: var(--color-text);
+        }
+
+        /* === 表格样式 === */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: var(--color-white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background: var(--color-bg);
+            font-weight: 600;
+            color: var(--color-heading);
+            font-size: 14px;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* === 列表样式 === */
+        ul, ol {
+            margin: 20px 0 20px 24px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* === 提示框样式 === */
+        .tip-box {
+            background: linear-gradient(135deg, #E6F4FF 0%, #F0F7FF 100%);
+            border-left: 4px solid var(--color-accent);
+            padding: 16px 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .tip-title {
+            font-weight: 600;
+            color: var(--color-accent);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* === 按钮样式 === */
+        button {
+            background: var(--color-accent);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        button:hover {
+            background: #004499;
+        }
+
+        /* === 示例框样式 === */
+        .example-box {
+            background: var(--color-white);
+            padding: 24px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            margin: 20px 0;
+        }
+
+        /* === 表单样式 === */
+        form {
+            background: var(--color-white);
+            padding: 24px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            margin: 20px 0;
+        }
+
+        input, select, textarea {
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: var(--font-stack);
+            margin: 5px 0;
+        }
+
+        input[type="submit"], input[type="reset"] {
+            background: var(--color-accent);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="reset"] {
+            background: var(--color-text-light);
+            margin-left: 10px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: 500;
+        }
+
+        fieldset {
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        legend {
+            padding: 0 10px;
+            font-weight: 600;
+            color: var(--color-accent);
+        }
+
+        /* === 头部样式 === */
+        header {
+            margin-bottom: 60px;
+        }
+
+        .intro {
+            font-size: 18px;
+            color: var(--color-text-light);
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        /* === 响应式设计 === */
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+            
+            .content {
+                margin-left: 0;
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 32px;
+            }
+            
+            h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 侧边栏导航 -->
+    <nav class="sidebar">
+        <div class="sidebar-nav">
+            <h3>课程导航</h3>
+            <a href="#intro">👋 课程概览</a>
+            
+            <h3>Part 1: HTML表单进阶</h3>
+            <a href="#select-option" class="sub-link">1. 下拉菜单</a>
+            <a href="#textarea" class="sub-link">2. 文本域</a>
+            <a href="#fieldset-legend" class="sub-link">3. 表单分组</a>
+            <a href="#form-validation" class="sub-link">4. 表单验证基础</a>
+            
+            <h3>Part 2: 实战练习</h3>
+            <a href="#exercise" class="sub-link">5. 课后练习</a>
+        </div>
+    </nav>
+
+    <!-- 主内容区 -->
+    <main class="content">
+        <header id="intro">
+            <h1>第9课：HTML表单进阶</h1>
+            <p class="intro">
+                在本节课中，我们将学习HTML表单的进阶知识。上节课我们学习了表单的基础知识，本节课我们将深入学习下拉菜单、文本域、表单分组和表单验证等高级表单功能。
+                通过本节课的学习，你将掌握创建复杂表单的技巧，能够设计出更加功能强大、用户体验更好的表单。
+            </p>
+        </header>
+
+        <!-- 第一部分：HTML表单进阶 -->
+        <section id="select-option">
+            <h2>1. 下拉菜单</h2>
+            <p>
+                <code>&lt;select&gt;</code>和<code>&lt;option&gt;</code>标签用于创建下拉菜单，允许用户从预定义的选项中选择一个或多个选项。
+            </p>
+            
+            <h3>1.1 基本下拉菜单</h3>
+            <p>
+                基本的下拉菜单允许用户从一组选项中选择一个选项。
+            </p>
+            
+            <pre><code>&lt;label for="city"&gt;城市：&lt;/label&gt;
+&lt;select id="city" name="city"&gt;
+    &lt;option value=""&gt;请选择城市&lt;/option&gt;
+    &lt;option value="beijing"&gt;北京&lt;/option&gt;
+    &lt;option value="shanghai"&gt;上海&lt;/option&gt;
+    &lt;option value="guangzhou"&gt;广州&lt;/option&gt;
+    &lt;option value="shenzhen"&gt;深圳&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+            
+            <h3>1.2 默认选中项</h3>
+            <p>
+                我们可以使用<code>selected</code>属性来指定下拉菜单的默认选中项。
+            </p>
+            
+            <pre><code>&lt;label for="city"&gt;城市：&lt;/label&gt;
+&lt;select id="city" name="city"&gt;
+    &lt;option value=""&gt;请选择城市&lt;/option&gt;
+    &lt;option value="beijing"&gt;北京&lt;/option&gt;
+    &lt;option value="shanghai" selected&gt;上海&lt;/option&gt;
+    &lt;option value="guangzhou"&gt;广州&lt;/option&gt;
+    &lt;option value="shenzhen"&gt;深圳&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+            
+            <h3>1.3 多选下拉菜单</h3>
+            <p>
+                我们可以使用<code>multiple</code>属性来创建多选下拉菜单，允许用户选择多个选项。
+                在使用多选下拉菜单时，用户需要按住Ctrl键（Windows）或Command键（Mac）来选择多个选项。
+            </p>
+            
+            <pre><code>&lt;label for="hobbies"&gt;爱好：&lt;/label&gt;
+&lt;select id="hobbies" name="hobbies" multiple size="3"&gt;
+    &lt;option value="reading"&gt;阅读&lt;/option&gt;
+    &lt;option value="music"&gt;音乐&lt;/option&gt;
+    &lt;option value="sports"&gt;运动&lt;/option&gt;
+    &lt;option value="travel"&gt;旅行&lt;/option&gt;
+    &lt;option value="cooking"&gt;烹饪&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+            
+            <h3>1.4 分组下拉菜单</h3>
+            <p>
+                我们可以使用<code>&lt;optgroup&gt;</code>标签来对下拉菜单的选项进行分组。
+            </p>
+            
+            <pre><code>&lt;label for="country"&gt;国家/地区：&lt;/label&gt;
+&lt;select id="country" name="country"&gt;
+    &lt;option value=""&gt;请选择国家/地区&lt;/option&gt;
+    &lt;optgroup label="亚洲"&gt;
+        &lt;option value="china"&gt;中国&lt;/option&gt;
+        &lt;option value="japan"&gt;日本&lt;/option&gt;
+        &lt;option value="korea"&gt;韩国&lt;/option&gt;
+    &lt;/optgroup&gt;
+    &lt;optgroup label="欧洲"&gt;
+        &lt;option value="uk"&gt;英国&lt;/option&gt;
+        &lt;option value="france"&gt;法国&lt;/option&gt;
+        &lt;option value="germany"&gt;德国&lt;/option&gt;
+    &lt;/optgroup&gt;
+&lt;/select&gt;</code></pre>
+            
+            <div class="example-box">
+                <h3>下拉菜单效果预览</h3>
+                <form>
+                    <label for="city">城市：</label>
+                    <select id="city" name="city">
+                        <option value="">请选择城市</option>
+                        <option value="beijing">北京</option>
+                        <option value="shanghai" selected>上海</option>
+                        <option value="guangzhou">广州</option>
+                        <option value="shenzhen">深圳</option>
+                    </select>
+                    
+                    <br><br>
+                    
+                    <label for="hobbies">爱好（多选）：</label>
+                    <select id="hobbies" name="hobbies" multiple size="3">
+                        <option value="reading">阅读</option>
+                        <option value="music">音乐</option>
+                        <option value="sports">运动</option>
+                        <option value="travel">旅行</option>
+                        <option value="cooking">烹饪</option>
+                    </select>
+                    
+                    <br><br>
+                    
+                    <label for="country">国家/地区：</label>
+                    <select id="country" name="country">
+                        <option value="">请选择国家/地区</option>
+                        <optgroup label="亚洲">
+                            <option value="china">中国</option>
+                            <option value="japan">日本</option>
+                            <option value="korea">韩国</option>
+                        </optgroup>
+                        <optgroup label="欧洲">
+                            <option value="uk">英国</option>
+                            <option value="france">法国</option>
+                            <option value="germany">德国</option>
+                        </optgroup>
+                    </select>
+                </form>
+            </div>
+        </section>
+
+        <section id="textarea">
+            <h2>2. 文本域</h2>
+            <p>
+                <code>&lt;textarea&gt;</code>标签用于创建多行文本输入框，允许用户输入大量文本，如评论、留言等。
+            </p>
+            
+            <h3>2.1 基本文本域</h3>
+            <p>
+                基本的文本域使用<code>&lt;textarea&gt;</code>标签创建，我们可以使用<code>rows</code>和<code>cols</code>属性来指定文本域的行数和列数。
+            </p>
+            
+            <pre><code>&lt;label for="comments"&gt;评论：&lt;/label&gt;
+&lt;textarea id="comments" name="comments" rows="5" cols="50" placeholder="请输入您的评论..."&gt;&lt;/textarea&gt;</code></pre>
+            
+            <h3>2.2 带有默认值的文本域</h3>
+            <p>
+                我们可以在<code>&lt;textarea&gt;</code>标签内部添加默认文本。
+            </p>
+            
+            <pre><code>&lt;label for="feedback"&gt;反馈：&lt;/label&gt;
+&lt;textarea id="feedback" name="feedback" rows="5" cols="50"&gt;请在此输入您的反馈意见...&lt;/textarea&gt;</code></pre>
+            
+            <div class="tip-box">
+                <span class="tip-title">💡 注意事项</span>
+                <p>与<code>&lt;input&gt;</code>标签不同，<code>&lt;textarea&gt;</code>标签必须有开始标签和结束标签，不能使用自闭合形式。
+                此外，<code>&lt;textarea&gt;</code>标签的默认值必须放在开始标签和结束标签之间，而不是使用<code>value</code>属性。</p>
+            </div>
+            
+            <div class="example-box">
+                <h3>文本域效果预览</h3>
+                <form>
+                    <label for="comments">评论：</label>
+                    <br>
+                    <textarea id="comments" name="comments" rows="5" cols="50" placeholder="请输入您的评论..."></textarea>
+                    
+                    <br><br>
+                    
+                    <label for="feedback">反馈：</label>
+                    <br>
+                    <textarea id="feedback" name="feedback" rows="5" cols="50">请在此输入您的反馈意见...
+感谢您的支持！</textarea>
+                </form>
+            </div>
+        </section>
+
+        <section id="fieldset-legend">
+            <h2>3. 表单分组</h2>
+            <p>
+                对于复杂的表单，我们可以使用<code>&lt;fieldset&gt;</code>和<code>&lt;legend&gt;</code>标签来对表单控件进行分组，使表单结构更加清晰。
+            </p>
+            
+            <h3>3.1 fieldset和legend标签</h3>
+            <p>
+                <code>&lt;fieldset&gt;</code>标签用于定义表单的一个分组，它会在浏览器中显示为一个带边框的区域。
+                <code>&lt;legend&gt;</code>标签用于定义<code>&lt;fieldset&gt;</code>的标题，它会显示在边框的上方。
+            </p>
+            
+            <pre><code>&lt;form&gt;
+    &lt;fieldset&gt;
+        &lt;legend&gt;个人信息&lt;/legend&gt;
+        
+        &lt;label for="username"&gt;用户名：&lt;/label&gt;
+        &lt;input type="text" id="username" name="username" placeholder="请输入用户名"&gt;
+        
+        &lt;br&gt;&lt;br&gt;
+        
+        &lt;label for="email"&gt;邮箱：&lt;/label&gt;
+        &lt;input type="email" id="email" name="email" placeholder="请输入邮箱"&gt;
+    &lt;/fieldset&gt;
+    
+    &lt;fieldset&gt;
+        &lt;legend&gt;密码信息&lt;/legend&gt;
+        
+        &lt;label for="password"&gt;密码：&lt;/label&gt;
+        &lt;input type="password" id="password" name="password" placeholder="请输入密码"&gt;
+        
+        &lt;br&gt;&lt;br&gt;
+        
+        &lt;label for="confirm-password"&gt;确认密码：&lt;/label&gt;
+        &lt;input type="password" id="confirm-password" name="confirm-password" placeholder="请确认密码"&gt;
+    &lt;/fieldset&gt;
+    
+    &lt;br&gt;
+    
+    &lt;input type="submit" value="注册"&gt;
+    &lt;input type="reset" value="重置"&gt;
+&lt;/form&gt;</code></pre>
+            
+            <div class="example-box">
+                <h3>表单分组效果预览</h3>
+                <form>
+                    <fieldset>
+                        <legend>个人信息</legend>
+                        
+                        <label for="username">用户名：</label>
+                        <input type="text" id="username" name="username" placeholder="请输入用户名">
+                        
+                        <br><br>
+                        
+                        <label for="email">邮箱：</label>
+                        <input type="email" id="email" name="email" placeholder="请输入邮箱">
+                    </fieldset>
+                    
+                    <fieldset>
+                        <legend>密码信息</legend>
+                        
+                        <label for="password">密码：</label>
+                        <input type="password" id="password" name="password" placeholder="请输入密码">
+                        
+                        <br><br>
+                        
+                        <label for="confirm-password">确认密码：</label>
+                        <input type="password" id="confirm-password" name="confirm-password" placeholder="请确认密码">
+                    </fieldset>
+                    
+                    <br>
+                    
+                    <input type="submit" value="注册">
+                    <input type="reset" value="重置">
+                </form>
+            </div>
+        </section>
+
+        <section id="form-validation">
+            <h2>4. 表单验证基础</h2>
+            <p>
+                表单验证是确保用户输入的数据符合要求的重要手段。HTML5提供了内置的表单验证功能，我们可以使用各种属性来指定验证规则。
+            </p>
+            
+            <h3>4.1 必填项验证</h3>
+            <p>
+                我们可以使用<code>required</code>属性来指定某个表单字段为必填项，当用户提交表单时，如果必填项为空，浏览器会显示错误提示。
+            </p>
+            
+            <pre><code>&lt;label for="username"&gt;用户名：&lt;/label&gt;
+&lt;input type="text" id="username" name="username" required placeholder="请输入用户名"&gt;</code></pre>
+            
+            <h3>4.2 长度验证</h3>
+            <p>
+                我们可以使用<code>minlength</code>和<code>maxlength</code>属性来限制文本输入的最小长度和最大长度。
+            </p>
+            
+            <pre><code>&lt;label for="password"&gt;密码：&lt;/label&gt;
+&lt;input type="password" id="password" name="password" minlength="6" maxlength="20" placeholder="请输入6-20位密码"&gt;</code></pre>
+            
+            <h3>4.3 数值范围验证</h3>
+            <p>
+                对于数字输入，我们可以使用<code>min</code>和<code>max</code>属性来限制数值的范围。
+            </p>
+            
+            <pre><code>&lt;label for="age"&gt;年龄：&lt;/label&gt;
+&lt;input type="number" id="age" name="age" min="0" max="120" placeholder="请输入年龄"&gt;</code></pre>
+            
+            <h3>4.4 正则表达式验证</h3>
+            <p>
+                我们可以使用<code>pattern</code>属性来指定一个正则表达式，用于验证用户输入的内容是否符合特定格式。
+            </p>
+            
+            <pre><code>&lt;label for="phone"&gt;手机号：&lt;/label&gt;
+&lt;input type="tel" id="phone" name="phone" pattern="^1[3-9]\d{9}$" placeholder="请输入11位手机号"&gt;</code></pre>
+            
+            <h3>4.5 自定义验证消息</h3>
+            <p>
+                我们可以使用<code>title</code>属性来为表单验证添加自定义的错误提示消息。
+            </p>
+            
+            <pre><code>&lt;label for="phone"&gt;手机号：&lt;/label&gt;
+&lt;input type="tel" id="phone" name="phone" pattern="^1[3-9]\d{9}$" title="请输入有效的11位手机号" placeholder="请输入11位手机号"&gt;</code></pre>
+            
+            <div class="example-box">
+                <h3>表单验证效果预览</h3>
+                <form>
+                    <label for="username">用户名：</label>
+                    <input type="text" id="username" name="username" required placeholder="请输入用户名">
+                    
+                    <br><br>
+                    
+                    <label for="password">密码：</label>
+                    <input type="password" id="password" name="password" minlength="6" maxlength="20" placeholder="请输入6-20位密码">
+                    
+                    <br><br>
+                    
+                    <label for="phone">手机号：</label>
+                    <input type="tel" id="phone" name="phone" pattern="^1[3-9]\d{9}$" title="请输入有效的11位手机号" placeholder="请输入11位手机号">
+                    
+                    <br><br>
+                    
+                    <input type="submit" value="提交">
+                    <input type="reset" value="重置">
+                </form>
+            </div>
+        </section>
+
+        <!-- 第二部分：实战练习 -->
+        <section id="exercise">
+            <h2>5. 课后练习</h2>
+            <p>
+                请完成以下练习，巩固本节课所学的知识：
+            </p>
+            
+            <ol>
+                <li>创建一个HTML页面，包含一个完整的注册表单</li>
+                <li>表单应包含以下字段，使用<code>&lt;fieldset&gt;</code>和<code>&lt;legend&gt;</code>进行分组：
+                    <ul>
+                        <li>个人信息：用户名、邮箱、手机号</li>
+                        <li>密码信息：密码、确认密码</li>
+                        <li>个人资料：性别、年龄、城市（下拉菜单）、爱好（多选下拉菜单）</li>
+                        <li>个人简介：使用文本域</li>
+                    </ul>
+                </li>
+                <li>为所有必填字段添加<code>required</code>属性</li>
+                <li>为密码字段添加长度验证（6-20位）</li>
+                <li>为手机号字段添加正则表达式验证</li>
+                <li>为表单添加提交按钮和重置按钮</li>
+            </ol>
+        </section>
+    </main>
+</body>
+</html>

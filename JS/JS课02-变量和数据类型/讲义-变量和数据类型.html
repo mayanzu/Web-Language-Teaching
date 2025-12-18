@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -6,57 +6,102 @@
     <title>第2课：变量和数据类型</title>
     <style>
         :root {
-            --color-text: #1D1D1F;
-            --color-text-light: #86868B;
-            --color-heading: #111;
-            --color-accent: #0066CC;
-            --color-accent-hover: #0055B3;
-            --color-bg: #F5F5F7;
+            --color-text: #2c3e50;
+            --color-text-light: #7f8c8d;
+            --color-heading: #1a1a1a;
+            --color-accent: #2c3e50;
+            --color-accent-hover: #1a252f;
+            --color-bg: #ffffff;
             --color-white: #FFFFFF;
-            --border-color: #D2D2D7;
+            --border-color: #e1e4e8;
             --code-bg: #f6f8fa;
+            --code-text: #24292e;
+            --code-comment: #6a737d;
+            --code-string: #032f62;
+            --code-keyword: #d73a49;
+            --code-function: #6f42c1;
+            --code-number: #005cc5;
+            --code-operator: #d73a49;
             --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            --font-mono: 'SF Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
-            --shadow-card: 0 8px 24px rgba(0,0,0,0.06);
+            --font-mono: 'Cascadia Code', 'SF Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
+            --shadow-card: 0 2px 8px rgba(0,0,0,0.04);
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
         body { font-family: var(--font-stack); background: var(--color-bg); color: var(--color-text); display: flex; line-height: 1.7; font-size: 16px; }
-        .sidebar { width: 260px; height: 100vh; position: fixed; background: rgba(255,255,255,0.95); border-right: 1px solid var(--border-color); padding: 30px 18px; overflow-y: auto; backdrop-filter: blur(12px); z-index: 10; }
-        .sidebar h3 { font-size: 13px; color: var(--color-text-light); text-transform: uppercase; margin: 18px 0 8px 12px; letter-spacing: 0.5px; font-weight: 600; }
-        .sidebar-nav { display: flex; flex-direction: column; gap: 3px; }
-        .sidebar a { display: block; padding: 9px 12px; border-radius: 8px; color: var(--color-text); text-decoration: none; font-size: 15px; transition: all 0.2s; border-left: 3px solid transparent; }
-        .sidebar a:hover { background: #E8E8ED; }
-        .sidebar a.active { background: #E1F0FF; color: var(--color-accent); border-left-color: var(--color-accent); font-weight: 600; }
+        .sidebar { width: 260px; height: 100vh; position: fixed; background: #fafbfc; border-right: 1px solid var(--border-color); padding: 30px 18px; overflow-y: auto; z-index: 10; }
+        .sidebar h3 { font-size: 11px; color: var(--color-text-light); text-transform: uppercase; margin: 18px 0 8px 12px; letter-spacing: 1px; font-weight: 600; }
+        .sidebar-nav { display: flex; flex-direction: column; gap: 2px; }
+        .sidebar a { display: block; padding: 8px 12px; border-radius: 4px; color: var(--color-text); text-decoration: none; font-size: 14px; transition: all 0.15s; border-left: 2px solid transparent; }
+        .sidebar a:hover { background: #f3f4f6; }
+        .sidebar a.active { background: #f3f4f6; color: var(--color-heading); border-left-color: var(--color-accent); font-weight: 500; }
         .sidebar a.sub-link { padding-left: 28px; font-size: 14px; color: #555; }
         .content { margin-left: 260px; padding: 60px clamp(32px, 5vw, 90px); width: 100%; max-width: min(1600px, calc(100vw - 260px)); }
         section { margin-bottom: 70px; scroll-margin-top: 40px; }
-        h1 { font-size: 42px; font-weight: 700; letter-spacing: -0.5px; }
-        h2 { font-size: 30px; margin: 50px 0 24px; padding-bottom: 15px; border-bottom: 1px solid var(--border-color); color: var(--color-heading); }
-        h3 { font-size: 22px; margin: 30px 0 18px; color: var(--color-heading); }
-        p { margin-bottom: 16px; color: #333; }
-        code { font-family: var(--font-mono); background: rgba(27,31,35,0.05); padding: 3px 6px; border-radius: 4px; font-size: 0.92em; color: #d63384; }
-        pre > code { background: none; padding: 0; color: inherit; display: block; }
-        .intro { font-size: 19px; color: var(--color-text-light); margin: 15px 0 30px; font-weight: 300; max-width: 780px; }
-        .pill-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
-        .pill { padding: 6px 14px; border-radius: 999px; font-size: 13px; background: #E8F1FF; color: var(--color-accent); }
-        .tip-box, .note-box, .warning-box { border-radius: 10px; padding: 18px 22px; margin: 20px 0; border-left: 4px solid; background: #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.03); }
-        .tip-box { border-color: var(--color-accent); background: #eef6ff; }
-        .note-box { border-color: #34A853; background: #edf9f0; }
-        .warning-box { border-color: #FF9800; background: #fff7e6; }
-        .tip-title { font-weight: 700; color: var(--color-accent); margin-bottom: 6px; display: block; }
-        .prop-table { width: 100%; border-collapse: collapse; background: #fff; margin: 20px 0; border: 1px solid var(--border-color); border-radius: 10px; overflow: hidden; box-shadow: 0 3px 8px rgba(0,0,0,0.03); }
-        .prop-table th, .prop-table td { padding: 14px 16px; text-align: left; border-bottom: 1px solid #eee; }
-        .prop-table th { background: #fbfbfd; font-weight: 600; color: #555; }
+        h1 { font-size: 38px; font-weight: 700; letter-spacing: -0.5px; color: var(--color-heading); }
+        h2 { font-size: 28px; margin: 50px 0 24px; padding-bottom: 12px; border-bottom: 2px solid var(--color-heading); color: var(--color-heading); font-weight: 600; }
+        h3 { font-size: 20px; margin: 30px 0 18px; color: var(--color-heading); font-weight: 600; }
+        p { margin-bottom: 16px; color: var(--color-text); line-height: 1.8; }
+        code { font-family: var(--font-mono); background: #f6f8fa; padding: 3px 7px; border-radius: 3px; font-size: 0.9em; color: #24292e; border: 1px solid #e1e4e8; }
+        pre { 
+            background: var(--code-bg); 
+            padding: 20px 24px; 
+            border-radius: 8px; 
+            overflow-x: auto; 
+            font-family: var(--font-mono); 
+            font-size: 14px;
+            line-height: 1.6;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            border: 1px solid #e1e4e8;
+            position: relative;
+            margin: 20px 0;
+        }
+        pre > code { 
+            background: none; 
+            padding: 0; 
+            color: var(--code-text); 
+            display: block; 
+            font-size: inherit;
+            border: none;
+        }
+        /* 代码高亮 */
+        pre code .comment { color: var(--code-comment); font-style: italic; opacity: 0.9; }
+        pre code .string { color: var(--code-string); }
+        pre code .keyword { color: var(--code-keyword); }
+        pre code .function { color: var(--code-function); }
+        pre code .number { color: var(--code-number); }
+        pre code .operator { color: var(--code-operator); }
+        
+        /* 代码块标签 */
+        pre::before {
+            content: 'js';
+            position: absolute;
+            top: 10px;
+            right: 14px;
+            font-size: 10px;
+            color: rgba(0,0,0,0.3);
+            font-weight: 600;
+        }
+        .intro { font-size: 18px; color: var(--color-text-light); margin: 15px 0 30px; font-weight: 400; max-width: 780px; line-height: 1.7; }
+        .pill-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+        .pill { padding: 6px 12px; border-radius: 4px; font-size: 12px; background: #f6f8fa; color: var(--color-text); border: 1px solid var(--border-color); font-weight: 500; }
+        .tip-box, .note-box, .warning-box { border-radius: 6px; padding: 18px 22px; margin: 24px 0; border-left: 3px solid; background: #fafbfc; border: 1px solid var(--border-color); }
+        .tip-box { border-left-color: var(--color-heading); }
+        .note-box { border-left-color: var(--color-heading); }
+        .warning-box { border-left-color: var(--color-heading); }
+        .tip-title { font-weight: 600; color: var(--color-heading); margin-bottom: 8px; display: block; font-size: 15px; }
+        .prop-table { width: 100%; border-collapse: collapse; background: #fff; margin: 24px 0; border: 1px solid var(--border-color); border-radius: 6px; overflow: hidden; }
+        .prop-table th, .prop-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border-color); }
+        .prop-table th { background: #fafbfc; font-weight: 600; color: var(--color-heading); font-size: 14px; }
         .prop-table tr:last-child td { border-bottom: none; }
+        .prop-table td { color: var(--color-text); }
         .checklist { list-style: none; padding-left: 0; }
         .checklist li { padding-left: 28px; position: relative; margin-bottom: 10px; }
-        .checklist li::before { content: "✔"; position: absolute; left: 0; top: 0; color: var(--color-accent); font-size: 14px; }
-        .lab-card { background: var(--color-white); border: 1px solid var(--border-color); border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-card); margin: 35px 0 40px; }
-        .lab-header { background: #fbfbfd; padding: 14px 22px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; font-size: 13px; font-weight: 600; color: #666; }
-        .status-badge { font-size: 11px; padding: 4px 10px; border-radius: 999px; }
-        .status-badge.beginner { background: #E8F5E9; color: #2E7D32; }
-        .status-badge.advanced { background: #FFF3E0; color: #BF360C; }
+        .lab-card { background: var(--color-white); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-card); margin: 32px 0; }
+        .lab-header { background: #fafbfc; padding: 14px 22px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; font-size: 13px; font-weight: 600; color: var(--color-heading); }
+        .status-badge { font-size: 11px; padding: 4px 10px; border-radius: 3px; border: 1px solid var(--border-color); }
+        .status-badge.beginner { background: #f6f8fa; color: var(--color-text); }
+        .status-badge.advanced { background: #f6f8fa; color: var(--color-text); }
         .lab-body { padding: 20px 22px 24px; background: #fff; }
         .lab-steps { margin: 0 0 10px 18px; }
         .lab-steps li { margin-bottom: 6px; }
@@ -64,16 +109,20 @@
         /* 双栏交互实验室 */
         .lab-body.split { display: grid; grid-template-columns: 1fr 1.2fr; min-height: 320px; padding: 0; }
         .panel { position: relative; display: flex; flex-direction: column; overflow: hidden; }
-        .panel-label { position: absolute; top: 0; right: 0; background: #F0F0F0; padding: 5px 12px; font-size: 11px; color: #777; border-bottom-left-radius: 8px; }
-        .html-viewer { background: #FAFAFA; border-right: 1px solid var(--border-color); padding: 20px; font-family: var(--font-mono); white-space: pre-wrap; font-size: 13px; color: #555; overflow-y: auto; }
-        .code-editor { background: #FFFFFF; padding: 20px; font-family: var(--font-mono); font-size: 13px; color: #1D1D1F; outline: none; overflow-y: auto; white-space: pre-wrap; line-height: 1.6; }
+        .panel-label { position: absolute; top: 0; right: 0; background: #F0F0F0; padding: 5px 12px; font-size: 11px; color: #777; border-bottom-left-radius: 8px; z-index: 1; }
+        .html-viewer { background: #FAFAFA; border-right: 1px solid var(--border-color); padding: 20px; overflow-y: auto; display: flex; align-items: center; justify-content: center; }
+        .code-editor { background: var(--code-bg); padding: 20px; font-family: var(--font-mono); font-size: 14px; line-height: 1.6; color: var(--code-text); outline: none; overflow-y: auto; white-space: pre-wrap; }
         .action-bar { padding: 14px 20px; background: #fff; display: flex; align-items: center; gap: 15px; border-top: 1px solid var(--border-color); }
-        .btn { padding: 8px 18px; border-radius: 8px; border: 1px solid transparent; font-size: 14px; font-weight: 500; cursor: pointer; transition: all 0.2s; }
-        .btn-run { background: var(--color-accent); color: #fff; }
-        .btn-run:hover { background: var(--color-accent-hover); box-shadow: 0 2px 6px rgba(0,102,204,0.3); }
-        .btn-reset { background: #fff; color: #555; border-color: #d1d1d6; }
-        .btn-reset:hover { color: #111; border-color: #999; }
+        .btn { padding: 8px 16px; border-radius: 4px; border: 1px solid var(--border-color); font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.15s; background: #fff; }
+        .btn-run { background: var(--color-heading); color: #fff; border-color: var(--color-heading); }
+        .btn-run:hover { background: var(--color-accent-hover); }
+        .btn-reset { background: #fff; color: var(--color-text); }
+        .btn-reset:hover { background: #f6f8fa; }
         .preview-box { background: #fff; padding: 20px; min-height: 140px; border-top: 1px solid var(--border-color); font-family: var(--font-mono); font-size: 13px; }
+        .profile-card { background: white; padding: 24px; border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 2px 8px rgba(0,0,0,0.08); min-width: 280px; }
+        .profile-card h3 { margin-bottom: 16px; color: var(--color-heading); font-size: 18px; border-bottom: 2px solid var(--color-heading); padding-bottom: 8px; }
+        .profile-card p { margin-bottom: 12px; color: var(--color-text); font-size: 14px; }
+        .profile-card span { font-weight: 600; color: var(--color-heading); }
 
         @media (max-width: 900px) { body { flex-direction: column; } .sidebar { position: static; width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--border-color); } .content { margin-left: 0; padding: 30px 20px; } .lab-body.split { grid-template-columns: 1fr; min-height: auto; } .html-viewer { min-height: 120px; } }
     </style>
@@ -88,17 +137,17 @@
         <a href="#why-variable">一、为什么需要变量</a>
         <a href="#what-is-variable">二、变量是什么</a>
 
-        <h3>声明与命名</h3>
-        <a href="#declare">三、如何声明变量</a>
-        <a href="#let-const-var" class="sub-link">let, const, var 的区别</a>
-        <a href="#naming" class="sub-link">变量命名规则</a>
-
         <h3>数据类型</h3>
-        <a href="#types-overview">四、数据类型概览</a>
+        <a href="#types-overview">三、数据类型概览</a>
         <a href="#type-string" class="sub-link">字符串 (String)</a>
         <a href="#type-number" class="sub-link">数字 (Number)</a>
         <a href="#type-boolean" class="sub-link">布尔 (Boolean)</a>
         <a href="#type-null-undefined" class="sub-link">Null 和 Undefined</a>
+
+        <h3>声明与命名</h3>
+        <a href="#declare">四、如何声明变量</a>
+        <a href="#let-const-var" class="sub-link">let, const, var 的区别</a>
+        <a href="#naming" class="sub-link">变量命名规则</a>
         
         <h3>类型操作</h3>
         <a href="#typeof">五、使用 typeof 检查类型</a>
@@ -164,7 +213,7 @@
             </div>
             <div class="lab-body">
                 <p style="margin-bottom: 12px;">打开浏览器控制台（按 F12），复制下面的代码并运行，看看变量如何存储和更新游戏数据：</p>
-<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px;"><code>// 创建游戏变量
+<pre><code>// 创建游戏变量
 let playerName = '勇者小明';
 let score = 0;
 let lives = 3;
@@ -236,7 +285,7 @@ console.log(`剩余生命: ${lives}`);
             </div>
             <div class="lab-body">
                 <p style="margin-bottom: 12px;">在控制台运行以下代码，观察变量从声明到使用的完整过程：</p>
-<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px;"><code>// 1. 声明变量（只是告诉 JavaScript 这个名字要用了）
+<pre><code>// 1. 声明变量（只是告诉 JavaScript 这个名字要用了）
 let myScore;
 console.log('刚声明时的值:', myScore); // undefined
 
@@ -266,10 +315,17 @@ console.log('总分:', totalScore); // 1249
 </code></pre>
             </div>
         </div>
+        
+        <div class="tip-box" style="margin-top: 30px;">
+            <span class="tip-title">💡 接下来学什么?</span>
+            <p>现在你已经知道了"变量是什么"和"如何使用变量"。但是你可能会疑惑：变量里到底能存储哪些类型的数据？<code>100</code>、<code>'小明'</code>、<code>true</code> 这些值有什么区别？</p>
+            <p><strong>在学习如何声明变量之前，让我们先了解 JavaScript 的数据类型。</strong>这样你就能更好地理解变量里能装什么"东西"。</p>
+        </div>
     </section>
 
     <section id="declare">
-        <h2>三、如何声明变量？</h2>
+        <h2>四、如何声明变量？</h2>
+        <p>现在你已经了解了 JavaScript 的基础数据类型，知道了变量里可以存储字符串、数字、布尔值等不同类型的数据。接下来让我们学习<strong>如何创建和使用这些变量</strong>。</p>
         <p>现代 JavaScript 中，我们主要使用 <code>let</code> 和 <code>const</code> 来声明变量。<code>var</code> 是一个较旧的关键字，虽然仍能使用，但通常不推荐。</p>
         
         <h3 id="let-const-var">let, const, 和 var 的区别</h3>
@@ -303,7 +359,7 @@ console.log('总分:', totalScore); // 1249
             </tbody>
         </table>
 
-<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px;"><code>// 使用 let 声明一个可变的变量
+<pre><code>// 使用 let 声明一个可变的变量
 let score = 100;
 score = 150; // ✅ 合法，可以重新赋值
 
@@ -323,7 +379,7 @@ user.name = 'Bob'; // ✅ 合法！可以修改对象内部的属性
                 <li><strong>变量提升 (Hoisting):</strong> <code>var</code> 声明的变量会被“提升”到其作用域的顶部，你可以在声明前使用它（值为 `undefined`），这不符合直觉。</li>
                 <li><strong>没有块级作用域:</strong> <code>var</code> 只认函数作用域，在 <code>if</code> 或 <code>for</code> 循环中声明的变量会“泄露”到外部。</li>
             </ul>
-<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px;"><code>// var 的问题示例
+<pre><code>// var 的问题示例
 if (true) {
   var color = 'blue';
 }
@@ -345,7 +401,7 @@ if (true) {
             </div>
             <div class="lab-body">
                 <p style="margin-bottom: 12px;">复制以下代码到控制台，理解 let 和 const 的实际应用场景：</p>
-<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px;"><code>// === 使用 let（值会改变的情况） ===
+<pre><code>// === 使用 let（值会改变的情况） ===
 let temperature = 25;
 console.log('现在温度:', temperature);
 
@@ -430,7 +486,7 @@ console.log('更新后的爱好:', hobbies);
             </div>
             <div class="lab-body">
                 <p style="margin-bottom: 12px;">在控制台运行下面两段代码，感受好的命名如何提升代码可读性：</p>
-<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px;"><code>// ❌ 差的命名 - 完全看不懂在做什么
+<pre><code>// ❌ 差的命名 - 完全看不懂在做什么
 let a = 18;
 let b = 180;
 let c = 70;
@@ -482,7 +538,7 @@ console.log('邮箱已验证:', isEmailVerified);
     </section>
 
     <section id="types-overview">
-        <h2>四、JavaScript 数据类型概览</h2>
+        <h2>三、JavaScript 数据类型概览</h2>
         <p>JavaScript 是一种"动态类型"语言，意味着你不需要在声明变量时指定它的类型，变量的类型由赋给它的值决定。</p>
         <p>数据类型主要分为两大类：<strong>基础数据类型 (Primitive Types)</strong> 和 <strong>引用数据类型 (Reference Types)</strong>。</p>
         
@@ -571,7 +627,7 @@ console.log('邮箱已验证:', isEmailVerified);
             </tr>
             </tbody>
         </table>
-<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px;"><code>const userName = 'Bob';
+<pre><code>const userName = 'Bob';
 const userAge = 25;
 
 // 传统拼接方式（繁琐且易错）
@@ -592,7 +648,7 @@ const htmlContent = `
 
         <div class="tip-box">
             <span class="tip-title">💡 字符串常用操作</span>
-<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px; margin-top: 10px;"><code>const str = 'Hello World';
+<pre style="margin-top: 10px;"><code>const str = 'Hello World';
 
 // 获取字符串长度
 console.log(str.length); // 11
@@ -623,7 +679,7 @@ console.log(str2.trim()); // "trim me"
 
         <h3 id="type-number">数字 (Number)</h3>
         <p>JavaScript 中只有一种数字类型，不区分整数和浮点数（小数）。</p>
-<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px;"><code>let integer = 100;
+<pre><code>let integer = 100;
 let float = 3.14;
 let negative = -50;
 let scientific = 2.5e6; // 2500000 (科学计数法)
@@ -634,7 +690,7 @@ let scientific = 2.5e6; // 2500000 (科学计数法)
             <li><code>-Infinity</code>: 表示负无穷大，例如 <code>-1 / 0</code>。</li>
             <li><code>NaN</code> (Not-a-Number): 表示"不是一个数字"。当一个数学运算无法返回有效数字时，就会得到 <code>NaN</code>。</li>
         </ul>
-<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px;"><code>console.log('abc' / 2); // NaN
+<pre><code>console.log('abc' / 2); // NaN
 
 // Number()函数：将其他类型的值转换为数字类型
 // 如果无法转换，返回NaN
@@ -652,7 +708,7 @@ console.log(isNaN(123));       // false
 
         <div class="tip-box">
             <span class="tip-title">💡 数字常用操作与方法</span>
-<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px; margin-top: 10px;"><code>// 数学运算
+<pre style="margin-top: 10px;"><code>// 数学运算
 console.log(10 + 5);  // 15 (加法)
 console.log(10 - 5);  // 5  (减法)
 console.log(10 * 5);  // 50 (乘法)
@@ -687,7 +743,7 @@ console.log(Number.isInteger(10.5)); // false
         <div class="warning-box">
             <strong>⚠️ 浮点数精度问题</strong>
             <p>JavaScript 中的小数运算可能存在精度问题，这是由于计算机使用二进制表示数字导致的：</p>
-<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px; margin-top: 10px;"><code>console.log(0.1 + 0.2);        // 0.30000000000000004 (而不是 0.3)
+<pre style="margin-top: 10px;"><code>console.log(0.1 + 0.2);        // 0.30000000000000004 (而不是 0.3)
 console.log(0.1 + 0.2 === 0.3); // false
 
 // 解决方案：使用 toFixed() 或乘以倍数再除回去
@@ -698,7 +754,7 @@ console.log((0.1 * 10 + 0.2 * 10) / 10); // 0.3
 
         <h3 id="type-boolean">布尔 (Boolean)</h3>
         <p>布尔值只有两个：<code>true</code> (真) 和 <code>false</code> (假)。它通常是条件判断和逻辑运算的结果。</p>
-<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px;"><code>let isLoggedIn = true;
+<pre><code>let isLoggedIn = true;
 let hasPermission = false;
 
 let userAge = 20;
@@ -723,7 +779,7 @@ console.log('a' !== 'b'); // true
                 <li><code>NaN</code> - 非数字</li>
             </ul>
             <p style="margin-top: 12px;">除此之外的所有值都是真值（truthy），包括：<code>"0"</code>（字符串）、<code>"false"</code>（字符串）、<code>[]</code>（空数组）、<code>{}</code>（空对象）等。</p>
-<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px; margin-top: 10px;"><code>// 使用 Boolean() 函数测试真假值
+<pre style="margin-top: 10px;"><code>// 使用 Boolean() 函数测试真假值
 console.log(Boolean(0));        // false
 console.log(Boolean(''));       // false
 console.log(Boolean(null));     // false
@@ -767,7 +823,7 @@ console.log(Boolean('0'));      // true (字符串 "0" 是真值！)
             <span class="tip-title">💡 简单区分</span>
             <p><code>undefined</code> 是 JavaScript 自动给的，表示"你忘了给值"或"这个东西不存在"。<br>
             <code>null</code> 是我们程序员手动给的，表示"我确定这里现在什么都没有"。</p>
-<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px; margin-top: 10px;"><code>// undefined 的常见情况
+<pre style="margin-top: 10px;"><code>// undefined 的常见情况
 let a;
 console.log(a); // undefined (声明但未赋值)
 
@@ -794,12 +850,18 @@ console.log(typeof null);        // "object" (历史遗留bug)
 console.log(typeof undefined);   // "undefined"
 </code></pre>
         </div>
+        
+        <div class="note-box" style="margin-top: 30px;">
+            <strong>🎯 现在你已经了解了数据类型！</strong>
+            <p>你已经知道了 JavaScript 中有哪些基础数据类型（String, Number, Boolean, Null, Undefined），以及它们各自的特点和用法。</p>
+            <p><strong>接下来，让我们学习如何用 <code>let</code> 和 <code>const</code> 来声明变量，</strong>把这些不同类型的数据存储起来并使用它们。</p>
+        </div>
     </section>
 
-    <section id="typeof">
+    <section id="declare">
         <h2>五、使用 typeof 检查类型</h2>
         <p><code>typeof</code> 是一个一元运算符，可以返回一个表示操作数类型的字符串。在调试时非常有用。</p>
-<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px;"><code>console.log(typeof 18);         // "number"
+<pre><code>console.log(typeof 18);         // "number"
 console.log(typeof 'hello');    // "string"
 console.log(typeof true);       // "boolean"
 console.log(typeof undefined);  // "undefined"
@@ -856,7 +918,7 @@ console.log(typeof null);       // "object" (这是一个著名的历史遗留�
 
         <h3 id="implicit-conversion">隐式类型转换</h3>
         <p>当运算符与不同类型的值一起使用时，JavaScript 会自动进行类型转换。这虽然方便，但也可能导致意外结果。</p>
-<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px;"><code>// + 运算符的特殊性
+<pre><code>// + 运算符的特殊性
 console.log('5' + 3); // "53" (字符串拼接优先)
 console.log(5 + '3'); // "53"
 
@@ -903,21 +965,144 @@ console.log(5 === '5'); // false (推荐使用)
 
     <section id="lab-profile">
         <h2>八、实验 02：用变量和类型描述一个人</h2>
-        <p>这次我们直接在本讲义页面里做一个小实验：通过修改右侧的变量值，来更新左侧的「个人信息卡片」。</p>
+        <p>创建一个 HTML 文件，展示个人信息卡片，通过 JavaScript 变量动态填充内容。</p>
+        
         <div class="lab-card">
             <div class="lab-header">
                 <span>实验 02：个人信息小卡片</span>
                 <span class="status-badge beginner">Hands-on</span>
             </div>
+            <div class="lab-body">
+                <p style="margin-bottom: 12px;"><strong>💡 目标：</strong>创建一个 HTML 页面，使用 JavaScript 变量存储个人信息，并在页面上动态显示。</p>
+                
+                <h3 style="color: var(--color-heading); margin: 20px 0 12px; font-size: 16px;">📝 完整代码</h3>
+                <p style="margin-bottom: 8px; color: #666;">创建一个新的 HTML 文件（如 <code>profile.html</code>），复制以下代码：</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;个人信息卡片&lt;/title&gt;
+    &lt;style&gt;
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f7;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        h2 {
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #1a1a1a;
+            padding-bottom: 10px;
+        }
+        .info-row {
+            padding: 12px 0;
+            border-bottom: 1px solid #e1e4e8;
+        }
+        .info-row:last-child {
+            border-bottom: none;
+        }
+        .label {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        .value {
+            color: #1a1a1a;
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="card"&gt;
+        &lt;h2&gt;个人信息&lt;/h2&gt;
+        &lt;div class="info-row"&gt;
+            &lt;div class="label"&gt;姓名&lt;/div&gt;
+            &lt;div class="value" id="name"&gt;--&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="info-row"&gt;
+            &lt;div class="label"&gt;年龄&lt;/div&gt;
+            &lt;div class="value" id="age"&gt;--&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="info-row"&gt;
+            &lt;div class="label"&gt;是否是学生&lt;/div&gt;
+            &lt;div class="value" id="student"&gt;--&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;script&gt;
+        // 使用 const 声明三种不同类型的变量
+        const userName = '李明';     // 字符串类型
+        const userAge = 18;          // 数字类型
+        const isStudent = true;      // 布尔类型
+
+        // 获取页面元素
+        const nameEl = document.getElementById('name');
+        const ageEl = document.getElementById('age');
+        const studentEl = document.getElementById('student');
+
+        // 将变量的值显示到页面上
+        nameEl.textContent = userName;
+        ageEl.textContent = userAge + ' 岁';
+        studentEl.textContent = isStudent ? '是' : '否';
+
+        // 在控制台输出变量类型
+        console.log('userName 的类型:', typeof userName);
+        console.log('userAge 的类型:', typeof userAge);
+        console.log('isStudent 的类型:', typeof isStudent);
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+                <h3 style="color: var(--color-heading); margin: 25px 0 12px; font-size: 16px;">🎯 练习任务</h3>
+                <ol style="margin-left: 20px; line-height: 1.8;">
+                    <li>保存文件并在浏览器中打开，查看个人信息卡片</li>
+                    <li>修改 <code>userName</code>、<code>userAge</code>、<code>isStudent</code> 的值，刷新页面查看变化</li>
+                    <li>按 F12 打开控制台，查看变量类型的输出</li>
+                    <li><strong>进阶：</strong>添加更多字段（如：城市、爱好、成绩等），使用不同的数据类型</li>
+                </ol>
+
+                <div class="tip-box" style="margin-top: 20px;">
+                    <span class="tip-title">💡 关键知识点</span>
+                    <ul class="checklist">
+                        <li>使用 <code>const</code> 声明不会改变的变量</li>
+                        <li>三种基础类型：String（字符串）、Number（数字）、Boolean（布尔）</li>
+                        <li>使用 <code>typeof</code> 检查变量类型</li>
+                        <li>使用 <code>textContent</code> 更新页面元素内容</li>
+                        <li>三元运算符 <code>? :</code> 用于条件判断</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 页面内交互演示 -->
+        <div class="lab-card" style="margin-top: 30px;">
+            <div class="lab-header">
+                <span>💻 在线演示</span>
+                <span class="status-badge beginner">Interactive</span>
+            </div>
             <div class="lab-body split">
                 <div class="panel html-viewer">
-<div class="panel-label">HTML 预览</div>
-&lt;div class="profile-card"&gt;
-  &lt;h3&gt;个人信息&lt;/h3&gt;
-  &lt;p&gt;姓名：&lt;span id="profile-name"&gt;（未设置）&lt;/span&gt;&lt;/p&gt;
-  &lt;p&gt;年龄：&lt;span id="profile-age"&gt;--&lt;/span&gt;&lt;/p&gt;
-  &lt;p&gt;是否是学生：&lt;span id="profile-student"&gt;--&lt;/span&gt;&lt;/p&gt;
-&lt;/div&gt;
+                    <div class="panel-label">预览区域</div>
+                    <div class="profile-card">
+                        <h3>个人信息</h3>
+                        <p>姓名：<span id="profile-name">（未设置）</span></p>
+                        <p>年龄：<span id="profile-age">--</span></p>
+                        <p>是否是学生：<span id="profile-student">--</span></p>
+                    </div>
                 </div>
                 <div class="panel code-editor" id="code-profile" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
@@ -1016,7 +1201,91 @@ if (studentEl) studentEl.textContent = isStudent ? '是' : '否';`;
 
     document.addEventListener('DOMContentLoaded', function () {
         resetProfileLab();
+        highlightAllCode();
     });
+
+    // 简约风格的语法高亮
+    function highlightAllCode() {
+        document.querySelectorAll('pre > code').forEach(codeBlock => {
+            if (codeBlock.classList.contains('highlighted')) return;
+            
+            let code = codeBlock.textContent;
+            
+            // JavaScript 关键字
+            const keywords = /\b(const|let|var|function|return|if|else|for|while|do|switch|case|break|continue|try|catch|finally|throw|new|class|extends|import|export|default|async|await|yield|typeof|instanceof|in|of|delete|void|null|undefined|true|false|this|super)\b/g;
+            
+            // 字符串 (单引号、双引号、反引号)
+            const strings = /(['"`])(?:(?=(\\?))\2.)*?\1/g;
+            
+            // 注释 (单行和多行)
+            const comments = /(\/\/.*$|\/\*[\s\S]*?\*\/)/gm;
+            
+            // 数字
+            const numbers = /\b(\d+\.?\d*|\.\d+)(e[+-]?\d+)?\b/gi;
+            
+            // 函数调用
+            const functions = /\b([a-zA-Z_$][a-zA-Z0-9_$]*)\s*(?=\()/g;
+            
+            // 属性访问
+            const properties = /\.([a-zA-Z_$][a-zA-Z0-9_$]*)/g;
+            
+            // 临时标记以保护已处理的部分
+            const tokens = [];
+            let tokenIndex = 0;
+            
+            // 1. 先处理注释（最高优先级）
+            code = code.replace(comments, match => {
+                const token = `__TOKEN_${tokenIndex++}__`;
+                tokens.push(`<span class="comment">${escapeHtml(match)}</span>`);
+                return token;
+            });
+            
+            // 2. 处理字符串
+            code = code.replace(strings, match => {
+                const token = `__TOKEN_${tokenIndex++}__`;
+                tokens.push(`<span class="string">${escapeHtml(match)}</span>`);
+                return token;
+            });
+            
+            // 3. 处理数字
+            code = code.replace(numbers, match => {
+                const token = `__TOKEN_${tokenIndex++}__`;
+                tokens.push(`<span class="number">${match}</span>`);
+                return token;
+            });
+            
+            // 4. 处理函数调用
+            code = code.replace(functions, match => {
+                const token = `__TOKEN_${tokenIndex++}__`;
+                tokens.push(`<span class="function">${match}</span>`);
+                return token;
+            });
+            
+            // 5. 处理关键字
+            code = code.replace(keywords, match => {
+                const token = `__TOKEN_${tokenIndex++}__`;
+                tokens.push(`<span class="keyword">${match}</span>`);
+                return token;
+            });
+            
+            // 6. HTML转义剩余内容
+            code = escapeHtml(code);
+            
+            // 7. 还原所有token
+            tokens.forEach((replacement, index) => {
+                code = code.replace(`__TOKEN_${index}__`, replacement);
+            });
+            
+            codeBlock.innerHTML = code;
+            codeBlock.classList.add('highlighted');
+        });
+    }
+    
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
 </script>
 </body>
 </html>

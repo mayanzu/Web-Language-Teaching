@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第2课：HTML排版与文本格式化</title>
+    <style>
+        /* ============================================
+           基础页面样式 (Apple Developer 风格)
+           ============================================ */
+        :root {
+            --color-text: #1D1D1F;
+            --color-text-light: #86868B;
+            --color-heading: #111;
+            --color-accent: #0066CC;
+            --color-bg: #F5F5F7;
+            --color-white: #FFFFFF;
+            --border-color: #D2D2D7;
+            --code-bg: #f6f8fa;
+            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-mono: 'SF Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-stack);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.7;
+            font-size: 16px;
+            display: flex;
+        }
+
+        /* === 侧边栏 === */
+        .sidebar {
+            width: 260px;
+            height: 100vh;
+            position: fixed;
+            background: rgba(255,255,255,0.95);
+            border-right: 1px solid var(--border-color);
+            padding: 30px 18px;
+            overflow-y: auto;
+            backdrop-filter: blur(12px);
+            z-index: 10;
+        }
+
+        .sidebar h3 {
+            font-size: 13px;
+            color: var(--color-text-light);
+            text-transform: uppercase;
+            margin: 18px 0 8px 12px;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .sidebar-nav a {
+            display: block;
+            padding: 8px 12px;
+            color: var(--color-text);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-nav a:hover {
+            background: var(--color-accent);
+            color: white;
+        }
+
+        .sidebar-nav a.active {
+            background: var(--color-accent);
+            color: white;
+            font-weight: 500;
+        }
+
+        .sidebar-nav a.sub-link {
+            padding-left: 32px;
+            font-size: 13px;
+            color: var(--color-text-light);
+        }
+
+        /* === 主内容区 === */
+        .content {
+            margin-left: 260px;
+            padding: 60px 80px;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        /* === 标题样式 === */
+        h1 {
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--color-heading);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--color-heading);
+            margin: 50px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h3 {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--color-heading);
+            margin: 30px 0 15px;
+        }
+
+        /* === 段落和文本 === */
+        p {
+            margin-bottom: 18px;
+            font-size: 16px;
+            color: var(--color-text);
+        }
+
+        strong {
+            font-weight: 600;
+            color: var(--color-heading);
+        }
+
+        em {
+            font-style: italic;
+        }
+
+        /* === 代码样式 === */
+        code {
+            font-family: var(--font-mono);
+            background: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #E53E3E;
+        }
+
+        pre {
+            background: var(--code-bg);
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            line-height: 1.5;
+            border: 1px solid var(--border-color);
+        }
+
+        pre code {
+            background: transparent;
+            padding: 0;
+            color: var(--color-text);
+        }
+
+        /* === 表格样式 === */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: var(--color-white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background: var(--color-bg);
+            font-weight: 600;
+            color: var(--color-heading);
+            font-size: 14px;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* === 列表样式 === */
+        ul, ol {
+            margin: 20px 0 20px 24px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* === 提示框样式 === */
+        .tip-box {
+            background: linear-gradient(135deg, #E6F4FF 0%, #F0F7FF 100%);
+            border-left: 4px solid var(--color-accent);
+            padding: 16px 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .tip-title {
+            font-weight: 600;
+            color: var(--color-accent);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* === 按钮样式 === */
+        button {
+            background: var(--color-accent);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        button:hover {
+            background: #004499;
+        }
+
+        /* === 示例框样式 === */
+        .example-box {
+            background: var(--color-white);
+            padding: 24px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            margin: 20px 0;
+        }
+
+        /* === 核心组件：双栏交互实验室 === */
+        .lab-card {
+            background: var(--color-white);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin: 30px 0 50px 0;
+        }
+
+        .lab-header {
+            background: #FAFAFA;
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--color-text-light);
+        }
+
+        .lab-body {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            height: 400px;
+        }
+
+        .panel {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .panel-label {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #EEEEEE;
+            padding: 4px 10px;
+            font-size: 11px;
+            color: #666;
+            border-bottom-left-radius: 6px;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .html-editor, .html-viewer {
+            background: #F9F9FA;
+            border-right: 1px solid var(--border-color);
+            padding: 25px 20px;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            color: #555;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+
+        .html-editor {
+            outline: none;
+            border-bottom: 1px solid var(--border-color);
+            line-height: 1.5;
+        }
+
+        .html-editor:focus {
+            background: #fffefa;
+        }
+
+        .action-bar {
+            padding: 15px 20px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .btn {
+            padding: 8px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-run { 
+            background: var(--color-accent); 
+            color: white; 
+        }
+        .btn-run:hover { 
+            background: var(--color-accent-hover); 
+            box-shadow: 0 2px 5px rgba(0,102,204,0.3); 
+        }
+
+        .btn-reset { 
+            background: white; 
+            color: var(--color-text-light); 
+            border-color: var(--border-color);
+            border: 1px solid var(--border-color);
+        }
+        .btn-reset:hover { 
+            border-color: #999; 
+            color: #333; 
+        }
+
+        .preview-box {
+            background: #FFFFFF;
+            padding: 30px;
+            border-top: 1px solid var(--border-color);
+            min-height: 200px;
+            position: relative;
+            isolation: isolate; 
+        }
+        
+        .preview-label {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 11px;
+            color: #CCC;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .status-badge {
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            opacity: 1;
+            transition: all 0.3s;
+            background: #F0F0F0;
+            color: #666;
+        }
+        .status-active { 
+            background: #E8F5E9; 
+            color: #2E7D32; 
+            font-weight: 500; 
+        }
+
+        /* === 头部样式 === */
+        header {
+            margin-bottom: 60px;
+        }
+
+        .intro {
+            font-size: 18px;
+            color: var(--color-text-light);
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        /* === 响应式设计 === */
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+            
+            .content {
+                margin-left: 0;
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 32px;
+            }
+            
+            h2 {
+                font-size: 24px;
+            }
+            
+            .lab-body {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+            
+            .html-viewer, .html-editor {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 侧边栏导航 -->
+    <nav class="sidebar">
+        <div class="sidebar-nav">
+            <h3>课程导航</h3>
+            <a href="#intro">👋 课程概览</a>
+            
+            <h3>Part 1: HTML排版</h3>
+            <a href="#headings" class="sub-link">1. 标题与段落</a>
+            <a href="#text-formatting" class="sub-link">2. 文本样式</a>
+            <a href="#line-break" class="sub-link">3. 换行与水平线</a>
+            <a href="#special-characters" class="sub-link">4. 特殊字符</a>
+            
+            <h3>Part 2: 实战练习</h3>
+            <a href="#exercise" class="sub-link">5. 课后练习</a>
+        </div>
+    </nav>
+
+    <!-- 主内容区 -->
+    <main class="content">
+        <header id="intro">
+            <h1>第2课：HTML排版与文本格式化</h1>
+            <p class="intro">
+                在本节课中，我们将学习如何使用HTML进行文本排版和格式化。
+                良好的排版是网页设计的基础，它能够使内容更加清晰易读，提升用户体验。
+                通过本节课的学习，你将掌握HTML中各种文本排版和格式化的标签和技巧。
+            </p>
+        </header>
+
+        <!-- 第一部分：HTML排版 -->
+        <section id="headings">
+            <h2>1. 标题与段落</h2>
+            <p>
+                在HTML中，标题和段落是最基本的文本元素。标题用于强调页面的主要内容和结构，而段落则用于组织正文内容。
+            </p>
+            
+            <h3>1.1 标题标签</h3>
+            <p>
+                HTML提供了6级标题标签，从<code>&lt;h1&gt;</code>到<code>&lt;h6&gt;</code>，其中<code>&lt;h1&gt;</code>是最高级别的标题，
+                <code>&lt;h6&gt;</code>是最低级别的标题。标题标签不仅能改变文本大小，还能告诉搜索引擎页面的结构和重要性。
+            </p>
+            
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 01：标题标签的使用</span>
+                    <span id="badge-1" class="status-badge">未运行</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel html-editor" id="html-1" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;标题标签示例&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;这是一级标题&lt;/h1&gt;
+    &lt;h2&gt;这是二级标题&lt;/h2&gt;
+    &lt;h3&gt;这是三级标题&lt;/h3&gt;
+    &lt;h4&gt;这是四级标题&lt;/h4&gt;
+    &lt;h5&gt;这是五级标题&lt;/h5&gt;
+    &lt;h6&gt;这是六级标题&lt;/h6&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyHTML('1')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHTML('1')">↺ 重置</button>
+                </div>
+                <div class="preview-box" id="preview-1">
+                    <div class="preview-label">预览效果</div>
+                    <!-- 预览内容将在这里显示 -->
+                </div>
+            </div>
+            
+            <h3>1.2 段落标签</h3>
+            <p>
+                段落标签<code>&lt;p&gt;</code>用于定义一段文本。浏览器会自动在段落前后添加空白，使内容更易读。
+            </p>
+            
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 02：段落标签的使用</span>
+                    <span id="badge-2" class="status-badge">未运行</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel html-editor" id="html-2" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;段落标签示例&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;我的自我介绍&lt;/h1&gt;
+    
+    &lt;p&gt;大家好，我是一名HTML初学者。&lt;/p&gt;
+    
+    &lt;p&gt;我正在学习HTML、CSS和JavaScript，希望将来能够成为一名优秀的前端开发者。&lt;/p&gt;
+    
+    &lt;p&gt;我喜欢阅读、编程和旅行。我相信通过不断学习和实践，我一定能够实现我的目标。&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyHTML('2')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHTML('2')">↺ 重置</button>
+                </div>
+                <div class="preview-box" id="preview-2">
+                    <div class="preview-label">预览效果</div>
+                    <!-- 预览内容将在这里显示 -->
+                </div>
+            </div>
+        </section>
+
+        <section id="text-formatting">
+            <h2>2. 文本样式</h2>
+            <p>
+                HTML提供了多种文本格式化标签，用于改变文本的外观，如粗体、斜体、下划线等。
+                这些标签可以使文本更加突出，强调重要内容。
+            </p>
+            
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 03：文本样式标签</span>
+                    <span id="badge-3" class="status-badge">未运行</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel html-editor" id="html-3" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;文本样式示例&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;文本样式示例&lt;/h1&gt;
+    
+    &lt;p&gt;这是普通文本。&lt;/p&gt;
+    &lt;p&gt;这是&lt;strong&gt;粗体文本&lt;/strong&gt;，用于强调重要内容。&lt;/p&gt;
+    &lt;p&gt;这是&lt;em&gt;斜体文本&lt;/em&gt;，用于强调语气。&lt;/p&gt;
+    &lt;p&gt;这是&lt;u&gt;下划线文本&lt;/u&gt;。&lt;/p&gt;
+    &lt;p&gt;这是&lt;s&gt;删除线文本&lt;/s&gt;。&lt;/p&gt;
+    &lt;p&gt;这是&lt;mark&gt;高亮文本&lt;/mark&gt;。&lt;/p&gt;
+    &lt;p&gt;H&lt;sub&gt;2&lt;/sub&gt;O 是水的化学式。&lt;/p&gt;
+    &lt;p&gt;2&lt;sup&gt;3&lt;/sup&gt; = 8&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyHTML('3')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHTML('3')">↺ 重置</button>
+                </div>
+                <div class="preview-box" id="preview-3">
+                    <div class="preview-label">预览效果</div>
+                    <!-- 预览内容将在这里显示 -->
+                </div>
+            </div>
+            
+            <div class="tip-box">
+                <span class="tip-title">💡 语义化vs样式化</span>
+                <p>在HTML中，<code>&lt;strong&gt;</code>和<code>&lt;em&gt;</code>是语义化标签，它们不仅改变文本的外观，还传达了文本的重要性；
+                而<code>&lt;b&gt;</code>和<code>&lt;i&gt;</code>只是样式化标签，它们只改变文本的外观，不传达任何语义信息。
+                在实际开发中，我们应该优先使用语义化标签。</p>
+            </div>
+        </section>
+
+        <section id="line-break">
+            <h2>3. 换行与水平线</h2>
+            <p>
+                在HTML中，我们可以使用特定的标签来控制文本的换行和分隔。
+            </p>
+            
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 04：换行与水平线标签</span>
+                    <span id="badge-4" class="status-badge">未运行</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel html-editor" id="html-4" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;换行与水平线示例&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;换行与水平线示例&lt;/h1&gt;
+    
+    &lt;h2&gt;换行标签&lt;/h2&gt;
+    &lt;p&gt;第一行&lt;br&gt;第二行&lt;br&gt;第三行&lt;/p&gt;
+    
+    &lt;hr&gt;
+    
+    &lt;h2&gt;水平线标签&lt;/h2&gt;
+    &lt;p&gt;这是水平线上面的内容。&lt;/p&gt;
+    &lt;hr&gt;
+    &lt;p&gt;这是水平线下面的内容。&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyHTML('4')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHTML('4')">↺ 重置</button>
+                </div>
+                <div class="preview-box" id="preview-4">
+                    <div class="preview-label">预览效果</div>
+                    <!-- 预览内容将在这里显示 -->
+                </div>
+            </div>
+        </section>
+
+        <section id="special-characters">
+            <h2>4. 特殊字符</h2>
+            <p>
+                在HTML中，有些字符具有特殊含义，如小于号<code>&lt;</code>和大于号<code>&gt;</code>，它们用于定义HTML标签。
+                如果你想在页面中显示这些特殊字符，就需要使用HTML实体（HTML Entities）。
+            </p>
+            
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 05：特殊字符的使用</span>
+                    <span id="badge-5" class="status-badge">未运行</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel html-editor" id="html-5" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;特殊字符示例&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;特殊字符示例&lt;/h1&gt;
+    
+    &lt;p&gt;HTML标签的格式是：&amp;lt;标签名&amp;gt; 内容 &amp;lt;/标签名&amp;gt;&lt;/p&gt;
+    &lt;p&gt;版权符号：&amp;copy; 2025 我的网站&lt;/p&gt;
+    &lt;p&gt;注册商标符号：&amp;reg;&lt;/p&gt;
+    &lt;p&gt;度符号：30&amp;deg;C&lt;/p&gt;
+    &lt;p&gt;乘号：2 &amp;times; 3 = 6&lt;/p&gt;
+    &lt;p&gt;除号：6 &amp;divide; 2 = 3&lt;/p&gt;
+    &lt;p&gt;空格：第一个单词&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;第二个单词&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyHTML('5')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHTML('5')">↺ 重置</button>
+                </div>
+                <div class="preview-box" id="preview-5">
+                    <div class="preview-label">预览效果</div>
+                    <!-- 预览内容将在这里显示 -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 第二部分：实战练习 -->
+        <section id="exercise">
+            <h2>5. 课后练习</h2>
+            <p>
+                请完成以下练习，巩固本节课所学的知识：
+            </p>
+            
+            <ol>
+                <li>创建一个HTML页面，包含所有6级标题</li>
+                <li>使用段落标签组织一段关于你自己的介绍</li>
+                <li>在介绍中使用至少3种文本格式化标签（粗体、斜体、下划线等）</li>
+                <li>使用水平线分隔不同的内容区域</li>
+                <li>在页面中使用至少3个特殊字符</li>
+                <li>保存文件并在浏览器中查看效果</li>
+            </ol>
+        </section>
+    </main>
+</body>
+</html>

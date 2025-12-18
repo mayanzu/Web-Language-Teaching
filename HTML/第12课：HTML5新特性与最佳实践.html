@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第12课：HTML5新特性与最佳实践</title>
+    <style>
+        /* ============================================
+           基础页面样式 (Apple Developer 风格)
+           ============================================ */
+        :root {
+            --color-text: #1D1D1F;
+            --color-text-light: #86868B;
+            --color-heading: #111;
+            --color-accent: #0066CC;
+            --color-bg: #F5F5F7;
+            --color-white: #FFFFFF;
+            --border-color: #D2D2D7;
+            --code-bg: #f6f8fa;
+            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-mono: 'SF Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-stack);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.7;
+            font-size: 16px;
+            display: flex;
+        }
+
+        /* === 侧边栏 === */
+        .sidebar {
+            width: 260px;
+            height: 100vh;
+            position: fixed;
+            background: rgba(255,255,255,0.95);
+            border-right: 1px solid var(--border-color);
+            padding: 30px 18px;
+            overflow-y: auto;
+            backdrop-filter: blur(12px);
+            z-index: 10;
+        }
+
+        .sidebar h3 {
+            font-size: 13px;
+            color: var(--color-text-light);
+            text-transform: uppercase;
+            margin: 18px 0 8px 12px;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .sidebar-nav a {
+            display: block;
+            padding: 8px 12px;
+            color: var(--color-text);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-nav a:hover {
+            background: var(--color-accent);
+            color: white;
+        }
+
+        .sidebar-nav a.active {
+            background: var(--color-accent);
+            color: white;
+            font-weight: 500;
+        }
+
+        .sidebar-nav a.sub-link {
+            padding-left: 32px;
+            font-size: 13px;
+            color: var(--color-text-light);
+        }
+
+        /* === 主内容区 === */
+        .content {
+            margin-left: 260px;
+            padding: 60px 80px;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        /* === 标题样式 === */
+        h1 {
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--color-heading);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--color-heading);
+            margin: 50px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h3 {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--color-heading);
+            margin: 30px 0 15px;
+        }
+
+        /* === 段落和文本 === */
+        p {
+            margin-bottom: 18px;
+            font-size: 16px;
+            color: var(--color-text);
+        }
+
+        strong {
+            font-weight: 600;
+            color: var(--color-heading);
+        }
+
+        em {
+            font-style: italic;
+        }
+
+        /* === 代码样式 === */
+        code {
+            font-family: var(--font-mono);
+            background: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #E53E3E;
+        }
+
+        pre {
+            background: var(--code-bg);
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            line-height: 1.5;
+            border: 1px solid var(--border-color);
+        }
+
+        pre code {
+            background: transparent;
+            padding: 0;
+            color: var(--color-text);
+        }
+
+        /* === 表格样式 === */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: var(--color-white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background: var(--color-bg);
+            font-weight: 600;
+            color: var(--color-heading);
+            font-size: 14px;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* === 列表样式 === */
+        ul, ol {
+            margin: 20px 0 20px 24px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* === 提示框样式 === */
+        .tip-box {
+            background: linear-gradient(135deg, #E6F4FF 0%, #F0F7FF 100%);
+            border-left: 4px solid var(--color-accent);
+            padding: 16px 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .tip-title {
+            font-weight: 600;
+            color: var(--color-accent);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* === 按钮样式 === */
+        button {
+            background: var(--color-accent);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        button:hover {
+            background: #004499;
+        }
+
+        /* === 示例框样式 === */
+        .example-box {
+            background: var(--color-white);
+            padding: 24px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            margin: 20px 0;
+        }
+
+        /* === 表单样式 === */
+        form {
+            background: var(--color-white);
+            padding: 24px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            margin: 20px 0;
+        }
+
+        input, select, textarea {
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: var(--font-stack);
+            margin: 5px 0;
+        }
+
+        /* === 头部样式 === */
+        header {
+            margin-bottom: 60px;
+        }
+
+        .intro {
+            font-size: 18px;
+            color: var(--color-text-light);
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        /* === 响应式设计 === */
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+            
+            .content {
+                margin-left: 0;
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 32px;
+            }
+            
+            h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 侧边栏导航 -->
+    <nav class="sidebar">
+        <div class="sidebar-nav">
+            <h3>课程导航</h3>
+            <a href="#intro">👋 课程概览</a>
+            
+            <h3>Part 1: HTML5新特性</h3>
+            <a href="#html5-tags" class="sub-link">1. HTML5新标签</a>
+            <a href="#local-storage" class="sub-link">2. 本地存储简介</a>
+            <a href="#responsive-design" class="sub-link">3. 响应式设计基础</a>
+            <a href="#best-practices" class="sub-link">4. HTML最佳实践</a>
+            
+            <h3>Part 2: 实战练习</h3>
+            <a href="#exercise" class="sub-link">5. 课后练习</a>
+        </div>
+    </nav>
+
+    <!-- 主内容区 -->
+    <main class="content">
+        <header id="intro">
+            <h1>第12课：HTML5新特性与最佳实践</h1>
+            <p class="intro">
+                在本节课中，我们将学习HTML5的新特性和HTML开发的最佳实践。HTML5是HTML的最新版本，它引入了许多新的标签、API和功能，使Web开发更加丰富和强大。
+                通过本节课的学习，你将了解HTML5的主要新特性，掌握HTML开发的最佳实践，并能够设计和开发符合现代Web标准的HTML页面。
+            </p>
+        </header>
+
+        <!-- 第一部分：HTML5新特性 -->
+        <section id="html5-tags">
+            <h2>1. HTML5新标签</h2>
+            <p>
+                HTML5引入了许多新的语义化标签，用于描述页面的不同部分和内容类型。这些新标签使HTML结构更加清晰和语义化。
+            </p>
+            
+            <h3>1.1 结构语义化标签</h3>
+            <p>
+                HTML5引入了一系列结构语义化标签，用于描述页面的不同部分：
+            </p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>标签</th>
+                        <th>描述</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>&lt;header&gt;</code></td>
+                        <td>定义页面或区域的头部</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;nav&gt;</code></td>
+                        <td>定义导航链接的容器</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;main&gt;</code></td>
+                        <td>定义页面的主要内容</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;section&gt;</code></td>
+                        <td>定义页面中的一个区域或节</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;article&gt;</code></td>
+                        <td>定义独立的、完整的内容块</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;aside&gt;</code></td>
+                        <td>定义页面的侧边栏内容</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;footer&gt;</code></td>
+                        <td>定义页面或区域的页脚</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;address&gt;</code></td>
+                        <td>定义联系信息</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;figure&gt;</code></td>
+                        <td>定义独立的媒体内容，如图片、图表等</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;figcaption&gt;</code></td>
+                        <td>定义<code>&lt;figure&gt;</code>元素的标题</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;details&gt;</code></td>
+                        <td>定义可折叠的详情内容</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;summary&gt;</code></td>
+                        <td>定义<code>&lt;details&gt;</code>元素的摘要</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;dialog&gt;</code></td>
+                        <td>定义对话框或模态框</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>1.2 文本语义化标签</h3>
+            <p>
+                HTML5引入了一些新的文本语义化标签：
+            </p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>标签</th>
+                        <th>描述</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>&lt;mark&gt;</code></td>
+                        <td>定义标记的文本</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;time&gt;</code></td>
+                        <td>定义日期和时间</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;progress&gt;</code></td>
+                        <td>定义进度条</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;meter&gt;</code></td>
+                        <td>定义度量衡，如分数、百分比等</td>
+                    </tr>
+                    <tr>
+                        <td><code>&lt;output&gt;</code></td>
+                        <td>定义计算结果</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="example-box">
+                <h3>HTML5新标签效果预览</h3>
+                
+                <h4>&lt;details&gt; 和 &lt;summary&gt; 标签</h4>
+                <details>
+                    <summary>点击展开详情</summary>
+                    <p>这是详情内容。HTML5的details和summary标签允许我们创建可折叠的内容块，无需使用JavaScript。</p>
+                </details>
+                
+                <h4>&lt;progress&gt; 标签</h4>
+                <p>下载进度：<progress value="70" max="100"></progress> 70%</p>
+                
+                <h4>&lt;time&gt; 标签</h4>
+                <p>课程开始时间：<time datetime="2025-01-15T09:00:00">2025年1月15日 上午9:00</time></p>
+                
+                <h4>&lt;figure&gt; 和 &lt;figcaption&gt; 标签</h4>
+                <figure>
+                    <img src="https://picsum.photos/id/1/300/200" alt="风景图片">
+                    <figcaption>图1: 美丽的风景</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section id="local-storage">
+            <h2>2. 本地存储简介</h2>
+            <p>
+                HTML5引入了本地存储API，允许网页在用户的浏览器中存储数据，无需使用cookie。本地存储API包括localStorage和sessionStorage。
+            </p>
+            
+            <h3>2.1 localStorage</h3>
+            <p>
+                localStorage用于持久化存储数据，数据不会因为浏览器关闭而丢失，除非用户手动清除。
+            </p>
+            
+            <pre><code>&lt;script&gt;
+    // 存储数据
+    localStorage.setItem('username', '张三');
+    localStorage.setItem('age', '18');
+    
+    // 获取数据
+    const username = localStorage.getItem('username');
+    console.log(username); // 输出: 张三
+    
+    // 删除数据
+    localStorage.removeItem('age');
+    
+    // 清除所有数据
+    // localStorage.clear();
+&lt;/script&gt;</code></pre>
+            
+            <h3>2.2 sessionStorage</h3>
+            <p>
+                sessionStorage用于临时存储数据，数据只在当前会话中有效，当浏览器关闭或标签页关闭时，数据会被清除。
+            </p>
+            
+            <pre><code>&lt;script&gt;
+    // 存储数据
+    sessionStorage.setItem('username', '李四');
+    sessionStorage.setItem('age', '20');
+    
+    // 获取数据
+    const username = sessionStorage.getItem('username');
+    console.log(username); // 输出: 李四
+    
+    // 删除数据
+    sessionStorage.removeItem('age');
+    
+    // 清除所有数据
+    // sessionStorage.clear();
+&lt;/script&gt;</code></pre>
+            
+            <h3>2.3 localStorage vs sessionStorage</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>特性</th>
+                        <th>localStorage</th>
+                        <th>sessionStorage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>数据有效期</td>
+                        <td>持久化，除非手动清除</td>
+                        <td>会话期间，浏览器关闭后清除</td>
+                    </tr>
+                    <tr>
+                        <td>存储大小</td>
+                        <td>约5MB</td>
+                        <td>约5MB</td>
+                    </tr>
+                    <tr>
+                        <td>作用域</td>
+                        <td>同源窗口共享</td>
+                        <td>当前标签页</td>
+                    </tr>
+                    <tr>
+                        <td>API</td>
+                        <td>相同</td>
+                        <td>相同</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="example-box">
+                <h3>本地存储示例</h3>
+                <form>
+                    <label for="name">姓名：</label>
+                    <input type="text" id="name" name="name">
+                    <br><br>
+                    <label for="email">邮箱：</label>
+                    <input type="email" id="email" name="email">
+                    <br><br>
+                    <button type="button" onclick="saveData()">保存数据</button>
+                    <button type="button" onclick="loadData()">加载数据</button>
+                    <button type="button" onclick="clearData()">清除数据</button>
+                </form>
+                <p id="status"></p>
+                
+                <script>
+                    const status = document.getElementById('status');
+                    
+                    function saveData() {
+                        const name = document.getElementById('name').value;
+                        const email = document.getElementById('email').value;
+                        
+                        localStorage.setItem('userName', name);
+                        localStorage.setItem('userEmail', email);
+                        
+                        status.textContent = '数据保存成功！';
+                    }
+                    
+                    function loadData() {
+                        const name = localStorage.getItem('userName');
+                        const email = localStorage.getItem('userEmail');
+                        
+                        if (name && email) {
+                            document.getElementById('name').value = name;
+                            document.getElementById('email').value = email;
+                            status.textContent = '数据加载成功！';
+                        } else {
+                            status.textContent = '没有找到保存的数据！';
+                        }
+                    }
+                    
+                    function clearData() {
+                        localStorage.removeItem('userName');
+                        localStorage.removeItem('userEmail');
+                        document.getElementById('name').value = '';
+                        document.getElementById('email').value = '';
+                        status.textContent = '数据清除成功！';
+                    }
+                    
+                    // 页面加载时自动加载数据
+                    loadData();
+                </script>
+            </div>
+        </section>
+
+        <section id="responsive-design">
+            <h2>3. 响应式设计基础</h2>
+            <p>
+                响应式设计是一种网页设计方法，使网页能够根据不同设备的屏幕尺寸和分辨率自动调整布局和样式，提供良好的用户体验。
+            </p>
+            
+            <h3>3.1 视口元标签</h3>
+            <p>
+                视口元标签<code>&lt;meta name="viewport"&gt;</code>用于控制浏览器如何显示网页，特别是在移动设备上。
+                它是响应式设计的基础。
+            </p>
+            
+            <pre><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code></pre>
+            
+            <ul>
+                <li><code>width=device-width</code>：设置页面宽度等于设备宽度</li>
+                <li><code>initial-scale=1.0</code>：设置初始缩放比例为1.0</li>
+                <li><code>maximum-scale=1.0</code>：设置最大缩放比例为1.0</li>
+                <li><code>user-scalable=no</code>：禁止用户缩放页面</li>
+            </ul>
+            
+            <h3>3.2 媒体查询</h3>
+            <p>
+                媒体查询是CSS3的一个特性，它允许我们根据不同的媒体类型和条件应用不同的CSS样式。
+                媒体查询是实现响应式设计的核心技术。
+            </p>
+            
+            <pre><code>&lt;style&gt;
+    /* 默认样式 */
+    .container {
+        width: 100%;
+        padding: 20px;
+    }
+    
+    .box {
+        width: 100%;
+        padding: 20px;
+        background-color: #0066CC;
+        color: white;
+        margin: 10px 0;
+        text-align: center;
+    }
+    
+    /* 媒体查询：当屏幕宽度大于600px时 */
+    @media (min-width: 600px) {
+        .container {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .box {
+            width: 33.33%;
+        }
+    }
+    
+    /* 媒体查询：当屏幕宽度大于900px时 */
+    @media (min-width: 900px) {
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .box {
+            padding: 30px;
+        }
+    }
+&lt;/style&gt;
+
+&lt;div class="container"&gt;
+    &lt;div class="box"&gt;盒子1&lt;/div&gt;
+    &lt;div class="box"&gt;盒子2&lt;/div&gt;
+    &lt;div class="box"&gt;盒子3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            
+            <div class="example-box">
+                <h3>响应式设计示例</h3>
+                <style>
+                    /* 默认样式 */
+                    .container {
+                        width: 100%;
+                        padding: 20px;
+                    }
+                    
+                    .box {
+                        width: 100%;
+                        padding: 20px;
+                        background-color: #0066CC;
+                        color: white;
+                        margin: 10px 0;
+                        text-align: center;
+                        border-radius: 8px;
+                    }
+                    
+                    /* 媒体查询：当屏幕宽度大于600px时 */
+                    @media (min-width: 600px) {
+                        .container {
+                            display: flex;
+                            gap: 20px;
+                        }
+                        
+                        .box {
+                            width: 33.33%;
+                        }
+                    }
+                    
+                    /* 媒体查询：当屏幕宽度大于900px时 */
+                    @media (min-width: 900px) {
+                        .container {
+                            max-width: 1200px;
+                            margin: 0 auto;
+                        }
+                        
+                        .box {
+                            padding: 30px;
+                        }
+                    }
+                </style>
+                
+                <div class="container">
+                    <div class="box">盒子1</div>
+                    <div class="box">盒子2</div>
+                    <div class="box">盒子3</div>
+                </div>
+                <p>尝试调整浏览器窗口大小，观察盒子布局的变化。</p>
+            </div>
+        </section>
+
+        <section id="best-practices">
+            <h2>4. HTML最佳实践</h2>
+            <p>
+                遵循HTML最佳实践能够提高代码的质量、可读性和可维护性，确保页面符合现代Web标准。
+            </p>
+            
+            <h3>4.1 文档结构最佳实践</h3>
+            <ol>
+                <li>使用正确的DOCTYPE声明：<code>&lt;!DOCTYPE html&gt;</code></li>
+                <li>指定语言属性：<code>&lt;html lang="zh-CN"&gt;</code></li>
+                <li>使用视口元标签：<code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code></li>
+                <li>使用语义化标签组织页面结构</li>
+                <li>保持HTML结构的清晰和简洁</li>
+            </ol>
+            
+            <h3>4.2 代码编写最佳实践</h3>
+            <ol>
+                <li>使用小写标签和属性名</li>
+                <li>使用双引号包裹属性值</li>
+                <li>闭合所有标签</li>
+                <li>使用缩进和换行提高代码可读性</li>
+                <li>避免使用内联样式和内联JavaScript</li>
+                <li>使用外部CSS和JavaScript文件</li>
+                <li>为图片添加alt属性</li>
+                <li>为链接添加title属性</li>
+                <li>使用相对路径引用资源</li>
+                <li>避免使用过时的HTML标签和属性</li>
+            </ol>
+            
+            <h3>4.3 可访问性最佳实践</h3>
+            <ol>
+                <li>使用语义化标签</li>
+                <li>为图片添加alt属性</li>
+                <li>使用label标签关联表单控件</li>
+                <li>为链接和按钮添加清晰的文本描述</li>
+                <li>确保页面有合理的标题层级</li>
+                <li>使用ARIA属性增强可访问性</li>
+            </ol>
+            
+            <h3>4.4 性能优化最佳实践</h3>
+            <ol>
+                <li>优化图片大小和格式</li>
+                <li>使用CDN加速资源加载</li>
+                <li>压缩HTML、CSS和JavaScript文件</li>
+                <li>延迟加载非关键资源</li>
+                <li>使用缓存策略</li>
+                <li>减少HTTP请求</li>
+            </ol>
+            
+            <div class="tip-box">
+                <span class="tip-title">💡 HTML验证</span>
+                <p>使用HTML验证工具可以检查HTML代码是否符合标准，帮助我们发现和修复错误。推荐使用W3C HTML验证器：<a href="https://validator.w3.org/" target="_blank">https://validator.w3.org/</a></p>
+            </div>
+        </section>
+
+        <!-- 第二部分：实战练习 -->
+        <section id="exercise">
+            <h2>5. 课后练习</h2>
+            <p>
+                请完成以下练习，巩固本节课所学的知识：
+            </p>
+            
+            <ol>
+                <li>创建一个HTML5页面，使用至少5个HTML5新标签</li>
+                <li>实现一个本地存储示例，能够保存和加载用户信息</li>
+                <li>创建一个响应式布局，使用媒体查询实现不同屏幕尺寸下的不同布局</li>
+                <li>检查并修复HTML代码中的错误，确保符合HTML最佳实践</li>
+                <li>使用W3C HTML验证器验证你的HTML代码</li>
+            </ol>
+        </section>
+        
+        <!-- 课程总结 -->
+        <section>
+            <h2>课程总结</h2>
+            <p>
+                恭喜你完成了HTML基础课程的学习！在这12节课中，我们学习了HTML的基础知识和高级特性，包括：
+            </p>
+            
+            <ul>
+                <li>HTML基础入门和文档结构</li>
+                <li>HTML排版与文本格式化</li>
+                <li>HTML列表、链接和图片</li>
+                <li>HTML表格基础和进阶</li>
+                <li>HTML表单基础和进阶</li>
+                <li>HTML语义化标签</li>
+                <li>HTML多媒体</li>
+                <li>HTML5新特性和最佳实践</li>
+            </ul>
+            
+            <p>
+                通过这些课程的学习，你已经掌握了HTML的核心知识和技能，能够设计和开发符合现代Web标准的HTML页面。
+                接下来，你可以继续学习CSS和JavaScript，进一步提升你的Web开发能力。
+            </p>
+            
+            <div class="tip-box">
+                <span class="tip-title">🎉 学习建议</span>
+                <p>1. 多写代码，实践是最好的学习方式</p>
+                <p>2. 阅读优秀的HTML代码，学习别人的经验和技巧</p>
+                <p>3. 关注Web技术的最新发展，持续学习</p>
+                <p>4. 参与开源项目或创建自己的项目</p>
+                <p>5. 加入Web开发社区，与其他开发者交流和分享</p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

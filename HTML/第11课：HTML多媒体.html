@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第11课：HTML多媒体</title>
+    <style>
+        /* ============================================
+           基础页面样式 (Apple Developer 风格)
+           ============================================ */
+        :root {
+            --color-text: #1D1D1F;
+            --color-text-light: #86868B;
+            --color-heading: #111;
+            --color-accent: #0066CC;
+            --color-bg: #F5F5F7;
+            --color-white: #FFFFFF;
+            --border-color: #D2D2D7;
+            --code-bg: #f6f8fa;
+            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-mono: 'SF Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-stack);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.7;
+            font-size: 16px;
+            display: flex;
+        }
+
+        /* === 侧边栏 === */
+        .sidebar {
+            width: 260px;
+            height: 100vh;
+            position: fixed;
+            background: rgba(255,255,255,0.95);
+            border-right: 1px solid var(--border-color);
+            padding: 30px 18px;
+            overflow-y: auto;
+            backdrop-filter: blur(12px);
+            z-index: 10;
+        }
+
+        .sidebar h3 {
+            font-size: 13px;
+            color: var(--color-text-light);
+            text-transform: uppercase;
+            margin: 18px 0 8px 12px;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .sidebar-nav a {
+            display: block;
+            padding: 8px 12px;
+            color: var(--color-text);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .sidebar-nav a:hover {
+            background: var(--color-accent);
+            color: white;
+        }
+
+        .sidebar-nav a.active {
+            background: var(--color-accent);
+            color: white;
+            font-weight: 500;
+        }
+
+        .sidebar-nav a.sub-link {
+            padding-left: 32px;
+            font-size: 13px;
+            color: var(--color-text-light);
+        }
+
+        /* === 主内容区 === */
+        .content {
+            margin-left: 260px;
+            padding: 60px 80px;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        /* === 标题样式 === */
+        h1 {
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--color-heading);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--color-heading);
+            margin: 50px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h3 {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--color-heading);
+            margin: 30px 0 15px;
+        }
+
+        /* === 段落和文本 === */
+        p {
+            margin-bottom: 18px;
+            font-size: 16px;
+            color: var(--color-text);
+        }
+
+        strong {
+            font-weight: 600;
+            color: var(--color-heading);
+        }
+
+        em {
+            font-style: italic;
+        }
+
+        /* === 代码样式 === */
+        code {
+            font-family: var(--font-mono);
+            background: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #E53E3E;
+        }
+
+        pre {
+            background: var(--code-bg);
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: var(--font-mono);
+            font-size: 14px;
+            line-height: 1.5;
+            border: 1px solid var(--border-color);
+        }
+
+        pre code {
+            background: transparent;
+            padding: 0;
+            color: var(--color-text);
+        }
+
+        /* === 表格样式 === */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: var(--color-white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        th, td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background: var(--color-bg);
+            font-weight: 600;
+            color: var(--color-heading);
+            font-size: 14px;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* === 列表样式 === */
+        ul, ol {
+            margin: 20px 0 20px 24px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* === 提示框样式 === */
+        .tip-box {
+            background: linear-gradient(135deg, #E6F4FF 0%, #F0F7FF 100%);
+            border-left: 4px solid var(--color-accent);
+            padding: 16px 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .tip-title {
+            font-weight: 600;
+            color: var(--color-accent);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* === 按钮样式 === */
+        button {
+            background: var(--color-accent);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        button:hover {
+            background: #004499;
+        }
+
+        /* === 示例框样式 === */
+        .example-box {
+            background: var(--color-white);
+            padding: 24px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            margin: 20px 0;
+        }
+
+        /* === 媒体元素样式 === */
+        audio, video, iframe {
+            display: block;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+
+        /* === 头部样式 === */
+        header {
+            margin-bottom: 60px;
+        }
+
+        .intro {
+            font-size: 18px;
+            color: var(--color-text-light);
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        /* === 响应式设计 === */
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+            
+            .content {
+                margin-left: 0;
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 32px;
+            }
+            
+            h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 侧边栏导航 -->
+    <nav class="sidebar">
+        <div class="sidebar-nav">
+            <h3>课程导航</h3>
+            <a href="#intro">👋 课程概览</a>
+            
+            <h3>Part 1: HTML多媒体</h3>
+            <a href="#audio-tag" class="sub-link">1. 音频标签</a>
+            <a href="#video-tag" class="sub-link">2. 视频标签</a>
+            <a href="#iframe-tag" class="sub-link">3. 嵌入内容</a>
+            <a href="#media-events" class="sub-link">4. 媒体属性与事件</a>
+            
+            <h3>Part 2: 实战练习</h3>
+            <a href="#exercise" class="sub-link">5. 课后练习</a>
+        </div>
+    </nav>
+
+    <!-- 主内容区 -->
+    <main class="content">
+        <header id="intro">
+            <h1>第11课：HTML多媒体</h1>
+            <p class="intro">
+                在本节课中，我们将学习HTML多媒体元素。多媒体是现代网页的重要组成部分，它包括音频、视频、动画等多种形式。
+                HTML5提供了强大的多媒体支持，允许我们直接在网页中嵌入和播放音频、视频等媒体内容。
+                通过本节课的学习，你将掌握如何在HTML中使用音频、视频和嵌入内容等多媒体元素。
+            </p>
+        </header>
+
+        <!-- 第一部分：HTML多媒体 -->
+        <section id="audio-tag">
+            <h2>1. 音频标签</h2>
+            <p>
+                <code>&lt;audio&gt;</code>标签用于在HTML中嵌入音频内容，它支持多种音频格式，如MP3、WAV、OGG等。
+            </p>
+            
+            <h3>1.1 基本音频播放器</h3>
+            <p>
+                基本的音频播放器使用<code>&lt;audio&gt;</code>标签和<code>controls</code>属性创建，<code>controls</code>属性会显示浏览器默认的音频控制控件。
+            </p>
+            
+            <pre><code>&lt;audio src="audio.mp3" controls&gt;
+    您的浏览器不支持音频播放
+&lt;/audio&gt;</code></pre>
+            
+            <h3>1.2 支持多种音频格式</h3>
+            <p>
+                不同的浏览器支持不同的音频格式，为了确保音频能够在所有浏览器中正常播放，我们可以使用<code>&lt;source&gt;</code>标签提供多种音频格式。
+            </p>
+            
+            <pre><code>&lt;audio controls&gt;
+    &lt;source src="audio.mp3" type="audio/mpeg"&gt;
+    &lt;source src="audio.ogg" type="audio/ogg"&gt;
+    您的浏览器不支持音频播放
+&lt;/audio&gt;</code></pre>
+            
+            <h3>1.3 音频属性</h3>
+            <p>
+                <code>&lt;audio&gt;</code>标签支持多种属性，用于控制音频的播放行为：
+            </p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>属性</th>
+                        <th>描述</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>src</code></td>
+                        <td>指定音频文件的URL</td>
+                    </tr>
+                    <tr>
+                        <td><code>controls</code></td>
+                        <td>显示音频控制控件</td>
+                    </tr>
+                    <tr>
+                        <td><code>autoplay</code></td>
+                        <td>自动播放音频</td>
+                    </tr>
+                    <tr>
+                        <td><code>loop</code></td>
+                        <td>循环播放音频</td>
+                    </tr>
+                    <tr>
+                        <td><code>muted</code></td>
+                        <td>静音播放音频</td>
+                    </tr>
+                    <tr>
+                        <td><code>preload</code></td>
+                        <td>指定音频的预加载方式（none、metadata、auto）</td>
+                    </tr>
+                    <tr>
+                        <td><code>volume</code></td>
+                        <td>指定音频的音量（0.0-1.0）</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="example-box">
+                <h3>音频标签效果预览</h3>
+                <audio controls>
+                    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                    您的浏览器不支持音频播放
+                </audio>
+            </div>
+        </section>
+
+        <section id="video-tag">
+            <h2>2. 视频标签</h2>
+            <p>
+                <code>&lt;video&gt;</code>标签用于在HTML中嵌入视频内容，它支持多种视频格式，如MP4、WebM、OGG等。
+            </p>
+            
+            <h3>2.1 基本视频播放器</h3>
+            <p>
+                基本的视频播放器使用<code>&lt;video&gt;</code>标签和<code>controls</code>属性创建，<code>controls</code>属性会显示浏览器默认的视频控制控件。
+            </p>
+            
+            <pre><code>&lt;video src="video.mp4" controls width="640" height="360"&gt;
+    您的浏览器不支持视频播放
+&lt;/video&gt;</code></pre>
+            
+            <h3>2.2 支持多种视频格式</h3>
+            <p>
+                不同的浏览器支持不同的视频格式，为了确保视频能够在所有浏览器中正常播放，我们可以使用<code>&lt;source&gt;</code>标签提供多种视频格式。
+            </p>
+            
+            <pre><code>&lt;video controls width="640" height="360"&gt;
+    &lt;source src="video.mp4" type="video/mp4"&gt;
+    &lt;source src="video.webm" type="video/webm"&gt;
+    您的浏览器不支持视频播放
+&lt;/video&gt;</code></pre>
+            
+            <h3>2.3 视频属性</h3>
+            <p>
+                <code>&lt;video&gt;</code>标签支持多种属性，用于控制视频的播放行为：
+            </p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>属性</th>
+                        <th>描述</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>src</code></td>
+                        <td>指定视频文件的URL</td>
+                    </tr>
+                    <tr>
+                        <td><code>controls</code></td>
+                        <td>显示视频控制控件</td>
+                    </tr>
+                    <tr>
+                        <td><code>width</code></td>
+                        <td>指定视频的宽度</td>
+                    </tr>
+                    <tr>
+                        <td><code>height</code></td>
+                        <td>指定视频的高度</td>
+                    </tr>
+                    <tr>
+                        <td><code>autoplay</code></td>
+                        <td>自动播放视频</td>
+                    </tr>
+                    <tr>
+                        <td><code>loop</code></td>
+                        <td>循环播放视频</td>
+                    </tr>
+                    <tr>
+                        <td><code>muted</code></td>
+                        <td>静音播放视频</td>
+                    </tr>
+                    <tr>
+                        <td><code>preload</code></td>
+                        <td>指定视频的预加载方式（none、metadata、auto）</td>
+                    </tr>
+                    <tr>
+                        <td><code>poster</code></td>
+                        <td>指定视频播放前显示的封面图片</td>
+                    </tr>
+                    <tr>
+                        <td><code>playsinline</code></td>
+                        <td>在移动设备上内联播放视频，而不是全屏播放</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="example-box">
+                <h3>视频标签效果预览</h3>
+                <video controls width="640" height="360" poster="https://picsum.photos/id/1/640/360">
+                    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                    <source src="https://www.w3schools.com/html/mov_bbb.webm" type="video/webm">
+                    您的浏览器不支持视频播放
+                </video>
+            </div>
+        </section>
+
+        <section id="iframe-tag">
+            <h2>3. 嵌入内容</h2>
+            <p>
+                在HTML中，我们可以使用<code>&lt;iframe&gt;</code>标签来嵌入其他网页或外部内容，如地图、视频、社交媒体帖子等。
+            </p>
+            
+            <h3>3.1 基本iframe用法</h3>
+            <p>
+                基本的<code>&lt;iframe&gt;</code>标签使用<code>src</code>属性指定要嵌入的内容的URL。
+            </p>
+            
+            <pre><code>&lt;iframe src="https://www.example.com" width="600" height="400" title="Example Website"&gt;
+    您的浏览器不支持iframe
+&lt;/iframe&gt;</code></pre>
+            
+            <h3>3.2 iframe属性</h3>
+            <p>
+                <code>&lt;iframe&gt;</code>标签支持多种属性，用于控制嵌入内容的显示和行为：
+            </p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>属性</th>
+                        <th>描述</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>src</code></td>
+                        <td>指定要嵌入的内容的URL</td>
+                    </tr>
+                    <tr>
+                        <td><code>width</code></td>
+                        <td>指定iframe的宽度</td>
+                    </tr>
+                    <tr>
+                        <td><code>height</code></td>
+                        <td>指定iframe的高度</td>
+                    </tr>
+                    <tr>
+                        <td><code>title</code></td>
+                        <td>指定iframe的标题，用于可访问性</td>
+                    </tr>
+                    <tr>
+                        <td><code>frameborder</code></td>
+                        <td>指定是否显示边框（0或1）</td>
+                    </tr>
+                    <tr>
+                        <td><code>scrolling</code></td>
+                        <td>指定是否显示滚动条（auto、yes、no）</td>
+                    </tr>
+                    <tr>
+                        <td><code>allowfullscreen</code></td>
+                        <td>允许嵌入的内容全屏显示</td>
+                    </tr>
+                    <tr>
+                        <td><code>sandbox</code></td>
+                        <td>启用沙箱模式，限制嵌入内容的权限</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>3.3 常用iframe嵌入示例</h3>
+            
+            <h4>3.3.1 嵌入百度地图</h4>
+            <pre><code>&lt;iframe src="https://map.baidu.com/" width="600" height="400" title="百度地图"&gt;
+    您的浏览器不支持iframe
+&lt;/iframe&gt;</code></pre>
+            
+            <h4>3.3.2 嵌入YouTube视频</h4>
+            <pre><code>&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+        title="YouTube视频" frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen&gt;
+&lt;/iframe&gt;</code></pre>
+            
+            <div class="example-box">
+                <h3>iframe嵌入效果预览</h3>
+                <h4>嵌入百度地图</h4>
+                <iframe src="https://map.baidu.com/" width="600" height="400" title="百度地图"></iframe>
+                
+                <h4>嵌入CodePen示例</h4>
+                <iframe height="300" style="width: 100%;" scrolling="no" title="Simple HTML5 Animation" src="https://codepen.io/quinnkeast/embed/pgXqvm?default-tab=html%2Cresult" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+                    See the Pen <a href="https://codepen.io/quinnkeast/pen/pgXqvm">
+                    Simple HTML5 Animation</a> by Quinn Eastman (<a href="https://codepen.io/quinnkeast">@quinnkeast</a>)
+                    on <a href="https://codepen.io">CodePen</a>.
+                </iframe>
+            </div>
+            
+            <div class="tip-box">
+                <span class="tip-title">💡 安全提示</span>
+                <p>使用<code>&lt;iframe&gt;</code>嵌入外部内容时，可能会带来安全风险，如跨站脚本攻击（XSS）等。
+                为了提高安全性，我们可以使用<code>sandbox</code>属性来限制嵌入内容的权限，或者使用<code>referrerpolicy</code>属性来控制发送的Referer信息。</p>
+            </div>
+        </section>
+
+        <section id="media-events">
+            <h2>4. 媒体属性与事件</h2>
+            <p>
+                HTML5多媒体元素支持多种属性和事件，我们可以使用JavaScript来控制和响应用户与媒体元素的交互。
+            </p>
+            
+            <h3>4.1 媒体属性</h3>
+            <p>
+                我们可以使用JavaScript来访问和修改媒体元素的属性，如播放状态、音量、当前播放时间等。
+            </p>
+            
+            <pre><code>&lt;video id="myVideo" src="video.mp4" controls&gt;&lt;/video&gt;
+
+&lt;script&gt;
+    const video = document.getElementById('myVideo');
+    
+    // 访问属性
+    console.log(video.currentTime); // 当前播放时间
+    console.log(video.duration); // 总时长
+    console.log(video.volume); // 当前音量
+    console.log(video.paused); // 是否暂停
+    
+    // 修改属性
+    video.volume = 0.5; // 设置音量为50%
+    video.currentTime = 10; // 跳转到第10秒
+&lt;/script&gt;</code></pre>
+            
+            <h3>4.2 媒体方法</h3>
+            <p>
+                媒体元素提供了多种方法，用于控制媒体的播放、暂停、加载等操作。
+            </p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>方法</th>
+                        <th>描述</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>play()</code></td>
+                        <td>播放媒体</td>
+                    </tr>
+                    <tr>
+                        <td><code>pause()</code></td>
+                        <td>暂停媒体</td>
+                    </tr>
+                    <tr>
+                        <td><code>load()</code></td>
+                        <td>重新加载媒体</td>
+                    </tr>
+                    <tr>
+                        <td><code>canPlayType()</code></td>
+                        <td>检查浏览器是否支持指定的媒体类型</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>4.3 媒体事件</h3>
+            <p>
+                媒体元素支持多种事件，用于响应媒体的播放状态变化，如播放、暂停、结束等。
+            </p>
+            
+            <pre><code>&lt;video id="myVideo" src="video.mp4" controls&gt;&lt;/video&gt;
+
+&lt;script&gt;
+    const video = document.getElementById('myVideo');
+    
+    // 播放开始时触发
+    video.addEventListener('play', () => {
+        console.log('视频开始播放');
+    });
+    
+    // 暂停时触发
+    video.addEventListener('pause', () => {
+        console.log('视频暂停');
+    });
+    
+    // 播放结束时触发
+    video.addEventListener('ended', () => {
+        console.log('视频播放结束');
+    });
+    
+    // 播放时间更新时触发
+    video.addEventListener('timeupdate', () => {
+        console.log('当前播放时间:', video.currentTime);
+    });
+&lt;/script&gt;</code></pre>
+            
+            <div class="example-box">
+                <h3>媒体控制示例</h3>
+                <audio id="myAudio" controls>
+                    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                    您的浏览器不支持音频播放
+                </audio>
+                <br>
+                <button onclick="playAudio()">播放</button>
+                <button onclick="pauseAudio()">暂停</button>
+                <button onclick="volumeUp()">音量+</button>
+                <button onclick="volumeDown()">音量-</button>
+                <button onclick="restartAudio()">重新开始</button>
+                <p id="currentTime">当前时间: 0:00</p>
+                
+                <script>
+                    const audio = document.getElementById('myAudio');
+                    const currentTime = document.getElementById('currentTime');
+                    
+                    function playAudio() {
+                        audio.play();
+                    }
+                    
+                    function pauseAudio() {
+                        audio.pause();
+                    }
+                    
+                    function volumeUp() {
+                        if (audio.volume < 1) {
+                            audio.volume += 0.1;
+                        }
+                    }
+                    
+                    function volumeDown() {
+                        if (audio.volume > 0) {
+                            audio.volume -= 0.1;
+                        }
+                    }
+                    
+                    function restartAudio() {
+                        audio.currentTime = 0;
+                    }
+                    
+                    audio.addEventListener('timeupdate', () => {
+                        const minutes = Math.floor(audio.currentTime / 60);
+                        const seconds = Math.floor(audio.currentTime % 60);
+                        currentTime.textContent = `当前时间: ${minutes}:${seconds.toString().padStart(2, '0')}`;
+                    });
+                </script>
+            </div>
+        </section>
+
+        <!-- 第二部分：实战练习 -->
+        <section id="exercise">
+            <h2>5. 课后练习</h2>
+            <p>
+                请完成以下练习，巩固本节课所学的知识：
+            </p>
+            
+            <ol>
+                <li>创建一个HTML页面，包含以下多媒体元素：
+                    <ul>
+                        <li>一个音频播放器，支持多种音频格式</li>
+                        <li>一个视频播放器，带有封面图片，支持多种视频格式</li>
+                        <li>至少两个iframe，分别嵌入不同类型的外部内容，如地图、视频等</li>
+                    </ul>
+                </li>
+                <li>为音频播放器添加自定义控制按钮，如播放、暂停、音量调节等</li>
+                <li>为视频播放器添加播放进度显示</li>
+                <li>确保所有多媒体元素都具有良好的可访问性，如添加alt文本、title属性等</li>
+                <li>测试页面在不同浏览器中的兼容性</li>
+            </ol>
+        </section>
+    </main>
+</body>
+</html>
