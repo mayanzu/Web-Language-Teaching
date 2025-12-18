@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -278,13 +278,18 @@
         
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验：CSS盒子模型交互式演示</span>
-                <span id="box-model-status" class="status-badge">未运行</span>
+                <span>🧪 实验 01：CSS盒子模型演示</span>
+                <span id="badge-1" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
             </div>
-            <div class="lab-body css-js-experiment">
-                <div>
-                    <div class="code-editor" id="box-model-css" contenteditable="true">
-<span class="panel-label">CSS (可编辑)</span>.box {
+            <div class="lab-body">
+                <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;div class="box-container"&gt;
+    &lt;div class="box"&gt;盒子模型&lt;/div&gt;
+&lt;/div&gt;
+                </div>
+                <div class="panel css-editor" id="css-1" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>.box {
     /* 内容区域 */
     width: 150px;
     height: 150px;
@@ -315,20 +320,17 @@
     padding: 40px;
     margin: 20px;
 }
-</div>
-                </div>
-                <div>
-                    <div class="preview-area" id="box-model-preview">
-                        <span class="panel-label">预览效果</span>
-                        <div class="box-container">
-                            <div class="box">盒子模型</div>
-                        </div>
-                    </div>
                 </div>
             </div>
             <div class="action-bar">
-                <button class="btn btn-run" onclick="runBoxModelExperiment()">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="resetBoxModelExperiment()">↺ 重置</button>
+                <button class="btn btn-run" onclick="applyCSS('1')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="removeCSS('1')">↺ 重置</button>
+            </div>
+            <div class="preview-box" id="preview-1">
+                <span class="preview-label">效果预览</span>
+                <div class="box-container">
+                    <div class="box">盒子模型</div>
+                </div>
             </div>
         </div>
     </section>
@@ -337,100 +339,71 @@
         <h2>十、实验：box-sizing属性</h2>
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验：box-sizing属性</span>
-                <span class="status-badge beginner">Hands-on</span>
+                <span>🧪 实验 02：box-sizing属性对比</span>
+                <span id="badge-2" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
             </div>
             <div class="lab-body">
-                <p><strong>目标：</strong>通过实际操作，理解box-sizing属性的作用。</p>
-                <ol class="lab-steps">
-                    <li>创建一个HTML文件，包含两个div元素。</li>
-                    <li>为第一个div元素设置box-sizing: content-box;。</li>
-                    <li>为第二个div元素设置box-sizing: border-box;。</li>
-                    <li>为两个div元素设置相同的width、padding和border属性。</li>
-                    <li>观察两个div元素的实际大小差异。</li>
-                    <li>总结box-sizing属性的优缺点和适用场景。</li>
-                </ol>
-            </div>
-        </div>
-    
-        <div class="lab-card">
-            <div class="lab-header">
-                <span>实验：第21次课-CSS盒子模型实践</span>
-                <span id="21css-status" class="status-badge">未运行</span>
-            </div>
-            <div class="lab-body css-js-experiment">
-                <div>
-                    <div class="code-editor" id="21css-css" contenteditable="true">
-<span class="panel-label">CSS (可编辑)</span>/* 第21次课-CSS盒子模型实验 */
-.container {
-    width: 200px;
-    height: 200px;
-    background-color: #f0f0f0;
+                <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;div class="box-sizing-container"&gt;
+    &lt;div class="box-content"&gt;content-box&lt;/div&gt;
+    &lt;div class="box-border"&gt;border-box&lt;/div&gt;
+&lt;/div&gt;
+                </div>
+                <div class="panel css-editor" id="css-2" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>/* box-sizing属性实验 */
+.box-sizing-container {
+    display: flex;
+    gap: 20px;
     padding: 20px;
-    border: 2px solid #333;
-    border-radius: 10px;
-    margin: 20px;
-    /* 在这里添加你的CSS样式 */
+    background-color: #f9f9f9;
+    border: 1px dashed #ccc;
 }
 
-/* 在这里添加更多CSS样式 */
-</div>
-                </div>
-                <div>
-                    <div class="preview-area" id="21css-preview">
-                        <span class="panel-label">预览效果</span>
-                        <div class="container">
-                            <h3>CSS实验</h3>
-                            <p>这是CSS实验的预览效果</p>
-                        </div>
-                    </div>
+/* W3C标准盒子模型 */
+.box-content {
+    box-sizing: content-box;
+    width: 150px;
+    height: 150px;
+    padding: 20px;
+    border: 10px solid #ff6b6b;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #ff6b6b;
+}
+
+/* IE盒子模型 */
+.box-border {
+    box-sizing: border-box;
+    width: 150px;
+    height: 150px;
+    padding: 20px;
+    border: 10px solid #4ecdc4;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #4ecdc4;
+}
                 </div>
             </div>
             <div class="action-bar">
-                <button class="btn btn-run" onclick="run21cssExperiment()">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="reset21cssExperiment()">↺ 重置</button>
+                <button class="btn btn-run" onclick="applyCSS('2')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="removeCSS('2')">↺ 重置</button>
             </div>
-        </div>
-
-        <div class="lab-card">
-            <div class="lab-header">
-                <span>实验：第21次课-CSS盒子模型实践</span>
-                <span id="21css-status" class="status-badge">未运行</span>
-            </div>
-            <div class="lab-body css-js-experiment">
-                <div>
-                    <div class="code-editor" id="21css-css" contenteditable="true">
-<span class="panel-label">CSS (可编辑)</span>/* 第21次课-CSS盒子模型实验 */
-.container {
-    width: 200px;
-    height: 200px;
-    background-color: #f0f0f0;
-    padding: 20px;
-    border: 2px solid #333;
-    border-radius: 10px;
-    margin: 20px;
-    /* 在这里添加你的CSS样式 */
-}
-
-/* 在这里添加更多CSS样式 */
-</div>
-                </div>
-                <div>
-                    <div class="preview-area" id="21css-preview">
-                        <span class="panel-label">预览效果</span>
-                        <div class="container">
-                            <h3>CSS实验</h3>
-                            <p>这是CSS实验的预览效果</p>
-                        </div>
-                    </div>
+            <div class="preview-box" id="preview-2">
+                <span class="preview-label">效果预览</span>
+                <div class="box-sizing-container">
+                    <div class="box-content">content-box</div>
+                    <div class="box-border">border-box</div>
                 </div>
             </div>
-            <div class="action-bar">
-                <button class="btn btn-run" onclick="run21cssExperiment()">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="reset21cssExperiment()">↺ 重置</button>
-            </div>
         </div>
-</section>
+    </section>
     <section id="summary">
         <h2>十一、本课小结</h2>
         <p>本课程详细介绍了CSS盒子模型，包括：</p>
@@ -457,132 +430,58 @@
 </main>
 
 <script>
-    // 盒子模型实验交互逻辑
-    function runBoxModelExperiment() {
-        const editor = document.getElementById('box-model-css');
-        const status = document.getElementById('box-model-status');
+    // 标准CSS实验函数
+    function applyCSS(id) {
+        const cssEditor = document.getElementById(`css-${id}`);
+        const preview = document.getElementById(`preview-${id}`);
+        const badge = document.getElementById(`badge-${id}`);
         
-        if (editor) {
-            let code = editor.innerText;
-            // 移除编辑器标签
-            code = code.replace('CSS (可编辑)', '');
-            // 注入到页面
-            const style = document.createElement('style');
-            style.id = 'experiment-box-model';
-            style.textContent = code;
-            // 移除旧的样式
-            const oldStyle = document.getElementById('experiment-box-model');
-            if (oldStyle) {
-                oldStyle.remove();
-            }
-            // 添加新样式
-            document.head.appendChild(style);
-            // 更新状态
-            status.textContent = '已运行';
-            status.className = 'status-badge active';
-        }
-    }
-    
-    function resetBoxModelExperiment() {
-        const status = document.getElementById('box-model-status');
-        // 移除实验样式
-        const oldStyle = document.getElementById('experiment-box-model');
-        if (oldStyle) {
-            oldStyle.remove();
-        }
-        // 更新状态
-        status.textContent = '未运行';
-        status.className = 'status-badge';
-    }
-    // 第21次课-CSS盒子模型实验交互逻辑
-    function run21cssExperiment() {
-        const editor = document.getElementById('21css-css');
-        const status = document.getElementById('21css-status');
+        if (!cssEditor || !preview || !badge) return;
         
-        if (editor) {
-            let code = editor.innerText;
-            // 移除编辑器标签
-            code = code.replace('css (可编辑)', '');
-            
-            
-            // 注入CSS样式
-            const style = document.createElement('style');
-            style.id = 'experiment-21css';
-            style.textContent = code;
-            // 移除旧的样式
-            const oldStyle = document.getElementById('experiment-21css');
-            if (oldStyle) {
-                oldStyle.remove();
-            }
-            // 添加新样式
-            document.head.appendChild(style);
-            
-            
-            // 更新状态
-            status.textContent = '已运行';
-            status.className = 'status-badge active';
-        }
-    }
-    
-    function reset21cssExperiment() {
-        const status = document.getElementById('21css-status');
+        // 获取CSS代码并移除标签前缀
+        let cssCode = cssEditor.innerText;
+        cssCode = cssCode.replace(/<div class="panel-label">CSS \(可编辑\)<\/div>/g, '');
         
+        // 创建样式元素
+        const styleId = `inline-style-${id}`;
+        let styleElement = document.getElementById(styleId);
         
-        // 移除CSS样式
-        const oldStyle = document.getElementById('experiment-21css');
-        if (oldStyle) {
-            oldStyle.remove();
+        if (!styleElement) {
+            styleElement = document.createElement('style');
+            styleElement.id = styleId;
+            document.head.appendChild(styleElement);
         }
         
+        // 设置样式内容
+        styleElement.textContent = cssCode;
         
         // 更新状态
-        status.textContent = '未运行';
-        status.className = 'status-badge';
-    }
-    // 第21次课-CSS盒子模型实验交互逻辑
-    function run21cssExperiment() {
-        const editor = document.getElementById('21css-css');
-        const status = document.getElementById('21css-status');
-        
-        if (editor) {
-            let code = editor.innerText;
-            // 移除编辑器标签
-            code = code.replace('CSS (可编辑)', '');
-            
-            
-            // 注入CSS样式
-            const style = document.createElement('style');
-            style.id = 'experiment-21css';
-            style.textContent = code;
-            // 移除旧的样式
-            const oldStyle = document.getElementById('experiment-21css');
-            if (oldStyle) {
-                oldStyle.remove();
-            }
-            // 添加新样式
-            document.head.appendChild(style);
-            
-            
-            // 更新状态
-            status.textContent = '已运行';
-            status.className = 'status-badge active';
-        }
+        updateStatus(id, true);
     }
     
-    function reset21cssExperiment() {
-        const status = document.getElementById('21css-status');
+    function removeCSS(id) {
+        const styleId = `inline-style-${id}`;
+        const styleElement = document.getElementById(styleId);
         
-        
-        // 移除CSS样式
-        const oldStyle = document.getElementById('experiment-21css');
-        if (oldStyle) {
-            oldStyle.remove();
+        if (styleElement) {
+            styleElement.remove();
         }
         
-        
         // 更新状态
-        status.textContent = '未运行';
-        status.className = 'status-badge';
+        updateStatus(id, false);
+    }
+    
+    function updateStatus(id, isActive) {
+        const badge = document.getElementById(`badge-${id}`);
+        if (badge) {
+            if (isActive) {
+                badge.textContent = '当前状态：已应用样式 (Styled)';
+                badge.className = 'status-badge status-active';
+            } else {
+                badge.textContent = '当前状态：无样式 (Raw)';
+                badge.className = 'status-badge status-inactive';
+            }
+        }
     }
 </script>
 </body>

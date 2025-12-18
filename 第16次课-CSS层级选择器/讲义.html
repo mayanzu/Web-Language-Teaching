@@ -735,12 +735,12 @@ article > h2 + p {
         <div class="lab-card">
             <div class="lab-header">
                 <span>实验：第16次课-CSS层级选择器实践</span>
-                <span id="16css-status" class="status-badge">未运行</span>
+                <span id="badge-6" class="status-badge">未运行</span>
             </div>
-            <div class="lab-body css-js-experiment">
-                <div>
-                    <div class="code-editor" id="16css-css" contenteditable="true">
-<span class="panel-label">CSS (可编辑)</span>/* 第16次课-CSS层级选择器实验 */
+            <div class="lab-body">
+                <div class="panel">
+                    <div class="panel-label">CSS (可编辑)</div>
+                    <div class="html-editor" id="css-6" contenteditable="true">/* 第16次课-CSS层级选择器实验 */
 .container {
     width: 200px;
     height: 200px;
@@ -768,11 +768,11 @@ article > h2 + p {
 .container:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-</div>
+                    </div>
                 </div>
-                <div>
-                    <div class="preview-area" id="16css-preview">
-                        <span class="panel-label">预览效果</span>
+                <div class="panel">
+                    <div class="panel-label">预览效果</div>
+                    <div class="preview-box" id="preview-6">
                         <div class="container">
                             <h3>CSS实验</h3>
                             <p>这是CSS实验的预览效果</p>
@@ -781,8 +781,8 @@ article > h2 + p {
                 </div>
             </div>
             <div class="action-bar">
-                <button class="btn btn-run" onclick="run16cssExperiment()">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="reset16cssExperiment()">↺ 重置</button>
+                <button class="btn btn-run" onclick="applyCSS('6')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="removeCSS('6')">↺ 重置</button>
             </div>
         </div>
 </section></main>

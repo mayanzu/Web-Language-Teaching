@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -6,115 +6,60 @@
     <title>第12课：HTML5新特性与最佳实践</title>
                 
     <script>
-        // 上下结构交互实验室功能
+        // 核心 HTML 注入逻辑
         function applyHTML(id) {
             const editor = document.getElementById(`html-${id}`);
-            const preview = document.getElementById(`preview-${id}`);
-            const badge = document.getElementById(`badge-${id}`);
-            
-            if (editor && preview) {
-                preview.innerHTML = editor.innerText;
-                
-                // 更新状态徽章
-                badge.innerText = "运行中 (Active)";
-                badge.className = "status-badge status-active";
+            if (!editor) return;
+
+            const previewId = `preview-${id}`;
+            let rawHtml = editor.innerText; // 使用 innerText 保留换行
+
+            // 清理编辑器自带的 Label 文本
+            const labelText = "HTML (可编辑)";
+            if (rawHtml.indexOf(labelText) !== -1) {
+                rawHtml = rawHtml.replace(labelText, "");
             }
+
+            // 将HTML代码注入到预览框
+            const previewBox = document.getElementById(previewId);
+            if (previewBox) {
+                previewBox.innerHTML = rawHtml;
+            }
+
+            updateStatus(id, true);
         }
-        
+
+        // 重置功能
         function resetHTML(id) {
             const editor = document.getElementById(`html-${id}`);
-            const preview = document.getElementById(`preview-${id}`);
+            if (!editor) return;
+
+            const originalCode = document.getElementById(`original-${id}`).innerText;
+            editor.innerText = originalCode;
+
+            const previewId = `preview-${id}`;
+            const previewBox = document.getElementById(previewId);
+            if (previewBox) {
+                previewBox.innerHTML = '<div class="preview-label">预览效果</div>';
+            }
+
+            updateStatus(id, false);
+        }
+
+        // 更新状态标签
+        function updateStatus(id, isActive) {
             const badge = document.getElementById(`badge-${id}`);
-            const original = document.getElementById(`original-${id}`);
-            
-            if (editor && preview && original) {
-                editor.innerText = original.innerText;
-                preview.innerHTML = editor.innerText;
-                
-                // 更新状态徽章
-                badge.innerText = "未运行";
-                badge.className = "status-badge";
+            if (badge) {
+                if (isActive) {
+                    badge.textContent = "已运行";
+                    badge.className = "status-badge status-active";
+                } else {
+                    badge.textContent = "未运行";
+                    badge.className = "status-badge";
+                }
             }
         }
-        // 第12次课-HTML5新特性实验交互逻辑
-    function run12html5Experiment() {
-        const editor = document.getElementById('12html5-html');
-        const status = document.getElementById('12html5-status');
-        
-        if (editor) {
-            let code = editor.innerText;
-            // 移除编辑器标签
-            code = code.replace('html (可编辑)', '');
-            
-            
-            // 注入到预览区域
-            const preview = document.getElementById('12html5-preview');
-            if (preview) {
-                preview.innerHTML = code;
-            }
-            
-            
-            // 更新状态
-            status.textContent = '已运行';
-            status.className = 'status-badge active';
-        }
-    }
-    
-    function reset12html5Experiment() {
-        const status = document.getElementById('12html5-status');
-        
-        
-        // 重置预览区域
-        const preview = document.getElementById('12html5-preview');
-        if (preview) {
-            preview.innerHTML = '<span class="panel-label">预览效果</span>';
-        }
-        
-        
-        // 更新状态
-        status.textContent = '未运行';
-        status.className = 'status-badge';
-    }
-    // 第12次课-HTML5新特性实验交互逻辑
-    function run12html5Experiment() {
-        const editor = document.getElementById('12html5-html');
-        const status = document.getElementById('12html5-status');
-        
-        if (editor) {
-            let code = editor.innerText;
-            // 移除编辑器标签
-            code = code.replace('HTML (可编辑)', '');
-            
-            
-            // 注入到预览区域
-            const preview = document.getElementById('12html5-preview');
-            if (preview) {
-                preview.innerHTML = code;
-            }
-            
-            
-            // 更新状态
-            status.textContent = '已运行';
-            status.className = 'status-badge active';
-        }
-    }
-    
-    function reset12html5Experiment() {
-        const status = document.getElementById('12html5-status');
-        
-        
-        // 重置预览区域
-        const preview = document.getElementById('12html5-preview');
-        if (preview) {
-            preview.innerHTML = '<span class="panel-label">预览效果</span>';
-        }
-        
-        
-        // 更新状态
-        status.textContent = '未运行';
-        status.className = 'status-badge';
-    }
-</script>
+    </script>
     <link rel='stylesheet' href='../统一讲义样式模板.css'>\n</head>
 <body>
     <!-- 侧边栏导航 -->
@@ -530,17 +475,19 @@ body {
         <div class="lab-card">
             <div class="lab-header">
                 <span>实验：第12次课-HTML5新特性实践</span>
-                <span id="12html5-status" class="status-badge">未运行</span>
+                <span id="badge-1" class="status-badge">未运行</span>
             </div>
-            <div class="lab-body html-experiment">
-                <div class="code-editor" id="12html5-html" contenteditable="true">
-<span class="panel-label">HTML (可编辑)</span>&lt;!DOCTYPE html&gt;
-&lt;html lang="zh-CN"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;第12次课-HTML5新特性&lt;/title&gt;
-    &lt;style&gt;
+            <div class="lab-body">
+                <div class="panel">
+                    <div class="panel-label">HTML (可编辑)</div>
+                    <div class="html-editor" id="html-1" contenteditable="true">
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第12次课-HTML5新特性</title>
+    <style>
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
@@ -552,43 +499,28 @@ body {
             border: 1px solid #ddd;
             border-radius: 5px;
         }
-    &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;div class="container"&gt;
-        &lt;h1&gt;第12次课-HTML5新特性&lt;/h1&gt;
-        &lt;p&gt;在这里编写你的HTML代码，实践第12次课-HTML5新特性的知识。&lt;/p&gt;
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>第12次课-HTML5新特性</h1>
+        <p>在这里编写你的HTML代码，实践第12次课-HTML5新特性的知识。</p>
         
-        &lt;!-- 在这里添加你的HTML代码 --&gt;
+        <!-- 在这里添加你的HTML代码 -->
         
-    &lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</div>
-            </div>
-            <div class="action-bar">
-                <button class="btn btn-run" onclick="run12html5Experiment()">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="reset12html5Experiment()">↺ 重置</button>
-            </div>
-            <div class="preview-area" id="12html5-preview">
-                <span class="panel-label">预览效果</span>
-            </div>
-        </div>
-
-        <div class="lab-card">
-            <div class="lab-header">
-                <span>实验：第12次课-HTML5新特性实践</span>
-                <span id="12html5-status" class="status-badge">未运行</span>
-            </div>
-            <div class="lab-body html-experiment">
-                <div class="code-editor" id="12html5-html" contenteditable="true">
-<span class="panel-label">HTML (可编辑)</span>&lt;!DOCTYPE html&gt;
-&lt;html lang="zh-CN"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;第12次课-HTML5新特性&lt;/title&gt;
-    &lt;style&gt;
+    </div>
+</body>
+</html>
+                    </div>
+                    <!-- 隐藏的原始代码，用于重置功能 -->
+                    <div id="original-1" style="display: none;">
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第12次课-HTML5新特性</title>
+    <style>
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
@@ -600,26 +532,30 @@ body {
             border: 1px solid #ddd;
             border-radius: 5px;
         }
-    &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;div class="container"&gt;
-        &lt;h1&gt;第12次课-HTML5新特性&lt;/h1&gt;
-        &lt;p&gt;在这里编写你的HTML代码，实践第12次课-HTML5新特性的知识。&lt;/p&gt;
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>第12次课-HTML5新特性</h1>
+        <p>在这里编写你的HTML代码，实践第12次课-HTML5新特性的知识。</p>
         
-        &lt;!-- 在这里添加你的HTML代码 --&gt;
+        <!-- 在这里添加你的HTML代码 -->
         
-    &lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</div>
+    </div>
+</body>
+</html>
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="panel-label">预览效果</div>
+                    <div class="preview-box" id="preview-1">
+                        <div class="preview-label">预览效果</div>
+                    </div>
+                </div>
             </div>
             <div class="action-bar">
-                <button class="btn btn-run" onclick="run12html5Experiment()">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="reset12html5Experiment()">↺ 重置</button>
-            </div>
-            <div class="preview-area" id="12html5-preview">
-                <span class="panel-label">预览效果</span>
+                <button class="btn btn-run" onclick="applyHTML('1')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetHTML('1')">↺ 重置</button>
             </div>
         </div>
 </section></main>

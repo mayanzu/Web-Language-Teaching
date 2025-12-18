@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -6,115 +6,82 @@
     <title>第6课：HTML表格基础</title>
                 
     <script>
-        // 上下结构实验室功能
+        // 核心HTML注入逻辑
         function applyHTML(id) {
             const editor = document.getElementById(`html-${id}`);
-            const preview = document.getElementById(`preview-${id}`);
-            const badge = document.getElementById(`badge-${id}`);
-            
-            if (editor && preview) {
-                preview.innerHTML = editor.innerText;
-                
-                // 更新状态徽章
-                badge.innerText = "运行中 (Active)";
-                badge.className = "status-badge status-active";
+            const previewId = `preview-${id}`;
+            let rawHtml = editor.innerText;
+            const labelText = "HTML (可编辑)";
+            if (rawHtml.indexOf(labelText) !== -1) {
+                rawHtml = rawHtml.replace(labelText, "");
             }
+            const previewBox = document.getElementById(previewId);
+            if (previewBox) {
+                previewBox.innerHTML = rawHtml;
+            }
+            updateStatus(id, true);
         }
-        
+
+        // Reset functionality
         function resetHTML(id) {
-            const editor = document.getElementById(`html-${id}`);
-            const preview = document.getElementById(`preview-${id}`);
+            const previewId = `preview-${id}`;
+            const previewBox = document.getElementById(previewId);
+            if (previewBox) {
+                previewBox.innerHTML = '<span class="panel-label">预览效果</span>';
+            }
+            updateStatus(id, false);
+        }
+
+        // Update status label
+        function updateStatus(id, isActive) {
             const badge = document.getElementById(`badge-${id}`);
-            const original = document.getElementById(`original-${id}`);
-            
-            if (editor && preview && original) {
-                editor.innerText = original.innerText;
-                preview.innerHTML = editor.innerText;
-                
-                // 更新状态徽章
-                badge.innerText = "未运行 (Inactive)";
-                badge.className = "status-badge";
+            if (badge) {
+                if (isActive) {
+                    badge.textContent = "已运行";
+                    badge.className = "status-badge active";
+                } else {
+                    badge.textContent = "未运行";
+                    badge.className = "status-badge";
+                }
             }
         }
+
         // 第6次课-HTML表格基础实验交互逻辑
-    function run6htmlExperiment() {
-        const editor = document.getElementById('6html-html');
-        const status = document.getElementById('6html-status');
-        
-        if (editor) {
-            let code = editor.innerText;
-            // 移除编辑器标签
-            code = code.replace('html (可编辑)', '');
+        function run6htmlExperiment() {
+            const editor = document.getElementById('6html-html');
+            const status = document.getElementById('6html-status');
             
+            if (editor) {
+                let code = editor.innerText;
+                // 移除编辑器标签
+                code = code.replace(/<span class="panel-label">HTML \(可编辑\)<\/span>/g, '');
+                
+                // 注入到预览区域
+                const preview = document.getElementById('6html-preview');
+                if (preview) {
+                    preview.innerHTML = code;
+                }
+                
+                // 更新状态
+                status.textContent = '已运行';
+                status.className = 'status-badge active';
+            }
+        }
+    
+        function reset6htmlExperiment() {
+            const status = document.getElementById('6html-status');
             
-            // 注入到预览区域
+            // 重置预览区域
             const preview = document.getElementById('6html-preview');
             if (preview) {
-                preview.innerHTML = code;
+                preview.innerHTML = '<span class="panel-label">预览效果</span>';
             }
             
-            
             // 更新状态
-            status.textContent = '已运行';
-            status.className = 'status-badge active';
+            status.textContent = '未运行';
+            status.className = 'status-badge';
         }
-    }
-    
-    function reset6htmlExperiment() {
-        const status = document.getElementById('6html-status');
-        
-        
-        // 重置预览区域
-        const preview = document.getElementById('6html-preview');
-        if (preview) {
-            preview.innerHTML = '<span class="panel-label">预览效果</span>';
-        }
-        
-        
-        // 更新状态
-        status.textContent = '未运行';
-        status.className = 'status-badge';
-    }
-    // 第6次课-HTML表格基础实验交互逻辑
-    function run6htmlExperiment() {
-        const editor = document.getElementById('6html-html');
-        const status = document.getElementById('6html-status');
-        
-        if (editor) {
-            let code = editor.innerText;
-            // 移除编辑器标签
-            code = code.replace('HTML (可编辑)', '');
-            
-            
-            // 注入到预览区域
-            const preview = document.getElementById('6html-preview');
-            if (preview) {
-                preview.innerHTML = code;
-            }
-            
-            
-            // 更新状态
-            status.textContent = '已运行';
-            status.className = 'status-badge active';
-        }
-    }
-    
-    function reset6htmlExperiment() {
-        const status = document.getElementById('6html-status');
-        
-        
-        // 重置预览区域
-        const preview = document.getElementById('6html-preview');
-        if (preview) {
-            preview.innerHTML = '<span class="panel-label">预览效果</span>';
-        }
-        
-        
-        // 更新状态
-        status.textContent = '未运行';
-        status.className = 'status-badge';
-    }
-</script>
+    </script>
     <link rel='stylesheet' href='../统一讲义样式模板.css'>\n</head>
 <body>
     <!-- 侧边栏导航 -->
@@ -184,6 +151,107 @@
         &lt;/tr&gt;
     &lt;/tfoot&gt;
 &lt;/table&gt;</code></pre>
+            
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>上下结构实验室：表格基本结构</span>
+                    <span id="badge-1" class="status-badge">未运行</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel">
+                        <div class="panel-label">HTML (可编辑)</div>
+                        <div class="html-editor" id="html-1" contenteditable="true">
+&lt;table border="1" cellpadding="10" cellspacing="0"&gt;
+    &lt;caption&gt;表格标题&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;表头1&lt;/th&gt;
+            &lt;th&gt;表头2&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;数据1&lt;/td&gt;
+            &lt;td&gt;数据2&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;数据3&lt;/td&gt;
+            &lt;td&gt;数据4&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+    &lt;tfoot&gt;
+        &lt;tr&gt;
+            &lt;td&gt;汇总1&lt;/td&gt;
+            &lt;td&gt;汇总2&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tfoot&gt;
+&lt;/table&gt;
+                        </div>
+                        <!-- 隐藏的原始代码，用于重置功能 -->
+                        <div id="original-1" style="display: none;">
+&lt;table border="1" cellpadding="10" cellspacing="0"&gt;
+    &lt;caption&gt;表格标题&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;表头1&lt;/th&gt;
+            &lt;th&gt;表头2&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;数据1&lt;/td&gt;
+            &lt;td&gt;数据2&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;数据3&lt;/td&gt;
+            &lt;td&gt;数据4&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+    &lt;tfoot&gt;
+        &lt;tr&gt;
+            &lt;td&gt;汇总1&lt;/td&gt;
+            &lt;td&gt;汇总2&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tfoot&gt;
+&lt;/table&gt;
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-label">预览效果</div>
+                        <div class="preview-box" id="preview-1">
+                            <table border="1" cellpadding="10" cellspacing="0">
+                                <caption>表格标题</caption>
+                                <thead>
+                                    <tr>
+                                        <th>表头1</th>
+                                        <th>表头2</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>数据1</td>
+                                        <td>数据2</td>
+                                    </tr>
+                                    <tr>
+                                        <td>数据3</td>
+                                        <td>数据4</td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td>汇总1</td>
+                                        <td>汇总2</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyHTML('1')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHTML('1')">↺ 重置</button>
+                </div>
+            </div>
         </section>
 
         <section id="table-elements">
@@ -294,6 +362,104 @@
                 <span class="tip-title">💡 样式建议</span>
                 <p>在现代Web开发中，我们通常使用CSS来设置表格的样式，而不是使用HTML属性。CSS提供了更强大、更灵活的样式控制能力。</p>
             </div>
+            
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>上下结构实验室：表格属性</span>
+                    <span id="badge-2" class="status-badge">未运行</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel">
+                        <div class="panel-label">HTML (可编辑)</div>
+                        <div class="html-editor" id="html-2" contenteditable="true">
+&lt;!-- 不同border属性值的对比 --&gt;
+&lt;h3&gt;border="1"&lt;/h3&gt;
+&lt;table border="1" cellpadding="5" cellspacing="0" width="100%"&gt;
+    &lt;tr&gt;
+        &lt;th&gt;表头1&lt;/th&gt;
+        &lt;th&gt;表头2&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;数据1&lt;/td&gt;
+        &lt;td&gt;数据2&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;h3&gt;border="3"&lt;/h3&gt;
+&lt;table border="3" cellpadding="10" cellspacing="2" width="100%"&gt;
+    &lt;tr&gt;
+        &lt;th&gt;表头1&lt;/th&gt;
+        &lt;th&gt;表头2&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;数据1&lt;/td&gt;
+        &lt;td&gt;数据2&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+                        </div>
+                        <!-- 隐藏的原始代码，用于重置功能 -->
+                        <div id="original-2" style="display: none;">
+&lt;!-- 不同border属性值的对比 --&gt;
+&lt;h3&gt;border="1"&lt;/h3&gt;
+&lt;table border="1" cellpadding="5" cellspacing="0" width="100%"&gt;
+    &lt;tr&gt;
+        &lt;th&gt;表头1&lt;/th&gt;
+        &lt;th&gt;表头2&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;数据1&lt;/td&gt;
+        &lt;td&gt;数据2&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;h3&gt;border="3"&lt;/h3&gt;
+&lt;table border="3" cellpadding="10" cellspacing="2" width="100%"&gt;
+    &lt;tr&gt;
+        &lt;th&gt;表头1&lt;/th&gt;
+        &lt;th&gt;表头2&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;数据1&lt;/td&gt;
+        &lt;td&gt;数据2&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-label">预览效果</div>
+                        <div class="preview-box" id="preview-2">
+                            <!-- 不同border属性值的对比 -->
+                            <h3>border="1"</h3>
+                            <table border="1" cellpadding="5" cellspacing="0" width="100%">
+                                <tr>
+                                    <th>表头1</th>
+                                    <th>表头2</th>
+                                </tr>
+                                <tr>
+                                    <td>数据1</td>
+                                    <td>数据2</td>
+                                </tr>
+                            </table>
+
+                            <h3>border="3"</h3>
+                            <table border="3" cellpadding="10" cellspacing="2" width="100%">
+                                <tr>
+                                    <th>表头1</th>
+                                    <th>表头2</th>
+                                </tr>
+                                <tr>
+                                    <td>数据1</td>
+                                    <td>数据2</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyHTML('2')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHTML('2')">↺ 重置</button>
+                </div>
+            </div>
         </section>
 
         <section id="simple-table">
@@ -347,15 +513,60 @@
     &lt;/tfoot&gt;
 &lt;/table&gt;</code></pre>
             
+            <h3>4.1 示例：学生成绩表</h3>
+            <pre><code>&lt;table border="1" cellpadding="10" cellspacing="0" width="100%"&gt;
+    &lt;caption&gt;学生成绩表&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;学号&lt;/th&gt;
+            &lt;th&gt;姓名&lt;/th&gt;
+            &lt;th&gt;数学&lt;/th&gt;
+            &lt;th&gt;英语&lt;/th&gt;
+            &lt;th&gt;物理&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;001&lt;/td&gt;
+            &lt;td&gt;张三&lt;/td&gt;
+            &lt;td&gt;85&lt;/td&gt;
+            &lt;td&gt;92&lt;/td&gt;
+            &lt;td&gt;78&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;002&lt;/td&gt;
+            &lt;td&gt;李四&lt;/td&gt;
+            &lt;td&gt;90&lt;/td&gt;
+            &lt;td&gt;88&lt;/td&gt;
+            &lt;td&gt;95&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;003&lt;/td&gt;
+            &lt;td&gt;王五&lt;/td&gt;
+            &lt;td&gt;75&lt;/td&gt;
+            &lt;td&gt;80&lt;/td&gt;
+            &lt;td&gt;85&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+    &lt;tfoot&gt;
+        &lt;tr&gt;
+            &lt;th colspan="2"&gt;平均分&lt;/th&gt;
+            &lt;th&gt;83.3&lt;/th&gt;
+            &lt;th&gt;86.7&lt;/th&gt;
+            &lt;th&gt;86.0&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/tfoot&gt;
+&lt;/table&gt;</code></pre>
+            
             <div class="lab-card">
                 <div class="lab-header">
                     <span>上下结构实验室：学生成绩表</span>
-                    <span id="badge-1" class="status-badge">未运行</span>
+                    <span id="badge-3" class="status-badge">未运行</span>
                 </div>
                 <div class="lab-body">
                     <div class="panel">
                         <div class="panel-label">HTML (可编辑)</div>
-                        <div class="html-editor" id="html-1" contenteditable="true">
+                        <div class="html-editor" id="html-3" contenteditable="true">
 &lt;table border="1" cellpadding="10" cellspacing="0" width="100%"&gt;
     &lt;caption&gt;学生成绩表&lt;/caption&gt;
     &lt;thead&gt;
@@ -401,7 +612,7 @@
 &lt;/table&gt;
                         </div>
                         <!-- 隐藏的原始代码，用于重置功能 -->
-                        <div id="original-1" style="display: none;">
+                        <div id="original-3" style="display: none;">
 &lt;table border="1" cellpadding="10" cellspacing="0" width="100%"&gt;
     &lt;caption&gt;学生成绩表&lt;/caption&gt;
     &lt;thead&gt;
@@ -449,7 +660,7 @@
                     </div>
                     <div class="panel">
                         <div class="panel-label">预览效果</div>
-                        <div class="preview-box" id="preview-1">
+                        <div class="preview-box" id="preview-3">
                             <table border="1" cellpadding="10" cellspacing="0" width="100%">
                                 <caption>学生成绩表</caption>
                                 <thead>
@@ -497,8 +708,8 @@
                     </div>
                 </div>
                 <div class="action-bar">
-                    <button class="btn btn-run" onclick="applyHTML('1')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetHTML('1')">↺ 重置</button>
+                    <button class="btn btn-run" onclick="applyHTML('3')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHTML('3')">↺ 重置</button>
                 </div>
             </div>
             
@@ -535,12 +746,12 @@
             <div class="lab-card">
                 <div class="lab-header">
                     <span>上下结构实验室：课程表</span>
-                    <span id="badge-2" class="status-badge">未运行</span>
+                    <span id="badge-4" class="status-badge">未运行</span>
                 </div>
                 <div class="lab-body">
                     <div class="panel">
                         <div class="panel-label">HTML (可编辑)</div>
-                        <div class="html-editor" id="html-2" contenteditable="true">
+                        <div class="html-editor" id="html-4" contenteditable="true">
 &lt;table border="1" cellpadding="10" cellspacing="0" width="100%"&gt;
     &lt;caption&gt;周一课程表&lt;/caption&gt;
     &lt;thead&gt;
@@ -571,7 +782,7 @@
 &lt;/table&gt;
                         </div>
                         <!-- 隐藏的原始代码，用于重置功能 -->
-                        <div id="original-2" style="display: none;">
+                        <div id="original-4" style="display: none;">
 &lt;table border="1" cellpadding="10" cellspacing="0" width="100%"&gt;
     &lt;caption&gt;周一课程表&lt;/caption&gt;
     &lt;thead&gt;
@@ -604,7 +815,7 @@
                     </div>
                     <div class="panel">
                         <div class="panel-label">预览效果</div>
-                        <div class="preview-box" id="preview-2">
+                        <div class="preview-box" id="preview-4">
                             <table border="1" cellpadding="10" cellspacing="0" width="100%">
                                 <caption>周一课程表</caption>
                                 <thead>
@@ -637,8 +848,8 @@
                     </div>
                 </div>
                 <div class="action-bar">
-                    <button class="btn btn-run" onclick="applyHTML('2')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetHTML('2')">↺ 重置</button>
+                    <button class="btn btn-run" onclick="applyHTML('4')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHTML('4')">↺ 重置</button>
                 </div>
             </div>
         </section>
@@ -661,7 +872,7 @@
         
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验：第6次课-HTML表格基础实践</span>
+                <span>实验：第6次课-HTML表格基础综合实践</span>
                 <span id="6html-status" class="status-badge">未运行</span>
             </div>
             <div class="lab-body html-experiment">
@@ -678,69 +889,97 @@
             margin: 20px;
         }
         .container {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
             border: 1px solid #ddd;
             border-radius: 5px;
         }
-    &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;div class="container"&gt;
-        &lt;h1&gt;第6次课-HTML表格基础&lt;/h1&gt;
-        &lt;p&gt;在这里编写你的HTML代码，实践第6次课-HTML表格基础的知识。&lt;/p&gt;
-        
-        &lt;!-- 在这里添加你的HTML代码 --&gt;
-        
-    &lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</div>
-            </div>
-            <div class="action-bar">
-                <button class="btn btn-run" onclick="run6htmlExperiment()">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="reset6htmlExperiment()">↺ 重置</button>
-            </div>
-            <div class="preview-area" id="6html-preview">
-                <span class="panel-label">预览效果</span>
-            </div>
-        </div>
-
-        <div class="lab-card">
-            <div class="lab-header">
-                <span>实验：第6次课-HTML表格基础实践</span>
-                <span id="6html-status" class="status-badge">未运行</span>
-            </div>
-            <div class="lab-body html-experiment">
-                <div class="code-editor" id="6html-html" contenteditable="true">
-<span class="panel-label">HTML (可编辑)</span>&lt;!DOCTYPE html&gt;
-&lt;html lang="zh-CN"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;第6次课-HTML表格基础&lt;/title&gt;
-    &lt;style&gt;
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+        .table-container {
+            margin: 20px 0;
         }
     &lt;/style&gt;
 &lt;/head&gt;
 &lt;body&gt;
     &lt;div class="container"&gt;
-        &lt;h1&gt;第6次课-HTML表格基础&lt;/h1&gt;
+        &lt;h1&gt;HTML表格基础综合实践&lt;/h1&gt;
         &lt;p&gt;在这里编写你的HTML代码，实践第6次课-HTML表格基础的知识。&lt;/p&gt;
         
-        &lt;!-- 在这里添加你的HTML代码 --&gt;
+        &lt;!-- 任务1：创建学生信息表 --&gt;
+        &lt;div class="table-container"&gt;
+            &lt;h2&gt;学生信息表&lt;/h2&gt;
+            &lt;table border="1" cellpadding="10" cellspacing="0" width="100%"&gt;
+                &lt;caption&gt;学生基本信息&lt;/caption&gt;
+                &lt;thead&gt;
+                    &lt;tr&gt;
+                        &lt;th&gt;学号&lt;/th&gt;
+                        &lt;th&gt;姓名&lt;/th&gt;
+                        &lt;th&gt;性别&lt;/th&gt;
+                        &lt;th&gt;年龄&lt;/th&gt;
+                        &lt;th&gt;班级&lt;/th&gt;
+                    &lt;/tr&gt;
+                &lt;/thead&gt;
+                &lt;tbody&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;001&lt;/td&gt;
+                        &lt;td&gt;张三&lt;/td&gt;
+                        &lt;td&gt;男&lt;/td&gt;
+                        &lt;td&gt;18&lt;/td&gt;
+                        &lt;td&gt;高三(1)班&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;002&lt;/td&gt;
+                        &lt;td&gt;李四&lt;/td&gt;
+                        &lt;td&gt;女&lt;/td&gt;
+                        &lt;td&gt;17&lt;/td&gt;
+                        &lt;td&gt;高三(2)班&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;!-- 添加更多学生信息 --&gt;
+                &lt;/tbody&gt;
+                &lt;tfoot&gt;
+                    &lt;tr&gt;
+                        &lt;th colspan="4"&gt;总人数&lt;/th&gt;
+                        &lt;th&gt;2&lt;/th&gt;
+                    &lt;/tr&gt;
+                &lt;/tfoot&gt;
+            &lt;/table&gt;
+        &lt;/div&gt;
         
+        &lt;!-- 任务2：创建课程表 --&gt;
+        &lt;div class="table-container"&gt;
+            &lt;h2&gt;本周课程表&lt;/h2&gt;
+            &lt;table border="1" cellpadding="10" cellspacing="0" width="100%"&gt;
+                &lt;caption&gt;周一至周五课程安排&lt;/caption&gt;
+                &lt;thead&gt;
+                    &lt;tr&gt;
+                        &lt;th&gt;时间&lt;/th&gt;
+                        &lt;th&gt;周一&lt;/th&gt;
+                        &lt;th&gt;周二&lt;/th&gt;
+                        &lt;th&gt;周三&lt;/th&gt;
+                        &lt;th&gt;周四&lt;/th&gt;
+                        &lt;th&gt;周五&lt;/th&gt;
+                    &lt;/tr&gt;
+                &lt;/thead&gt;
+                &lt;tbody&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;上午&lt;/td&gt;
+                        &lt;td&gt;数学&lt;/td&gt;
+                        &lt;td&gt;英语&lt;/td&gt;
+                        &lt;td&gt;物理&lt;/td&gt;
+                        &lt;td&gt;化学&lt;/td&gt;
+                        &lt;td&gt;语文&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;下午&lt;/td&gt;
+                        &lt;td&gt;历史&lt;/td&gt;
+                        &lt;td&gt;地理&lt;/td&gt;
+                        &lt;td&gt;生物&lt;/td&gt;
+                        &lt;td&gt;政治&lt;/td&gt;
+                        &lt;td&gt;体育&lt;/td&gt;
+                    &lt;/tr&gt;
+                &lt;/tbody&gt;
+            &lt;/table&gt;
+        &lt;/div&gt;
     &lt;/div&gt;
 &lt;/body&gt;
 &lt;/html&gt;

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -501,12 +501,12 @@
         <div class="lab-card">
             <div class="lab-header">
                 <span>实验：第13次课-CSS布局实践</span>
-                <span id="13css-status" class="status-badge">未运行</span>
+                <span id="badge-6" class="status-badge">未运行</span>
             </div>
-            <div class="lab-body css-js-experiment">
-                <div>
-                    <div class="code-editor" id="13css-css" contenteditable="true">
-<span class="panel-label">CSS (可编辑)</span>/* 第13次课-CSS布局实验 */
+            <div class="lab-body">
+                <div class="panel">
+                    <div class="panel-label">CSS (可编辑)</div>
+                    <div class="html-editor" id="css-6" contenteditable="true">/* 第13次课-CSS布局实验 */
 .container {
     width: 200px;
     height: 200px;
@@ -519,11 +519,11 @@
 }
 
 /* 在这里添加更多CSS样式 */
-</div>
+                    </div>
                 </div>
-                <div>
-                    <div class="preview-area" id="13css-preview">
-                        <span class="panel-label">预览效果</span>
+                <div class="panel">
+                    <div class="panel-label">预览效果</div>
+                    <div class="preview-box" id="preview-6">
                         <div class="container">
                             <h3>CSS实验</h3>
                             <p>这是CSS实验的预览效果</p>
@@ -532,47 +532,8 @@
                 </div>
             </div>
             <div class="action-bar">
-                <button class="btn btn-run" onclick="run13cssExperiment()">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="reset13cssExperiment()">↺ 重置</button>
-            </div>
-        </div>
-
-        <div class="lab-card">
-            <div class="lab-header">
-                <span>实验：第13次课-CSS布局实践</span>
-                <span id="13css-status" class="status-badge">未运行</span>
-            </div>
-            <div class="lab-body css-js-experiment">
-                <div>
-                    <div class="code-editor" id="13css-css" contenteditable="true">
-<span class="panel-label">CSS (可编辑)</span>/* 第13次课-CSS布局实验 */
-.container {
-    width: 200px;
-    height: 200px;
-    background-color: #f0f0f0;
-    padding: 20px;
-    border: 2px solid #333;
-    border-radius: 10px;
-    margin: 20px;
-    /* 在这里添加你的CSS样式 */
-}
-
-/* 在这里添加更多CSS样式 */
-</div>
-                </div>
-                <div>
-                    <div class="preview-area" id="13css-preview">
-                        <span class="panel-label">预览效果</span>
-                        <div class="container">
-                            <h3>CSS实验</h3>
-                            <p>这是CSS实验的预览效果</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="action-bar">
-                <button class="btn btn-run" onclick="run13cssExperiment()">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="reset13cssExperiment()">↺ 重置</button>
+                <button class="btn btn-run" onclick="applyCSS('6')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="removeCSS('6')">↺ 重置</button>
             </div>
         </div>
 </section></main>
@@ -725,96 +686,7 @@
         window.addEventListener('scroll', updateNavHighlight);
         // 初始化执行
         setTimeout(updateNavHighlight, 100);
-        // 第13次课-CSS布局实验交互逻辑
-    function run13cssExperiment() {
-        const editor = document.getElementById('13css-css');
-        const status = document.getElementById('13css-status');
-        
-        if (editor) {
-            let code = editor.innerText;
-            // 移除编辑器标签
-            code = code.replace('css (可编辑)', '');
-            
-            
-            // 注入CSS样式
-            const style = document.createElement('style');
-            style.id = 'experiment-13css';
-            style.textContent = code;
-            // 移除旧的样式
-            const oldStyle = document.getElementById('experiment-13css');
-            if (oldStyle) {
-                oldStyle.remove();
-            }
-            // 添加新样式
-            document.head.appendChild(style);
-            
-            
-            // 更新状态
-            status.textContent = '已运行';
-            status.className = 'status-badge active';
-        }
-    }
-    
-    function reset13cssExperiment() {
-        const status = document.getElementById('13css-status');
-        
-        
-        // 移除CSS样式
-        const oldStyle = document.getElementById('experiment-13css');
-        if (oldStyle) {
-            oldStyle.remove();
-        }
-        
-        
-        // 更新状态
-        status.textContent = '未运行';
-        status.className = 'status-badge';
-    }
-    // 第13次课-CSS布局实验交互逻辑
-    function run13cssExperiment() {
-        const editor = document.getElementById('13css-css');
-        const status = document.getElementById('13css-status');
-        
-        if (editor) {
-            let code = editor.innerText;
-            // 移除编辑器标签
-            code = code.replace('CSS (可编辑)', '');
-            
-            
-            // 注入CSS样式
-            const style = document.createElement('style');
-            style.id = 'experiment-13css';
-            style.textContent = code;
-            // 移除旧的样式
-            const oldStyle = document.getElementById('experiment-13css');
-            if (oldStyle) {
-                oldStyle.remove();
-            }
-            // 添加新样式
-            document.head.appendChild(style);
-            
-            
-            // 更新状态
-            status.textContent = '已运行';
-            status.className = 'status-badge active';
-        }
-    }
-    
-    function reset13cssExperiment() {
-        const status = document.getElementById('13css-status');
-        
-        
-        // 移除CSS样式
-        const oldStyle = document.getElementById('experiment-13css');
-        if (oldStyle) {
-            oldStyle.remove();
-        }
-        
-        
-        // 更新状态
-        status.textContent = '未运行';
-        status.className = 'status-badge';
-    }
+
 </script>
 </body>
 </html>

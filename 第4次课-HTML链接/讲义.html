@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -164,38 +164,34 @@
                 外部链接是指向其他网站的链接，它的URL通常以<code>http://</code>或<code>https://</code>开头。
             </p>
             
-            <pre><code>&lt;p&gt;访问百度：&lt;a href="https://www.baidu.com"&gt;百度一下&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;访问谷歌：&lt;a href="https://www.google.com"&gt;Google&lt;/a&gt;&lt;/p&gt;</code></pre>
-            
             <div class="lab-card">
                 <div class="lab-header">
-                    <span>双栏交互实验室：基本链接语法</span>
+                    <span>实验 01：基本链接语法</span>
                     <span id="badge-1" class="status-badge">未运行</span>
                 </div>
-                <div class="lab-body">
-                    <div class="panel">
-                        <div class="panel-label">HTML (可编辑)</div>
-                        <div class="html-editor" id="html-1" contenteditable="true">
-&lt;p&gt;访问百度：&lt;a href="https://www.baidu.com"&gt;百度一下&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;访问谷歌：&lt;a href="https://www.google.com"&gt;Google&lt;/a&gt;&lt;/p&gt;
-                        </div>
-                        <!-- 隐藏的原始代码，用于重置功能 -->
-                        <div id="original-1" style="display: none;">
-&lt;p&gt;访问百度：&lt;a href="https://www.baidu.com"&gt;百度一下&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;访问谷歌：&lt;a href="https://www.google.com"&gt;Google&lt;/a&gt;&lt;/p&gt;
-                        </div>
-                    </div>
-                    <div class="panel">
-                        <div class="panel-label">预览效果</div>
-                        <div class="preview-box" id="preview-1">
-                            <p>访问百度：<a class="sidebar-link" href="https://www.baidu.com">百度一下</a></p>
-                            <p>访问谷歌：<a class="sidebar-link" href="https://www.google.com">Google</a></p>
-                        </div>
-                    </div>
+                <div class="lab-body html-experiment">
+                    <div class="code-editor" id="html-1" contenteditable="true">
+<span class="panel-label">HTML (可编辑)</span>&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;基本链表示例&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;常用网站链接&lt;/h2&gt;
+    &lt;p&gt;访问百度：&lt;a href="https://www.baidu.com"&gt;百度一下&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;访问谷歌：&lt;a href="https://www.google.com"&gt;Google&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;访问淘宝：&lt;a href="https://www.taobao.com"&gt;淘宝&lt;/a&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</div>
                 </div>
                 <div class="action-bar">
                     <button class="btn btn-run" onclick="applyHTML('1')">▶ 运行代码</button>
                     <button class="btn btn-reset" onclick="resetHTML('1')">↺ 重置</button>
+                </div>
+                <div class="preview-area" id="preview-1">
+                    <span class="panel-label">预览效果</span>
                 </div>
             </div>
         </section>
@@ -250,48 +246,39 @@
                 <li><code>_top</code>：在整个窗口中打开链接，忽略所有框架</li>
             </ul>
             
-            <pre><code>&lt;p&gt;在当前窗口打开：&lt;a href="https://www.baidu.com" target="_self"&gt;百度一下&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;在新窗口打开：&lt;a href="https://www.baidu.com" target="_blank"&gt;百度一下&lt;/a&gt;&lt;/p&gt;</code></pre>
-            
             <h3>2.2 title属性</h3>
             <p>
                 <code>title</code>属性用于指定链接的提示文本，当用户将鼠标悬停在链接上时，会显示该提示文本。
             </p>
             
-            <pre><code>&lt;a href="https://www.baidu.com" title="访问百度搜索引擎"&gt;百度一下&lt;/a&gt;</code></pre>
-            
             <div class="lab-card">
                 <div class="lab-header">
-                    <span>双栏交互实验室：链接属性</span>
+                    <span>实验 02：链接属性</span>
                     <span id="badge-2" class="status-badge">未运行</span>
                 </div>
-                <div class="lab-body">
-                    <div class="panel">
-                        <div class="panel-label">HTML (可编辑)</div>
-                        <div class="html-editor" id="html-2" contenteditable="true">
-&lt;p&gt;在当前窗口打开：&lt;a href="https://www.baidu.com" target="_self"&gt;百度一下&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;在新窗口打开：&lt;a href="https://www.baidu.com" target="_blank" rel="noopener noreferrer"&gt;百度一下&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;带提示文本：&lt;a href="https://www.baidu.com" title="访问百度搜索引擎"&gt;百度一下&lt;/a&gt;&lt;/p&gt;
-                        </div>
-                        <!-- 隐藏的原始代码，用于重置功能 -->
-                        <div id="original-2" style="display: none;">
-&lt;p&gt;在当前窗口打开：&lt;a href="https://www.baidu.com" target="_self"&gt;百度一下&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;在新窗口打开：&lt;a href="https://www.baidu.com" target="_blank" rel="noopener noreferrer"&gt;百度一下&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;带提示文本：&lt;a href="https://www.baidu.com" title="访问百度搜索引擎"&gt;百度一下&lt;/a&gt;&lt;/p&gt;
-                        </div>
-                    </div>
-                    <div class="panel">
-                        <div class="panel-label">预览效果</div>
-                        <div class="preview-box" id="preview-2">
-                            <p>在当前窗口打开：<a class="sidebar-link" href="https://www.baidu.com" target="_self">百度一下</a></p>
-                            <p>在新窗口打开：<a class="sidebar-link" href="https://www.baidu.com" target="_blank" rel="noopener noreferrer">百度一下</a></p>
-                            <p>带提示文本：<a class="sidebar-link" href="https://www.baidu.com" title="访问百度搜索引擎">百度一下</a></p>
-                        </div>
-                    </div>
+                <div class="lab-body html-experiment">
+                    <div class="code-editor" id="html-2" contenteditable="true">
+<span class="panel-label">HTML (可编辑)</span>&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;链接属性示例&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;链接属性演示&lt;/h2&gt;
+    &lt;p&gt;在当前窗口打开：&lt;a href="https://www.baidu.com" target="_self"&gt;百度一下&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;在新窗口打开：&lt;a href="https://www.baidu.com" target="_blank" rel="noopener noreferrer"&gt;百度一下&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;带提示文本：&lt;a href="https://www.baidu.com" title="访问百度搜索引擎"&gt;百度一下&lt;/a&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</div>
                 </div>
                 <div class="action-bar">
                     <button class="btn btn-run" onclick="applyHTML('2')">▶ 运行代码</button>
                     <button class="btn btn-reset" onclick="resetHTML('2')">↺ 重置</button>
+                </div>
+                <div class="preview-area" id="preview-2">
+                    <span class="panel-label">预览效果</span>
                 </div>
             </div>
             
@@ -340,99 +327,75 @@
                 <li>链接：使用<code>#</code>符号加上目标元素的<code>id</code>属性值，例如<code>&lt;a href="#section1"&gt;跳转到第一部分&lt;/a&gt;</code></li>
             </ul>
             
-            <pre><code>&lt;h1&gt;目录&lt;/h1&gt;
-&lt;ul&gt;
-    &lt;li&gt;&lt;a href="#section1"&gt;第一部分&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href="#section2"&gt;第二部分&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href="#section3"&gt;第三部分&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id="section1"&gt;第一部分&lt;/h2&gt;
-&lt;p&gt;这里是第一部分的内容...&lt;/p&gt;
-
-&lt;h2 id="section2"&gt;第二部分&lt;/h2&gt;
-&lt;p&gt;这里是第二部分的内容...&lt;/p&gt;
-
-&lt;h2 id="section3"&gt;第三部分&lt;/h2&gt;
-&lt;p&gt;这里是第三部分的内容...&lt;/p&gt;</code></pre>
-            
             <div class="lab-card">
                 <div class="lab-header">
-                    <span>双栏交互实验室：锚点链接</span>
+                    <span>实验 03：锚点链接</span>
                     <span id="badge-3" class="status-badge">未运行</span>
                 </div>
-                <div class="lab-body">
-                    <div class="panel">
-                        <div class="panel-label">HTML (可编辑)</div>
-                        <div class="html-editor" id="html-3" contenteditable="true">
-&lt;h1&gt;目录&lt;/h1&gt;
-&lt;ul&gt;
-    &lt;li&gt;&lt;a href="#demo-section1"&gt;第一部分&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href="#demo-section2"&gt;第二部分&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href="#demo-section3"&gt;第三部分&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
+                <div class="lab-body html-experiment">
+                    <div class="code-editor" id="html-3" contenteditable="true">
+<span class="panel-label">HTML (可编辑)</span>&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;锚点链表示例&lt;/title&gt;
+    &lt;style&gt;
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        h1 {
+            text-align: center;
+        }
+        ul {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        h2 {
+            color: #333;
+            margin-top: 50px;
+        }
+        p {
+            margin: 15px 0;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;目录&lt;/h1&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="#demo-section1"&gt;第一部分&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#demo-section2"&gt;第二部分&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#demo-section3"&gt;第三部分&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
 
-&lt;h2 id="demo-section1"&gt;第一部分&lt;/h2&gt;
-&lt;p&gt;这里是第一部分的内容。锚点链接可以让用户快速跳转到页面的特定部分，提高用户体验。&lt;/p&gt;
-&lt;p&gt;当页面内容很长时，锚点链接非常有用，它可以帮助用户快速导航到感兴趣的内容。&lt;/p&gt;
+    &lt;h2 id="demo-section1"&gt;第一部分&lt;/h2&gt;
+    &lt;p&gt;这里是第一部分的内容。锚点链接可以让用户快速跳转到页面的特定部分，提高用户体验。&lt;/p&gt;
+    &lt;p&gt;当页面内容很长时，锚点链接非常有用，它可以帮助用户快速导航到感兴趣的内容。&lt;/p&gt;
+    &lt;p&gt;锚点链接是网页设计中常用的导航方式，特别是在长页面中。&lt;/p&gt;
+    &lt;p&gt;使用锚点链接可以让用户无需滚动页面即可直接访问所需信息。&lt;/p&gt;
 
-&lt;h2 id="demo-section2"&gt;第二部分&lt;/h2&gt;
-&lt;p&gt;这里是第二部分的内容。锚点链接的使用非常简单，只需要在目标元素上添加id属性，然后在链接中使用#符号加上id值即可。&lt;/p&gt;
-&lt;p&gt;锚点链接不仅可以用于同一页面内的导航，还可以用于不同页面之间的导航，例如从一个页面跳转到另一个页面的特定部分。&lt;/p&gt;
+    &lt;h2 id="demo-section2"&gt;第二部分&lt;/h2&gt;
+    &lt;p&gt;这里是第二部分的内容。锚点链接的使用非常简单，只需要在目标元素上添加id属性，然后在链接中使用#符号加上id值即可。&lt;/p&gt;
+    &lt;p&gt;锚点链接不仅可以用于同一页面内的导航，还可以用于不同页面之间的导航，例如从一个页面跳转到另一个页面的特定部分。&lt;/p&gt;
+    &lt;p&gt;例如：&lt;a href="another-page.html#section1"&gt;跳转到另一页面的第一部分&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;这种方式可以提供更精确的导航体验。&lt;/p&gt;
 
-&lt;h2 id="demo-section3"&gt;第三部分&lt;/h2&gt;
-&lt;p&gt;这里是第三部分的内容。通过锚点链接，用户可以轻松地在长页面中导航，找到自己需要的信息。&lt;/p&gt;
-&lt;p&gt;锚点链接是提高页面可用性和用户体验的重要工具，在实际开发中经常使用。&lt;/p&gt;
-                        </div>
-                        <!-- 隐藏的原始代码，用于重置功能 -->
-                        <div id="original-3" style="display: none;">
-&lt;h1&gt;目录&lt;/h1&gt;
-&lt;ul&gt;
-    &lt;li&gt;&lt;a href="#demo-section1"&gt;第一部分&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href="#demo-section2"&gt;第二部分&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href="#demo-section3"&gt;第三部分&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id="demo-section1"&gt;第一部分&lt;/h2&gt;
-&lt;p&gt;这里是第一部分的内容。锚点链接可以让用户快速跳转到页面的特定部分，提高用户体验。&lt;/p&gt;
-&lt;p&gt;当页面内容很长时，锚点链接非常有用，它可以帮助用户快速导航到感兴趣的内容。&lt;/p&gt;
-
-&lt;h2 id="demo-section2"&gt;第二部分&lt;/h2&gt;
-&lt;p&gt;这里是第二部分的内容。锚点链接的使用非常简单，只需要在目标元素上添加id属性，然后在链接中使用#符号加上id值即可。&lt;/p&gt;
-&lt;p&gt;锚点链接不仅可以用于同一页面内的导航，还可以用于不同页面之间的导航，例如从一个页面跳转到另一个页面的特定部分。&lt;/p&gt;
-
-&lt;h2 id="demo-section3"&gt;第三部分&lt;/h2&gt;
-&lt;p&gt;这里是第三部分的内容。通过锚点链接，用户可以轻松地在长页面中导航，找到自己需要的信息。&lt;/p&gt;
-&lt;p&gt;锚点链接是提高页面可用性和用户体验的重要工具，在实际开发中经常使用。&lt;/p&gt;
-                        </div>
-                    </div>
-                    <div class="panel">
-                        <div class="panel-label">预览效果</div>
-                        <div class="preview-box" id="preview-3">
-                            <h1>目录</h1>
-                            <ul>
-                                <li><a class="sidebar-link" href="#demo-section1">第一部分</a></li>
-                                <li><a class="sidebar-link" href="#demo-section2">第二部分</a></li>
-                                <li><a class="sidebar-link" href="#demo-section3">第三部分</a></li>
-                            </ul>
-
-                            <h2 id="demo-section1">第一部分</h2>
-                            <p>这里是第一部分的内容。锚点链接可以让用户快速跳转到页面的特定部分，提高用户体验。</p>
-                            <p>当页面内容很长时，锚点链接非常有用，它可以帮助用户快速导航到感兴趣的内容。</p>
-
-                            <h2 id="demo-section2">第二部分</h2>
-                            <p>这里是第二部分的内容。锚点链接的使用非常简单，只需要在目标元素上添加id属性，然后在链接中使用#符号加上id值即可。</p>
-                            <p>锚点链接不仅可以用于同一页面内的导航，还可以用于不同页面之间的导航，例如从一个页面跳转到另一个页面的特定部分。</p>
-
-                            <h2 id="demo-section3">第三部分</h2>
-                            <p>这里是第三部分的内容。通过锚点链接，用户可以轻松地在长页面中导航，找到自己需要的信息。</p>
-                            <p>锚点链接是提高页面可用性和用户体验的重要工具，在实际开发中经常使用。</p>
-                        </div>
-                    </div>
+    &lt;h2 id="demo-section3"&gt;第三部分&lt;/h2&gt;
+    &lt;p&gt;这里是第三部分的内容。通过锚点链接，用户可以轻松地在长页面中导航，找到自己需要的信息。&lt;/p&gt;
+    &lt;p&gt;锚点链接是提高页面可用性和用户体验的重要工具，在实际开发中经常使用。&lt;/p&gt;
+    &lt;p&gt;合理使用锚点链接可以使页面结构更加清晰，方便用户浏览和查找信息。&lt;/p&gt;
+    &lt;p&gt;锚点链接的应用场景包括：长文章、产品介绍、FAQ页面等。&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</div>
                 </div>
                 <div class="action-bar">
                     <button class="btn btn-run" onclick="applyHTML('3')">▶ 运行代码</button>
                     <button class="btn btn-reset" onclick="resetHTML('3')">↺ 重置</button>
+                </div>
+                <div class="preview-area" id="preview-3">
+                    <span class="panel-label">预览效果</span>
                 </div>
             </div>
         </section>
@@ -448,62 +411,44 @@
                 邮件链接使用<code>mailto:</code>协议，当用户点击邮件链接时，会打开默认的邮件客户端，并自动填写收件人地址。
             </p>
             
-            <pre><code>&lt;!-- 基本邮件链接 --&gt;
-&lt;a href="mailto:example@example.com"&gt;发送邮件&lt;/a&gt;
-
-&lt;!-- 带有主题的邮件链接 --&gt;
-&lt;a href="mailto:example@example.com?subject=反馈"&gt;发送反馈邮件&lt;/a&gt;
-
-&lt;!-- 带有主题和正文的邮件链接 --&gt;
-&lt;a href="mailto:example@example.com?subject=反馈&body=您好，我有以下问题..."&gt;发送反馈邮件&lt;/a&gt;</code></pre>
-            
             <div class="lab-card">
                 <div class="lab-header">
-                    <span>双栏交互实验室：邮件与电话链接</span>
+                    <span>实验 04：邮件与电话链接</span>
                     <span id="badge-4" class="status-badge">未运行</span>
                 </div>
-                <div class="lab-body">
-                    <div class="panel">
-                        <div class="panel-label">HTML (可编辑)</div>
-                        <div class="html-editor" id="html-4" contenteditable="true">
-&lt;h3&gt;邮件链接&lt;/h3&gt;
-&lt;p&gt;基本邮件链接：&lt;a href="mailto:example@example.com"&gt;发送邮件&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;带有主题的邮件链接：&lt;a href="mailto:example@example.com?subject=反馈"&gt;发送反馈邮件&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;带有主题和正文的邮件链接：&lt;a href="mailto:example@example.com?subject=反馈&body=您好，我有以下问题..."&gt;发送反馈邮件&lt;/a&gt;&lt;/p&gt;
+                <div class="lab-body html-experiment">
+                    <div class="code-editor" id="html-4" contenteditable="true">
+<span class="panel-label">HTML (可编辑)</span>&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;特殊链表示例&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;特殊链接演示&lt;/h2&gt;
+    
+    &lt;h3&gt;邮件链接&lt;/h3&gt;
+    &lt;p&gt;基本邮件链接：&lt;a href="mailto:example@example.com"&gt;发送邮件&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;带有主题的邮件链接：&lt;a href="mailto:example@example.com?subject=反馈"&gt;发送反馈邮件&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;带有主题和正文的邮件链接：&lt;a href="mailto:example@example.com?subject=反馈&body=您好，我有以下问题..."&gt;发送反馈邮件&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3&gt;电话链接&lt;/h3&gt;
-&lt;p&gt;拨打10086：&lt;a href="tel:10086"&gt;10086&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;拨打+86 10086：&lt;a href="tel:+8610086"&gt;+86 10086&lt;/a&gt;&lt;/p&gt;
-                        </div>
-                        <!-- 隐藏的原始代码，用于重置功能 -->
-                        <div id="original-4" style="display: none;">
-&lt;h3&gt;邮件链接&lt;/h3&gt;
-&lt;p&gt;基本邮件链接：&lt;a href="mailto:example@example.com"&gt;发送邮件&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;带有主题的邮件链接：&lt;a href="mailto:example@example.com?subject=反馈"&gt;发送反馈邮件&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;带有主题和正文的邮件链接：&lt;a href="mailto:example@example.com?subject=反馈&body=您好，我有以下问题..."&gt;发送反馈邮件&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3&gt;电话链接&lt;/h3&gt;
-&lt;p&gt;拨打10086：&lt;a href="tel:10086"&gt;10086&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;拨打+86 10086：&lt;a href="tel:+8610086"&gt;+86 10086&lt;/a&gt;&lt;/p&gt;
-                        </div>
-                    </div>
-                    <div class="panel">
-                        <div class="panel-label">预览效果</div>
-                        <div class="preview-box" id="preview-4">
-                            <h3>邮件链接</h3>
-                            <p>基本邮件链接：<a class="sidebar-link" href="mailto:example@example.com">发送邮件</a></p>
-                            <p>带有主题的邮件链接：<a class="sidebar-link" href="mailto:example@example.com?subject=反馈">发送反馈邮件</a></p>
-                            <p>带有主题和正文的邮件链接：<a class="sidebar-link" href="mailto:example@example.com?subject=反馈&body=您好，我有以下问题...">发送反馈邮件</a></p>
-
-                            <h3>电话链接</h3>
-                            <p>拨打10086：<a class="sidebar-link" href="tel:10086">10086</a></p>
-                            <p>拨打+86 10086：<a class="sidebar-link" href="tel:+8610086">+86 10086</a></p>
-                        </div>
-                    </div>
+    &lt;h3&gt;电话链接&lt;/h3&gt;
+    &lt;p&gt;拨打10086：&lt;a href="tel:10086"&gt;10086&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;拨打+86 10086：&lt;a href="tel:+8610086"&gt;+86 10086&lt;/a&gt;&lt;/p&gt;
+    
+    &lt;h3&gt;其他特殊链接&lt;/h3&gt;
+    &lt;p&gt;发送短信：&lt;a href="sms:10086?body=余额查询"&gt;查询余额&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;地理位置：&lt;a href="geo:39.9042,116.4074"&gt;北京天安门&lt;/a&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</div>
                 </div>
                 <div class="action-bar">
                     <button class="btn btn-run" onclick="applyHTML('4')">▶ 运行代码</button>
                     <button class="btn btn-reset" onclick="resetHTML('4')">↺ 重置</button>
+                </div>
+                <div class="preview-area" id="preview-4">
+                    <span class="panel-label">预览效果</span>
                 </div>
             </div>
         </section>
@@ -571,55 +516,94 @@
                 <span class="panel-label">预览效果</span>
             </div>
         </div>
-
-        <div class="lab-card">
-            <div class="lab-header">
-                <span>实验：第4次课-HTML链接实践</span>
-                <span id="4html-status" class="status-badge">未运行</span>
-            </div>
-            <div class="lab-body html-experiment">
-                <div class="code-editor" id="4html-html" contenteditable="true">
-<span class="panel-label">HTML (可编辑)</span>&lt;!DOCTYPE html&gt;
-&lt;html lang="zh-CN"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;第4次课-HTML链接&lt;/title&gt;
-    &lt;style&gt;
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-    &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;div class="container"&gt;
-        &lt;h1&gt;第4次课-HTML链接&lt;/h1&gt;
-        &lt;p&gt;在这里编写你的HTML代码，实践第4次课-HTML链接的知识。&lt;/p&gt;
-        
-        &lt;!-- 在这里添加你的HTML代码 --&gt;
-        
-    &lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</div>
-            </div>
-            <div class="action-bar">
-                <button class="btn btn-run" onclick="run4htmlExperiment()">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="reset4htmlExperiment()">↺ 重置</button>
-            </div>
-            <div class="preview-area" id="4html-preview">
-                <span class="panel-label">预览效果</span>
-            </div>
-        </div>
 </section></main>
+
+    <script>
+        // 核心 HTML 注入逻辑
+        function applyHTML(id) {
+            const editor = document.getElementById(`html-${id}`);
+            if (!editor) return;
+
+            const previewId = `preview-${id}`;
+            let rawHtml = editor.innerText; // 使用 innerText 保留换行
+
+            // 清理编辑器自带的 Label 文本
+            const labelText = "HTML (可编辑)";
+            if (rawHtml.indexOf(labelText) !== -1) {
+                rawHtml = rawHtml.replace(labelText, "");
+            }
+
+            // 将HTML代码注入到预览框
+            const previewBox = document.getElementById(previewId);
+            if (previewBox) {
+                previewBox.innerHTML = rawHtml;
+            }
+
+            updateStatus(id, true);
+        }
+
+        // 重置功能
+        function resetHTML(id) {
+            // 基本重置：清空预览并恢复状态
+            const previewId = `preview-${id}`;
+            const previewBox = document.getElementById(previewId);
+            if (previewBox) {
+                previewBox.innerHTML = '<span class="panel-label">预览效果</span>';
+            }
+
+            updateStatus(id, false);
+        }
+
+        // 更新状态标签
+        function updateStatus(id, isActive) {
+            const badge = document.getElementById(`badge-${id}`);
+            if (badge) {
+                if (isActive) {
+                    badge.textContent = "已运行";
+                    badge.className = "status-badge active";
+                } else {
+                    badge.textContent = "未运行";
+                    badge.className = "status-badge";
+                }
+            }
+        }
+        
+        // 第4次课-HTML链接实验交互逻辑
+        function run4htmlExperiment() {
+            const editor = document.getElementById('4html-html');
+            const status = document.getElementById('4html-status');
+            
+            if (editor) {
+                let code = editor.innerText;
+                // 移除编辑器标签
+                code = code.replace('HTML (可编辑)', '');
+                
+                // 注入到预览区域
+                const preview = document.getElementById('4html-preview');
+                if (preview) {
+                    preview.innerHTML = code;
+                }
+                
+                // 更新状态
+                status.textContent = '已运行';
+                status.className = 'status-badge active';
+            }
+        }
+        
+        function reset4htmlExperiment() {
+            const status = document.getElementById('4html-status');
+            
+            // 重置预览区域
+            const preview = document.getElementById('4html-preview');
+            if (preview) {
+                preview.innerHTML = '<span class="panel-label">预览效果</span>';
+            }
+            
+            // 更新状态
+            status.textContent = '未运行';
+            status.className = 'status-badge';
+        }
+    </script>
 </body>
 </html>
 

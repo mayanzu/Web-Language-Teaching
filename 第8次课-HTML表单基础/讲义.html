@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -6,135 +6,82 @@
     <title>第8课：HTML表单基础</title>
                 
     <script>
-        // 核心 HTML 注入逻辑
+        // 核心HTML注入逻辑
         function applyHTML(id) {
             const editor = document.getElementById(`html-${id}`);
-            if (!editor) return;
-
             const previewId = `preview-${id}`;
-            let rawHtml = editor.innerText; // 使用 innerText 保留换行
-
-            // 清理编辑器自带的 Label 文本
+            let rawHtml = editor.innerText;
             const labelText = "HTML (可编辑)";
             if (rawHtml.indexOf(labelText) !== -1) {
                 rawHtml = rawHtml.replace(labelText, "");
             }
-
-            // 将HTML代码注入到预览框
             const previewBox = document.getElementById(previewId);
             if (previewBox) {
                 previewBox.innerHTML = rawHtml;
             }
-
             updateStatus(id, true);
         }
 
-        // 重置功能
+        // Reset functionality
         function resetHTML(id) {
-            const editor = document.getElementById(`html-${id}`);
-            if (!editor) return;
-
             const previewId = `preview-${id}`;
             const previewBox = document.getElementById(previewId);
             if (previewBox) {
-                previewBox.innerHTML = '<div class="preview-label">预览效果</div>';
+                previewBox.innerHTML = '<span class="panel-label">预览效果</span>';
             }
-
             updateStatus(id, false);
         }
 
-        // 更新状态标签
+        // Update status label
         function updateStatus(id, isActive) {
             const badge = document.getElementById(`badge-${id}`);
             if (badge) {
                 if (isActive) {
                     badge.textContent = "已运行";
-                    badge.className = "status-badge status-active";
+                    badge.className = "status-badge active";
                 } else {
                     badge.textContent = "未运行";
                     badge.className = "status-badge";
                 }
             }
         }
+
         // 第8次课-HTML表单基础实验交互逻辑
-    function run8htmlExperiment() {
-        const editor = document.getElementById('8html-html');
-        const status = document.getElementById('8html-status');
-        
-        if (editor) {
-            let code = editor.innerText;
-            // 移除编辑器标签
-            code = code.replace('html (可编辑)', '');
+        function run8htmlExperiment() {
+            const editor = document.getElementById('8html-html');
+            const status = document.getElementById('8html-status');
             
+            if (editor) {
+                let code = editor.innerText;
+                // 移除编辑器标签
+                code = code.replace(/<span class="panel-label">HTML \(可编辑\)<\/span>/g, '');
+                
+                // 注入到预览区域
+                const preview = document.getElementById('8html-preview');
+                if (preview) {
+                    preview.innerHTML = code;
+                }
+                
+                // 更新状态
+                status.textContent = '已运行';
+                status.className = 'status-badge active';
+            }
+        }
+    
+        function reset8htmlExperiment() {
+            const status = document.getElementById('8html-status');
             
-            // 注入到预览区域
+            // 重置预览区域
             const preview = document.getElementById('8html-preview');
             if (preview) {
-                preview.innerHTML = code;
+                preview.innerHTML = '<span class="panel-label">预览效果</span>';
             }
             
-            
             // 更新状态
-            status.textContent = '已运行';
-            status.className = 'status-badge active';
+            status.textContent = '未运行';
+            status.className = 'status-badge';
         }
-    }
-    
-    function reset8htmlExperiment() {
-        const status = document.getElementById('8html-status');
-        
-        
-        // 重置预览区域
-        const preview = document.getElementById('8html-preview');
-        if (preview) {
-            preview.innerHTML = '<span class="panel-label">预览效果</span>';
-        }
-        
-        
-        // 更新状态
-        status.textContent = '未运行';
-        status.className = 'status-badge';
-    }
-    // 第8次课-HTML表单基础实验交互逻辑
-    function run8htmlExperiment() {
-        const editor = document.getElementById('8html-html');
-        const status = document.getElementById('8html-status');
-        
-        if (editor) {
-            let code = editor.innerText;
-            // 移除编辑器标签
-            code = code.replace('HTML (可编辑)', '');
-            
-            
-            // 注入到预览区域
-            const preview = document.getElementById('8html-preview');
-            if (preview) {
-                preview.innerHTML = code;
-            }
-            
-            
-            // 更新状态
-            status.textContent = '已运行';
-            status.className = 'status-badge active';
-        }
-    }
-    
-    function reset8htmlExperiment() {
-        const status = document.getElementById('8html-status');
-        
-        
-        // 重置预览区域
-        const preview = document.getElementById('8html-preview');
-        if (preview) {
-            preview.innerHTML = '<span class="panel-label">预览效果</span>';
-        }
-        
-        
-        // 更新状态
-        status.textContent = '未运行';
-        status.className = 'status-badge';
-    }
-</script>
+    </script>
     <link rel='stylesheet' href='../统一讲义样式模板.css'>\n</head>
 <body>
     <!-- 侧边栏导航 -->
@@ -262,6 +209,104 @@
                     </tr>
                 </tbody>
             </table>
+            
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>上下结构实验室：表单结构</span>
+                    <span id="badge-1" class="status-badge">未运行</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel">
+                        <div class="panel-label">HTML (可编辑)</div>
+                        <div class="html-editor" id="html-1" contenteditable="true">
+&lt;!-- 简单搜索表单示例 --&gt;
+&lt;h3&gt;搜索表单&lt;/h3&gt;
+&lt;form action="https://example.com/search" method="get"&gt;
+    &lt;label for="search"&gt;搜索：&lt;/label&gt;
+    &lt;input type="text" id="search" name="q" placeholder="请输入搜索关键词"&gt;
+    &lt;input type="submit" value="搜索"&gt;
+&lt;/form&gt;
+
+&lt;!-- 简单登录表单示例 --&gt;
+&lt;h3&gt;登录表单&lt;/h3&gt;
+&lt;form action="https://example.com/login" method="post"&gt;
+    &lt;label for="username"&gt;用户名：&lt;/label&gt;
+    &lt;input type="text" id="username" name="username" placeholder="请输入用户名"&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="password"&gt;密码：&lt;/label&gt;
+    &lt;input type="password" id="password" name="password" placeholder="请输入密码"&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;input type="submit" value="登录"&gt;
+    &lt;input type="reset" value="重置"&gt;
+&lt;/form&gt;
+                        </div>
+                        <!-- 隐藏的原始代码，用于重置功能 -->
+                        <div id="original-1" style="display: none;">
+&lt;!-- 简单搜索表单示例 --&gt;
+&lt;h3&gt;搜索表单&lt;/h3&gt;
+&lt;form action="https://example.com/search" method="get"&gt;
+    &lt;label for="search"&gt;搜索：&lt;/label&gt;
+    &lt;input type="text" id="search" name="q" placeholder="请输入搜索关键词"&gt;
+    &lt;input type="submit" value="搜索"&gt;
+&lt;/form&gt;
+
+&lt;!-- 简单登录表单示例 --&gt;
+&lt;h3&gt;登录表单&lt;/h3&gt;
+&lt;form action="https://example.com/login" method="post"&gt;
+    &lt;label for="username"&gt;用户名：&lt;/label&gt;
+    &lt;input type="text" id="username" name="username" placeholder="请输入用户名"&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="password"&gt;密码：&lt;/label&gt;
+    &lt;input type="password" id="password" name="password" placeholder="请输入密码"&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;input type="submit" value="登录"&gt;
+    &lt;input type="reset" value="重置"&gt;
+&lt;/form&gt;
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-label">预览效果</div>
+                        <div class="preview-box" id="preview-1">
+                            <!-- 简单搜索表单示例 -->
+                            <h3>搜索表单</h3>
+                            <form action="https://example.com/search" method="get">
+                                <label for="search">搜索：</label>
+                                <input type="text" id="search" name="q" placeholder="请输入搜索关键词">
+                                <input type="submit" value="搜索">
+                            </form>
+
+                            <!-- 简单登录表单示例 -->
+                            <h3>登录表单</h3>
+                            <form action="https://example.com/login" method="post">
+                                <label for="username">用户名：</label>
+                                <input type="text" id="username" name="username" placeholder="请输入用户名">
+                                
+                                <br><br>
+                                
+                                <label for="password">密码：</label>
+                                <input type="password" id="password" name="password" placeholder="请输入密码">
+                                
+                                <br><br>
+                                
+                                <input type="submit" value="登录">
+                                <input type="reset" value="重置">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyHTML('1')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHTML('1')">↺ 重置</button>
+                </div>
+            </div>
         </section>
 
         <section id="input-types">
@@ -341,12 +386,12 @@
             <div class="lab-card">
                 <div class="lab-header">
                     <span>上下结构实验室：文本输入控件</span>
-                    <span id="badge-1" class="status-badge">未运行</span>
+                    <span id="badge-2" class="status-badge">未运行</span>
                 </div>
                 <div class="lab-body">
                     <div class="panel">
                         <div class="panel-label">HTML (可编辑)</div>
-                        <div class="html-editor" id="html-1" contenteditable="true">
+                        <div class="html-editor" id="html-2" contenteditable="true">
 &lt;form&gt;
     &lt;label for="username"&gt;用户名：&lt;/label&gt;
     &lt;input type="text" id="username" name="username" placeholder="请输入用户名"&gt;
@@ -370,10 +415,20 @@
     
     &lt;label for="birthday"&gt;生日：&lt;/label&gt;
     &lt;input type="date" id="birthday" name="birthday"&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="phone"&gt;电话：&lt;/label&gt;
+    &lt;input type="tel" id="phone" name="phone" placeholder="请输入电话号码"&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="website"&gt;个人网站：&lt;/label&gt;
+    &lt;input type="url" id="website" name="website" placeholder="请输入网址"&gt;
 &lt;/form&gt;
                         </div>
                         <!-- 隐藏的原始代码，用于重置功能 -->
-                        <div id="original-1" style="display: none;">
+                        <div id="original-2" style="display: none;">
 &lt;form&gt;
     &lt;label for="username"&gt;用户名：&lt;/label&gt;
     &lt;input type="text" id="username" name="username" placeholder="请输入用户名"&gt;
@@ -397,12 +452,22 @@
     
     &lt;label for="birthday"&gt;生日：&lt;/label&gt;
     &lt;input type="date" id="birthday" name="birthday"&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="phone"&gt;电话：&lt;/label&gt;
+    &lt;input type="tel" id="phone" name="phone" placeholder="请输入电话号码"&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="website"&gt;个人网站：&lt;/label&gt;
+    &lt;input type="url" id="website" name="website" placeholder="请输入网址"&gt;
 &lt;/form&gt;
                         </div>
                     </div>
                     <div class="panel">
                         <div class="panel-label">预览效果</div>
-                        <div class="preview-box" id="preview-1">
+                        <div class="preview-box" id="preview-2">
                             <form>
                                 <label for="username">用户名：</label>
                                 <input type="text" id="username" name="username" placeholder="请输入用户名">
@@ -426,13 +491,23 @@
                                 
                                 <label for="birthday">生日：</label>
                                 <input type="date" id="birthday" name="birthday">
+                                
+                                <br><br>
+                                
+                                <label for="phone">电话：</label>
+                                <input type="tel" id="phone" name="phone" placeholder="请输入电话号码">
+                                
+                                <br><br>
+                                
+                                <label for="website">个人网站：</label>
+                                <input type="url" id="website" name="website" placeholder="请输入网址">
                             </form>
                         </div>
                     </div>
                 </div>
                 <div class="action-bar">
-                    <button class="btn btn-run" onclick="applyHTML('1')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetHTML('1')">↺ 重置</button>
+                    <button class="btn btn-run" onclick="applyHTML('2')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHTML('2')">↺ 重置</button>
                 </div>
             </div>
         </section>
@@ -475,12 +550,12 @@
             <div class="lab-card">
                 <div class="lab-header">
                     <span>上下结构实验室：单选按钮与复选框</span>
-                    <span id="badge-2" class="status-badge">未运行</span>
+                    <span id="badge-3" class="status-badge">未运行</span>
                 </div>
                 <div class="lab-body">
                     <div class="panel">
                         <div class="panel-label">HTML (可编辑)</div>
-                        <div class="html-editor" id="html-2" contenteditable="true">
+                        <div class="html-editor" id="html-3" contenteditable="true">
 &lt;form&gt;
     &lt;label&gt;性别：&lt;/label&gt;
     &lt;input type="radio" id="male" name="gender" value="male" checked&gt;
@@ -488,6 +563,9 @@
     
     &lt;input type="radio" id="female" name="gender" value="female"&gt;
     &lt;label for="female"&gt;女&lt;/label&gt;
+    
+    &lt;input type="radio" id="other" name="gender" value="other"&gt;
+    &lt;label for="other"&gt;其他&lt;/label&gt;
     
     &lt;br&gt;&lt;br&gt;
     
@@ -500,10 +578,16 @@
     
     &lt;input type="checkbox" id="sports" name="hobby" value="sports"&gt;
     &lt;label for="sports"&gt;运动&lt;/label&gt;
+    
+    &lt;input type="checkbox" id="travel" name="hobby" value="travel"&gt;
+    &lt;label for="travel"&gt;旅行&lt;/label&gt;
+    
+    &lt;input type="checkbox" id="cooking" name="hobby" value="cooking"&gt;
+    &lt;label for="cooking"&gt;烹饪&lt;/label&gt;
 &lt;/form&gt;
                         </div>
                         <!-- 隐藏的原始代码，用于重置功能 -->
-                        <div id="original-2" style="display: none;">
+                        <div id="original-3" style="display: none;">
 &lt;form&gt;
     &lt;label&gt;性别：&lt;/label&gt;
     &lt;input type="radio" id="male" name="gender" value="male" checked&gt;
@@ -511,6 +595,9 @@
     
     &lt;input type="radio" id="female" name="gender" value="female"&gt;
     &lt;label for="female"&gt;女&lt;/label&gt;
+    
+    &lt;input type="radio" id="other" name="gender" value="other"&gt;
+    &lt;label for="other"&gt;其他&lt;/label&gt;
     
     &lt;br&gt;&lt;br&gt;
     
@@ -523,12 +610,18 @@
     
     &lt;input type="checkbox" id="sports" name="hobby" value="sports"&gt;
     &lt;label for="sports"&gt;运动&lt;/label&gt;
+    
+    &lt;input type="checkbox" id="travel" name="hobby" value="travel"&gt;
+    &lt;label for="travel"&gt;旅行&lt;/label&gt;
+    
+    &lt;input type="checkbox" id="cooking" name="hobby" value="cooking"&gt;
+    &lt;label for="cooking"&gt;烹饪&lt;/label&gt;
 &lt;/form&gt;
                         </div>
                     </div>
                     <div class="panel">
                         <div class="panel-label">预览效果</div>
-                        <div class="preview-box" id="preview-2">
+                        <div class="preview-box" id="preview-3">
                             <form>
                                 <label>性别：</label>
                                 <input type="radio" id="male" name="gender" value="male" checked>
@@ -536,6 +629,9 @@
                                 
                                 <input type="radio" id="female" name="gender" value="female">
                                 <label for="female">女</label>
+                                
+                                <input type="radio" id="other" name="gender" value="other">
+                                <label for="other">其他</label>
                                 
                                 <br><br>
                                 
@@ -548,13 +644,19 @@
                                 
                                 <input type="checkbox" id="sports" name="hobby" value="sports">
                                 <label for="sports">运动</label>
+                                
+                                <input type="checkbox" id="travel" name="hobby" value="travel">
+                                <label for="travel">旅行</label>
+                                
+                                <input type="checkbox" id="cooking" name="hobby" value="cooking">
+                                <label for="cooking">烹饪</label>
                             </form>
                         </div>
                     </div>
                 </div>
                 <div class="action-bar">
-                    <button class="btn btn-run" onclick="applyHTML('2')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetHTML('2')">↺ 重置</button>
+                    <button class="btn btn-run" onclick="applyHTML('3')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHTML('3')">↺ 重置</button>
                 </div>
             </div>
         </section>
@@ -599,47 +701,80 @@
             <div class="lab-card">
                 <div class="lab-header">
                     <span>上下结构实验室：表单按钮</span>
-                    <span id="badge-3" class="status-badge">未运行</span>
+                    <span id="badge-4" class="status-badge">未运行</span>
                 </div>
                 <div class="lab-body">
                     <div class="panel">
                         <div class="panel-label">HTML (可编辑)</div>
-                        <div class="html-editor" id="html-3" contenteditable="true">
+                        <div class="html-editor" id="html-4" contenteditable="true">
 &lt;form&gt;
     &lt;input type="text" placeholder="请输入内容"&gt;
     &lt;br&gt;&lt;br&gt;
+    
+    &lt;!-- 使用input标签创建按钮 --&gt;
+    &lt;h4&gt;使用input标签创建按钮&lt;/h4&gt;
     &lt;input type="submit" value="提交"&gt;
     &lt;input type="reset" value="重置"&gt;
-    &lt;button type="button" onclick="alert('Hello!')"&gt;点击我&lt;/button&gt;
+    &lt;input type="button" value="点击我" onclick="alert('Hello from input button!')"&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;!-- 使用button标签创建按钮 --&gt;
+    &lt;h4&gt;使用button标签创建按钮&lt;/h4&gt;
+    &lt;button type="submit"&gt;提交按钮&lt;/button&gt;
+    &lt;button type="reset"&gt;重置按钮&lt;/button&gt;
+    &lt;button type="button" onclick="alert('Hello from button tag!')"&gt;点击我&lt;/button&gt;
 &lt;/form&gt;
                         </div>
                         <!-- 隐藏的原始代码，用于重置功能 -->
-                        <div id="original-3" style="display: none;">
+                        <div id="original-4" style="display: none;">
 &lt;form&gt;
     &lt;input type="text" placeholder="请输入内容"&gt;
     &lt;br&gt;&lt;br&gt;
+    
+    &lt;!-- 使用input标签创建按钮 --&gt;
+    &lt;h4&gt;使用input标签创建按钮&lt;/h4&gt;
     &lt;input type="submit" value="提交"&gt;
     &lt;input type="reset" value="重置"&gt;
-    &lt;button type="button" onclick="alert('Hello!')"&gt;点击我&lt;/button&gt;
+    &lt;input type="button" value="点击我" onclick="alert('Hello from input button!')"&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;!-- 使用button标签创建按钮 --&gt;
+    &lt;h4&gt;使用button标签创建按钮&lt;/h4&gt;
+    &lt;button type="submit"&gt;提交按钮&lt;/button&gt;
+    &lt;button type="reset"&gt;重置按钮&lt;/button&gt;
+    &lt;button type="button" onclick="alert('Hello from button tag!')"&gt;点击我&lt;/button&gt;
 &lt;/form&gt;
                         </div>
                     </div>
                     <div class="panel">
                         <div class="panel-label">预览效果</div>
-                        <div class="preview-box" id="preview-3">
+                        <div class="preview-box" id="preview-4">
                             <form>
                                 <input type="text" placeholder="请输入内容">
                                 <br><br>
+                                
+                                <!-- 使用input标签创建按钮 -->
+                                <h4>使用input标签创建按钮</h4>
                                 <input type="submit" value="提交">
                                 <input type="reset" value="重置">
-                                <button type="button" onclick="alert('Hello!')">点击我</button>
+                                <input type="button" value="点击我" onclick="alert('Hello from input button!')">
+                                
+                                <br><br>
+                                
+                                <!-- 使用button标签创建按钮 -->
+                                <h4>使用button标签创建按钮</h4>
+                                <button type="submit">提交按钮</button>
+                                <button type="reset">重置按钮</button>
+                                <button type="button" onclick="alert('Hello from button tag!')">点击我</button>
                             </form>
                         </div>
                     </div>
                 </div>
                 <div class="action-bar">
-                    <button class="btn btn-run" onclick="applyHTML('3')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetHTML('3')">↺ 重置</button>
+                    <button class="btn btn-run" onclick="applyHTML('4')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHTML('4')">↺ 重置</button>
                 </div>
             </div>
         </section>
@@ -672,7 +807,7 @@
         
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验：第8次课-HTML表单基础实践</span>
+                <span>实验：第8次课-HTML表单基础综合实践</span>
                 <span id="8html-status" class="status-badge">未运行</span>
             </div>
             <div class="lab-body html-experiment">
@@ -689,69 +824,101 @@
             margin: 20px;
         }
         .container {
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
             border: 1px solid #ddd;
             border-radius: 5px;
         }
-    &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;div class="container"&gt;
-        &lt;h1&gt;第8次课-HTML表单基础&lt;/h1&gt;
-        &lt;p&gt;在这里编写你的HTML代码，实践第8次课-HTML表单基础的知识。&lt;/p&gt;
-        
-        &lt;!-- 在这里添加你的HTML代码 --&gt;
-        
-    &lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</div>
-            </div>
-            <div class="action-bar">
-                <button class="btn btn-run" onclick="run8htmlExperiment()">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="reset8htmlExperiment()">↺ 重置</button>
-            </div>
-            <div class="preview-area" id="8html-preview">
-                <span class="panel-label">预览效果</span>
-            </div>
-        </div>
-
-        <div class="lab-card">
-            <div class="lab-header">
-                <span>实验：第8次课-HTML表单基础实践</span>
-                <span id="8html-status" class="status-badge">未运行</span>
-            </div>
-            <div class="lab-body html-experiment">
-                <div class="code-editor" id="8html-html" contenteditable="true">
-<span class="panel-label">HTML (可编辑)</span>&lt;!DOCTYPE html&gt;
-&lt;html lang="zh-CN"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;第8次课-HTML表单基础&lt;/title&gt;
-    &lt;style&gt;
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
+        .form-group {
+            margin: 15px 0;
         }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+        label {
+            display: inline-block;
+            width: 120px;
+            vertical-align: top;
         }
     &lt;/style&gt;
 &lt;/head&gt;
 &lt;body&gt;
     &lt;div class="container"&gt;
-        &lt;h1&gt;第8次课-HTML表单基础&lt;/h1&gt;
+        &lt;h1&gt;HTML表单基础综合实践&lt;/h1&gt;
         &lt;p&gt;在这里编写你的HTML代码，实践第8次课-HTML表单基础的知识。&lt;/p&gt;
         
-        &lt;!-- 在这里添加你的HTML代码 --&gt;
-        
+        &lt;!-- 注册表单示例 --&gt;
+        &lt;form action="https://example.com/register" method="post"&gt;
+            &lt;h2&gt;注册表单&lt;/h2&gt;
+            
+            &lt;div class="form-group"&gt;
+                &lt;label for="username"&gt;用户名：&lt;/label&gt;
+                &lt;input type="text" id="username" name="username" placeholder="请输入用户名" required&gt;
+            &lt;/div&gt;
+            
+            &lt;div class="form-group"&gt;
+                &lt;label for="password"&gt;密码：&lt;/label&gt;
+                &lt;input type="password" id="password" name="password" placeholder="请输入密码" required&gt;
+            &lt;/div&gt;
+            
+            &lt;div class="form-group"&gt;
+                &lt;label for="confirm-password"&gt;确认密码：&lt;/label&gt;
+                &lt;input type="password" id="confirm-password" name="confirm-password" placeholder="请确认密码" required&gt;
+            &lt;/div&gt;
+            
+            &lt;div class="form-group"&gt;
+                &lt;label for="email"&gt;邮箱：&lt;/label&gt;
+                &lt;input type="email" id="email" name="email" placeholder="请输入邮箱" required&gt;
+            &lt;/div&gt;
+            
+            &lt;div class="form-group"&gt;
+                &lt;label for="age"&gt;年龄：&lt;/label&gt;
+                &lt;input type="number" id="age" name="age" min="0" max="120" step="1" placeholder="请输入年龄"&gt;
+            &lt;/div&gt;
+            
+            &lt;div class="form-group"&gt;
+                &lt;label&gt;性别：&lt;/label&gt;
+                &lt;input type="radio" id="male" name="gender" value="male" checked&gt;
+                &lt;label for="male"&gt;男&lt;/label&gt;
+                
+                &lt;input type="radio" id="female" name="gender" value="female"&gt;
+                &lt;label for="female"&gt;女&lt;/label&gt;
+                
+                &lt;input type="radio" id="other" name="gender" value="other"&gt;
+                &lt;label for="other"&gt;其他&lt;/label&gt;
+            &lt;/div&gt;
+            
+            &lt;div class="form-group"&gt;
+                &lt;label&gt;爱好：&lt;/label&gt;
+                &lt;input type="checkbox" id="reading" name="hobby" value="reading"&gt;
+                &lt;label for="reading"&gt;阅读&lt;/label&gt;
+                
+                &lt;input type="checkbox" id="music" name="hobby" value="music"&gt;
+                &lt;label for="music"&gt;音乐&lt;/label&gt;
+                
+                &lt;input type="checkbox" id="sports" name="hobby" value="sports"&gt;
+                &lt;label for="sports"&gt;运动&lt;/label&gt;
+                
+                &lt;input type="checkbox" id="travel" name="hobby" value="travel"&gt;
+                &lt;label for="travel"&gt;旅行&lt;/label&gt;
+                
+                &lt;input type="checkbox" id="cooking" name="hobby" value="cooking"&gt;
+                &lt;label for="cooking"&gt;烹饪&lt;/label&gt;
+            &lt;/div&gt;
+            
+            &lt;div class="form-group"&gt;
+                &lt;label for="birthday"&gt;生日：&lt;/label&gt;
+                &lt;input type="date" id="birthday" name="birthday"&gt;
+            &lt;/div&gt;
+            
+            &lt;div class="form-group"&gt;
+                &lt;label for="phone"&gt;电话：&lt;/label&gt;
+                &lt;input type="tel" id="phone" name="phone" placeholder="请输入电话号码"&gt;
+            &lt;/div&gt;
+            
+            &lt;div class="form-group"&gt;
+                &lt;input type="submit" value="注册"&gt;
+                &lt;input type="reset" value="重置"&gt;
+            &lt;/div&gt;
+        &lt;/form&gt;
     &lt;/div&gt;
 &lt;/body&gt;
 &lt;/html&gt;
