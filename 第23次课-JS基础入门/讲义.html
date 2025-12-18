@@ -1,0 +1,1158 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第23课：JS基础入门</title>
+    
+    <link rel='stylesheet' href='../统一讲义样式模板.css'>\n</head>
+<body>
+<nav class="sidebar">
+    <div class="sidebar-nav">
+        <h3>全貌</h3>
+        <a href="#intro" class="sidebar-link active">📦 第23课概览</a>
+        <a href="#what-is-web" class="sidebar-link sub-link">什么是网页</a>
+
+        <h3>Part 1 网页如何工作</h3>
+        <a href="#how-it-works" class="sidebar-link">一、浏览器与服务器</a>
+        <a href="#request-flow" class="sidebar-link sub-link">1.1 请求-响应流程</a>
+
+        <h3>Part 2 前端三件套</h3>
+        <a href="#html-css-js" class="sidebar-link">二、HTML / CSS / JS 各司其职</a>
+        <a href="#role-of-js" class="sidebar-link sub-link">2.1 JavaScript 做什么</a>
+
+        <h3>Part 3 写第一行 JS 代码</h3>
+        <a href="#how-to-embed" class="sidebar-link">三、如何写第一行代码？</a>
+        <a href="#how-to-embed" class="sidebar-link sub-link">3.1 方式一：写在 HTML 里</a>
+        <a href="#how-to-embed" class="sidebar-link sub-link">3.2 方式二：浏览器控制台</a>
+        <a href="#how-to-embed" class="sidebar-link sub-link">3.3 方式三：外部 JS 文件</a>
+
+        <h3>Part 4 进阶实验</h3>
+        <a href="#lab-dom-preview" class="sidebar-link">四、修改网页内容 & 响应点击</a>
+        <a href="#lab-dom-preview" class="sidebar-link sub-link">4.1 实验 01：修改标题</a>
+        <a href="#lab-dom-preview" class="sidebar-link sub-link">4.2 实验 02：按钮点击事件</a>
+
+        <h3>Part 5 小结</h3>
+        <a href="#summary" class="sidebar-link">五、本课小结与预告</a>
+    </div>
+</nav>
+<main class="content">
+    <header id="intro">
+        <h1>第23课：JS基础入门</h1>
+        <p class="intro">这一节课我们不急着写很多代码，而是先搞清楚：浏览器里看到的网页到底是怎么来的？HTML、CSS 和 JavaScript 各自扮演什么角色？以及——如何在页面里写下你的第一行 JS 代码。</p>
+        <div class="pill-list">
+            <span class="pill">网页是怎么工作的</span>
+            <span class="pill">浏览器 / 服务器</span>
+            <span class="pill">HTML / CSS / JS 分工</span>
+            <span class="pill">script 标签</span>
+            <span class="pill">第一个交互实验</span>
+        </div>
+        <div class="lab-card" style="margin-top: 30px;">
+            <div class="lab-header">
+                <span>今日目标</span>
+                <span class="status-badge beginner">Suitable for Beginners</span>
+            </div>
+            <div class="lab-body">
+                <ul class="checklist">
+                    <li>能用自己的话解释：HTML、CSS、JavaScript 各负责什么。</li>
+                    <li>知道浏览器如何从服务器获取页面并渲染到屏幕。</li>
+                    <li>理解「入口文件是 HTML，CSS 和 JS 都通过 HTML 被引用」。</li>
+                    <li>学会三种写 JavaScript 代码的方式：HTML 文件、浏览器控制台、外部 JS 文件。</li>
+                    <li>能独立创建一个包含 JavaScript 的 HTML 文件并在浏览器中运行。</li>
+                    <li>完成两个交互实验：修改网页标题、给按钮添加点击事件。</li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <section id="what-is-web">
+        <h2>一、什么是网页</h2>
+        <p>从用户角度看，网页就是在浏览器里看到的一页内容：文字、图片、按钮、视频……从开发者角度看，网页其实就是一堆文件：</p>
+        <table class="prop-table">
+            <thead>
+            <tr><th>文件类型</th><th>后缀名</th><th>主要作用</th></tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>HTML 文件</td>
+                <td><code>.html</code></td>
+                <td>负责「内容结构」，比如标题、段落、图片、表单。</td>
+            </tr>
+            <tr>
+                <td>CSS 文件</td>
+                <td><code>.css</code></td>
+                <td>负责「外观样式」，比如颜色、字体、布局、动画。</td>
+            </tr>
+            <tr>
+                <td>JavaScript 文件</td>
+                <td><code>.js</code></td>
+                <td>负责「行为和逻辑」，比如按钮点击、表单校验、交互效果。</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="tip-box">
+            <span class="tip-title">💡 一个简单类比</span>
+            <p>可以把网页理解成一部话剧：</p>
+            <ul class="checklist">
+                <li>HTML = 剧本的大纲：有哪些角色、分几幕、每幕的台词。</li>
+                <li>CSS = 舞美和灯光：决定舞台长什么样、角色穿什么衣服。</li>
+                <li>JavaScript = 导演和演员的动作：什么时候上场，说什么台词，如何与观众互动。</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="how-it-works">
+        <h2>一、浏览器与服务器</h2>
+        <p>当你在浏览器地址栏输入一个网址并按下回车，大致会发生以下几件事：</p>
+        <ol class="lab-steps">
+            <li>浏览器向服务器发出请求，索要对应的 HTML 文件。</li>
+            <li>服务器把 HTML 文件返回给浏览器。</li>
+            <li>浏览器从上到下读取 HTML：遇到 CSS，就去下载并应用样式；遇到 JavaScript，就去执行脚本。</li>
+            <li>最终，你看到的是浏览器「渲染」之后的成品页面。</li>
+        </ol>
+        <section id="request-flow">
+            <h3>1.1 请求 - 响应流程一图看懂</h3>
+            <table class="prop-table">
+                <thead>
+                <tr><th>步骤</th><th>参与者</th><th>发生了什么</th></tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1. 输入网址</td>
+                    <td>浏览器</td>
+                    <td>你在地址栏输入网址，浏览器准备发起请求。</td>
+                </tr>
+                <tr>
+                    <td>2. 发送请求</td>
+                    <td>浏览器 → 服务器</td>
+                    <td>浏览器根据域名找到服务器 IP，并发出 HTTP 请求。</td>
+                </tr>
+                <tr>
+                    <td>3. 返回文件</td>
+                    <td>服务器 → 浏览器</td>
+                    <td>服务器读取磁盘上的 HTML 文件，发回给浏览器。</td>
+                </tr>
+                <tr>
+                    <td>4. 解析和渲染</td>
+                    <td>浏览器</td>
+                    <td>浏览器一边下载 CSS/JS，一边构建页面，最后展示给用户。</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="note-box">
+                <strong>重点记住：</strong>
+                <ul class="checklist">
+                    <li>浏览器只认识「文件」，所以我们写代码本质上就是在写文件。</li>
+                    <li>HTML 是入口文件，CSS 和 JS 都是通过 HTML 被「引用」进来的。</li>
+                    <li>JavaScript 是在「浏览器里」运行的程序，可以直接操作页面上的内容。</li>
+                </ul>
+            </div>
+        </section>
+    </section>
+
+    <section id="html-css-js">
+        <h2>二、HTML / CSS / JavaScript 的分工</h2>
+        <p>下面用一个最小示例来看三者如何协同工作：</p>
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>示例：三者协作的最小网页</span>
+                <span class="status-badge beginner">Read Only</span>
+            </div>
+            <div class="lab-body">
+                <p><strong>HTML 结构（index.html）：</strong></p>
+<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px;"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;我的第一个网页&lt;/title&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1 id="page-title"&gt;你好，JavaScript！&lt;/h1&gt;
+  &lt;button id="hello-btn"&gt;点我试试&lt;/button&gt;
+
+  &lt;script src="main.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                <p><strong>CSS 样式（style.css）：</strong></p>
+<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px;"><code>body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-color: #f5f5f7;
+  text-align: center;
+  padding-top: 60px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #e0e0e0;
+}</code></pre>
+                <p><strong>JavaScript 行为（main.js）：</strong></p>
+<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px;"><code>const btn = document.getElementById('hello-btn');
+
+btn.addEventListener('click', function () {
+  alert('欢迎来到 JavaScript 的世界！');
+});</code></pre>
+            </div>
+        </div>
+        <div class="tip-box">
+            <span class="tip-title">三兄弟的协作方式</span>
+            <ul class="checklist">
+                <li>HTML 定义「有哪些元素」以及「它们的层级关系」。</li>
+                <li>CSS 通过 <code>&lt;link&gt;</code> 链接进来，为这些元素添加样式。</li>
+                <li>JavaScript 通过 <code>&lt;script&gt;</code> 链接进来，给按钮等元素添加行为。</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="role-of-js">
+        <h2>2.1 JavaScript 到底做什么？</h2>
+        <p>从功能上看，JavaScript 让网页从「静态的说明书」变成「可以互动的应用」。你每天访问的网站，几乎所有的交互功能都离不开 JavaScript。</p>
+        
+        <h3>4.1 有 JS 和没有 JS 的网页差别有多大？</h3>
+        <table class="prop-table">
+            <thead>
+            <tr><th>场景</th><th>没有 JS</th><th>有 JS</th></tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>表单提交</td>
+                <td>用户填错只能提交后才知道。</td>
+                <td>输入时就能即时提示错误，阻止错误提交。</td>
+            </tr>
+            <tr>
+                <td>导航菜单</td>
+                <td>只能跳转页面。</td>
+                <td>可以展开/折叠菜单、下拉动画、返回顶部。</td>
+            </tr>
+            <tr>
+                <td>数据展示</td>
+                <td>只能看到固定内容。</td>
+                <td>可以按条件筛选、排序、分页显示。</td>
+            </tr>
+            <tr>
+                <td>购物车</td>
+                <td>每次加减商品都要刷新整个页面。</td>
+                <td>点击加减，数量和总价立即更新，无需刷新。</td>
+            </tr>
+            <tr>
+                <td>地图导航</td>
+                <td>只能显示静态图片。</td>
+                <td>可以拖拽、缩放、搜索地点、规划路线。</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h3>4.2 JavaScript 在真实网站中的应用</h3>
+        <p>让我们看看你熟悉的网站都用 JavaScript 做了什么：</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>案例 1：社交媒体（微博、微信朋友圈）</span>
+                <span class="status-badge beginner">Real World</span>
+            </div>
+            <div class="lab-body">
+                <p><strong>JavaScript 实现的功能：</strong></p>
+                <ul class="checklist">
+                    <li><strong>无限滚动加载</strong>：你往下刷，新内容自动加载出来，不用点"下一页"</li>
+                    <li><strong>点赞动画</strong>：点赞时爱心变红、数字+1，还有小动画效果</li>
+                    <li><strong>实时评论</strong>：发表评论后立即显示在页面上，不用刷新</li>
+                    <li><strong>图片预览</strong>：点击图片弹出大图浏览器，可以左右切换</li>
+                    <li><strong>@提醒</strong>：输入 @ 符号时弹出好友列表供你选择</li>
+                </ul>
+                <p style="margin-top: 10px; color: #666; font-size: 14px;">💡 如果没有 JavaScript，你每次点赞都要刷新整个页面，体验会非常糟糕。</p>
+            </div>
+        </div>
+
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>案例 2：电商网站（淘宝、京东）</span>
+                <span class="status-badge beginner">Real World</span>
+            </div>
+            <div class="lab-body">
+                <p><strong>JavaScript 实现的功能：</strong></p>
+                <ul class="checklist">
+                    <li><strong>商品筛选</strong>：勾选"仅显示有货"、"价格区间"，商品列表立即更新</li>
+                    <li><strong>图片放大镜</strong>：鼠标移到商品图上，旁边显示放大的细节图</li>
+                    <li><strong>购物车计算</strong>：加减商品数量，总价自动重新计算</li>
+                    <li><strong>规格选择</strong>：点击不同颜色/尺码，价格和库存信息实时变化</li>
+                    <li><strong>倒计时</strong>：限时抢购的倒计时，每秒自动更新</li>
+                </ul>
+                <p style="margin-top: 10px; color: #666; font-size: 14px;">💡 想象一下，如果每次改数量都要刷新页面，你还会愿意网购吗？</p>
+            </div>
+        </div>
+
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>案例 3：在线地图（百度地图、高德地图）</span>
+                <span class="status-badge beginner">Real World</span>
+            </div>
+            <div class="lab-body">
+                <p><strong>JavaScript 实现的功能：</strong></p>
+                <ul class="checklist">
+                    <li><strong>地图拖拽</strong>：用鼠标拖动地图，查看不同区域</li>
+                    <li><strong>缩放控制</strong>：滚轮放大缩小，双击放大</li>
+                    <li><strong>路线规划</strong>：输入起点终点，自动计算并绘制路线</li>
+                    <li><strong>实时定位</strong>：显示你当前的位置，跟随你移动而更新</li>
+                    <li><strong>搜索建议</strong>：输入地点名称时，下方自动显示相关建议</li>
+                </ul>
+                <p style="margin-top: 10px; color: #666; font-size: 14px;">💡 在线地图如果没有 JavaScript，基本上就只能看静态图片，完全无法使用。</p>
+            </div>
+        </div>
+
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>案例 4：视频网站（Bilibili、YouTube）</span>
+                <span class="status-badge beginner">Real World</span>
+            </div>
+            <div class="lab-body">
+                <p><strong>JavaScript 实现的功能：</strong></p>
+                <ul class="checklist">
+                    <li><strong>视频播放器</strong>：播放、暂停、进度条拖拽、音量调节</li>
+                    <li><strong>弹幕系统</strong>：实时显示和发送弹幕，可以调整弹幕速度和透明度</li>
+                    <li><strong>自动播放下一集</strong>：当前视频结束后，倒计时自动播放下一集</li>
+                    <li><strong>画质切换</strong>：点击切换清晰度，视频无缝切换</li>
+                    <li><strong>进度记忆</strong>：记录你看到第几分钟，下次打开自动跳转到上次位置</li>
+                </ul>
+                <p style="margin-top: 10px; color: #666; font-size: 14px;">💡 没有 JavaScript，你连播放/暂停按钮都点不了。</p>
+            </div>
+        </div>
+
+        <h3>4.3 JavaScript 的五大核心能力</h3>
+        <p>归纳一下，JavaScript 在网页中主要负责以下五类工作：</p>
+        
+        <table class="prop-table">
+            <thead>
+            <tr><th>能力</th><th>具体作用</th><th>日常例子</th></tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><strong>1. 响应用户操作</strong></td>
+                <td>监听用户的点击、输入、滚动、拖拽等动作，并作出反应。</td>
+                <td>点击按钮弹出菜单、表单验证、拖拽排序</td>
+            </tr>
+            <tr>
+                <td><strong>2. 修改页面内容</strong></td>
+                <td>动态改变网页上的文字、图片、样式，无需刷新整个页面。</td>
+                <td>点赞数+1、切换标签页内容、显示/隐藏元素</td>
+            </tr>
+            <tr>
+                <td><strong>3. 与服务器通信</strong></td>
+                <td>向服务器发送请求获取数据，或提交用户输入的信息。</td>
+                <td>搜索建议、加载更多评论、提交表单</td>
+            </tr>
+            <tr>
+                <td><strong>4. 数据处理和计算</strong></td>
+                <td>对用户输入或服务器返回的数据进行计算、筛选、排序。</td>
+                <td>购物车总价计算、商品筛选、数据图表生成</td>
+            </tr>
+            <tr>
+                <td><strong>5. 本地存储数据</strong></td>
+                <td>在用户浏览器中保存信息，下次访问时还能读取。</td>
+                <td>记住登录状态、保存浏览历史、主题偏好设置</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h3>4.4 JavaScript 不仅仅是网页脚本</h3>
+        <p>现代 JavaScript 的应用范围已经远超网页，它几乎无处不在：</p>
+        
+        <div class="tip-box">
+            <span class="tip-title">JavaScript 的更多应用场景</span>
+            <ul class="checklist">
+                <li><strong>服务器开发</strong>：用 Node.js 可以开发后端服务器，处理数据库、API 接口</li>
+                <li><strong>移动应用</strong>：用 React Native、Uni-app 可以开发 iOS 和 Android App</li>
+                <li><strong>桌面软件</strong>：用 Electron 可以开发跨平台桌面应用（如 VS Code、钉钉）</li>
+                <li><strong>小程序开发</strong>：微信小程序、支付宝小程序都是用 JavaScript 写的</li>
+                <li><strong>游戏开发</strong>：浏览器里的 H5 游戏、小游戏都用 JavaScript</li>
+                <li><strong>物联网</strong>：用 JavaScript 控制智能硬件、机器人</li>
+            </ul>
+        </div>
+
+        <div class="note-box">
+            <strong>本课程里的 JavaScript</strong>
+            <p>在接下来的几课里，我们会从最基础的「变量和运算符」开始，一步步搭建出「控制流程 → 函数 → 数组和对象 → DOM 操作 → 事件处理」的完整链路。</p>
+            <p style="margin-top: 10px;">掌握了这些基础知识后，你就能：</p>
+            <ul class="checklist" style="margin-top: 8px;">
+                <li>开发交互式网页（表单验证、动态内容、动画效果）</li>
+                <li>为后续学习前端框架（Vue、React）打下坚实基础</li>
+                <li>理解现代 Web 应用的工作原理</li>
+            </ul>
+            <p style="margin-top: 10px; color: #666;">你可以把今天当作是「正式起飞前的安全须知」——先了解 JavaScript 能做什么，再学习如何去做。</p>
+        </div>
+    </section>
+
+    <section id="how-to-embed">
+        <h2>三、如何写第一行 JavaScript 代码？</h2>
+        <p>现在我们来动手写代码！JavaScript 可以写在三个地方，我们从最简单的开始学起。</p>
+        
+        <h3>6.1 方式一：直接写在 HTML 文件里（最简单）</h3>
+        <p>这是学习阶段最快上手的方式。步骤如下：</p>
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>跟我做：创建第一个 JS 程序</span>
+                <span class="status-badge beginner">Step by Step</span>
+            </div>
+            <div class="lab-body">
+                <p><strong>第 1 步：创建一个新的 HTML 文件</strong></p>
+                <ul class="lab-steps">
+                    <li>在桌面或任意文件夹，右键 → 新建 → 文本文档</li>
+                    <li>把文件名改成 <code>my-first-js.html</code>（注意扩展名是 .html 不是 .txt）</li>
+                </ul>
+
+                <p><strong>第 2 步：用记事本或 VS Code 打开这个文件</strong></p>
+                <ul class="lab-steps">
+                    <li>右键文件 → 打开方式 → 选择记事本或 Visual Studio Code</li>
+                </ul>
+
+                <p><strong>第 3 步：复制下面的代码，粘贴到文件里</strong></p>
+<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px;"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;我的第一个 JS 程序&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;欢迎学习 JavaScript！&lt;/h1&gt;
+
+  &lt;!-- JavaScript 代码写在这对 script 标签里 --&gt;
+  &lt;script&gt;
+    alert('你好！这是我的第一行 JavaScript 代码！');
+  &lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+                <p><strong>第 4 步：保存文件</strong></p>
+                <ul class="lab-steps">
+                    <li>按 <code>Ctrl + S</code> 保存文件</li>
+                </ul>
+
+                <p><strong>第 5 步：用浏览器打开这个文件</strong></p>
+                <ul class="lab-steps">
+                    <li>双击 <code>my-first-js.html</code> 文件，它会在浏览器中打开</li>
+                    <li>你会看到一个弹窗，显示「你好！这是我的第一行 JavaScript 代码！」</li>
+                    <li>点击「确定」后，就能看到网页内容了</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="tip-box">
+            <span class="tip-title">🎉 恭喜！你刚刚做了什么？</span>
+            <ul class="checklist">
+                <li><code>&lt;script&gt;</code> 和 <code>&lt;/script&gt;</code> 之间就是 JavaScript 代码的区域</li>
+                <li><code>alert('...')</code> 是一个弹窗命令，会让浏览器弹出提示框</li>
+                <li>单引号里的内容就是要显示的文字，你可以改成任何你想说的话</li>
+            </ul>
+        </div>
+
+        <h3>6.2 试试改一改代码</h3>
+        <p>现在请你再次打开 <code>my-first-js.html</code>，做以下修改：</p>
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>练习：修改弹窗内容</span>
+                <span class="status-badge beginner">Try It</span>
+            </div>
+            <div class="lab-body">
+                <p><strong>任务 1：把弹窗文字改成你的名字</strong></p>
+                <ul class="lab-steps">
+                    <li>把 <code>alert('你好！这是我的第一行 JavaScript 代码！');</code></li>
+                    <li>改成 <code>alert('我是张三，这是我的第一个网页！');</code></li>
+                    <li>保存文件（Ctrl + S），刷新浏览器（F5），查看变化</li>
+                </ul>
+
+                <p><strong>任务 2：添加多个弹窗</strong></p>
+                <ul class="lab-steps">
+                    <li>在第一个 <code>alert</code> 下面，再写一行 <code>alert('欢迎来到 JS 的世界！');</code></li>
+                    <li>保存并刷新，你会看到两个弹窗依次出现</li>
+                </ul>
+
+<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px;"><code>&lt;script&gt;
+  alert('我是张三，这是我的第一个网页！');
+  alert('欢迎来到 JS 的世界！');
+&lt;/script&gt;</code></pre>
+            </div>
+        </div>
+
+        <h3>6.3 在浏览器控制台里直接写代码（最快）</h3>
+        <p>其实不用创建文件，你也可以在浏览器里直接运行 JavaScript！</p>
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验：使用浏览器控制台</span>
+                <span class="status-badge beginner">Interactive</span>
+            </div>
+            <div class="lab-body">
+                <p><strong>步骤：</strong></p>
+                <ul class="lab-steps">
+                    <li>打开任意网页（比如百度、bilibili 或本讲义）</li>
+                    <li>按 <code>F12</code> 键，会弹出开发者工具</li>
+                    <li>点击顶部的「Console」（控制台）标签</li>
+                    <li>在最下面的输入框里输入：<code>alert('测试一下')</code></li>
+                    <li>按 <code>回车</code>，你会看到弹窗出现！</li>
+                </ul>
+
+                <p><strong>试试这些命令：</strong></p>
+<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px;"><code>// 在控制台输入以下命令，每输入一行就按回车
+
+alert('你好');
+
+console.log('这行文字会显示在控制台里');
+
+2 + 3
+
+100 * 5
+
+'JavaScript' + ' 很有趣'</code></pre>
+            </div>
+        </div>
+
+        <div class="note-box">
+            <strong>控制台是你的好朋友</strong>
+            <p>控制台（Console）是程序员最常用的工具之一。以后你写代码遇到问题，第一时间就要按 F12 打开控制台，看看有没有报错信息。</p>
+        </div>
+
+        <h3>6.4 三种写法对比</h3>
+        <table class="prop-table">
+            <thead>
+            <tr><th>方式</th><th>示例</th><th>适用场景</th></tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>页面内脚本<br>（写在 HTML 里）</td>
+                <td><code>&lt;script&gt;alert('hi')&lt;/script&gt;</code></td>
+                <td>学习阶段、快速实验、小型页面</td>
+            </tr>
+            <tr>
+                <td>浏览器控制台</td>
+                <td>按 F12 → Console → 输入代码 → 回车</td>
+                <td>临时测试、调试代码、体验语法</td>
+            </tr>
+            <tr>
+                <td>外部 JS 文件<br>（推荐）</td>
+                <td><code>&lt;script src="main.js"&gt;&lt;/script&gt;</code></td>
+                <td>真实项目、代码复用、团队协作</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="warning-box">
+            <strong>学习建议：</strong>
+            <ul class="checklist">
+                <li>第 1-3 课：使用「页面内脚本」，写在 HTML 文件里，方便快速实验</li>
+                <li>第 4 课开始：尝试使用「外部 JS 文件」，养成良好的代码组织习惯</li>
+                <li>随时使用「控制台」来测试小段代码或调试问题</li>
+            </ul>
+        </div>
+
+        <h3>6.5 重要！script 标签应该放在哪里？</h3>
+        <p>这是初学者最容易困惑的问题：<code>&lt;script&gt;</code> 标签应该放在 <code>&lt;head&gt;</code> 里还是 <code>&lt;body&gt;</code> 里？答案是：<strong>通常放在 <code>&lt;body&gt;</code> 的最底部</strong>，原因如下：</p>
+
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>script 标签位置对比</span>
+                <span class="status-badge beginner">Important</span>
+            </div>
+            <div class="lab-body">
+                <table class="prop-table" style="margin: 0;">
+                    <thead>
+                    <tr><th>放置位置</th><th>优点</th><th>缺点</th><th>推荐程度</th></tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><strong>放在 &lt;head&gt; 中</strong></td>
+                        <td>• 代码组织清晰<br>• 逻辑上与 CSS 并列</td>
+                        <td>• 会阻塞页面加载<br>• JS 可能找不到 body 中的元素<br>• 用户看到空白页时间更长</td>
+                        <td>❌ 不推荐</td>
+                    </tr>
+                    <tr>
+                        <td><strong>放在 &lt;body&gt; 底部</strong></td>
+                        <td>• 页面内容先加载，用户体验好<br>• 能找到所有 HTML 元素<br>• 不会阻塞页面渲染</td>
+                        <td>• 大型项目文件较多时管理稍复杂</td>
+                        <td>✅ <strong>强烈推荐</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>放在 &lt;head&gt; 中<br>但加 defer 属性</strong></td>
+                        <td>• 兼具清晰性和性能<br>• 异步下载，不阻塞渲染<br>• 在页面解析完后执行</td>
+                        <td>• 需要理解 defer 的工作原理<br>• 旧浏览器可能不支持</td>
+                        <td>⭐ 现代最佳实践</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <h4>示例 1：放在 &lt;head&gt; 中（不推荐）</h4>
+<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px;"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;示例&lt;/title&gt;
+  &lt;!-- ❌ 不推荐：这时 body 还没加载，找不到 #myButton --&gt;
+  &lt;script&gt;
+    const btn = document.getElementById('myButton'); // 结果是 null！
+    console.log(btn); // 输出：null
+  &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;button id="myButton"&gt;点我&lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+        <h4>示例 2：放在 &lt;body&gt; 底部（推荐）</h4>
+<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px;"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;示例&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;button id="myButton"&gt;点我&lt;/button&gt;
+
+  &lt;!-- ✅ 推荐：此时 button 已经加载完成 --&gt;
+  &lt;script&gt;
+    const btn = document.getElementById('myButton'); // 能找到！
+    btn.addEventListener('click', function() {
+      alert('按钮被点击了！');
+    });
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+        <h4>示例 3：放在 &lt;head&gt; 中，但加 defer 属性（现代最佳实践）</h4>
+<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px;"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;示例&lt;/title&gt;
+  &lt;!-- ⭐ 最佳实践：defer 让脚本在页面解析完后再执行 --&gt;
+  &lt;script src="main.js" defer&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;button id="myButton"&gt;点我&lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+        <div class="tip-box">
+            <span class="tip-title">💡 理解页面加载顺序</span>
+            <p>浏览器解析 HTML 的过程是从上到下、逐行执行的：</p>
+            <ul class="checklist">
+                <li><strong>遇到 &lt;script&gt; 就停下来</strong>：浏览器会立即下载并执行脚本，暂停解析 HTML</li>
+                <li><strong>脚本执行完才继续</strong>：执行完 JS 代码后，才会继续解析后面的 HTML</li>
+                <li><strong>如果脚本在 &lt;head&gt; 里</strong>：页面内容还没加载，用户看到空白页，体验很差</li>
+                <li><strong>如果脚本在 &lt;body&gt; 底部</strong>：页面内容先显示，JS 最后执行，体验更好</li>
+            </ul>
+        </div>
+
+        <div class="warning-box">
+            <span class="tip-title" style="color: #E65100;">⚠️ 常见错误示范</span>
+            <p><strong>错误：把需要操作 DOM 的脚本放在 &lt;head&gt; 里</strong></p>
+<pre style="background: var(--code-bg); padding: 10px 14px; border-radius: 8px; overflow-x: auto; font-family: var(--font-mono); font-size: 12px; margin-top: 8px;"><code>&lt;head&gt;
+  &lt;script&gt;
+    // ❌ 错误！这时 #demo 还不存在
+    document.getElementById('demo').textContent = 'Hello';
+  &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div id="demo"&gt;原始内容&lt;/div&gt;
+&lt;/body&gt;</code></pre>
+            <p style="margin-top: 10px;"><strong>解决方法 1：移到 &lt;body&gt; 底部</strong></p>
+<pre style="background: var(--code-bg); padding: 10px 14px; border-radius: 8px; overflow-x: auto; font-family: var(--font-mono); font-size: 12px; margin-top: 8px;"><code>&lt;body&gt;
+  &lt;div id="demo"&gt;原始内容&lt;/div&gt;
+  
+  &lt;script&gt;
+    // ✅ 正确！此时 #demo 已经存在
+    document.getElementById('demo').textContent = 'Hello';
+  &lt;/script&gt;
+&lt;/body&gt;</code></pre>
+            <p style="margin-top: 10px;"><strong>解决方法 2：使用 defer 属性</strong></p>
+<pre style="background: var(--code-bg); padding: 10px 14px; border-radius: 8px; overflow-x: auto; font-family: var(--font-mono); font-size: 12px; margin-top: 8px;"><code>&lt;head&gt;
+  &lt;script src="app.js" defer&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div id="demo"&gt;原始内容&lt;/div&gt;
+&lt;/body&gt;</code></pre>
+        </div>
+
+        <div class="note-box">
+            <strong>本课程的约定：</strong>
+            <ul class="checklist">
+                <li>在第 1-3 课的示例中，我们会把 <code>&lt;script&gt;</code> 写在 <code>&lt;body&gt;</code> 底部，这样最直观</li>
+                <li>从第 4 课开始，我们会使用外部 JS 文件 + <code>defer</code> 属性，这是真实项目的标准做法</li>
+                <li>记住原则：<strong>如果 JS 需要操作页面元素，要么放在元素后面，要么使用 defer</strong></li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="lab-dom-preview">
+        <h2>四、进阶实验：在网页里修改内容和响应点击</h2>
+        <p>前面我们学会了用 <code>alert()</code> 弹窗，但这只是最简单的互动。真正的网页程序会直接修改页面上的内容，或者给按钮添加行为。下面两个实验会让你体验这种感觉。</p>
+        
+        <h3>7.1 实验 01：用 JavaScript 修改网页标题</h3>
+        <p>这个实验会教你如何用 JavaScript 找到页面上的某个元素，并修改它的文字内容。</p>
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 01：修改页面上的文字</span>
+                <span class="status-badge beginner">Hands-on</span>
+            </div>
+            <div class="lab-body split">
+                <div class="panel html-viewer">
+<div class="panel-label">HTML 预览</div>
+&lt;h3&gt;预览区&lt;/h3&gt;
+&lt;p&gt;下面这个标题的文字会被右侧的 JavaScript 修改：&lt;/p&gt;
+&lt;h2 id="demo-title"&gt;原始标题&lt;/h2&gt;
+                </div>
+                <div class="panel code-editor" id="code-title" contenteditable="true">
+<div class="panel-label">JavaScript (可编辑)</div>
+// 第 1 步：通过 id 找到页面上的标题元素
+const titleElement = document.getElementById('demo-title');
+
+// 第 2 步：修改这个元素的文字内容
+// TODO：把下面这行的文字改成你想要的内容
+
+if (titleElement) {
+  titleElement.textContent = '原始标题（请在这里改成你想要的文案）';
+}
+                </div>
+            </div>
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runTitleLab()">▶ 运行修改</button>
+                <button class="btn btn-reset" onclick="resetTitleLab()">↺ 重置代码</button>
+            </div>
+            <div class="preview-box" id="title-console">
+// 提示：修改右侧代码中的字符串，然后点击「运行修改」，观察上方标题的变化。
+            </div>
+        </div>
+        
+        <div class="tip-box">
+            <span class="tip-title">💡 代码解释</span>
+            <ul class="checklist">
+                <li><code>document.getElementById('demo-title')</code> 的意思是：在整个网页（document）里，找到 id 为 'demo-title' 的元素</li>
+                <li><code>titleElement.textContent = '...'</code> 的意思是：把这个元素的文字内容改成引号里的内容</li>
+                <li>你可以把引号里的文字改成任何你想要的内容，比如「我的第一个 JS 实验成功了！」</li>
+            </ul>
+        </div>
+
+        <h3>7.2 实验 02：给按钮添加点击事件</h3>
+        <p>这个实验会教你如何让按钮「可以点击」，并在点击时执行你想要的代码。</p>
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 02：点击按钮弹出欢迎信息</span>
+                <span class="status-badge beginner">Hands-on</span>
+            </div>
+            <div class="lab-body split">
+                <div class="panel html-viewer">
+<div class="panel-label">HTML 预览</div>
+&lt;h3&gt;欢迎实验&lt;/h3&gt;
+&lt;p&gt;点击下面的按钮，会执行右侧的 JavaScript 代码：&lt;/p&gt;
+&lt;button id="welcome-btn"&gt;点我弹出欢迎信息&lt;/button&gt;
+                </div>
+                <div class="panel code-editor" id="code-alert" contenteditable="true">
+<div class="panel-label">JavaScript (可编辑)</div>
+// 第 1 步：找到按钮元素
+const btn = document.getElementById('welcome-btn');
+
+// 第 2 步：给按钮添加「点击」事件监听器
+// 意思是：当用户点击这个按钮时，执行下面花括号里的代码
+
+if (btn) {
+  btn.addEventListener('click', function () {
+    // TODO：修改这里的提示语，变成你自己的欢迎语
+    alert('欢迎来到 JavaScript 的世界！');
+  });
+}
+                </div>
+            </div>
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runAlertLab()">▶ 绑定点击事件</button>
+                <button class="btn btn-reset" onclick="resetAlertLab()">↺ 重置代码</button>
+            </div>
+            <div class="preview-box" id="alert-console">
+// 提示：先点击「绑定点击事件」，再点击上方按钮，查看弹窗效果。
+            </div>
+        </div>
+
+        <div class="tip-box">
+            <span class="tip-title">💡 代码解释</span>
+            <ul class="checklist">
+                <li><code>addEventListener('click', function() {...})</code> 的意思是：给元素添加一个事件监听器，监听「点击」事件</li>
+                <li><code>function() {...}</code> 是一个函数，里面的代码会在按钮被点击时执行</li>
+                <li>你可以在函数里写任何代码，不只是 <code>alert()</code>，也可以修改页面内容、改变颜色等等</li>
+            </ul>
+        </div>
+    
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验：第23次课-JS基础入门实践</span>
+                <span id="23js-status" class="status-badge">未运行</span>
+            </div>
+            <div class="lab-body css-js-experiment">
+                <div>
+                    <div class="code-editor" id="23js-js" contenteditable="true">
+<span class="panel-label">JavaScript (可编辑)</span>// 第23次课-JS基础入门实验
+
+// 在这里编写你的JavaScript代码
+
+// 示例代码
+console.log('第23次课-JS基础入门实验开始');
+
+// 在这里添加更多JavaScript代码
+</div>
+                </div>
+                <div>
+                    <div class="preview-area" id="23js-preview">
+                        <span class="panel-label">预览效果</span>
+                        <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <h3>第23次课-JS基础入门实验</h3>
+                            <div id="23js-output">
+                                <p>点击「运行代码」查看结果</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="run23jsExperiment()">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="reset23jsExperiment()">↺ 重置</button>
+            </div>
+        </div>
+
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验：第23次课-JS基础入门实践</span>
+                <span id="23js-status" class="status-badge">未运行</span>
+            </div>
+            <div class="lab-body css-js-experiment">
+                <div>
+                    <div class="code-editor" id="23js-js" contenteditable="true">
+<span class="panel-label">JavaScript (可编辑)</span>// 第23次课-JS基础入门实验
+
+// 在这里编写你的JavaScript代码
+
+// 示例代码
+console.log('第23次课-JS基础入门实验开始');
+
+// 在这里添加更多JavaScript代码
+</div>
+                </div>
+                <div>
+                    <div class="preview-area" id="23js-preview">
+                        <span class="panel-label">预览效果</span>
+                        <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                            <h3>第23次课-JS基础入门实验</h3>
+                            <div id="23js-output">
+                                <p>点击「运行代码」查看结果</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="run23jsExperiment()">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="reset23jsExperiment()">↺ 重置</button>
+            </div>
+        </div>
+</section>
+    <section id="summary">
+        <h2>五、本课小结与下一课预告</h2>
+        <h3>5.1 本课小结</h3>
+        <ul class="checklist">
+            <li>网页本质上是一组文件，HTML 负责结构，CSS 负责样式，JavaScript 负责行为。</li>
+            <li>浏览器会先请求 HTML，再根据 HTML 中的引用去加载 CSS 和 JS。</li>
+            <li>HTML 是入口文件，所有资源最终都要通过 HTML 串起来。</li>
+            <li>通过 <code>&lt;script&gt;</code> 标签可以把 JavaScript 引入到页面中。</li>
+            <li>你已经学会了三种写 JS 代码的方式：写在 HTML 文件里、用浏览器控制台、引用外部 JS 文件。</li>
+            <li>你已经通过实验，亲手体验了「JS 修改页面内容」和「JS 响应点击事件」。</li>
+        </ul>
+        <div class="note-box">
+            <strong>下一课预告：</strong>
+            <p>下一课我们会正式进入「写程序」状态，从变量和数据类型开始：程序如何记住一段信息？数字和字符串有什么不同？这些内容会成为后面所有运算和逻辑的基础。</p>
+        </div>
+    </section>
+</main>
+
+<script>
+    const titleInitialCode = `// 第 1 步：通过 id 找到页面上的标题元素
+const titleElement = document.getElementById('demo-title');
+
+// 第 2 步：修改这个元素的文字内容
+// TODO：把下面这行的文字改成你想要的内容
+
+if (titleElement) {
+  titleElement.textContent = '原始标题（请在这里改成你想要的文案）';
+}`;
+
+    const alertInitialCode = `// 第 1 步：找到按钮元素
+const btn = document.getElementById('welcome-btn');
+
+// 第 2 步：给按钮添加「点击」事件监听器
+// 意思是：当用户点击这个按钮时，执行下面花括号里的代码
+
+if (btn) {
+  btn.addEventListener('click', function () {
+    // TODO：修改这里的提示语，变成你自己的欢迎语
+    alert('欢迎来到 JavaScript 的世界！');
+  });
+}`;
+
+    function safeRunInline(code, contextId) {
+        try {
+            const fn = new Function('document', code);
+            fn(document);
+            const consoleBox = document.getElementById(contextId);
+            if (consoleBox) {
+                consoleBox.textContent = '// 代码已执行，请在上方区域尝试交互。';
+            }
+        } catch (e) {
+            const consoleBox = document.getElementById(contextId);
+            if (consoleBox) {
+                consoleBox.textContent = '运行出错：' + e.message;
+            }
+        }
+    }
+
+    function runTitleLab() {
+        const editor = document.getElementById('code-title');
+        if (!editor) return;
+        safeRunInline(editor.innerText, 'title-console');
+    }
+
+    function resetTitleLab() {
+        const editor = document.getElementById('code-title');
+        const titleEl = document.getElementById('demo-title');
+        const consoleBox = document.getElementById('title-console');
+        if (editor) editor.innerText = titleInitialCode;
+        if (titleEl) titleEl.textContent = '原始标题';
+        if (consoleBox) consoleBox.textContent = '// 提示：修改右侧代码中的字符串，然后点击「运行修改」，观察上方标题的变化。';
+    }
+
+    function runAlertLab() {
+        const editor = document.getElementById('code-alert');
+        if (!editor) return;
+        safeRunInline(editor.innerText, 'alert-console');
+    }
+
+    function resetAlertLab() {
+        const editor = document.getElementById('code-alert');
+        const consoleBox = document.getElementById('alert-console');
+        if (editor) editor.innerText = alertInitialCode;
+        if (consoleBox) consoleBox.textContent = '// 提示：先点击「绑定点击事件」，再点击上方按钮，查看弹窗效果。';
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        resetTitleLab();
+        resetAlertLab();
+        highlightAllCode();
+    });
+
+    // 简约风格的语法高亮
+    function highlightAllCode() {
+        document.querySelectorAll('pre > code').forEach(codeBlock => {
+            if (codeBlock.classList.contains('highlighted')) return;
+            
+            let code = codeBlock.textContent;
+            
+            // JavaScript 关键字
+            const keywords = /\b(const|let|var|function|return|if|else|for|while|do|switch|case|break|continue|try|catch|finally|throw|new|class|extends|import|export|default|async|await|yield|typeof|instanceof|in|of|delete|void|null|undefined|true|false|this|super)\b/g;
+            
+            // 字符串 (单引号、双引号、反引号)
+            const strings = /(['"`])(?:(?=(\\?))\2.)*?\1/g;
+            
+            // 注释 (单行和多行)
+            const comments = /(\/\/.*$|\/\*[\s\S]*?\*\/)/gm;
+            
+            // 数字
+            const numbers = /\b(\d+\.?\d*|\.\d+)(e[+-]?\d+)?\b/gi;
+            
+            // 函数调用
+            const functions = /\b([a-zA-Z_$][a-zA-Z0-9_$]*)\s*(?=\()/g;
+            
+            // 临时标记以保护已处理的部分
+            const tokens = [];
+            let tokenIndex = 0;
+            
+            // 1. 先处理注释（最高优先级）
+            code = code.replace(comments, match => {
+                const token = `__TOKEN_${tokenIndex++}__`;
+                tokens.push(`<span class="comment">${escapeHtml(match)}</span>`);
+                return token;
+            });
+            
+            // 2. 处理字符串
+            code = code.replace(strings, match => {
+                const token = `__TOKEN_${tokenIndex++}__`;
+                tokens.push(`<span class="string">${escapeHtml(match)}</span>`);
+                return token;
+            });
+            
+            // 3. 处理数字
+            code = code.replace(numbers, match => {
+                const token = `__TOKEN_${tokenIndex++}__`;
+                tokens.push(`<span class="number">${match}</span>`);
+                return token;
+            });
+            
+            // 4. 处理函数调用
+            code = code.replace(functions, match => {
+                const token = `__TOKEN_${tokenIndex++}__`;
+                tokens.push(`<span class="function">${match}</span>`);
+                return token;
+            });
+            
+            // 5. 处理关键字
+            code = code.replace(keywords, match => {
+                const token = `__TOKEN_${tokenIndex++}__`;
+                tokens.push(`<span class="keyword">${match}</span>`);
+                return token;
+            });
+            
+            // 6. HTML转义剩余内容
+            code = escapeHtml(code);
+            
+            // 7. 还原所有token
+            tokens.forEach((replacement, index) => {
+                code = code.replace(`__TOKEN_${index}__`, replacement);
+            });
+            
+            codeBlock.innerHTML = code;
+            codeBlock.classList.add('highlighted');
+        });
+    }
+    
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+    // 第23次课-JS基础入门实验交互逻辑
+    function run23jsExperiment() {
+        const editor = document.getElementById('23js-js');
+        const status = document.getElementById('23js-status');
+        
+        if (editor) {
+            let code = editor.innerText;
+            // 移除编辑器标签
+            code = code.replace('js (可编辑)', '');
+            
+            
+            // 注入JavaScript代码
+            const script = document.createElement('script');
+            script.id = 'experiment-23js';
+            // 重定向console.log到页面
+            const output = document.getElementById('23js-output');
+            const originalLog = console.log;
+            console.log = function(...args) {
+                originalLog(...args);
+                if (output) {
+                    output.innerHTML += '<p>' + args.join(' ') + '</p>';
+                }
+            };
+            script.textContent = code;
+            // 移除旧的脚本
+            const oldScript = document.getElementById('experiment-23js');
+            if (oldScript) {
+                oldScript.remove();
+            }
+            // 添加新脚本
+            document.body.appendChild(script);
+            
+            
+            // 更新状态
+            status.textContent = '已运行';
+            status.className = 'status-badge active';
+        }
+    }
+    
+    function reset23jsExperiment() {
+        const status = document.getElementById('23js-status');
+        
+        
+        // 重置输出和脚本
+        const output = document.getElementById('23js-output');
+        if (output) {
+            output.innerHTML = '<p>点击「运行代码」查看结果</p>';
+        }
+        const oldScript = document.getElementById('experiment-23js');
+        if (oldScript) {
+            oldScript.remove();
+        }
+        
+        
+        // 更新状态
+        status.textContent = '未运行';
+        status.className = 'status-badge';
+    }
+    // 第23次课-JS基础入门实验交互逻辑
+    function run23jsExperiment() {
+        const editor = document.getElementById('23js-js');
+        const status = document.getElementById('23js-status');
+        
+        if (editor) {
+            let code = editor.innerText;
+            // 移除编辑器标签
+            code = code.replace('JS (可编辑)', '');
+            
+            
+            // 注入JavaScript代码
+            const script = document.createElement('script');
+            script.id = 'experiment-23js';
+            // 重定向console.log到页面
+            const output = document.getElementById('23js-output');
+            const originalLog = console.log;
+            console.log = function(...args) {
+                originalLog(...args);
+                if (output) {
+                    output.innerHTML += '<p>' + args.join(' ') + '</p>';
+                }
+            };
+            script.textContent = code;
+            // 移除旧的脚本
+            const oldScript = document.getElementById('experiment-23js');
+            if (oldScript) {
+                oldScript.remove();
+            }
+            // 添加新脚本
+            document.body.appendChild(script);
+            
+            
+            // 更新状态
+            status.textContent = '已运行';
+            status.className = 'status-badge active';
+        }
+    }
+    
+    function reset23jsExperiment() {
+        const status = document.getElementById('23js-status');
+        
+        
+        // 重置输出和脚本
+        const output = document.getElementById('23js-output');
+        if (output) {
+            output.innerHTML = '<p>点击「运行代码」查看结果</p>';
+        }
+        const oldScript = document.getElementById('experiment-23js');
+        if (oldScript) {
+            oldScript.remove();
+        }
+        
+        
+        // 更新状态
+        status.textContent = '未运行';
+        status.className = 'status-badge';
+    }
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+

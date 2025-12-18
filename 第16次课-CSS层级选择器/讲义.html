@@ -1,0 +1,796 @@
+﻿﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第16课：CSS层级选择器</title>
+    <link rel='stylesheet' href='../统一讲义样式模板.css'>
+</head>
+<body>
+    <script>
+        // 核心 CSS 注入逻辑 (修复版)
+        function applyCSS(id) {
+            const editor = document.getElementById(`css-${id}`);
+            if (!editor) return;
+
+            const previewId = `preview-${id}`;
+            let rawCss = editor.innerText; // 使用 innerText 保留换行
+
+            // 清理编辑器自带的 Label 文本
+            const labelText = "CSS (可编辑)";
+            if (rawCss.indexOf(labelText) !== -1) {
+                rawCss = rawCss.replace(labelText, "");
+            }
+
+            // CSS 预处理：为选择器添加 ID 前缀以实现样式隔离
+            // 算法：识别每一行，如果是选择器，则添加 #preview-X 前缀
+            const lines = rawCss.split('\n');
+            let scopedCss = "";
+            let inMediaBlock = false; // 标记是否在 @media 块内部
+
+            lines.forEach(line => {
+                const trimmed = line.trim();
+                
+                // 1. 跳过空行和纯注释
+                if (!trimmed || trimmed.startsWith('/*') || trimmed.startsWith('//')) {
+                    scopedCss += line + "\n";
+                    return;
+                }
+
+                // 2. 处理 @media 查询
+                if (trimmed.startsWith('@media')) {
+                    inMediaBlock = true;
+                    scopedCss += line + "\n";
+                    return;
+                }
+
+                // 3. 处理闭合括号
+                if (trimmed === '}' || trimmed.startsWith('}')) {
+                    if (inMediaBlock && trimmed === '}') { 
+                        // 这里有个简化的逻辑假设：如果是在 media 块里遇到单独的 }，可能是结束 media
+                        // 但为了简化代码，我们依靠浏览器自身的容错，或者简单的计数器
+                        // 更好的方式是直接处理选择器
+                    }
+                    scopedCss += line + "\n";
+                    return;
+                }
+
+                // 4. 属性行 (包含 : 且不含 { ) -> 原样输出
+                if (trimmed.includes(':') && !trimmed.endsWith('{')) {
+                    scopedCss += line + "\n";
+                    return;
+                }
+
+                // 5. 剩下的认为是选择器
+                // 如果在 media 块内，依然需要加前缀
+                if (trimmed.endsWith('{') || trimmed.endsWith(',')) {
+                    // 处理逗号分隔的选择器 div, p { ... }
+                    const selectors = line.split(',');
+                    const scopedSelectors = selectors.map(sel => {
+                        const s = sel.trim();
+                        if (s === '{' || !s) return s; 
+                        // 避免重复添加 (简单的防止机制)
+                        if (s.includes('#' + previewId)) return s;
+                        return `#${previewId} ${s}`;
+                    });
+                    scopedCss += scopedSelectors.join(',') + "\n";
+                } else {
+                    // 其他情况，保守处理，原样输出
+                    scopedCss += line + "\n";
+                }
+            });
+
+            // 创建或更新 style 标签
+            let styleTag = document.getElementById(`style-tag-${id}`);
+            if (!styleTag) {
+                styleTag = document.createElement('style');
+                styleTag.id = `style-tag-${id}`;
+                document.head.appendChild(styleTag);
+            }
+            
+            styleTag.innerHTML = scopedCss;
+            updateStatus(id, true);
+        }
+
+        function removeCSS(id) {
+            const styleTag = document.getElementById(`style-tag-${id}`);
+            if (styleTag) {
+                styleTag.remove();
+            }
+            updateStatus(id, false);
+        }
+
+        function updateStatus(id, isActive) {
+            const badge = document.getElementById(`badge-${id}`);
+            if (!badge) return;
+            if (isActive) {
+                badge.innerText = "运行中 (Active)";
+                badge.className = "status-badge status-active";
+            } else {
+                badge.innerText = "未运行 (Inactive)";
+                badge.className = "status-badge";
+            }
+        }
+
+        // 侧边栏滚动高亮优化逻辑
+        function updateNavHighlight() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.sidebar a');
+            
+            let current = '';
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const docHeight = document.documentElement.scrollHeight;
+
+            // 1. 如果滚动到底部，强制激活最后一个 section
+            if (scrollPosition + windowHeight >= docHeight - 50) {
+                 if (sections.length > 0) {
+                     current = sections[sections.length - 1].getAttribute('id');
+                 }
+            } else {
+                // 2. 正常遍历
+                // 使用 "视口 1/3 处" 作为触发线，体验比较自然
+                const triggerLine = scrollPosition + (windowHeight / 3);
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    const sectionBottom = sectionTop + sectionHeight;
+
+                    // 如果触发线在 section 范围内
+                    if (triggerLine >= sectionTop && triggerLine < sectionBottom) {
+                        current = section.getAttribute('id');
+                    }
+                });
+            }
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateNavHighlight);
+        // 初始化执行
+        setTimeout(updateNavHighlight, 100);
+        // 第16次课-CSS层级选择器实验交互逻辑
+    function run16cssExperiment() {
+        const editor = document.getElementById('16css-css');
+        const status = document.getElementById('16css-status');
+        
+        if (editor) {
+            let code = editor.innerText;
+            // 移除编辑器标签
+            code = code.replace('CSS (可编辑)', '');
+            
+            // 注入CSS样式
+            const style = document.createElement('style');
+            style.id = 'experiment-16css';
+            style.textContent = code;
+            // 移除旧的样式
+            const oldStyle = document.getElementById('experiment-16css');
+            if (oldStyle) {
+                oldStyle.remove();
+            }
+            // 添加新样式
+            document.head.appendChild(style);
+            
+            // 更新状态
+            status.textContent = '已运行';
+            status.className = 'status-badge active';
+        }
+    }
+    
+    function reset16cssExperiment() {
+        const status = document.getElementById('16css-status');
+        
+        // 移除CSS样式
+        const oldStyle = document.getElementById('experiment-16css');
+        if (oldStyle) {
+            oldStyle.remove();
+        }
+        
+        // 更新状态
+        status.textContent = '未运行';
+        status.className = 'status-badge';
+    }
+</script>
+    <link rel='stylesheet' href='../统一讲义样式模板.css'>\n</head>
+<body>
+    <!-- 侧边栏导航 -->
+    <nav class="sidebar">
+        <div class="sidebar-nav">
+            <h3>课程导航</h3>
+            <a class="sidebar-link" href="#intro">👋 课程概览</a>
+            
+            <h3>Part 1: CSS层级选择器</h3>
+            <a class="sidebar-link sub-link" href="#review">1. 复习：基本选择器与交并集选择器</a>
+            <a class="sidebar-link sub-link" href="#introduction">2. 介绍</a>
+            <a class="sidebar-link sub-link" href="#descendant-selector">3. 后代选择器</a>
+            <a class="sidebar-link sub-link" href="#child-selector">4. 子代选择器</a>
+            <a class="sidebar-link sub-link" href="#adjacent-sibling-selector">5. 相邻兄弟选择器</a>
+            <a class="sidebar-link sub-link" href="#general-sibling-selector">6. 通用兄弟选择器</a>
+            <a class="sidebar-link sub-link" href="#practice">7. 实践应用</a>
+        </div>
+    </nav>
+
+    <main class="content">
+        <header>
+            <h1>第16课：CSS层级选择器</h1>
+            <p class="intro">
+                CSS层级选择器允许你根据元素在文档结构中的位置来选择元素。它们是CSS中基础但非常重要的选择器类型，让样式应用更加精确和灵活。本节课将学习后代选择器、子代选择器和兄弟选择器的用法。
+            </p>
+        </header>
+
+        <!-- 第一部分：CSS层级选择器 -->
+        <section id="review">
+            <h2>1. 复习：基本选择器与交并集选择器</h2>
+            <p>在学习层级选择器之前，我们先回顾一下基本选择器和交并集选择器的用法。</p>
+
+            <h3>1.1 基本选择器</h3>
+            <pre class="css"><code>/* 元素选择器 */
+p {
+  color: blue;
+}
+
+/* 类选择器 */
+.highlight {
+  background-color: yellow;
+}
+
+/* ID选择器 */
+#header {
+  font-size: 24px;
+}</code></pre>
+
+            <p>对应的HTML结构：</p>
+            <pre class="html"><code>&lt;p&gt;这是一个普通段落&lt;/p&gt;
+&lt;p class="highlight"&gt;这是一个高亮段落&lt;/p&gt;
+&lt;div id="header"&gt;页面标题&lt;/div&gt;</code></pre>
+
+            <h3>1.2 交并集选择器</h3>
+            <pre class="css"><code>/* 交集选择器：同时具有两个类 */
+.button.primary {
+  background-color: blue;
+  color: white;
+}
+
+/* 并集选择器：具有任意一个类 */
+.button, .link {
+  text-decoration: none;
+}</code></pre>
+
+            <p>对应的HTML结构：</p>
+            <pre class="html"><code>&lt;button class="button primary"&gt;主要按钮&lt;/button&gt;
+&lt;a class="link" href="#"&gt;链接&lt;/a&gt;</code></pre>
+
+            <h3>1.3 交互式演示：基本选择器</h3>
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 01：基本选择器</span>
+                    <span id="badge-1" class="status-badge">未运行</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel html-viewer">
+<div class="panel-label">HTML (只读)</div>
+&lt;p&gt;这是一个普通段落&lt;/p&gt;
+&lt;p class="highlight"&gt;这是一个高亮段落&lt;/p&gt;
+&lt;div id="header"&gt;页面标题&lt;/div&gt;
+                    </div>
+                    <div class="panel css-editor" id="css-1" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+p {
+  color: blue;
+}
+
+.highlight {
+  background-color: yellow;
+}
+
+#header {
+  font-size: 24px;
+}
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyCSS('1')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="removeCSS('1')">↺ 重置</button>
+                </div>
+                <div class="preview-box" id="preview-1">
+                    <p>这是一个普通段落</p>
+                    <p class="highlight">这是一个高亮段落</p>
+                    <div id="header">页面标题</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="introduction">
+            <h2>2. 介绍</h2>
+            <p>CSS层级选择器允许你根据元素在文档结构中的位置来选择元素。它们是CSS中基础但非常重要的选择器类型，让样式应用更加精确和灵活。</p>
+            
+            <div class="note-box">
+                <span class="tip-title">为什么重要？</span>
+                <p>层级选择器让你能够精确控制样式应用，避免不必要的样式冲突，提高代码的可维护性。理解层级选择器是掌握CSS的关键。</p>
+            </div>
+        </section>
+
+        <section id="descendant-selector">
+            <h2>3. 后代选择器（Descendant Selector）</h2>
+            <p>后代选择器使用空格来选择某个元素的后代元素。后代元素可以是子元素、孙元素等任意层级的后代。</p>
+
+            <div class="note-box">
+                <span class="tip-title">简单理解</span>
+                <p>后代选择器就像是"家族选择器"，它会选择指定祖先元素的所有后代，无论嵌套多少层。</p>
+            </div>
+
+            <h3>3.1 语法</h3>
+            <pre class="css"><code>ancestor descendant {
+    /* CSS 规则 */
+}</code></pre>
+
+            <h3>3.2 示例</h3>
+            <p>选择 <code>.box</code> 内的所有 <code>span</code> 元素，将其背景色设为浅黄色。</p>
+            <pre class="css"><code>.box span {
+    background-color: lightyellow;
+}</code></pre>
+
+            <p>对应的HTML结构：</p>
+            <pre class="html"><code>&lt;div class="box"&gt;
+    &lt;p&gt;这是一个段落，包含 &lt;span&gt;span 元素&lt;/span&gt;。&lt;/p&gt;
+    &lt;div&gt;
+        &lt;p&gt;嵌套段落中的 &lt;span&gt;另一个 span&lt;/span&gt;。&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+            <table class="prop-table">
+                <thead>
+                    <tr>
+                        <th>选择器</th>
+                        <th>描述</th>
+                        <th>说明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>article p</code></td>
+                        <td>选择article内的所有段落</td>
+                        <td>无论嵌套几层都会选中</td>
+                    </tr>
+                    <tr>
+                        <td><code>nav a</code></td>
+                        <td>选择导航栏内的所有链接</td>
+                        <td>包括子菜单中的链接</td>
+                    </tr>
+                    <tr>
+                        <td><code>.container .highlight</code></td>
+                        <td>选择容器内的所有高亮元素</td>
+                        <td>类选择器的组合使用</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>3.3 交互式演示</h3>
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 02：后代选择器</span>
+                    <span id="badge-2" class="status-badge">未运行</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel html-viewer">
+<div class="panel-label">HTML (只读)</div>
+&lt;div class="box"&gt;
+    &lt;p&gt;这是一个段落，包含 &lt;span&gt;span 元素&lt;/span&gt;。&lt;/p&gt;
+    &lt;div&gt;
+        &lt;p&gt;嵌套段落中的 &lt;span&gt;另一个 span&lt;/span&gt;。&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+                    </div>
+                    <div class="panel css-editor" id="css-2" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+.box span {
+    background-color: lightyellow;
+    padding: 2px 4px;
+}
+
+.container a {
+    color: #0066cc;
+}
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyCSS('2')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="removeCSS('2')">↺ 重置</button>
+                </div>
+                <div class="preview-box" id="preview-2">
+                    <div class="box">
+                        <p>这是一个段落，包含 <span>span 元素</span>。</p>
+                        <div>
+                            <p>嵌套段落中的 <span>另一个 span</span>。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="child-selector">
+            <h2>4. 子代选择器（Child Selector）</h2>
+            <p>子代选择器使用 <code>&gt;</code> 来选择某个元素的直接子元素。与后代选择器不同，它只选择直接的子元素。</p>
+
+            <div class="note-box">
+                <span class="tip-title">简单理解</span>
+                <p>子代选择器就像是"直系子女"，只选择直接的孩子，不选择孙子孙女。</p>
+            </div>
+
+            <h3>4.1 语法</h3>
+            <pre class="css"><code>parent > child {
+    /* CSS 规则 */
+}</code></pre>
+
+            <h3>4.2 示例</h3>
+            <pre class="css"><code>.article > h2,
+.article > p {
+    font-weight: bold;
+    color: #0066cc;
+    padding: 8px;
+    margin: 8px 0;
+}</code></pre>
+
+            <p>对应的HTML结构：</p>
+            <pre class="html"><code>&lt;!-- 演示子代选择器只选择直接子元素 --&gt;
+&lt;div class="article"&gt;
+    &lt;!-- 这些是.article的直接子元素，会被.article > h2, .article > p选中 --&gt;
+    &lt;h2&gt;直接子元素标题（加粗蓝色）&lt;/h2&gt;
+    &lt;p&gt;直接子元素段落（加粗蓝色）&lt;/p&gt;
+    
+    &lt;div class="content"&gt;
+        &lt;!-- 这些元素在.content内，不是.article的直接子元素，不会受影响 --&gt;
+        &lt;h2&gt;嵌套在div中的标题（正常样式）&lt;/h2&gt;
+        &lt;p&gt;嵌套在div中的段落（正常样式）&lt;/p&gt;
+        &lt;div&gt;
+            &lt;h2&gt;更深层嵌套的标题（正常样式）&lt;/h2&gt;
+            &lt;p&gt;更深层嵌套的段落（正常样式）&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;p&gt;另一个直接子元素段落（加粗蓝色）&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+
+            <h3>4.3 交互式演示</h3>
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 03：子代选择器</span>
+                    <span id="badge-3" class="status-badge">未运行</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel html-viewer">
+<div class="panel-label">HTML (只读)</div>
+&lt;div class="article"&gt;
+    &lt;h2&gt;直接子元素标题（加粗蓝色）&lt;/h2&gt;
+    &lt;p&gt;直接子元素段落（加粗蓝色）&lt;/p&gt;
+    
+    &lt;div class="content"&gt;
+        &lt;h2&gt;嵌套在div中的标题（正常样式）&lt;/h2&gt;
+        &lt;p&gt;嵌套在div中的段落（正常样式）&lt;/p&gt;
+        &lt;div&gt;
+            &lt;h2&gt;更深层嵌套的标题（正常样式）&lt;/h2&gt;
+            &lt;p&gt;更深层嵌套的段落（正常样式）&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    
+    &lt;p&gt;另一个直接子元素段落（加粗蓝色）&lt;/p&gt;
+&lt;/div&gt;
+                    </div>
+                    <div class="panel css-editor" id="css-3" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* 选择.article的直接子元素h2和p */
+.article > h2,
+.article > p {
+    font-weight: bold;
+    color: #0066cc;
+    padding: 8px;
+    margin: 8px 0;
+}
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyCSS('3')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="removeCSS('3')">↺ 重置</button>
+                </div>
+                <div class="preview-box" id="preview-3">
+                    <div class="article">
+                        <h2>直接子元素标题（加粗蓝色）</h2>
+                        <p>直接子元素段落（加粗蓝色）</p>
+                        
+                        <div class="content">
+                            <h2>嵌套在div中的标题（正常样式）</h2>
+                            <p>嵌套在div中的段落（正常样式）</p>
+                            <div>
+                                <h2>更深层嵌套的标题（正常样式）</h2>
+                                <p>更深层嵌套的段落（正常样式）</p>
+                            </div>
+                        </div>
+                        
+                        <p>另一个直接子元素段落（加粗蓝色）</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="adjacent-sibling-selector">
+            <h2>5. 相邻兄弟选择器（Adjacent Sibling Selector）</h2>
+            <p>相邻兄弟选择器使用 <code>+</code> 来选择紧跟在指定元素后面的第一个兄弟元素。</p>
+
+            <div class="note-box">
+                <span class="tip-title">简单理解</span>
+                <p>相邻兄弟选择器就像是"紧挨着的弟弟妹妹"，只选择紧跟在后面的第一个兄弟元素。</p>
+            </div>
+
+            <h3>5.1 语法</h3>
+            <pre class="css"><code>element + sibling {
+    /* CSS 规则 */
+}</code></pre>
+
+            <h3>5.2 示例</h3>
+            <pre class="css"><code>h2 + p {
+    color: red;
+}
+
+.highlight + p {
+    font-weight: bold;
+}</code></pre>
+
+            <p>对应的HTML结构：</p>
+            <pre class="html"><code>&lt;h2&gt;章节标题&lt;/h2&gt;
+&lt;p&gt;紧跟在h2后的段落（红色）&lt;/p&gt;
+&lt;p&gt;不紧跟h2的段落（不受影响）&lt;/p&gt;
+
+&lt;p class="highlight"&gt;高亮段落&lt;/p&gt;
+&lt;p&gt;紧跟在高亮段落后的段落（加粗）&lt;/p&gt;
+&lt;p&gt;另一个段落（不受影响）&lt;/p&gt;</code></pre>
+
+            <h3>5.3 交互式演示</h3>
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 04：相邻兄弟选择器</span>
+                    <span id="badge-4" class="status-badge">未运行</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel html-viewer">
+<div class="panel-label">HTML (只读)</div>
+&lt;h2&gt;章节标题&lt;/h2&gt;
+&lt;p&gt;紧跟在h2后的段落（红色斜体）&lt;/p&gt;
+&lt;p&gt;不紧跟h2的段落（不受影响）&lt;/p&gt;
+
+&lt;p class="highlight"&gt;高亮段落&lt;/p&gt;
+&lt;p&gt;紧跟在高亮段落后的段落（加粗黄色）&lt;/p&gt;
+&lt;p&gt;另一个段落（不受影响）&lt;/p&gt;
+                    </div>
+                    <div class="panel css-editor" id="css-4" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* 选择紧跟在h2后面的p */
+h2 + p {
+    color: red;
+    font-style: italic;
+    padding: 10px;
+    background: #ffe6e6;
+}
+
+/* 选择紧跟在.highlight后面的p */
+.highlight + p {
+    font-weight: bold;
+    background: #fff3cd;
+    padding: 10px;
+    color: #856404;
+}
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyCSS('4')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="removeCSS('4')">↺ 重置</button>
+                </div>
+                <div class="preview-box" id="preview-4">
+                    <h2>章节标题</h2>
+                    <p>紧跟在h2后的段落（红色斜体）</p>
+                    <p>不紧跟h2的段落（不受影响）</p>
+                    
+                    <p class="highlight">高亮段落</p>
+                    <p>紧跟在高亮段落后的段落（加粗黄色）</p>
+                    <p>另一个段落（不受影响）</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="general-sibling-selector">
+            <h2>6. 通用兄弟选择器（General Sibling Selector）</h2>
+            <p>通用兄弟选择器使用 <code>~</code> 来选择指定元素后面的所有兄弟元素。</p>
+
+            <div class="note-box">
+                <span class="tip-title">简单理解</span>
+                <p>通用兄弟选择器就像是"所有的弟弟妹妹"，选择指定元素之后的所有兄弟元素。</p>
+            </div>
+
+            <h3>6.1 语法</h3>
+            <pre class="css"><code>element ~ siblings {
+    /* CSS 规则 */
+}</code></pre>
+
+            <h3>6.2 示例</h3>
+            <pre class="css"><code>h3 ~ li {
+    color: green;
+}
+
+.active ~ .item {
+    background-color: #e3f2fd;
+}</code></pre>
+
+            <p>对应的HTML结构：</p>
+            <pre class="html"><code>&lt;h3&gt;小节标题&lt;/h3&gt;
+&lt;li&gt;列表项1（绿色）&lt;/li&gt;
+&lt;li&gt;列表项2（绿色）&lt;/li&gt;
+&lt;p&gt;段落元素&lt;/p&gt;
+&lt;li&gt;列表项3（绿色）&lt;/li&gt;
+&lt;li&gt;列表项4（绿色）&lt;/li&gt;
+
+&lt;div class="active"&gt;激活的项目&lt;/div&gt;
+&lt;div class="item"&gt;项目1（蓝色背景）&lt;/div&gt;
+&lt;div class="item"&gt;项目2（蓝色背景）&lt;/div&gt;
+&lt;div&gt;普通div（不受影响）&lt;/div&gt;
+&lt;div class="item"&gt;项目3（蓝色背景）&lt;/div&gt;</code></pre>
+
+            <h3>6.3 交互式演示</h3>
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 05：通用兄弟选择器</span>
+                    <span id="badge-5" class="status-badge">未运行</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel html-viewer">
+<div class="panel-label">HTML (只读)</div>
+&lt;h3&gt;小节标题&lt;/h3&gt;
+&lt;li&gt;列表项1（绿色加粗）&lt;/li&gt;
+&lt;li&gt;列表项2（绿色加粗）&lt;/li&gt;
+&lt;p&gt;段落元素&lt;/p&gt;
+&lt;li&gt;列表项3（绿色加粗）&lt;/li&gt;
+&lt;li&gt;列表项4（绿色加粗）&lt;/li&gt;
+
+&lt;div class="active"&gt;激活的项目&lt;/div&gt;
+&lt;div class="item"&gt;项目1（蓝色背景）&lt;/div&gt;
+&lt;div class="item"&gt;项目2（蓝色背景）&lt;/div&gt;
+&lt;div&gt;普通div（不受影响）&lt;/div&gt;
+&lt;div class="item"&gt;项目3（蓝色背景）&lt;/div&gt;
+                    </div>
+                    <div class="panel css-editor" id="css-5" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* 选择h3后面所有的li兄弟元素 */
+h3 ~ li {
+    color: green;
+    font-weight: bold;
+    padding: 8px;
+    margin: 5px 0;
+}
+
+/* 选择.active后面所有的.item兄弟元素 */
+.active ~ .item {
+    background-color: #e3f2fd;
+    border-left: 4px solid #0066cc;
+    padding: 10px;
+    margin: 8px 0;
+}
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyCSS('5')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="removeCSS('5')">↺ 重置</button>
+                </div>
+                <div class="preview-box" id="preview-5">
+                    <h3>小节标题</h3>
+                    <li>列表项1（绿色加粗）</li>
+                    <li>列表项2（绿色加粗）</li>
+                    <p>段落元素</p>
+                    <li>列表项3（绿色加粗）</li>
+                    <li>列表项4（绿色加粗）</li>
+
+                    <div class="active">激活的项目</div>
+                    <div class="item">项目1（蓝色背景）</div>
+                    <div class="item">项目2（蓝色背景）</div>
+                    <div>普通div（不受影响）</div>
+                    <div class="item">项目3（蓝色背景）</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="practice">
+            <h2>7. 实践应用</h2>
+            <p>层级选择器在实际开发中有许多应用场景。</p>
+
+            <div class="note-box">
+                <span class="tip-title">最佳实践</span>
+                <p>层级选择器可以与其他选择器组合使用，创建精确的样式控制。例如：<code>.nav > ul > li > a:hover</code></p>
+            </div>
+
+            <h3>7.1 常见应用场景</h3>
+            <pre class="css"><code>/* 导航菜单：直接子元素 */
+nav > ul > li {
+    display: inline-block;
+}
+
+nav > ul > li > a {
+    text-decoration: none;
+}
+
+/* 文章布局：相邻兄弟 */
+article > h2 + p {
+    font-size: 1.1em;
+    color: #666;
+}
+
+/* 列表样式：通用兄弟 */
+.list > li ~ li {
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}</code></pre>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验：第16次课-CSS层级选择器实践</span>
+                <span id="16css-status" class="status-badge">未运行</span>
+            </div>
+            <div class="lab-body css-js-experiment">
+                <div>
+                    <div class="code-editor" id="16css-css" contenteditable="true">
+<span class="panel-label">CSS (可编辑)</span>/* 第16次课-CSS层级选择器实验 */
+.container {
+    width: 200px;
+    height: 200px;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    margin: 20px;
+    /* 在这里添加你的CSS样式 */
+}
+
+/* 在这里添加更多CSS样式 */
+
+/* 示例：使用层级选择器 */
+.container > h3 {
+    color: #0066cc;
+    font-weight: bold;
+}
+
+.container p {
+    color: #333;
+    line-height: 1.6;
+}
+
+.container:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+</div>
+                </div>
+                <div>
+                    <div class="preview-area" id="16css-preview">
+                        <span class="panel-label">预览效果</span>
+                        <div class="container">
+                            <h3>CSS实验</h3>
+                            <p>这是CSS实验的预览效果</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="run16cssExperiment()">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="reset16cssExperiment()">↺ 重置</button>
+            </div>
+        </div>
+</section></main>
+</body>
+</html>
+
+
+
+
+
+

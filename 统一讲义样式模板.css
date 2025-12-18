@@ -22,14 +22,16 @@
     --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.04);
 
     /* 代码样式 */
-    --code-bg: #21252b;
-    --code-text: #f8f8f2;
+    --code-bg: #f6f8fa;
+    --code-text: #24292e;
     --code-comment: #6a737d;
     --code-string: #032f62;
     --code-keyword: #d73a49;
     --code-function: #6f42c1;
     --code-number: #005cc5;
     --code-operator: #d73a49;
+    --code-property: #005cc5;
+    --code-tag: #22863a;
 
     /* 字体系统 */
     --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -92,7 +94,7 @@ body {
     gap: 2px;
 }
 
-.sidebar a {
+.sidebar-link {
     display: block;
     padding: 10px 14px;
     border-radius: 4px;
@@ -103,21 +105,21 @@ body {
     border-left: 2px solid transparent;
 }
 
-.sidebar a:hover {
-    background: #f3f4f6;
+.sidebar-link:hover {
+    background: var(--border-color);
 }
 
-.sidebar a.active {
-    background: #f3f4f6;
+.sidebar-link.active {
+    background: var(--border-color);
     color: var(--color-heading);
     border-left-color: var(--color-accent);
     font-weight: 500;
 }
 
-.sidebar a.sub-link {
+.sidebar-link.sub-link {
     padding-left: 32px;
     font-size: 21px;
-    color: #555;
+    color: var(--color-text-light);
 }
 
 /* 排版层级 */
@@ -198,7 +200,7 @@ pre {
     font-size: 21px;
     line-height: 1.6;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    border: 1px solid #21252b;
+    border: 1px solid #e1e4e8;
     position: relative;
     margin: 20px 0;
 }
@@ -213,12 +215,18 @@ pre > code {
 }
 
 /* 代码高亮 */
-pre code .comment { color: var(--code-comment); font-style: italic; opacity: 0.9; }
+pre code .comment { color: var(--code-comment); font-style: italic; }
 pre code .string { color: var(--code-string); }
-pre code .keyword { color: var(--code-keyword); }
-pre code .function { color: var(--code-function); }
+pre code .keyword { color: var(--code-keyword); font-weight: 500; }
+pre code .function { color: var(--code-function); font-weight: 500; }
 pre code .number { color: var(--code-number); }
 pre code .operator { color: var(--code-operator); }
+pre code .property { color: var(--code-property); }
+pre code .tag { color: var(--code-tag); }
+pre code .selector { color: #d73a49; }
+pre code .atrule { color: #6f42c1; }
+pre code .attribute { color: #005cc5; }
+pre code .builtin { color: #6f42c1; }
 
 /* 代码块标签 */
 pre::before {
@@ -226,8 +234,12 @@ pre::before {
     position: absolute;
     top: 10px;
     right: 14px;
-    font-size: 10px;
-    color: rgba(255,255,255,0.3);
+    font-size: 12px;
+    color: var(--color-text-light);
+    background: var(--color-bg);
+    padding: 2px 8px;
+    border-radius: 3px;
+    border: 1px solid var(--border-color);
 }
 
 pre.js::before {
@@ -263,21 +275,9 @@ pre.css::before {
     border-radius: 6px;
     padding: 20px 24px;
     margin: 24px 0;
-    border-left: 3px solid;
+    border-left: 3px solid var(--color-heading);
     background: #fafbfc;
     border: 1px solid var(--border-color);
-}
-
-.tip-box {
-    border-left-color: var(--color-heading);
-}
-
-.note-box {
-    border-left-color: var(--color-heading);
-}
-
-.warning-box {
-    border-left-color: var(--color-heading);
 }
 
 .tip-title {
@@ -360,21 +360,14 @@ pre.css::before {
     padding: 5px 12px;
     border-radius: 3px;
     border: 1px solid var(--border-color);
-}
-
-.status-badge.beginner {
-    background: #f6f8fa;
+    background: var(--border-color);
     color: var(--color-text);
 }
 
-.status-badge.advanced {
-    background: #f6f8fa;
-    color: var(--color-text);
-}
-
+.status-badge.beginner, 
+.status-badge.advanced, 
 .status-badge.readonly {
-    background: #f6f8fa;
-    color: var(--color-text);
+    /* 统一状态徽章样式 */
 }
 
 .lab-body {
@@ -433,7 +426,7 @@ pre.css::before {
     padding: 8px 16px;
     border-radius: 4px;
     border: 1px solid var(--border-color);
-    font-size: 26px;
+    font-size: 21px;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.15s;
@@ -457,15 +450,14 @@ pre.css::before {
 
 .btn-reset:hover {
     background: #f6f8fa;
-    color: #d1d1d6;
 }
 
 /* 操作栏 */
 .action-bar {
     display: flex;
     gap: 10px;
-    padding: 16px 20px;
-    background: var(--color-bg);
+    padding: 16px 24px;
+    background: #fafbfc;
     border-top: 1px solid var(--border-color);
 }
 
@@ -476,8 +468,111 @@ pre.css::before {
     min-height: 140px;
     border-top: 1px solid var(--border-color);
     font-family: var(--font-mono);
-    font-size: 28px;
+    font-size: 21px;
     line-height: 1.6;
+}
+
+/* 交互式实验样式增强 */
+.lab-card {
+    background: var(--color-white);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    margin: 32px 0;
+}
+
+.lab-header {
+    background: #fafbfc;
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--color-heading);
+}
+
+.status-badge {
+    font-size: 17px;
+    padding: 5px 12px;
+    border-radius: 3px;
+    border: 1px solid var(--border-color);
+    background: var(--border-color);
+    color: var(--color-text);
+}
+
+.status-badge.active {
+    background: #d1e7dd;
+    border-color: #badbcc;
+    color: #0f5132;
+}
+
+.status-badge.beginner, 
+.status-badge.advanced, 
+.status-badge.readonly {
+    /* 统一状态徽章样式 */
+}
+
+/* HTML 上下结构样式 */
+.lab-body.html-experiment {
+    display: flex;
+    flex-direction: column;
+}
+
+/* CSS/JS 左右双栏结构样式 */
+.lab-body.css-js-experiment {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    min-height: 400px;
+    padding: 24px 26px 28px;
+    background: #fff;
+}
+
+/* 代码编辑器样式 */
+.code-editor {
+    background: var(--code-bg);
+    padding: 20px;
+    border-radius: 6px;
+    font-family: var(--font-mono);
+    font-size: 21px;
+    line-height: 1.6;
+    color: var(--code-text);
+    border: 1px solid var(--border-color);
+    overflow: auto;
+    min-height: 300px;
+}
+
+.code-editor:focus {
+    outline: 2px solid var(--color-accent);
+}
+
+/* 预览区域样式 */
+.preview-area {
+    background: var(--color-bg);
+    padding: 20px;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    overflow: auto;
+    min-height: 300px;
+}
+
+/* 代码块标签样式 */
+.panel-label {
+    font-size: 14px;
+    color: var(--color-text-light);
+    margin-bottom: 12px;
+    display: block;
+    font-weight: 500;
+}
+
+/* 响应式设计 */
+@media (max-width: 900px) {
+    .lab-body.css-js-experiment {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* 响应式设计 */

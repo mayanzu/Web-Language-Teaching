@@ -1,0 +1,657 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第14课：CSS基础选择器</title>
+                
+    <script>
+        // 核心 CSS 注入逻辑 (修复版)
+        function applyCSS(id) {
+            const editor = document.getElementById(`css-${id}`);
+            if (!editor) return;
+
+            const previewId = `preview-${id}`;
+            let rawCss = editor.innerText; // 使用 innerText 保留换行
+
+            // 清理编辑器自带的 Label 文本
+            const labelText = "CSS (可编辑)";
+            if (rawCss.indexOf(labelText) !== -1) {
+                rawCss = rawCss.replace(labelText, "");
+            }
+
+            // CSS 预处理：为选择器添加 ID 前缀以实现样式隔离
+            // 算法：识别每一行，如果是选择器，则添加 #preview-X 前缀
+            const lines = rawCss.split('\n');
+            let scopedCss = "";
+            let inMediaBlock = false; // 标记是否在 @media 块内部
+
+            lines.forEach(line => {
+                const trimmed = line.trim();
+                
+                // 1. 跳过空行和纯注释
+                if (!trimmed || trimmed.startsWith('/*') || trimmed.startsWith('//')) {
+                    scopedCss += line + "\n";
+                    return;
+                }
+
+                // 2. 处理 @media 查询
+                if (trimmed.startsWith('@media')) {
+                    inMediaBlock = true;
+                    scopedCss += line + "\n";
+                    return;
+                }
+
+                // 3. 处理闭合括号
+                if (trimmed === '}' || trimmed.startsWith('}')) {
+                    if (inMediaBlock && trimmed === '}') { 
+                        // 这里有个简化的逻辑假设：如果是在 media 块里遇到单独的 }，可能是结束 media
+                        // 但为了简化代码，我们依靠浏览器自身的容错，或者简单的计数器
+                        // 更好的方式是直接处理选择器
+                    }
+                    scopedCss += line + "\n";
+                    return;
+                }
+
+                // 4. 属性行 (包含 : 且不含 { ) -> 原样输出
+                if (trimmed.includes(':') && !trimmed.endsWith('{')) {
+                    scopedCss += line + "\n";
+                    return;
+                }
+
+                // 5. 剩下的认为是选择器
+                // 如果在 media 块内，依然需要加前缀
+                if (trimmed.endsWith('{') || trimmed.endsWith(',')) {
+                    // 处理逗号分隔的选择器 div, p { ... }
+                    const selectors = line.split(',');
+                    const scopedSelectors = selectors.map(sel => {
+                        const s = sel.trim();
+                        if (s === '{' || !s) return s; 
+                        // 避免重复添加 (简单的防止机制)
+                        if (s.includes('#' + previewId)) return s;
+                        return `#${previewId} ${s}`;
+                    });
+                    scopedCss += scopedSelectors.join(',') + "\n";
+                } else {
+                    // 其他情况，保守处理，原样输出
+                    scopedCss += line + "\n";
+                }
+            });
+
+            // 创建或更新 style 标签
+            let styleTag = document.getElementById(`style-tag-${id}`);
+            if (!styleTag) {
+                styleTag = document.createElement('style');
+                styleTag.id = `style-tag-${id}`;
+                document.head.appendChild(styleTag);
+            }
+            
+            styleTag.innerHTML = scopedCss;
+            updateStatus(id, true);
+        }
+
+        function removeCSS(id) {
+            const styleTag = document.getElementById(`style-tag-${id}`);
+            if (styleTag) {
+                styleTag.remove();
+            }
+            updateStatus(id, false);
+        }
+
+        function updateStatus(id, isActive) {
+            const badge = document.getElementById(`badge-${id}`);
+            if (!badge) return;
+            if (isActive) {
+                badge.innerText = "运行中 (Active)";
+                badge.className = "status-badge status-active";
+            } else {
+                badge.innerText = "未运行 (Inactive)";
+                badge.className = "status-badge";
+            }
+        }
+
+        // 侧边栏滚动高亮优化逻辑
+        function updateNavHighlight() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.sidebar a');
+            
+            let current = '';
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const docHeight = document.documentElement.scrollHeight;
+
+            // 1. 如果滚动到底部，强制激活最后一个 section
+            if (scrollPosition + windowHeight >= docHeight - 50) {
+                 if (sections.length > 0) {
+                     current = sections[sections.length - 1].getAttribute('id');
+                 }
+            } else {
+                // 2. 正常遍历
+                // 使用 "视口 1/3 处" 作为触发线，体验比较自然
+                const triggerLine = scrollPosition + (windowHeight / 3);
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    const sectionBottom = sectionTop + sectionHeight;
+
+                    // 如果触发线在 section 范围内
+                    if (triggerLine >= sectionTop && triggerLine < sectionBottom) {
+                        current = section.getAttribute('id');
+                    }
+                });
+            }
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateNavHighlight);
+        // 初始化执行
+        setTimeout(updateNavHighlight, 100);
+        // 第14次课-CSS基础选择器实验交互逻辑
+    function run14cssExperiment() {
+        const editor = document.getElementById('14css-css');
+        const status = document.getElementById('14css-status');
+        
+        if (editor) {
+            let code = editor.innerText;
+            // 移除编辑器标签
+            code = code.replace('css (可编辑)', '');
+            
+            
+            // 注入CSS样式
+            const style = document.createElement('style');
+            style.id = 'experiment-14css';
+            style.textContent = code;
+            // 移除旧的样式
+            const oldStyle = document.getElementById('experiment-14css');
+            if (oldStyle) {
+                oldStyle.remove();
+            }
+            // 添加新样式
+            document.head.appendChild(style);
+            
+            
+            // 更新状态
+            status.textContent = '已运行';
+            status.className = 'status-badge active';
+        }
+    }
+    
+    function reset14cssExperiment() {
+        const status = document.getElementById('14css-status');
+        
+        
+        // 移除CSS样式
+        const oldStyle = document.getElementById('experiment-14css');
+        if (oldStyle) {
+            oldStyle.remove();
+        }
+        
+        
+        // 更新状态
+        status.textContent = '未运行';
+        status.className = 'status-badge';
+    }
+    // 第14次课-CSS基础选择器实验交互逻辑
+    function run14cssExperiment() {
+        const editor = document.getElementById('14css-css');
+        const status = document.getElementById('14css-status');
+        
+        if (editor) {
+            let code = editor.innerText;
+            // 移除编辑器标签
+            code = code.replace('CSS (可编辑)', '');
+            
+            
+            // 注入CSS样式
+            const style = document.createElement('style');
+            style.id = 'experiment-14css';
+            style.textContent = code;
+            // 移除旧的样式
+            const oldStyle = document.getElementById('experiment-14css');
+            if (oldStyle) {
+                oldStyle.remove();
+            }
+            // 添加新样式
+            document.head.appendChild(style);
+            
+            
+            // 更新状态
+            status.textContent = '已运行';
+            status.className = 'status-badge active';
+        }
+    }
+    
+    function reset14cssExperiment() {
+        const status = document.getElementById('14css-status');
+        
+        
+        // 移除CSS样式
+        const oldStyle = document.getElementById('experiment-14css');
+        if (oldStyle) {
+            oldStyle.remove();
+        }
+        
+        
+        // 更新状态
+        status.textContent = '未运行';
+        status.className = 'status-badge';
+    }
+</script>
+    <link rel='stylesheet' href='../统一讲义样式模板.css'>\n</head>
+<body>
+    <!-- 侧边栏导航 -->
+    <nav class="sidebar">
+        <div class="sidebar-nav">
+            <h3>课程导航</h3>
+            <a class="sidebar-link" href="#intro">👋 课程概览</a>
+            
+            <h3>Part 1: CSS基础选择器</h3>
+            <a class="sidebar-link sub-link" href="#element-selector">1. 元素选择器</a>
+            <a class="sidebar-link sub-link" href="#id-selector">2. ID选择器</a>
+            <a class="sidebar-link sub-link" href="#class-selector">3. 类选择器</a>
+            <a class="sidebar-link sub-link" href="#group-selector">4. 分组选择器</a>
+            <a class="sidebar-link sub-link" href="#universal-selector">5. 通配符选择器</a>
+            
+            <h3>Part 2: 实战练习</h3>
+            <a class="sidebar-link sub-link" href="#exercise">6. 综合练习</a>
+        </div>
+    </nav>
+
+    <main class="content">
+        <header>
+            <h1>第14课：CSS基础选择器</h1>
+            <p class="intro">
+                CSS选择器是CSS的核心，它允许你选择要样式化的HTML元素。本节课我们将学习CSS基础选择器，包括元素选择器、ID选择器、类选择器、分组选择器和通配符选择器。
+            </p>
+        </header>
+
+        <!-- 第一部分：CSS基础选择器 -->
+        <section id="element-selector">
+            <h2>1. 元素选择器</h2>
+            <p>元素选择器是最基本的选择器，它根据HTML元素的名称来选择元素。例如，<code>p</code>选择器会选择所有的<code>&lt;p&gt;</code>元素。</p>
+            
+            <pre class="css"><code>/* 选择所有 &lt;p&gt; 元素 */
+p {
+    color: blue;
+    font-size: 16px;
+}</code></pre>
+            
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 01：元素选择器</span>
+                    <span id="badge-1" class="status-badge">未运行</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel html-viewer">
+<div class="panel-label">HTML (只读)</div>
+&lt;p&gt;这是一个段落，将被元素选择器选中。&lt;/p&gt;
+&lt;div&gt;这是一个div，不会被p选择器选中。&lt;/div&gt;
+&lt;p&gt;这是另一个段落，也会被元素选择器选中。&lt;/p&gt;
+                    </div>
+                    <div class="panel css-editor" id="css-1" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* 元素选择器 */
+p {
+    color: blue;
+    font-size: 18px;
+    line-height: 1.5;
+}
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyCSS('1')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="removeCSS('1')">↺ 重置</button>
+                </div>
+                <div class="preview-box" id="preview-1">
+                    <p>这是一个段落，将被元素选择器选中。</p>
+                    <div>这是一个div，不会被p选择器选中。</div>
+                    <p>这是另一个段落，也会被元素选择器选中。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="id-selector">
+            <h2>2. ID选择器</h2>
+            <p>ID选择器使用HTML元素的<code>id</code>属性来选择元素，ID选择器以<code>#</code>开头。每个HTML文档中的ID应该是唯一的。</p>
+            
+            <pre class="css"><code>/* 选择id为 "special" 的元素 */
+#special {
+    background-color: #ffffcc;
+    padding: 10px;
+    border: 1px solid #ffcc00;
+}</code></pre>
+            
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 02：ID选择器</span>
+                    <span id="badge-2" class="status-badge">未运行</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel html-viewer">
+<div class="panel-label">HTML (只读)</div>
+&lt;p&gt;普通段落&lt;/p&gt;
+&lt;p id="special"&gt;这个段落有ID "special"，会被ID选择器选中。&lt;/p&gt;
+&lt;p&gt;另一个普通段落&lt;/p&gt;
+                    </div>
+                    <div class="panel css-editor" id="css-2" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* ID选择器 */
+#special {
+    background-color: #ffffcc;
+    padding: 10px;
+    border: 1px solid #ffcc00;
+    font-weight: bold;
+}
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyCSS('2')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="removeCSS('2')">↺ 重置</button>
+                </div>
+                <div class="preview-box" id="preview-2">
+                    <p>普通段落</p>
+                    <p id="special">这个段落有ID "special"，会被ID选择器选中。</p>
+                    <p>另一个普通段落</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="class-selector">
+            <h2>3. 类选择器</h2>
+            <p>类选择器使用HTML元素的<code>class</code>属性来选择元素，类选择器以<code>.</code>开头。一个HTML元素可以有多个类，多个HTML元素可以共享同一个类。</p>
+            
+            <pre class="css"><code>/* 选择所有class为 "highlight" 的元素 */
+.highlight {
+    color: red;
+    font-weight: bold;
+    text-decoration: underline;
+}</code></pre>
+            
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 03：类选择器</span>
+                    <span id="badge-3" class="status-badge">未运行</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel html-viewer">
+<div class="panel-label">HTML (只读)</div>
+&lt;p&gt;普通段落&lt;/p&gt;
+&lt;p class="highlight"&gt;带highlight类的段落&lt;/p&gt;
+&lt;div class="highlight"&gt;带highlight类的div&lt;/div&gt;
+&lt;p class="highlight"&gt;另一个带highlight类的段落&lt;/p&gt;
+                    </div>
+                    <div class="panel css-editor" id="css-3" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* 类选择器 */
+.highlight {
+    color: red;
+    font-weight: bold;
+    text-decoration: underline;
+}
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyCSS('3')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="removeCSS('3')">↺ 重置</button>
+                </div>
+                <div class="preview-box" id="preview-3">
+                    <p>普通段落</p>
+                    <p class="highlight">带highlight类的段落</p>
+                    <div class="highlight">带highlight类的div</div>
+                    <p class="highlight">另一个带highlight类的段落</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="group-selector">
+            <h2>4. 分组选择器</h2>
+            <p>分组选择器允许你将多个选择器组合在一起，共享相同的样式，选择器之间用逗号分隔。</p>
+            
+            <pre class="css"><code>/* 同时选择 h1, h2, h3 元素 */
+h1, h2, h3 {
+    color: #333;
+    font-family: Arial, sans-serif;
+    margin-top: 20px;
+}</code></pre>
+            
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 04：分组选择器</span>
+                    <span id="badge-4" class="status-badge">未运行</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel html-viewer">
+<div class="panel-label">HTML (只读)</div>
+&lt;h1&gt;一级标题&lt;/h1&gt;
+&lt;h2&gt;二级标题&lt;/h2&gt;
+&lt;h3&gt;三级标题&lt;/h3&gt;
+&lt;p&gt;普通段落&lt;/p&gt;
+                    </div>
+                    <div class="panel css-editor" id="css-4" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* 分组选择器 */
+h1, h2, h3 {
+    color: #333;
+    font-family: Arial, sans-serif;
+    margin-top: 20px;
+    border-bottom: 1px solid #ccc;
+}
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyCSS('4')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="removeCSS('4')">↺ 重置</button>
+                </div>
+                <div class="preview-box" id="preview-4">
+                    <h1>一级标题</h1>
+                    <h2>二级标题</h2>
+                    <h3>三级标题</h3>
+                    <p>普通段落</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="universal-selector">
+            <h2>5. 通配符选择器</h2>
+            <p>通配符选择器<code>*</code>会选择文档中的所有HTML元素。它通常用于设置全局样式或重置样式。</p>
+            
+            <pre class="css"><code>/* 选择所有元素 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}</code></pre>
+            
+            <div class="tip-box">
+                <span class="tip-title">💡 注意事项</span>
+                <p>通配符选择器会影响所有元素，因此使用时要小心，避免不必要的性能开销。通常只在CSS重置或设置全局样式时使用。</p>
+            </div>
+        </section>
+
+        <!-- 第二部分：实战练习 -->
+        <section id="exercise">
+            <h2>6. 综合练习</h2>
+            <p>现在让我们来做一个综合练习，使用各种基础选择器来样式化一个简单的页面。</p>
+            
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 05：综合练习</span>
+                    <span id="badge-5" class="status-badge">未运行</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel html-viewer">
+<div class="panel-label">HTML (只读)</div>
+&lt;div&gt;
+    &lt;h1&gt;我的个人主页&lt;/h1&gt;
+    &lt;p class="intro"&gt;欢迎来到我的个人主页！&lt;/p&gt;
+    
+    &lt;h2&gt;关于我&lt;/h2&gt;
+    &lt;p&gt;我是一名Web开发者，喜欢学习新技术。&lt;/p&gt;
+    
+    &lt;h2&gt;我的爱好&lt;/h2&gt;
+    &lt;ul&gt;
+        &lt;li&gt;阅读&lt;/li&gt;
+        &lt;li id="favorite"&gt;编程&lt;/li&gt;
+        &lt;li&gt;旅行&lt;/li&gt;
+    &lt;/ul&gt;
+    
+    &lt;h2&gt;联系方式&lt;/h2&gt;
+    &lt;p class="contact"&gt;邮箱：example@example.com&lt;/p&gt;
+    &lt;p class="contact"&gt;电话：123-456-7890&lt;/p&gt;
+&lt;/div&gt;
+                    </div>
+                    <div class="panel css-editor" id="css-5" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* 1. 使用通配符选择器重置样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 2. 使用分组选择器设置标题样式 */
+h1, h2 {
+    color: #333;
+    font-family: Arial, sans-serif;
+    margin-top: 20px;
+}
+
+/* 3. 使用类选择器设置特定段落样式 */
+.intro {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* 4. 使用ID选择器设置最喜欢的爱好样式 */
+#favorite {
+    color: red;
+    font-weight: bold;
+}
+
+/* 5. 使用类选择器设置联系信息样式 */
+.contact {
+    font-style: italic;
+    color: #0066cc;
+}
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyCSS('5')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="removeCSS('5')">↺ 重置</button>
+                </div>
+                <div class="preview-box" id="preview-5">
+                    <div>
+                        <h1>我的个人主页</h1>
+                        <p class="intro">欢迎来到我的个人主页！</p>
+                        
+                        <h2>关于我</h2>
+                        <p>我是一名Web开发者，喜欢学习新技术。</p>
+                        
+                        <h2>我的爱好</h2>
+                        <ul>
+                            <li>阅读</li>
+                            <li id="favorite">编程</li>
+                            <li>旅行</li>
+                        </ul>
+                        
+                        <h2>联系方式</h2>
+                        <p class="contact">邮箱：example@example.com</p>
+                        <p class="contact">电话：123-456-7890</p>
+                    </div>
+                </div>
+            </div>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验：第14次课-CSS基础选择器实践</span>
+                <span id="14css-status" class="status-badge">未运行</span>
+            </div>
+            <div class="lab-body css-js-experiment">
+                <div>
+                    <div class="code-editor" id="14css-css" contenteditable="true">
+<span class="panel-label">CSS (可编辑)</span>/* 第14次课-CSS基础选择器实验 */
+.container {
+    width: 200px;
+    height: 200px;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    margin: 20px;
+    /* 在这里添加你的CSS样式 */
+}
+
+/* 在这里添加更多CSS样式 */
+</div>
+                </div>
+                <div>
+                    <div class="preview-area" id="14css-preview">
+                        <span class="panel-label">预览效果</span>
+                        <div class="container">
+                            <h3>CSS实验</h3>
+                            <p>这是CSS实验的预览效果</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="run14cssExperiment()">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="reset14cssExperiment()">↺ 重置</button>
+            </div>
+        </div>
+
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验：第14次课-CSS基础选择器实践</span>
+                <span id="14css-status" class="status-badge">未运行</span>
+            </div>
+            <div class="lab-body css-js-experiment">
+                <div>
+                    <div class="code-editor" id="14css-css" contenteditable="true">
+<span class="panel-label">CSS (可编辑)</span>/* 第14次课-CSS基础选择器实验 */
+.container {
+    width: 200px;
+    height: 200px;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    margin: 20px;
+    /* 在这里添加你的CSS样式 */
+}
+
+/* 在这里添加更多CSS样式 */
+</div>
+                </div>
+                <div>
+                    <div class="preview-area" id="14css-preview">
+                        <span class="panel-label">预览效果</span>
+                        <div class="container">
+                            <h3>CSS实验</h3>
+                            <p>这是CSS实验的预览效果</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="run14cssExperiment()">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="reset14cssExperiment()">↺ 重置</button>
+            </div>
+        </div>
+</section></main>
+</body>
+</html>
+
+
+
+
+
+

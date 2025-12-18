@@ -1,0 +1,890 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第9课：HTML表单进阶</title>
+                
+    <script>
+        // 核心 HTML 注入逻辑
+        function applyHTML(id) {
+            const editor = document.getElementById(`html-${id}`);
+            if (!editor) return;
+
+            const previewId = `preview-${id}`;
+            let rawHtml = editor.innerText; // 使用 innerText 保留换行
+
+            // 清理编辑器自带的 Label 文本
+            const labelText = "HTML (可编辑)";
+            if (rawHtml.indexOf(labelText) !== -1) {
+                rawHtml = rawHtml.replace(labelText, "");
+            }
+
+            // 将HTML代码注入到预览框
+            const previewBox = document.getElementById(previewId);
+            if (previewBox) {
+                previewBox.innerHTML = rawHtml;
+            }
+
+            updateStatus(id, true);
+        }
+
+        // 重置功能
+        function resetHTML(id) {
+            const editor = document.getElementById(`html-${id}`);
+            if (!editor) return;
+
+            const previewId = `preview-${id}`;
+            const previewBox = document.getElementById(previewId);
+            if (previewBox) {
+                previewBox.innerHTML = '<div class="preview-label">预览效果</div>';
+            }
+
+            updateStatus(id, false);
+        }
+
+        // 更新状态标签
+        function updateStatus(id, isActive) {
+            const badge = document.getElementById(`badge-${id}`);
+            if (badge) {
+                if (isActive) {
+                    badge.textContent = "已运行";
+                    badge.className = "status-badge status-active";
+                } else {
+                    badge.textContent = "未运行";
+                    badge.className = "status-badge";
+                }
+            }
+        }
+        // 第9次课-HTML表单进阶实验交互逻辑
+    function run9htmlExperiment() {
+        const editor = document.getElementById('9html-html');
+        const status = document.getElementById('9html-status');
+        
+        if (editor) {
+            let code = editor.innerText;
+            // 移除编辑器标签
+            code = code.replace('html (可编辑)', '');
+            
+            
+            // 注入到预览区域
+            const preview = document.getElementById('9html-preview');
+            if (preview) {
+                preview.innerHTML = code;
+            }
+            
+            
+            // 更新状态
+            status.textContent = '已运行';
+            status.className = 'status-badge active';
+        }
+    }
+    
+    function reset9htmlExperiment() {
+        const status = document.getElementById('9html-status');
+        
+        
+        // 重置预览区域
+        const preview = document.getElementById('9html-preview');
+        if (preview) {
+            preview.innerHTML = '<span class="panel-label">预览效果</span>';
+        }
+        
+        
+        // 更新状态
+        status.textContent = '未运行';
+        status.className = 'status-badge';
+    }
+    // 第9次课-HTML表单进阶实验交互逻辑
+    function run9htmlExperiment() {
+        const editor = document.getElementById('9html-html');
+        const status = document.getElementById('9html-status');
+        
+        if (editor) {
+            let code = editor.innerText;
+            // 移除编辑器标签
+            code = code.replace('HTML (可编辑)', '');
+            
+            
+            // 注入到预览区域
+            const preview = document.getElementById('9html-preview');
+            if (preview) {
+                preview.innerHTML = code;
+            }
+            
+            
+            // 更新状态
+            status.textContent = '已运行';
+            status.className = 'status-badge active';
+        }
+    }
+    
+    function reset9htmlExperiment() {
+        const status = document.getElementById('9html-status');
+        
+        
+        // 重置预览区域
+        const preview = document.getElementById('9html-preview');
+        if (preview) {
+            preview.innerHTML = '<span class="panel-label">预览效果</span>';
+        }
+        
+        
+        // 更新状态
+        status.textContent = '未运行';
+        status.className = 'status-badge';
+    }
+</script>
+    <link rel='stylesheet' href='../统一讲义样式模板.css'>\n</head>
+<body>
+    <!-- 侧边栏导航 -->
+    <nav class="sidebar">
+        <div class="sidebar-nav">
+            <h3>课程导航</h3>
+            <a class="sidebar-link" href="#intro">👋 课程概览</a>
+            
+            <h3>Part 1: HTML表单进阶</h3>
+            <a class="sidebar-link" href="#select-option" class="sub-link">1. 下拉菜单</a>
+            <a class="sidebar-link" href="#textarea" class="sub-link">2. 文本域</a>
+            <a class="sidebar-link" href="#fieldset-legend" class="sub-link">3. 表单分组</a>
+            <a class="sidebar-link" href="#form-validation" class="sub-link">4. 表单验证基础</a>
+            
+            <h3>Part 2: 实战练习</h3>
+            <a class="sidebar-link" href="#exercise" class="sub-link">5. 课后练习</a>
+        </div>
+    </nav>
+
+    <!-- 主内容区 -->
+    <main class="content">
+        <header id="intro">
+            <h1>第9课：HTML表单进阶</h1>
+            <p class="intro">
+                在本节课中，我们将学习HTML表单的进阶知识。上节课我们学习了表单的基础知识，本节课我们将深入学习下拉菜单、文本域、表单分组和表单验证等高级表单功能。
+                通过本节课的学习，你将掌握创建复杂表单的技巧，能够设计出更加功能强大、用户体验更好的表单。
+            </p>
+        </header>
+
+        <!-- 第一部分：HTML表单进阶 -->
+        <section id="select-option">
+            <h2>1. 下拉菜单</h2>
+            <p>
+                <code>&lt;select&gt;</code>和<code>&lt;option&gt;</code>标签用于创建下拉菜单，允许用户从预定义的选项中选择一个或多个选项。
+            </p>
+            
+            <h3>1.1 基本下拉菜单</h3>
+            <p>
+                基本的下拉菜单允许用户从一组选项中选择一个选项。
+            </p>
+            
+            <pre><code>&lt;label for="city"&gt;城市：&lt;/label&gt;
+&lt;select id="city" name="city"&gt;
+    &lt;option value=""&gt;请选择城市&lt;/option&gt;
+    &lt;option value="beijing"&gt;北京&lt;/option&gt;
+    &lt;option value="shanghai"&gt;上海&lt;/option&gt;
+    &lt;option value="guangzhou"&gt;广州&lt;/option&gt;
+    &lt;option value="shenzhen"&gt;深圳&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+            
+            <h3>1.2 默认选中项</h3>
+            <p>
+                我们可以使用<code>selected</code>属性来指定下拉菜单的默认选中项。
+            </p>
+            
+            <pre><code>&lt;label for="city"&gt;城市：&lt;/label&gt;
+&lt;select id="city" name="city"&gt;
+    &lt;option value=""&gt;请选择城市&lt;/option&gt;
+    &lt;option value="beijing"&gt;北京&lt;/option&gt;
+    &lt;option value="shanghai" selected&gt;上海&lt;/option&gt;
+    &lt;option value="guangzhou"&gt;广州&lt;/option&gt;
+    &lt;option value="shenzhen"&gt;深圳&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+            
+            <h3>1.3 多选下拉菜单</h3>
+            <p>
+                我们可以使用<code>multiple</code>属性来创建多选下拉菜单，允许用户选择多个选项。
+                在使用多选下拉菜单时，用户需要按住Ctrl键（Windows）或Command键（Mac）来选择多个选项。
+            </p>
+            
+            <pre><code>&lt;label for="hobbies"&gt;爱好：&lt;/label&gt;
+&lt;select id="hobbies" name="hobbies" multiple size="3"&gt;
+    &lt;option value="reading"&gt;阅读&lt;/option&gt;
+    &lt;option value="music"&gt;音乐&lt;/option&gt;
+    &lt;option value="sports"&gt;运动&lt;/option&gt;
+    &lt;option value="travel"&gt;旅行&lt;/option&gt;
+    &lt;option value="cooking"&gt;烹饪&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+            
+            <h3>1.4 分组下拉菜单</h3>
+            <p>
+                我们可以使用<code>&lt;optgroup&gt;</code>标签来对下拉菜单的选项进行分组。
+            </p>
+            
+            <pre><code>&lt;label for="country"&gt;国家/地区：&lt;/label&gt;
+&lt;select id="country" name="country"&gt;
+    &lt;option value=""&gt;请选择国家/地区&lt;/option&gt;
+    &lt;optgroup label="亚洲"&gt;
+        &lt;option value="china"&gt;中国&lt;/option&gt;
+        &lt;option value="japan"&gt;日本&lt;/option&gt;
+        &lt;option value="korea"&gt;韩国&lt;/option&gt;
+    &lt;/optgroup&gt;
+    &lt;optgroup label="欧洲"&gt;
+        &lt;option value="uk"&gt;英国&lt;/option&gt;
+        &lt;option value="france"&gt;法国&lt;/option&gt;
+        &lt;option value="germany"&gt;德国&lt;/option&gt;
+    &lt;/optgroup&gt;
+&lt;/select&gt;</code></pre>
+            
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>上下结构实验室：下拉菜单</span>
+                    <span id="badge-1" class="status-badge">未运行</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel">
+                        <div class="panel-label">HTML (可编辑)</div>
+                        <div class="html-editor" id="html-1" contenteditable="true">
+&lt;form&gt;
+    &lt;label for="city"&gt;城市：&lt;/label&gt;
+    &lt;select id="city" name="city"&gt;
+        &lt;option value=""&gt;请选择城市&lt;/option&gt;
+        &lt;option value="beijing"&gt;北京&lt;/option&gt;
+        &lt;option value="shanghai" selected&gt;上海&lt;/option&gt;
+        &lt;option value="guangzhou"&gt;广州&lt;/option&gt;
+        &lt;option value="shenzhen"&gt;深圳&lt;/option&gt;
+    &lt;/select&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="hobbies"&gt;爱好（多选）：&lt;/label&gt;
+    &lt;select id="hobbies" name="hobbies" multiple size="3"&gt;
+        &lt;option value="reading"&gt;阅读&lt;/option&gt;
+        &lt;option value="music"&gt;音乐&lt;/option&gt;
+        &lt;option value="sports"&gt;运动&lt;/option&gt;
+        &lt;option value="travel"&gt;旅行&lt;/option&gt;
+        &lt;option value="cooking"&gt;烹饪&lt;/option&gt;
+    &lt;/select&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="country"&gt;国家/地区：&lt;/label&gt;
+    &lt;select id="country" name="country"&gt;
+        &lt;option value=""&gt;请选择国家/地区&lt;/option&gt;
+        &lt;optgroup label="亚洲"&gt;
+            &lt;option value="china"&gt;中国&lt;/option&gt;
+            &lt;option value="japan"&gt;日本&lt;/option&gt;
+            &lt;option value="korea"&gt;韩国&lt;/option&gt;
+        &lt;/optgroup&gt;
+        &lt;optgroup label="欧洲"&gt;
+            &lt;option value="uk"&gt;英国&lt;/option&gt;
+            &lt;option value="france"&gt;法国&lt;/option&gt;
+            &lt;option value="germany"&gt;德国&lt;/option&gt;
+        &lt;/optgroup&gt;
+    &lt;/select&gt;
+&lt;/form&gt;
+                        </div>
+                        <!-- 隐藏的原始代码，用于重置功能 -->
+                        <div id="original-1" style="display: none;">
+&lt;form&gt;
+    &lt;label for="city"&gt;城市：&lt;/label&gt;
+    &lt;select id="city" name="city"&gt;
+        &lt;option value=""&gt;请选择城市&lt;/option&gt;
+        &lt;option value="beijing"&gt;北京&lt;/option&gt;
+        &lt;option value="shanghai" selected&gt;上海&lt;/option&gt;
+        &lt;option value="guangzhou"&gt;广州&lt;/option&gt;
+        &lt;option value="shenzhen"&gt;深圳&lt;/option&gt;
+    &lt;/select&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="hobbies"&gt;爱好（多选）：&lt;/label&gt;
+    &lt;select id="hobbies" name="hobbies" multiple size="3"&gt;
+        &lt;option value="reading"&gt;阅读&lt;/option&gt;
+        &lt;option value="music"&gt;音乐&lt;/option&gt;
+        &lt;option value="sports"&gt;运动&lt;/option&gt;
+        &lt;option value="travel"&gt;旅行&lt;/option&gt;
+        &lt;option value="cooking"&gt;烹饪&lt;/option&gt;
+    &lt;/select&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="country"&gt;国家/地区：&lt;/label&gt;
+    &lt;select id="country" name="country"&gt;
+        &lt;option value=""&gt;请选择国家/地区&lt;/option&gt;
+        &lt;optgroup label="亚洲"&gt;
+            &lt;option value="china"&gt;中国&lt;/option&gt;
+            &lt;option value="japan"&gt;日本&lt;/option&gt;
+            &lt;option value="korea"&gt;韩国&lt;/option&gt;
+        &lt;/optgroup&gt;
+        &lt;optgroup label="欧洲"&gt;
+            &lt;option value="uk"&gt;英国&lt;/option&gt;
+            &lt;option value="france"&gt;法国&lt;/option&gt;
+            &lt;option value="germany"&gt;德国&lt;/option&gt;
+        &lt;/optgroup&gt;
+    &lt;/select&gt;
+&lt;/form&gt;
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-label">预览效果</div>
+                        <div class="preview-box" id="preview-1">
+                            <form>
+                                <label for="city">城市：</label>
+                                <select id="city" name="city">
+                                    <option value="">请选择城市</option>
+                                    <option value="beijing">北京</option>
+                                    <option value="shanghai" selected>上海</option>
+                                    <option value="guangzhou">广州</option>
+                                    <option value="shenzhen">深圳</option>
+                                </select>
+                                
+                                <br><br>
+                                
+                                <label for="hobbies">爱好（多选）：</label>
+                                <select id="hobbies" name="hobbies" multiple size="3">
+                                    <option value="reading">阅读</option>
+                                    <option value="music">音乐</option>
+                                    <option value="sports">运动</option>
+                                    <option value="travel">旅行</option>
+                                    <option value="cooking">烹饪</option>
+                                </select>
+                                
+                                <br><br>
+                                
+                                <label for="country">国家/地区：</label>
+                                <select id="country" name="country">
+                                    <option value="">请选择国家/地区</option>
+                                    <optgroup label="亚洲">
+                                        <option value="china">中国</option>
+                                        <option value="japan">日本</option>
+                                        <option value="korea">韩国</option>
+                                    </optgroup>
+                                    <optgroup label="欧洲">
+                                        <option value="uk">英国</option>
+                                        <option value="france">法国</option>
+                                        <option value="germany">德国</option>
+                                    </optgroup>
+                                </select>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyHTML('1')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHTML('1')">↺ 重置</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="textarea">
+            <h2>2. 文本域</h2>
+            <p>
+                <code>&lt;textarea&gt;</code>标签用于创建多行文本输入框，允许用户输入大量文本，如评论、留言等。
+            </p>
+            
+            <h3>2.1 基本文本域</h3>
+            <p>
+                基本的文本域使用<code>&lt;textarea&gt;</code>标签创建，我们可以使用<code>rows</code>和<code>cols</code>属性来指定文本域的行数和列数。
+            </p>
+            
+            <pre><code>&lt;label for="comments"&gt;评论：&lt;/label&gt;
+&lt;textarea id="comments" name="comments" rows="5" cols="50" placeholder="请输入您的评论..."&gt;&lt;/textarea&gt;</code></pre>
+            
+            <h3>2.2 带有默认值的文本域</h3>
+            <p>
+                我们可以在<code>&lt;textarea&gt;</code>标签内部添加默认文本。
+            </p>
+            
+            <pre><code>&lt;label for="feedback"&gt;反馈：&lt;/label&gt;
+&lt;textarea id="feedback" name="feedback" rows="5" cols="50"&gt;请在此输入您的反馈意见...&lt;/textarea&gt;</code></pre>
+            
+            <div class="tip-box">
+                <span class="tip-title">💡 注意事项</span>
+                <p>与<code>&lt;input&gt;</code>标签不同，<code>&lt;textarea&gt;</code>标签必须有开始标签和结束标签，不能使用自闭合形式。
+                此外，<code>&lt;textarea&gt;</code>标签的默认值必须放在开始标签和结束标签之间，而不是使用<code>value</code>属性。</p>
+            </div>
+            
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>上下结构实验室：文本域</span>
+                    <span id="badge-2" class="status-badge">未运行</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel">
+                        <div class="panel-label">HTML (可编辑)</div>
+                        <div class="html-editor" id="html-2" contenteditable="true">
+&lt;form&gt;
+    &lt;label for="comments"&gt;评论：&lt;/label&gt;
+    &lt;br&gt;
+    &lt;textarea id="comments" name="comments" rows="5" cols="50" placeholder="请输入您的评论..."&gt;&lt;/textarea&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="feedback"&gt;反馈：&lt;/label&gt;
+    &lt;br&gt;
+    &lt;textarea id="feedback" name="feedback" rows="5" cols="50"&gt;请在此输入您的反馈意见...
+感谢您的支持！&lt;/textarea&gt;
+&lt;/form&gt;
+                        </div>
+                        <!-- 隐藏的原始代码，用于重置功能 -->
+                        <div id="original-2" style="display: none;">
+&lt;form&gt;
+    &lt;label for="comments"&gt;评论：&lt;/label&gt;
+    &lt;br&gt;
+    &lt;textarea id="comments" name="comments" rows="5" cols="50" placeholder="请输入您的评论..."&gt;&lt;/textarea&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="feedback"&gt;反馈：&lt;/label&gt;
+    &lt;br&gt;
+    &lt;textarea id="feedback" name="feedback" rows="5" cols="50"&gt;请在此输入您的反馈意见...
+感谢您的支持！&lt;/textarea&gt;
+&lt;/form&gt;
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-label">预览效果</div>
+                        <div class="preview-box" id="preview-2">
+                            <form>
+                                <label for="comments">评论：</label>
+                                <br>
+                                <textarea id="comments" name="comments" rows="5" cols="50" placeholder="请输入您的评论..."></textarea>
+                                
+                                <br><br>
+                                
+                                <label for="feedback">反馈：</label>
+                                <br>
+                                <textarea id="feedback" name="feedback" rows="5" cols="50">请在此输入您的反馈意见...
+感谢您的支持！</textarea>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyHTML('2')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHTML('2')">↺ 重置</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="fieldset-legend">
+            <h2>3. 表单分组</h2>
+            <p>
+                对于复杂的表单，我们可以使用<code>&lt;fieldset&gt;</code>和<code>&lt;legend&gt;</code>标签来对表单控件进行分组，使表单结构更加清晰。
+            </p>
+            
+            <h3>3.1 fieldset和legend标签</h3>
+            <p>
+                <code>&lt;fieldset&gt;</code>标签用于定义表单的一个分组，它会在浏览器中显示为一个带边框的区域。
+                <code>&lt;legend&gt;</code>标签用于定义<code>&lt;fieldset&gt;</code>的标题，它会显示在边框的上方。
+            </p>
+            
+            <pre><code>&lt;form&gt;
+    &lt;fieldset&gt;
+        &lt;legend&gt;个人信息&lt;/legend&gt;
+        
+        &lt;label for="username"&gt;用户名：&lt;/label&gt;
+        &lt;input type="text" id="username" name="username" placeholder="请输入用户名"&gt;
+        
+        &lt;br&gt;&lt;br&gt;
+        
+        &lt;label for="email"&gt;邮箱：&lt;/label&gt;
+        &lt;input type="email" id="email" name="email" placeholder="请输入邮箱"&gt;
+    &lt;/fieldset&gt;
+    
+    &lt;fieldset&gt;
+        &lt;legend&gt;密码信息&lt;/legend&gt;
+        
+        &lt;label for="password"&gt;密码：&lt;/label&gt;
+        &lt;input type="password" id="password" name="password" placeholder="请输入密码"&gt;
+        
+        &lt;br&gt;&lt;br&gt;
+        
+        &lt;label for="confirm-password"&gt;确认密码：&lt;/label&gt;
+        &lt;input type="password" id="confirm-password" name="confirm-password" placeholder="请确认密码"&gt;
+    &lt;/fieldset&gt;
+    
+    &lt;br&gt;
+    
+    &lt;input type="submit" value="注册"&gt;
+    &lt;input type="reset" value="重置"&gt;
+&lt;/form&gt;</code></pre>
+            
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>上下结构实验室：表单分组</span>
+                    <span id="badge-3" class="status-badge">未运行</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel">
+                        <div class="panel-label">HTML (可编辑)</div>
+                        <div class="html-editor" id="html-3" contenteditable="true">
+&lt;form&gt;
+    &lt;fieldset&gt;
+        &lt;legend&gt;个人信息&lt;/legend&gt;
+        
+        &lt;label for="username"&gt;用户名：&lt;/label&gt;
+        &lt;input type="text" id="username" name="username" placeholder="请输入用户名"&gt;
+        
+        &lt;br&gt;&lt;br&gt;
+        
+        &lt;label for="email"&gt;邮箱：&lt;/label&gt;
+        &lt;input type="email" id="email" name="email" placeholder="请输入邮箱"&gt;
+    &lt;/fieldset&gt;
+    
+    &lt;fieldset&gt;
+        &lt;legend&gt;密码信息&lt;/legend&gt;
+        
+        &lt;label for="password"&gt;密码：&lt;/label&gt;
+        &lt;input type="password" id="password" name="password" placeholder="请输入密码"&gt;
+        
+        &lt;br&gt;&lt;br&gt;
+        
+        &lt;label for="confirm-password"&gt;确认密码：&lt;/label&gt;
+        &lt;input type="password" id="confirm-password" name="confirm-password" placeholder="请确认密码"&gt;
+    &lt;/fieldset&gt;
+    
+    &lt;br&gt;
+    
+    &lt;input type="submit" value="注册"&gt;
+    &lt;input type="reset" value="重置"&gt;
+&lt;/form&gt;
+                        </div>
+                        <!-- 隐藏的原始代码，用于重置功能 -->
+                        <div id="original-3" style="display: none;">
+&lt;form&gt;
+    &lt;fieldset&gt;
+        &lt;legend&gt;个人信息&lt;/legend&gt;
+        
+        &lt;label for="username"&gt;用户名：&lt;/label&gt;
+        &lt;input type="text" id="username" name="username" placeholder="请输入用户名"&gt;
+        
+        &lt;br&gt;&lt;br&gt;
+        
+        &lt;label for="email"&gt;邮箱：&lt;/label&gt;
+        &lt;input type="email" id="email" name="email" placeholder="请输入邮箱"&gt;
+    &lt;/fieldset&gt;
+    
+    &lt;fieldset&gt;
+        &lt;legend&gt;密码信息&lt;/legend&gt;
+        
+        &lt;label for="password"&gt;密码：&lt;/label&gt;
+        &lt;input type="password" id="password" name="password" placeholder="请输入密码"&gt;
+        
+        &lt;br&gt;&lt;br&gt;
+        
+        &lt;label for="confirm-password"&gt;确认密码：&lt;/label&gt;
+        &lt;input type="password" id="confirm-password" name="confirm-password" placeholder="请确认密码"&gt;
+    &lt;/fieldset&gt;
+    
+    &lt;br&gt;
+    
+    &lt;input type="submit" value="注册"&gt;
+    &lt;input type="reset" value="重置"&gt;
+&lt;/form&gt;
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-label">预览效果</div>
+                        <div class="preview-box" id="preview-3">
+                            <form>
+                                <fieldset>
+                                    <legend>个人信息</legend>
+                                    
+                                    <label for="username">用户名：</label>
+                                    <input type="text" id="username" name="username" placeholder="请输入用户名">
+                                    
+                                    <br><br>
+                                    
+                                    <label for="email">邮箱：</label>
+                                    <input type="email" id="email" name="email" placeholder="请输入邮箱">
+                                </fieldset>
+                                
+                                <fieldset>
+                                    <legend>密码信息</legend>
+                                    
+                                    <label for="password">密码：</label>
+                                    <input type="password" id="password" name="password" placeholder="请输入密码">
+                                    
+                                    <br><br>
+                                    
+                                    <label for="confirm-password">确认密码：</label>
+                                    <input type="password" id="confirm-password" name="confirm-password" placeholder="请确认密码">
+                                </fieldset>
+                                
+                                <br>
+                                
+                                <input type="submit" value="注册">
+                                <input type="reset" value="重置">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyHTML('3')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHTML('3')">↺ 重置</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="form-validation">
+            <h2>4. 表单验证基础</h2>
+            <p>
+                表单验证是确保用户输入的数据符合要求的重要手段。HTML5提供了内置的表单验证功能，我们可以使用各种属性来指定验证规则。
+            </p>
+            
+            <h3>4.1 必填项验证</h3>
+            <p>
+                我们可以使用<code>required</code>属性来指定某个表单字段为必填项，当用户提交表单时，如果必填项为空，浏览器会显示错误提示。
+            </p>
+            
+            <pre><code>&lt;label for="username"&gt;用户名：&lt;/label&gt;
+&lt;input type="text" id="username" name="username" required placeholder="请输入用户名"&gt;</code></pre>
+            
+            <h3>4.2 长度验证</h3>
+            <p>
+                我们可以使用<code>minlength</code>和<code>maxlength</code>属性来限制文本输入的最小长度和最大长度。
+            </p>
+            
+            <pre><code>&lt;label for="password"&gt;密码：&lt;/label&gt;
+&lt;input type="password" id="password" name="password" minlength="6" maxlength="20" placeholder="请输入6-20位密码"&gt;</code></pre>
+            
+            <h3>4.3 数值范围验证</h3>
+            <p>
+                对于数字输入，我们可以使用<code>min</code>和<code>max</code>属性来限制数值的范围。
+            </p>
+            
+            <pre><code>&lt;label for="age"&gt;年龄：&lt;/label&gt;
+&lt;input type="number" id="age" name="age" min="0" max="120" placeholder="请输入年龄"&gt;</code></pre>
+            
+            <h3>4.4 正则表达式验证</h3>
+            <p>
+                我们可以使用<code>pattern</code>属性来指定一个正则表达式，用于验证用户输入的内容是否符合特定格式。
+            </p>
+            
+            <pre><code>&lt;label for="phone"&gt;手机号：&lt;/label&gt;
+&lt;input type="tel" id="phone" name="phone" pattern="^1[3-9]\d{9}$" placeholder="请输入11位手机号"&gt;</code></pre>
+            
+            <h3>4.5 自定义验证消息</h3>
+            <p>
+                我们可以使用<code>title</code>属性来为表单验证添加自定义的错误提示消息。
+            </p>
+            
+            <pre><code>&lt;label for="phone"&gt;手机号：&lt;/label&gt;
+&lt;input type="tel" id="phone" name="phone" pattern="^1[3-9]\d{9}$" title="请输入有效的11位手机号" placeholder="请输入11位手机号"&gt;</code></pre>
+            
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>上下结构实验室：表单验证基础</span>
+                    <span id="badge-4" class="status-badge">未运行</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel">
+                        <div class="panel-label">HTML (可编辑)</div>
+                        <div class="html-editor" id="html-4" contenteditable="true">
+&lt;form&gt;
+    &lt;label for="username"&gt;用户名：&lt;/label&gt;
+    &lt;input type="text" id="username" name="username" required placeholder="请输入用户名"&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="password"&gt;密码：&lt;/label&gt;
+    &lt;input type="password" id="password" name="password" minlength="6" maxlength="20" placeholder="请输入6-20位密码"&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="phone"&gt;手机号：&lt;/label&gt;
+    &lt;input type="tel" id="phone" name="phone" pattern="^1[3-9]\d{9}$" title="请输入有效的11位手机号" placeholder="请输入11位手机号"&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;input type="submit" value="提交"&gt;
+    &lt;input type="reset" value="重置"&gt;
+&lt;/form&gt;
+                        </div>
+                        <!-- 隐藏的原始代码，用于重置功能 -->
+                        <div id="original-4" style="display: none;">
+&lt;form&gt;
+    &lt;label for="username"&gt;用户名：&lt;/label&gt;
+    &lt;input type="text" id="username" name="username" required placeholder="请输入用户名"&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="password"&gt;密码：&lt;/label&gt;
+    &lt;input type="password" id="password" name="password" minlength="6" maxlength="20" placeholder="请输入6-20位密码"&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="phone"&gt;手机号：&lt;/label&gt;
+    &lt;input type="tel" id="phone" name="phone" pattern="^1[3-9]\d{9}$" title="请输入有效的11位手机号" placeholder="请输入11位手机号"&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;input type="submit" value="提交"&gt;
+    &lt;input type="reset" value="重置"&gt;
+&lt;/form&gt;
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-label">预览效果</div>
+                        <div class="preview-box" id="preview-4">
+                            <form>
+                                <label for="username">用户名：</label>
+                                <input type="text" id="username" name="username" required placeholder="请输入用户名">
+                                
+                                <br><br>
+                                
+                                <label for="password">密码：</label>
+                                <input type="password" id="password" name="password" minlength="6" maxlength="20" placeholder="请输入6-20位密码">
+                                
+                                <br><br>
+                                
+                                <label for="phone">手机号：</label>
+                                <input type="tel" id="phone" name="phone" pattern="^1[3-9]\d{9}$" title="请输入有效的11位手机号" placeholder="请输入11位手机号">
+                                
+                                <br><br>
+                                
+                                <input type="submit" value="提交">
+                                <input type="reset" value="重置">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="applyHTML('4')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHTML('4')">↺ 重置</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 第二部分：实战练习 -->
+        <section id="exercise">
+            <h2>5. 课后练习</h2>
+            <p>
+                请完成以下练习，巩固本节课所学的知识：
+            </p>
+            
+            <ol>
+                <li>创建一个HTML页面，包含一个完整的注册表单</li>
+                <li>表单应包含以下字段，使用<code>&lt;fieldset&gt;</code>和<code>&lt;legend&gt;</code>进行分组：
+                    <ul>
+                        <li>个人信息：用户名、邮箱、手机号</li>
+                        <li>密码信息：密码、确认密码</li>
+                        <li>个人资料：性别、年龄、城市（下拉菜单）、爱好（多选下拉菜单）</li>
+                        <li>个人简介：使用文本域</li>
+                    </ul>
+                </li>
+                <li>为所有必填字段添加<code>required</code>属性</li>
+                <li>为密码字段添加长度验证（6-20位）</li>
+                <li>为手机号字段添加正则表达式验证</li>
+                <li>为表单添加提交按钮和重置按钮</li>
+            </ol>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验：第9次课-HTML表单进阶实践</span>
+                <span id="9html-status" class="status-badge">未运行</span>
+            </div>
+            <div class="lab-body html-experiment">
+                <div class="code-editor" id="9html-html" contenteditable="true">
+<span class="panel-label">HTML (可编辑)</span>&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;第9次课-HTML表单进阶&lt;/title&gt;
+    &lt;style&gt;
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;h1&gt;第9次课-HTML表单进阶&lt;/h1&gt;
+        &lt;p&gt;在这里编写你的HTML代码，实践第9次课-HTML表单进阶的知识。&lt;/p&gt;
+        
+        &lt;!-- 在这里添加你的HTML代码 --&gt;
+        
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</div>
+            </div>
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="run9htmlExperiment()">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="reset9htmlExperiment()">↺ 重置</button>
+            </div>
+            <div class="preview-area" id="9html-preview">
+                <span class="panel-label">预览效果</span>
+            </div>
+        </div>
+
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验：第9次课-HTML表单进阶实践</span>
+                <span id="9html-status" class="status-badge">未运行</span>
+            </div>
+            <div class="lab-body html-experiment">
+                <div class="code-editor" id="9html-html" contenteditable="true">
+<span class="panel-label">HTML (可编辑)</span>&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;第9次课-HTML表单进阶&lt;/title&gt;
+    &lt;style&gt;
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="container"&gt;
+        &lt;h1&gt;第9次课-HTML表单进阶&lt;/h1&gt;
+        &lt;p&gt;在这里编写你的HTML代码，实践第9次课-HTML表单进阶的知识。&lt;/p&gt;
+        
+        &lt;!-- 在这里添加你的HTML代码 --&gt;
+        
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</div>
+            </div>
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="run9htmlExperiment()">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="reset9htmlExperiment()">↺ 重置</button>
+            </div>
+            <div class="preview-area" id="9html-preview">
+                <span class="panel-label">预览效果</span>
+            </div>
+        </div>
+</section></main>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

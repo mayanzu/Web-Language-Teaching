@@ -1,0 +1,1645 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第18课：CSS常用元素样式</title>
+        
+    <link rel='stylesheet' href='../统一讲义样式模板.css'>\n</head>
+<body>
+
+    <!-- 侧边栏导航 -->
+    <nav class="sidebar">
+        <div class="sidebar-nav">
+            <a class="sidebar-link" href="#intro" id="link-intro">👋 课程简介</a>
+            
+            <h3>Part 1: CSS 颜色</h3>
+            <a class="sidebar-link sub-link" href="#part1" id="link-part1">概览：颜色系统</a>
+            <a class="sidebar-link sub-link" href="#chapter1" id="link-chapter1">1. 颜色表示法详解</a>
+            <a class="sidebar-link sub-link" href="#chapter2" id="link-chapter2">2. 常用颜色属性</a>
+            
+            <h3>Part 2: 文字排版</h3>
+            <a class="sidebar-link sub-link" href="#part2" id="link-part2">概览：文字排版</a>
+            <a class="sidebar-link sub-link" href="#chapter3" id="link-chapter3">3. 字体属性 (Font)</a>
+            <a class="sidebar-link sub-link" href="#chapter4" id="link-chapter4">4. 文本样式与装饰</a>
+            <a class="sidebar-link sub-link" href="#chapter5" id="link-chapter5">5. 文本间距控制</a>
+            <a class="sidebar-link sub-link" href="#chapter6" id="link-chapter6">6. 文本溢出与换行</a>
+
+            <h3>Part 3: 长度单位</h3>
+            <a class="sidebar-link sub-link" href="#part3" id="link-part3">概览：长度单位</a>
+            <a class="sidebar-link sub-link" href="#chapter7" id="link-chapter7">7. 绝对 vs 相对单位</a>
+            <a class="sidebar-link sub-link" href="#chapter8" id="link-chapter8">8. 视口单位应用</a>
+
+             <h3>Part 4: 边框样式</h3>
+            <a class="sidebar-link sub-link" href="#part4" id="link-part4">概览：边框基础</a>
+            <a class="sidebar-link sub-link" href="#chapter9" id="link-chapter9">9. 边框属性</a>
+            <a class="sidebar-link sub-link" href="#chapter10" id="link-chapter10">10. 圆角与阴影</a>
+            <a class="sidebar-link sub-link" href="#chapter11" id="link-chapter11">11. 高级边框技巧</a>
+            
+            <h3>Part 5: 表格样式</h3>
+            <a class="sidebar-link sub-link" href="#part5" id="link-part5">概览：表格布局</a>
+            <a class="sidebar-link sub-link" href="#chapter12" id="link-chapter12">12. 基础表格</a>
+            <a class="sidebar-link sub-link" href="#chapter13" id="link-chapter13">13. 表格美化</a>
+
+            <h3>Part 6: 表单样式</h3>
+            <a class="sidebar-link sub-link" href="#part6" id="link-part6">概览：表单美化</a>
+            <a class="sidebar-link sub-link" href="#chapter14" id="link-chapter14">14. 输入框样式</a>
+            <a class="sidebar-link sub-link" href="#chapter15" id="link-chapter15">15. 按钮与选择器</a>
+            <a class="sidebar-link sub-link" href="#chapter16" id="link-chapter16">16. 单选与复选</a>
+            <a class="sidebar-link sub-link" href="#chapter17" id="link-chapter17">17. 验证状态反馈</a>
+        </div>
+    </nav>
+
+    <!-- 主内容区 -->
+    <main class="content">
+        <header id="intro">
+            <h1>CSS 颜色与文字排版讲义</h1>
+            <p class="intro">
+                欢迎来到 CSS 视觉设计的核心课程。在这里，我们将深入探讨如何通过精准的<b>色彩运用</b>和专业的<b>文字排版</b>，将枯燥的 HTML 结构转化为令人愉悦的用户界面。
+            </p>
+        </header>
+
+        <!-- ======================================== -->
+        <!-- 第一部分：CSS颜色 -->
+        <!-- ======================================== -->
+        <section id="part1">
+            <h2>第一部分：CSS 颜色 (CSS Colors)</h2>
+            <p>颜色是网页传达情感和品牌调性最直接的方式。CSS 提供了极其丰富的色彩定义工具。</p>
+
+            <div id="chapter1">
+                <h3>🎨 第1章：颜色表示法</h3>
+                <p>在 CSS 中，我们可以用多种“语言”来描述同一个颜色。</p>
+                
+                <table class="prop-table">
+                    <thead>
+                        <tr>
+                            <th>表示法</th>
+                            <th>格式示例</th>
+                            <th>详细说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>关键字</strong><br>(Keywords)</td>
+                            <td><code>red</code>, <code>transparent</code></td>
+                            <td>预定义的颜色名称，包含140+个标准色。适合快速测试，但不适合精确设计。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>十六进制</strong><br>(Hex)</td>
+                            <td><code>#FF0000</code> (红)<br><code>#F00</code> (简写)</td>
+                            <td><strong>最常用</strong>。使用 0-9 和 A-F 表示。每两位分别代表红(R)、绿(G)、蓝(B)。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>RGB / RGBA</strong></td>
+                            <td><code>rgb(255, 0, 0)</code><br><code>rgba(0, 0, 0, 0.5)</code></td>
+                            <td>直接控制红绿蓝通道（0-255）。<strong>Alpha (A)</strong> 通道控制透明度，0 为全透明，1 为不透明。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>HSL / HSLA</strong></td>
+                            <td><code>hsl(0, 100%, 50%)</code></td>
+                            <td><strong>最直观</strong>。H(色相 0-360), S(饱和度 %), L(亮度 %)。调整明暗或制作配色方案时非常方便。</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Lab 01: HSL 颜色实验 -->
+                <div class="lab-card">
+                    <div class="lab-header">
+                        <span>🧪 实验 01：感受 HSL 色彩空间</span>
+                        <span id="badge-1" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
+                    </div>
+                    <div class="lab-body">
+                        <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;div class="hsl-container"&gt;
+    &lt;div class="box base"&gt;基准色 (红)&lt;/div&gt;
+    &lt;div class="box hue"&gt;改变色相 (Hue)&lt;/div&gt;
+    &lt;div class="box light"&gt;改变亮度 (Light)&lt;/div&gt;
+&lt;/div&gt;
+                        </div>
+                        <div class="panel css-editor" id="css-1" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* --- 实验目标 --- */
+/* HSL 让调色更直观：hsl(色相, 饱和度, 亮度) */
+
+.hsl-container {
+    display: flex; gap: 15px; padding: 20px;
+}
+.box {
+    width: 100px; height: 100px;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 12px; text-align: center;
+    border-radius: 8px;
+}
+
+/* 1. 基准色: 红色 */
+.base { background-color: hsl(0, 100%, 50%); }
+
+/* 2. 改变色相 (0-360): 尝试改成 120 (绿) 或 240 (蓝) */
+.hue { background-color: hsl(240, 100%, 50%); }
+
+/* 3. 改变亮度 (0-100%): 尝试改成 20% (暗) 或 80% (亮) */
+.light { background-color: hsl(0, 100%, 80%); color: black; }
+                        </div>
+                    </div>
+                    <div class="action-bar">
+                        <button class="btn btn-run" onclick="applyCSS('1')">▶ 运行代码</button>
+                        <button class="btn btn-reset" onclick="removeCSS('1')">↺ 重置</button>
+                    </div>
+                    <div class="preview-box" id="preview-1">
+                        <span class="preview-label">效果预览</span>
+                        <div class="hsl-container">
+                            <div class="box base">基准色 (红)</div>
+                            <div class="box hue">改变色相 (Hue)</div>
+                            <div class="box light">改变亮度 (Light)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tip-box">
+                    <span class="tip-title">💡 技巧：currentColor</span>
+                    <p><code>currentColor</code> 是一个特殊的变量，代表元素当前的 <code>color</code> 属性值。常用于让边框、阴影或 SVG 图标自动跟随文字颜色变化，便于制作主题或 hover 效果。</p>
+                </div>
+
+                <!-- Lab 1B: CurrentColor -->
+                <div class="lab-card">
+                    <div class="lab-header">
+                        <span>🧪 实验 01-B：currentColor 的妙用</span>
+                        <span id="badge-1b" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
+                    </div>
+                    <div class="lab-body">
+                        <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;div class="icon-button"&gt;
+  &lt;!-- 这是一个简单的 SVG 图标 --&gt;
+  &lt;svg viewBox="0 0 24 24" width="20" height="20"&gt;
+    &lt;circle cx="12" cy="12" r="10" /&gt;
+  &lt;/svg&gt;
+  &lt;span&gt;主要按钮&lt;/span&gt;
+&lt;/div&gt;
+                        </div>
+                        <div class="panel css-editor" id="css-1b" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* --- 实验目标 --- */
+/* 修改 .icon-button 的 color，观察边框和图标的变化 */
+
+.icon-button {
+  /* 修改这里！尝试 red, #0066CC, rgb(0,128,0) */
+  color: #0066CC; 
+  
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  font-weight: bold;
+  
+  /* 关键点：边框使用 currentColor */
+  border: 2px solid currentColor;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.icon-button svg {
+  /* 关键点：SVG 填充使用 currentColor */
+  fill: currentColor; 
+}
+
+.icon-button:hover {
+  /* 只需改变颜色，边框和图标自动跟随 */
+  color: #d32f2f;
+}
+                        </div>
+                    </div>
+                    <div class="action-bar">
+                        <button class="btn btn-run" onclick="applyCSS('1b')">▶ 运行代码</button>
+                        <button class="btn btn-reset" onclick="removeCSS('1b')">↺ 重置</button>
+                    </div>
+                    <div class="preview-box" id="preview-1b">
+                        <span class="preview-label">效果预览</span>
+                        <div style="padding-top:10px;">
+                            <div class="icon-button">
+                                <svg viewBox="0 0 24 24" width="20" height="20"><circle cx="12" cy="12" r="10"/></svg>
+                                <span>主要按钮</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="chapter2">
+                <h3>🎨 第2章：常用颜色属性</h3>
+                <p>不仅仅是文字颜色，CSS 可以控制页面几乎所有元素的色彩。</p>
+
+                <table class="prop-table">
+                    <thead>
+                        <tr>
+                            <th>属性 (Property)</th>
+                            <th>作用</th>
+                            <th>常用值示例</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>color</code></td>
+                            <td>前景色。主要影响<strong>文字</strong>、文本装饰线、边框（默认跟随）。</td>
+                            <td><code>#333</code>, <code>rgb(50,50,50)</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>background-color</code></td>
+                            <td>背景颜色。填充在元素内容、内边距(padding)区域。</td>
+                            <td><code>#f5f5f7</code>, <code>transparent</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>border-color</code></td>
+                            <td>边框颜色。可以分别设置四条边。</td>
+                            <td><code>#ccc</code>, <code>transparent</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>opacity</code></td>
+                            <td>不透明度。<strong>注意：</strong>这会影响整个元素（包括子元素）。</td>
+                            <td><code>0</code> (隐藏), <code>0.5</code> (半透明), <code>1</code> (显示)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- 第二部分：CSS文字排版 -->
+        <!-- ======================================== -->
+        <section id="part2">
+            <h2>第二部分：CSS 文字排版 (Typography)</h2>
+            <p>优秀的排版能让内容像呼吸一样自然。CSS 提供了从宏观布局到微观字距的全面控制。</p>
+
+            <div id="chapter3">
+                <h3>✒️ 第3章：字体属性 (Font)</h3>
+                
+                <h4>3.1 font-family (字体族)</h4>
+                <p>指定文本使用的字体。通常使用**“字体栈” (Font Stack)** 的方式编写，从首选字体到后备字体。</p>
+                <div class="tip-box">
+                    <span class="tip-title">⚠️ 最佳实践</span>
+                    <p>始终在列表末尾添加一个<strong>通用字体族</strong>作为保底：<code>sans-serif</code> (无衬线), <code>serif</code> (衬线), <code>monospace</code> (等宽)。</p>
+                </div>
+
+                <h4>3.2 font-size (字号) & font-weight (字重)</h4>
+                
+                <table class="prop-table">
+                    <thead>
+                        <tr>
+                            <th>属性</th>
+                            <th>常见值</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>font-size</code></td>
+                            <td><code>16px</code><br><code>1.2em</code><br><code>1rem</code></td>
+                            <td><strong>px</strong>: 绝对单位，精确。<br><strong>rem</strong>: 相对根元素(html)，推荐用于响应式。<br><strong>em</strong>: 相对父元素，常用于局部组件。</td>
+                        </tr>
+                        <tr>
+                            <td><code>font-weight</code></td>
+                            <td><code>normal</code> (400)<br><code>bold</code> (700)<br><code>100-900</code></td>
+                            <td>定义文字粗细。注意：所选字体必须包含对应的粗细变体，否则浏览器会进行“伪粗体”渲染（效果通常不佳）。</td>
+                        </tr>
+                        <tr>
+                            <td><code>font-style</code></td>
+                            <td><code>normal</code>, <code>italic</code></td>
+                            <td>主要用于设置<em>斜体</em>。</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Lab 2: Font Properties -->
+                <div class="lab-card">
+                    <div class="lab-header">
+                        <span>🧪 实验 02：字体综合演练</span>
+                        <span id="badge-2" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
+                    </div>
+                    <div class="lab-body">
+                        <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;div class="typo-box"&gt;
+  &lt;h2&gt;Elegant Design&lt;/h2&gt;
+  &lt;p&gt;Good typography is invisible.&lt;/p&gt;
+&lt;/div&gt;
+                        </div>
+                        <div class="panel css-editor" id="css-2" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* --- 实验目标 --- */
+/* 尝试修改 font-family 为 serif 或 monospace */
+/* 尝试修改 font-weight 为 300, 900 */
+
+.typo-box h2 {
+  font-family: "Georgia", serif; /* 衬线体 */
+  font-size: 32px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.typo-box p {
+  font-family: "Helvetica Neue", sans-serif; /* 无衬线 */
+  font-size: 16px;
+  font-weight: 300; /* 细体 */
+  color: #666;
+  font-style: italic;
+}
+                        </div>
+                    </div>
+                    <div class="action-bar">
+                        <button class="btn btn-run" onclick="applyCSS('2')">▶ 运行代码</button>
+                        <button class="btn btn-reset" onclick="removeCSS('2')">↺ 重置</button>
+                    </div>
+                    <div class="preview-box" id="preview-2">
+                        <span class="preview-label">效果预览</span>
+                        <div class="typo-box">
+                            <h2>Elegant Design</h2>
+                            <p>Good typography is invisible.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="chapter4">
+                <h3>✒️ 第4章：文本样式与装饰</h3>
+                
+                <table class="prop-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 30%">属性</th>
+                            <th>常用值</th>
+                            <th>典型应用场景</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>text-align</code><br>文本对齐</td>
+                            <td><code>left</code> (默认)<br><code>center</code><br><code>right</code><br><code>justify</code></td>
+                            <td><code>center</code> 用于标题或卡片；<code>justify</code> 用于报纸排版（两端对齐），但需注意单词间距可能拉大。</td>
+                        </tr>
+                        <tr>
+                            <td><code>text-decoration</code><br>文本修饰</td>
+                            <td><code>none</code><br><code>underline</code><br><code>line-through</code></td>
+                            <td><code>none</code>：<strong>最常用</strong>，用于去除链接默认的下划线。<br><code>line-through</code>：用于电商网站的“原价”划线。</td>
+                        </tr>
+                        <tr>
+                            <td><code>text-transform</code><br>大小写转换</td>
+                            <td><code>uppercase</code> (全大写)<br><code>lowercase</code> (全小写)<br><code>capitalize</code> (首字母大写)</td>
+                            <td>常用于英文标题或按钮文字，统一视觉风格而不必修改 HTML 内容。</td>
+                        </tr>
+                        <tr>
+                            <td><code>line-height</code><br>行高</td>
+                            <td><code>1.5</code>, <code>24px</code></td>
+                            <td><strong>建议使用无单位数值</strong>（如 1.5），它会根据当前字号动态计算。良好的行高能显著提升可读性。</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Lab 03: Text Align & Decoration -->
+                <div class="lab-card">
+                    <div class="lab-header">
+                        <span>🧪 实验 03：对齐、修饰与行高</span>
+                        <span id="badge-3" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
+                    </div>
+                    <div class="lab-body">
+                        <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;div class="text-card"&gt;
+    &lt;h3&gt;Specail OFFER&lt;/h3&gt;
+    &lt;p class="price"&gt;原价: ￥999&lt;/p&gt;
+    &lt;p class="desc"&gt;
+        这是一段正文描述。调整行高可以让阅读更舒适。
+        行高太小会拥挤，太大则松散。
+    &lt;/p&gt;
+&lt;/div&gt;
+                        </div>
+                        <div class="panel css-editor" id="css-3" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+.text-card {
+    border: 1px solid #ddd; padding: 20px;
+    /* 尝试 text-align: center; */
+    text-align: left; 
+}
+
+.text-card h3 {
+    /* 尝试 text-transform: uppercase (全大写) */
+    text-transform: none; 
+    color: #d32f2f;
+}
+
+.price {
+    color: #999;
+    /* 尝试 text-decoration: line-through (删除线) */
+    text-decoration: none; 
+}
+
+.desc {
+    /* 推荐 1.5 - 1.8 */
+    line-height: 1.2; 
+    background: #f9f9f9;
+}
+                        </div>
+                    </div>
+                    <div class="action-bar">
+                        <button class="btn btn-run" onclick="applyCSS('3')">▶ 运行代码</button>
+                        <button class="btn btn-reset" onclick="removeCSS('3')">↺ 重置</button>
+                    </div>
+                    <div class="preview-box" id="preview-3">
+                        <span class="preview-label">效果预览</span>
+                        <div class="text-card">
+                            <h3>Specail OFFER</h3>
+                            <p class="price">原价: ￥999</p>
+                            <p class="desc">这是一段正文描述。调整行高可以让阅读更舒适。行高太小会拥挤，太大则松散。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="chapter5">
+                <h3>✒️ 第5章：文本间距控制</h3>
+                <p>微调间距可以增加设计的精致感。</p>
+                <ul style="font-size: 16px; line-height: 1.8;">
+                    <li><strong><code>letter-spacing</code> (字间距)</strong>: 增加字母/汉字之间的距离。常用于全大写的英文标题，增加 <code>1px</code> 或 <code>0.05em</code> 会显得更高级。</li>
+                    <li><strong><code>word-spacing</code> (词间距)</strong>: 增加单词之间的距离。对中文通常不起作用（因为中文没有空格分词）。</li>
+                    <li><strong><code>text-indent</code> (首行缩进)</strong>: 传统的段落排版，如 <code>2em</code> (缩进两个字)。</li>
+                </ul>
+
+                <!-- Lab 04: Spacing -->
+                <div class="lab-card">
+                    <div class="lab-header">
+                        <span>🧪 实验 04：呼吸感与间距</span>
+                        <span id="badge-4" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
+                    </div>
+                    <div class="lab-body">
+                        <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;div class="spacing-box"&gt;
+    &lt;h2&gt;DESIGN SYSTEM&lt;/h2&gt;
+    &lt;p&gt;
+        中文段落通常需要首行缩进。
+        而在标题中增加字间距可以提升高级感。
+    &lt;/p&gt;
+&lt;/div&gt;
+                        </div>
+                        <div class="panel css-editor" id="css-4" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+.spacing-box h2 {
+    font-family: sans-serif;
+    text-transform: uppercase;
+    background: #333; color: #fff; padding: 10px;
+    text-align: center;
+    
+    /* 尝试 letter-spacing: 5px */
+    letter-spacing: 0px;
+}
+
+.spacing-box p {
+    font-size: 14px;
+    border: 1px solid #eee; padding: 10px;
+    
+    /* 尝试 text-indent: 2em */
+    text-indent: 0;
+}
+                        </div>
+                    </div>
+                    <div class="action-bar">
+                        <button class="btn btn-run" onclick="applyCSS('4')">▶ 运行代码</button>
+                        <button class="btn btn-reset" onclick="removeCSS('4')">↺ 重置</button>
+                    </div>
+                    <div class="preview-box" id="preview-4">
+                        <span class="preview-label">效果预览</span>
+                        <div class="spacing-box">
+                            <h2>DESIGN SYSTEM</h2>
+                            <p>中文段落通常需要首行缩进。而在标题中增加字间距可以提升高级感。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="chapter6">
+                <h3>✒️ 第6章：文本溢出与换行</h3>
+                <p>当容器太小放不下文字时，我们需要决定如何处理。</p>
+
+                <h4>6.1 单行省略号 (经典三件套)</h4>
+                <p>要实现 "Very long text..." 的效果，必须同时使用以下三个属性：</p>
+                <div style="background: var(--code-bg); padding: 15px; border-radius: 6px; font-family: var(--font-mono); font-size: 14px; margin-bottom: 20px;">
+                    white-space: nowrap; /* 1. 强制不换行 */<br>
+                    overflow: hidden;    /* 2. 隐藏超出部分 */<br>
+                    text-overflow: ellipsis; /* 3. 用省略号表示 */
+                </div>
+
+                <h4>6.2 其他换行属性</h4>
+                <table class="prop-table">
+                    <thead>
+                        <tr>
+                            <th>属性</th>
+                            <th>常用值</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>white-space</code></td>
+                            <td><code>nowrap</code><br><code>pre-wrap</code></td>
+                            <td>控制空白符和换行。<code>nowrap</code> 禁止换行；<code>pre-wrap</code> 保留源码中的空格和换行（类似 &lt;pre&gt;）。</td>
+                        </tr>
+                        <tr>
+                            <td><code>word-break</code></td>
+                            <td><code>break-all</code><br><code>keep-all</code></td>
+                            <td>控制单词如何断行。<code>break-all</code> 允许在单词内强行断开（适合处理长串 URL 撑破容器的问题）。</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- Lab 5: Overflow -->
+                <div class="lab-card">
+                    <div class="lab-header">
+                        <span>🧪 实验 05：文本溢出处理</span>
+                        <span id="badge-5" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
+                    </div>
+                    <div class="lab-body">
+                        <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;div class="card"&gt;
+  &lt;h3&gt;这是一段非常非常长可能会换行的标题文字&lt;/h3&gt;
+  &lt;p&gt;http://www.very-long-url-that-might-break-the-layout.com/index.html&lt;/p&gt;
+&lt;/div&gt;
+                        </div>
+                        <div class="panel css-editor" id="css-5" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+.card {
+  width: 200px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  background: #fff;
+}
+
+.card h3 {
+  /* 实验：实现单行省略号 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  
+  color: #333;
+  font-size: 16px;
+}
+
+.card p {
+  background: #f0f0f0;
+  color: #0066CC;
+  /* 实验：防止长 URL 撑破容器 */
+  word-break: break-all;
+}
+                        </div>
+                    </div>
+                    <div class="action-bar">
+                        <button class="btn btn-run" onclick="applyCSS('5')">▶ 运行代码</button>
+                        <button class="btn btn-reset" onclick="removeCSS('5')">↺ 重置</button>
+                    </div>
+                    <div class="preview-box" id="preview-5">
+                        <span class="preview-label">效果预览</span>
+                        <div class="card">
+                            <h3>这是一段非常非常长可能会换行的标题文字</h3>
+                            <p>http://www.very-long-url-that-might-break-the-layout.com/index.html</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+                <!-- ======================================== -->
+                <!-- 第三部分：CSS长度单位 -->
+                <!-- ======================================== -->
+                <section id="part3">
+                        <h2>第三部分：CSS长度单位 (CSS Length Units)</h2>
+
+                        <div id="chapter7">
+                                <h3>📏 第7章：绝对单位与相对单位</h3>
+                                <p>掌握不同长度单位的特点，可以让排版更加灵活。</p>
+
+                                <table class="prop-table">
+                                    <thead>
+                                        <tr>
+                                            <th>单位</th>
+                                            <th>类型</th>
+                                            <th>基准</th>
+                                            <th>适用场景</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>px</strong></td>
+                                            <td>绝对</td>
+                                            <td>物理像素（逻辑上）</td>
+                                            <td>边框粗细、阴影位移、不需要缩放的固定元素。</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>em</strong></td>
+                                            <td>相对</td>
+                                            <td>当前元素的字体大小</td>
+                                            <td>按钮内边距（padding），使其随字号自动缩放。</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>rem</strong></td>
+                                            <td>相对</td>
+                                            <td>根元素(html)的字体大小</td>
+                                            <td><strong>全局布局首选</strong>。字号、间距、容器宽度，方便实现整体缩放。</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>%</strong></td>
+                                            <td>相对</td>
+                                            <td>父元素的大小</td>
+                                            <td>流式布局宽度（如 <code>width: 50%</code>）。</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <!-- Lab 6: PX vs REM -->
+                                <div class="lab-card" style="margin-top: 30px;">
+                                        <div class="lab-header">
+                                                <span>🧪 实验 06：rem 的响应式魔法</span>
+                                                <span id="badge-6" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
+                                        </div>
+                                        <div class="lab-body">
+                                                <div class="panel html-viewer">
+<div class="panel-label">HTML (只读)</div>
+&lt;!-- 这是一个模拟根元素的容器 --&gt;
+&lt;div class="root-container"&gt;
+    &lt;div class="box box-px"&gt;我是 px (固定)&lt;/div&gt;
+    &lt;div class="box box-rem"&gt;我是 rem (弹性)&lt;/div&gt;
+&lt;/div&gt;
+                                                </div>
+                                                <div class="panel css-editor" id="css-6" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* 实验：修改 .root-container 的 font-size
+   观察哪个盒子会变大？
+*/
+
+.root-container {
+    /* 尝试改成 20px, 12px */
+    font-size: 16px; 
+    
+    border: 2px dashed #ccc;
+    padding: 20px;
+    display: flex; gap: 20px;
+}
+
+.box {
+    padding: 10px;
+    background: #e3f2fd;
+    border: 1px solid #90caf9;
+}
+
+.box-px {
+    /* 固定大小，死板 */
+    font-size: 16px; 
+    width: 150px;
+}
+
+.box-rem {
+    /* 随根元素变化 (1.5倍) */
+    /* 注意：在真实页面中 rem 是相对于 html 标签的 */
+    /* 这里为了演示效果，用 em 模拟 rem 的行为 */
+    font-size: 1.5em; 
+    width: 10em; 
+}
+                                                </div>
+                                        </div>
+                                        <div class="action-bar">
+                                                <button class="btn btn-run" onclick="applyCSS('6')">▶ 运行代码</button>
+                                                <button class="btn btn-reset" onclick="removeCSS('6')">↺ 重置</button>
+                                        </div>
+                                        <div class="preview-box" id="preview-6">
+                                                <span class="preview-label">效果预览</span>
+                                                <div class="root-container">
+                                                        <div class="box box-px">我是 px (固定)</div>
+                                                        <div class="box box-rem">我是 rem (弹性)</div>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+
+                        <div id="chapter8">
+                                <h3>🌐 第8章：视口单位 (vw / vh)</h3>
+                                <p>视口单位基于浏览器窗口的可见区域大小。</p>
+                                <ul style="font-size: 16px; line-height: 1.8;">
+                                    <li><strong>1vw</strong> = 视口宽度的 1%</li>
+                                    <li><strong>1vh</strong> = 视口高度的 1%</li>
+                                </ul>
+                                <div class="tip-box">
+                                    <span class="tip-title">💡 常见应用</span>
+                                    <p><code>height: 100vh;</code> 常用于制作“全屏首图” (Hero Section)，让背景图铺满整个屏幕高度。</p>
+                                </div>
+                                
+                                <!-- Lab 07: Viewport Units -->
+                                <div class="lab-card">
+                                    <div class="lab-header">
+                                        <span>🧪 实验 07：Hero Banner 高度</span>
+                                        <span id="badge-7" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
+                                    </div>
+                                    <div class="lab-body">
+                                        <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;div class="hero"&gt;
+    &lt;h2&gt;全屏封面&lt;/h2&gt;
+    &lt;p&gt;尝试调整浏览器窗口大小&lt;/p&gt;
+&lt;/div&gt;
+                                        </div>
+                                        <div class="panel css-editor" id="css-7" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+.hero {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    
+    /* 尝试 50vh, 100vh */
+    height: 150px; 
+    
+    /* 尝试 font-size: 5vw (随宽度变大) */
+    font-size: 20px;
+}
+                                        </div>
+                                    </div>
+                                    <div class="action-bar">
+                                        <button class="btn btn-run" onclick="applyCSS('7')">▶ 运行代码</button>
+                                        <button class="btn btn-reset" onclick="removeCSS('7')">↺ 重置</button>
+                                    </div>
+                                    <div class="preview-box" id="preview-7" style="padding:0;">
+                                        <div class="hero">
+                                            <h2>全屏封面</h2>
+                                            <p>尝试调整浏览器窗口大小</p>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                </section>
+
+                 <!-- ======================================== -->
+                <!-- 第四部分：边框样式 -->
+                <!-- ======================================== -->
+                <section id="part4">
+                        <h2>第四部分：边框样式 (Borders)</h2>
+
+                        <div id="chapter9">
+                                <h3>📦 第9章：边框基础</h3>
+                                <p>边框是盒模型的重要组成部分。最常用的简写属性是 <code>border</code>。</p>
+                                <div style="background: var(--code-bg); padding: 10px; font-family: var(--font-mono); margin-bottom: 15px;">
+                                    border: [width] [style] [color];<br>
+                                    例如: border: 1px solid #ccc;
+                                </div>
+                                
+                                <table class="prop-table">
+                                    <thead>
+                                        <tr>
+                                            <th>属性</th>
+                                            <th>说明</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><code>border-style</code></td>
+                                            <td><code>solid</code>(实线), <code>dashed</code>(虚线), <code>dotted</code>(点线), <code>double</code>(双线)。</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>border-width</code></td>
+                                            <td><code>thin</code>, <code>medium</code>, <code>thick</code> 或具体数值如 <code>2px</code>。</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <!-- Lab 08: Border Styles -->
+                                <div class="lab-card">
+                                    <div class="lab-header">
+                                        <span>🧪 实验 08：各异的边框风格</span>
+                                        <span id="badge-8" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
+                                    </div>
+                                    <div class="lab-body">
+                                        <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;div class="border-box solid"&gt;Solid 实线&lt;/div&gt;
+&lt;div class="border-box dashed"&gt;Dashed 虚线&lt;/div&gt;
+&lt;div class="border-box double"&gt;Double 双线&lt;/div&gt;
+                                        </div>
+                                        <div class="panel css-editor" id="css-8" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+.border-box {
+    padding: 15px; margin-bottom: 10px;
+    background: #fff;
+    text-align: center;
+}
+
+.solid { 
+    border: 3px solid #0066CC; 
+}
+
+.dashed { 
+    /* 尝试 dotted */
+    border: 3px dashed #F5A623; 
+}
+
+.double {
+    /* 宽度至少 3px 才能看清双线 */
+    border: 6px double #D0021B;
+}
+                                        </div>
+                                    </div>
+                                    <div class="action-bar">
+                                        <button class="btn btn-run" onclick="applyCSS('8')">▶ 运行代码</button>
+                                        <button class="btn btn-reset" onclick="removeCSS('8')">↺ 重置</button>
+                                    </div>
+                                    <div class="preview-box" id="preview-8">
+                                        <div class="border-box solid">Solid 实线</div>
+                                        <div class="border-box dashed">Dashed 虚线</div>
+                                        <div class="border-box double">Double 双线</div>
+                                    </div>
+                                </div>
+                        </div>
+
+                        <div id="chapter10">
+                                <h3>✨ 第10章：圆角与阴影</h3>
+                                <p>这两个属性是现代 UI 设计“扁平化”与“卡片式设计”的基石。</p>
+
+                                <h4>10.1 border-radius (圆角)</h4>
+                                <p>可以接受 px 或 %。<code>border-radius: 50%;</code> 可以将正方形变成圆形（常用于头像）。</p>
+
+                                <h4>10.2 box-shadow (盒子阴影)</h4>
+                                <p>格式：<code>offset-x offset-y blur spread color</code></p>
+                                
+                                <!-- Lab 9: Card Shadows -->
+                                <div class="lab-card">
+                                        <div class="lab-header">
+                                                <span>🧪 实验 09：卡片阴影层级</span>
+                                                <span id="badge-9" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
+                                        </div>
+                                        <div class="lab-body">
+                                                <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;div class="shadow-container"&gt;
+    &lt;div class="card flat"&gt;扁平&lt;/div&gt;
+    &lt;div class="card float"&gt;悬浮&lt;/div&gt;
+    &lt;div class="card soft"&gt;弥散光&lt;/div&gt;
+&lt;/div&gt;
+                                                </div>
+                                                <div class="panel css-editor" id="css-9" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+.shadow-container {
+    display: flex; gap: 20px; padding: 20px;
+    background: #f4f6f8;
+}
+
+.card {
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* 扁平边框，无阴影 */
+.flat { border: 1px solid #ddd; }
+
+/* 典型卡片阴影：向下偏移，有模糊 */
+.float { 
+    border: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+}
+
+/* 彩色弥散阴影：更现代的风格 */
+.soft { 
+    color: #0066CC;
+    box-shadow: 0 10px 25px -5px rgba(0, 102, 204, 0.4); 
+}
+                                                </div>
+                                        </div>
+                                        <div class="action-bar">
+                                                <button class="btn btn-run" onclick="applyCSS('9')">▶ 运行代码</button>
+                                                <button class="btn btn-reset" onclick="removeCSS('9')">↺ 重置</button>
+                                        </div>
+                                        <div class="preview-box" id="preview-9">
+                                                <span class="preview-label">效果预览</span>
+                                                <div class="shadow-container">
+                                                        <div class="card flat">扁平</div>
+                                                        <div class="card float">悬浮</div>
+                                                        <div class="card soft">弥散光</div>
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                        
+                        <div id="chapter11">
+                             <h3>🎯 第11章：边框高级技巧</h3>
+                             <p>包括渐变边框、不规则圆角等，通常涉及 <code>border-image</code> 或复杂的 <code>border-radius</code> 语法。</p>
+
+                             <!-- Lab 10: Advanced Border -->
+                             <div class="lab-card">
+                                <div class="lab-header">
+                                    <span>🧪 实验 10：不规则圆角艺术</span>
+                                    <span id="badge-10" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
+                                </div>
+                                <div class="lab-body">
+                                    <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;div class="blob"&gt;
+    &lt;span&gt;Organic Shape&lt;/span&gt;
+&lt;/div&gt;
+                                    </div>
+                                    <div class="panel css-editor" id="css-10" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* 分别设置四个角：左上 右上 右下 左下 */
+/* 还可以用 / 分隔水平和垂直半径 */
+
+.blob {
+    width: 150px; height: 150px;
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-weight: bold;
+    
+    /* 尝试修改数值制作“流体”形状 */
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+}
+                                    </div>
+                                </div>
+                                <div class="action-bar">
+                                    <button class="btn btn-run" onclick="applyCSS('10')">▶ 运行代码</button>
+                                    <button class="btn btn-reset" onclick="removeCSS('10')">↺ 重置</button>
+                                </div>
+                                <div class="preview-box" id="preview-10">
+                                    <div class="blob"><span>Organic Shape</span></div>
+                                </div>
+                            </div>
+                        </div>
+                </section>
+                
+                <!-- ======================================== -->
+                <!-- 第五部分：表格样式 -->
+                <!-- ======================================== -->
+                <section id="part5">
+                        <h2>第五部分：表格样式 (Table Styling)</h2>
+                        <p>原生的 HTML 表格非常简陋，CSS 可以让数据展示变得清晰美观。</p>
+                        
+                        <div id="chapter12">
+                            <h3>📊 第12章：基础表格</h3>
+                            <p>核心属性：<code>border-collapse: collapse;</code> —— 将单元格分离的边框合并为一条，这是现代表格样式的起手式。</p>
+
+                            <!-- Lab 11: Basic Table -->
+                            <div class="lab-card">
+                                <div class="lab-header">
+                                    <span>🧪 实验 11：表格边框合并</span>
+                                    <span id="badge-11" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
+                                </div>
+                                <div class="lab-body">
+                                    <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;table class="data-table"&gt;
+    &lt;tr&gt;&lt;th&gt;产品&lt;/th&gt;&lt;th&gt;价格&lt;/th&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Apple&lt;/td&gt;&lt;td&gt;$1.00&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;Banana&lt;/td&gt;&lt;td&gt;$0.50&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+                                    </div>
+                                    <div class="panel css-editor" id="css-11" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+.data-table {
+    width: 100%;
+    /* 关键属性：合并边框 */
+    border-collapse: collapse; 
+}
+
+.data-table th, .data-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+                                    </div>
+                                </div>
+                                <div class="action-bar">
+                                    <button class="btn btn-run" onclick="applyCSS('11')">▶ 运行代码</button>
+                                    <button class="btn btn-reset" onclick="removeCSS('11')">↺ 重置</button>
+                                </div>
+                                <div class="preview-box" id="preview-11">
+                                    <table class="data-table">
+                                        <tr><th>产品</th><th>价格</th></tr>
+                                        <tr><td>Apple</td><td>$1.00</td></tr>
+                                        <tr><td>Banana</td><td>$0.50</td></tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="chapter13">
+                            <h3>✨ 第13章：表格美化</h3>
+                            <ul style="font-size: 16px; line-height: 1.8;">
+                                <li><strong>斑马纹</strong>: <code>tr:nth-child(even) { background: #f9f9f9; }</code></li>
+                                <li><strong>行高亮</strong>: <code>tr:hover { background: #eef; }</code></li>
+                                <li><strong>表头固定</strong>: 结合 <code>position: sticky</code> 使用。</li>
+                            </ul>
+
+                            <!-- Lab 12: Styled Table -->
+                            <div class="lab-card">
+                                <div class="lab-header">
+                                    <span>🧪 实验 12：斑马纹与悬停</span>
+                                    <span id="badge-12" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
+                                </div>
+                                <div class="lab-body">
+                                    <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;table class="styled-table"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;&lt;th&gt;ID&lt;/th&gt;&lt;th&gt;姓名&lt;/th&gt;&lt;th&gt;角色&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;&lt;td&gt;01&lt;/td&gt;&lt;td&gt;Alice&lt;/td&gt;&lt;td&gt;Admin&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;02&lt;/td&gt;&lt;td&gt;Bob&lt;/td&gt;&lt;td&gt;User&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;03&lt;/td&gt;&lt;td&gt;Charlie&lt;/td&gt;&lt;td&gt;User&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+                                    </div>
+                                    <div class="panel css-editor" id="css-12" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+.styled-table th {
+    background-color: #009879;
+    color: #ffffff;
+    padding: 12px; text-align: left;
+}
+.styled-table td { padding: 12px; }
+
+/* 斑马纹：偶数行变色 */
+.styled-table tbody tr:nth-child(even) {
+    background-color: #f3f3f3;
+}
+/* 悬停高亮 */
+.styled-table tbody tr:hover {
+    background-color: #e0f7fa;
+    cursor: pointer;
+}
+                                    </div>
+                                </div>
+                                <div class="action-bar">
+                                    <button class="btn btn-run" onclick="applyCSS('12')">▶ 运行代码</button>
+                                    <button class="btn btn-reset" onclick="removeCSS('12')">↺ 重置</button>
+                                </div>
+                                <div class="preview-box" id="preview-12">
+                                    <table class="styled-table">
+                                        <thead><tr><th>ID</th><th>姓名</th><th>角色</th></tr></thead>
+                                        <tbody>
+                                            <tr><td>01</td><td>Alice</td><td>Admin</td></tr>
+                                            <tr><td>02</td><td>Bob</td><td>User</td></tr>
+                                            <tr><td>03</td><td>Charlie</td><td>User</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                </section>
+
+                <!-- ======================================== -->
+                <!-- 第六部分：表单样式 -->
+                <!-- ======================================== -->
+                <section id="part6">
+                        <h2>第六部分：表单样式 (Form Styling)</h2>
+                        
+                        <div id="chapter14">
+                            <h3>📝 第14章：输入框样式</h3>
+                            <p>利用 <code>padding</code> 撑大点击区域，利用 <code>:focus</code> 状态改变边框颜色以提示用户。</p>
+
+                            <!-- Lab 13: Input Styling -->
+                            <div class="lab-card">
+                                <div class="lab-header">
+                                    <span>🧪 实验 13：输入框交互</span>
+                                    <span id="badge-13" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
+                                </div>
+                                <div class="lab-body">
+                                    <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;div class="input-group"&gt;
+    &lt;label&gt;邮箱地址&lt;/label&gt;
+    &lt;input type="text" placeholder="name@example.com" /&gt;
+&lt;/div&gt;
+                                    </div>
+                                    <div class="panel css-editor" id="css-13" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+.input-group {
+    display: flex; flex-direction: column; gap: 8px;
+    max-width: 300px;
+}
+input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none; /* 移除默认蓝框 */
+    transition: 0.3s;
+}
+
+/* 焦点状态：用户点击输入框时 */
+input:focus {
+    border-color: #0066CC;
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.2);
+}
+                                    </div>
+                                </div>
+                                <div class="action-bar">
+                                    <button class="btn btn-run" onclick="applyCSS('13')">▶ 运行代码</button>
+                                    <button class="btn btn-reset" onclick="removeCSS('13')">↺ 重置</button>
+                                </div>
+                                <div class="preview-box" id="preview-13">
+                                    <div class="input-group">
+                                        <label>邮箱地址</label>
+                                        <input type="text" placeholder="name@example.com" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="chapter15">
+                            <h3>🟣 第15章：按钮与选择器</h3>
+                            <p>按钮通常需要设置 <code>cursor: pointer</code>，并清除默认的 <code>border</code> 和 <code>background</code>。</p>
+
+                            <!-- Lab 14: Button Styling -->
+                            <div class="lab-card">
+                                <div class="lab-header">
+                                    <span>🧪 实验 14：按钮变体</span>
+                                    <span id="badge-14" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
+                                </div>
+                                <div class="lab-body">
+                                    <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;button class="btn-demo primary"&gt;Primary&lt;/button&gt;
+&lt;button class="btn-demo outline"&gt;Outline&lt;/button&gt;
+                                    </div>
+                                    <div class="panel css-editor" id="css-14" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+.btn-demo {
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.primary {
+    background: #0066CC; color: white; border: none;
+}
+.primary:hover { background: #004499; }
+
+.outline {
+    background: transparent; color: #0066CC;
+    border: 2px solid #0066CC;
+}
+.outline:hover { background: #E1F0FF; }
+                                    </div>
+                                </div>
+                                <div class="action-bar">
+                                    <button class="btn btn-run" onclick="applyCSS('14')">▶ 运行代码</button>
+                                    <button class="btn btn-reset" onclick="removeCSS('14')">↺ 重置</button>
+                                </div>
+                                <div class="preview-box" id="preview-14">
+                                    <button class="btn-demo primary">Primary</button>
+                                    <button class="btn-demo outline">Outline</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="chapter16">
+                            <h3>✅ 第16章：单选与复选</h3>
+                            <p>原生 checkbox 很难美化。常用技巧是隐藏原生 input，用 <code>label::before</code> 伪元素绘制自定义的方框或圆框。</p>
+                            
+                             <!-- Lab 15: Custom Checkbox -->
+                             <div class="lab-card">
+                                <div class="lab-header">
+                                    <span>🧪 实验 15：自定义 Checkbox</span>
+                                    <span id="badge-15" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
+                                </div>
+                                <div class="lab-body">
+                                    <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;label class="custom-chk"&gt;
+    &lt;input type="checkbox" checked /&gt;
+    &lt;span class="checkmark"&gt;&lt;/span&gt;
+    同意服务条款
+&lt;/label&gt;
+                                    </div>
+                                    <div class="panel css-editor" id="css-15" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+.custom-chk {
+    display: flex; align-items: center; gap: 10px;
+    cursor: pointer;
+}
+
+/* 隐藏原生 checkbox */
+.custom-chk input { display: none; }
+
+/* 自定义方框 */
+.checkmark {
+    width: 20px; height: 20px;
+    border: 2px solid #ccc; border-radius: 4px;
+    background: white;
+}
+
+/* 选中状态：改变背景色 */
+.custom-chk input:checked + .checkmark {
+    background-color: #0066CC;
+    border-color: #0066CC;
+}
+                                    </div>
+                                </div>
+                                <div class="action-bar">
+                                    <button class="btn btn-run" onclick="applyCSS('15')">▶ 运行代码</button>
+                                    <button class="btn btn-reset" onclick="removeCSS('15')">↺ 重置</button>
+                                </div>
+                                <div class="preview-box" id="preview-15">
+                                    <label class="custom-chk">
+                                        <input type="checkbox" checked />
+                                        <span class="checkmark"></span>
+                                        同意服务条款
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="chapter17">
+                            <h3>🚦 第17章：验证状态反馈</h3>
+                            <p>利用 CSS 类（如 <code>.is-error</code>, <code>.is-success</code>）改变边框颜色，结合伪元素显示错误图标。</p>
+                            
+                            <!-- Lab 16: Validation -->
+                            <div class="lab-card">
+                                <div class="lab-header">
+                                    <span>🧪 实验 16：错误状态反馈</span>
+                                    <span id="badge-16" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
+                                </div>
+                                <div class="lab-body">
+                                    <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;div class="field error"&gt;
+    &lt;label&gt;密码&lt;/label&gt;
+    &lt;input type="password" value="123" /&gt;
+    &lt;span class="msg"&gt;密码长度过短&lt;/span&gt;
+&lt;/div&gt;
+                                    </div>
+                                    <div class="panel css-editor" id="css-16" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+.field { display: flex; flex-direction: column; gap: 5px; max-width: 300px; }
+
+.field input {
+    padding: 8px; border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* 错误状态样式 */
+.field.error input {
+    border-color: #d32f2f;
+    background-color: #ffebee;
+}
+.field.error .msg {
+    color: #d32f2f; font-size: 12px;
+}
+                                    </div>
+                                </div>
+                                <div class="action-bar">
+                                    <button class="btn btn-run" onclick="applyCSS('16')">▶ 运行代码</button>
+                                    <button class="btn btn-reset" onclick="removeCSS('16')">↺ 重置</button>
+                                </div>
+                                <div class="preview-box" id="preview-16">
+                                    <div class="field error">
+                                        <label>密码</label>
+                                        <input type="password" value="123" />
+                                        <span class="msg">密码长度过短</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验：第18次课-CSS常用元素样式实践</span>
+                <span id="18css-status" class="status-badge">未运行</span>
+            </div>
+            <div class="lab-body css-js-experiment">
+                <div>
+                    <div class="code-editor" id="18css-css" contenteditable="true">
+<span class="panel-label">CSS (可编辑)</span>/* 第18次课-CSS常用元素样式实验 */
+.container {
+    width: 200px;
+    height: 200px;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    margin: 20px;
+    /* 在这里添加你的CSS样式 */
+}
+
+/* 在这里添加更多CSS样式 */
+</div>
+                </div>
+                <div>
+                    <div class="preview-area" id="18css-preview">
+                        <span class="panel-label">预览效果</span>
+                        <div class="container">
+                            <h3>CSS实验</h3>
+                            <p>这是CSS实验的预览效果</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="run18cssExperiment()">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="reset18cssExperiment()">↺ 重置</button>
+            </div>
+        </div>
+
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验：第18次课-CSS常用元素样式实践</span>
+                <span id="18css-status" class="status-badge">未运行</span>
+            </div>
+            <div class="lab-body css-js-experiment">
+                <div>
+                    <div class="code-editor" id="18css-css" contenteditable="true">
+<span class="panel-label">CSS (可编辑)</span>/* 第18次课-CSS常用元素样式实验 */
+.container {
+    width: 200px;
+    height: 200px;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    margin: 20px;
+    /* 在这里添加你的CSS样式 */
+}
+
+/* 在这里添加更多CSS样式 */
+</div>
+                </div>
+                <div>
+                    <div class="preview-area" id="18css-preview">
+                        <span class="panel-label">预览效果</span>
+                        <div class="container">
+                            <h3>CSS实验</h3>
+                            <p>这是CSS实验的预览效果</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="run18cssExperiment()">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="reset18cssExperiment()">↺ 重置</button>
+            </div>
+        </div>
+</section></main>
+
+    <script>
+        // 核心 CSS 注入逻辑 (修复版)
+        function applyCSS(id) {
+            const editor = document.getElementById(`css-${id}`);
+            if (!editor) return;
+
+            const previewId = `preview-${id}`;
+            let rawCss = editor.innerText; // 使用 innerText 保留换行
+
+            // 清理编辑器自带的 Label 文本
+            const labelText = "CSS (可编辑)";
+            if (rawCss.indexOf(labelText) !== -1) {
+                rawCss = rawCss.replace(labelText, "");
+            }
+
+            // CSS 预处理：为选择器添加 ID 前缀以实现样式隔离
+            // 算法：识别每一行，如果是选择器，则添加 #preview-X 前缀
+            const lines = rawCss.split('\n');
+            let scopedCss = "";
+            let inMediaBlock = false; // 标记是否在 @media 块内部
+
+            lines.forEach(line => {
+                const trimmed = line.trim();
+                
+                // 1. 跳过空行和纯注释
+                if (!trimmed || trimmed.startsWith('/*') || trimmed.startsWith('//')) {
+                    scopedCss += line + "\n";
+                    return;
+                }
+
+                // 2. 处理 @media 查询
+                if (trimmed.startsWith('@media')) {
+                    inMediaBlock = true;
+                    scopedCss += line + "\n";
+                    return;
+                }
+
+                // 3. 处理闭合括号
+                if (trimmed === '}' || trimmed.startsWith('}')) {
+                    if (inMediaBlock && trimmed === '}') {
+                        // 这里有个简化的逻辑假设：如果是在 media 块里遇到单独的 }，可能是结束 media
+                        // 但为了简化代码，我们依靠浏览器自身的容错，或者简单的计数器
+                        // 更好的方式是直接处理选择器
+                    }
+                    scopedCss += line + "\n";
+                    return;
+                }
+
+                // 4. 属性行 (包含 : 且不含 { ) -> 原样输出
+                if (trimmed.includes(':') && !trimmed.endsWith('{')) {
+                    scopedCss += line + "\n";
+                    return;
+                }
+
+                // 5. 剩下的认为是选择器
+                // 如果在 media 块内，依然需要加前缀
+                if (trimmed.endsWith('{') || trimmed.endsWith(',')) {
+                    // 处理逗号分隔的选择器 div, p { ... }
+                    const selectors = line.split(',');
+                    const scopedSelectors = selectors.map(sel => {
+                        const s = sel.trim();
+                        if (s === '{' || !s) return s;
+                        // 避免重复添加 (简单的防止机制)
+                        if (s.includes('#' + previewId)) return s;
+                        return `#${previewId} ${s}`;
+                    });
+                    scopedCss += scopedSelectors.join(',') + "\n";
+                } else {
+                    // 其他情况，保守处理，原样输出
+                    scopedCss += line + "\n";
+                }
+            });
+
+            // 创建或更新 style 标签
+            let styleTag = document.getElementById(`style-tag-${id}`);
+            if (!styleTag) {
+                styleTag = document.createElement('style');
+                styleTag.id = `style-tag-${id}`;
+                document.head.appendChild(styleTag);
+            }
+            
+            styleTag.innerHTML = scopedCss;
+            updateStatus(id, true);
+        }
+
+        function removeCSS(id) {
+            const styleTag = document.getElementById(`style-tag-${id}`);
+            if (styleTag) {
+                styleTag.remove();
+            }
+            updateStatus(id, false);
+        }
+
+        function updateStatus(id, isActive) {
+            const badge = document.getElementById(`badge-${id}`);
+            if (!badge) return;
+            if (isActive) {
+                badge.innerText = "运行中 (Active)";
+                badge.className = "status-badge status-active";
+            } else {
+                badge.innerText = "未运行 (Inactive)";
+                badge.className = "status-badge";
+            }
+        }
+
+        // 侧边栏滚动高亮优化逻辑
+        function updateNavHighlight() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.sidebar a');
+            
+            let current = '';
+            const scrollPosition = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const docHeight = document.documentElement.scrollHeight;
+
+            // 1. 如果滚动到底部，强制激活最后一个 section
+            if (scrollPosition + windowHeight >= docHeight - 50) {
+                 if (sections.length > 0) {
+                     current = sections[sections.length - 1].getAttribute('id');
+                 }
+            } else {
+                // 2. 正常遍历
+                // 使用 "视口 1/3 处" 作为触发线，体验比较自然
+                const triggerLine = scrollPosition + (windowHeight / 3);
+
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    const sectionBottom = sectionTop + sectionHeight;
+
+                    // 如果触发线在 section 范围内
+                    if (triggerLine >= sectionTop && triggerLine < sectionBottom) {
+                        current = section.getAttribute('id');
+                    }
+                });
+            }
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateNavHighlight);
+        // 初始化执行
+        setTimeout(updateNavHighlight, 100);
+        // 第18次课-CSS常用元素样式实验交互逻辑
+    function run18cssExperiment() {
+        const editor = document.getElementById('18css-css');
+        const status = document.getElementById('18css-status');
+        
+        if (editor) {
+            let code = editor.innerText;
+            // 移除编辑器标签
+            code = code.replace('css (可编辑)', '');
+            
+            
+            // 注入CSS样式
+            const style = document.createElement('style');
+            style.id = 'experiment-18css';
+            style.textContent = code;
+            // 移除旧的样式
+            const oldStyle = document.getElementById('experiment-18css');
+            if (oldStyle) {
+                oldStyle.remove();
+            }
+            // 添加新样式
+            document.head.appendChild(style);
+            
+            
+            // 更新状态
+            status.textContent = '已运行';
+            status.className = 'status-badge active';
+        }
+    }
+    
+    function reset18cssExperiment() {
+        const status = document.getElementById('18css-status');
+        
+        
+        // 移除CSS样式
+        const oldStyle = document.getElementById('experiment-18css');
+        if (oldStyle) {
+            oldStyle.remove();
+        }
+        
+        
+        // 更新状态
+        status.textContent = '未运行';
+        status.className = 'status-badge';
+    }
+    // 第18次课-CSS常用元素样式实验交互逻辑
+    function run18cssExperiment() {
+        const editor = document.getElementById('18css-css');
+        const status = document.getElementById('18css-status');
+        
+        if (editor) {
+            let code = editor.innerText;
+            // 移除编辑器标签
+            code = code.replace('CSS (可编辑)', '');
+            
+            
+            // 注入CSS样式
+            const style = document.createElement('style');
+            style.id = 'experiment-18css';
+            style.textContent = code;
+            // 移除旧的样式
+            const oldStyle = document.getElementById('experiment-18css');
+            if (oldStyle) {
+                oldStyle.remove();
+            }
+            // 添加新样式
+            document.head.appendChild(style);
+            
+            
+            // 更新状态
+            status.textContent = '已运行';
+            status.className = 'status-badge active';
+        }
+    }
+    
+    function reset18cssExperiment() {
+        const status = document.getElementById('18css-status');
+        
+        
+        // 移除CSS样式
+        const oldStyle = document.getElementById('experiment-18css');
+        if (oldStyle) {
+            oldStyle.remove();
+        }
+        
+        
+        // 更新状态
+        status.textContent = '未运行';
+        status.className = 'status-badge';
+    }
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
