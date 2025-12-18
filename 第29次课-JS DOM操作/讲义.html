@@ -9,22 +9,21 @@
 <body>
 <nav class="sidebar">
     <div class="sidebar-nav">
-        <h3>课程概览</h3>
-        <a href="#intro" class="sidebar-link active">📦 第29课概览</a>
-
-        <h3>DOM基础</h3>
-        <a href="#why-dom" class="sidebar-link">1. 为什么需要DOM操作</a>
-        <a href="#what-is-dom" class="sidebar-link">2. DOM是什么</a>
-
-        <h3>核心操作</h3>
-        <a href="#select-elements" class="sidebar-link">3. 选择元素的方法</a>
-        <a href="#read-content" class="sidebar-link">4. 读取元素内容</a>
-        <a href="#modify-content" class="sidebar-link">5. 修改元素内容</a>
-        <a href="#style-operation" class="sidebar-link">6. 操作元素样式</a>
-        <a href="#create-delete" class="sidebar-link">7. 创建和删除元素</a>
-
-        <h3>实战应用</h3>
-        <a href="#practical" class="sidebar-link">8. 综合实战</a>
+        <h3>课程导航</h3>
+        <a class="sidebar-link" href="#intro">课程概览</a>
+        
+        <h3>Part 1: DOM基础</h3>
+        <a class="sidebar-link" href="#what-is-dom" class="sub-link">1. DOM是什么</a>
+        <a class="sidebar-link" href="#select-elements" class="sub-link">2. 选择元素</a>
+        
+        <h3>Part 2: 元素操作</h3>
+        <a class="sidebar-link" href="#read-content" class="sub-link">3. 读取内容</a>
+        <a class="sidebar-link" href="#modify-content" class="sub-link">4. 修改内容</a>
+        <a class="sidebar-link" href="#style-operation" class="sub-link">5. 操作样式</a>
+        <a class="sidebar-link" href="#create-delete" class="sub-link">6. 创建删除元素</a>
+        
+        <h3>Part 3: 实战练习</h3>
+        <a class="sidebar-link" href="#practical" class="sub-link">7. 综合实战</a>
     </div>
 </nav>
 <main class="content">
@@ -61,7 +60,7 @@
       <p>想象你在使用一个购物网站:点击"加入购物车"按钮,购物车图标上的数字立即增加;删除商品,页面上的商品卡片消失;输入搜索关键词,下方实时显示匹配结果。这些都离不开DOM操作。</p>
       
       <div class="tip-box">
-        <span class="tip-title">💡 生活中的类比</span>
+        <span class="tip-title">生活中的类比</span>
         <ul class="checklist">
           <li><strong>DOM操作 = 遥控器:</strong>就像用遥控器控制电视(换台、调音量、开关),JavaScript通过DOM控制网页(改文字、换颜色、增删元素)</li>
           <li><strong>没有DOM = 静态海报:</strong>网页只能展示固定内容,无法响应用户操作</li>
@@ -112,7 +111,7 @@ function addToCart() {
       <p>DOM（Document Object Model，文档对象模型）是浏览器提供的一套API,用于将HTML文档表示为一个树形结构,让JavaScript可以访问和操作网页中的每个元素。</p>
       
       <div class="tip-box">
-        <span class="tip-title">💡 理解DOM树</span>
+        <span class="tip-title">理解DOM树</span>
         <p>想象一个家族族谱:最上面是祖先,下面是子孙,每个人都有父母、兄弟姐妹、子女。DOM树也是这样:</p>
         <ul class="checklist">
           <li><strong>根节点:</strong>整个HTML文档(document)</li>
@@ -294,7 +293,7 @@ const allParagraphs = document.getElementsByTagName('p');</code></pre>
       </table>
 
       <div class="warning-box">
-        <span class="tip-title">⚠️ 注意事项</span>
+        <span class="tip-title">注意事项</span>
         <ul class="checklist">
           <li><strong>getElementById:</strong>参数不需要#号</li>
           <li><strong>querySelector:</strong>参数需要完整的CSS选择器(#id、.class)</li>
@@ -311,7 +310,7 @@ const allParagraphs = document.getElementsByTagName('p');</code></pre>
         <div class="lab-body split">
           <div class="panel">
             <span class="panel-label">HTML</span>
-            <div class="html-viewer">  &lt;h3 id="title"&gt;🎯 元素选择练习&lt;/h3&gt;
+            <div class="html-viewer">  &lt;h3 id="title"&gt;元素选择练习&lt;/h3&gt;
   &lt;div class="box"&gt;盒子1&lt;/div&gt;
   &lt;div class="box"&gt;盒子2&lt;/div&gt;
   &lt;div class="box special"&gt;特殊盒子&lt;/div&gt;
@@ -507,7 +506,7 @@ content.innerHTML = '';
 &lt;/script&gt;</code></pre>
 
       <div class="warning-box">
-        <span class="tip-title">⚠️ innerHTML的安全风险</span>
+        <span class="tip-title">innerHTML的安全风险</span>
         <p>使用innerHTML设置用户输入的内容时要特别小心,可能导致XSS(跨站脚本)攻击:</p>
         <pre><code>// 危险!如果userInput包含&lt;script&gt;标签会被执行
 const userInput = '&lt;script&gt;alert("攻击!")&lt;/script&gt;';
@@ -578,7 +577,7 @@ img.removeAttribute('alt');
     title.innerText = input.value;
     input.value = '';
   } else {
-    alert('⚠️ 请输入标题内容');
+    alert('请输入标题内容');
   }
 }
 
@@ -591,7 +590,7 @@ function changeContent() {
     content.innerHTML = input.value;
     input.value = '';
   } else {
-    alert('⚠️ 请输入内容');
+    alert('请输入内容');
   }
 }
 
@@ -667,7 +666,7 @@ if (box.classList.contains('highlight')) {
         <div class="lab-body split">
           <div class="panel">
             <span class="panel-label">HTML</span>
-            <div class="html-viewer">  &lt;h3&gt;🎨 样式切换器&lt;/h3&gt;
+            <div class="html-viewer">  &lt;h3&gt;样式切换器&lt;/h3&gt;
   &lt;div&gt;
     &lt;button onclick="toggleTheme()"&gt;切换主题&lt;/button&gt;
     &lt;button onclick="toggleSize()"&gt;切换大小&lt;/button&gt;
@@ -749,7 +748,7 @@ box.remove();
         <div class="lab-body split">
           <div class="panel">
             <span class="panel-label">HTML</span>
-            <div class="html-viewer">  &lt;h3&gt;📝 动态待办列表&lt;/h3&gt;
+            <div class="html-viewer">  &lt;h3&gt;动态待办列表&lt;/h3&gt;
   &lt;input id="todoInput" placeholder="输入待办事项"&gt;
   &lt;button onclick="addTodo()"&gt;添加&lt;/button&gt;
   &lt;div id="todoList" style="margin-top:15px;"&gt;&lt;/div&gt;
@@ -782,7 +781,7 @@ function addTodo() {
   const text = input.value.trim();
   
   if (!text) {
-    alert('⚠️ 请输入待办事项');
+    alert('请输入待办事项');
     return;
   }
   
@@ -824,7 +823,7 @@ function addTodo() {
       <p>综合运用本课所有知识:元素选择、内容修改、样式操作、元素创建删除。</p>
       
       <div class="tip-box">
-        <span class="tip-title">🎯 本案例涵盖的知识点</span>
+        <span class="tip-title">本案例涵盖的知识点</span>
         <ul class="checklist">
           <li>使用querySelector和getElementById选择元素</li>
           <li>动态创建DOM元素(createElement)</li>
@@ -877,7 +876,7 @@ function addCard() {
   const title = titleInput.value.trim();
   
   if (!title) {
-    alert('⚠️ 请输入卡片标题');
+    alert('请输入卡片标题');
     return;
   }
   
@@ -921,7 +920,7 @@ function clearAll() {
     </section>
 
     <section style="margin-top:80px;padding-top:40px;border-top:2px solid var(--border-color);">
-      <h2>🎯 课程总结</h2>
+      <h2>课程总结</h2>
       <div class="note-box">
         <span class="tip-title">本课重点回顾</span>
         <ul class="checklist">
@@ -936,7 +935,7 @@ function clearAll() {
       </div>
       
       <div class="note-box">
-        <span class="tip-title">🚀 下一课预告</span>
+        <span class="tip-title">下一课预告</span>
         <p>第8课将学习<strong>事件处理</strong>,让网页能够响应用户的点击、输入等各种操作,构建完整的交互式应用!</p>
       </div>
     

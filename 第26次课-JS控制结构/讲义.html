@@ -9,30 +9,20 @@
 <body>
 <nav class="sidebar">
     <div class="sidebar-nav">
-        <h3>课程概览</h3>
-        <a href="#intro" class="sidebar-link active">🔀 第4课概览</a>
-        <a href="#why-control" class="sub-link">为什么需要控制结构</a>
-
-        <h3>Part 1 条件分支</h3>
-        <a href="#if-basic" class="sidebar-link">1. if 语句基础</a>
-        <a href="#if-else" class="sub-link">if...else</a>
-        <a href="#if-elseif" class="sub-link">if...else if...else</a>
-        <a href="#lab-grade" class="sub-link">实验 01：成绩评定系统</a>
-        <a href="#nested-if" class="sub-link">嵌套 if</a>
-        <a href="#ternary" class="sub-link">三元运算符</a>
-        <a href="#switch" class="sidebar-link">2. switch 语句</a>
-        <a href="#lab-weekday" class="sub-link">实验 02：星期几查询</a>
-
-        <h3>Part 2 循环结构</h3>
-        <a href="#for-loop" class="sidebar-link">3. for 循环</a>
-        <a href="#lab-multiplication" class="sub-link">实验 03：九九乘法表</a>
-        <a href="#while-loop" class="sidebar-link">4. while 循环</a>
-        <a href="#do-while" class="sub-link">do...while</a>
-        <a href="#break-continue" class="sidebar-link">5. break 和 continue</a>
-        <a href="#lab-prime" class="sub-link">实验 04：质数判断</a>
-
-        <h3>总结</h3>
-        <a href="#summary" class="sidebar-link">6. 综合案例与小结</a>
+        <h3>课程导航</h3>
+        <a class="sidebar-link" href="#intro">课程概览</a>
+        
+        <h3>Part 1: 条件控制</h3>
+        <a class="sidebar-link" href="#if-basic" class="sub-link">1. if 语句</a>
+        <a class="sidebar-link" href="#switch" class="sub-link">2. switch 语句</a>
+        
+        <h3>Part 2: 循环控制</h3>
+        <a class="sidebar-link" href="#for-loop" class="sub-link">3. for 循环</a>
+        <a class="sidebar-link" href="#while-loop" class="sub-link">4. while 循环</a>
+        <a class="sidebar-link" href="#break-continue" class="sub-link">5. break 与 continue</a>
+        
+        <h3>Part 3: 课后练习</h3>
+        <a class="sidebar-link" href="#summary" class="sub-link">6. 课程小结</a>
     </div>
 </nav>
 <main class="content">
@@ -109,7 +99,7 @@ if (temperature > 25) {
             <li>如果条件为 <code>false</code>，花括号内的代码会被跳过。</li>
         </ul>
         <div class="tip-box">
-            <span class="tip-title">💡 代码块与花括号</span>
+            <span class="tip-title">代码块与花括号</span>
             <p>花括号 <code>{}</code> 定义了一个代码块。虽然当代码块只有一行时可以省略花括号，但<strong>强烈建议始终使用花括号</strong>，这能避免很多潜在的错误，并让代码更易读。</p>
 <pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>// 不推荐（容易出错）
 if (age >= 18) console.log('成年人');
@@ -155,7 +145,7 @@ if (score >= 90) {
 // 输出: 良好 B
 </code></pre>
         <div class="warning-box">
-            <strong>⚠️ 重要特性：互斥执行</strong>
+            <strong>重要特性：互斥执行</strong>
             <p><code>if...else if...else</code> 结构中，<strong>只有第一个条件为 <code>true</code> 的分支会被执行</strong>，后面所有分支都会被跳过，即使它们的条件也为 <code>true</code>。</p>
 <pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>let num = 15;
 
@@ -249,7 +239,7 @@ if (age >= 18) {
 }
 </code></pre>
         <div class="tip-box">
-            <span class="tip-title">💡 避免过度嵌套</span>
+            <span class="tip-title">避免过度嵌套</span>
             <p>虽然嵌套 <code>if</code> 很强大，但过深的嵌套会让代码难以阅读。通常建议嵌套不超过 2-3 层。如果逻辑太复杂，考虑使用逻辑运算符 (<code>&&</code>, <code>||</code>) 或将部分逻辑提取为函数。</p>
         </div>
     </section>
@@ -322,7 +312,7 @@ console.log(dayName); // "星期三"
             <li><code>default</code> 是可选的，类似于 <code>else</code>，匹配所有未被 case 覆盖的情况。</li>
         </ul>
         <div class="warning-box">
-            <strong>⚠️ 别忘了 break！</strong>
+            <strong>别忘了 break！</strong>
             <p>如果忘记写 <code>break</code>，代码会"穿透"到下一个 case，这通常不是你想要的。</p>
 <pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>let fruit = 'apple';
 switch (fruit) {
@@ -453,7 +443,7 @@ for (let i = 1; i <= 5; i++) {
             </tbody>
         </table>
         <div class="tip-box">
-            <span class="tip-title">💡 循环的执行流程</span>
+            <span class="tip-title">循环的执行流程</span>
             <p>让我们一步步看看 <code>for (let i = 1; i <= 3; i++)</code> 是如何执行的：</p>
             <ol style="margin-left: 20px;">
                 <li><strong>初始化</strong>: <code>let i = 1;</code> (只执行一次)</li>
@@ -549,7 +539,7 @@ while (count <= 5) {
             <li><strong>必须确保循环体内会修改条件变量</strong>，否则会陷入死循环！</li>
         </ul>
         <div class="warning-box">
-            <strong>⚠️ 避免死循环</strong>
+            <strong>避免死循环</strong>
             <p>如果循环条件永远为 <code>true</code>，程序会一直循环下去，导致页面卡死。</p>
 <pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>// ❌ 错误示例：死循环！
 let i = 1;

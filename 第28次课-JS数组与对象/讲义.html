@@ -9,23 +9,20 @@
 <body>
 <nav class="sidebar">
     <div class="sidebar-nav">
-        <h3>课程概览</h3>
-        <a href="#intro" class="sidebar-link active">📦 第28课概览</a>
-
-        <h3>核心概念</h3>
-        <a href="#why-data-structures" class="sidebar-link">1. 为什么需要数组和对象</a>
-        <a href="#array-basics" class="sidebar-link">2. 数组基础</a>
-        <a href="#array-methods" class="sub-link">数组方法</a>
-        <a href="#array-iteration" class="sub-link">数组遍历</a>
-        <a href="#object-basics" class="sidebar-link">3. 对象基础</a>
-        <a href="#object-operations" class="sub-link">对象操作</a>
-
-        <h3>进阶主题</h3>
-        <a href="#json" class="sidebar-link">4. JSON数据格式</a>
-        <a href="#nested" class="sidebar-link">5. 嵌套结构</a>
-
-        <h3>实战应用</h3>
-        <a href="#practical" class="sidebar-link">6. 综合实战</a>
+        <h3>课程导航</h3>
+        <a class="sidebar-link" href="#intro">课程概览</a>
+        
+        <h3>Part 1: 数组</h3>
+        <a class="sidebar-link" href="#array-basics" class="sub-link">1. 数组基础</a>
+        <a class="sidebar-link" href="#array-methods" class="sub-link">2. 数组方法</a>
+        <a class="sidebar-link" href="#array-iteration" class="sub-link">3. 数组遍历</a>
+        
+        <h3>Part 2: 对象</h3>
+        <a class="sidebar-link" href="#object-basics" class="sub-link">4. 对象基础</a>
+        <a class="sidebar-link" href="#json" class="sub-link">5. JSON数据格式</a>
+        
+        <h3>Part 3: 实战练习</h3>
+        <a class="sidebar-link" href="#practical" class="sub-link">6. 综合实战</a>
     </div>
 </nav>
 
@@ -69,7 +66,7 @@ let student3 = "王五";
       <p>这样做有几个问题:变量太多难以管理、无法批量处理、代码重复冗长。<strong>数组和对象就是为了解决这些问题而生。</strong></p>
       
       <div class="tip-box">
-        <span class="tip-title">💡 生活中的类比</span>
+        <span class="tip-title">生活中的类比</span>
         <ul class="checklist">
           <li><strong>数组 = 编号的储物柜:</strong>每个柜子有编号(索引),按顺序排列,适合存储同类物品(如学生名单、成绩列表)</li>
           <li><strong>对象 = 带标签的文件夹:</strong>每个资料有名称标签(属性名),方便查找,适合存储不同类型的相关信息(如用户信息:姓名、年龄、邮箱)</li>
@@ -146,7 +143,7 @@ console.log(fruits[2]);  // "橙子"（第三个元素）
 console.log(fruits.length);  // 3</code></pre>
 
       <div class="tip-box">
-        <span class="tip-title">💡 数组的特点</span>
+        <span class="tip-title">数组的特点</span>
         <ul class="checklist">
           <li>索引从0开始，最后一个元素的索引是 <code>length - 1</code></li>
           <li>可以存储任意类型的数据</li>
@@ -310,7 +307,7 @@ console.log(arr);  // [5, 4, 3, 2, 1]</code></pre>
         <div class="lab-body split">
           <div class="panel">
             <span class="panel-label">HTML</span>
-            <div class="html-viewer">  &lt;h3&gt;📝 待办事项管理&lt;/h3&gt;
+            <div class="html-viewer">  &lt;h3&gt;待办事项管理&lt;/h3&gt;
   &lt;div&gt;
     &lt;input id="taskInput" placeholder="输入新任务"&gt;
     &lt;button onclick="addTask()"&gt;添加&lt;/button&gt;
@@ -335,7 +332,7 @@ function addTask() {
       `✅ 已添加：${task}\n当前共${tasks.length}个任务`;
   } else {
     document.getElementById('output').innerText = 
-      "⚠️ 请输入任务内容！";
+      "请输入任务内容！";
   }
 }
 
@@ -671,7 +668,7 @@ function showStudent() {
       <p>JSON（JavaScript Object Notation）是一种<strong>轻量级的数据交换格式</strong>,是前后端通信的标准语言。就像快递单的标准格式,让不同的程序都能读懂彼此的数据。</p>
       
       <div class="tip-box">
-        <span class="tip-title">💡 为什么需要JSON?</span>
+        <span class="tip-title">为什么需要JSON?</span>
         <ul class="checklist">
           <li>前端JavaScript对象无法直接传给后端</li>
           <li>需要一种文本格式,方便网络传输</li>
@@ -682,7 +679,7 @@ function showStudent() {
 
       <h3>7.2 JSON的语法规则</h3>
       <div class="note-box">
-        <span class="tip-title">💡 JSON的特点</span>
+        <span class="tip-title">JSON的特点</span>
         <ul class="checklist">
           <li>键必须用双引号包裹</li>
           <li>值可以是：字符串、数字、对象、数组、布尔值、null</li>
@@ -898,7 +895,7 @@ function showPassed() {
       <p>让我们综合运用数组和对象的所有知识:数组方法、对象操作、数据遍历、嵌套结构等,构建一个功能完整的图书管理系统。</p>
       
       <div class="tip-box">
-        <span class="tip-title">🎯 本案例涵盖的知识点</span>
+        <span class="tip-title">本案例涵盖的知识点</span>
         <ul class="checklist">
           <li>使用对象数组存储图书信息</li>
           <li>数组的增删改查操作</li>
@@ -918,7 +915,7 @@ function showPassed() {
           <div class="panel">
             <span class="panel-label">HTML</span>
             <div class="html-viewer">  &lt;div class="book-manager"&gt;
-    &lt;h3&gt;📚 图书管理系统&lt;/h3&gt;
+    &lt;h3&gt;图书管理系统&lt;/h3&gt;
     &lt;div class="input-row"&gt;
       &lt;input id="bookTitle" placeholder="书名"&gt;
       &lt;input id="bookAuthor" placeholder="作者"&gt;
@@ -927,7 +924,7 @@ function showPassed() {
     &lt;div class="btn-group"&gt;
       &lt;button class="book-btn" onclick="addBook()"&gt;➕ 添加图书&lt;/button&gt;
       &lt;button class="book-btn" onclick="showAllBooks()"&gt;📖 显示全部&lt;/button&gt;
-      &lt;button class="book-btn" onclick="searchByAuthor()"&gt;🔍 按作者搜索&lt;/button&gt;
+      &lt;button class="book-btn" onclick="searchByAuthor()"&gt;按作者搜索&lt;/button&gt;
       &lt;button class="book-btn" onclick="showStats()"&gt;📊 统计信息&lt;/button&gt;
     &lt;/div&gt;
     &lt;div id="book-result"&gt;等待操作...&lt;/div&gt;
@@ -958,7 +955,7 @@ function addBook() {
   
   if (!title || !author || !year) {
     document.getElementById('book-result').innerText = 
-      "⚠️ 请填写完整信息！";
+      "请填写完整信息！";
     return;
   }
   
@@ -983,7 +980,7 @@ function showAllBooks() {
   ).join('\n\n');
   
   document.getElementById('book-result').innerText = 
-    `📚 图书列表（共${library.length}本）：\n\n${bookList}`;
+    `图书列表（共${library.length}本）：\n\n${bookList}`;
 }
 
 function searchByAuthor() {
@@ -991,7 +988,7 @@ function searchByAuthor() {
   
   if (!author) {
     document.getElementById('book-result').innerText = 
-      "⚠️ 请在作者栏输入要搜索的作者名";
+      "请在作者栏输入要搜索的作者名";
     return;
   }
   
@@ -1007,7 +1004,7 @@ function searchByAuthor() {
       `《${b.title}》- ${b.author} (${b.year})`
     ).join('\n');
     document.getElementById('book-result').innerText = 
-      `🔍 搜索结果（${results.length}本）：\n${list}`;
+      `搜索结果（${results.length}本）：\n${list}`;
   }
 }
 
@@ -1037,7 +1034,7 @@ function showStats() {
       </div>
 
       <div class="tip-box">
-        <span class="tip-title">💡 案例知识点总结</span>
+        <span class="tip-title">案例知识点总结</span>
         <ul class="checklist">
           <li>使用对象数组存储结构化数据</li>
           <li>数组方法：push, filter, map的综合应用</li>
@@ -1049,7 +1046,7 @@ function showStats() {
     </section>
 
     <section style="margin-top:80px;padding-top:40px;border-top:2px solid var(--border-color);">
-      <h2>🎯 课程总结</h2>
+      <h2>课程总结</h2>
       <div class="note-box">
         <span class="tip-title">本课重点回顾</span>
         <ul class="checklist">

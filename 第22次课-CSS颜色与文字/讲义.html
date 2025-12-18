@@ -11,33 +11,24 @@
     <!-- 侧边栏导航 -->
     <nav class="sidebar">
         <div class="sidebar-nav">
-            <h3>全貌</h3>
-            <a href="#intro" class="sidebar-link active">� 第22课概览</a>
-
-            <h3>CSS 颜色</h3>
-            <a href="#part1" class="sidebar-link">一、CSS 颜色系统</a>
-            <a href="#chapter1" class="sidebar-link sub-link">1. 颜色表示法详解</a>
-            <a href="#chapter2" class="sidebar-link sub-link">2. 常用颜色属性</a>
+            <h3>课程导航</h3>
+            <a class="sidebar-link" href="#intro">课程概览</a>
             
-            <h3>文字排版</h3>
-            <a href="#part2" class="sidebar-link">二、CSS 文字排版</a>
-            <a href="#chapter3" class="sidebar-link sub-link">3. 字体属性 (Font)</a>
-            <a href="#chapter4" class="sidebar-link sub-link">4. 文本样式与装饰</a>
-            <a href="#chapter5" class="sidebar-link sub-link">5. 文本间距控制</a>
-            <a href="#chapter6" class="sidebar-link sub-link">6. 文本溢出与换行</a>
-
-            <h3>长度单位</h3>
-            <a href="#part3" class="sidebar-link">三、CSS 长度单位</a>
-            <a href="#chapter7" class="sidebar-link sub-link">7. 绝对 vs 相对单位</a>
-            <a href="#chapter8" class="sidebar-link sub-link">8. 视口单位应用</a>
-
-            <h3>边框样式</h3>
-            <a href="#part4" class="sidebar-link">四、边框样式</a>
-            <a href="#chapter9" class="sidebar-link sub-link">9. 边框属性</a>
-            <a href="#chapter10" class="sidebar-link sub-link">10. 圆角与阴影</a>
-            <a href="#chapter11" class="sidebar-link sub-link">11. 高级边框技巧</a>
+            <h3>Part 1: CSS颜色</h3>
+            <a class="sidebar-link" href="#part1" class="sub-link">1. 颜色系统</a>
+            <a class="sidebar-link" href="#chapter2" class="sub-link">2. 颜色属性</a>
             
-            <h3>表格样式</h3>
+            <h3>Part 2: 文字排版</h3>
+            <a class="sidebar-link" href="#part2" class="sub-link">3. 字体属性</a>
+            <a class="sidebar-link" href="#chapter4" class="sub-link">4. 文本样式</a>
+            <a class="sidebar-link" href="#chapter5" class="sub-link">5. 文本间距</a>
+            
+            <h3>Part 3: 进阶知识</h3>
+            <a class="sidebar-link" href="#part3" class="sub-link">6. 长度单位</a>
+            <a class="sidebar-link" href="#part4" class="sub-link">7. 边框样式</a>
+            
+            <h3>Part 4: 实战练习</h3>
+            <a class="sidebar-link" href="#summary" class="sub-link">8. 课程小结</a>
             <a href="#part5" class="sidebar-link">五、表格样式</a>
             <a href="#chapter12" class="sidebar-link sub-link">12. 基础表格</a>
             <a href="#chapter13" class="sidebar-link sub-link">13. 表格美化</a>
@@ -130,7 +121,7 @@
                 <!-- Lab 01: HSL 颜色实验 -->
                 <div class="lab-card">
                     <div class="lab-header">
-                        <span>🧪 实验 01：感受 HSL 色彩空间</span>
+                        <span>实验 01：感受 HSL 色彩空间</span>
                         <span id="badge-1" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
                     </div>
                     <div class="lab-body">
@@ -144,7 +135,7 @@
                         </div>
                         <div class="panel css-editor" id="css-1" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
-/* --- 实验目标 --- */
+/* ---实验目标 --- */
 /* HSL 让调色更直观：hsl(色相, 饱和度, 亮度) */
 
 .hsl-container {
@@ -189,7 +180,7 @@
                 <!-- Lab 1B: CurrentColor -->
                 <div class="lab-card">
                     <div class="lab-header">
-                        <span>🧪 实验 01-B：currentColor 的妙用</span>
+                        <span>实验 01-B：currentColor 的妙用</span>
                         <span id="badge-1b" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
                     </div>
                     <div class="lab-body">
@@ -205,7 +196,7 @@
                         </div>
                         <div class="panel css-editor" id="css-1b" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
-/* --- 实验目标 --- */
+/* ---实验目标 --- */
 /* 修改 .icon-button 的 color，观察边框和图标的变化 */
 
 .icon-button {
@@ -339,7 +330,7 @@
                 <!-- Lab 2: Font Properties -->
                 <div class="lab-card">
                     <div class="lab-header">
-                        <span>🧪 实验 02：字体综合演练</span>
+                        <span>实验 02：字体综合演练</span>
                         <span id="badge-2" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
                     </div>
                     <div class="lab-body">
@@ -352,7 +343,7 @@
                         </div>
                         <div class="panel css-editor" id="css-2" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
-/* --- 实验目标 --- */
+/* ---实验目标 --- */
 /* 尝试修改 font-family 为 serif 或 monospace */
 /* 尝试修改 font-weight 为 300, 900 */
 
@@ -425,7 +416,7 @@
                 <!-- Lab 03: Text Align & Decoration -->
                 <div class="lab-card">
                     <div class="lab-header">
-                        <span>🧪 实验 03：对齐、修饰与行高</span>
+                        <span>实验 03：对齐、修饰与行高</span>
                         <span id="badge-3" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
                     </div>
                     <div class="lab-body">
@@ -494,7 +485,7 @@
                 <!-- Lab 04: Spacing -->
                 <div class="lab-card">
                     <div class="lab-header">
-                        <span>🧪 实验 04：呼吸感与间距</span>
+                        <span>实验 04：呼吸感与间距</span>
                         <span id="badge-4" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
                     </div>
                     <div class="lab-body">
@@ -581,7 +572,7 @@
                 <!-- Lab 5: Overflow -->
                 <div class="lab-card">
                     <div class="lab-header">
-                        <span>🧪 实验 05：文本溢出处理</span>
+                        <span>实验 05：文本溢出处理</span>
                         <span id="badge-5" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
                     </div>
                     <div class="lab-body">
@@ -602,7 +593,7 @@
 }
 
 .card h3 {
-  /* 实验：实现单行省略号 */
+  /*实验：实现单行省略号 */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -614,7 +605,7 @@
 .card p {
   background: #f0f0f0;
   color: #0066CC;
-  /* 实验：防止长 URL 撑破容器 */
+  /*实验：防止长 URL 撑破容器 */
   word-break: break-all;
 }
                         </div>
@@ -684,7 +675,7 @@
                                 <!-- Lab 6: PX vs REM -->
                                 <div class="lab-card" style="margin-top: 30px;">
                                         <div class="lab-header">
-                                                <span>🧪 实验 06：rem 的响应式魔法</span>
+                                                <span>实验 06：rem 的响应式魔法</span>
                                                 <span id="badge-6" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
                                         </div>
                                         <div class="lab-body">
@@ -698,7 +689,7 @@
                                                 </div>
                                                 <div class="panel css-editor" id="css-6" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
-/* 实验：修改 .root-container 的 font-size
+/*实验：修改 .root-container 的 font-size
    观察哪个盒子会变大？
 */
 
@@ -761,7 +752,7 @@
                                 <!-- Lab 07: Viewport Units -->
                                 <div class="lab-card">
                                     <div class="lab-header">
-                                        <span>🧪 实验 07：Hero Banner 高度</span>
+                                        <span>实验 07：Hero Banner 高度</span>
                                         <span id="badge-7" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
                                     </div>
                                     <div class="lab-body">
@@ -838,7 +829,7 @@
                                 <!-- Lab 08: Border Styles -->
                                 <div class="lab-card">
                                     <div class="lab-header">
-                                        <span>🧪 实验 08：各异的边框风格</span>
+                                        <span>实验 08：各异的边框风格</span>
                                         <span id="badge-8" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
                                     </div>
                                     <div class="lab-body">
@@ -896,7 +887,7 @@
                                 <!-- Lab 9: Card Shadows -->
                                 <div class="lab-card">
                                         <div class="lab-header">
-                                                <span>🧪 实验 09：卡片阴影层级</span>
+                                                <span>实验 09：卡片阴影层级</span>
                                                 <span id="badge-9" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
                                         </div>
                                         <div class="lab-body">
@@ -961,7 +952,7 @@
                              <!-- Lab 10: Advanced Border -->
                              <div class="lab-card">
                                 <div class="lab-header">
-                                    <span>🧪 实验 10：不规则圆角艺术</span>
+                                    <span>实验 10：不规则圆角艺术</span>
                                     <span id="badge-10" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
                                 </div>
                                 <div class="lab-body">
@@ -1012,7 +1003,7 @@
                             <!-- Lab 11: Basic Table -->
                             <div class="lab-card">
                                 <div class="lab-header">
-                                    <span>🧪 实验 11：表格边框合并</span>
+                                    <span>实验 11：表格边框合并</span>
                                     <span id="badge-11" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
                                 </div>
                                 <div class="lab-body">
@@ -1064,7 +1055,7 @@
                             <!-- Lab 12: Styled Table -->
                             <div class="lab-card">
                                 <div class="lab-header">
-                                    <span>🧪 实验 12：斑马纹与悬停</span>
+                                    <span>实验 12：斑马纹与悬停</span>
                                     <span id="badge-12" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
                                 </div>
                                 <div class="lab-body">
@@ -1137,7 +1128,7 @@
                             <!-- Lab 13: Input Styling -->
                             <div class="lab-card">
                                 <div class="lab-header">
-                                    <span>🧪 实验 13：输入框交互</span>
+                                    <span>实验 13：输入框交互</span>
                                     <span id="badge-13" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
                                 </div>
                                 <div class="lab-body">
@@ -1189,7 +1180,7 @@ input:focus {
                             <!-- Lab 14: Button Styling -->
                             <div class="lab-card">
                                 <div class="lab-header">
-                                    <span>🧪 实验 14：按钮变体</span>
+                                    <span>实验 14：按钮变体</span>
                                     <span id="badge-14" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
                                 </div>
                                 <div class="lab-body">
@@ -1238,7 +1229,7 @@ input:focus {
                              <!-- Lab 15: Custom Checkbox -->
                              <div class="lab-card">
                                 <div class="lab-header">
-                                    <span>🧪 实验 15：自定义 Checkbox</span>
+                                    <span>实验 15：自定义 Checkbox</span>
                                     <span id="badge-15" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
                                 </div>
                                 <div class="lab-body">
@@ -1295,7 +1286,7 @@ input:focus {
                             <!-- Lab 16: Validation -->
                             <div class="lab-card">
                                 <div class="lab-header">
-                                    <span>🧪 实验 16：错误状态反馈</span>
+                                    <span>实验 16：错误状态反馈</span>
                                     <span id="badge-16" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
                                 </div>
                                 <div class="lab-body">

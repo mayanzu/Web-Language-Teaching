@@ -9,24 +9,20 @@
 <body>
 <nav class="sidebar">
     <div class="sidebar-nav">
-        <h3>课程概览</h3>
-        <a href="#intro" class="sidebar-link active">📦 第27课概览</a>
-        <a href="#why-function" class="sub-link">为什么需要函数</a>
-
-        <h3>基础概念</h3>
-        <a href="#what-is-function" class="sidebar-link">1. 函数是什么</a>
-        <a href="#function-declaration" class="sidebar-link">2. 函数的声明方式</a>
-        <a href="#function-expression" class="sub-link">函数表达式</a>
-        <a href="#arrow-function" class="sub-link">箭头函数</a>
-
-        <h3>核心功能</h3>
-        <a href="#parameters" class="sidebar-link">3. 参数与返回值</a>
-        <a href="#return-value" class="sub-link">返回值详解</a>
-        <a href="#scope" class="sidebar-link">4. 作用域与闭包</a>
-        <a href="#higher-order" class="sidebar-link">5. 高阶函数</a>
-
-        <h3>实战应用</h3>
-        <a href="#practical" class="sidebar-link">6. 综合实战</a>
+        <h3>课程导航</h3>
+        <a class="sidebar-link" href="#intro">课程概览</a>
+        
+        <h3>Part 1: 函数基础</h3>
+        <a class="sidebar-link" href="#what-is-function" class="sub-link">1. 函数是什么</a>
+        <a class="sidebar-link" href="#function-declaration" class="sub-link">2. 函数的声明方式</a>
+        <a class="sidebar-link" href="#parameters" class="sub-link">3. 参数与返回值</a>
+        
+        <h3>Part 2: 函数进阶</h3>
+        <a class="sidebar-link" href="#scope" class="sub-link">4. 作用域与闭包</a>
+        <a class="sidebar-link" href="#higher-order" class="sub-link">5. 高阶函数</a>
+        
+        <h3>Part 3: 实战练习</h3>
+        <a class="sidebar-link" href="#practical" class="sub-link">6. 综合实战</a>
     </div>
 </nav>
 
@@ -65,7 +61,7 @@
       <p>想象你正在开发一个计算器程序,需要多次计算两个数的和。如果每次都重复写相同的代码,不仅麻烦,而且一旦计算逻辑需要修改,就要改很多地方。</p>
       <p><strong>函数,就是把重复的代码封装起来,给它一个名字,需要时调用这个名字即可。</strong></p>
       <div class="tip-box">
-        <span class="tip-title">💡 生活中的类比</span>
+        <span class="tip-title">生活中的类比</span>
         <ul class="checklist">
           <li><strong>洗衣机:</strong>放入脏衣服和洗衣液(输入/参数),按下开始键,内部执行洗涤程序(函数体),最后得到干净的衣服(输出/返回值)</li>
           <li><strong>菜谱:</strong>一道菜的做法就是一个"函数",食材是参数,烹饪步骤是函数体,做好的菜是返回值</li>
@@ -184,7 +180,7 @@ console.log(greet("小红"));  // 输出：你好，小红！</code></pre>
       <h3>3.1 函数声明 (Function Declaration)</h3>
       <p>这是最传统、最常见的函数定义方式。使用 <code>function</code> 关键字声明的函数具有一个重要特性:<strong>函数提升 (Hoisting)</strong>。</p>
       <div class="tip-box">
-        <span class="tip-title">💡 什么是函数提升?</span>
+        <span class="tip-title">什么是函数提升?</span>
         <p>JavaScript 引擎在执行代码前,会先扫描整个作用域,将所有函数声明"提升"到作用域顶部。这意味着你可以在函数声明之前调用它。</p>
         <p><strong>优点:</strong>代码组织更灵活,可以把主要逻辑放在前面,辅助函数放在后面。</p>
         <p><strong>注意:</strong>只有函数声明会提升,函数表达式不会。</p>
@@ -203,7 +199,7 @@ function multiply(x, y) {
 }</code></pre>
 
       <div class="tip-box">
-        <span class="tip-title">💡 函数提升（Hoisting）</span>
+        <span class="tip-title">函数提升（Hoisting）</span>
         <p>函数声明会被提升到作用域顶部，因此可以在声明之前调用函数。这是与函数表达式的重要区别。</p>
       </div>
 
@@ -231,7 +227,7 @@ console.log(area);  // 输出：50</code></pre>
       <h3>4.1 匿名函数表达式</h3>
       <p>将函数赋值给变量,函数本身没有名称。<strong>重要:</strong>函数表达式不会被提升!</p>
       <div class="warning-box">
-        <span class="tip-title">⚠️ 注意</span>
+        <span class="tip-title">注意</span>
         <p>函数表达式必须先定义,后调用。如果在定义前调用,会报错:<code>ReferenceError: Cannot access before initialization</code></p>
       </div>
       
@@ -261,7 +257,7 @@ console.log(divide(10, 2));  // 5</code></pre>
 console.log(factorial(5));  // 120</code></pre>
 
       <div class="tip-box">
-        <span class="tip-title">💡 函数声明 vs 函数表达式</span>
+        <span class="tip-title">函数声明 vs 函数表达式</span>
         <table class="prop-table">
           <thead>
             <tr>
@@ -352,7 +348,7 @@ const createUser = (name, age) => ({ name: name, age: age });</code></pre>
       <h3>6.1 默认参数 (Default Parameters)</h3>
       <p>在函数定义时,可以为参数指定默认值。如果调用时没有传递该参数(或传入 <code>undefined</code>),将使用默认值。</p>
       <div class="tip-box">
-        <span class="tip-title">💡 默认参数的优势</span>
+        <span class="tip-title">默认参数的优势</span>
         <ul class="checklist">
           <li>避免了 ES5 中冗长的 <code>name = name || '默认值'</code> 写法</li>
           <li>代码更清晰、易读</li>
@@ -573,7 +569,7 @@ console.log(emptyReturn());  // undefined</code></pre>
       <h3>8.1 什么是作用域?</h3>
       <p><strong>作用域</strong>(Scope)是变量的可访问范围。可以把它想象成一个个嵌套的房间,每个房间都有自己的"可见区域"。</p>
       <div class="tip-box">
-        <span class="tip-title">💡 作用域的类型</span>
+        <span class="tip-title">作用域的类型</span>
         <ul class="checklist">
           <li><strong>全局作用域:</strong>整个程序都能访问</li>
           <li><strong>函数作用域:</strong>只在函数内部可访问</li>
@@ -750,7 +746,7 @@ function testClosure() {
         <li>返回一个函数</li>
       </ul>
       <div class="tip-box">
-        <span class="tip-title">💡 为什么需要高阶函数?</span>
+        <span class="tip-title">为什么需要高阶函数?</span>
         <p>高阶函数让代码更加抽象、灵活和可复用。例如,<code>map</code>、<code>filter</code>、<code>reduce</code> 等数组方法都是高阶函数。</p>
       </div>
       
@@ -925,7 +921,7 @@ function showTop() {
       <p>让我们综合运用本课学到的所有知识:函数声明、箭头函数、对象方法、参数验证、高阶函数等,构建一个功能完整的计算器系统。</p>
       
       <div class="tip-box">
-        <span class="tip-title">🎯 本案例涵盖的知识点</span>
+        <span class="tip-title">本案例涵盖的知识点</span>
         <ul class="checklist">
           <li>使用对象存储函数(函数作为对象的值)</li>
           <li>箭头函数简化代码</li>
@@ -1008,7 +1004,7 @@ function calculate(operation) {
   
   if (isNaN(num1) || isNaN(num2)) {
     document.getElementById('calc-result').innerText = 
-      "⚠️ 请输入有效的数字！";
+      "请输入有效的数字！";
     return;
   }
   
@@ -1029,7 +1025,7 @@ function calculate(operation) {
       </div>
 
       <div class="tip-box">
-        <span class="tip-title">💡 案例知识点总结</span>
+        <span class="tip-title">案例知识点总结</span>
         <ul class="checklist">
           <li>使用对象存储函数（函数作为值）</li>
           <li>箭头函数简化代码</li>
@@ -1041,7 +1037,7 @@ function calculate(operation) {
     </section>
 
     <section style="margin-top:80px;padding-top:40px;border-top:2px solid var(--border-color);">
-      <h2>🎯 课程总结</h2>
+      <h2>课程总结</h2>
       <div class="note-box">
         <span class="tip-title">本课重点回顾</span>
         <ul class="checklist">

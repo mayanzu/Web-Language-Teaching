@@ -9,31 +9,22 @@
 <body>
 <nav class="sidebar">
     <div class="sidebar-nav">
-        <h3>课程概览</h3>
-        <a href="#intro" class="sidebar-link active">🧮 第3课概览</a>
-        <a href="#what-is-expression" class="sub-link">表达式与语句</a>
-
-        <h3>基础运算符</h3>
-        <a href="#assignment-operators" class="sidebar-link">1. 赋值运算符</a>
-        <a href="#arithmetic-operators" class="sidebar-link">2. 算术运算符</a>
-        <a href="#lab-cart-total" class="sub-link">实验 01：购物车总价</a>
-        <a href="#unary-operators" class="sidebar-link">3. 一元运算符</a>
-        <a href="#lab-counter" class="sub-link">实验 02：简易计数器</a>
-
-        <h3>比较与逻辑</h3>
-        <a href="#comparison-operators" class="sidebar-link">4. 比较运算符</a>
-        <a href="#equality-operators" class="sidebar-link">5. 相等运算符 (== vs ===)</a>
-        <a href="#lab-guess-result" class="sub-link">实验 03：比较结果预测</a>
-        <a href="#logical-operators" class="sidebar-link">6. 逻辑运算符</a>
-        <a href="#short-circuit" class="sub-link">短路求值</a>
-        <a href="#lab-gate-access" class="sub-link">实验 04：门禁规则模拟</a>
-
-        <h3>进阶主题</h3>
-        <a href="#precedence" class="sidebar-link">7. 运算符优先级</a>
-        <a href="#coercion" class="sidebar-link">8. 隐式类型转换</a>
+        <h3>课程导航</h3>
+        <a class="sidebar-link" href="#intro">课程概览</a>
         
-        <h3>总结</h3>
-        <a href="#summary" class="sidebar-link">9. 综合案例与小结</a>
+        <h3>Part 1: 基础运算符</h3>
+        <a class="sidebar-link" href="#assignment-operators" class="sub-link">1. 赋值运算符</a>
+        <a class="sidebar-link" href="#arithmetic-operators" class="sub-link">2. 算术运算符</a>
+        <a class="sidebar-link" href="#unary-operators" class="sub-link">3. 一元运算符</a>
+        
+        <h3>Part 2: 比较与逻辑</h3>
+        <a class="sidebar-link" href="#comparison-operators" class="sub-link">4. 比较运算符</a>
+        <a class="sidebar-link" href="#equality-operators" class="sub-link">5. 相等运算符</a>
+        <a class="sidebar-link" href="#logical-operators" class="sub-link">6. 逻辑运算符</a>
+        
+        <h3>Part 3: 进阶主题</h3>
+        <a class="sidebar-link" href="#precedence" class="sub-link">7. 运算符优先级</a>
+        <a class="sidebar-link" href="#summary" class="sub-link">8. 课程小结</a>
     </div>
 </nav>
 <main class="content">
@@ -93,7 +84,7 @@
             </tbody>
         </table>
         <div class="tip-box">
-            <span class="tip-title">💡 一个简单的类比</span>
+            <span class="tip-title">一个简单的类比</span>
             <p>在句子“我买了 <strong>两个苹果</strong>”中，“两个苹果”就像一个<strong>表达式</strong>（它指向一个具体的值），而整个句子就像一条<strong>语句</strong>（它描述了一个完整的动作）。<br>
             在 JavaScript 中，<code>let price = 9.9 * 2;</code> 是一条语句，而其中的 <code>9.9 * 2</code> 是一个表达式。</p>
         </div>
@@ -230,7 +221,7 @@ outputDiv.innerHTML = `
             </tbody>
         </table>
         <div class="tip-box">
-            <span class="tip-title">💡 <code>x++</code> 和 <code>++x</code> 的区别</span>
+            <span class="tip-title"><code>x++</code> 和 <code>++x</code> 的区别</span>
             <p>虽然它们都将 <code>x</code> 的值加 1，但在表达式中的行为不同：</p>
             <ul style="margin-left: 20px;">
                 <li><strong>后递增 (<code>x++</code>)</strong>: 先返回 <code>x</code> 的原始值，然后再加 1。</li>
@@ -385,7 +376,7 @@ false && check(); // 左边是 false，右边的 check() 不会执行，控制�
 true || check(); // 左边是 true，右边的 check() 不会执行，控制台无输出
 </code></pre>
         <div class="tip-box">
-            <span class="tip-title">💡 短路求值的妙用</span>
+            <span class="tip-title">短路求值的妙用</span>
             <p><strong>1. 条件执行</strong>: 替代简单的 <code>if</code> 语句。</p>
             <code>isAllowed && grantAccess(); // 仅当 isAllowed 为 true 时才执行 grantAccess()</code>
             <p style="margin-top:10px;"><strong>2. 提供默认值</strong>: 这是一个非常常见的技巧。</p>
@@ -470,7 +461,7 @@ outputDiv.innerHTML = `
             </tbody>
         </table>
         <div class="tip-box">
-            <span class="tip-title">💡 终极法则：不确定就加括号！</span>
+            <span class="tip-title">终极法则：不确定就加括号！</span>
             <p>编写代码时，清晰性远比炫技重要。如果你不确定运算顺序，或者想让代码的意图更明显，请毫不犹豫地使用括号 <code>()</code>。</p>
 <pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>// 不清晰的写法
 const isValid = age >= 18 && age <= 65 || isVIP;
