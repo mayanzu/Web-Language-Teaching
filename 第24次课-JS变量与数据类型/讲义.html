@@ -6,6 +6,7 @@
     <title>第24课：JS变量与数据类型</title>
     
     <link rel='stylesheet' href='../统一讲义样式模板.css'>
+    <script src='../js/lecture-utils.js'></script>
 </head>
 <body>
 <nav class="sidebar">
@@ -1002,8 +1003,8 @@ console.log('第24次课-JS变量与数据类型实验开始');
                 </div>
             </div>
             <div class="action-bar">
-                <button class="btn btn-run" onclick="run24jsExperiment()">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="reset24jsExperiment()">↺ 重置</button>
+                <button class="btn btn-run" onclick="runJsExperiment('24js-js', '24js-preview', '24js-status')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetJsExperiment('24js-js', '24js-preview', '24js-status')">↺ 重置</button>
             </div>
         </div>
 
@@ -1038,8 +1039,8 @@ console.log('第24次课-JS变量与数据类型实验开始');
                 </div>
             </div>
             <div class="action-bar">
-                <button class="btn btn-run" onclick="run24jsExperiment()">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="reset24jsExperiment()">↺ 重置</button>
+                <button class="btn btn-run" onclick="runJsExperiment('24js-js', '24js-preview', '24js-status')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetJsExperiment('24js-js', '24js-preview', '24js-status')">↺ 重置</button>
             </div>
         </div>
 </section>
@@ -1060,145 +1061,7 @@ console.log('第24次课-JS变量与数据类型实验开始');
     </section>
 </main>
 
-    <script>
-        // 新增：存储初始HTML内容的对象
-        const initialHtmlContent = {};
-        let initial24HtmlContent = '';
 
-        // 页面加载时保存初始HTML内容
-        document.addEventListener('DOMContentLoaded', function() {
-            // 获取所有css-editor元素
-            const editors = document.querySelectorAll('.css-editor[id^="css-"]');
-            editors.forEach(editor => {
-                const id = editor.id.replace('css-', '');
-                initialHtmlContent[id] = editor.innerHTML;
-            });
-
-            // 保存最后一个实验的初始内容
-            const lastEditor = document.getElementById('24js-js');
-            if (lastEditor) {
-                initial24HtmlContent = lastEditor.innerHTML;
-            }
-        });
-
-        // 双栏交互实验室功能
-        function applyHTML(id) {
-            const editor = document.getElementById('html-' + id);
-            const preview = document.getElementById('preview-' + id);
-            const badge = document.getElementById('badge-' + id);
-            
-            if (editor && preview) {
-                preview.innerHTML = editor.innerText;
-                
-                // 更新状态徽章
-                badge.innerText = "运行中 (Active)";
-                badge.className = "status-badge status-active";
-            }
-        }
-        
-        function resetHTML(id) {
-            const editor = document.getElementById('html-' + id);
-            const preview = document.getElementById('preview-' + id);
-            const badge = document.getElementById('badge-' + id);
-            
-            // 恢复编辑器的初始内容
-            if (editor && initialHtmlContent[id]) {
-                editor.innerHTML = initialHtmlContent[id];
-            }
-
-            if (preview) {
-                preview.innerHTML = '<div class="preview-label">预览效果</div>';
-            }
-            
-            // 更新状态徽章
-            badge.innerText = "未运行 (Inactive)";
-            badge.className = "status-badge";
-        }
-
-        // JS 编辑器功能
-        function applyJS(id) {
-            const editor = document.getElementById('js-' + id);
-            const preview = document.getElementById('preview-' + id);
-            const badge = document.getElementById('badge-' + id);
-            
-            if (editor && preview) {
-                // 获取编辑器内容
-                let jsContent = editor.innerText;
-                // 移除标签文本
-                const labelText = "JS (可编辑)";
-                if (jsContent.indexOf(labelText) !== -1) {
-                    jsContent = jsContent.replace(labelText, "");
-                }
-                
-                // 执行 JS 代码
-                try {
-                    eval(jsContent);
-                    // 更新状态徽章
-                    badge.innerText = "运行中 (Active)";
-                    badge.className = "status-badge status-active";
-                } catch (error) {
-                    alert('代码执行出错: ' + error.message);
-                }
-            }
-        }
-
-        function removeJS(id) {
-            const editor = document.getElementById('js-' + id);
-            const preview = document.getElementById('preview-' + id);
-            const badge = document.getElementById('badge-' + id);
-            
-            // 恢复编辑器的初始内容
-            if (editor && initialHtmlContent[id]) {
-                editor.innerHTML = initialHtmlContent[id];
-            }
-
-            // 更新状态徽章
-            badge.innerText = "未运行 (Inactive)";
-            badge.className = "status-badge";
-        }
-
-        // 第24次课实验功能
-        function run24jsExperiment() {
-            const editor = document.getElementById('24js-js');
-            const preview = document.getElementById('24js-preview');
-            const status = document.getElementById('24js-status');
-            
-            if (editor && preview) {
-                // 获取编辑器内容
-                let jsContent = editor.innerText;
-                // 移除标签文本
-                const labelText = "JS (可编辑)";
-                if (jsContent.indexOf(labelText) !== -1) {
-                    jsContent = jsContent.replace(labelText, "");
-                }
-                
-                // 执行 JS 代码
-                try {
-                    eval(jsContent);
-                    // 更新状态徽章
-                    status.innerText = "运行中";
-                    status.className = "status-badge status-active";
-                } catch (error) {
-                    alert('代码执行出错: ' + error.message);
-                }
-            }
-        }
-
-        function reset24jsExperiment() {
-            const editor = document.getElementById('24js-js');
-            const preview = document.getElementById('24js-preview');
-            const status = document.getElementById('24js-status');
-            
-            // 恢复编辑器的初始内容
-            if (editor && initial24HtmlContent) {
-                editor.innerHTML = initial24HtmlContent;
-            }
-            
-            // 更新状态徽章
-            status.innerText = "未运行";
-            status.className = "status-badge";
-        }
-    </script>
 </body>
 </html>
 

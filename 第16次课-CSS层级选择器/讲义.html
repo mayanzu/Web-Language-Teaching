@@ -5,110 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>第16课：CSS层级选择器</title>
     <link rel='stylesheet' href='../统一讲义样式模板.css'>
-</head>
-<body>
-        <script>
-        // 新增：存储初始HTML内容的对象
-        const initialHtmlContent = {};
-        let initial16HtmlContent = '';
-
-        // 页面加载时保存初始HTML内容
-        document.addEventListener('DOMContentLoaded', function() {
-            // 获取所有css-editor元素
-            const editors = document.querySelectorAll('.css-editor[id^="css-"]');
-            editors.forEach(editor => {
-                const id = editor.id.replace('css-', '');
-                initialHtmlContent[id] = editor.innerHTML;
-            });
-
-            // 保存最后一个实验的初始内容
-            const lastEditor = document.getElementById('css-5');
-            if (lastEditor) {
-                initial16HtmlContent = lastEditor.innerHTML;
-            }
-        });
-
-        // 双栏交互实验室功能
-        function applyHTML(id) {
-            const editor = document.getElementById('html-' + id);
-            const preview = document.getElementById('preview-' + id);
-            const badge = document.getElementById('badge-' + id);
-            
-            if (editor && preview) {
-                preview.innerHTML = editor.innerText;
-                
-                // 更新状态徽章
-                badge.innerText = "运行中 (Active)";
-                badge.className = "status-badge status-active";
-            }
-        }
-        
-        function resetHTML(id) {
-            const editor = document.getElementById('html-' + id);
-            const preview = document.getElementById('preview-' + id);
-            const badge = document.getElementById('badge-' + id);
-            
-            // 恢复编辑器的初始内容
-            if (editor && initialHtmlContent[id]) {
-                editor.innerHTML = initialHtmlContent[id];
-            }
-
-            if (preview) {
-                preview.innerHTML = '<div class="preview-label">预览效果</div>';
-            }
-            
-            // 更新状态徽章
-            badge.innerText = "未运行 (Inactive)";
-            badge.className = "status-badge";
-        }
-
-        // CSS 编辑器功能
-        function applyCSS(id) {
-            const editor = document.getElementById('css-' + id);
-            const preview = document.getElementById('preview-' + id);
-            const badge = document.getElementById('badge-' + id);
-            
-            if (editor && preview) {
-                // 获取编辑器内容
-                let cssContent = editor.innerText;
-                // 移除标签文本
-                const labelText = "CSS (可编辑)";
-                if (cssContent.indexOf(labelText) !== -1) {
-                    cssContent = cssContent.replace(labelText, "");
-                }
-                
-                // 应用 CSS 到预览框
-                const styleElement = document.createElement('style');
-                styleElement.textContent = cssContent;
-                preview.appendChild(styleElement);
-                
-                // 更新状态徽章
-                badge.innerText = "运行中 (Active)";
-                badge.className = "status-badge status-active";
-            }
-        }
-
-        function removeCSS(id) {
-            const editor = document.getElementById('css-' + id);
-            const preview = document.getElementById('preview-' + id);
-            const badge = document.getElementById('badge-' + id);
-            
-            // 恢复编辑器的初始内容
-            if (editor && initialHtmlContent[id]) {
-                editor.innerHTML = initialHtmlContent[id];
-            }
-
-            if (preview) {
-                // 移除所有样式元素
-                const styleElements = preview.querySelectorAll('style');
-                styleElements.forEach(style => style.remove());
-            }
-            
-            // 更新状态徽章
-            badge.innerText = "未运行 (Inactive)";
-            badge.className = "status-badge";
-        }
-    </script>
+    <script src='../js/lecture-utils.js'></script>
 </head>
 <body>
     <!-- 侧边栏导航 -->
@@ -207,8 +104,8 @@ p {
                     </div>
                 </div>
                 <div class="action-bar">
-                    <button class="btn btn-run" onclick="applyCSS('1')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="removeCSS('1')">↺ 重置</button>
+                    <button class="btn btn-run" onclick="runCssExperiment('css-1', 'preview-1', 'badge-1')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetCssExperiment('css-1', 'preview-1', 'badge-1')">↺ 重置</button>
                 </div>
                 <div class="preview-box" id="preview-1">
                     <p>这是一个普通段落</p>
@@ -312,8 +209,8 @@ p {
                     </div>
                 </div>
                 <div class="action-bar">
-                    <button class="btn btn-run" onclick="applyCSS('2')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="removeCSS('2')">↺ 重置</button>
+                    <button class="btn btn-run" onclick="runCssExperiment('css-2', 'preview-2', 'badge-2')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetCssExperiment('css-2', 'preview-2', 'badge-2')">↺ 重置</button>
                 </div>
                 <div class="preview-box" id="preview-2">
                     <div class="box">
@@ -407,8 +304,8 @@ p {
                     </div>
                 </div>
                 <div class="action-bar">
-                    <button class="btn btn-run" onclick="applyCSS('3')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="removeCSS('3')">↺ 重置</button>
+                    <button class="btn btn-run" onclick="runCssExperiment('css-3', 'preview-3', 'badge-3')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetCssExperiment('css-3', 'preview-3', 'badge-3')">↺ 重置</button>
                 </div>
                 <div class="preview-box" id="preview-3">
                     <div class="article">
@@ -499,8 +396,8 @@ h2 + p {
                     </div>
                 </div>
                 <div class="action-bar">
-                    <button class="btn btn-run" onclick="applyCSS('4')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="removeCSS('4')">↺ 重置</button>
+                    <button class="btn btn-run" onclick="runCssExperiment('css-4', 'preview-4', 'badge-4')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetCssExperiment('css-4', 'preview-4', 'badge-4')">↺ 重置</button>
                 </div>
                 <div class="preview-box" id="preview-4">
                     <h2>章节标题</h2>
@@ -593,8 +490,8 @@ h3 ~ li {
                     </div>
                 </div>
                 <div class="action-bar">
-                    <button class="btn btn-run" onclick="applyCSS('5')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="removeCSS('5')">↺ 重置</button>
+                    <button class="btn btn-run" onclick="runCssExperiment('css-5', 'preview-5', 'badge-5')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetCssExperiment('css-5', 'preview-5', 'badge-5')">↺ 重置</button>
                 </div>
                 <div class="preview-box" id="preview-5">
                     <h3>小节标题</h3>
@@ -693,8 +590,8 @@ article > h2 + p {
                 </div>
             </div>
             <div class="action-bar">
-                <button class="btn btn-run" onclick="applyCSS('6')">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="removeCSS('6')">↺ 重置</button>
+                <button class="btn btn-run" onclick="runCssExperiment('css-6', 'preview-6', 'badge-6')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetCssExperiment('css-6', 'preview-6', 'badge-6')">↺ 重置</button>
             </div>
         </div>
 </section></main>

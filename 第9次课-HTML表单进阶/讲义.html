@@ -5,85 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>第9课：HTML表单进阶</title>
     <link rel='stylesheet' href='../统一讲义样式模板.css'>
-    
-    <script>
-        // 新增：存储初始HTML内容的对象
-        const initialHtmlContent = {};
-        let initial9HtmlContent = '';
-
-        // 页面加载时保存初始HTML内容
-        document.addEventListener('DOMContentLoaded', function() {
-            // 获取所有html-editor元素
-            const editors = document.querySelectorAll('.html-editor[id^="html-"]');
-            editors.forEach(editor => {
-                const id = editor.id.replace('html-', '');
-                initialHtmlContent[id] = editor.innerHTML;
-            });
-
-            // 保存最后一个实验的初始内容
-            const lastEditor = document.getElementById('9html-html');
-            if (lastEditor) {
-                initial9HtmlContent = lastEditor.innerHTML;
-            }
-        });
-
-        // 核心 HTML 注入逻辑
-        function applyHTML(id) {
-            const editor = document.getElementById(`html-${id}`);
-            if (!editor) return;
-
-            const previewId = `preview-${id}`;
-            let rawHtml = editor.innerText; // 使用 innerText 保留换行
-
-            // 清理编辑器自带的 Label 文本
-            const labelText = "HTML (可编辑)";
-            if (rawHtml.indexOf(labelText) !== -1) {
-                rawHtml = rawHtml.replace(labelText, "");
-            }
-
-            // 将HTML代码注入到预览框
-            const previewBox = document.getElementById(previewId);
-            if (previewBox) {
-                previewBox.innerHTML = rawHtml;
-            }
-
-            updateStatus(id, true);
-        }
-
-        // 重置功能
-        function resetHTML(id) {
-            const editor = document.getElementById(`html-${id}`);
-            if (!editor) return;
-
-            // 恢复编辑器的初始内容
-            if (initialHtmlContent[id]) {
-                editor.innerHTML = initialHtmlContent[id];
-            }
-
-            const previewId = `preview-${id}`;
-            const previewBox = document.getElementById(previewId);
-            if (previewBox) {
-                previewBox.innerHTML = '<div class="preview-label">预览效果</div>';
-            }
-
-            updateStatus(id, false);
-        }
-
-        // 更新状态标签
-        function updateStatus(id, isActive) {
-            const badge = document.getElementById(`badge-${id}`);
-            if (badge) {
-                if (isActive) {
-                    badge.textContent = "已运行";
-                    badge.className = "status-badge status-active";
-                } else {
-                    badge.textContent = "未运行";
-                    badge.className = "status-badge";
-                }
-            }
-        }
-    </script>
-    <link rel='stylesheet' href='../统一讲义样式模板.css'>\n</head>
+    <script src='../js/lecture-utils.js'></script>\n</head>
 <body>
     <!-- 侧边栏导航 -->
     <nav class="sidebar">
@@ -317,8 +239,8 @@
                     </div>
                 </div>
                 <div class="action-bar">
-                    <button class="btn btn-run" onclick="applyHTML('1')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetHTML('1')">↺ 重置</button>
+                    <button class="btn btn-run" onclick="runHtmlExperiment('html-1', 'preview-1', 'badge-1')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHtmlExperiment('html-1', 'preview-1', 'badge-1')">↺ 重置</button>
                 </div>
             </div>
         </section>
@@ -408,8 +330,8 @@
                     </div>
                 </div>
                 <div class="action-bar">
-                    <button class="btn btn-run" onclick="applyHTML('2')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetHTML('2')">↺ 重置</button>
+                    <button class="btn btn-run" onclick="runHtmlExperiment('html-2', 'preview-2', 'badge-2')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHtmlExperiment('html-2', 'preview-2', 'badge-2')">↺ 重置</button>
                 </div>
             </div>
         </section>
@@ -568,8 +490,8 @@
                     </div>
                 </div>
                 <div class="action-bar">
-                    <button class="btn btn-run" onclick="applyHTML('3')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetHTML('3')">↺ 重置</button>
+                    <button class="btn btn-run" onclick="runHtmlExperiment('html-3', 'preview-3', 'badge-3')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHtmlExperiment('html-3', 'preview-3', 'badge-3')">↺ 重置</button>
                 </div>
             </div>
         </section>
@@ -698,8 +620,8 @@
                     </div>
                 </div>
                 <div class="action-bar">
-                    <button class="btn btn-run" onclick="applyHTML('4')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetHTML('4')">↺ 重置</button>
+                    <button class="btn btn-run" onclick="runHtmlExperiment('html-4', 'preview-4', 'badge-4')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHtmlExperiment('html-4', 'preview-4', 'badge-4')">↺ 重置</button>
                 </div>
             </div>
         </section>
@@ -809,8 +731,8 @@
                 </div>
             </div>
             <div class="action-bar">
-                <button class="btn btn-run" onclick="applyHTML('5')">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="resetHTML('5')">↺ 重置</button>
+                <button class="btn btn-run" onclick="runHtmlExperiment('html-5', 'preview-5', 'badge-5')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetHtmlExperiment('html-5', 'preview-5', 'badge-5')">↺ 重置</button>
             </div>
         </div>
 </section></main>
