@@ -67,7 +67,7 @@
         // 重置预览区域
         const preview = document.getElementById('4html-preview');
         if (preview) {
-            preview.innerHTML = '<span class="panel-label">预览效果</span>';
+            preview.innerHTML = '<div class="panel-label">预览效果</div>';
         }
         
         
@@ -106,7 +106,7 @@
         // 重置预览区域
         const preview = document.getElementById('4html-preview');
         if (preview) {
-            preview.innerHTML = '<span class="panel-label">预览效果</span>';
+            preview.innerHTML = '<div class="panel-label">预览效果</div>';
         }
         
         
@@ -121,7 +121,7 @@
     <nav class="sidebar">
         <div class="sidebar-nav">
             <h3>课程导航</h3>
-            <a class="sidebar-link" href="#intro">课程概览</a>
+            <a class="sidebar-link" href="#intro">👋 课程概览</a>
             
             <h3>Part 1: HTML链接基础</h3>
             <a class="sidebar-link" href="#basic-links" class="sub-link">1. 基本链接语法</a>
@@ -166,12 +166,12 @@
             
             <div class="lab-card">
                 <div class="lab-header">
-                    <span>实验 01：基本链接语法</span>
-                    <span id="badge-1" class="status-badge">未运行</span>
+                    <span>实验 01：基本链接语法</div>
+                    <span id="badge-1" class="status-badge">未运行</div>
                 </div>
-                <div class="lab-body html-experiment">
-                    <div class="code-editor" id="html-1" contenteditable="true">
-<span class="panel-label">HTML (可编辑)</span>&lt;!DOCTYPE html&gt;
+                <div class="lab-body">
+                    <div class="html-editor" id="html-1" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>&lt;!DOCTYPE html&gt;
 &lt;html lang="zh-CN"&gt;
 &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
@@ -190,8 +190,8 @@
                     <button class="btn btn-run" onclick="applyHTML('1')">▶ 运行代码</button>
                     <button class="btn btn-reset" onclick="resetHTML('1')">↺ 重置</button>
                 </div>
-                <div class="preview-area" id="preview-1">
-                    <span class="panel-label">预览效果</span>
+                <div class="preview-box" id="preview-1">
+                    <div class="panel-label">预览效果</div>
                 </div>
             </div>
         </section>
@@ -253,12 +253,12 @@
             
             <div class="lab-card">
                 <div class="lab-header">
-                    <span>实验 02：链接属性</span>
-                    <span id="badge-2" class="status-badge">未运行</span>
+                    <span>实验 02：链接属性</div>
+                    <span id="badge-2" class="status-badge">未运行</div>
                 </div>
-                <div class="lab-body html-experiment">
-                    <div class="code-editor" id="html-2" contenteditable="true">
-<span class="panel-label">HTML (可编辑)</span>&lt;!DOCTYPE html&gt;
+                <div class="lab-body">
+                    <div class="html-editor" id="html-2" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>&lt;!DOCTYPE html&gt;
 &lt;html lang="zh-CN"&gt;
 &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
@@ -277,8 +277,8 @@
                     <button class="btn btn-run" onclick="applyHTML('2')">▶ 运行代码</button>
                     <button class="btn btn-reset" onclick="resetHTML('2')">↺ 重置</button>
                 </div>
-                <div class="preview-area" id="preview-2">
-                    <span class="panel-label">预览效果</span>
+                <div class="preview-box" id="preview-2">
+                    <div class="panel-label">预览效果</div>
                 </div>
             </div>
             
@@ -288,7 +288,7 @@
             </p>
             
             <div class="tip-box">
-                <span class="tip-title">安全提示</span>
+                <span class="tip-title">安全提示</div>
                 <p>当使用<code>target="_blank"</code>打开新窗口时，新窗口可以通过<code>window.opener</code>访问原始窗口。
                 为了防止安全问题，我们应该始终在外部链接中添加<code>rel="noopener noreferrer"</code>属性。</p>
             </div>
@@ -329,12 +329,12 @@
             
             <div class="lab-card">
                 <div class="lab-header">
-                    <span>实验 03：锚点链接</span>
-                    <span id="badge-3" class="status-badge">未运行</span>
+                    <span>实验 03：锚点链接</div>
+                    <span id="badge-3" class="status-badge">未运行</div>
                 </div>
-                <div class="lab-body html-experiment">
-                    <div class="code-editor" id="html-3" contenteditable="true">
-<span class="panel-label">HTML (可编辑)</span>&lt;!DOCTYPE html&gt;
+                <div class="lab-body">
+                    <div class="html-editor" id="html-3" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>&lt;!DOCTYPE html&gt;
 &lt;html lang="zh-CN"&gt;
 &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
@@ -394,8 +394,8 @@
                     <button class="btn btn-run" onclick="applyHTML('3')">▶ 运行代码</button>
                     <button class="btn btn-reset" onclick="resetHTML('3')">↺ 重置</button>
                 </div>
-                <div class="preview-area" id="preview-3">
-                    <span class="panel-label">预览效果</span>
+                <div class="preview-box" id="preview-3">
+                    <div class="panel-label">预览效果</div>
                 </div>
             </div>
         </section>
@@ -413,12 +413,12 @@
             
             <div class="lab-card">
                 <div class="lab-header">
-                    <span>实验 04：邮件与电话链接</span>
-                    <span id="badge-4" class="status-badge">未运行</span>
+                    <span>实验 04：邮件与电话链接</div>
+                    <span id="badge-4" class="status-badge">未运行</div>
                 </div>
-                <div class="lab-body html-experiment">
-                    <div class="code-editor" id="html-4" contenteditable="true">
-<span class="panel-label">HTML (可编辑)</span>&lt;!DOCTYPE html&gt;
+                <div class="lab-body">
+                    <div class="html-editor" id="html-4" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>&lt;!DOCTYPE html&gt;
 &lt;html lang="zh-CN"&gt;
 &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
@@ -447,8 +447,8 @@
                     <button class="btn btn-run" onclick="applyHTML('4')">▶ 运行代码</button>
                     <button class="btn btn-reset" onclick="resetHTML('4')">↺ 重置</button>
                 </div>
-                <div class="preview-area" id="preview-4">
-                    <span class="panel-label">预览效果</span>
+                <div class="preview-box" id="preview-4">
+                    <div class="panel-label">预览效果</div>
                 </div>
             </div>
         </section>
@@ -471,12 +471,12 @@
         
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验：第4次课-HTML链接实践</span>
-                <span id="4html-status" class="status-badge">未运行</span>
+                <span>实验：第4次课-HTML链接实践</div>
+                <span id="4html-status" class="status-badge">未运行</div>
             </div>
-            <div class="lab-body html-experiment">
-                <div class="code-editor" id="4html-html" contenteditable="true">
-<span class="panel-label">HTML (可编辑)</span>&lt;!DOCTYPE html&gt;
+            <div class="lab-body">
+                <div class="html-editor" id="4html-html" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>&lt;!DOCTYPE html&gt;
 &lt;html lang="zh-CN"&gt;
 &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
@@ -512,8 +512,8 @@
                 <button class="btn btn-run" onclick="run4htmlExperiment()">▶ 运行代码</button>
                 <button class="btn btn-reset" onclick="reset4htmlExperiment()">↺ 重置</button>
             </div>
-            <div class="preview-area" id="4html-preview">
-                <span class="panel-label">预览效果</span>
+            <div class="preview-box" id="4html-preview">
+                <div class="panel-label">预览效果</div>
             </div>
         </div>
 </section></main>
@@ -548,7 +548,7 @@
             const previewId = `preview-${id}`;
             const previewBox = document.getElementById(previewId);
             if (previewBox) {
-                previewBox.innerHTML = '<span class="panel-label">预览效果</span>';
+                previewBox.innerHTML = '<div class="panel-label">预览效果</div>';
             }
 
             updateStatus(id, false);
@@ -596,7 +596,7 @@
             // 重置预览区域
             const preview = document.getElementById('4html-preview');
             if (preview) {
-                preview.innerHTML = '<span class="panel-label">预览效果</span>';
+                preview.innerHTML = '<div class="panel-label">预览效果</div>';
             }
             
             // 更新状态

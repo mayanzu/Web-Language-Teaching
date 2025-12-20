@@ -10,7 +10,7 @@
 <nav class="sidebar">
     <div class="sidebar-nav">
         <h3>课程导航</h3>
-        <a class="sidebar-link" href="#intro">课程概览</a>
+        <a class="sidebar-link" href="#intro">👋 课程概览</a>
         
         <h3>Part 1: 条件控制</h3>
         <a class="sidebar-link" href="#if-basic" class="sub-link">1. if 语句</a>
@@ -30,17 +30,17 @@
         <h1>第26课：JS控制结构</h1>
         <p class="intro">前面三课，我们学会了存储数据、进行运算和比较。但这些还不够——真正的程序需要能够"做决定"和"重复执行"。本课将学习控制结构：让程序根据条件选择不同的执行路径，或让某段代码重复执行指定次数。这是编程从"计算器"升级为"智能程序"的关键一步。</p>
         <div class="pill-list">
-            <span class="pill">if / else if / else</span>
-            <span class="pill">switch</span>
-            <span class="pill">for 循环</span>
-            <span class="pill">while 循环</span>
-            <span class="pill">break / continue</span>
-            <span class="pill">三元运算符</span>
+            <span class="pill">if / else if / else</div>
+            <span class="pill">switch</div>
+            <span class="pill">for 循环</div>
+            <span class="pill">while 循环</div>
+            <span class="pill">break / continue</div>
+            <span class="pill">三元运算符</div>
         </div>
         <div class="lab-card" style="margin-top: 30px;">
             <div class="lab-header">
-                <span>今日目标</span>
-                <span class="status-badge beginner">适合初学者</span>
+                <span>今日目标</div>
+                <span class="status-badge beginner">适合初学者</div>
             </div>
             <div class="lab-body">
                 <ul class="checklist">
@@ -99,7 +99,7 @@ if (temperature > 25) {
             <li>如果条件为 <code>false</code>，花括号内的代码会被跳过。</li>
         </ul>
         <div class="tip-box">
-            <span class="tip-title">代码块与花括号</span>
+            <span class="tip-title">代码块与花括号</div>
             <p>花括号 <code>{}</code> 定义了一个代码块。虽然当代码块只有一行时可以省略花括号，但<strong>强烈建议始终使用花括号</strong>，这能避免很多潜在的错误，并让代码更易读。</p>
 <pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>// 不推荐（容易出错）
 if (age >= 18) console.log('成年人');
@@ -162,8 +162,8 @@ if (num > 10) {
         <p>现在让我们实现一个完整的成绩评定系统。输入分数，自动输出对应的等级和评语。</p>
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验 01：多分支条件判断实践</span>
-                <span class="status-badge beginner">动手实践</span>
+                <span>实验 01：多分支条件判断实践</div>
+                <span class="status-badge beginner">动手实践</div>
             </div>
             <div class="lab-body split">
                 <div class="panel html-viewer">
@@ -239,7 +239,7 @@ if (age >= 18) {
 }
 </code></pre>
         <div class="tip-box">
-            <span class="tip-title">避免过度嵌套</span>
+            <span class="tip-title">避免过度嵌套</div>
             <p>虽然嵌套 <code>if</code> 很强大，但过深的嵌套会让代码难以阅读。通常建议嵌套不超过 2-3 层。如果逻辑太复杂，考虑使用逻辑运算符 (<code>&&</code>, <code>||</code>) 或将部分逻辑提取为函数。</p>
         </div>
     </section>
@@ -334,8 +334,8 @@ switch (fruit) {
         <p>使用 <code>switch</code> 语句实现一个星期查询器，输入1-7的数字，显示对应的星期名称。</p>
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验 02：switch 语句实践</span>
-                <span class="status-badge beginner">动手实践</span>
+                <span>实验 02：switch 语句实践</div>
+                <span class="status-badge beginner">动手实践</div>
             </div>
             <div class="lab-body split">
                 <div class="panel html-viewer">
@@ -443,7 +443,7 @@ for (let i = 1; i <= 5; i++) {
             </tbody>
         </table>
         <div class="tip-box">
-            <span class="tip-title">循环的执行流程</span>
+            <span class="tip-title">循环的执行流程</div>
             <p>让我们一步步看看 <code>for (let i = 1; i <= 3; i++)</code> 是如何执行的：</p>
             <ol style="margin-left: 20px;">
                 <li><strong>初始化</strong>: <code>let i = 1;</code> (只执行一次)</li>
@@ -482,8 +482,8 @@ for (let i = 0; i < fruits.length; i++) {
         <p>用嵌套的 <code>for</code> 循环来生成九九乘法表。这是一个经典的练习，能帮你深入理解循环的工作原理。</p>
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验 03：嵌套 for 循环</span>
-                <span class="status-badge beginner">动手实践</span>
+                <span>实验 03：嵌套 for 循环</div>
+                <span class="status-badge beginner">动手实践</div>
             </div>
             <div class="lab-body split">
                 <div class="panel html-viewer">
@@ -644,8 +644,8 @@ for (let i = 1; i <= 10; i++) {
         <p>综合运用循环和 <code>break</code> 语句，判断一个数是否为质数（只能被1和自己整除的数）。</p>
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验 04：循环 + break 综合应用</span>
-                <span class="status-badge advanced">进阶</span>
+                <span>实验 04：循环 + break 综合应用</div>
+                <span class="status-badge advanced">进阶</div>
             </div>
             <div class="lab-body split">
                 <div class="panel html-viewer">
@@ -699,13 +699,13 @@ function checkPrime() {
     
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验：第26次课-JS控制结构实践</span>
-                <span id="26js-status" class="status-badge">未运行</span>
+                <span>实验：第26次课-JS控制结构实践</div>
+                <span id="26js-status" class="status-badge">未运行</div>
             </div>
             <div class="lab-body css-js-experiment">
                 <div>
-                    <div class="code-editor" id="26js-js" contenteditable="true">
-<span class="panel-label">JavaScript (可编辑)</span>// 第26次课-JS控制结构实验
+                    <div class="html-editor" id="26js-js" contenteditable="true">
+<div class="panel-label">JavaScript (可编辑)</div>// 第26次课-JS控制结构实验
 
 // 在这里编写你的JavaScript代码
 
@@ -716,8 +716,8 @@ console.log('第26次课-JS控制结构实验开始');
 </div>
                 </div>
                 <div>
-                    <div class="preview-area" id="26js-preview">
-                        <span class="panel-label">预览效果</span>
+                    <div class="preview-box" id="26js-preview">
+                        <div class="panel-label">预览效果</div>
                         <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
                             <h3>第26次课-JS控制结构实验</h3>
                             <div id="26js-output">
@@ -735,13 +735,13 @@ console.log('第26次课-JS控制结构实验开始');
 
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验：第26次课-JS控制结构实践</span>
-                <span id="26js-status" class="status-badge">未运行</span>
+                <span>实验：第26次课-JS控制结构实践</div>
+                <span id="26js-status" class="status-badge">未运行</div>
             </div>
             <div class="lab-body css-js-experiment">
                 <div>
-                    <div class="code-editor" id="26js-js" contenteditable="true">
-<span class="panel-label">JavaScript (可编辑)</span>// 第26次课-JS控制结构实验
+                    <div class="html-editor" id="26js-js" contenteditable="true">
+<div class="panel-label">JavaScript (可编辑)</div>// 第26次课-JS控制结构实验
 
 // 在这里编写你的JavaScript代码
 
@@ -752,8 +752,8 @@ console.log('第26次课-JS控制结构实验开始');
 </div>
                 </div>
                 <div>
-                    <div class="preview-area" id="26js-preview">
-                        <span class="panel-label">预览效果</span>
+                    <div class="preview-box" id="26js-preview">
+                        <div class="panel-label">预览效果</div>
                         <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
                             <h3>第26次课-JS控制结构实验</h3>
                             <div id="26js-output">
@@ -775,8 +775,8 @@ console.log('第26次课-JS控制结构实验开始');
         <p>这是一个综合运用本课所有知识点的完整游戏：if 条件判断、循环、break 语句，以及用户交互。</p>
         <div class="lab-card">
             <div class="lab-header">
-                <span>综合案例：猜数字游戏 - 控制结构综合应用</span>
-                <span class="status-badge advanced">综合实战</span>
+                <span>综合案例：猜数字游戏 - 控制结构综合应用</div>
+                <span class="status-badge advanced">综合实战</div>
             </div>
             <div class="lab-body split">
                 <div class="panel html-viewer">
@@ -900,642 +900,38 @@ initGame();
     </section>
 </main>
 
-<script>
-    // --- Lab 01: Grade Evaluation ---
-    const gradeInitialCode = `function evaluateScore() {
-    const scoreInput = document.getElementById('score-input');
-    const resultDiv = document.getElementById('grade-result');
-    const score = Number(scoreInput.value);
-    
-    let grade = '';
-    let comment = '';
-    
-    if (score >= 90) {
-        grade = 'A 优秀';
-        comment = '非常棒！继续保持！';
-    } else if (score >= 80) {
-        grade = 'B 良好';
-        comment = '很不错，再接再厉！';
-    } else if (score >= 70) {
-        grade = 'C 中等';
-        comment = '还可以，需要更加努力。';
-    } else if (score >= 60) {
-        grade = 'D 及格';
-        comment = '刚刚及格，要加油了！';
-    } else {
-        grade = 'F 不及格';
-        comment = '需要认真复习，下次一定能过！';
-    }
-    
-    resultDiv.innerHTML = \`
-        <p style="font-size: 20px; font-weight: bold;">等级: \${grade}</p>
-        <p>\${comment}</p>
-    \`;
-}`;
-
-    function evaluateScore() {
-        const scoreInput = document.getElementById('score-input');
-        const resultDiv = document.getElementById('grade-result');
-        const score = Number(scoreInput.value);
-        
-        let grade = '';
-        let comment = '';
-        
-        if (score >= 90) {
-            grade = 'A 优秀';
-            comment = '非常棒！继续保持！';
-        } else if (score >= 80) {
-            grade = 'B 良好';
-            comment = '很不错，再接再厉！';
-        } else if (score >= 70) {
-            grade = 'C 中等';
-            comment = '还可以，需要更加努力。';
-        } else if (score >= 60) {
-            grade = 'D 及格';
-            comment = '刚刚及格，要加油了！';
-        } else {
-            grade = 'F 不及格';
-            comment = '需要认真复习，下次一定能过！';
-        }
-        
-        resultDiv.innerHTML = `
-            <p style="font-size: 20px; font-weight: bold;">等级: ${grade}</p>
-            <p>${comment}</p>
-        `;
-    }
-
-    function runGradeLab() {
-        const editor = document.getElementById('code-grade');
-        try {
-            new Function(editor.innerText)();
-            evaluateScore();
-        } catch (e) {
-            alert('代码运行出错: ' + e.message);
-        }
-    }
-
-    function resetGradeLab() {
-        document.getElementById('code-grade').innerText = gradeInitialCode;
-        document.getElementById('grade-result').innerHTML = '';
-    }
-
-    // --- Lab 02: Weekday Checker ---
-    const weekdayInitialCode = `function checkWeekday() {
-    const dayInput = document.getElementById('day-input');
-    const resultDiv = document.getElementById('weekday-result');
-    const day = Number(dayInput.value);
-    
-    let dayName;
-    let isWeekend = false;
-    
-    switch (day) {
-        case 1:
-            dayName = '星期一';
-            break;
-        case 2:
-            dayName = '星期二';
-            break;
-        case 3:
-            dayName = '星期三';
-            break;
-        case 4:
-            dayName = '星期四';
-            break;
-        case 5:
-            dayName = '星期五';
-            break;
-        case 6:
-            dayName = '星期六';
-            isWeekend = true;
-            break;
-        case 7:
-            dayName = '星期日';
-            isWeekend = true;
-            break;
-        default:
-            dayName = '无效输入';
-    }
-    
-    const weekendMsg = isWeekend ? '🎉 周末啦！' : '💼 工作日';
-    resultDiv.innerHTML = \`<p><strong>\${dayName}</strong> - \${weekendMsg}</p>\`;
-}`;
-
-    function checkWeekday() {
-        const dayInput = document.getElementById('day-input');
-        const resultDiv = document.getElementById('weekday-result');
-        const day = Number(dayInput.value);
-        
-        let dayName;
-        let isWeekend = false;
-        
-        switch (day) {
-            case 1:
-                dayName = '星期一';
-                break;
-            case 2:
-                dayName = '星期二';
-                break;
-            case 3:
-                dayName = '星期三';
-                break;
-            case 4:
-                dayName = '星期四';
-                break;
-            case 5:
-                dayName = '星期五';
-                break;
-            case 6:
-                dayName = '星期六';
-                isWeekend = true;
-                break;
-            case 7:
-                dayName = '星期日';
-                isWeekend = true;
-                break;
-            default:
-                dayName = '无效输入';
-        }
-        
-        const weekendMsg = isWeekend ? '🎉 周末啦！' : '💼 工作日';
-        resultDiv.innerHTML = `<p><strong>${dayName}</strong> - ${weekendMsg}</p>`;
-    }
-
-    function runWeekdayLab() {
-        const editor = document.getElementById('code-weekday');
-        try {
-            new Function(editor.innerText)();
-            checkWeekday();
-        } catch (e) {
-            alert('代码运行出错: ' + e.message);
-        }
-    }
-
-    function resetWeekdayLab() {
-        document.getElementById('code-weekday').innerText = weekdayInitialCode;
-        document.getElementById('weekday-result').innerHTML = '';
-    }
-
-    // --- Lab 03: Multiplication Table ---
-    const tableInitialCode = `function generateTable() {
-    const outputDiv = document.getElementById('table-output');
-    let html = '';
-    
-    for (let i = 1; i <= 9; i++) {
-        for (let j = 1; j <= i; j++) {
-            html += \`\${j} × \${i} = \${i * j}&nbsp;&nbsp;&nbsp;\`;
-        }
-        html += '<br>';
-    }
-    
-    outputDiv.innerHTML = html;
-}`;
-
-    function generateTable() {
-        const outputDiv = document.getElementById('table-output');
-        let html = '';
-        
-        for (let i = 1; i <= 9; i++) {
-            for (let j = 1; j <= i; j++) {
-                html += `${j} × ${i} = ${i * j}&nbsp;&nbsp;&nbsp;`;
-            }
-            html += '<br>';
-        }
-        
-        outputDiv.innerHTML = html;
-    }
-
-    function runTableLab() {
-        const editor = document.getElementById('code-table');
-        try {
-            new Function(editor.innerText)();
-            generateTable();
-        } catch (e) {
-            alert('代码运行出错: ' + e.message);
-        }
-    }
-
-    function resetTableLab() {
-        document.getElementById('code-table').innerText = tableInitialCode;
-        document.getElementById('table-output').innerHTML = '';
-    }
-
-    // --- Lab 04: Prime Checker ---
-    const primeInitialCode = `function checkPrime() {
-    const numInput = document.getElementById('num-input');
-    const resultDiv = document.getElementById('prime-result');
-    const num = Number(numInput.value);
-    
-    if (num <= 1) {
-        resultDiv.innerHTML = \`<p>\${num} 不是质数（质数必须大于1）</p>\`;
-        return;
-    }
-    
-    let isPrime = true;
-    
-    // 从2开始，检查到 num 的平方根即可
-    for (let i = 2; i <= Math.sqrt(num); i++) {
-        if (num % i === 0) {
-            isPrime = false;
-            break; // 找到因数，不是质数，提前退出
-        }
-    }
-    
-    if (isPrime) {
-        resultDiv.innerHTML = \`<p style="color: green;">✅ \${num} 是质数！</p>\`;
-    } else {
-        resultDiv.innerHTML = \`<p style="color: orange;">❌ \${num} 不是质数</p>\`;
-    }
-}`;
-
-    function checkPrime() {
-        const numInput = document.getElementById('num-input');
-        const resultDiv = document.getElementById('prime-result');
-        const num = Number(numInput.value);
-        
-        if (num <= 1) {
-            resultDiv.innerHTML = `<p>${num} 不是质数（质数必须大于1）</p>`;
-            return;
-        }
-        
-        let isPrime = true;
-        
-        for (let i = 2; i <= Math.sqrt(num); i++) {
-            if (num % i === 0) {
-                isPrime = false;
-                break;
+    <script>
+        // 双栏交互实验室功能
+        function applyHTML(id) {
+            const editor = document.getElementById('html-' + id);
+            const preview = document.getElementById('preview-' + id);
+            const badge = document.getElementById('badge-' + id);
+            
+            if (editor && preview) {
+                preview.innerHTML = editor.innerText;
+                
+                // 更新状态徽章
+                badge.innerText = "运行中 (Active)";
+                badge.className = "status-badge status-active";
             }
         }
         
-        if (isPrime) {
-            resultDiv.innerHTML = `<p style="color: green;">✅ ${num} 是质数！</p>`;
-        } else {
-            resultDiv.innerHTML = `<p style="color: orange;">❌ ${num} 不是质数</p>`;
-        }
-    }
-
-    function runPrimeLab() {
-        const editor = document.getElementById('code-prime');
-        try {
-            new Function(editor.innerText)();
-            checkPrime();
-        } catch (e) {
-            alert('代码运行出错: ' + e.message);
-        }
-    }
-
-    function resetPrimeLab() {
-        document.getElementById('code-prime').innerText = primeInitialCode;
-        document.getElementById('prime-result').innerHTML = '';
-    }
-
-    // --- Lab 05: Guessing Game ---
-    const gameInitialCode = `// 游戏状态
-let targetNumber;
-let attempts;
-let isGameOver;
-const maxAttempts = 10;
-
-// 初始化游戏
-function initGame() {
-    targetNumber = Math.floor(Math.random() * 100) + 1;
-    attempts = 0;
-    isGameOver = false;
-    document.getElementById('game-log').innerHTML = '<p>游戏开始！请输入你的猜测...</p>';
-    document.getElementById('game-status').innerHTML = '';
-}
-
-// 玩家猜测
-function makeGuess() {
-    if (isGameOver) {
-        alert('游戏已结束，请点击"重新开始"');
-        return;
-    }
-    
-    const input = document.getElementById('guess-input');
-    const guess = Number(input.value);
-    
-    // 输入验证
-    if (!guess || guess < 1 || guess > 100) {
-        alert('请输入 1-100 之间的数字！');
-        return;
-    }
-    
-    attempts++;
-    const logDiv = document.getElementById('game-log');
-    const statusDiv = document.getElementById('game-status');
-    
-    // 判断猜测结果
-    if (guess === targetNumber) {
-        logDiv.innerHTML += \`<p style="color: green;">🎉 第\${attempts}次: \${guess} - 恭喜你猜对了！</p>\`;
-        statusDiv.innerHTML = \`<h3 style="color: green;">✅ 你赢了！用了 \${attempts} 次！</h3>\`;
-        isGameOver = true;
-    } else if (guess < targetNumber) {
-        logDiv.innerHTML += \`<p>第\${attempts}次: \${guess} - 太小了 ⬆️</p>\`;
-    } else {
-        logDiv.innerHTML += \`<p>第\${attempts}次: \${guess} - 太大了 ⬇️</p>\`;
-    }
-    
-    // 检查是否用完机会
-    if (attempts >= maxAttempts && !isGameOver) {
-        logDiv.innerHTML += \`<p style="color: red;">机会用完了！</p>\`;
-        statusDiv.innerHTML = \`<h3 style="color: red;">❌ 游戏结束！答案是 \${targetNumber}</h3>\`;
-        isGameOver = true;
-    } else if (!isGameOver) {
-        statusDiv.innerHTML = \`<p>剩余机会: \${maxAttempts - attempts} 次</p>\`;
-    }
-    
-    input.value = '';
-}
-
-function resetGame() {
-    initGame();
-    document.getElementById('guess-input').value = '';
-}
-
-// 页面加载时初始化
-initGame();`;
-
-    // Game state
-    let targetNumber;
-    let attempts;
-    let isGameOver;
-    const maxAttempts = 10;
-
-    function initGame() {
-        targetNumber = Math.floor(Math.random() * 100) + 1;
-        attempts = 0;
-        isGameOver = false;
-        const logDiv = document.getElementById('game-log');
-        const statusDiv = document.getElementById('game-status');
-        if (logDiv) logDiv.innerHTML = '<p>游戏开始！请输入你的猜测...</p>';
-        if (statusDiv) statusDiv.innerHTML = '';
-    }
-
-    function makeGuess() {
-        if (isGameOver) {
-            alert('游戏已结束，请点击"重新开始"');
-            return;
-        }
-        
-        const input = document.getElementById('guess-input');
-        const guess = Number(input.value);
-        
-        if (!guess || guess < 1 || guess > 100) {
-            alert('请输入 1-100 之间的数字！');
-            return;
-        }
-        
-        attempts++;
-        const logDiv = document.getElementById('game-log');
-        const statusDiv = document.getElementById('game-status');
-        
-        if (guess === targetNumber) {
-            logDiv.innerHTML += `<p style="color: green;">🎉 第${attempts}次: ${guess} - 恭喜你猜对了！</p>`;
-            statusDiv.innerHTML = `<h3 style="color: green;">✅ 你赢了！用了 ${attempts} 次！</h3>`;
-            isGameOver = true;
-        } else if (guess < targetNumber) {
-            logDiv.innerHTML += `<p>第${attempts}次: ${guess} - 太小了 ⬆️</p>`;
-        } else {
-            logDiv.innerHTML += `<p>第${attempts}次: ${guess} - 太大了 ⬇️</p>`;
-        }
-        
-        if (attempts >= maxAttempts && !isGameOver) {
-            logDiv.innerHTML += `<p style="color: red;">机会用完了！</p>`;
-            statusDiv.innerHTML = `<h3 style="color: red;">❌ 游戏结束！答案是 ${targetNumber}</h3>`;
-            isGameOver = true;
-        } else if (!isGameOver) {
-            statusDiv.innerHTML = `<p>剩余机会: ${maxAttempts - attempts} 次</p>`;
-        }
-        
-        input.value = '';
-    }
-
-    function resetGame() {
-        initGame();
-        const input = document.getElementById('guess-input');
-        if (input) input.value = '';
-    }
-
-    function runGameLab() {
-        const editor = document.getElementById('code-game');
-        try {
-            new Function(editor.innerText)();
-        } catch (e) {
-            alert('代码运行出错: ' + e.message);
-        }
-    }
-
-    function resetGameLab() {
-        document.getElementById('code-game').innerText = gameInitialCode;
-        initGame();
-    }
-
-    // --- Page Initialization ---
-    document.addEventListener('DOMContentLoaded', function () {
-        resetGradeLab();
-        resetWeekdayLab();
-        resetTableLab();
-        resetPrimeLab();
-        initGame();
-        highlightAllCode();
-    });
-
-    // 简约风格的语法高亮
-    function highlightAllCode() {
-        document.querySelectorAll('pre > code').forEach(codeBlock => {
-            if (codeBlock.classList.contains('highlighted')) return;
+        function resetHTML(id) {
+            const editor = document.getElementById('html-' + id);
+            const preview = document.getElementById('preview-' + id);
+            const badge = document.getElementById('badge-' + id);
+            const original = document.getElementById('original-' + id);
             
-            let code = codeBlock.textContent;
-            
-            // JavaScript 关键字
-            const keywords = /\b(const|let|var|function|return|if|else|for|while|do|switch|case|break|continue|try|catch|finally|throw|new|class|extends|import|export|default|async|await|yield|typeof|instanceof|in|of|delete|void|null|undefined|true|false|this|super)\b/g;
-            
-            // 字符串 (单引号、双引号、反引号)
-            const strings = /(['"`])(?:(?=(\\?))\2.)*?\1/g;
-            
-            // 注释 (单行和多行)
-            const comments = /(\/\/.*$|\/\*[\s\S]*?\*\/)/gm;
-            
-            // 数字
-            const numbers = /\b(\d+\.?\d*|\.\d+)(e[+-]?\d+)?\b/gi;
-            
-            // 函数调用
-            const functions = /\b([a-zA-Z_$][a-zA-Z0-9_$]*)\s*(?=\()/g;
-            
-            // 临时标记以保护已处理的部分
-            const tokens = [];
-            let tokenIndex = 0;
-            
-            // 1. 先处理注释（最高优先级）
-            code = code.replace(comments, match => {
-                const token = `__TOKEN_${tokenIndex++}__`;
-                tokens.push(`<span class="comment">${escapeHtml(match)}</span>`);
-                return token;
-            });
-            
-            // 2. 处理字符串
-            code = code.replace(strings, match => {
-                const token = `__TOKEN_${tokenIndex++}__`;
-                tokens.push(`<span class="string">${escapeHtml(match)}</span>`);
-                return token;
-            });
-            
-            // 3. 处理数字
-            code = code.replace(numbers, match => {
-                const token = `__TOKEN_${tokenIndex++}__`;
-                tokens.push(`<span class="number">${match}</span>`);
-                return token;
-            });
-            
-            // 4. 处理函数调用
-            code = code.replace(functions, match => {
-                const token = `__TOKEN_${tokenIndex++}__`;
-                tokens.push(`<span class="function">${match}</span>`);
-                return token;
-            });
-            
-            // 5. 处理关键字
-            code = code.replace(keywords, match => {
-                const token = `__TOKEN_${tokenIndex++}__`;
-                tokens.push(`<span class="keyword">${match}</span>`);
-                return token;
-            });
-            
-            // 6. HTML转义剩余内容
-            code = escapeHtml(code);
-            
-            // 7. 还原所有token
-            tokens.forEach((replacement, index) => {
-                code = code.replace(`__TOKEN_${index}__`, replacement);
-            });
-            
-            codeBlock.innerHTML = code;
-            codeBlock.classList.add('highlighted');
-        });
-    }
-    
-    function escapeHtml(text) {
-        const div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
-    }
-    // 第26次课-JS控制结构实验交互逻辑
-    function run26jsExperiment() {
-        const editor = document.getElementById('26js-js');
-        const status = document.getElementById('26js-status');
-        
-        if (editor) {
-            let code = editor.innerText;
-            // 移除编辑器标签
-            code = code.replace('js (可编辑)', '');
-            
-            
-            // 注入JavaScript代码
-            const script = document.createElement('script');
-            script.id = 'experiment-26js';
-            // 重定向console.log到页面
-            const output = document.getElementById('26js-output');
-            const originalLog = console.log;
-            console.log = function(...args) {
-                originalLog(...args);
-                if (output) {
-                    output.innerHTML += '<p>' + args.join(' ') + '</p>';
-                }
-            };
-            script.textContent = code;
-            // 移除旧的脚本
-            const oldScript = document.getElementById('experiment-26js');
-            if (oldScript) {
-                oldScript.remove();
+            if (editor && preview && original) {
+                editor.innerText = original.innerText;
+                preview.innerHTML = editor.innerText;
+                
+                // 更新状态徽章
+                badge.innerText = "未运行 (Inactive)";
+                badge.className = "status-badge";
             }
-            // 添加新脚本
-            document.body.appendChild(script);
-            
-            
-            // 更新状态
-            status.textContent = '已运行';
-            status.className = 'status-badge active';
         }
-    }
-    
-    function reset26jsExperiment() {
-        const status = document.getElementById('26js-status');
-        
-        
-        // 重置输出和脚本
-        const output = document.getElementById('26js-output');
-        if (output) {
-            output.innerHTML = '<p>点击「运行代码」查看结果</p>';
-        }
-        const oldScript = document.getElementById('experiment-26js');
-        if (oldScript) {
-            oldScript.remove();
-        }
-        
-        
-        // 更新状态
-        status.textContent = '未运行';
-        status.className = 'status-badge';
-    }
-    // 第26次课-JS控制结构实验交互逻辑
-    function run26jsExperiment() {
-        const editor = document.getElementById('26js-js');
-        const status = document.getElementById('26js-status');
-        
-        if (editor) {
-            let code = editor.innerText;
-            // 移除编辑器标签
-            code = code.replace('JS (可编辑)', '');
-            
-            
-            // 注入JavaScript代码
-            const script = document.createElement('script');
-            script.id = 'experiment-26js';
-            // 重定向console.log到页面
-            const output = document.getElementById('26js-output');
-            const originalLog = console.log;
-            console.log = function(...args) {
-                originalLog(...args);
-                if (output) {
-                    output.innerHTML += '<p>' + args.join(' ') + '</p>';
-                }
-            };
-            script.textContent = code;
-            // 移除旧的脚本
-            const oldScript = document.getElementById('experiment-26js');
-            if (oldScript) {
-                oldScript.remove();
-            }
-            // 添加新脚本
-            document.body.appendChild(script);
-            
-            
-            // 更新状态
-            status.textContent = '已运行';
-            status.className = 'status-badge active';
-        }
-    }
-    
-    function reset26jsExperiment() {
-        const status = document.getElementById('26js-status');
-        
-        
-        // 重置输出和脚本
-        const output = document.getElementById('26js-output');
-        if (output) {
-            output.innerHTML = '<p>点击「运行代码」查看结果</p>';
-        }
-        const oldScript = document.getElementById('experiment-26js');
-        if (oldScript) {
-            oldScript.remove();
-        }
-        
-        
-        // 更新状态
-        status.textContent = '未运行';
-        status.className = 'status-badge';
-    }
-</script>
+    </script>
 </body>
 </html>
 

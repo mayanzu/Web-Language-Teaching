@@ -27,7 +27,7 @@
             const previewId = `preview-${id}`;
             const previewBox = document.getElementById(previewId);
             if (previewBox) {
-                previewBox.innerHTML = '<span class="panel-label">预览效果</span>';
+                previewBox.innerHTML = '<div class="panel-label">预览效果</div>';
             }
             updateStatus(id, false);
         }
@@ -54,7 +54,7 @@
             if (editor) {
                 let code = editor.innerText;
                 // 移除编辑器标签
-                code = code.replace(/<span class="panel-label">HTML \(可编辑\)<\/span>/g, '');
+                code = code.replace(/<div class="panel-label">HTML \(可编辑\)<\/span>/g, '');
                 
                 // 注入到预览区域
                 const preview = document.getElementById('8html-preview');
@@ -74,7 +74,7 @@
             // 重置预览区域
             const preview = document.getElementById('8html-preview');
             if (preview) {
-                preview.innerHTML = '<span class="panel-label">预览效果</span>';
+                preview.innerHTML = '<div class="panel-label">预览效果</div>';
             }
             
             // 更新状态
@@ -88,7 +88,7 @@
     <nav class="sidebar">
         <div class="sidebar-nav">
             <h3>课程导航</h3>
-            <a class="sidebar-link" href="#intro">课程概览</a>
+            <a class="sidebar-link" href="#intro">👋 课程概览</a>
             
             <h3>Part 1: HTML表单基础</h3>
             <a class="sidebar-link" href="#form-structure" class="sub-link">1. 表单结构</a>
@@ -212,8 +212,8 @@
             
             <div class="lab-card">
                 <div class="lab-header">
-                    <span>上下结构实验室：表单结构</span>
-                    <span id="badge-1" class="status-badge">未运行</span>
+                    <span>上下结构实验室：表单结构</div>
+                    <span id="badge-1" class="status-badge">未运行</div>
                 </div>
                 <div class="lab-body">
                     <div class="panel">
@@ -385,8 +385,8 @@
             
             <div class="lab-card">
                 <div class="lab-header">
-                    <span>上下结构实验室：文本输入控件</span>
-                    <span id="badge-2" class="status-badge">未运行</span>
+                    <span>上下结构实验室：文本输入控件</div>
+                    <span id="badge-2" class="status-badge">未运行</div>
                 </div>
                 <div class="lab-body">
                     <div class="panel">
@@ -549,8 +549,8 @@
             
             <div class="lab-card">
                 <div class="lab-header">
-                    <span>上下结构实验室：单选按钮与复选框</span>
-                    <span id="badge-3" class="status-badge">未运行</span>
+                    <span>上下结构实验室：单选按钮与复选框</div>
+                    <span id="badge-3" class="status-badge">未运行</div>
                 </div>
                 <div class="lab-body">
                     <div class="panel">
@@ -700,8 +700,8 @@
             
             <div class="lab-card">
                 <div class="lab-header">
-                    <span>上下结构实验室：表单按钮</span>
-                    <span id="badge-4" class="status-badge">未运行</span>
+                    <span>上下结构实验室：表单按钮</div>
+                    <span id="badge-4" class="status-badge">未运行</div>
                 </div>
                 <div class="lab-body">
                     <div class="panel">
@@ -807,12 +807,12 @@
         
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验：第8次课-HTML表单基础综合实践</span>
-                <span id="8html-status" class="status-badge">未运行</span>
+                <span>实验：第8次课-HTML表单基础综合实践</div>
+                <span id="8html-status" class="status-badge">未运行</div>
             </div>
-            <div class="lab-body html-experiment">
-                <div class="code-editor" id="8html-html" contenteditable="true">
-<span class="panel-label">HTML (可编辑)</span>&lt;!DOCTYPE html&gt;
+            <div class="lab-body">
+                <div class="html-editor" id="8html-html" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>&lt;!DOCTYPE html&gt;
 &lt;html lang="zh-CN"&gt;
 &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
@@ -928,8 +928,8 @@
                 <button class="btn btn-run" onclick="run8htmlExperiment()">▶ 运行代码</button>
                 <button class="btn btn-reset" onclick="reset8htmlExperiment()">↺ 重置</button>
             </div>
-            <div class="preview-area" id="8html-preview">
-                <span class="panel-label">预览效果</span>
+            <div class="preview-box" id="8html-preview">
+                <div class="panel-label">预览效果</div>
             </div>
         </div>
 </section></main>

@@ -10,7 +10,7 @@
 <nav class="sidebar">
     <div class="sidebar-nav">
         <h3>课程导航</h3>
-        <a class="sidebar-link" href="#intro">课程概览</a>
+        <a class="sidebar-link" href="#intro">👋 课程概览</a>
         
         <h3>Part 1: 基础运算符</h3>
         <a class="sidebar-link" href="#assignment-operators" class="sub-link">1. 赋值运算符</a>
@@ -32,17 +32,17 @@
         <h1>第25课：JS运算符与表达式</h1>
         <p class="intro">上一课我们学会了用变量存储数据，但静态的数据毫无用处。本课我们将学习如何使用“运算符”来处理、比较和组合这些数据，创造出能产生动态结果的“表达式”。这是构建所有复杂逻辑的基石。</p>
         <div class="pill-list">
-            <span class="pill">赋值 = += -=</span>
-            <span class="pill">算术 + - * / %</span>
-            <span class="pill">比较 > < === !==</span>
-            <span class="pill">逻辑 && || !</span>
-            <span class="pill">优先级</span>
-            <span class="pill">类型转换</span>
+            <span class="pill">赋值 = += -=</div>
+            <span class="pill">算术 + - * / %</div>
+            <span class="pill">比较 > < === !==</div>
+            <span class="pill">逻辑 && || !</div>
+            <span class="pill">优先级</div>
+            <span class="pill">类型转换</div>
         </div>
         <div class="lab-card" style="margin-top: 30px;">
             <div class="lab-header">
-                <span>今日目标</span>
-                <span class="status-badge beginner">适合初学者</span>
+                <span>今日目标</div>
+                <span class="status-badge beginner">适合初学者</div>
             </div>
             <div class="lab-body">
                 <ul class="checklist">
@@ -84,7 +84,7 @@
             </tbody>
         </table>
         <div class="tip-box">
-            <span class="tip-title">一个简单的类比</span>
+            <span class="tip-title">一个简单的类比</div>
             <p>在句子“我买了 <strong>两个苹果</strong>”中，“两个苹果”就像一个<strong>表达式</strong>（它指向一个具体的值），而整个句子就像一条<strong>语句</strong>（它描述了一个完整的动作）。<br>
             在 JavaScript 中，<code>let price = 9.9 * 2;</code> 是一条语句，而其中的 <code>9.9 * 2</code> 是一个表达式。</p>
         </div>
@@ -152,8 +152,8 @@ console.log('Score: ' + 100); // "Score: 100" (字符串 + 数字 -> 拼接)
         <p>这是一个模拟计算购物车商品总价的场景。请修改右侧代码中的商品单价和数量，然后运行查看总价。</p>
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验 01：动手实践算术运算</span>
-                <span class="status-badge beginner">动手实践</span>
+                <span>实验 01：动手实践算术运算</div>
+                <span class="status-badge beginner">动手实践</div>
             </div>
             <div class="lab-body split">
                 <div class="panel html-viewer">
@@ -221,7 +221,7 @@ outputDiv.innerHTML = `
             </tbody>
         </table>
         <div class="tip-box">
-            <span class="tip-title"><code>x++</code> 和 <code>++x</code> 的区别</span>
+            <span class="tip-title"><code>x++</code> 和 <code>++x</code> 的区别</div>
             <p>虽然它们都将 <code>x</code> 的值加 1，但在表达式中的行为不同：</p>
             <ul style="margin-left: 20px;">
                 <li><strong>后递增 (<code>x++</code>)</strong>: 先返回 <code>x</code> 的原始值，然后再加 1。</li>
@@ -242,8 +242,8 @@ console.log(++b); // b 变为 6, 然后打印 6
         <p>这是一个网页中常见的计数器功能。点击"增加"或"减少"按钮，观察数字的变化。这个实验的核心就是递增 <code>++</code> 和递减 <code>--</code> 运算符。</p>
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验 02：递增/递减运算符实践</span>
-                <span class="status-badge beginner">动手实践</span>
+                <span>实验 02：递增/递减运算符实践</div>
+                <span class="status-badge beginner">动手实践</div>
             </div>
             <div class="lab-body split">
                 <div class="panel html-viewer">
@@ -333,8 +333,8 @@ console.log('2' > '10');     // true, 因为 '2' 的字典序大于 '1'
         <p>下面的卡片里有一些表达式。先点击“思考”按钮，在心里想出答案，然后点击“揭晓答案”来验证你的想法是否正确。</p>
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验 03：<code>==</code> 和 <code>===</code> 的陷阱</span>
-                <span class="status-badge advanced">易错点</span>
+                <span>实验 03：<code>==</code> 和 <code>===</code> 的陷阱</div>
+                <span class="status-badge advanced">易错点</div>
             </div>
             <div class="lab-body" id="guess-game-container">
                 <!-- 猜谜卡片将由JS动态生成 -->
@@ -376,7 +376,7 @@ false && check(); // 左边是 false，右边的 check() 不会执行，控制�
 true || check(); // 左边是 true，右边的 check() 不会执行，控制台无输出
 </code></pre>
         <div class="tip-box">
-            <span class="tip-title">短路求值的妙用</span>
+            <span class="tip-title">短路求值的妙用</div>
             <p><strong>1. 条件执行</strong>: 替代简单的 <code>if</code> 语句。</p>
             <code>isAllowed && grantAccess(); // 仅当 isAllowed 为 true 时才执行 grantAccess()</code>
             <p style="margin-top:10px;"><strong>2. 提供默认值</strong>: 这是一个非常常见的技巧。</p>
@@ -389,8 +389,8 @@ true || check(); // 左边是 true，右边的 check() 不会执行，控制台�
         <p>这是一个更真实的场景：一个游乐园的入场规则。请修改右侧代码中的访客信息，然后运行，看看他是否符合入场条件。</p>
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验 04：逻辑组合应用</span>
-                <span class="status-badge beginner">动手实践</span>
+                <span>实验 04：逻辑组合应用</div>
+                <span class="status-badge beginner">动手实践</div>
             </div>
             <div class="lab-body split">
                 <div class="panel html-viewer">
@@ -461,7 +461,7 @@ outputDiv.innerHTML = `
             </tbody>
         </table>
         <div class="tip-box">
-            <span class="tip-title">终极法则：不确定就加括号！</span>
+            <span class="tip-title">终极法则：不确定就加括号！</div>
             <p>编写代码时，清晰性远比炫技重要。如果你不确定运算顺序，或者想让代码的意图更明显，请毫不犹豫地使用括号 <code>()</code>。</p>
 <pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>// 不清晰的写法
 const isValid = age >= 18 && age <= 65 || isVIP;
@@ -510,13 +510,13 @@ if (0) { // 数字 0 被转为 false
     
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验：第25次课-JS运算符与表达式实践</span>
-                <span id="25js-status" class="status-badge">未运行</span>
+                <span>实验：第25次课-JS运算符与表达式实践</div>
+                <span id="25js-status" class="status-badge">未运行</div>
             </div>
             <div class="lab-body css-js-experiment">
                 <div>
-                    <div class="code-editor" id="25js-js" contenteditable="true">
-<span class="panel-label">JavaScript (可编辑)</span>// 第25次课-JS运算符与表达式实验
+                    <div class="html-editor" id="25js-js" contenteditable="true">
+<div class="panel-label">JavaScript (可编辑)</div>// 第25次课-JS运算符与表达式实验
 
 // 在这里编写你的JavaScript代码
 
@@ -527,8 +527,8 @@ console.log('第25次课-JS运算符与表达式实验开始');
 </div>
                 </div>
                 <div>
-                    <div class="preview-area" id="25js-preview">
-                        <span class="panel-label">预览效果</span>
+                    <div class="preview-box" id="25js-preview">
+                        <div class="panel-label">预览效果</div>
                         <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
                             <h3>第25次课-JS运算符与表达式实验</h3>
                             <div id="25js-output">
@@ -546,13 +546,13 @@ console.log('第25次课-JS运算符与表达式实验开始');
 
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验：第25次课-JS运算符与表达式实践</span>
-                <span id="25js-status" class="status-badge">未运行</span>
+                <span>实验：第25次课-JS运算符与表达式实践</div>
+                <span id="25js-status" class="status-badge">未运行</div>
             </div>
             <div class="lab-body css-js-experiment">
                 <div>
-                    <div class="code-editor" id="25js-js" contenteditable="true">
-<span class="panel-label">JavaScript (可编辑)</span>// 第25次课-JS运算符与表达式实验
+                    <div class="html-editor" id="25js-js" contenteditable="true">
+<div class="panel-label">JavaScript (可编辑)</div>// 第25次课-JS运算符与表达式实验
 
 // 在这里编写你的JavaScript代码
 
@@ -563,8 +563,8 @@ console.log('第25次课-JS运算符与表达式实验开始');
 </div>
                 </div>
                 <div>
-                    <div class="preview-area" id="25js-preview">
-                        <span class="panel-label">预览效果</span>
+                    <div class="preview-box" id="25js-preview">
+                        <div class="panel-label">预览效果</div>
                         <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
                             <h3>第25次课-JS运算符与表达式实验</h3>
                             <div id="25js-output">
@@ -623,371 +623,38 @@ console.log('最终价格: ' + finalPrice.toFixed(2));
     </section>
 </main>
 
-<script>
-    // --- Lab 01: Cart Total ---
-    const cartInitialCode = `// --- 商品信息 ---
-const priceA = 15.5; // 商品A单价
-const countA = 2;    // 商品A数量
-
-const priceB = 30;   // 商品B单价
-const countB = 1;    // 商品B数量
-
-// --- 计算过程 ---
-const totalA = priceA * countA;
-const totalB = priceB * countB;
-const finalTotal = totalA + totalB;
-
-// --- 显示结果 (无需修改) ---
-const outputDiv = document.getElementById('cart-output');
-outputDiv.innerHTML = \`
-    <p>商品A: ￥\${priceA} * \${countA}件</p>
-    <p>商品B: ￥\${priceB} * \${countB}件</p>
-    <hr>
-    <p><strong>总计: ￥\${finalTotal.toFixed(2)}</strong></p>
-\`;`;
-
-    function runCartLab() {
-        const editor = document.getElementById('code-cart');
-        try {
-            new Function(editor.innerText)();
-        } catch (e) {
-            alert('代码运行出错: ' + e.message);
-        }
-    }
-    function resetCartLab() {
-        document.getElementById('code-cart').innerText = cartInitialCode;
-        runCartLab();
-    }
-
-    // --- Lab 02: Counter ---
-    const counterInitialCode = `let currentCount = 0;
-const countDisplay = document.getElementById('count-display');
-
-function increment() {
-    currentCount++;
-    countDisplay.textContent = currentCount;
-}
-
-function decrement() {
-    currentCount--;
-    countDisplay.textContent = currentCount;
-}`;
-
-    function runCounterLab() {
-        const editor = document.getElementById('code-counter');
-        try {
-            new Function(editor.innerText)();
-        } catch (e) {
-            alert('代码运行出错: ' + e.message);
-        }
-    }
-    function resetCounterLab() {
-        document.getElementById('code-counter').innerText = counterInitialCode;
-        runCounterLab();
-    }
-
-    // --- Counter functions for preview area ---
-    let currentCount = 0;
-    function increment() {
-        currentCount++;
-        const display = document.getElementById('count-display');
-        if (display) display.textContent = currentCount;
-    }
-    function decrement() {
-        currentCount--;
-        const display = document.getElementById('count-display');
-        if (display) display.textContent = currentCount;
-    }
-
-    // --- Lab 03: Guess Game ---
-    const guessItems = [
-        { expr: "'5' == 5", result: true, explanation: "<code>==</code> 会进行类型转换，将字符串 '5' 转为数字 5 再比较。" },
-        { expr: "'5' === 5", result: false, explanation: "<code>===</code> 严格比较，类型不同（string vs number），直接返回 false。" },
-        { expr: "0 == false", result: true, explanation: "<code>==</code> 会将 false 转为数字 0 再比较。" },
-        { expr: "'' == false", result: true, explanation: "<code>==</code> 会将空字符串转为数字 0，false 也转为 0。" },
-        { expr: "null == undefined", result: true, explanation: "这是 <code>==</code> 的一个特殊规则，认为它俩宽松相等。" },
-        { expr: "null === undefined", result: false, explanation: "<code>===</code> 比较，因为它们的类型不同 (object vs undefined)。" },
-        { expr: "NaN == NaN", result: false, explanation: "NaN 是唯一一个不等于自身的值。" },
-        { expr: "Number.isNaN(NaN)", result: true, explanation: "这是检查一个值是否为 NaN 的标准方法。" }
-    ];
-
-    function createGuessGame() {
-        const container = document.getElementById('guess-game-container');
-        container.innerHTML = '';
-        guessItems.forEach((item, index) => {
-            const card = document.createElement('div');
-            card.className = 'prop-table'; // Re-use style
-            card.style.marginBottom = '15px';
-            card.innerHTML = `
-                <div style="padding: 14px 16px; display: flex; justify-content: space-between; align-items: center;">
-                    <code style="font-size: 1.1em;">${item.expr}</code>
-                    <div id="guess-controls-${index}">
-                        <button class="btn btn-reset" onclick="revealAnswer(${index})">🤔 揭晓答案</button>
-                    </div>
-                </div>
-                <div id="guess-answer-${index}" style="display: none; padding: 14px 16px; border-top: 1px solid #eee; background: #fbfbfd;">
-                    <p><strong>结果:</strong> <code style="background:${item.result ? '#edf9f0' : '#fff7e6'}; color:${item.result ? '#34A853' : '#FF9800'}">${item.result}</code></p>
-                    <p style="margin-top: 8px; font-size: 14px;"><strong>原因:</strong> ${item.explanation}</p>
-                </div>
-            `;
-            container.appendChild(card);
-        });
-    }
-
-    function revealAnswer(index) {
-        document.getElementById(`guess-answer-${index}`).style.display = 'block';
-        document.getElementById(`guess-controls-${index}`).innerHTML = `<button class="btn btn-reset" onclick="hideAnswer(${index})">🙈 隐藏答案</button>`;
-    }
-    function hideAnswer(index) {
-        document.getElementById(`guess-answer-${index}`).style.display = 'none';
-        document.getElementById(`guess-controls-${index}`).innerHTML = `<button class="btn btn-reset" onclick="revealAnswer(${index})">🤔 揭晓答案</button>`;
-    }
-
-    // --- Lab 04: Gate Access ---
-    const gateInitialCode = `// --- 访客信息 ---
-const age = 25;
-const hasTicket = true;
-const isVIP = false;
-
-// --- 入场规则 ---
-// 规则1: 必须持有门票
-const rule1 = hasTicket;
-// 规则2: 年龄必须在 12 到 65 岁之间
-const rule2 = age >= 12 && age <= 65;
-// 规则3: VIP客户不受年龄限制
-const rule3 = isVIP;
-
-// 最终判断: (满足规则1 和 规则2) 或者 满足规则3
-const canEnter = (rule1 && rule2) || rule3;
-
-// --- 显示结果 (无需修改) ---
-const outputDiv = document.getElementById('gate-output');
-const message = canEnter ? '✅ 允许入场' : '⛔ 拒绝入场';
-outputDiv.innerHTML = \`
-    <p>访客信息: \${age}岁, \${hasTicket ? '有票' : '无票'}, \${isVIP ? '是VIP' : '非VIP'}</p>
-    <p style="font-weight:bold; font-size: 18px;">审查结果: \${message}</p>
-\`;`;
-
-    function runGateLab() {
-        const editor = document.getElementById('code-gate');
-        try {
-            new Function(editor.innerText)();
-        } catch (e) {
-            alert('代码运行出错: ' + e.message);
-        }
-    }
-    function resetGateLab() {
-        document.getElementById('code-gate').innerText = gateInitialCode;
-        runGateLab();
-    }
-
-    // --- Page Initialization ---
-    document.addEventListener('DOMContentLoaded', function () {
-        resetCartLab();
-        resetCounterLab();
-        const display = document.getElementById('count-display');
-        if (display) display.textContent = currentCount;
-        createGuessGame();
-        resetGateLab();
-        highlightAllCode();
-    });
-
-    // 简约风格的语法高亮
-    function highlightAllCode() {
-        document.querySelectorAll('pre > code').forEach(codeBlock => {
-            if (codeBlock.classList.contains('highlighted')) return;
+    <script>
+        // 双栏交互实验室功能
+        function applyHTML(id) {
+            const editor = document.getElementById('html-' + id);
+            const preview = document.getElementById('preview-' + id);
+            const badge = document.getElementById('badge-' + id);
             
-            let code = codeBlock.textContent;
-            
-            // JavaScript 关键字
-            const keywords = /\b(const|let|var|function|return|if|else|for|while|do|switch|case|break|continue|try|catch|finally|throw|new|class|extends|import|export|default|async|await|yield|typeof|instanceof|in|of|delete|void|null|undefined|true|false|this|super)\b/g;
-            
-            // 字符串 (单引号、双引号、反引号)
-            const strings = /(['"`])(?:(?=(\\?))\2.)*?\1/g;
-            
-            // 注释 (单行和多行)
-            const comments = /(\/\/.*$|\/\*[\s\S]*?\*\/)/gm;
-            
-            // 数字
-            const numbers = /\b(\d+\.?\d*|\.\d+)(e[+-]?\d+)?\b/gi;
-            
-            // 函数调用
-            const functions = /\b([a-zA-Z_$][a-zA-Z0-9_$]*)\s*(?=\()/g;
-            
-            // 临时标记以保护已处理的部分
-            const tokens = [];
-            let tokenIndex = 0;
-            
-            // 1. 先处理注释(最高优先级)
-            code = code.replace(comments, match => {
-                const token = `__TOKEN_${tokenIndex++}__`;
-                tokens.push(`<span class="comment">${escapeHtml(match)}</span>`);
-                return token;
-            });
-            
-            // 2. 处理字符串
-            code = code.replace(strings, match => {
-                const token = `__TOKEN_${tokenIndex++}__`;
-                tokens.push(`<span class="string">${escapeHtml(match)}</span>`);
-                return token;
-            });
-            
-            // 3. 处理数字
-            code = code.replace(numbers, match => {
-                const token = `__TOKEN_${tokenIndex++}__`;
-                tokens.push(`<span class="number">${match}</span>`);
-                return token;
-            });
-            
-            // 4. 处理函数调用
-            code = code.replace(functions, match => {
-                const token = `__TOKEN_${tokenIndex++}__`;
-                tokens.push(`<span class="function">${match}</span>`);
-                return token;
-            });
-            
-            // 5. 处理关键字
-            code = code.replace(keywords, match => {
-                const token = `__TOKEN_${tokenIndex++}__`;
-                tokens.push(`<span class="keyword">${match}</span>`);
-                return token;
-            });
-            
-            // 6. HTML转义剩余内容
-            code = escapeHtml(code);
-            
-            // 7. 还原所有token
-            tokens.forEach((replacement, index) => {
-                code = code.replace(`__TOKEN_${index}__`, replacement);
-            });
-            
-            codeBlock.innerHTML = code;
-            codeBlock.classList.add('highlighted');
-        });
-    }
-    
-    function escapeHtml(text) {
-        const div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
-    }
-    // 第25次课-JS运算符与表达式实验交互逻辑
-    function run25jsExperiment() {
-        const editor = document.getElementById('25js-js');
-        const status = document.getElementById('25js-status');
-        
-        if (editor) {
-            let code = editor.innerText;
-            // 移除编辑器标签
-            code = code.replace('js (可编辑)', '');
-            
-            
-            // 注入JavaScript代码
-            const script = document.createElement('script');
-            script.id = 'experiment-25js';
-            // 重定向console.log到页面
-            const output = document.getElementById('25js-output');
-            const originalLog = console.log;
-            console.log = function(...args) {
-                originalLog(...args);
-                if (output) {
-                    output.innerHTML += '<p>' + args.join(' ') + '</p>';
-                }
-            };
-            script.textContent = code;
-            // 移除旧的脚本
-            const oldScript = document.getElementById('experiment-25js');
-            if (oldScript) {
-                oldScript.remove();
+            if (editor && preview) {
+                preview.innerHTML = editor.innerText;
+                
+                // 更新状态徽章
+                badge.innerText = "运行中 (Active)";
+                badge.className = "status-badge status-active";
             }
-            // 添加新脚本
-            document.body.appendChild(script);
-            
-            
-            // 更新状态
-            status.textContent = '已运行';
-            status.className = 'status-badge active';
-        }
-    }
-    
-    function reset25jsExperiment() {
-        const status = document.getElementById('25js-status');
-        
-        
-        // 重置输出和脚本
-        const output = document.getElementById('25js-output');
-        if (output) {
-            output.innerHTML = '<p>点击「运行代码」查看结果</p>';
-        }
-        const oldScript = document.getElementById('experiment-25js');
-        if (oldScript) {
-            oldScript.remove();
         }
         
-        
-        // 更新状态
-        status.textContent = '未运行';
-        status.className = 'status-badge';
-    }
-    // 第25次课-JS运算符与表达式实验交互逻辑
-    function run25jsExperiment() {
-        const editor = document.getElementById('25js-js');
-        const status = document.getElementById('25js-status');
-        
-        if (editor) {
-            let code = editor.innerText;
-            // 移除编辑器标签
-            code = code.replace('JS (可编辑)', '');
+        function resetHTML(id) {
+            const editor = document.getElementById('html-' + id);
+            const preview = document.getElementById('preview-' + id);
+            const badge = document.getElementById('badge-' + id);
+            const original = document.getElementById('original-' + id);
             
-            
-            // 注入JavaScript代码
-            const script = document.createElement('script');
-            script.id = 'experiment-25js';
-            // 重定向console.log到页面
-            const output = document.getElementById('25js-output');
-            const originalLog = console.log;
-            console.log = function(...args) {
-                originalLog(...args);
-                if (output) {
-                    output.innerHTML += '<p>' + args.join(' ') + '</p>';
-                }
-            };
-            script.textContent = code;
-            // 移除旧的脚本
-            const oldScript = document.getElementById('experiment-25js');
-            if (oldScript) {
-                oldScript.remove();
+            if (editor && preview && original) {
+                editor.innerText = original.innerText;
+                preview.innerHTML = editor.innerText;
+                
+                // 更新状态徽章
+                badge.innerText = "未运行 (Inactive)";
+                badge.className = "status-badge";
             }
-            // 添加新脚本
-            document.body.appendChild(script);
-            
-            
-            // 更新状态
-            status.textContent = '已运行';
-            status.className = 'status-badge active';
         }
-    }
-    
-    function reset25jsExperiment() {
-        const status = document.getElementById('25js-status');
-        
-        
-        // 重置输出和脚本
-        const output = document.getElementById('25js-output');
-        if (output) {
-            output.innerHTML = '<p>点击「运行代码」查看结果</p>';
-        }
-        const oldScript = document.getElementById('experiment-25js');
-        if (oldScript) {
-            oldScript.remove();
-        }
-        
-        
-        // 更新状态
-        status.textContent = '未运行';
-        status.className = 'status-badge';
-    }
-</script>
+    </script>
 </body>
 </html>
 

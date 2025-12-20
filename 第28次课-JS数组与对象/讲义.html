@@ -10,7 +10,7 @@
 <nav class="sidebar">
     <div class="sidebar-nav">
         <h3>课程导航</h3>
-        <a class="sidebar-link" href="#intro">课程概览</a>
+        <a class="sidebar-link" href="#intro">👋 课程概览</a>
         
         <h3>Part 1: 数组</h3>
         <a class="sidebar-link" href="#array-basics" class="sub-link">1. 数组基础</a>
@@ -31,17 +31,17 @@
       <h1>第28课：JS数组与对象</h1>
       <p class="intro">如果说变量是存储单个数据的盒子,那么数组就是一排编号的盒子,对象就是带标签的盒子。本课学习如何用数组管理列表数据,用对象组织复杂信息,它们是JavaScript中最重要的数据结构。</p>
       <div class="pill-list">
-        <span class="pill">数组创建与访问</span>
-        <span class="pill">数组方法</span>
-        <span class="pill">数组遍历</span>
-        <span class="pill">对象属性与方法</span>
-        <span class="pill">JSON数据格式</span>
-        <span class="pill">嵌套结构</span>
+        <span class="pill">数组创建与访问</div>
+        <span class="pill">数组方法</div>
+        <span class="pill">数组遍历</div>
+        <span class="pill">对象属性与方法</div>
+        <span class="pill">JSON数据格式</div>
+        <span class="pill">嵌套结构</div>
       </div>
       <div class="lab-card" style="margin-top: 30px;">
         <div class="lab-header">
-          <span>今日目标</span>
-          <span class="status-badge beginner">Suitable for Beginners</span>
+          <span>今日目标</div>
+          <span class="status-badge beginner">Suitable for Beginners</div>
         </div>
         <div class="lab-body">
           <ul class="checklist">
@@ -66,7 +66,7 @@ let student3 = "王五";
       <p>这样做有几个问题:变量太多难以管理、无法批量处理、代码重复冗长。<strong>数组和对象就是为了解决这些问题而生。</strong></p>
       
       <div class="tip-box">
-        <span class="tip-title">生活中的类比</span>
+        <span class="tip-title">生活中的类比</div>
         <ul class="checklist">
           <li><strong>数组 = 编号的储物柜:</strong>每个柜子有编号(索引),按顺序排列,适合存储同类物品(如学生名单、成绩列表)</li>
           <li><strong>对象 = 带标签的文件夹:</strong>每个资料有名称标签(属性名),方便查找,适合存储不同类型的相关信息(如用户信息:姓名、年龄、邮箱)</li>
@@ -143,7 +143,7 @@ console.log(fruits[2]);  // "橙子"（第三个元素）
 console.log(fruits.length);  // 3</code></pre>
 
       <div class="tip-box">
-        <span class="tip-title">数组的特点</span>
+        <span class="tip-title">数组的特点</div>
         <ul class="checklist">
           <li>索引从0开始，最后一个元素的索引是 <code>length - 1</code></li>
           <li>可以存储任意类型的数据</li>
@@ -301,12 +301,12 @@ console.log(arr);  // [5, 4, 3, 2, 1]</code></pre>
 
       <div class="lab-card">
         <div class="lab-header">
-          <span>🔬 实验1：待办事项管理器</span>
-          <span class="status-badge beginner">基础</span>
+          <span>🔬 实验1：待办事项管理器</div>
+          <span class="status-badge beginner">基础</div>
         </div>
         <div class="lab-body split">
           <div class="panel">
-            <span class="panel-label">HTML</span>
+            <div class="panel-label">HTML</div>
             <div class="html-viewer">  &lt;h3&gt;待办事项管理&lt;/h3&gt;
   &lt;div&gt;
     &lt;input id="taskInput" placeholder="输入新任务"&gt;
@@ -317,8 +317,8 @@ console.log(arr);  // [5, 4, 3, 2, 1]</code></pre>
   &lt;div id="output" style="margin-top:15px;padding:10px;background:#f9f9f9;border-radius:5px;white-space:pre-line;"&gt;&lt;/div&gt;</div>
           </div>
           <div class="panel">
-            <span class="panel-label">JavaScript (可编辑)</span>
-            <div class="code-editor" contenteditable="true" id="lab1-code">// 待办事项数组
+            <div class="panel-label">JavaScript (可编辑)</div>
+            <div class="html-editor" contenteditable="true" id="lab1-code">// 待办事项数组
 const tasks = ["学习JavaScript", "完成作业"];
 
 function addTask() {
@@ -362,7 +362,7 @@ function showTasks() {
         <div class="action-bar">
           <button class="btn btn-run" onclick="runLab1()">▶ 运行代码</button>
           <button class="btn btn-reset" onclick="resetLab1()">↻ 重置</button>
-          <span style="color:#999;font-size:13px;">测试数组的添加、删除和显示功能</span>
+          <span style="color:#999;font-size:13px;">测试数组的添加、删除和显示功能</div>
         </div>
         <div class="preview-box" id="lab1-preview"></div>
       </div>
@@ -465,7 +465,7 @@ console.log(person["age"]);    // 25（方括号语法）
 const empty = {};</code></pre>
 
       <div class="note-box">
-        <span class="tip-title">📌 对象的特点</span>
+        <span class="tip-title">📌 对象的特点</div>
         <ul class="checklist">
           <li>键（key）通常是字符串，值（value）可以是任意类型</li>
           <li>无序的键值对集合</li>
@@ -601,12 +601,12 @@ console.log(merged);  // { a: 1, b: 3, c: 4 }</code></pre>
 
       <div class="lab-card">
         <div class="lab-header">
-          <span>🔬 实验2：学生信息管理</span>
-          <span class="status-badge beginner">基础</span>
+          <span>🔬 实验2：学生信息管理</div>
+          <span class="status-badge beginner">基础</div>
         </div>
         <div class="lab-body split">
           <div class="panel">
-            <span class="panel-label">HTML</span>
+            <div class="panel-label">HTML</div>
             <div class="html-viewer">  &lt;h3&gt;👨‍🎓 学生信息管理&lt;/h3&gt;
   &lt;div&gt;
     &lt;input id="nameInput" placeholder="姓名"&gt;
@@ -618,8 +618,8 @@ console.log(merged);  // { a: 1, b: 3, c: 4 }</code></pre>
   &lt;div id="output" style="margin-top:15px;padding:10px;background:#f0f8ff;border-radius:5px;white-space:pre-line;"&gt;&lt;/div&gt;</div>
           </div>
           <div class="panel">
-            <span class="panel-label">JavaScript (可编辑)</span>
-            <div class="code-editor" contenteditable="true" id="lab2-code">// 学生对象
+            <div class="panel-label">JavaScript (可编辑)</div>
+            <div class="html-editor" contenteditable="true" id="lab2-code">// 学生对象
 const student = {
   name: "小明",
   age: 20,
@@ -655,7 +655,7 @@ function showStudent() {
         <div class="action-bar">
           <button class="btn btn-run" onclick="runLab2()">▶ 运行代码</button>
           <button class="btn btn-reset" onclick="resetLab2()">↻ 重置</button>
-          <span style="color:#999;font-size:13px;">测试对象属性的修改和方法调用</span>
+          <span style="color:#999;font-size:13px;">测试对象属性的修改和方法调用</div>
         </div>
         <div class="preview-box" id="lab2-preview"></div>
       </div>
@@ -668,7 +668,7 @@ function showStudent() {
       <p>JSON（JavaScript Object Notation）是一种<strong>轻量级的数据交换格式</strong>,是前后端通信的标准语言。就像快递单的标准格式,让不同的程序都能读懂彼此的数据。</p>
       
       <div class="tip-box">
-        <span class="tip-title">为什么需要JSON?</span>
+        <span class="tip-title">为什么需要JSON?</div>
         <ul class="checklist">
           <li>前端JavaScript对象无法直接传给后端</li>
           <li>需要一种文本格式,方便网络传输</li>
@@ -679,7 +679,7 @@ function showStudent() {
 
       <h3>7.2 JSON的语法规则</h3>
       <div class="note-box">
-        <span class="tip-title">JSON的特点</span>
+        <span class="tip-title">JSON的特点</div>
         <ul class="checklist">
           <li>键必须用双引号包裹</li>
           <li>值可以是：字符串、数字、对象、数组、布尔值、null</li>
@@ -824,12 +824,12 @@ console.log(company.getTotalSalary());  // 58000</code></pre>
 
       <div class="lab-card">
         <div class="lab-header">
-          <span>🔬 实验3：学生成绩分析系统</span>
-          <span class="status-badge advanced">进阶</span>
+          <span>🔬 实验3：学生成绩分析系统</div>
+          <span class="status-badge advanced">进阶</div>
         </div>
         <div class="lab-body split">
           <div class="panel">
-            <span class="panel-label">HTML</span>
+            <div class="panel-label">HTML</div>
             <div class="html-viewer">  &lt;h3&gt;📊 学生成绩分析系统&lt;/h3&gt;
   &lt;div&gt;
     &lt;button onclick="showAll()"&gt;显示全部学生&lt;/button&gt;
@@ -840,8 +840,8 @@ console.log(company.getTotalSalary());  // 58000</code></pre>
   &lt;div id="output" style="margin-top:15px;padding:12px;background:#f5f5f5;border-radius:5px;white-space:pre-line;"&gt;&lt;/div&gt;</div>
           </div>
           <div class="panel">
-            <span class="panel-label">JavaScript (可编辑)</span>
-            <div class="code-editor" contenteditable="true" id="lab3-code">// 学生数据（数组包含对象）
+            <div class="panel-label">JavaScript (可编辑)</div>
+            <div class="html-editor" contenteditable="true" id="lab3-code">// 学生数据（数组包含对象）
 const students = [
   { name: "张三", age: 20, score: 85, grade: "A" },
   { name: "李四", age: 21, score: 92, grade: "A+" },
@@ -883,7 +883,7 @@ function showPassed() {
         <div class="action-bar">
           <button class="btn btn-run" onclick="runLab3()">▶ 运行代码</button>
           <button class="btn btn-reset" onclick="resetLab3()">↻ 重置</button>
-          <span style="color:#999;font-size:13px;">综合运用数组方法和对象操作</span>
+          <span style="color:#999;font-size:13px;">综合运用数组方法和对象操作</div>
         </div>
         <div class="preview-box" id="lab3-preview"></div>
       </div>
@@ -895,7 +895,7 @@ function showPassed() {
       <p>让我们综合运用数组和对象的所有知识:数组方法、对象操作、数据遍历、嵌套结构等,构建一个功能完整的图书管理系统。</p>
       
       <div class="tip-box">
-        <span class="tip-title">本案例涵盖的知识点</span>
+        <span class="tip-title">本案例涵盖的知识点</div>
         <ul class="checklist">
           <li>使用对象数组存储图书信息</li>
           <li>数组的增删改查操作</li>
@@ -908,12 +908,12 @@ function showPassed() {
 
       <div class="lab-card">
         <div class="lab-header">
-          <span>🔬 实验4：图书管理系统</span>
-          <span class="status-badge advanced">综合</span>
+          <span>🔬 实验4：图书管理系统</div>
+          <span class="status-badge advanced">综合</div>
         </div>
         <div class="lab-body split">
           <div class="panel">
-            <span class="panel-label">HTML</span>
+            <div class="panel-label">HTML</div>
             <div class="html-viewer">  &lt;div class="book-manager"&gt;
     &lt;h3&gt;图书管理系统&lt;/h3&gt;
     &lt;div class="input-row"&gt;
@@ -941,8 +941,8 @@ function showPassed() {
   &lt;/style&gt;</div>
           </div>
           <div class="panel">
-            <span class="panel-label">JavaScript (可编辑)</span>
-            <div class="code-editor" contenteditable="true" id="lab4-code">// 图书库（对象数组）
+            <div class="panel-label">JavaScript (可编辑)</div>
+            <div class="html-editor" contenteditable="true" id="lab4-code">// 图书库（对象数组）
 const library = [
   { title: "JavaScript高级程序设计", author: "Nicholas", year: 2020 },
   { title: "你不知道的JavaScript", author: "Kyle", year: 2019 }
@@ -1028,13 +1028,13 @@ function showStats() {
         <div class="action-bar">
           <button class="btn btn-run" onclick="runLab4()">▶ 运行代码</button>
           <button class="btn btn-reset" onclick="resetLab4()">↻ 重置</button>
-          <span style="color:#999;font-size:13px;">完整的图书管理系统，包含增删查改功能</span>
+          <span style="color:#999;font-size:13px;">完整的图书管理系统，包含增删查改功能</div>
         </div>
         <div class="preview-box" id="lab4-preview"></div>
       </div>
 
       <div class="tip-box">
-        <span class="tip-title">案例知识点总结</span>
+        <span class="tip-title">案例知识点总结</div>
         <ul class="checklist">
           <li>使用对象数组存储结构化数据</li>
           <li>数组方法：push, filter, map的综合应用</li>
@@ -1048,7 +1048,7 @@ function showStats() {
     <section style="margin-top:80px;padding-top:40px;border-top:2px solid var(--border-color);">
       <h2>课程总结</h2>
       <div class="note-box">
-        <span class="tip-title">本课重点回顾</span>
+        <span class="tip-title">本课重点回顾</div>
         <ul class="checklist">
           <li><strong>数组：</strong>有序的数据集合，索引从0开始，支持丰富的操作方法</li>
           <li><strong>数组方法：</strong>push/pop、map/filter/reduce、forEach、find、sort等</li>
@@ -1060,7 +1060,7 @@ function showStats() {
       </div>
       
       <div class="tip-box">
-        <span class="tip-title">💪 练习建议</span>
+        <span class="tip-title">💪 练习建议</div>
         <p>1. 尝试修改实验代码，添加更多功能（如编辑、删除）</p>
         <p>2. 使用不同的数组方法解决同一个问题</p>
         <p>3. 创建更复杂的嵌套数据结构</p>
@@ -1070,13 +1070,13 @@ function showStats() {
     
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验：第28次课-JS数组与对象实践</span>
-                <span id="28js-status" class="status-badge">未运行</span>
+                <span>实验：第28次课-JS数组与对象实践</div>
+                <span id="28js-status" class="status-badge">未运行</div>
             </div>
             <div class="lab-body css-js-experiment">
                 <div>
-                    <div class="code-editor" id="28js-js" contenteditable="true">
-<span class="panel-label">JavaScript (可编辑)</span>// 第28次课-JS数组与对象实验
+                    <div class="html-editor" id="28js-js" contenteditable="true">
+<div class="panel-label">JavaScript (可编辑)</div>// 第28次课-JS数组与对象实验
 
 // 在这里编写你的JavaScript代码
 
@@ -1087,8 +1087,8 @@ console.log('第28次课-JS数组与对象实验开始');
 </div>
                 </div>
                 <div>
-                    <div class="preview-area" id="28js-preview">
-                        <span class="panel-label">预览效果</span>
+                    <div class="preview-box" id="28js-preview">
+                        <div class="panel-label">预览效果</div>
                         <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
                             <h3>第28次课-JS数组与对象实验</h3>
                             <div id="28js-output">
@@ -1106,13 +1106,13 @@ console.log('第28次课-JS数组与对象实验开始');
 
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验：第28次课-JS数组与对象实践</span>
-                <span id="28js-status" class="status-badge">未运行</span>
+                <span>实验：第28次课-JS数组与对象实践</div>
+                <span id="28js-status" class="status-badge">未运行</div>
             </div>
             <div class="lab-body css-js-experiment">
                 <div>
-                    <div class="code-editor" id="28js-js" contenteditable="true">
-<span class="panel-label">JavaScript (可编辑)</span>// 第28次课-JS数组与对象实验
+                    <div class="html-editor" id="28js-js" contenteditable="true">
+<div class="panel-label">JavaScript (可编辑)</div>// 第28次课-JS数组与对象实验
 
 // 在这里编写你的JavaScript代码
 
@@ -1123,8 +1123,8 @@ console.log('第28次课-JS数组与对象实验开始');
 </div>
                 </div>
                 <div>
-                    <div class="preview-area" id="28js-preview">
-                        <span class="panel-label">预览效果</span>
+                    <div class="preview-box" id="28js-preview">
+                        <div class="panel-label">预览效果</div>
                         <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
                             <h3>第28次课-JS数组与对象实验</h3>
                             <div id="28js-output">
@@ -1141,300 +1141,38 @@ console.log('第28次课-JS数组与对象实验开始');
         </div>
 </section></main>
 
-  <script>
-    // ===== 实验1：待办事项管理器 =====
-    const lab1OriginalCode = document.getElementById('lab1-code').innerText;
-    
-    function runLab1() {
-      const code = document.getElementById('lab1-code').innerText;
-      const previewFrame = document.getElementById('lab1-preview');
-      
-      try {
-        eval(code);
-        previewFrame.innerHTML = '<div style="color:#28a745;">✅ 代码已加载！在上方测试待办事项管理功能</div>';
-      } catch (e) {
-        previewFrame.innerHTML = '<div style="color:#dc3545;">❌ 错误：' + e.message + '</div>';
-      }
-    }
-    
-    function resetLab1() {
-      document.getElementById('lab1-code').innerText = lab1OriginalCode;
-      document.getElementById('lab1-preview').innerHTML = '';
-    }
-
-    // ===== 实验2：学生信息管理 =====
-    const lab2OriginalCode = document.getElementById('lab2-code').innerText;
-    
-    function runLab2() {
-      const code = document.getElementById('lab2-code').innerText;
-      const previewFrame = document.getElementById('lab2-preview');
-      
-      try {
-        eval(code);
-        previewFrame.innerHTML = '<div style="color:#28a745;">✅ 代码已加载！输入信息并点击按钮测试</div>';
-      } catch (e) {
-        previewFrame.innerHTML = '<div style="color:#dc3545;">❌ 错误：' + e.message + '</div>';
-      }
-    }
-    
-    function resetLab2() {
-      document.getElementById('lab2-code').innerText = lab2OriginalCode;
-      document.getElementById('lab2-preview').innerHTML = '';
-    }
-
-    // ===== 实验3：学生成绩分析系统 =====
-    const lab3OriginalCode = document.getElementById('lab3-code').innerText;
-    
-    function runLab3() {
-      const code = document.getElementById('lab3-code').innerText;
-      const previewFrame = document.getElementById('lab3-preview');
-      
-      try {
-        eval(code);
-        previewFrame.innerHTML = '<div style="color:#28a745;">✅ 代码已加载！点击按钮查看不同的分析结果</div>';
-      } catch (e) {
-        previewFrame.innerHTML = '<div style="color:#dc3545;">❌ 错误：' + e.message + '</div>';
-      }
-    }
-    
-    function resetLab3() {
-      document.getElementById('lab3-code').innerText = lab3OriginalCode;
-      document.getElementById('lab3-preview').innerHTML = '';
-    }
-
-    // ===== 实验4：图书管理系统 =====
-    const lab4OriginalCode = document.getElementById('lab4-code').innerText;
-    
-    function runLab4() {
-      const code = document.getElementById('lab4-code').innerText;
-      const previewFrame = document.getElementById('lab4-preview');
-      
-      try {
-        eval(code);
-        previewFrame.innerHTML = '<div style="color:#28a745;">✅ 图书管理系统已就绪！可以添加、查看和搜索图书</div>';
-      } catch (e) {
-        previewFrame.innerHTML = '<div style="color:#dc3545;">❌ 错误：' + e.message + '</div>';
-      }
-    }
-    
-    function resetLab4() {
-      document.getElementById('lab4-code').innerText = lab4OriginalCode;
-      document.getElementById('lab4-preview').innerHTML = '';
-    }
-
-    // 侧边栏导航激活
-    document.querySelectorAll('.sidebar a').forEach(link => {
-      link.addEventListener('click', function() {
-        document.querySelectorAll('.sidebar a').forEach(a => a.classList.remove('active'));
-        this.classList.add('active');
-      });
-    });
-
-    // 初始化时运行所有实验
-    window.addEventListener('load', () => {
-      runLab1();
-      runLab2();
-      runLab3();
-      runLab4();
-      highlightAllCode();
-    });
-
-    // 简约风格的语法高亮
-    function highlightAllCode() {
-        document.querySelectorAll('pre > code').forEach(codeBlock => {
-            if (codeBlock.classList.contains('highlighted')) return;
+      <script>
+        // 双栏交互实验室功能
+        function applyHTML(id) {
+            const editor = document.getElementById('html-' + id);
+            const preview = document.getElementById('preview-' + id);
+            const badge = document.getElementById('badge-' + id);
             
-            let code = codeBlock.textContent;
-            
-            // JavaScript 关键字
-            const keywords = /\b(const|let|var|function|return|if|else|for|while|do|switch|case|break|continue|try|catch|finally|throw|new|class|extends|import|export|default|async|await|yield|typeof|instanceof|in|of|delete|void|null|undefined|true|false|this|super)\b/g;
-            
-            // 字符串 (单引号、双引号、反引号)
-            const strings = /(['"`])(?:(?=(\\?))\2.)*?\1/g;
-            
-            // 注释 (单行和多行)
-            const comments = /(\/\/.*$|\/\*[\s\S]*?\*\/)/gm;
-            
-            // 数字
-            const numbers = /\b(\d+\.?\d*|\.\d+)(e[+-]?\d+)?\b/gi;
-            
-            // 函数调用
-            const functions = /\b([a-zA-Z_$][a-zA-Z0-9_$]*)\s*(?=\()/g;
-            
-            // 临时标记以保护已处理的部分
-            const tokens = [];
-            let tokenIndex = 0;
-            
-            // 1. 先处理注释（最高优先级）
-            code = code.replace(comments, match => {
-                const token = `__TOKEN_${tokenIndex++}__`;
-                tokens.push(`<span class="comment">${escapeHtml(match)}</span>`);
-                return token;
-            });
-            
-            // 2. 处理字符串
-            code = code.replace(strings, match => {
-                const token = `__TOKEN_${tokenIndex++}__`;
-                tokens.push(`<span class="string">${escapeHtml(match)}</span>`);
-                return token;
-            });
-            
-            // 3. 处理数字
-            code = code.replace(numbers, match => {
-                const token = `__TOKEN_${tokenIndex++}__`;
-                tokens.push(`<span class="number">${match}</span>`);
-                return token;
-            });
-            
-            // 4. 处理函数调用
-            code = code.replace(functions, match => {
-                const token = `__TOKEN_${tokenIndex++}__`;
-                tokens.push(`<span class="function">${match}</span>`);
-                return token;
-            });
-            
-            // 5. 处理关键字
-            code = code.replace(keywords, match => {
-                const token = `__TOKEN_${tokenIndex++}__`;
-                tokens.push(`<span class="keyword">${match}</span>`);
-                return token;
-            });
-            
-            // 6. HTML转义剩余内容
-            code = escapeHtml(code);
-            
-            // 7. 还原所有token
-            tokens.forEach((replacement, index) => {
-                code = code.replace(`__TOKEN_${index}__`, replacement);
-            });
-            
-            codeBlock.innerHTML = code;
-            codeBlock.classList.add('highlighted');
-        });
-    }
-    
-    function escapeHtml(text) {
-        const div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
-    }
-      // 第28次课-JS数组与对象实验交互逻辑
-    function run28jsExperiment() {
-        const editor = document.getElementById('28js-js');
-        const status = document.getElementById('28js-status');
-        
-        if (editor) {
-            let code = editor.innerText;
-            // 移除编辑器标签
-            code = code.replace('js (可编辑)', '');
-            
-            
-            // 注入JavaScript代码
-            const script = document.createElement('script');
-            script.id = 'experiment-28js';
-            // 重定向console.log到页面
-            const output = document.getElementById('28js-output');
-            const originalLog = console.log;
-            console.log = function(...args) {
-                originalLog(...args);
-                if (output) {
-                    output.innerHTML += '<p>' + args.join(' ') + '</p>';
-                }
-            };
-            script.textContent = code;
-            // 移除旧的脚本
-            const oldScript = document.getElementById('experiment-28js');
-            if (oldScript) {
-                oldScript.remove();
+            if (editor && preview) {
+                preview.innerHTML = editor.innerText;
+                
+                // 更新状态徽章
+                badge.innerText = "运行中 (Active)";
+                badge.className = "status-badge status-active";
             }
-            // 添加新脚本
-            document.body.appendChild(script);
-            
-            
-            // 更新状态
-            status.textContent = '已运行';
-            status.className = 'status-badge active';
-        }
-    }
-    
-    function reset28jsExperiment() {
-        const status = document.getElementById('28js-status');
-        
-        
-        // 重置输出和脚本
-        const output = document.getElementById('28js-output');
-        if (output) {
-            output.innerHTML = '<p>点击「运行代码」查看结果</p>';
-        }
-        const oldScript = document.getElementById('experiment-28js');
-        if (oldScript) {
-            oldScript.remove();
         }
         
-        
-        // 更新状态
-        status.textContent = '未运行';
-        status.className = 'status-badge';
-    }
-    // 第28次课-JS数组与对象实验交互逻辑
-    function run28jsExperiment() {
-        const editor = document.getElementById('28js-js');
-        const status = document.getElementById('28js-status');
-        
-        if (editor) {
-            let code = editor.innerText;
-            // 移除编辑器标签
-            code = code.replace('JS (可编辑)', '');
+        function resetHTML(id) {
+            const editor = document.getElementById('html-' + id);
+            const preview = document.getElementById('preview-' + id);
+            const badge = document.getElementById('badge-' + id);
+            const original = document.getElementById('original-' + id);
             
-            
-            // 注入JavaScript代码
-            const script = document.createElement('script');
-            script.id = 'experiment-28js';
-            // 重定向console.log到页面
-            const output = document.getElementById('28js-output');
-            const originalLog = console.log;
-            console.log = function(...args) {
-                originalLog(...args);
-                if (output) {
-                    output.innerHTML += '<p>' + args.join(' ') + '</p>';
-                }
-            };
-            script.textContent = code;
-            // 移除旧的脚本
-            const oldScript = document.getElementById('experiment-28js');
-            if (oldScript) {
-                oldScript.remove();
+            if (editor && preview && original) {
+                editor.innerText = original.innerText;
+                preview.innerHTML = editor.innerText;
+                
+                // 更新状态徽章
+                badge.innerText = "未运行 (Inactive)";
+                badge.className = "status-badge";
             }
-            // 添加新脚本
-            document.body.appendChild(script);
-            
-            
-            // 更新状态
-            status.textContent = '已运行';
-            status.className = 'status-badge active';
         }
-    }
-    
-    function reset28jsExperiment() {
-        const status = document.getElementById('28js-status');
-        
-        
-        // 重置输出和脚本
-        const output = document.getElementById('28js-output');
-        if (output) {
-            output.innerHTML = '<p>点击「运行代码」查看结果</p>';
-        }
-        const oldScript = document.getElementById('experiment-28js');
-        if (oldScript) {
-            oldScript.remove();
-        }
-        
-        
-        // 更新状态
-        status.textContent = '未运行';
-        status.className = 'status-badge';
-    }
-</script>
+    </script>
 </body>
 </html>
 

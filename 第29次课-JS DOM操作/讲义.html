@@ -10,7 +10,7 @@
 <nav class="sidebar">
     <div class="sidebar-nav">
         <h3>课程导航</h3>
-        <a class="sidebar-link" href="#intro">课程概览</a>
+        <a class="sidebar-link" href="#intro">👋 课程概览</a>
         
         <h3>Part 1: DOM基础</h3>
         <a class="sidebar-link" href="#what-is-dom" class="sub-link">1. DOM是什么</a>
@@ -31,16 +31,16 @@
       <h1>第29课：JS DOM操作</h1>
       <p class="intro">前面六课我们学习的JavaScript代码大多在控制台运行。从本课开始,你将学会用JavaScript真正控制网页:改变文字、修改样式、创建和删除元素,让网页"活"起来!</p>
       <div class="pill-list">
-        <span class="pill">DOM树结构</span>
-        <span class="pill">元素选择</span>
-        <span class="pill">内容读写</span>
-        <span class="pill">样式操作</span>
-        <span class="pill">元素创建删除</span>
+        <span class="pill">DOM树结构</div>
+        <span class="pill">元素选择</div>
+        <span class="pill">内容读写</div>
+        <span class="pill">样式操作</div>
+        <span class="pill">元素创建删除</div>
       </div>
       <div class="lab-card" style="margin-top: 30px;">
         <div class="lab-header">
-          <span>今日目标</span>
-          <span class="status-badge beginner">Suitable for Beginners</span>
+          <span>今日目标</div>
+          <span class="status-badge beginner">Suitable for Beginners</div>
         </div>
         <div class="lab-body">
           <ul class="checklist">
@@ -60,7 +60,7 @@
       <p>想象你在使用一个购物网站:点击"加入购物车"按钮,购物车图标上的数字立即增加;删除商品,页面上的商品卡片消失;输入搜索关键词,下方实时显示匹配结果。这些都离不开DOM操作。</p>
       
       <div class="tip-box">
-        <span class="tip-title">生活中的类比</span>
+        <span class="tip-title">生活中的类比</div>
         <ul class="checklist">
           <li><strong>DOM操作 = 遥控器:</strong>就像用遥控器控制电视(换台、调音量、开关),JavaScript通过DOM控制网页(改文字、换颜色、增删元素)</li>
           <li><strong>没有DOM = 静态海报:</strong>网页只能展示固定内容,无法响应用户操作</li>
@@ -111,7 +111,7 @@ function addToCart() {
       <p>DOM（Document Object Model，文档对象模型）是浏览器提供的一套API,用于将HTML文档表示为一个树形结构,让JavaScript可以访问和操作网页中的每个元素。</p>
       
       <div class="tip-box">
-        <span class="tip-title">理解DOM树</span>
+        <span class="tip-title">理解DOM树</div>
         <p>想象一个家族族谱:最上面是祖先,下面是子孙,每个人都有父母、兄弟姐妹、子女。DOM树也是这样:</p>
         <ul class="checklist">
           <li><strong>根节点:</strong>整个HTML文档(document)</li>
@@ -176,7 +176,7 @@ function addToCart() {
       </table>
 
       <div class="note-box">
-        <span class="tip-title">📌 重要概念</span>
+        <span class="tip-title">📌 重要概念</div>
         <ul class="checklist">
           <li>DOM将HTML文档转换为JavaScript可以操作的对象</li>
           <li>每个HTML标签都是一个DOM元素节点</li>
@@ -293,7 +293,7 @@ const allParagraphs = document.getElementsByTagName('p');</code></pre>
       </table>
 
       <div class="warning-box">
-        <span class="tip-title">注意事项</span>
+        <span class="tip-title">注意事项</div>
         <ul class="checklist">
           <li><strong>getElementById:</strong>参数不需要#号</li>
           <li><strong>querySelector:</strong>参数需要完整的CSS选择器(#id、.class)</li>
@@ -304,12 +304,12 @@ const allParagraphs = document.getElementsByTagName('p');</code></pre>
 
       <div class="lab-card">
         <div class="lab-header">
-          <span>🔬 实验1：元素选择练习</span>
-          <span class="status-badge beginner">基础</span>
+          <span>🔬 实验1：元素选择练习</div>
+          <span class="status-badge beginner">基础</div>
         </div>
         <div class="lab-body split">
           <div class="panel">
-            <span class="panel-label">HTML</span>
+            <div class="panel-label">HTML</div>
             <div class="html-viewer">  &lt;h3 id="title"&gt;元素选择练习&lt;/h3&gt;
   &lt;div class="box"&gt;盒子1&lt;/div&gt;
   &lt;div class="box"&gt;盒子2&lt;/div&gt;
@@ -320,8 +320,8 @@ const allParagraphs = document.getElementsByTagName('p');</code></pre>
   &lt;div id="output" style="margin-top:15px;padding:10px;background:#f0f0f0;border-radius:5px;"&gt;&lt;/div&gt;</div>
           </div>
           <div class="panel">
-            <span class="panel-label">JavaScript (可编辑)</span>
-            <div class="code-editor" contenteditable="true" id="lab1-code">function selectById() {
+            <div class="panel-label">JavaScript (可编辑)</div>
+            <div class="html-editor" contenteditable="true" id="lab1-code">function selectById() {
   // 通过ID选择标题
   const title = document.getElementById('title');
   const output = document.getElementById('output');
@@ -356,7 +356,7 @@ function selectSpecial() {
         <div class="action-bar">
           <button class="btn btn-run" onclick="runLab1()">▶ 运行代码</button>
           <button class="btn btn-reset" onclick="resetLab1()">↻ 重置</button>
-          <span style="color:#999;font-size:13px;">点击按钮测试不同的选择器</span>
+          <span style="color:#999;font-size:13px;">点击按钮测试不同的选择器</div>
         </div>
         <div class="preview-box" id="lab1-preview"></div>
       </div>
@@ -506,7 +506,7 @@ content.innerHTML = '';
 &lt;/script&gt;</code></pre>
 
       <div class="warning-box">
-        <span class="tip-title">innerHTML的安全风险</span>
+        <span class="tip-title">innerHTML的安全风险</div>
         <p>使用innerHTML设置用户输入的内容时要特别小心,可能导致XSS(跨站脚本)攻击:</p>
         <pre><code>// 危险!如果userInput包含&lt;script&gt;标签会被执行
 const userInput = '&lt;script&gt;alert("攻击!")&lt;/script&gt;';
@@ -544,12 +544,12 @@ img.removeAttribute('alt');
 
       <div class="lab-card">
         <div class="lab-header">
-          <span>🔬 实验2：动态内容编辑器</span>
-          <span class="status-badge beginner">基础</span>
+          <span>🔬 实验2：动态内容编辑器</div>
+          <span class="status-badge beginner">基础</div>
         </div>
         <div class="lab-body split">
           <div class="panel">
-            <span class="panel-label">HTML</span>
+            <div class="panel-label">HTML</div>
             <div class="html-viewer">  &lt;h3&gt;✏️ 动态内容编辑器&lt;/h3&gt;
   &lt;div&gt;
     &lt;input id="titleInput" placeholder="输入新标题"&gt;
@@ -567,8 +567,8 @@ img.removeAttribute('alt');
   &lt;/div&gt;</div>
           </div>
           <div class="panel">
-            <span class="panel-label">JavaScript (可编辑)</span>
-            <div class="code-editor" contenteditable="true" id="lab2-code">function changeTitle() {
+            <div class="panel-label">JavaScript (可编辑)</div>
+            <div class="html-editor" contenteditable="true" id="lab2-code">function changeTitle() {
   const input = document.getElementById('titleInput');
   const title = document.getElementById('displayTitle');
   
@@ -604,7 +604,7 @@ function clearContent() {
         <div class="action-bar">
           <button class="btn btn-run" onclick="runLab2()">▶ 运行代码</button>
           <button class="btn btn-reset" onclick="resetLab2()">↻ 重置</button>
-          <span style="color:#999;font-size:13px;">试试输入文本和HTML代码</span>
+          <span style="color:#999;font-size:13px;">试试输入文本和HTML代码</div>
         </div>
         <div class="preview-box" id="lab2-preview"></div>
       </div>
@@ -660,12 +660,12 @@ if (box.classList.contains('highlight')) {
 
       <div class="lab-card">
         <div class="lab-header">
-          <span>🔬 实验3：样式切换器</span>
-          <span class="status-badge beginner">基础</span>
+          <span>🔬 实验3：样式切换器</div>
+          <span class="status-badge beginner">基础</div>
         </div>
         <div class="lab-body split">
           <div class="panel">
-            <span class="panel-label">HTML</span>
+            <div class="panel-label">HTML</div>
             <div class="html-viewer">  &lt;h3&gt;样式切换器&lt;/h3&gt;
   &lt;div&gt;
     &lt;button onclick="toggleTheme()"&gt;切换主题&lt;/button&gt;
@@ -687,8 +687,8 @@ if (box.classList.contains('highlight')) {
   &lt;/style&gt;</div>
           </div>
           <div class="panel">
-            <span class="panel-label">JavaScript (可编辑)</span>
-            <div class="code-editor" contenteditable="true" id="lab3-code">function toggleTheme() {
+            <div class="panel-label">JavaScript (可编辑)</div>
+            <div class="html-editor" contenteditable="true" id="lab3-code">function toggleTheme() {
   const display = document.getElementById('display');
   display.classList.toggle('theme-dark');
 }
@@ -702,7 +702,7 @@ function toggleSize() {
         <div class="action-bar">
           <button class="btn btn-run" onclick="runLab3()">▶ 运行代码</button>
           <button class="btn btn-reset" onclick="resetLab3()">↻ 重置</button>
-          <span style="color:#999;font-size:13px;">试试不同的样式切换效果</span>
+          <span style="color:#999;font-size:13px;">试试不同的样式切换效果</div>
         </div>
         <div class="preview-box" id="lab3-preview"></div>
       </div>
@@ -742,12 +742,12 @@ box.remove();
 
       <div class="lab-card">
         <div class="lab-header">
-          <span>🔬 实验4：动态待办列表</span>
-          <span class="status-badge advanced">进阶</span>
+          <span>🔬 实验4：动态待办列表</div>
+          <span class="status-badge advanced">进阶</div>
         </div>
         <div class="lab-body split">
           <div class="panel">
-            <span class="panel-label">HTML</span>
+            <div class="panel-label">HTML</div>
             <div class="html-viewer">  &lt;h3&gt;动态待办列表&lt;/h3&gt;
   &lt;input id="todoInput" placeholder="输入待办事项"&gt;
   &lt;button onclick="addTodo()"&gt;添加&lt;/button&gt;
@@ -773,8 +773,8 @@ box.remove();
   &lt;/style&gt;</div>
           </div>
           <div class="panel">
-            <span class="panel-label">JavaScript (可编辑)</span>
-            <div class="code-editor" contenteditable="true" id="lab4-code">let todoCount = 0;
+            <div class="panel-label">JavaScript (可编辑)</div>
+            <div class="html-editor" contenteditable="true" id="lab4-code">let todoCount = 0;
 
 function addTodo() {
   const input = document.getElementById('todoInput');
@@ -811,7 +811,7 @@ function addTodo() {
         <div class="action-bar">
           <button class="btn btn-run" onclick="runLab4()">▶ 运行代码</button>
           <button class="btn btn-reset" onclick="resetLab4()">↻ 重置</button>
-          <span style="color:#999;font-size:13px;">动态创建和删除元素</span>
+          <span style="color:#999;font-size:13px;">动态创建和删除元素</div>
         </div>
         <div class="preview-box" id="lab4-preview"></div>
       </div>
@@ -823,7 +823,7 @@ function addTodo() {
       <p>综合运用本课所有知识:元素选择、内容修改、样式操作、元素创建删除。</p>
       
       <div class="tip-box">
-        <span class="tip-title">本案例涵盖的知识点</span>
+        <span class="tip-title">本案例涵盖的知识点</div>
         <ul class="checklist">
           <li>使用querySelector和getElementById选择元素</li>
           <li>动态创建DOM元素(createElement)</li>
@@ -835,12 +835,12 @@ function addTodo() {
 
       <div class="lab-card">
         <div class="lab-header">
-          <span>🔬 综合实战：卡片管理器</span>
-          <span class="status-badge advanced">综合</span>
+          <span>🔬 综合实战：卡片管理器</div>
+          <span class="status-badge advanced">综合</div>
         </div>
         <div class="lab-body split">
           <div class="panel">
-            <span class="panel-label">HTML</span>
+            <div class="panel-label">HTML</div>
             <div class="html-viewer">  &lt;h3&gt;🎴 卡片管理器&lt;/h3&gt;
   &lt;input id="cardTitle" placeholder="卡片标题"&gt;
   &lt;button onclick="addCard()"&gt;添加卡片&lt;/button&gt;
@@ -868,8 +868,8 @@ function addTodo() {
   &lt;/style&gt;</div>
           </div>
           <div class="panel">
-            <span class="panel-label">JavaScript (可编辑)</span>
-            <div class="code-editor" contenteditable="true" id="lab5-code">let cardId = 0;
+            <div class="panel-label">JavaScript (可编辑)</div>
+            <div class="html-editor" contenteditable="true" id="lab5-code">let cardId = 0;
 
 function addCard() {
   const titleInput = document.getElementById('cardTitle');
@@ -913,7 +913,7 @@ function clearAll() {
         <div class="action-bar">
           <button class="btn btn-run" onclick="runLab5()">▶ 运行代码</button>
           <button class="btn btn-reset" onclick="resetLab5()">↻ 重置</button>
-          <span style="color:#999;font-size:13px;">完整的卡片管理系统</span>
+          <span style="color:#999;font-size:13px;">完整的卡片管理系统</div>
         </div>
         <div class="preview-box" id="lab5-preview"></div>
       </div>
@@ -922,7 +922,7 @@ function clearAll() {
     <section style="margin-top:80px;padding-top:40px;border-top:2px solid var(--border-color);">
       <h2>课程总结</h2>
       <div class="note-box">
-        <span class="tip-title">本课重点回顾</span>
+        <span class="tip-title">本课重点回顾</div>
         <ul class="checklist">
           <li><strong>DOM概念:</strong>文档对象模型,将HTML转换为JavaScript可操作的树形结构</li>
           <li><strong>元素选择:</strong>getElementById、querySelector、querySelectorAll等方法</li>
@@ -935,19 +935,19 @@ function clearAll() {
       </div>
       
       <div class="note-box">
-        <span class="tip-title">下一课预告</span>
+        <span class="tip-title">下一课预告</div>
         <p>第8课将学习<strong>事件处理</strong>,让网页能够响应用户的点击、输入等各种操作,构建完整的交互式应用!</p>
       </div>
     
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验：第29次课-JS DOM操作实践</span>
-                <span id="29jsdom-status" class="status-badge">未运行</span>
+                <span>实验：第29次课-JS DOM操作实践</div>
+                <span id="29jsdom-status" class="status-badge">未运行</div>
             </div>
             <div class="lab-body css-js-experiment">
                 <div>
-                    <div class="code-editor" id="29jsdom-js" contenteditable="true">
-<span class="panel-label">JavaScript (可编辑)</span>// 第29次课-JS DOM操作实验
+                    <div class="html-editor" id="29jsdom-js" contenteditable="true">
+<div class="panel-label">JavaScript (可编辑)</div>// 第29次课-JS DOM操作实验
 
 // 在这里编写你的JavaScript代码
 
@@ -958,8 +958,8 @@ console.log('第29次课-JS DOM操作实验开始');
 </div>
                 </div>
                 <div>
-                    <div class="preview-area" id="29jsdom-preview">
-                        <span class="panel-label">预览效果</span>
+                    <div class="preview-box" id="29jsdom-preview">
+                        <div class="panel-label">预览效果</div>
                         <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
                             <h3>第29次课-JS DOM操作实验</h3>
                             <div id="29jsdom-output">
@@ -977,13 +977,13 @@ console.log('第29次课-JS DOM操作实验开始');
 
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验：第29次课-JS DOM操作实践</span>
-                <span id="29jsdom-status" class="status-badge">未运行</span>
+                <span>实验：第29次课-JS DOM操作实践</div>
+                <span id="29jsdom-status" class="status-badge">未运行</div>
             </div>
             <div class="lab-body css-js-experiment">
                 <div>
-                    <div class="code-editor" id="29jsdom-js" contenteditable="true">
-<span class="panel-label">JavaScript (可编辑)</span>// 第29次课-JS DOM操作实验
+                    <div class="html-editor" id="29jsdom-js" contenteditable="true">
+<div class="panel-label">JavaScript (可编辑)</div>// 第29次课-JS DOM操作实验
 
 // 在这里编写你的JavaScript代码
 
@@ -994,8 +994,8 @@ console.log('第29次课-JS DOM操作实验开始');
 </div>
                 </div>
                 <div>
-                    <div class="preview-area" id="29jsdom-preview">
-                        <span class="panel-label">预览效果</span>
+                    <div class="preview-box" id="29jsdom-preview">
+                        <div class="panel-label">预览效果</div>
                         <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
                             <h3>第29次课-JS DOM操作实验</h3>
                             <div id="29jsdom-output">
@@ -1012,296 +1012,38 @@ console.log('第29次课-JS DOM操作实验开始');
         </div>
 </section></main>
 
-  <script>
-    // ===== 实验1 =====
-    const lab1OriginalCode = document.getElementById('lab1-code').innerText;
-    function runLab1() {
-      try {
-        eval(document.getElementById('lab1-code').innerText);
-        document.getElementById('lab1-preview').innerHTML = '<div style="color:#28a745;">✅ 代码已加载</div>';
-      } catch (e) {
-        document.getElementById('lab1-preview').innerHTML = '<div style="color:#dc3545;">❌ ' + e.message + '</div>';
-      }
-    }
-    function resetLab1() {
-      document.getElementById('lab1-code').innerText = lab1OriginalCode;
-      document.getElementById('lab1-preview').innerHTML = '';
-    }
-
-    // ===== 实验2 =====
-    const lab2OriginalCode = document.getElementById('lab2-code').innerText;
-    function runLab2() {
-      try {
-        eval(document.getElementById('lab2-code').innerText);
-        document.getElementById('lab2-preview').innerHTML = '<div style="color:#28a745;">✅ 代码已加载</div>';
-      } catch (e) {
-        document.getElementById('lab2-preview').innerHTML = '<div style="color:#dc3545;">❌ ' + e.message + '</div>';
-      }
-    }
-    function resetLab2() {
-      document.getElementById('lab2-code').innerText = lab2OriginalCode;
-      document.getElementById('lab2-preview').innerHTML = '';
-    }
-
-    // ===== 实验3 =====
-    const lab3OriginalCode = document.getElementById('lab3-code').innerText;
-    function runLab3() {
-      try {
-        eval(document.getElementById('lab3-code').innerText);
-        document.getElementById('lab3-preview').innerHTML = '<div style="color:#28a745;">✅ 代码已加载</div>';
-      } catch (e) {
-        document.getElementById('lab3-preview').innerHTML = '<div style="color:#dc3545;">❌ ' + e.message + '</div>';
-      }
-    }
-    function resetLab3() {
-      document.getElementById('lab3-code').innerText = lab3OriginalCode;
-      document.getElementById('lab3-preview').innerHTML = '';
-    }
-
-    // ===== 实验4 =====
-    const lab4OriginalCode = document.getElementById('lab4-code').innerText;
-    function runLab4() {
-      try {
-        eval(document.getElementById('lab4-code').innerText);
-        document.getElementById('lab4-preview').innerHTML = '<div style="color:#28a745;">✅ 代码已加载</div>';
-      } catch (e) {
-        document.getElementById('lab4-preview').innerHTML = '<div style="color:#dc3545;">❌ ' + e.message + '</div>';
-      }
-    }
-    function resetLab4() {
-      document.getElementById('lab4-code').innerText = lab4OriginalCode;
-      document.getElementById('lab4-preview').innerHTML = '';
-    }
-
-    // ===== 实验5 =====
-    const lab5OriginalCode = document.getElementById('lab5-code').innerText;
-    function runLab5() {
-      try {
-        eval(document.getElementById('lab5-code').innerText);
-        document.getElementById('lab5-preview').innerHTML = '<div style="color:#28a745;">✅ 代码已加载</div>';
-      } catch (e) {
-        document.getElementById('lab5-preview').innerHTML = '<div style="color:#dc3545;">❌ ' + e.message + '</div>';
-      }
-    }
-    function resetLab5() {
-      document.getElementById('lab5-code').innerText = lab5OriginalCode;
-      document.getElementById('lab5-preview').innerHTML = '';
-    }
-
-    // 侧边栏导航
-    document.querySelectorAll('.sidebar a').forEach(link => {
-      link.addEventListener('click', function() {
-        document.querySelectorAll('.sidebar a').forEach(a => a.classList.remove('active'));
-        this.classList.add('active');
-      });
-    });
-
-    // 初始化
-    window.addEventListener('load', () => {
-      runLab1();
-      runLab2();
-      runLab3();
-      runLab4();
-      runLab5();
-      highlightAllCode();
-    });
-
-    // 简约风格的语法高亮
-    function highlightAllCode() {
-        document.querySelectorAll('pre > code').forEach(codeBlock => {
-            if (codeBlock.classList.contains('highlighted')) return;
+      <script>
+        // 双栏交互实验室功能
+        function applyHTML(id) {
+            const editor = document.getElementById('html-' + id);
+            const preview = document.getElementById('preview-' + id);
+            const badge = document.getElementById('badge-' + id);
             
-            let code = codeBlock.textContent;
-            
-            // JavaScript 关键字
-            const keywords = /\b(const|let|var|function|return|if|else|for|while|do|switch|case|break|continue|try|catch|finally|throw|new|class|extends|import|export|default|async|await|yield|typeof|instanceof|in|of|delete|void|null|undefined|true|false|this|super)\b/g;
-            
-            // 字符串 (单引号、双引号、反引号)
-            const strings = /(['"`])(?:(?=(\\?))\2.)*?\1/g;
-            
-            // 注释 (单行和多行)
-            const comments = /(\/\/.*$|\/\*[\s\S]*?\*\/)/gm;
-            
-            // 数字
-            const numbers = /\b(\d+\.?\d*|\.\d+)(e[+-]?\d+)?\b/gi;
-            
-            // 函数调用
-            const functions = /\b([a-zA-Z_$][a-zA-Z0-9_$]*)\s*(?=\()/g;
-            
-            // 临时标记以保护已处理的部分
-            const tokens = [];
-            let tokenIndex = 0;
-            
-            // 1. 先处理注释（最高优先级）
-            code = code.replace(comments, match => {
-                const token = `__TOKEN_${tokenIndex++}__`;
-                tokens.push(`<span class="comment">${escapeHtml(match)}</span>`);
-                return token;
-            });
-            
-            // 2. 处理字符串
-            code = code.replace(strings, match => {
-                const token = `__TOKEN_${tokenIndex++}__`;
-                tokens.push(`<span class="string">${escapeHtml(match)}</span>`);
-                return token;
-            });
-            
-            // 3. 处理数字
-            code = code.replace(numbers, match => {
-                const token = `__TOKEN_${tokenIndex++}__`;
-                tokens.push(`<span class="number">${match}</span>`);
-                return token;
-            });
-            
-            // 4. 处理函数调用
-            code = code.replace(functions, match => {
-                const token = `__TOKEN_${tokenIndex++}__`;
-                tokens.push(`<span class="function">${match}</span>`);
-                return token;
-            });
-            
-            // 5. 处理关键字
-            code = code.replace(keywords, match => {
-                const token = `__TOKEN_${tokenIndex++}__`;
-                tokens.push(`<span class="keyword">${match}</span>`);
-                return token;
-            });
-            
-            // 6. HTML转义剩余内容
-            code = escapeHtml(code);
-            
-            // 7. 还原所有token
-            tokens.forEach((replacement, index) => {
-                code = code.replace(`__TOKEN_${index}__`, replacement);
-            });
-            
-            codeBlock.innerHTML = code;
-            codeBlock.classList.add('highlighted');
-        });
-    }
-    
-    function escapeHtml(text) {
-        const div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
-    }
-      // 第29次课-JS DOM操作实验交互逻辑
-    function run29jsdomExperiment() {
-        const editor = document.getElementById('29jsdom-js');
-        const status = document.getElementById('29jsdom-status');
-        
-        if (editor) {
-            let code = editor.innerText;
-            // 移除编辑器标签
-            code = code.replace('js (可编辑)', '');
-            
-            
-            // 注入JavaScript代码
-            const script = document.createElement('script');
-            script.id = 'experiment-29jsdom';
-            // 重定向console.log到页面
-            const output = document.getElementById('29jsdom-output');
-            const originalLog = console.log;
-            console.log = function(...args) {
-                originalLog(...args);
-                if (output) {
-                    output.innerHTML += '<p>' + args.join(' ') + '</p>';
-                }
-            };
-            script.textContent = code;
-            // 移除旧的脚本
-            const oldScript = document.getElementById('experiment-29jsdom');
-            if (oldScript) {
-                oldScript.remove();
+            if (editor && preview) {
+                preview.innerHTML = editor.innerText;
+                
+                // 更新状态徽章
+                badge.innerText = "运行中 (Active)";
+                badge.className = "status-badge status-active";
             }
-            // 添加新脚本
-            document.body.appendChild(script);
-            
-            
-            // 更新状态
-            status.textContent = '已运行';
-            status.className = 'status-badge active';
-        }
-    }
-    
-    function reset29jsdomExperiment() {
-        const status = document.getElementById('29jsdom-status');
-        
-        
-        // 重置输出和脚本
-        const output = document.getElementById('29jsdom-output');
-        if (output) {
-            output.innerHTML = '<p>点击「运行代码」查看结果</p>';
-        }
-        const oldScript = document.getElementById('experiment-29jsdom');
-        if (oldScript) {
-            oldScript.remove();
         }
         
-        
-        // 更新状态
-        status.textContent = '未运行';
-        status.className = 'status-badge';
-    }
-    // 第29次课-JS DOM操作实验交互逻辑
-    function run29jsdomExperiment() {
-        const editor = document.getElementById('29jsdom-js');
-        const status = document.getElementById('29jsdom-status');
-        
-        if (editor) {
-            let code = editor.innerText;
-            // 移除编辑器标签
-            code = code.replace('JS (可编辑)', '');
+        function resetHTML(id) {
+            const editor = document.getElementById('html-' + id);
+            const preview = document.getElementById('preview-' + id);
+            const badge = document.getElementById('badge-' + id);
+            const original = document.getElementById('original-' + id);
             
-            
-            // 注入JavaScript代码
-            const script = document.createElement('script');
-            script.id = 'experiment-29jsdom';
-            // 重定向console.log到页面
-            const output = document.getElementById('29jsdom-output');
-            const originalLog = console.log;
-            console.log = function(...args) {
-                originalLog(...args);
-                if (output) {
-                    output.innerHTML += '<p>' + args.join(' ') + '</p>';
-                }
-            };
-            script.textContent = code;
-            // 移除旧的脚本
-            const oldScript = document.getElementById('experiment-29jsdom');
-            if (oldScript) {
-                oldScript.remove();
+            if (editor && preview && original) {
+                editor.innerText = original.innerText;
+                preview.innerHTML = editor.innerText;
+                
+                // 更新状态徽章
+                badge.innerText = "未运行 (Inactive)";
+                badge.className = "status-badge";
             }
-            // 添加新脚本
-            document.body.appendChild(script);
-            
-            
-            // 更新状态
-            status.textContent = '已运行';
-            status.className = 'status-badge active';
         }
-    }
-    
-    function reset29jsdomExperiment() {
-        const status = document.getElementById('29jsdom-status');
-        
-        
-        // 重置输出和脚本
-        const output = document.getElementById('29jsdom-output');
-        if (output) {
-            output.innerHTML = '<p>点击「运行代码」查看结果</p>';
-        }
-        const oldScript = document.getElementById('experiment-29jsdom');
-        if (oldScript) {
-            oldScript.remove();
-        }
-        
-        
-        // 更新状态
-        status.textContent = '未运行';
-        status.className = 'status-badge';
-    }
-</script>
+    </script>
 </body>
 </html>
 

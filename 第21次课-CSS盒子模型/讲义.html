@@ -10,7 +10,7 @@
 <nav class="sidebar">
     <div class="sidebar-nav">
         <h3>课程导航</h3>
-        <a class="sidebar-link" href="#intro">课程概览</a>
+        <a class="sidebar-link" href="#intro">👋 课程概览</a>
         
         <h3>Part 1: 盒子模型</h3>
         <a class="sidebar-link" href="#box-model-intro" class="sub-link">1. 盒子模型简介</a>
@@ -430,61 +430,38 @@
     </section>
 </main>
 
-<script>
-    // 标准CSS实验函数
-    function applyCSS(id) {
-        const cssEditor = document.getElementById(`css-${id}`);
-        const preview = document.getElementById(`preview-${id}`);
-        const badge = document.getElementById(`badge-${id}`);
-        
-        if (!cssEditor || !preview || !badge) return;
-        
-        // 获取CSS代码并移除标签前缀
-        let cssCode = cssEditor.innerText;
-        cssCode = cssCode.replace(/<div class="panel-label">CSS \(可编辑\)<\/div>/g, '');
-        
-        // 创建样式元素
-        const styleId = `inline-style-${id}`;
-        let styleElement = document.getElementById(styleId);
-        
-        if (!styleElement) {
-            styleElement = document.createElement('style');
-            styleElement.id = styleId;
-            document.head.appendChild(styleElement);
-        }
-        
-        // 设置样式内容
-        styleElement.textContent = cssCode;
-        
-        // 更新状态
-        updateStatus(id, true);
-    }
-    
-    function removeCSS(id) {
-        const styleId = `inline-style-${id}`;
-        const styleElement = document.getElementById(styleId);
-        
-        if (styleElement) {
-            styleElement.remove();
-        }
-        
-        // 更新状态
-        updateStatus(id, false);
-    }
-    
-    function updateStatus(id, isActive) {
-        const badge = document.getElementById(`badge-${id}`);
-        if (badge) {
-            if (isActive) {
-                badge.textContent = '当前状态：已应用样式 (Styled)';
-                badge.className = 'status-badge status-active';
-            } else {
-                badge.textContent = '当前状态：无样式 (Raw)';
-                badge.className = 'status-badge status-inactive';
+    <script>
+        // 双栏交互实验室功能
+        function applyHTML(id) {
+            const editor = document.getElementById('html-' + id);
+            const preview = document.getElementById('preview-' + id);
+            const badge = document.getElementById('badge-' + id);
+            
+            if (editor && preview) {
+                preview.innerHTML = editor.innerText;
+                
+                // 更新状态徽章
+                badge.innerText = "运行中 (Active)";
+                badge.className = "status-badge status-active";
             }
         }
-    }
-</script>
+        
+        function resetHTML(id) {
+            const editor = document.getElementById('html-' + id);
+            const preview = document.getElementById('preview-' + id);
+            const badge = document.getElementById('badge-' + id);
+            const original = document.getElementById('original-' + id);
+            
+            if (editor && preview && original) {
+                editor.innerText = original.innerText;
+                preview.innerHTML = editor.innerText;
+                
+                // 更新状态徽章
+                badge.innerText = "未运行 (Inactive)";
+                badge.className = "status-badge";
+            }
+        }
+    </script>
 </body>
 </html>
 
