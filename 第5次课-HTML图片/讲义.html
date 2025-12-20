@@ -6,6 +6,26 @@
     <title>第5课：HTML图片</title>
                 
     <script>
+        // 新增：存储初始HTML内容的对象
+        const initialHtmlContent = {};
+        let initial5HtmlContent = '';
+
+        // 页面加载时保存初始HTML内容
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取所有html-editor元素
+            const editors = document.querySelectorAll('.html-editor[id^="html-"]');
+            editors.forEach(editor => {
+                const id = editor.id.replace('html-', '');
+                initialHtmlContent[id] = editor.innerHTML;
+            });
+
+            // 保存最后一个实验的初始内容
+            const lastEditor = document.getElementById('5html-html');
+            if (lastEditor) {
+                initial5HtmlContent = lastEditor.innerHTML;
+            }
+        });
+
         // 核心HTML注入逻辑
         function applyHTML(id) {
             const editor = document.getElementById(`html-${id}`);
@@ -24,10 +44,15 @@
 
         // Reset functionality
         function resetHTML(id) {
+            const editor = document.getElementById(`html-${id}`);
             const previewId = `preview-${id}`;
             const previewBox = document.getElementById(previewId);
             if (previewBox) {
                 previewBox.innerHTML = '<div class="panel-label">预览效果</div>';
+            }
+            // 恢复编辑器的初始内容
+            if (editor && initialHtmlContent[id]) {
+                editor.innerHTML = initialHtmlContent[id];
             }
             updateStatus(id, false);
         }
@@ -69,7 +94,13 @@
         }
     
         function reset5htmlExperiment() {
+            const editor = document.getElementById('5html-html');
             const status = document.getElementById('5html-status');
+            
+            // 恢复编辑器的初始内容
+            if (editor && initial5HtmlContent) {
+                editor.innerHTML = initial5HtmlContent;
+            }
             
             // 重置预览区域
             const preview = document.getElementById('5html-preview');

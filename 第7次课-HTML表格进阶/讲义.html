@@ -5,7 +5,116 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>第7课：HTML表格进阶</title>
                 
-    <link rel='stylesheet' href='../统一讲义样式模板.css'>\n</head>
+    <script>
+        // 新增：存储初始HTML内容的对象
+        const initialHtmlContent = {};
+        let initial7HtmlContent = '';
+
+        // 页面加载时保存初始HTML内容
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取所有html-editor元素
+            const editors = document.querySelectorAll('.html-editor[id^="html-"]');
+            editors.forEach(editor => {
+                const id = editor.id.replace('html-', '');
+                initialHtmlContent[id] = editor.innerHTML;
+            });
+
+            // 保存最后一个实验的初始内容
+            const lastEditor = document.getElementById('7html-html');
+            if (lastEditor) {
+                initial7HtmlContent = lastEditor.innerHTML;
+            }
+        });
+
+        // 核心HTML注入逻辑
+        function applyHTML(id) {
+            const editor = document.getElementById(`html-${id}`);
+            const previewId = `preview-${id}`;
+            let rawHtml = editor.innerText;
+            const labelText = "HTML (可编辑)";
+            if (rawHtml.indexOf(labelText) !== -1) {
+                rawHtml = rawHtml.replace(labelText, "");
+            }
+            const previewBox = document.getElementById(previewId);
+            if (previewBox) {
+                previewBox.innerHTML = rawHtml;
+            }
+            updateStatus(id, true);
+        }
+
+        // Reset functionality
+        function resetHTML(id) {
+            const editor = document.getElementById(`html-${id}`);
+            const previewId = `preview-${id}`;
+            const previewBox = document.getElementById(previewId);
+            if (previewBox) {
+                previewBox.innerHTML = '<div class="panel-label">预览效果</div>';
+            }
+            // 恢复编辑器的初始内容
+            if (editor && initialHtmlContent[id]) {
+                editor.innerHTML = initialHtmlContent[id];
+            }
+            updateStatus(id, false);
+        }
+
+        // Update status label
+        function updateStatus(id, isActive) {
+            const badge = document.getElementById(`badge-${id}`);
+            if (badge) {
+                if (isActive) {
+                    badge.textContent = "已运行";
+                    badge.className = "status-badge active";
+                } else {
+                    badge.textContent = "未运行";
+                    badge.className = "status-badge";
+                }
+            }
+        }
+
+        // 第7次课-HTML表格进阶实验交互逻辑
+        function run7htmlExperiment() {
+            const editor = document.getElementById('7html-html');
+            const status = document.getElementById('7html-status');
+            
+            if (editor) {
+                let code = editor.innerText;
+                // 移除编辑器标签
+                code = code.replace(/<div class="panel-label">HTML \(可编辑\)<\/span>/g, '');
+                
+                // 注入到预览区域
+                const preview = document.getElementById('7html-preview');
+                if (preview) {
+                    preview.innerHTML = code;
+                }
+                
+                // 更新状态
+                status.textContent = '已运行';
+                status.className = 'status-badge active';
+            }
+        }
+    
+        function reset7htmlExperiment() {
+            const editor = document.getElementById('7html-html');
+            const status = document.getElementById('7html-status');
+            
+            // 恢复编辑器的初始内容
+            if (editor && initial7HtmlContent) {
+                editor.innerHTML = initial7HtmlContent;
+            }
+            
+            // 重置预览区域
+            const preview = document.getElementById('7html-preview');
+            if (preview) {
+                preview.innerHTML = '<div class="panel-label">预览效果</div>';
+            }
+            
+            // 更新状态
+            status.textContent = '未运行';
+            status.className = 'status-badge';
+        }
+    </script>
+    <link rel='stylesheet' href='../统一讲义样式模板.css'>
+</head>
 <body>
     <!-- 侧边栏导航 -->
     <nav class="sidebar">

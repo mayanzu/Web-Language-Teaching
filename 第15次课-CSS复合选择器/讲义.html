@@ -6,6 +6,26 @@
     <title>第15课：CSS复合选择器</title>
                 
         <script>
+        // 新增：存储初始HTML内容的对象
+        const initialHtmlContent = {};
+        let initial15HtmlContent = '';
+
+        // 页面加载时保存初始HTML内容
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取所有css-editor元素
+            const editors = document.querySelectorAll('.css-editor[id^="css-"]');
+            editors.forEach(editor => {
+                const id = editor.id.replace('css-', '');
+                initialHtmlContent[id] = editor.innerHTML;
+            });
+
+            // 保存最后一个实验的初始内容
+            const lastEditor = document.getElementById('css-7');
+            if (lastEditor) {
+                initial15HtmlContent = lastEditor.innerHTML;
+            }
+        });
+
         // 双栏交互实验室功能
         function applyHTML(id) {
             const editor = document.getElementById('html-' + id);
@@ -25,16 +45,66 @@
             const editor = document.getElementById('html-' + id);
             const preview = document.getElementById('preview-' + id);
             const badge = document.getElementById('badge-' + id);
-            const original = document.getElementById('original-' + id);
             
-            if (editor && preview && original) {
-                editor.innerText = original.innerText;
-                preview.innerHTML = editor.innerText;
+            // 恢复编辑器的初始内容
+            if (editor && initialHtmlContent[id]) {
+                editor.innerHTML = initialHtmlContent[id];
+            }
+
+            if (preview) {
+                preview.innerHTML = '<div class="preview-label">预览效果</div>';
+            }
+            
+            // 更新状态徽章
+            badge.innerText = "未运行 (Inactive)";
+            badge.className = "status-badge";
+        }
+
+        // CSS 编辑器功能
+        function applyCSS(id) {
+            const editor = document.getElementById('css-' + id);
+            const preview = document.getElementById('preview-' + id);
+            const badge = document.getElementById('badge-' + id);
+            
+            if (editor && preview) {
+                // 获取编辑器内容
+                let cssContent = editor.innerText;
+                // 移除标签文本
+                const labelText = "CSS (可编辑)";
+                if (cssContent.indexOf(labelText) !== -1) {
+                    cssContent = cssContent.replace(labelText, "");
+                }
+                
+                // 应用 CSS 到预览框
+                const styleElement = document.createElement('style');
+                styleElement.textContent = cssContent;
+                preview.appendChild(styleElement);
                 
                 // 更新状态徽章
-                badge.innerText = "未运行 (Inactive)";
-                badge.className = "status-badge";
+                badge.innerText = "运行中 (Active)";
+                badge.className = "status-badge status-active";
             }
+        }
+
+        function removeCSS(id) {
+            const editor = document.getElementById('css-' + id);
+            const preview = document.getElementById('preview-' + id);
+            const badge = document.getElementById('badge-' + id);
+            
+            // 恢复编辑器的初始内容
+            if (editor && initialHtmlContent[id]) {
+                editor.innerHTML = initialHtmlContent[id];
+            }
+
+            if (preview) {
+                // 移除所有样式元素
+                const styleElements = preview.querySelectorAll('style');
+                styleElements.forEach(style => style.remove());
+            }
+            
+            // 更新状态徽章
+            badge.innerText = "未运行 (Inactive)";
+            badge.className = "status-badge";
         }
     </script>
     <link rel='stylesheet' href='../统一讲义样式模板.css'>\n</head>

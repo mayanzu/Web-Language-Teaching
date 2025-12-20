@@ -6,6 +6,26 @@
     <title>第12课：HTML5新特性与最佳实践</title>
                 
     <script>
+        // 新增：存储初始HTML内容的对象
+        const initialHtmlContent = {};
+        let initial12HtmlContent = '';
+
+        // 页面加载时保存初始HTML内容
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取所有html-editor元素
+            const editors = document.querySelectorAll('.html-editor[id^="html-"]');
+            editors.forEach(editor => {
+                const id = editor.id.replace('html-', '');
+                initialHtmlContent[id] = editor.innerHTML;
+            });
+
+            // 保存最后一个实验的初始内容
+            const lastEditor = document.getElementById('12html-html');
+            if (lastEditor) {
+                initial12HtmlContent = lastEditor.innerHTML;
+            }
+        });
+
         // 核心 HTML 注入逻辑
         function applyHTML(id) {
             const editor = document.getElementById(`html-${id}`);
@@ -34,8 +54,10 @@
             const editor = document.getElementById(`html-${id}`);
             if (!editor) return;
 
-            const originalCode = document.getElementById(`original-${id}`).innerText;
-            editor.innerText = originalCode;
+            // 恢复编辑器的初始内容
+            if (initialHtmlContent[id]) {
+                editor.innerHTML = initialHtmlContent[id];
+            }
 
             const previewId = `preview-${id}`;
             const previewBox = document.getElementById(previewId);

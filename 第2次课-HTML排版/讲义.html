@@ -507,6 +507,26 @@
 </section></main>
 
     <script>
+        // 新增：存储初始HTML内容的对象
+        const initialHtmlContent = {};
+        let initial2HtmlContent = '';
+
+        // 页面加载时保存初始HTML内容
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取所有html-editor元素
+            const editors = document.querySelectorAll('.html-editor[id^="html-"]');
+            editors.forEach(editor => {
+                const id = editor.id.replace('html-', '');
+                initialHtmlContent[id] = editor.innerHTML;
+            });
+
+            // 保存最后一个实验的初始内容
+            const lastEditor = document.getElementById('2html-html');
+            if (lastEditor) {
+                initial2HtmlContent = lastEditor.innerHTML;
+            }
+        });
+
         // 核心 HTML 注入逻辑
         function applyHTML(id) {
             const editor = document.getElementById(`html-${id}`);
@@ -530,9 +550,17 @@
             updateStatus(id, true);
         }
 
-        // 重置功能
+        // 重置功能 - 恢复初始内容
         function resetHTML(id) {
-            // 基本重置：清空预览并恢复状态
+            const editor = document.getElementById(`html-${id}`);
+            if (!editor) return;
+
+            // 恢复编辑器的初始内容
+            if (initialHtmlContent[id]) {
+                editor.innerHTML = initialHtmlContent[id];
+            }
+
+            // 清空预览并恢复状态
             const previewId = `preview-${id}`;
             const previewBox = document.getElementById(previewId);
             if (previewBox) {
@@ -589,7 +617,13 @@
         }
         
         function reset2htmlExperiment() {
+            const editor = document.getElementById('2html-html');
             const status = document.getElementById('2html-status');
+            
+            // 恢复编辑器的初始内容
+            if (editor && initial2HtmlContent) {
+                editor.innerHTML = initial2HtmlContent;
+            }
             
             // 重置预览区域
             const preview = document.getElementById('2html-preview');

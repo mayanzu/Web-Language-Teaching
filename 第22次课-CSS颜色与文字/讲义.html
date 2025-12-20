@@ -1,4 +1,4 @@
-﻿﻿<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -1411,6 +1411,26 @@ input:focus {
 </section></main>
 
         <script>
+        // 新增：存储初始HTML内容的对象
+        const initialHtmlContent = {};
+        let initial22HtmlContent = '';
+
+        // 页面加载时保存初始HTML内容
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取所有css-editor元素
+            const editors = document.querySelectorAll('.css-editor[id^="css-"]');
+            editors.forEach(editor => {
+                const id = editor.id.replace('css-', '');
+                initialHtmlContent[id] = editor.innerHTML;
+            });
+
+            // 保存最后一个实验的初始内容
+            const lastEditor = document.getElementById('22css-css');
+            if (lastEditor) {
+                initial22HtmlContent = lastEditor.innerHTML;
+            }
+        });
+
         // 双栏交互实验室功能
         function applyHTML(id) {
             const editor = document.getElementById('html-' + id);
@@ -1430,16 +1450,117 @@ input:focus {
             const editor = document.getElementById('html-' + id);
             const preview = document.getElementById('preview-' + id);
             const badge = document.getElementById('badge-' + id);
-            const original = document.getElementById('original-' + id);
             
-            if (editor && preview && original) {
-                editor.innerText = original.innerText;
-                preview.innerHTML = editor.innerText;
+            // 恢复编辑器的初始内容
+            if (editor && initialHtmlContent[id]) {
+                editor.innerHTML = initialHtmlContent[id];
+            }
+
+            if (preview) {
+                preview.innerHTML = '<div class="preview-label">预览效果</div>';
+            }
+            
+            // 更新状态徽章
+            badge.innerText = "未运行 (Inactive)";
+            badge.className = "status-badge";
+        }
+
+        // CSS 编辑器功能
+        function applyCSS(id) {
+            const editor = document.getElementById('css-' + id);
+            const preview = document.getElementById('preview-' + id);
+            const badge = document.getElementById('badge-' + id);
+            
+            if (editor && preview) {
+                // 获取编辑器内容
+                let cssContent = editor.innerText;
+                // 移除标签文本
+                const labelText = "CSS (可编辑)";
+                if (cssContent.indexOf(labelText) !== -1) {
+                    cssContent = cssContent.replace(labelText, "");
+                }
+                
+                // 应用 CSS 到预览框
+                const styleElement = document.createElement('style');
+                styleElement.textContent = cssContent;
+                preview.appendChild(styleElement);
                 
                 // 更新状态徽章
-                badge.innerText = "未运行 (Inactive)";
-                badge.className = "status-badge";
+                badge.innerText = "运行中 (Active)";
+                badge.className = "status-badge status-active";
             }
+        }
+
+        function removeCSS(id) {
+            const editor = document.getElementById('css-' + id);
+            const preview = document.getElementById('preview-' + id);
+            const badge = document.getElementById('badge-' + id);
+            
+            // 恢复编辑器的初始内容
+            if (editor && initialHtmlContent[id]) {
+                editor.innerHTML = initialHtmlContent[id];
+            }
+
+            if (preview) {
+                // 移除所有样式元素
+                const styleElements = preview.querySelectorAll('style');
+                styleElements.forEach(style => style.remove());
+            }
+            
+            // 更新状态徽章
+            badge.innerText = "未运行 (Inactive)";
+            badge.className = "status-badge";
+        }
+
+        // 第22次课实验功能
+        function run22cssExperiment() {
+            const editor = document.getElementById('22css-css');
+            const preview = document.getElementById('22css-preview');
+            const status = document.getElementById('22css-status');
+            
+            if (editor && preview) {
+                // 获取编辑器内容
+                let cssContent = editor.innerText;
+                // 移除标签文本
+                const labelText = "CSS (可编辑)";
+                if (cssContent.indexOf(labelText) !== -1) {
+                    cssContent = cssContent.replace(labelText, "");
+                }
+                
+                // 移除旧样式
+                const styleElements = preview.querySelectorAll('style');
+                styleElements.forEach(style => style.remove());
+                
+                // 应用新样式
+                const styleElement = document.createElement('style');
+                styleElement.textContent = cssContent;
+                preview.appendChild(styleElement);
+                
+                // 更新状态徽章
+                status.innerText = "运行中";
+                status.className = "status-badge status-active";
+            }
+        }
+
+        function reset22cssExperiment() {
+            const editor = document.getElementById('22css-css');
+            const preview = document.getElementById('22css-preview');
+            const status = document.getElementById('22css-status');
+            
+            // 恢复编辑器的初始内容
+            if (editor && initial22HtmlContent) {
+                editor.innerHTML = initial22HtmlContent;
+            }
+
+            if (preview) {
+                // 移除所有样式元素
+                const styleElements = preview.querySelectorAll('style');
+                styleElements.forEach(style => style.remove());
+            }
+            
+            // 更新状态徽章
+            status.innerText = "未运行";
+            status.className = "status-badge";
         }
     </script>
 </body>

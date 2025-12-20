@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -865,6 +865,26 @@ console.log('第23次课-JS基础入门实验开始');
 </main>
 
     <script>
+        // 新增：存储初始HTML内容的对象
+        const initialHtmlContent = {};
+        let initial23HtmlContent = '';
+
+        // 页面加载时保存初始HTML内容
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取所有css-editor元素
+            const editors = document.querySelectorAll('.css-editor[id^="css-"]');
+            editors.forEach(editor => {
+                const id = editor.id.replace('css-', '');
+                initialHtmlContent[id] = editor.innerHTML;
+            });
+
+            // 保存最后一个实验的初始内容
+            const lastEditor = document.getElementById('23js-js');
+            if (lastEditor) {
+                initial23HtmlContent = lastEditor.innerHTML;
+            }
+        });
+
         // 双栏交互实验室功能
         function applyHTML(id) {
             const editor = document.getElementById('html-' + id);
@@ -884,16 +904,103 @@ console.log('第23次课-JS基础入门实验开始');
             const editor = document.getElementById('html-' + id);
             const preview = document.getElementById('preview-' + id);
             const badge = document.getElementById('badge-' + id);
-            const original = document.getElementById('original-' + id);
             
-            if (editor && preview && original) {
-                editor.innerText = original.innerText;
-                preview.innerHTML = editor.innerText;
-                
-                // 更新状态徽章
-                badge.innerText = "未运行 (Inactive)";
-                badge.className = "status-badge";
+            // 恢复编辑器的初始内容
+            if (editor && initialHtmlContent[id]) {
+                editor.innerHTML = initialHtmlContent[id];
             }
+
+            if (preview) {
+                preview.innerHTML = '<div class="preview-label">预览效果</div>';
+            }
+            
+            // 更新状态徽章
+            badge.innerText = "未运行 (Inactive)";
+            badge.className = "status-badge";
+        }
+
+        // JS 编辑器功能
+        function applyJS(id) {
+            const editor = document.getElementById('js-' + id);
+            const preview = document.getElementById('preview-' + id);
+            const badge = document.getElementById('badge-' + id);
+            
+            if (editor && preview) {
+                // 获取编辑器内容
+                let jsContent = editor.innerText;
+                // 移除标签文本
+                const labelText = "JS (可编辑)";
+                if (jsContent.indexOf(labelText) !== -1) {
+                    jsContent = jsContent.replace(labelText, "");
+                }
+                
+                // 执行 JS 代码
+                try {
+                    eval(jsContent);
+                    // 更新状态徽章
+                    badge.innerText = "运行中 (Active)";
+                    badge.className = "status-badge status-active";
+                } catch (error) {
+                    alert('代码执行出错: ' + error.message);
+                }
+            }
+        }
+
+        function removeJS(id) {
+            const editor = document.getElementById('js-' + id);
+            const preview = document.getElementById('preview-' + id);
+            const badge = document.getElementById('badge-' + id);
+            
+            // 恢复编辑器的初始内容
+            if (editor && initialHtmlContent[id]) {
+                editor.innerHTML = initialHtmlContent[id];
+            }
+
+            // 更新状态徽章
+            badge.innerText = "未运行 (Inactive)";
+            badge.className = "status-badge";
+        }
+
+        // 第23次课实验功能
+        function run23jsExperiment() {
+            const editor = document.getElementById('23js-js');
+            const preview = document.getElementById('23js-preview');
+            const status = document.getElementById('23js-status');
+            
+            if (editor && preview) {
+                // 获取编辑器内容
+                let jsContent = editor.innerText;
+                // 移除标签文本
+                const labelText = "JS (可编辑)";
+                if (jsContent.indexOf(labelText) !== -1) {
+                    jsContent = jsContent.replace(labelText, "");
+                }
+                
+                // 执行 JS 代码
+                try {
+                    eval(jsContent);
+                    // 更新状态徽章
+                    status.innerText = "运行中";
+                    status.className = "status-badge status-active";
+                } catch (error) {
+                    alert('代码执行出错: ' + error.message);
+                }
+            }
+        }
+
+        function reset23jsExperiment() {
+            const editor = document.getElementById('23js-js');
+            const preview = document.getElementById('23js-preview');
+            const status = document.getElementById('23js-status');
+            
+            // 恢复编辑器的初始内容
+            if (editor && initial23HtmlContent) {
+                editor.innerHTML = initial23HtmlContent;
+            }
+            
+            // 更新状态徽章
+            status.innerText = "未运行";
+            status.className = "status-badge";
         }
     </script>
 </body>

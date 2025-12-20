@@ -167,6 +167,26 @@ console.log('第30次课-JS事件处理实验开始');
   </section>
 </main>
     <script>
+        // 新增：存储初始HTML内容的对象
+        const initialHtmlContent = {};
+        let initial30HtmlContent = '';
+
+        // 页面加载时保存初始HTML内容
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取所有html-editor元素
+            const editors = document.querySelectorAll('.html-editor[id^="html-"]');
+            editors.forEach(editor => {
+                const id = editor.id.replace('html-', '');
+                initialHtmlContent[id] = editor.innerHTML;
+            });
+
+            // 保存最后一个实验的初始内容
+            const lastEditor = document.getElementById('30js-js');
+            if (lastEditor) {
+                initial30HtmlContent = lastEditor.innerHTML;
+            }
+        });
+
         // 双栏交互实验室功能
         function applyHTML(id) {
             const editor = document.getElementById('html-' + id);
@@ -186,16 +206,113 @@ console.log('第30次课-JS事件处理实验开始');
             const editor = document.getElementById('html-' + id);
             const preview = document.getElementById('preview-' + id);
             const badge = document.getElementById('badge-' + id);
-            const original = document.getElementById('original-' + id);
             
-            if (editor && preview && original) {
-                editor.innerText = original.innerText;
-                preview.innerHTML = editor.innerText;
-                
-                // 更新状态徽章
-                badge.innerText = "未运行 (Inactive)";
-                badge.className = "status-badge";
+            // 恢复编辑器的初始内容
+            if (editor && initialHtmlContent[id]) {
+                editor.innerHTML = initialHtmlContent[id];
             }
+
+            if (preview) {
+                preview.innerHTML = '<div class="preview-label">预览效果</div>';
+            }
+            
+            // 更新状态徽章
+            badge.innerText = "未运行 (Inactive)";
+            badge.className = "status-badge";
+        }
+
+        // JS 编辑器功能
+        function applyJS(id) {
+            const editor = document.getElementById('js-' + id);
+            const preview = document.getElementById('preview-' + id);
+            const badge = document.getElementById('badge-' + id);
+            
+            if (editor && preview) {
+                // 获取编辑器内容
+                let jsContent = editor.innerText;
+                // 移除标签文本
+                const labelText = "JS (可编辑)";
+                if (jsContent.indexOf(labelText) !== -1) {
+                    jsContent = jsContent.replace(labelText, "");
+                }
+                
+                // 执行 JS 代码
+                try {
+                    eval(jsContent);
+                    // 更新状态徽章
+                    badge.innerText = "运行中 (Active)";
+                    badge.className = "status-badge status-active";
+                } catch (error) {
+                    alert('代码执行出错: ' + error.message);
+                }
+            }
+        }
+
+        function removeJS(id) {
+            const editor = document.getElementById('js-' + id);
+            const preview = document.getElementById('preview-' + id);
+            const badge = document.getElementById('badge-' + id);
+            
+            // 恢复编辑器的初始内容
+            if (editor && initialHtmlContent[id]) {
+                editor.innerHTML = initialHtmlContent[id];
+            }
+
+            // 更新状态徽章
+            badge.innerText = "未运行 (Inactive)";
+            badge.className = "status-badge";
+        }
+
+        // 第30次课实验功能
+        function run30jsExperiment() {
+            const editor = document.getElementById('30js-js');
+            const preview = document.getElementById('30js-preview');
+            const status = document.getElementById('30js-status');
+            
+            if (editor && preview) {
+                // 获取编辑器内容
+                let jsContent = editor.innerText;
+                // 移除标签文本
+                const labelText = "JavaScript (可编辑)";
+                if (jsContent.indexOf(labelText) !== -1) {
+                    jsContent = jsContent.replace(labelText, "");
+                }
+                
+                // 执行 JS 代码
+                try {
+                    eval(jsContent);
+                    // 更新状态徽章
+                    status.innerText = "运行中";
+                    status.className = "status-badge status-active";
+                } catch (error) {
+                    alert('代码执行出错: ' + error.message);
+                }
+            }
+        }
+
+        function reset30jsExperiment() {
+            const editor = document.getElementById('30js-js');
+            const preview = document.getElementById('30js-preview');
+            const status = document.getElementById('30js-status');
+            
+            // 恢复编辑器的初始内容
+            if (editor && initial30HtmlContent) {
+                editor.innerHTML = initial30HtmlContent;
+            } else {
+                // 如果初始内容未保存，重置为默认内容
+                editor.innerHTML = `// 第30次课-JS事件处理实验
+
+// 在这里编写你的JavaScript代码
+
+// 示例代码
+console.log('第30次课-JS事件处理实验开始');
+
+// 在这里添加更多JavaScript代码`;
+            }
+            
+            // 更新状态徽章
+            status.innerText = "未运行";
+            status.className = "status-badge";
         }
     </script>
 </body>
