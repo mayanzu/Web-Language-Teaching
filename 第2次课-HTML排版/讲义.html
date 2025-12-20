@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>第2课：HTML排版与文本格式化</title>
                 
-    <link rel='stylesheet' href='../统一讲义样式模板.css'>\n</head>
+    <link rel='stylesheet' href='../统一讲义样式模板.css'>
+    <script src='../js/lecture-utils.js'></script>
+</head>
 <body>
     <!-- 侧边栏导航 -->
     <nav class="sidebar">
@@ -71,8 +73,8 @@
 </div>
                 </div>
                 <div class="action-bar">
-                    <button class="btn btn-run" onclick="applyHTML('1')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetHTML('1')">↺ 重置</button>
+                    <button class="btn btn-run" onclick="runHtmlExperiment('html-1', 'preview-1', 'badge-1')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHtmlExperiment('html-1', 'preview-1', 'badge-1')">↺ 重置</button>
                 </div>
                 <div class="preview-box" id="preview-1">
                     <div class="panel-label">预览效果</div>
@@ -106,8 +108,8 @@
 </div>
                 </div>
                 <div class="action-bar">
-                    <button class="btn btn-run" onclick="applyHTML('2')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetHTML('2')">↺ 重置</button>
+                    <button class="btn btn-run" onclick="runHtmlExperiment('html-2', 'preview-2', 'badge-2')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHtmlExperiment('html-2', 'preview-2', 'badge-2')">↺ 重置</button>
                 </div>
                 <div class="preview-box" id="preview-2">
                     <div class="panel-label">预览效果</div>
@@ -191,8 +193,8 @@
 </div>
                 </div>
                 <div class="action-bar">
-                    <button class="btn btn-run" onclick="applyHTML('3')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetHTML('3')">↺ 重置</button>
+                    <button class="btn btn-run" onclick="runHtmlExperiment('html-3', 'preview-3', 'badge-3')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHtmlExperiment('html-3', 'preview-3', 'badge-3')">↺ 重置</button>
                 </div>
                 <div class="preview-box" id="preview-3">
                     <div class="panel-label">预览效果</div>
@@ -233,8 +235,8 @@
 </div>
                 </div>
                 <div class="action-bar">
-                    <button class="btn btn-run" onclick="applyHTML('4')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetHTML('4')">↺ 重置</button>
+                    <button class="btn btn-run" onclick="runHtmlExperiment('html-4', 'preview-4', 'badge-4')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHtmlExperiment('html-4', 'preview-4', 'badge-4')">↺ 重置</button>
                 </div>
                 <div class="preview-box" id="preview-4">
                     <div class="panel-label">预览效果</div>
@@ -273,8 +275,8 @@
 </div>
                 </div>
                 <div class="action-bar">
-                    <button class="btn btn-run" onclick="applyHTML('5')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetHTML('5')">↺ 重置</button>
+                    <button class="btn btn-run" onclick="runHtmlExperiment('html-5', 'preview-5', 'badge-5')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHtmlExperiment('html-5', 'preview-5', 'badge-5')">↺ 重置</button>
                 </div>
                 <div class="preview-box" id="preview-5">
                     <div class="panel-label">预览效果</div>
@@ -390,8 +392,8 @@
 </div>
                 </div>
                 <div class="action-bar">
-                    <button class="btn btn-run" onclick="applyHTML('6')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetHTML('6')">↺ 重置</button>
+                    <button class="btn btn-run" onclick="runHtmlExperiment('html-6', 'preview-6', 'badge-6')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHtmlExperiment('html-6', 'preview-6', 'badge-6')">↺ 重置</button>
                 </div>
                 <div class="preview-box" id="preview-6">
                     <div class="panel-label">预览效果</div>
@@ -497,8 +499,8 @@
 </div>
             </div>
             <div class="action-bar">
-                <button class="btn btn-run" onclick="run2htmlExperiment()">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="reset2htmlExperiment()">↺ 重置</button>
+                <button class="btn btn-run" onclick="runHtmlExperiment('2html-html', '2html-preview', '2html-status')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetHtmlExperiment('2html-html', '2html-preview', '2html-status')">↺ 重置</button>
             </div>
             <div class="preview-box" id="2html-preview">
                 <div class="panel-label">预览效果</div>
@@ -507,83 +509,6 @@
 </section></main>
 
     <script>
-        // 新增：存储初始HTML内容的对象
-        const initialHtmlContent = {};
-        let initial2HtmlContent = '';
-
-        // 页面加载时保存初始HTML内容
-        document.addEventListener('DOMContentLoaded', function() {
-            // 获取所有html-editor元素
-            const editors = document.querySelectorAll('.html-editor[id^="html-"]');
-            editors.forEach(editor => {
-                const id = editor.id.replace('html-', '');
-                initialHtmlContent[id] = editor.innerHTML;
-            });
-
-            // 保存最后一个实验的初始内容
-            const lastEditor = document.getElementById('2html-html');
-            if (lastEditor) {
-                initial2HtmlContent = lastEditor.innerHTML;
-            }
-        });
-
-        // 核心 HTML 注入逻辑
-        function applyHTML(id) {
-            const editor = document.getElementById(`html-${id}`);
-            if (!editor) return;
-
-            const previewId = `preview-${id}`;
-            let rawHtml = editor.innerText; // 使用 innerText 保留换行
-
-            // 清理编辑器自带的 Label 文本
-            const labelText = "HTML (可编辑)";
-            if (rawHtml.indexOf(labelText) !== -1) {
-                rawHtml = rawHtml.replace(labelText, "");
-            }
-
-            // 将HTML代码注入到预览框
-            const previewBox = document.getElementById(previewId);
-            if (previewBox) {
-                previewBox.innerHTML = rawHtml;
-            }
-
-            updateStatus(id, true);
-        }
-
-        // 重置功能 - 恢复初始内容
-        function resetHTML(id) {
-            const editor = document.getElementById(`html-${id}`);
-            if (!editor) return;
-
-            // 恢复编辑器的初始内容
-            if (initialHtmlContent[id]) {
-                editor.innerHTML = initialHtmlContent[id];
-            }
-
-            // 清空预览并恢复状态
-            const previewId = `preview-${id}`;
-            const previewBox = document.getElementById(previewId);
-            if (previewBox) {
-                previewBox.innerHTML = '<div class="panel-label">预览效果</div>';
-            }
-
-            updateStatus(id, false);
-        }
-
-        // 更新状态标签
-        function updateStatus(id, isActive) {
-            const badge = document.getElementById(`badge-${id}`);
-            if (badge) {
-                if (isActive) {
-                    badge.textContent = "已运行";
-                    badge.className = "status-badge active";
-                } else {
-                    badge.textContent = "未运行";
-                    badge.className = "status-badge";
-                }
-            }
-        }
-
         // 代码高亮功能（可选）
         document.querySelectorAll('pre code').forEach((block) => {
             // 简单的代码高亮实现
@@ -593,48 +518,6 @@
                 .replace(/(".*?")/g, '<span style="color: #032f62;">$1</div>')
                 .replace(/(\/\/.*$)/gm, '<span style="color: #6a737d;">$1</div>');
         });
-        
-        // 第2次课-HTML排版实验交互逻辑
-        function run2htmlExperiment() {
-            const editor = document.getElementById('2html-html');
-            const status = document.getElementById('2html-status');
-            
-            if (editor) {
-                let code = editor.innerText;
-                // 移除编辑器标签
-                code = code.replace('HTML (可编辑)', '');
-                
-                // 注入到预览区域
-                const preview = document.getElementById('2html-preview');
-                if (preview) {
-                    preview.innerHTML = code;
-                }
-                
-                // 更新状态
-                status.textContent = '已运行';
-                status.className = 'status-badge active';
-            }
-        }
-        
-        function reset2htmlExperiment() {
-            const editor = document.getElementById('2html-html');
-            const status = document.getElementById('2html-status');
-            
-            // 恢复编辑器的初始内容
-            if (editor && initial2HtmlContent) {
-                editor.innerHTML = initial2HtmlContent;
-            }
-            
-            // 重置预览区域
-            const preview = document.getElementById('2html-preview');
-            if (preview) {
-                preview.innerHTML = '<div class="panel-label">预览效果</div>';
-            }
-            
-            // 更新状态
-            status.textContent = '未运行';
-            status.className = 'status-badge';
-        }
     </script>
 </body>
 </html>
