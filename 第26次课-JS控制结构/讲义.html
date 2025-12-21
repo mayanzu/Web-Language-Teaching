@@ -26,34 +26,32 @@
         <h3>Part 3: 课后练习</h3>
         <a class="sidebar-link" href="#summary" class="sub-link">6. 课程小结</a>
     </div>
+
+
 </nav>
 <main class="content">
     <header id="intro">
         <h1>第26课：JS控制结构</h1>
         <p class="intro">前面三课，我们学会了存储数据、进行运算和比较。但这些还不够——真正的程序需要能够"做决定"和"重复执行"。本课将学习控制结构：让程序根据条件选择不同的执行路径，或让某段代码重复执行指定次数。这是编程从"计算器"升级为"智能程序"的关键一步。</p>
         <div class="pill-list">
-            <span class="pill">if / else if / else</div>
-            <span class="pill">switch</div>
-            <span class="pill">for 循环</div>
-            <span class="pill">while 循环</div>
-            <span class="pill">break / continue</div>
-            <span class="pill">三元运算符</div>
-        </div>
-        <div class="lab-card" style="margin-top: 30px;">
-            <div class="lab-header">
-                <span>今日目标</div>
-                <span class="status-badge beginner">适合初学者</div>
-            </div>
-            <div class="lab-body">
-                <ul class="checklist">
-                    <li>理解程序流程控制的核心概念：顺序、分支、循环。</li>
-                    <li>熟练使用 <code>if</code>, <code>else if</code>, <code>else</code> 构建多分支逻辑。</li>
-                    <li>掌握 <code>for</code> 和 <code>while</code> 循环的使用场景和区别。</li>
-                    <li>了解 <code>switch</code> 语句以及何时使用它。</li>
-                    <li>学会使用 <code>break</code> 和 <code>continue</code> 精确控制循环流程。</li>
-                    <li>通过实战案例（成绩评定、乘法表、质数判断等）巩固知识。</li>
-                </ul>
-            </div>
+            <span class="pill">if / else if / else</span>
+
+
+            <span class="pill">switch</span>
+
+
+            <span class="pill">for 循环</span>
+
+
+            <span class="pill">while 循环</span>
+
+
+            <span class="pill">break / continue</span>
+
+
+            <span class="pill">三元运算符</span>
+
+
         </div>
     </header>
 
@@ -82,12 +80,13 @@
             </tr>
             </tbody>
         </table>
-    </section>
+        </section>
+
 
     <section id="if-basic">
         <h2>一、if 语句基础</h2>
         <p><code>if</code> 语句是最基础的条件控制。它的语法非常直观：如果条件为真，就执行某段代码。</p>
-<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px;"><code>let temperature = 30;
+<pre><code>let temperature = 30;
 
 if (temperature > 25) {
     console.log('今天很热，记得多喝水！');
@@ -101,7 +100,9 @@ if (temperature > 25) {
             <li>如果条件为 <code>false</code>，花括号内的代码会被跳过。</li>
         </ul>
         <div class="tip-box">
-            <span class="tip-title">代码块与花括号</div>
+            <span class="tip-title">代码块与花括号</span>
+
+
             <p>花括号 <code>{}</code> 定义了一个代码块。虽然当代码块只有一行时可以省略花括号，但<strong>强烈建议始终使用花括号</strong>，这能避免很多潜在的错误，并让代码更易读。</p>
 <pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>// 不推荐（容易出错）
 if (age >= 18) console.log('成年人');
@@ -112,12 +113,15 @@ if (age >= 18) {
 }
 </code></pre>
         </div>
-    </section>
+
+
+        </section>
+
 
     <section id="if-else">
         <h3>if...else：二选一</h3>
         <p>当我们需要在"条件为真"和"条件为假"时分别执行不同代码时，可以使用 <code>else</code>。</p>
-<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px;"><code>let age = 16;
+<pre><code>let age = 16;
 
 if (age >= 18) {
     console.log('你是成年人，可以投票。');
@@ -126,12 +130,13 @@ if (age >= 18) {
 }
 // 输出: 你还未成年，暂时不能投票。
 </code></pre>
-    </section>
+        </section>
+
 
     <section id="if-elseif">
         <h3>if...else if...else：多重分支</h3>
         <p>当有多个互斥的条件需要判断时，使用 <code>else if</code> 可以构建多分支逻辑。</p>
-<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px;"><code>let score = 85;
+<pre><code>let score = 85;
 
 if (score >= 90) {
     console.log('优秀 A');
@@ -158,25 +163,36 @@ if (num > 10) {
 }
 </code></pre>
         </div>
-    </section>
+
+
+        </section>
+
     <section id="lab-grade">
         <h2>实验 01：成绩评定系统</h2>
         <p>现在让我们实现一个完整的成绩评定系统。输入分数，自动输出对应的等级和评语。</p>
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验 01：多分支条件判断实践</div>
-                <span class="status-badge beginner">动手实践</div>
+                <span>实验 01：多分支条件判断实践</span>
+                <span class="status-badge beginner">动手实践</span>
             </div>
+
+
             <div class="lab-body split">
                 <div class="panel html-viewer">
 <div class="panel-label">HTML 预览</div>
+
+
 &lt;h3&gt;成绩评定系统&lt;/h3&gt;
 &lt;p&gt;输入分数: &lt;input id="score-input" type="number" value="85"&gt;&lt;/p&gt;
 &lt;button onclick="evaluateScore()"&gt;评定等级&lt;/button&gt;
 &lt;div id="grade-result"&gt;&lt;/div&gt;
                 </div>
+
+
                 <div class="panel code-editor" id="code-grade" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
+
+
 function evaluateScore() {
     const scoreInput = document.getElementById('score-input');
     const resultDiv = document.getElementById('grade-result');
@@ -208,24 +224,37 @@ function evaluateScore() {
     `;
 }
                 </div>
+
+
             </div>
+
+
             <div class="action-bar">
                 <button class="btn btn-run" onclick="runGradeLab()">▶ 运行代码</button>
                 <button class="btn btn-reset" onclick="resetGradeLab()">↺ 重置代码</button>
             </div>
+
+
             <div class="preview-box">
                 <h3>成绩评定系统</h3>
                 <p>输入分数: <input id="score-input" type="number" value="85" style="padding: 6px; border: 1px solid #ddd; border-radius: 4px;"></p>
                 <button class="btn btn-run" onclick="evaluateScore()" style="margin-top: 10px;">评定等级</button>
                 <div id="grade-result" style="margin-top: 15px; padding: 10px; background: #f9f9f9; border-radius: 6px; min-height: 50px;"></div>
+
+
             </div>
+
+
         </div>
-    </section>
+
+
+        </section>
+
 
     <section id="nested-if">
         <h3>嵌套 if：条件中的条件</h3>
         <p>有时候，我们需要在一个条件成立后，再检查另一个条件。这时可以使用嵌套的 <code>if</code> 语句。</p>
-<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px;"><code>let age = 20;
+<pre><code>let age = 20;
 let hasLicense = true;
 
 if (age >= 18) {
@@ -241,15 +270,20 @@ if (age >= 18) {
 }
 </code></pre>
         <div class="tip-box">
-            <span class="tip-title">避免过度嵌套</div>
+            <span class="tip-title">避免过度嵌套</span>
+
+
             <p>虽然嵌套 <code>if</code> 很强大，但过深的嵌套会让代码难以阅读。通常建议嵌套不超过 2-3 层。如果逻辑太复杂，考虑使用逻辑运算符 (<code>&&</code>, <code>||</code>) 或将部分逻辑提取为函数。</p>
         </div>
-    </section>
+
+
+        </section>
+
 
     <section id="ternary">
         <h3>三元运算符：简洁的二选一</h3>
         <p>对于简单的"二选一"逻辑，可以使用三元运算符 <code>? :</code>，它是 <code>if...else</code> 的简写形式。</p>
-<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px;"><code>// 使用 if...else
+<pre><code>// 使用 if...else
 let age = 20;
 let status;
 if (age >= 18) {
@@ -270,12 +304,15 @@ console.log(status2); // "成年人"
             <p>✅ 适合：简单的二选一赋值<br>
             ❌ 不适合：复杂逻辑或需要执行多条语句的情况（此时应该用 <code>if...else</code>）</p>
         </div>
-    </section>
+
+
+        </section>
+
 
     <section id="switch">
         <h2>二、switch 语句：多值匹配</h2>
         <p>当我们需要根据一个变量的不同值执行不同代码时，<code>switch</code> 语句比多个 <code>if...else if</code> 更清晰。</p>
-<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px;"><code>let day = 3;
+<pre><code>let day = 3;
 let dayName;
 
 switch (day) {
@@ -329,26 +366,37 @@ switch (fruit) {
 //      香蕉  (意外的穿透！)
 </code></pre>
         </div>
-    </section>
+
+
+        </section>
+
 
     <section id="lab-weekday">
         <h2>实验 02：星期几查询器</h2>
         <p>使用 <code>switch</code> 语句实现一个星期查询器，输入1-7的数字，显示对应的星期名称。</p>
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验 02：switch 语句实践</div>
-                <span class="status-badge beginner">动手实践</div>
+                <span>实验 02：switch 语句实践</span>
+                <span class="status-badge beginner">动手实践</span>
             </div>
+
+
             <div class="lab-body split">
                 <div class="panel html-viewer">
 <div class="panel-label">HTML 预览</div>
+
+
 &lt;h3&gt;星期查询器&lt;/h3&gt;
 &lt;p&gt;输入数字 (1-7): &lt;input id="day-input" type="number" value="3"&gt;&lt;/p&gt;
 &lt;button onclick="checkWeekday()"&gt;查询&lt;/button&gt;
 &lt;div id="weekday-result"&gt;&lt;/div&gt;
                 </div>
+
+
                 <div class="panel code-editor" id="code-weekday" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
+
+
 function checkWeekday() {
     const dayInput = document.getElementById('day-input');
     const resultDiv = document.getElementById('weekday-result');
@@ -389,24 +437,37 @@ function checkWeekday() {
     resultDiv.innerHTML = `&lt;p&gt;&lt;strong&gt;${dayName}&lt;/strong&gt; - ${weekendMsg}&lt;/p&gt;`;
 }
                 </div>
+
+
             </div>
+
+
             <div class="action-bar">
                 <button class="btn btn-run" onclick="runWeekdayLab()">▶ 运行代码</button>
                 <button class="btn btn-reset" onclick="resetWeekdayLab()">↺ 重置代码</button>
             </div>
+
+
             <div class="preview-box">
                 <h3>星期查询器</h3>
                 <p>输入数字 (1-7): <input id="day-input" type="number" value="3" style="padding: 6px; border: 1px solid #ddd; border-radius: 4px;"></p>
                 <button class="btn btn-run" onclick="checkWeekday()" style="margin-top: 10px;">查询</button>
                 <div id="weekday-result" style="margin-top: 15px; padding: 10px; background: #f9f9f9; border-radius: 6px; min-height: 50px;"></div>
+
+
             </div>
+
+
         </div>
-    </section>
+
+
+        </section>
+
 
     <section id="for-loop">
         <h2>三、for 循环：精确控制重复次数</h2>
         <p>循环结构让我们能够重复执行某段代码，而不需要一遍遍复制粘贴。<code>for</code> 循环是最常用的循环类型，适合"我知道要循环多少次"的场景。</p>
-<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px;"><code>// 打印 1 到 5
+<pre><code>// 打印 1 到 5
 for (let i = 1; i <= 5; i++) {
     console.log(i);
 }
@@ -445,7 +506,9 @@ for (let i = 1; i <= 5; i++) {
             </tbody>
         </table>
         <div class="tip-box">
-            <span class="tip-title">循环的执行流程</div>
+            <span class="tip-title">循环的执行流程</span>
+
+
             <p>让我们一步步看看 <code>for (let i = 1; i <= 3; i++)</code> 是如何执行的：</p>
             <ol style="margin-left: 20px;">
                 <li><strong>初始化</strong>: <code>let i = 1;</code> (只执行一次)</li>
@@ -457,8 +520,10 @@ for (let i = 1; i <= 5; i++) {
                 <li><strong>检查条件</strong>: <code>4 <= 3</code> → <code>false</code>，退出循环</li>
             </ol>
         </div>
+
+
         <h3>常见的 for 循环模式</h3>
-<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px;"><code>// 1. 倒序循环（从大到小）
+<pre><code>// 1. 倒序循环（从大到小）
 for (let i = 5; i >= 1; i--) {
     console.log(i);
 }
@@ -477,25 +542,34 @@ for (let i = 0; i < fruits.length; i++) {
 }
 // 输出: 苹果, 香蕉, 橙子
 </code></pre>
-    </section>
+        </section>
+
 
     <section id="lab-multiplication">
         <h2>实验 03：九九乘法表生成器</h2>
         <p>用嵌套的 <code>for</code> 循环来生成九九乘法表。这是一个经典的练习，能帮你深入理解循环的工作原理。</p>
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验 03：嵌套 for 循环</div>
-                <span class="status-badge beginner">动手实践</div>
+                <span>实验 03：嵌套 for 循环</span>
+                <span class="status-badge beginner">动手实践</span>
             </div>
+
+
             <div class="lab-body split">
                 <div class="panel html-viewer">
 <div class="panel-label">HTML 预览</div>
+
+
 &lt;h3&gt;九九乘法表&lt;/h3&gt;
 &lt;button onclick="generateTable()"&gt;生成乘法表&lt;/button&gt;
 &lt;div id="table-output"&gt;&lt;/div&gt;
                 </div>
+
+
                 <div class="panel code-editor" id="code-table" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
+
+
 function generateTable() {
     const outputDiv = document.getElementById('table-output');
     let html = '';
@@ -510,23 +584,36 @@ function generateTable() {
     outputDiv.innerHTML = html;
 }
                 </div>
+
+
             </div>
+
+
             <div class="action-bar">
                 <button class="btn btn-run" onclick="runTableLab()">▶ 运行代码</button>
                 <button class="btn btn-reset" onclick="resetTableLab()">↺ 重置代码</button>
             </div>
+
+
             <div class="preview-box">
                 <h3>九九乘法表</h3>
                 <button class="btn btn-run" onclick="generateTable()">生成乘法表</button>
                 <div id="table-output" style="margin-top: 15px; padding: 10px; background: #f9f9f9; border-radius: 6px; font-family: monospace; line-height: 1.8;"></div>
+
+
             </div>
+
+
         </div>
-    </section>
+
+
+        </section>
+
 
     <section id="while-loop">
         <h2>四、while 循环：条件驱动的重复</h2>
         <p><code>while</code> 循环适合"不知道具体要循环多少次，只知道什么时候该停止"的场景。它会一直循环，直到条件变为 <code>false</code>。</p>
-<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px;"><code>let count = 1;
+<pre><code>let count = 1;
 
 while (count <= 5) {
     console.log(count);
@@ -558,6 +645,8 @@ while (i <= 5) {
 }
 </code></pre>
         </div>
+
+
         <h3>for 和 while 的选择</h3>
         <table class="prop-table">
             <thead>
@@ -576,12 +665,13 @@ while (i <= 5) {
             </tr>
             </tbody>
         </table>
-    </section>
+        </section>
+
 
     <section id="do-while">
         <h3>do...while 循环：至少执行一次</h3>
         <p><code>do...while</code> 是 <code>while</code> 的变体，区别在于它<strong>先执行循环体，再检查条件</strong>，因此至少会执行一次。</p>
-<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px;"><code>let num = 10;
+<pre><code>let num = 10;
 
 do {
     console.log('这行至少会执行一次');
@@ -591,7 +681,8 @@ do {
 // 虽然条件 num < 5 一开始就是 false，
 // 但循环体还是执行了一次
 </code></pre>
-    </section>
+        </section>
+
 
     <section id="break-continue">
         <h2>五、break 和 continue：控制循环流程</h2>
@@ -599,7 +690,7 @@ do {
         
         <h3>break：立即退出整个循环</h3>
         <p><code>break</code> 会立即终止当前循环，不再执行剩余的循环。</p>
-<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px;"><code>// 查找第一个大于10的数
+<pre><code>// 查找第一个大于10的数
 for (let i = 1; i <= 20; i++) {
     if (i > 10) {
         console.log('找到了: ' + i);
@@ -612,7 +703,7 @@ for (let i = 1; i <= 20; i++) {
 
         <h3>continue：跳过本次循环，继续下一次</h3>
         <p><code>continue</code> 会跳过本次循环剩余的代码，直接进入下一次循环。</p>
-<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px;"><code>// 打印 1 到 10 中的所有奇数
+<pre><code>// 打印 1 到 10 中的所有奇数
 for (let i = 1; i <= 10; i++) {
     if (i % 2 === 0) {
         continue; // 跳过偶数
@@ -639,26 +730,35 @@ for (let i = 1; i <= 10; i++) {
             </tr>
             </tbody>
         </table>
-    </section>
+        </section>
+
 
     <section id="lab-prime">
         <h2>实验 04：质数判断器</h2>
         <p>综合运用循环和 <code>break</code> 语句，判断一个数是否为质数（只能被1和自己整除的数）。</p>
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验 04：循环 + break 综合应用</div>
-                <span class="status-badge advanced">进阶</div>
+                <span>实验 04：循环 + break 综合应用</span>
+                <span class="status-badge advanced">进阶</span>
             </div>
+
+
             <div class="lab-body split">
                 <div class="panel html-viewer">
 <div class="panel-label">HTML 预览</div>
+
+
 &lt;h3&gt;质数判断器&lt;/h3&gt;
 &lt;p&gt;输入数字: &lt;input id="num-input" type="number" value="17"&gt;&lt;/p&gt;
 &lt;button onclick="checkPrime()"&gt;判断质数&lt;/button&gt;
 &lt;div id="prime-result"&gt;&lt;/div&gt;
                 </div>
+
+
                 <div class="panel code-editor" id="code-prime" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
+
+
 function checkPrime() {
     const numInput = document.getElementById('num-input');
     const resultDiv = document.getElementById('prime-result');
@@ -686,28 +786,44 @@ function checkPrime() {
     }
 }
                 </div>
+
+
             </div>
+
+
             <div class="action-bar">
                 <button class="btn btn-run" onclick="runPrimeLab()">▶ 运行代码</button>
                 <button class="btn btn-reset" onclick="resetPrimeLab()">↺ 重置代码</button>
             </div>
+
+
             <div class="preview-box">
                 <h3>质数判断器</h3>
                 <p>输入数字: <input id="num-input" type="number" value="17" style="padding: 6px; border: 1px solid #ddd; border-radius: 4px;"></p>
                 <button class="btn btn-run" onclick="checkPrime()" style="margin-top: 10px;">判断质数</button>
                 <div id="prime-result" style="margin-top: 15px; padding: 10px; background: #f9f9f9; border-radius: 6px; min-height: 50px;"></div>
+
+
             </div>
+
+
         </div>
+
+
     
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验：第26次课-JS控制结构实践</div>
-                <span id="26js-status" class="status-badge">未运行</div>
+                <span>实验：第26次课-JS控制结构实践</span>
+
+                <span id="26js-status" class="status-badge">未运行</span>
+
             </div>
+
             <div class="lab-body css-js-experiment">
                 <div>
-                    <div class="html-editor" id="26js-js" contenteditable="true">
-<div class="panel-label">JavaScript (可编辑)</div>// 第26次课-JS控制结构实验
+                    <div class="html-editor" id="26js-js" contenteditable="true">&lt;div class="panel-label"&gt;JavaScript (可编辑)</div>
+
+// 第26次课-JS控制结构实验
 
 // 在这里编写你的JavaScript代码
 
@@ -716,73 +832,49 @@ console.log('第26次课-JS控制结构实验开始');
 
 // 在这里添加更多JavaScript代码
 </div>
+
                 </div>
+
                 <div>
                     <div class="preview-box" id="26js-preview">
                         <div class="panel-label">预览效果</div>
+
                         <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
                             <h3>第26次课-JS控制结构实验</h3>
                             <div id="26js-output">
                                 <p>点击「运行代码」查看结果</p>
                             </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
+
+        </div>
+
             <div class="action-bar">
                 <button class="btn btn-run" onclick="run26jsExperiment()">▶ 运行代码</button>
                 <button class="btn btn-reset" onclick="reset26jsExperiment()">↺ 重置</button>
             </div>
+
         </div>
 
-        <div class="lab-card">
-            <div class="lab-header">
-                <span>实验：第26次课-JS控制结构实践</div>
-                <span id="26js-status" class="status-badge">未运行</div>
-            </div>
-            <div class="lab-body css-js-experiment">
-                <div>
-                    <div class="html-editor" id="26js-js" contenteditable="true">
-<div class="panel-label">JavaScript (可编辑)</div>// 第26次课-JS控制结构实验
 
-// 在这里编写你的JavaScript代码
+    </section>
 
-// 示例代码
-console.log('第26次课-JS控制结构实验开始');
-
-// 在这里添加更多JavaScript代码
-</div>
-                </div>
-                <div>
-                    <div class="preview-box" id="26js-preview">
-                        <div class="panel-label">预览效果</div>
-                        <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                            <h3>第26次课-JS控制结构实验</h3>
-                            <div id="26js-output">
-                                <p>点击「运行代码」查看结果</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="action-bar">
-                <button class="btn btn-run" onclick="run26jsExperiment()">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="reset26jsExperiment()">↺ 重置</button>
-            </div>
-        </div>
-</section>
     <section id="summary">
         <h2>六、综合案例与本课小结</h2>
         <h3>综合案例：猜数字游戏</h3>
         <p>这是一个综合运用本课所有知识点的完整游戏：if 条件判断、循环、break 语句，以及用户交互。</p>
         <div class="lab-card">
             <div class="lab-header">
-                <span>综合案例：猜数字游戏 - 控制结构综合应用</div>
-                <span class="status-badge advanced">综合实战</div>
+                <span>综合案例：猜数字游戏 - 控制结构综合应用</span>
+                <span class="status-badge advanced">综合实战</span>
             </div>
+
+
             <div class="lab-body split">
                 <div class="panel html-viewer">
 <div class="panel-label">HTML 预览</div>
+
+
 &lt;h3&gt;猜数字游戏&lt;/h3&gt;
 &lt;p&gt;我想了一个 1-100 之间的数字，你能猜出来吗？&lt;/p&gt;
 &lt;p&gt;你有 10 次机会！&lt;/p&gt;
@@ -794,8 +886,12 @@ console.log('第26次课-JS控制结构实验开始');
 &lt;div id="game-log"&gt;&lt;/div&gt;
 &lt;div id="game-status"&gt;&lt;/div&gt;
                 </div>
+
+
                 <div class="panel code-editor" id="code-game" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
+
+
 // 游戏状态
 let targetNumber;
 let attempts;
@@ -866,11 +962,17 @@ function resetGame() {
 // 页面加载时初始化
 initGame();
                 </div>
+
+
             </div>
+
+
             <div class="action-bar">
                 <button class="btn btn-run" onclick="runGameLab()">▶ 运行代码</button>
                 <button class="btn btn-reset" onclick="resetGameLab()">↺ 重置代码</button>
             </div>
+
+
             <div class="preview-box">
                 <h3>猜数字游戏</h3>
                 <p>我想了一个 1-100 之间的数字，你能猜出来吗？</p>
@@ -880,10 +982,20 @@ initGame();
                     <button class="btn btn-run" onclick="makeGuess()">猜！</button>
                     <button class="btn btn-reset" onclick="resetGame()" style="margin-left: 5px;">重新开始</button>
                 </div>
+
+
                 <div id="game-log" style="background: #f9f9f9; padding: 15px; border-radius: 6px; min-height: 100px; max-height: 200px; overflow-y: auto; margin-bottom: 10px; font-size: 14px;"></div>
+
+
                 <div id="game-status" style="font-weight: bold; color: #0066CC;"></div>
+
+
             </div>
+
+
         </div>
+
+
 
         <h3>本课小结</h3>
         <ul class="checklist">
@@ -899,8 +1011,13 @@ initGame();
         <div class="note-box">
             <strong>下一课预告：</strong>我们将学习<strong>函数</strong>——如何把常用的代码逻辑封装成可重复调用的模块，让代码更加模块化和可维护。函数是构建复杂程序的核心工具。
         </div>
-    </section>
+
+
+        </section>
+
+
 </main>
+
 
     
 <script>
@@ -1047,8 +1164,11 @@ function resetGameLab() {
     }
 }
 </script>
+
 </body>
+
 </html>
+
 
 
 

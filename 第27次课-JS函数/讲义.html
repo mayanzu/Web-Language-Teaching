@@ -26,6 +26,8 @@
         <h3>Part 3: 实战练习</h3>
         <a class="sidebar-link" href="#practical" class="sub-link">6. 综合实战</a>
     </div>
+
+
 </nav>
 
   <main class="content">
@@ -33,43 +35,44 @@
       <h1>第27课：JS函数</h1>
       <p class="intro">如果把程序看成工厂流水线,函数就是一台台专用机器:输入原料,机器内部按步骤处理,再输出结果。本课将学习如何「造机器」和「用机器」,让代码更加模块化、可复用、易维护。</p>
       <div class="pill-list">
-        <span class="pill">函数声明与调用</div>
-        <span class="pill">参数与返回值</div>
-        <span class="pill">箭头函数</div>
-        <span class="pill">作用域与闭包</div>
-        <span class="pill">高阶函数</div>
-        <span class="pill">回调函数</div>
+        <span class="pill">函数声明与调用</span>
+
+
+        <span class="pill">参数与返回值</span>
+
+
+        <span class="pill">箭头函数</span>
+
+
+        <span class="pill">作用域与闭包</span>
+
+
+        <span class="pill">高阶函数</span>
+
+
+        <span class="pill">回调函数</span>
+
+
       </div>
-      <div class="lab-card" style="margin-top: 30px;">
-        <div class="lab-header">
-          <span>今日目标</div>
-          <span class="status-badge beginner">Suitable for Beginners</div>
-        </div>
-        <div class="lab-body">
-          <ul class="checklist">
-            <li>理解函数的本质:封装可复用的代码块</li>
-            <li>掌握函数的三种声明方式:函数声明、函数表达式、箭头函数</li>
-            <li>熟练使用参数和返回值进行数据传递</li>
-            <li>理解作用域、作用域链和闭包的概念</li>
-            <li>学会使用高阶函数和回调函数</li>
-            <li>通过实验巩固函数的实际应用</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+        </section>
+
 
     <section id="why-function">
       <h2>一、为什么需要函数?</h2>
       <p>想象你正在开发一个计算器程序,需要多次计算两个数的和。如果每次都重复写相同的代码,不仅麻烦,而且一旦计算逻辑需要修改,就要改很多地方。</p>
       <p><strong>函数,就是把重复的代码封装起来,给它一个名字,需要时调用这个名字即可。</strong></p>
       <div class="tip-box">
-        <span class="tip-title">生活中的类比</div>
+            <span class="tip-title">生活中的类比</span>
+
+
         <ul class="checklist">
           <li><strong>洗衣机:</strong>放入脏衣服和洗衣液(输入/参数),按下开始键,内部执行洗涤程序(函数体),最后得到干净的衣服(输出/返回值)</li>
           <li><strong>菜谱:</strong>一道菜的做法就是一个"函数",食材是参数,烹饪步骤是函数体,做好的菜是返回值</li>
           <li><strong>ATM取款:</strong>输入金额(参数),ATM执行验证、扣款、出钞等步骤(函数体),返回现金和凭条(返回值)</li>
         </ul>
       </div>
+
+
       <p>没有函数,我们的代码将充满重复、难以维护。函数让我们能够:</p>
       <ul class="checklist">
         <li><strong>避免重复:</strong>写一次代码,多次调用</li>
@@ -77,7 +80,8 @@
         <li><strong>降低复杂度:</strong>把大问题拆分成小问题</li>
         <li><strong>提高可读性:</strong>通过函数名清晰表达代码意图</li>
       </ul>
-    </section>
+        </section>
+
 
     <section id="what-is-function">
       <h2>二、函数是什么?</h2>
@@ -144,7 +148,9 @@ console.log(greet("小明"));  // 输出：你好，小明！
 console.log(greet("小红"));  // 输出：你好，小红！</code></pre>
 
       <div class="note-box">
-        <span class="tip-title">📌 重要术语</div>
+        <span class="tip-title">📌 重要术语</span>
+
+
         <table class="prop-table">
           <thead>
             <tr><th>术语</th><th>含义</th><th>示例</th></tr>
@@ -173,7 +179,10 @@ console.log(greet("小红"));  // 输出：你好，小红！</code></pre>
           </tbody>
         </table>
       </div>
-    </section>
+
+
+        </section>
+
 
     <section id="function-declaration">
       <h2>三、函数的声明方式</h2>
@@ -182,11 +191,15 @@ console.log(greet("小红"));  // 输出：你好，小红！</code></pre>
       <h3>3.1 函数声明 (Function Declaration)</h3>
       <p>这是最传统、最常见的函数定义方式。使用 <code>function</code> 关键字声明的函数具有一个重要特性:<strong>函数提升 (Hoisting)</strong>。</p>
       <div class="tip-box">
-        <span class="tip-title">什么是函数提升?</div>
+            <span class="tip-title">什么是函数提升?</span>
+
+
         <p>JavaScript 引擎在执行代码前,会先扫描整个作用域,将所有函数声明"提升"到作用域顶部。这意味着你可以在函数声明之前调用它。</p>
         <p><strong>优点:</strong>代码组织更灵活,可以把主要逻辑放在前面,辅助函数放在后面。</p>
         <p><strong>注意:</strong>只有函数声明会提升,函数表达式不会。</p>
       </div>
+
+
       
       <pre><code>// 函数声明
 function add(a, b) {
@@ -201,9 +214,13 @@ function multiply(x, y) {
 }</code></pre>
 
       <div class="tip-box">
-        <span class="tip-title">函数提升（Hoisting）</div>
+            <span class="tip-title">函数提升（Hoisting）</span>
+
+
         <p>函数声明会被提升到作用域顶部，因此可以在声明之前调用函数。这是与函数表达式的重要区别。</p>
       </div>
+
+
 
       <h3>3.2 无参数与多参数函数</h3>
       <pre><code>// 无参数函数
@@ -220,7 +237,8 @@ function calculateRectangleArea(width, height) {
 
 let area = calculateRectangleArea(5, 10);
 console.log(area);  // 输出：50</code></pre>
-    </section>
+        </section>
+
 
     <section id="function-expression">
       <h2>四、函数表达式 (Function Expression)</h2>
@@ -229,9 +247,13 @@ console.log(area);  // 输出：50</code></pre>
       <h3>4.1 匿名函数表达式</h3>
       <p>将函数赋值给变量,函数本身没有名称。<strong>重要:</strong>函数表达式不会被提升!</p>
       <div class="warning-box">
-        <span class="tip-title">注意</div>
+        <span class="tip-title">注意</span>
+
+
         <p>函数表达式必须先定义,后调用。如果在定义前调用,会报错:<code>ReferenceError: Cannot access before initialization</code></p>
       </div>
+
+
       
       <pre><code>// 函数表达式
 const subtract = function(a, b) {
@@ -259,7 +281,9 @@ console.log(divide(10, 2));  // 5</code></pre>
 console.log(factorial(5));  // 120</code></pre>
 
       <div class="tip-box">
-        <span class="tip-title">函数声明 vs 函数表达式</div>
+            <span class="tip-title">函数声明 vs 函数表达式</span>
+
+
         <table class="prop-table">
           <thead>
             <tr>
@@ -287,7 +311,10 @@ console.log(factorial(5));  // 120</code></pre>
           </tbody>
         </table>
       </div>
-    </section>
+
+
+        </section>
+
 
     <section id="arrow-function">
       <h2>五、箭头函数 (Arrow Function - ES6)</h2>
@@ -332,7 +359,9 @@ const calculateDiscount = (price, discount) => {
 const createUser = (name, age) => ({ name: name, age: age });</code></pre>
 
       <div class="note-box">
-        <span class="tip-title">📌 箭头函数的特点</div>
+        <span class="tip-title">📌 箭头函数的特点</span>
+
+
         <ul class="checklist">
           <li>更简洁的语法</li>
           <li>没有自己的 <code>this</code>（继承外层作用域的this）</li>
@@ -341,7 +370,10 @@ const createUser = (name, age) => ({ name: name, age: age });</code></pre>
           <li>适合用于回调函数和方法链</li>
         </ul>
       </div>
-    </section>
+
+
+        </section>
+
 
     <section id="parameters">
       <h2>六、函数参数的高级特性</h2>
@@ -350,13 +382,17 @@ const createUser = (name, age) => ({ name: name, age: age });</code></pre>
       <h3>6.1 默认参数 (Default Parameters)</h3>
       <p>在函数定义时,可以为参数指定默认值。如果调用时没有传递该参数(或传入 <code>undefined</code>),将使用默认值。</p>
       <div class="tip-box">
-        <span class="tip-title">默认参数的优势</div>
+            <span class="tip-title">默认参数的优势</span>
+
+
         <ul class="checklist">
           <li>避免了 ES5 中冗长的 <code>name = name || '默认值'</code> 写法</li>
           <li>代码更清晰、易读</li>
           <li>可以使用表达式作为默认值</li>
         </ul>
       </div>
+
+
       
       <pre><code>// ES6 默认参数
 function greet(name = "访客", greeting = "你好") {
@@ -377,9 +413,13 @@ function greetOld(name, greeting) {
       <h3>6.2 剩余参数 (Rest Parameters)</h3>
       <p>使用 <code>...参数名</code> 可以将不定数量的参数收集到一个数组中。这在参数数量不确定时非常有用。</p>
       <div class="note-box">
-        <span class="tip-title">📌 剩余参数 vs arguments</div>
+        <span class="tip-title">📌 剩余参数 vs arguments</span>
+
+
         <p>ES5 中可以使用 <code>arguments</code> 对象访问所有参数，但它不是真正的数组。剩余参数是真正的数组，可以直接使用数组方法。</p>
       </div>
+
+
       
       <pre><code>// 计算任意数量数字的和
 function sum(...numbers) {
@@ -426,63 +466,88 @@ console.log(getCoordinates([10, 20]));  // 坐标：(10, 20)</code></pre>
 
       <div class="lab-card">
         <div class="lab-header">
-          <span>🔬 实验1：参数处理器</div>
-          <span class="status-badge beginner">基础</div>
-        </div>
+                <span>🔬 实验1：参数处理器</span>
+                <span class="status-badge beginner">基础</span>
+            </div>
+
+
         <div class="lab-body split">
           <div class="panel">
             <div class="panel-label">HTML</div>
+
+
             <div class="html-viewer">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-  &lt;meta charset="UTF-8"&gt;
-  &lt;title&gt;参数处理&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;h3&gt;参数处理器&lt;/h3&gt;
-  &lt;div&gt;
-    &lt;input id="name" placeholder="姓名"&gt;
-    &lt;input id="age" placeholder="年龄" type="number"&gt;
-    &lt;input id="city" placeholder="城市（可选）"&gt;
-    &lt;button onclick="processUser()"&gt;处理用户信息&lt;/button&gt;
-  &lt;/div&gt;
-  &lt;div id="output" style="margin-top:15px;padding:10px;background:#f0f0f0;border-radius:5px;"&gt;&lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;</div>
+    &lt;html&gt;
+        &lt;head&gt;
+            &lt;meta charset="UTF-8"&gt;
+                &lt;title&gt;参数处理&lt;/title&gt;
+                &lt;/head&gt;
+                &lt;body&gt;
+                    &lt;h3&gt;参数处理器&lt;/h3&gt;
+                        &lt;div&gt;
+                            &lt;input id="name" placeholder="姓名"&gt;
+                                &lt;input id="age" placeholder="年龄" type="number"&gt;
+                                    &lt;input id="city" placeholder="城市（可选）"&gt;
+                                        &lt;button onclick="processUser()"&gt;处理用户信息&lt;/button&gt;
+                                        &lt;/div&gt;
+                                        &lt;div id="output" style="margin-top:15px;padding:10px;background:#f0f0f0;border-radius:5px;"&gt;&lt;/div&gt;
+                                        &lt;/body&gt;
+                                    &lt;/html&gt;</div>
+
+
           </div>
+
+
           <div class="panel">
             <div class="panel-label">JavaScript (可编辑)</div>
+
+
             <div class="html-editor" contenteditable="true" id="lab1-code">// 使用默认参数和解构
 function createUserInfo({ name, age, city = "未填写" } = {}) {
-  if (!name || !age) {
-    return "❌ 姓名和年龄是必填项！";
-  }
-  return `✅ 用户信息：${name}，${age}岁，来自${city}`;
+    if (!name || !age) {
+        return "❌ 姓名和年龄是必填项！";
+    }
+    return `✅ 用户信息：${name}，${age}岁，来自${city}`;
 }
 
 function processUser() {
-  const nameVal = document.getElementById('name').value;
-  const ageVal = document.getElementById('age').value;
-  const cityVal = document.getElementById('city').value;
+    const nameVal = document.getElementById('name').value;
+    const ageVal = document.getElementById('age').value;
+    const cityVal = document.getElementById('city').value;
   
-  const result = createUserInfo({
-    name: nameVal,
-    age: ageVal,
-    city: cityVal
-  });
+    const result = createUserInfo({
+        name: nameVal,
+        age: ageVal,
+        city: cityVal
+        });
   
-  document.getElementById('output').innerText = result;
-}</div>
+        document.getElementById('output').innerText = result;
+    }</div>
+
+
           </div>
+
+
         </div>
+
+
         <div class="action-bar">
           <button class="btn btn-run" onclick="runLab1()">▶ 运行代码</button>
           <button class="btn btn-reset" onclick="resetLab1()">↻ 重置</button>
-          <span style="color:#999;font-size:13px;">提示：填写姓名和年龄，城市可选</div>
+          <span style="color:#999;font-size:13px;">提示：填写姓名和年龄，城市可选</span>
+
+
         </div>
+
+
         <div class="preview-box" id="lab1-preview"></div>
+
+
       </div>
-    </section>
+
+
+        </section>
+
 
     <section id="return-value">
       <h2>七、返回值详解</h2>
@@ -562,7 +627,8 @@ function emptyReturn() {
 }
 
 console.log(emptyReturn());  // undefined</code></pre>
-    </section>
+        </section>
+
 
     <section id="scope">
       <h2>八、作用域与闭包</h2>
@@ -571,13 +637,17 @@ console.log(emptyReturn());  // undefined</code></pre>
       <h3>8.1 什么是作用域?</h3>
       <p><strong>作用域</strong>(Scope)是变量的可访问范围。可以把它想象成一个个嵌套的房间,每个房间都有自己的"可见区域"。</p>
       <div class="tip-box">
-        <span class="tip-title">作用域的类型</div>
+            <span class="tip-title">作用域的类型</span>
+
+
         <ul class="checklist">
           <li><strong>全局作用域:</strong>整个程序都能访问</li>
           <li><strong>函数作用域:</strong>只在函数内部可访问</li>
           <li><strong>块级作用域:</strong>只在代码块(如 if、for)内可访问(let/const)</li>
         </ul>
       </div>
+
+
 
       <h3>8.2 全局作用域与局部作用域</h3>
       
@@ -641,9 +711,13 @@ outer();</code></pre>
       <h3>8.5 闭包 (Closure) - JavaScript的精髓</h3>
       <p>闭包是JavaScript最强大的特性之一。简单来说，<strong>闭包就是函数能够"记住"它被创建时的环境</strong>。</p>
       <div class="note-box">
-        <span class="tip-title">📌 闭包的定义</div>
+        <span class="tip-title">📌 闭包的定义</span>
+
+
         <p>当一个函数可以访问并"记住"其外层作用域的变量时，即使外层函数已经执行完毕，就形成了闭包。</p>
       </div>
+
+
       
       <pre><code>// 经典计数器闭包
 function createCounter() {
@@ -665,7 +739,9 @@ const counter2 = createCounter();
 console.log(counter2());  // 1</code></pre>
 
       <div class="note-box">
-        <span class="tip-title">📌 闭包的应用场景</div>
+        <span class="tip-title">📌 闭包的应用场景</span>
+
+
         <ul class="checklist">
           <li>数据隐藏和封装（私有变量）</li>
           <li>创建函数工厂</li>
@@ -674,68 +750,95 @@ console.log(counter2());  // 1</code></pre>
         </ul>
       </div>
 
+
+
       <div class="lab-card">
         <div class="lab-header">
-          <span>🔬 实验2：作用域可视化</div>
-          <span class="status-badge beginner">基础</div>
-        </div>
+                <span>🔬 实验2：作用域可视化</span>
+                <span class="status-badge beginner">基础</span>
+            </div>
+
+
         <div class="lab-body split">
           <div class="panel">
             <div class="panel-label">HTML</div>
+
+
             <div class="html-viewer">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-  &lt;meta charset="UTF-8"&gt;
-  &lt;title&gt;作用域演示&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;h3&gt;作用域测试&lt;/h3&gt;
-  &lt;button onclick="testGlobal()"&gt;访问全局变量&lt;/button&gt;
-  &lt;button onclick="testLocal()"&gt;访问局部变量&lt;/button&gt;
-  &lt;button onclick="testClosure()"&gt;测试闭包&lt;/button&gt;
-  &lt;div id="result" style="margin-top:15px;padding:10px;background:#f9f9f9;border-radius:5px;white-space:pre-line;"&gt;&lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;</div>
+    &lt;html&gt;
+        &lt;head&gt;
+            &lt;meta charset="UTF-8"&gt;
+                &lt;title&gt;作用域演示&lt;/title&gt;
+                &lt;/head&gt;
+                &lt;body&gt;
+                    &lt;h3&gt;作用域测试&lt;/h3&gt;
+                        &lt;button onclick="testGlobal()"&gt;访问全局变量&lt;/button&gt;
+                            &lt;button onclick="testLocal()"&gt;访问局部变量&lt;/button&gt;
+                                &lt;button onclick="testClosure()"&gt;测试闭包&lt;/button&gt;
+                                    &lt;div id="result" style="margin-top:15px;padding:10px;background:#f9f9f9;border-radius:5px;white-space:pre-line;"&gt;&lt;/div&gt;
+                                    &lt;/body&gt;
+                                &lt;/html&gt;</div>
+
+
           </div>
+
+
           <div class="panel">
             <div class="panel-label">JavaScript (可编辑)</div>
+
+
             <div class="html-editor" contenteditable="true" id="lab2-code">let globalMessage = "🌍 我是全局变量";
 
 function testGlobal() {
-  document.getElementById('result').innerText = 
+    document.getElementById('result').innerText =
     `全局变量: ${globalMessage}\n可以在任何地方访问`;
 }
 
 function testLocal() {
-  let localMessage = "🏠 我是局部变量";
-  document.getElementById('result').innerText = 
+    let localMessage = "🏠 我是局部变量";
+    document.getElementById('result').innerText =
     `局部变量: ${localMessage}\n只能在函数内部访问`;
 }
 
 // 闭包示例
 function createGreeter(greeting) {
-  return function(name) {
-    return `${greeting}, ${name}!`;
-  };
+    return function(name) {
+        return `${greeting}, ${name}!`;
+    };
 }
 
 const sayHello = createGreeter("你好");
 const sayHi = createGreeter("嗨");
 
 function testClosure() {
-  const result = `闭包示例：\n${sayHello("小明")}\n${sayHi("小红")}\n\n闭包保留了外层函数的变量！`;
-  document.getElementById('result').innerText = result;
+    const result = `闭包示例：\n${sayHello("小明")}\n${sayHi("小红")}\n\n闭包保留了外层函数的变量！`;
+    document.getElementById('result').innerText = result;
 }</div>
+
+
           </div>
+
+
         </div>
+
+
         <div class="action-bar">
           <button class="btn btn-run" onclick="runLab2()">▶ 运行代码</button>
           <button class="btn btn-reset" onclick="resetLab2()">↻ 重置</button>
-          <span style="color:#999;font-size:13px;">点击按钮测试不同的作用域</div>
+          <span style="color:#999;font-size:13px;">点击按钮测试不同的作用域</span>
+
+
         </div>
+
+
         <div class="preview-box" id="lab2-preview"></div>
+
+
       </div>
-    </section>
+
+
+        </section>
+
 
     <section id="higher-order">
       <h2>九、高阶函数 (Higher-Order Functions)</h2>
@@ -748,9 +851,13 @@ function testClosure() {
         <li>返回一个函数</li>
       </ul>
       <div class="tip-box">
-        <span class="tip-title">为什么需要高阶函数?</div>
+            <span class="tip-title">为什么需要高阶函数?</span>
+
+
         <p>高阶函数让代码更加抽象、灵活和可复用。例如,<code>map</code>、<code>filter</code>、<code>reduce</code> 等数组方法都是高阶函数。</p>
       </div>
+
+
       
       <pre><code>// 接受函数作为参数
 function repeat(n, action) {
@@ -769,7 +876,9 @@ repeat(3, function(i) {
       <h3>9.2 回调函数 (Callback Functions)</h3>
       <p><strong>回调函数</strong>是作为参数传递给另一个函数的函数。它让我们可以定制函数的行为，是异步编程的基础。</p>
       <div class="note-box">
-        <span class="tip-title">📌 回调函数的应用场景</div>
+        <span class="tip-title">📌 回调函数的应用场景</span>
+
+
         <ul class="checklist">
           <li>数组方法：map、filter、forEach、reduce 等</li>
           <li>事件处理：按钮点击、鼠标移动等</li>
@@ -777,6 +886,8 @@ repeat(3, function(i) {
           <li>自定义行为：根据传入的函数执行不同操作</li>
         </ul>
       </div>
+
+
       
       <pre><code>// 数组方法中的回调
 const numbers = [1, 2, 3, 4, 5];
@@ -855,67 +966,92 @@ console.log(curryArrow(1)(2)(3));  // 6</code></pre>
 
       <div class="lab-card">
         <div class="lab-header">
-          <span>🔬 实验3：数组处理器</div>
-          <span class="status-badge advanced">进阶</div>
-        </div>
+                <span>🔬 实验3：数组处理器</span>
+                <span class="status-badge advanced">进阶</span>
+            </div>
+
+
         <div class="lab-body split">
           <div class="panel">
             <div class="panel-label">HTML</div>
+
+
             <div class="html-viewer">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-  &lt;meta charset="UTF-8"&gt;
-  &lt;title&gt;数组处理&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;h3&gt;学生成绩处理系统&lt;/h3&gt;
-  &lt;div&gt;
-    &lt;button onclick="showAll()"&gt;显示所有成绩&lt;/button&gt;
-    &lt;button onclick="showPassed()"&gt;显示及格成绩&lt;/button&gt;
-    &lt;button onclick="showAverage()"&gt;计算平均分&lt;/button&gt;
-    &lt;button onclick="showTop()"&gt;显示前三名&lt;/button&gt;
-  &lt;/div&gt;
-  &lt;div id="output" style="margin-top:15px;padding:12px;background:#f5f5f5;border-radius:5px;white-space:pre-line;"&gt;&lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;</div>
+    &lt;html&gt;
+        &lt;head&gt;
+            &lt;meta charset="UTF-8"&gt;
+                &lt;title&gt;数组处理&lt;/title&gt;
+                &lt;/head&gt;
+                &lt;body&gt;
+                    &lt;h3&gt;学生成绩处理系统&lt;/h3&gt;
+                        &lt;div&gt;
+                            &lt;button onclick="showAll()"&gt;显示所有成绩&lt;/button&gt;
+                                &lt;button onclick="showPassed()"&gt;显示及格成绩&lt;/button&gt;
+                                    &lt;button onclick="showAverage()"&gt;计算平均分&lt;/button&gt;
+                                        &lt;button onclick="showTop()"&gt;显示前三名&lt;/button&gt;
+                                        &lt;/div&gt;
+                                        &lt;div id="output" style="margin-top:15px;padding:12px;background:#f5f5f5;border-radius:5px;white-space:pre-line;"&gt;&lt;/div&gt;
+                                        &lt;/body&gt;
+                                    &lt;/html&gt;</div>
+
+
           </div>
+
+
           <div class="panel">
             <div class="panel-label">JavaScript (可编辑)</div>
+
+
             <div class="html-editor" contenteditable="true" id="lab3-code">const scores = [85, 92, 78, 95, 88, 76, 90, 82];
 
 function showAll() {
-  const result = `所有成绩：\n${scores.join(', ')}`;
-  document.getElementById('output').innerText = result;
+    const result = `所有成绩：\n${scores.join(', ')}`;
+    document.getElementById('output').innerText = result;
 }
 
 function showPassed() {
-  const passed = scores.filter(score => score >= 60);
-  const result = `及格成绩（≥60）：\n${passed.join(', ')}\n共${passed.length}人及格`;
-  document.getElementById('output').innerText = result;
+    const passed = scores.filter(score =&gt; score &gt;= 60);
+    const result = `及格成绩（≥60）：\n${passed.join(', ')}\n共${passed.length}人及格`;
+    document.getElementById('output').innerText = result;
 }
 
 function showAverage() {
-  const sum = scores.reduce((total, score) => total + score, 0);
-  const avg = (sum / scores.length).toFixed(2);
-  const result = `平均分：${avg}`;
-  document.getElementById('output').innerText = result;
+    const sum = scores.reduce((total, score) =&gt; total + score, 0);
+    const avg = (sum / scores.length).toFixed(2);
+    const result = `平均分：${avg}`;
+    document.getElementById('output').innerText = result;
 }
 
 function showTop() {
-  const top3 = [...scores].sort((a, b) => b - a).slice(0, 3);
-  const result = `前三名成绩：\n🥇 ${top3[0]}\n🥈 ${top3[1]}\n🥉 ${top3[2]}`;
-  document.getElementById('output').innerText = result;
+    const top3 = [...scores].sort((a, b) =&gt; b - a).slice(0, 3);
+    const result = `前三名成绩：\n🥇 ${top3[0]}\n🥈 ${top3[1]}\n🥉 ${top3[2]}`;
+    document.getElementById('output').innerText = result;
 }</div>
+
+
           </div>
+
+
         </div>
+
+
         <div class="action-bar">
           <button class="btn btn-run" onclick="runLab3()">▶ 运行代码</button>
           <button class="btn btn-reset" onclick="resetLab3()">↻ 重置</button>
-          <span style="color:#999;font-size:13px;">使用高阶函数处理数组数据</div>
+          <span style="color:#999;font-size:13px;">使用高阶函数处理数组数据</span>
+
+
         </div>
+
+
         <div class="preview-box" id="lab3-preview"></div>
+
+
       </div>
-    </section>
+
+
+        </section>
+
 
     <section id="practical">
       <h2>十、综合实战:计算器系统</h2>
@@ -923,7 +1059,9 @@ function showTop() {
       <p>让我们综合运用本课学到的所有知识:函数声明、箭头函数、对象方法、参数验证、高阶函数等,构建一个功能完整的计算器系统。</p>
       
       <div class="tip-box">
-        <span class="tip-title">本案例涵盖的知识点</div>
+            <span class="tip-title">本案例涵盖的知识点</span>
+
+
         <ul class="checklist">
           <li>使用对象存储函数(函数作为对象的值)</li>
           <li>箭头函数简化代码</li>
@@ -934,100 +1072,128 @@ function showTop() {
         </ul>
       </div>
 
+
+
       <div class="lab-card">
         <div class="lab-header">
-          <span>🔬 实验4：多功能计算器</div>
-          <span class="status-badge advanced">综合</div>
-        </div>
+                <span>🔬 实验4：多功能计算器</span>
+                <span class="status-badge advanced">综合</span>
+            </div>
+
+
         <div class="lab-body split">
           <div class="panel">
             <div class="panel-label">HTML</div>
+
+
             <div class="html-viewer">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-  &lt;meta charset="UTF-8"&gt;
-  &lt;title&gt;计算器&lt;/title&gt;
-  &lt;style&gt;
-    .calculator { max-width: 400px; padding: 20px; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-    .calc-input { width: 100%; padding: 10px; margin: 5px 0; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; }
-    .calc-buttons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 12px; }
-    .calc-btn { padding: 12px; border: none; background: #0066CC; color: white; border-radius: 6px; cursor: pointer; font-size: 14px; }
-    .calc-btn:hover { background: #0055B3; }
-    .calc-btn.secondary { background: #6c757d; }
-    #calc-result { margin-top: 15px; padding: 12px; background: #f0f8ff; border-radius: 6px; font-weight: bold; color: #0066CC; }
-  &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;div class="calculator"&gt;
-    &lt;h3 style="margin-bottom:15px;"&gt;📐 多功能计算器&lt;/h3&gt;
-    &lt;input type="number" id="num1" class="calc-input" placeholder="第一个数字"&gt;
-    &lt;input type="number" id="num2" class="calc-input" placeholder="第二个数字"&gt;
-    &lt;div class="calc-buttons"&gt;
-      &lt;button class="calc-btn" onclick="calculate('add')"&gt;加法 +&lt;/button&gt;
-      &lt;button class="calc-btn" onclick="calculate('subtract')"&gt;减法 -&lt;/button&gt;
-      &lt;button class="calc-btn" onclick="calculate('multiply')"&gt;乘法 ×&lt;/button&gt;
-      &lt;button class="calc-btn" onclick="calculate('divide')"&gt;除法 ÷&lt;/button&gt;
-      &lt;button class="calc-btn secondary" onclick="calculate('power')"&gt;幂运算 ^&lt;/button&gt;
-      &lt;button class="calc-btn secondary" onclick="calculate('mod')"&gt;取余 %&lt;/button&gt;
-      &lt;button class="calc-btn secondary" onclick="calculate('max')"&gt;最大值&lt;/button&gt;
-      &lt;button class="calc-btn secondary" onclick="calculate('min')"&gt;最小值&lt;/button&gt;
-    &lt;/div&gt;
-    &lt;div id="calc-result"&gt;等待计算...&lt;/div&gt;
-  &lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;</div>
+    &lt;html&gt;
+        &lt;head&gt;
+            &lt;meta charset="UTF-8"&gt;
+                &lt;title&gt;计算器&lt;/title&gt;
+                    &lt;style&gt;
+                        .calculator { max-width: 400px; padding: 20px; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+                        .calc-input { width: 100%; padding: 10px; margin: 5px 0; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; }
+                        .calc-buttons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 12px; }
+                        .calc-btn { padding: 12px; border: none; background: #0066CC; color: white; border-radius: 6px; cursor: pointer; font-size: 14px; }
+                        .calc-btn:hover { background: #0055B3; }
+                        .calc-btn.secondary { background: #6c757d; }
+                        #calc-result { margin-top: 15px; padding: 12px; background: #f0f8ff; border-radius: 6px; font-weight: bold; color: #0066CC; }
+                    &lt;/style&gt;
+                &lt;/head&gt;
+                &lt;body&gt;
+                    &lt;div class="calculator"&gt;
+                        &lt;h3 style="margin-bottom:15px;"&gt;📐 多功能计算器&lt;/h3&gt;
+                            &lt;input type="number" id="num1" class="calc-input" placeholder="第一个数字"&gt;
+                                &lt;input type="number" id="num2" class="calc-input" placeholder="第二个数字"&gt;
+                                    &lt;div class="calc-buttons"&gt;
+                                        &lt;button class="calc-btn" onclick="calculate('add')"&gt;加法 +&lt;/button&gt;
+                                            &lt;button class="calc-btn" onclick="calculate('subtract')"&gt;减法 -&lt;/button&gt;
+                                                &lt;button class="calc-btn" onclick="calculate('multiply')"&gt;乘法 ×&lt;/button&gt;
+                                                    &lt;button class="calc-btn" onclick="calculate('divide')"&gt;除法 ÷&lt;/button&gt;
+                                                        &lt;button class="calc-btn secondary" onclick="calculate('power')"&gt;幂运算 ^&lt;/button&gt;
+                                                            &lt;button class="calc-btn secondary" onclick="calculate('mod')"&gt;取余 %&lt;/button&gt;
+                                                                &lt;button class="calc-btn secondary" onclick="calculate('max')"&gt;最大值&lt;/button&gt;
+                                                                    &lt;button class="calc-btn secondary" onclick="calculate('min')"&gt;最小值&lt;/button&gt;
+                                                                    &lt;/div&gt;
+                                                                    &lt;div id="calc-result"&gt;等待计算...&lt;/div&gt;
+                                                                    &lt;/div&gt;
+                                                                &lt;/body&gt;
+                                                            &lt;/html&gt;</div>
+
+
           </div>
+
+
           <div class="panel">
             <div class="panel-label">JavaScript (可编辑)</div>
+
+
             <div class="html-editor" contenteditable="true" id="lab4-code">// 基础运算函数
 const operations = {
-  add: (a, b) => a + b,
-  subtract: (a, b) => a - b,
-  multiply: (a, b) => a * b,
-  divide: (a, b) => b !== 0 ? a / b : "除数不能为0",
-  power: (a, b) => Math.pow(a, b),
-  mod: (a, b) => a % b,
-  max: (a, b) => Math.max(a, b),
-  min: (a, b) => Math.min(a, b)
+    add: (a, b) =&gt; a + b,
+    subtract: (a, b) =&gt; a - b,
+    multiply: (a, b) =&gt; a * b,
+    divide: (a, b) =&gt; b !== 0 ? a / b : "除数不能为0",
+    power: (a, b) =&gt; Math.pow(a, b),
+    mod: (a, b) =&gt; a % b,
+    max: (a, b) =&gt; Math.max(a, b),
+    min: (a, b) =&gt; Math.min(a, b)
 };
 
 // 运算符名称映射
 const opNames = {
-  add: "加法", subtract: "减法", 
-  multiply: "乘法", divide: "除法",
-  power: "幂运算", mod: "取余",
-  max: "最大值", min: "最小值"
+    add: "加法", subtract: "减法",
+    multiply: "乘法", divide: "除法",
+    power: "幂运算", mod: "取余",
+    max: "最大值", min: "最小值"
 };
 
 // 主计算函数
 function calculate(operation) {
-  const num1 = parseFloat(document.getElementById('num1').value);
-  const num2 = parseFloat(document.getElementById('num2').value);
+    const num1 = parseFloat(document.getElementById('num1').value);
+    const num2 = parseFloat(document.getElementById('num2').value);
   
-  if (isNaN(num1) || isNaN(num2)) {
-    document.getElementById('calc-result').innerText = 
-      "请输入有效的数字！";
-    return;
-  }
+    if (isNaN(num1) || isNaN(num2)) {
+        document.getElementById('calc-result').innerText =
+        "请输入有效的数字！";
+        return;
+    }
   
-  const result = operations[operation](num1, num2);
-  const opName = opNames[operation];
+    const result = operations[operation](num1, num2);
+    const opName = opNames[operation];
   
-  document.getElementById('calc-result').innerText = 
+    document.getElementById('calc-result').innerText =
     `${opName}结果：${num1} 和 ${num2} = ${result}`;
 }</div>
+
+
           </div>
+
+
         </div>
+
+
         <div class="action-bar">
           <button class="btn btn-run" onclick="runLab4()">▶ 运行代码</button>
           <button class="btn btn-reset" onclick="resetLab4()">↻ 重置</button>
-          <span style="color:#999;font-size:13px;">输入两个数字，点击运算按钮查看结果</div>
+          <span style="color:#999;font-size:13px;">输入两个数字，点击运算按钮查看结果</span>
+
+
         </div>
+
+
         <div class="preview-box" id="lab4-preview"></div>
+
+
       </div>
 
+
+
       <div class="tip-box">
-        <span class="tip-title">案例知识点总结</div>
+            <span class="tip-title">案例知识点总结</span>
+
+
         <ul class="checklist">
           <li>使用对象存储函数（函数作为值）</li>
           <li>箭头函数简化代码</li>
@@ -1036,12 +1202,17 @@ function calculate(operation) {
           <li>返回值处理和错误提示</li>
         </ul>
       </div>
-    </section>
+
+
+        </section>
+
 
     <section style="margin-top:80px;padding-top:40px;border-top:2px solid var(--border-color);">
       <h2>课程总结</h2>
       <div class="note-box">
-        <span class="tip-title">本课重点回顾</div>
+        <span class="tip-title">本课重点回顾</span>
+
+
         <ul class="checklist">
           <li><strong>函数定义：</strong>函数声明、函数表达式、箭头函数三种方式</li>
           <li><strong>参数处理：</strong>默认参数、剩余参数、参数解构</li>
@@ -1050,24 +1221,34 @@ function calculate(operation) {
           <li><strong>高阶函数：</strong>函数作为参数和返回值、回调函数、数组方法</li>
         </ul>
       </div>
+
+
       
       <div class="tip-box">
-        <span class="tip-title">💪 练习建议</div>
+            <span class="tip-title">💪 练习建议</span>
+
+
         <p>1. 尝试修改实验代码，添加新功能</p>
         <p>2. 用箭头函数改写传统函数</p>
         <p>3. 创建自己的高阶函数</p>
         <p>4. 理解并应用闭包解决实际问题</p>
       </div>
+
+
     
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验：第27次课-JS函数实践</div>
-                <span id="27js-status" class="status-badge">未运行</div>
+                <span>实验：第27次课-JS函数实践</span>
+
+                <span id="27js-status" class="status-badge">未运行</span>
+
             </div>
+
             <div class="lab-body css-js-experiment">
                 <div>
-                    <div class="html-editor" id="27js-js" contenteditable="true">
-<div class="panel-label">JavaScript (可编辑)</div>// 第27次课-JS函数实验
+                    <div class="html-editor" id="27js-js" contenteditable="true">&lt;div class="panel-label"&gt;JavaScript (可编辑)</div>
+
+// 第27次课-JS函数实验
 
 // 在这里编写你的JavaScript代码
 
@@ -1076,61 +1257,33 @@ console.log('第27次课-JS函数实验开始');
 
 // 在这里添加更多JavaScript代码
 </div>
+
                 </div>
+
                 <div>
                     <div class="preview-box" id="27js-preview">
                         <div class="panel-label">预览效果</div>
+
                         <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
                             <h3>第27次课-JS函数实验</h3>
                             <div id="27js-output">
                                 <p>点击「运行代码」查看结果</p>
                             </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
+
+        </div>
+
             <div class="action-bar">
                 <button class="btn btn-run" onclick="run27jsExperiment()">▶ 运行代码</button>
                 <button class="btn btn-reset" onclick="reset27jsExperiment()">↺ 重置</button>
             </div>
+
         </div>
 
-        <div class="lab-card">
-            <div class="lab-header">
-                <span>实验：第27次课-JS函数实践</div>
-                <span id="27js-status" class="status-badge">未运行</div>
-            </div>
-            <div class="lab-body css-js-experiment">
-                <div>
-                    <div class="html-editor" id="27js-js" contenteditable="true">
-<div class="panel-label">JavaScript (可编辑)</div>// 第27次课-JS函数实验
+    </section>
 
-// 在这里编写你的JavaScript代码
-
-// 示例代码
-console.log('第27次课-JS函数实验开始');
-
-// 在这里添加更多JavaScript代码
-</div>
-                </div>
-                <div>
-                    <div class="preview-box" id="27js-preview">
-                        <div class="panel-label">预览效果</div>
-                        <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                            <h3>第27次课-JS函数实验</h3>
-                            <div id="27js-output">
-                                <p>点击「运行代码」查看结果</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="action-bar">
-                <button class="btn btn-run" onclick="run27jsExperiment()">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="reset27jsExperiment()">↺ 重置</button>
-            </div>
-        </div>
-</section></main>
+</main>
 
       <script>
         // 双栏交互实验室功能
@@ -1164,8 +1317,11 @@ console.log('第27次课-JS函数实验开始');
             }
         }
     </script>
+
 </body>
-</html
+
+</html>
+
 
 
 

@@ -24,17 +24,29 @@
         <a class="sidebar-link" href="#lab" class="sub-link">4. 实战应用</a>
         <a class="sidebar-link" href="#summary" class="sub-link">5. 课程小结</a>
     </div>
+
+
 </nav>
 <main class="content">
   <header id="intro">
     <h1>第30课：JS事件处理</h1>
     <p class="intro">点击按钮、输入文字、移动鼠标、提交表单……这些用户操作在浏览器中都会触发「事件」。本课你将学会监听这些事件，并用函数来响应它们。</p>
     <div class="pill-list">
-      <span class="pill">click 点击</div>
-      <span class="pill">input 输入</div>
-      <span class="pill">addEventListener</div>
-      <span class="pill">事件回调函数</div>
+      <span class="pill">click 点击</span>
+
+
+      <span class="pill">input 输入</span>
+
+
+      <span class="pill">addEventListener</span>
+
+
+      <span class="pill">事件回调函数</span>
+
+
     </div>
+
+
   </header>
   <section id="what">
     <h2>一、什么是事件？</h2>
@@ -44,7 +56,8 @@
       <li>用户在输入框中输入内容（<code>input</code>）。</li>
       <li>页面加载完成（<code>load</code>）。</li>
     </ul>
-  </section>
+      </section>
+
   <section id="listen">
     <h2>二、如何监听事件？</h2>
     <p>最常用的方式是使用 <code>addEventListener</code>：</p>
@@ -57,7 +70,8 @@ btn.addEventListener('click', function () {
       <li>第一个参数是事件类型，如 <code>'click'</code>。</li>
       <li>第二个参数是一个函数（回调函数），事件发生时会被调用。</li>
     </ul>
-  </section>
+      </section>
+
   <section id="types">
     <h2>三、常见的事件类型</h2>
     <ul class="checklist">
@@ -66,14 +80,17 @@ btn.addEventListener('click', function () {
       <li><code>submit</code>：表单提交。</li>
       <li><code>change</code>：值改变并失去焦点（如下拉框）。</li>
     </ul>
-  </section>
+      </section>
+
   <section id="lab">
     <h2>四、实验：点击按钮切换背景颜色</h2>
     <div class="lab-card">
       <div class="lab-header">
-        <span>实验 09：事件驱动的样式变化</div>
-        <span class="status-badge beginner">Hands-on</div>
-      </div>
+                <span>实验 09：事件驱动的样式变化</span>
+                <span class="status-badge beginner">Hands-on</span>
+            </div>
+
+
       <div class="lab-body">
         <ol class="lab-steps">
           <li>新建一个 HTML 文件，包含一个按钮，按钮文字为「切换背景色」。</li>
@@ -82,17 +99,25 @@ btn.addEventListener('click', function () {
           <li>在事件回调函数中，切换 <code>document.body.style.backgroundColor</code> 的值（例如在白色和浅蓝色之间切换）。</li>
         </ol>
       </div>
+
+
     </div>
+
+
   
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验：第30次课-JS事件处理实践</div>
-                <span id="30js-status" class="status-badge">未运行</div>
+                <span>实验：第30次课-JS事件处理实践</span>
+
+                <span id="30js-status" class="status-badge">未运行</span>
+
             </div>
+
             <div class="lab-body css-js-experiment">
                 <div>
-                    <div class="html-editor" id="30js-js" contenteditable="true">
-<div class="panel-label">JavaScript (可编辑)</div>// 第30次课-JS事件处理实验
+                    <div class="panel">
+                        <div class="panel-label">JavaScript (可编辑)</div>
+                        <div class="html-editor" id="30js-js" contenteditable="true">// 第30次课-JS事件处理实验
 
 // 在这里编写你的JavaScript代码
 
@@ -100,62 +125,34 @@ btn.addEventListener('click', function () {
 console.log('第30次课-JS事件处理实验开始');
 
 // 在这里添加更多JavaScript代码
-</div>
+                        </div>
+                    </div>
                 </div>
+
                 <div>
-                    <div class="preview-box" id="30js-preview">
+                    <div class="panel">
                         <div class="panel-label">预览效果</div>
-                        <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                            <h3>第30次课-JS事件处理实验</h3>
-                            <div id="30js-output">
-                                <p>点击「运行代码」查看结果</p>
+                        <div class="preview-box" id="30js-preview">
+                            <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                <h3>第30次课-JS事件处理实验</h3>
+                                <div id="30js-output">
+                                    <p>点击「运行代码」查看结果</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+
             <div class="action-bar">
                 <button class="btn btn-run" onclick="run30jsExperiment()">▶ 运行代码</button>
                 <button class="btn btn-reset" onclick="reset30jsExperiment()">↺ 重置</button>
             </div>
+
         </div>
 
-        <div class="lab-card">
-            <div class="lab-header">
-                <span>实验：第30次课-JS事件处理实践</div>
-                <span id="30js-status" class="status-badge">未运行</div>
-            </div>
-            <div class="lab-body css-js-experiment">
-                <div>
-                    <div class="html-editor" id="30js-js" contenteditable="true">
-<div class="panel-label">JavaScript (可编辑)</div>// 第30次课-JS事件处理实验
 
-// 在这里编写你的JavaScript代码
+    </section>
 
-// 示例代码
-console.log('第30次课-JS事件处理实验开始');
-
-// 在这里添加更多JavaScript代码
-</div>
-                </div>
-                <div>
-                    <div class="preview-box" id="30js-preview">
-                        <div class="panel-label">预览效果</div>
-                        <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                            <h3>第30次课-JS事件处理实验</h3>
-                            <div id="30js-output">
-                                <p>点击「运行代码」查看结果</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="action-bar">
-                <button class="btn btn-run" onclick="run30jsExperiment()">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="reset30jsExperiment()">↺ 重置</button>
-            </div>
-        </div>
-</section>
     <section id="summary">
     <h2>五、本课小结</h2>
     <ul class="checklist">
@@ -164,9 +161,14 @@ console.log('第30次课-JS事件处理实验开始');
       <li>结合 DOM 操作和事件，可以做出各种交互效果。</li>
     </ul>
     <div class="note-box">
-      <strong>结课小结：</strong>经过 8 节课，你已经完成了从「认识网页」到「用 JS 操作和互动网页」的完整入门路径。</div>
-  </section>
+            <strong>结课小结：</strong>经过 8 节课，你已经完成了从「认识网页」到「用 JS 操作和互动网页」的完整入门路径。</div>
+
+
+      </section>
+
+
 </main>
+
     <script>
         // 新增：存储初始HTML内容的对象
         const initialHtmlContent = {};
@@ -214,7 +216,9 @@ console.log('第30次课-JS事件处理实验开始');
             }
 
             if (preview) {
-                preview.innerHTML = '<div class="preview-label">预览效果</div>';
+                preview.innerHTML = '<div class="preview-label">预览效果</div>
+
+';
             }
             
             // 更新状态徽章
@@ -316,8 +320,11 @@ console.log('第30次课-JS事件处理实验开始');
             status.className = "status-badge";
         }
     </script>
+
 </body>
+
 </html>
+
 
 
 

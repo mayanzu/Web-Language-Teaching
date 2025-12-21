@@ -802,111 +802,91 @@
                 <span id="6html-status" class="status-badge">未运行</div>
             </div>
             <div class="lab-body">
-                <div class="html-editor" id="6html-html" contenteditable="true">
-<div class="panel-label">HTML (可编辑)</div>&lt;!DOCTYPE html&gt;
+                <div class="panel-label">HTML (可编辑)</div>
+<div class="html-editor" id="6html-html" contenteditable="true">
+&lt;!DOCTYPE html&gt;
 &lt;html lang="zh-CN"&gt;
 &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
     &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
     &lt;title&gt;第6次课-HTML表格基础&lt;/title&gt;
-    &lt;style&gt;
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        .table-container {
-            margin: 20px 0;
-        }
-    &lt;/style&gt;
+
 &lt;/head&gt;
 &lt;body&gt;
-    &lt;div class="container"&gt;
-        &lt;h1&gt;HTML表格基础综合实践&lt;/h1&gt;
-        &lt;p&gt;在这里编写你的HTML代码，实践第6次课-HTML表格基础的知识。&lt;/p&gt;
-        
-        &lt;!-- 任务1：创建学生信息表 --&gt;
-        &lt;div class="table-container"&gt;
-            &lt;h2&gt;学生信息表&lt;/h2&gt;
-            &lt;table border="1" cellpadding="10" cellspacing="0" width="100%"&gt;
-                &lt;caption&gt;学生基本信息&lt;/caption&gt;
-                &lt;thead&gt;
-                    &lt;tr&gt;
-                        &lt;th&gt;学号&lt;/th&gt;
-                        &lt;th&gt;姓名&lt;/th&gt;
-                        &lt;th&gt;性别&lt;/th&gt;
-                        &lt;th&gt;年龄&lt;/th&gt;
-                        &lt;th&gt;班级&lt;/th&gt;
-                    &lt;/tr&gt;
-                &lt;/thead&gt;
-                &lt;tbody&gt;
-                    &lt;tr&gt;
-                        &lt;td&gt;001&lt;/td&gt;
-                        &lt;td&gt;张三&lt;/td&gt;
-                        &lt;td&gt;男&lt;/td&gt;
-                        &lt;td&gt;18&lt;/td&gt;
-                        &lt;td&gt;高三(1)班&lt;/td&gt;
-                    &lt;/tr&gt;
-                    &lt;tr&gt;
-                        &lt;td&gt;002&lt;/td&gt;
-                        &lt;td&gt;李四&lt;/td&gt;
-                        &lt;td&gt;女&lt;/td&gt;
-                        &lt;td&gt;17&lt;/td&gt;
-                        &lt;td&gt;高三(2)班&lt;/td&gt;
-                    &lt;/tr&gt;
-                    &lt;!-- 添加更多学生信息 --&gt;
-                &lt;/tbody&gt;
-                &lt;tfoot&gt;
-                    &lt;tr&gt;
-                        &lt;th colspan="4"&gt;总人数&lt;/th&gt;
-                        &lt;th&gt;2&lt;/th&gt;
-                    &lt;/tr&gt;
-                &lt;/tfoot&gt;
-            &lt;/table&gt;
-        &lt;/div&gt;
-        
-        &lt;!-- 任务2：创建课程表 --&gt;
-        &lt;div class="table-container"&gt;
-            &lt;h2&gt;本周课程表&lt;/h2&gt;
-            &lt;table border="1" cellpadding="10" cellspacing="0" width="100%"&gt;
-                &lt;caption&gt;周一至周五课程安排&lt;/caption&gt;
-                &lt;thead&gt;
-                    &lt;tr&gt;
-                        &lt;th&gt;时间&lt;/th&gt;
-                        &lt;th&gt;周一&lt;/th&gt;
-                        &lt;th&gt;周二&lt;/th&gt;
-                        &lt;th&gt;周三&lt;/th&gt;
-                        &lt;th&gt;周四&lt;/th&gt;
-                        &lt;th&gt;周五&lt;/th&gt;
-                    &lt;/tr&gt;
-                &lt;/thead&gt;
-                &lt;tbody&gt;
-                    &lt;tr&gt;
-                        &lt;td&gt;上午&lt;/td&gt;
-                        &lt;td&gt;数学&lt;/td&gt;
-                        &lt;td&gt;英语&lt;/td&gt;
-                        &lt;td&gt;物理&lt;/td&gt;
-                        &lt;td&gt;化学&lt;/td&gt;
-                        &lt;td&gt;语文&lt;/td&gt;
-                    &lt;/tr&gt;
-                    &lt;tr&gt;
-                        &lt;td&gt;下午&lt;/td&gt;
-                        &lt;td&gt;历史&lt;/td&gt;
-                        &lt;td&gt;地理&lt;/td&gt;
-                        &lt;td&gt;生物&lt;/td&gt;
-                        &lt;td&gt;政治&lt;/td&gt;
-                        &lt;td&gt;体育&lt;/td&gt;
-                    &lt;/tr&gt;
-                &lt;/tbody&gt;
-            &lt;/table&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
+    &lt;h1&gt;HTML表格基础综合实践&lt;/h1&gt;
+    &lt;p&gt;在这里编写你的HTML代码，实践第6次课-HTML表格基础的知识。&lt;/p&gt;
+    
+    &lt;!-- 任务1：创建学生信息表 --&gt;
+    &lt;h2&gt;学生信息表&lt;/h2&gt;
+    &lt;table border="1" cellpadding="10" cellspacing="0" width="100%"&gt;
+        &lt;caption&gt;学生基本信息&lt;/caption&gt;
+        &lt;thead&gt;
+            &lt;tr&gt;
+                &lt;th&gt;学号&lt;/th&gt;
+                &lt;th&gt;姓名&lt;/th&gt;
+                &lt;th&gt;性别&lt;/th&gt;
+                &lt;th&gt;年龄&lt;/th&gt;
+                &lt;th&gt;班级&lt;/th&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+            &lt;tr&gt;
+                &lt;td&gt;001&lt;/td&gt;
+                &lt;td&gt;张三&lt;/td&gt;
+                &lt;td&gt;男&lt;/td&gt;
+                &lt;td&gt;18&lt;/td&gt;
+                &lt;td&gt;高三(1)班&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;002&lt;/td&gt;
+                &lt;td&gt;李四&lt;/td&gt;
+                &lt;td&gt;女&lt;/td&gt;
+                &lt;td&gt;17&lt;/td&gt;
+                &lt;td&gt;高三(2)班&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;!-- 添加更多学生信息 --&gt;
+        &lt;/tbody&gt;
+        &lt;tfoot&gt;
+            &lt;tr&gt;
+                &lt;th colspan="4"&gt;总人数&lt;/th&gt;
+                &lt;th&gt;2&lt;/th&gt;
+            &lt;/tr&gt;
+        &lt;/tfoot&gt;
+    &lt;/table&gt;
+    
+    &lt;!-- 任务2：创建课程表 --&gt;
+    &lt;h2&gt;本周课程表&lt;/h2&gt;
+    &lt;table border="1" cellpadding="10" cellspacing="0" width="100%"&gt;
+        &lt;caption&gt;周一至周五课程安排&lt;/caption&gt;
+        &lt;thead&gt;
+            &lt;tr&gt;
+                &lt;th&gt;时间&lt;/th&gt;
+                &lt;th&gt;周一&lt;/th&gt;
+                &lt;th&gt;周二&lt;/th&gt;
+                &lt;th&gt;周三&lt;/th&gt;
+                &lt;th&gt;周四&lt;/th&gt;
+                &lt;th&gt;周五&lt;/th&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+            &lt;tr&gt;
+                &lt;td&gt;上午&lt;/td&gt;
+                &lt;td&gt;数学&lt;/td&gt;
+                &lt;td&gt;英语&lt;/td&gt;
+                &lt;td&gt;物理&lt;/td&gt;
+                &lt;td&gt;化学&lt;/td&gt;
+                &lt;td&gt;语文&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;下午&lt;/td&gt;
+                &lt;td&gt;历史&lt;/td&gt;
+                &lt;td&gt;地理&lt;/td&gt;
+                &lt;td&gt;生物&lt;/td&gt;
+                &lt;td&gt;政治&lt;/td&gt;
+                &lt;td&gt;体育&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/tbody&gt;
+    &lt;/table&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 </div>

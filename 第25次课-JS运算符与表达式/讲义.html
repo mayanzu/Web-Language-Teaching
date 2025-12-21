@@ -28,34 +28,32 @@
         <a class="sidebar-link" href="#precedence" class="sub-link">7. 运算符优先级</a>
         <a class="sidebar-link" href="#summary" class="sub-link">8. 课程小结</a>
     </div>
+
+
 </nav>
 <main class="content">
     <header id="intro">
         <h1>第25课：JS运算符与表达式</h1>
         <p class="intro">上一课我们学会了用变量存储数据，但静态的数据毫无用处。本课我们将学习如何使用“运算符”来处理、比较和组合这些数据，创造出能产生动态结果的“表达式”。这是构建所有复杂逻辑的基石。</p>
         <div class="pill-list">
-            <span class="pill">赋值 = += -=</div>
-            <span class="pill">算术 + - * / %</div>
-            <span class="pill">比较 > < === !==</div>
-            <span class="pill">逻辑 && || !</div>
-            <span class="pill">优先级</div>
-            <span class="pill">类型转换</div>
-        </div>
-        <div class="lab-card" style="margin-top: 30px;">
-            <div class="lab-header">
-                <span>今日目标</div>
-                <span class="status-badge beginner">适合初学者</div>
-            </div>
-            <div class="lab-body">
-                <ul class="checklist">
-                    <li>理解“表达式”和“语句”的核心区别。</li>
-                    <li>熟练使用赋值、算术、比较和逻辑运算符。</li>
-                    <li>解释并始终选择 <code>===</code> 而不是 <code>==</code>。</li>
-                    <li>掌握 <code>++</code>, <code>--</code>, 和 <code>%</code> (取余) 的实用场景。</li>
-                    <li>利用逻辑运算符的“短路”特性编写简洁高效的代码。</li>
-                    <li>了解运算符的优先级，并学会用括号 <code>()</code> 保证运算顺序。</li>
-                </ul>
-            </div>
+            <span class="pill">赋值 = += -=</span>
+
+
+            <span class="pill">算术 + - * / %</span>
+
+
+            <span class="pill">比较 > < === !==</span>
+
+
+            <span class="pill">逻辑 && || !</span>
+
+
+            <span class="pill">优先级</span>
+
+
+            <span class="pill">类型转换</span>
+
+
         </div>
     </header>
 
@@ -86,11 +84,16 @@
             </tbody>
         </table>
         <div class="tip-box">
-            <span class="tip-title">一个简单的类比</div>
+            <span class="tip-title">一个简单的类比</span>
+
+
             <p>在句子“我买了 <strong>两个苹果</strong>”中，“两个苹果”就像一个<strong>表达式</strong>（它指向一个具体的值），而整个句子就像一条<strong>语句</strong>（它描述了一个完整的动作）。<br>
             在 JavaScript 中，<code>let price = 9.9 * 2;</code> 是一条语句，而其中的 <code>9.9 * 2</code> 是一个表达式。</p>
         </div>
-    </section>
+
+
+        </section>
+
 
     <section id="assignment-operators">
         <h2>1. 赋值运算符：给变量存入数据</h2>
@@ -107,8 +110,7 @@
             <tr><td><code>/=</code></td><td>除法赋值</td><td><code>x = x / y</code></td><td><code>x /= 4;</code> (x 变为 6)</td></tr>
             <tr><td><code>%=</code></td><td>取余赋值</td><td><code>x = x % y</code></td><td><code>x %= 5;</code> (x 变为 1)</td></tr>
             </tbody>
-        </table>
-        <div class="note-box">
+        </table>        <div class="note-box">
             <strong>为什么需要复合赋值？</strong>
             <p>它们是代码的“简写形式”，在对一个变量自身进行更新时非常有用，例如累加分数、计算总价等。这让代码更简洁、意图更明确。</p>
 <pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>let score = 100;
@@ -121,7 +123,10 @@ score += 20; // 等价于 score = score + 20;
 console.log(score); // 110
 </code></pre>
         </div>
-    </section>
+
+
+        </section>
+
 
     <section id="arithmetic-operators">
         <h2>2. 算术运算符：执行数学计算</h2>
@@ -147,19 +152,26 @@ console.log('a' + 'b');  // "ab" (字符串 + 字符串 -> 拼接)
 console.log('Score: ' + 100); // "Score: 100" (字符串 + 数字 -> 拼接)
 </code></pre>
         </div>
-    </section>
+
+
+        </section>
+
 
     <section id="lab-cart-total">
         <h2>实验 01：购物车总价计算器</h2>
         <p>这是一个模拟计算购物车商品总价的场景。请修改右侧代码中的商品单价和数量，然后运行查看总价。</p>
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验 01：动手实践算术运算</div>
-                <span class="status-badge beginner">动手实践</div>
+                <span>实验 01：动手实践算术运算</span>
+                <span class="status-badge beginner">动手实践</span>
             </div>
+
+
             <div class="lab-body split">
                 <div class="panel html-viewer">
 <div class="panel-label">HTML 预览</div>
+
+
 &lt;h3&gt;我的购物车&lt;/h3&gt;
 &lt;div id="cart-output"&gt;
     &lt;p&gt;商品A: ￥... * ...件&lt;/p&gt;
@@ -168,8 +180,12 @@ console.log('Score: ' + 100); // "Score: 100" (字符串 + 数字 -> 拼接)
     &lt;p&gt;&lt;strong&gt;总计: ￥...&lt;/strong&gt;&lt;/p&gt;
 &lt;/div&gt;
                 </div>
+
+
                 <div class="panel code-editor" id="code-cart" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
+
+
 // --- 商品信息 ---
 const priceA = 15.5; // 商品A单价
 const countA = 2;    // 商品A数量
@@ -191,11 +207,17 @@ outputDiv.innerHTML = `
     <p><strong>总计: ￥${finalTotal.toFixed(2)}</strong></p>
 `;
                 </div>
+
+
             </div>
+
+
             <div class="action-bar">
                 <button class="btn btn-run" onclick="runCartLab()">▶ 重新计算</button>
                 <button class="btn btn-reset" onclick="resetCartLab()">↺ 重置代码</button>
             </div>
+
+
             <div class="preview-box">
                 <h3>我的购物车</h3>
                 <div id="cart-output">
@@ -204,9 +226,16 @@ outputDiv.innerHTML = `
                     <hr>
                     <p><strong>总计: ￥...</strong></p>
                 </div>
+
+
             </div>
+
+
         </div>
-    </section>
+
+
+        </section>
+
 
     <section id="unary-operators">
         <h2>3. 一元运算符：对单个值操作</h2>
@@ -223,7 +252,9 @@ outputDiv.innerHTML = `
             </tbody>
         </table>
         <div class="tip-box">
-            <span class="tip-title"><code>x++</code> 和 <code>++x</code> 的区别</div>
+            <span class="tip-title"><code>x++</code> 和 <code>++x</code> 的区别</span>
+
+
             <p>虽然它们都将 <code>x</code> 的值加 1，但在表达式中的行为不同：</p>
             <ul style="margin-left: 20px;">
                 <li><strong>后递增 (<code>x++</code>)</strong>: 先返回 <code>x</code> 的原始值，然后再加 1。</li>
@@ -237,26 +268,37 @@ console.log(++b); // b 变为 6, 然后打印 6
 </code></pre>
             <p style="margin-top: 10px;"><strong>建议：</strong>为避免混淆，初学阶段最好将 <code>x++;</code> 或 <code>x--;</code> 作为独立的语句使用，而不是在复杂的表达式中。</p>
         </div>
-    </section>
+
+
+        </section>
+
 
     <section id="lab-counter">
         <h2>实验 02：简易计数器</h2>
         <p>这是一个网页中常见的计数器功能。点击"增加"或"减少"按钮，观察数字的变化。这个实验的核心就是递增 <code>++</code> 和递减 <code>--</code> 运算符。</p>
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验 02：递增/递减运算符实践</div>
-                <span class="status-badge beginner">动手实践</div>
+                <span>实验 02：递增/递减运算符实践</span>
+                <span class="status-badge beginner">动手实践</span>
             </div>
+
+
             <div class="lab-body split">
                 <div class="panel html-viewer">
 <div class="panel-label">HTML 预览</div>
+
+
 &lt;h3&gt;当前计数:&lt;/h3&gt;
 &lt;p id="count-display"&gt;0&lt;/p&gt;
 &lt;button onclick="increment()"&gt;增加 +1&lt;/button&gt;
 &lt;button onclick="decrement()"&gt;减少 -1&lt;/button&gt;
                 </div>
+
+
                 <div class="panel code-editor" id="code-counter" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
+
+
 let currentCount = 0;
 const countDisplay = document.getElementById('count-display');
 
@@ -270,19 +312,30 @@ function decrement() {
     countDisplay.textContent = currentCount;
 }
                 </div>
+
+
             </div>
+
+
             <div class="action-bar">
                 <button class="btn btn-run" onclick="runCounterLab()">▶ 运行代码</button>
                 <button class="btn btn-reset" onclick="resetCounterLab()">↺ 重置代码</button>
             </div>
+
+
             <div class="preview-box" style="text-align: center;">
                 <h3>当前计数:</h3>
                 <p id="count-display" style="font-size: 48px; font-weight: bold; color: var(--color-accent); margin: 10px 0;">0</p>
                 <button class="btn btn-run" onclick="increment()">增加 +1</button>
                 <button class="btn btn-reset" onclick="decrement()" style="margin-left: 10px;">减少 -1</button>
             </div>
+
+
         </div>
-    </section>
+
+
+        </section>
+
 
     <section id="comparison-operators">
         <h2>4. 比较运算符：比较两个值</h2>
@@ -292,22 +345,24 @@ function decrement() {
             <tr><th>运算符</th><th>含义</th><th>示例</th><th>结果</th></tr>
             </thead>
             <tbody>
-            <tr><td><code>></code></td><td>大于</td><td><code>10 > 5</code></td><td><code>true</code></td></tr>
-            <tr><td><code><</code></td><td>小于</td><td><code>10 < 5</code></td><td><code>false</code></td></tr>
-            <tr><td><code>>=</code></td><td>大于或等于</td><td><code>5 >= 5</code></td><td><code>true</code></td></tr>
-            <tr><td><code><=</code></td><td>小于或等于</td><td><code>5 <= 4</code></td><td><code>false</code></td></tr>
+            <tr><td><code>&gt;</code></td><td>大于</td><td><code>10 &gt; 5</code></td><td><code>true</code></td></tr>
+            <tr><td><code>&lt;</code></td><td>小于</td><td><code>10 &lt; 5</code></td><td><code>false</code></td></tr>
+            <tr><td><code>&gt;=</code></td><td>大于或等于</td><td><code>5 &gt;= 5</code></td><td><code>true</code></td></tr>
+            <tr><td><code>&lt;=</code></td><td>小于或等于</td><td><code>5 &lt;= 4</code></td><td><code>false</code></td></tr>
             </tbody>
-        </table>
-        <div class="note-box">
+        </table>        <div class="note-box">
             <strong>字符串比较</strong>
             <p>当比较两个字符串时，JavaScript 会按字典顺序（类似查字典）逐个比较字符的编码。</p>
-<pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>console.log('a' < 'b');      // true
-console.log('apple' < 'banana'); // true
-console.log('2' > '10');     // true, 因为 '2' 的字典序大于 '1'
+<pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>console.log('a' &lt; 'b');      // true
+console.log('apple' &lt; 'banana'); // true
+console.log('2' &gt; '10');     // true, 因为 '2' 的字典序大于 '1'
 </code></pre>
             <p>这就是为什么直接比较数字字符串可能会得到意外结果的原因。在比较大小前，最好先将它们转换为数字。</p>
         </div>
-    </section>
+
+
+        </section>
+
 
     <section id="equality-operators">
         <h2>5. 相等运算符：判断是否相等 (== vs ===)</h2>
@@ -328,21 +383,35 @@ console.log('2' > '10');     // true, 因为 '2' 的字典序大于 '1'
             <p><code>==</code> 的自动类型转换规则复杂且不直观，是许多常见错误的根源。例如 <code>0 == false</code> 是 <code>true</code>，<code>'' == false</code> 也是 <code>true</code>。而 <code>===</code> 的行为完全符合预期，让代码更可靠、更易读。</p>
             <p><strong>养成习惯：从第一天起，就只用 <code>===</code> 和 <code>!==</code>。</strong></p>
         </div>
-    </section>
+
+
+        </section>
+
 
     <section id="lab-guess-result">
         <h2>实验 03：比较结果预测</h2>
         <p>下面的卡片里有一些表达式。先点击“思考”按钮，在心里想出答案，然后点击“揭晓答案”来验证你的想法是否正确。</p>
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验 03：<code>==</code> 和 <code>===</code> 的陷阱</div>
-                <span class="status-badge advanced">易错点</div>
+                <span>实验 03：<code>==</code> 和 <code>===</code> 的陷阱</span>
+
+
+                <span class="status-badge advanced">易错点</span>
+
+
             </div>
+
+
             <div class="lab-body" id="guess-game-container">
                 <!-- 猜谜卡片将由JS动态生成 -->
             </div>
+
+
         </div>
-    </section>
+
+
+        </section>
+
 
     <section id="logical-operators">
         <h2>6. 逻辑运算符：组合多个条件</h2>
@@ -352,18 +421,19 @@ console.log('2' > '10');     // true, 因为 '2' 的字典序大于 '1'
             <tr><th>运算符</th><th>名称</th><th>含义</th><th>示例</th></tr>
             </thead>
             <tbody>
-            <tr><td><code>&&</code></td><td>逻辑与 (AND)</td><td>两边都为 <code>true</code>，结果才为 <code>true</code></td><td><code>age >= 18 && hasTicket</code> (已成年且有票)</td></tr>
+            <tr><td><code>&&&</code></td><td>逻辑与 (AND)</td><td>两边都为 <code>true</code>，结果才为 <code>true</code></td><td><code>age >= 18 && hasTicket</code> (已成年且有票)</td></tr>
             <tr><td><code>||</code></td><td>逻辑或 (OR)</td><td>只要有一边为 <code>true</code>，结果就为 <code>true</code></td><td><code>isVIP || isStaff</code> (是VIP或是员工)</td></tr>
             <tr><td><code>!</code></td><td>逻辑非 (NOT)</td><td>取反，<code>true</code> 变 <code>false</code>，<code>false</code> 变 <code>true</code></td><td><code>!isLoggedIn</code> (未登录)</td></tr>
             </tbody>
         </table>
-    </section>
+        </section>
+
 
     <section id="short-circuit">
         <h3>短路求值 (Short-circuiting)</h3>
         <p>这是逻辑运算符的一个关键特性：如果仅通过左边的表达式就能确定整个表达式的结果，那么右边的表达式将<strong>不会被执行</strong>。</p>
         <ul style="margin-left: 20px;">
-            <li><strong>对于 <code>&&</code></strong>: 如果左边是 <code>false</code>，整个表达式必为 <code>false</code>，右边不执行。</li>
+            <li><strong>对于 <code>&&&</code></strong>: 如果左边是 <code>false</code>，整个表达式必为 <code>false</code>，右边不执行。</li>
             <li><strong>对于 <code>||</code></strong>: 如果左边是 <code>true</code>，整个表达式必为 <code>true</code>，右边不执行。</li>
         </ul>
 <pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>function check() {
@@ -378,33 +448,46 @@ false && check(); // 左边是 false，右边的 check() 不会执行，控制�
 true || check(); // 左边是 true，右边的 check() 不会执行，控制台无输出
 </code></pre>
         <div class="tip-box">
-            <span class="tip-title">短路求值的妙用</div>
+            <span class="tip-title">短路求值的妙用</span>
+
+
             <p><strong>1. 条件执行</strong>: 替代简单的 <code>if</code> 语句。</p>
             <code>isAllowed && grantAccess(); // 仅当 isAllowed 为 true 时才执行 grantAccess()</code>
             <p style="margin-top:10px;"><strong>2. 提供默认值</strong>: 这是一个非常常见的技巧。</p>
             <code>const name = receivedName || 'Guest'; // 如果 receivedName 是空字符串或 null，则 name 为 'Guest'</code>
         </div>
-    </section>
+
+
+        </section>
+
 
     <section id="lab-gate-access">
         <h2>实验 04：门禁规则模拟</h2>
         <p>这是一个更真实的场景：一个游乐园的入场规则。请修改右侧代码中的访客信息，然后运行，看看他是否符合入场条件。</p>
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验 04：逻辑组合应用</div>
-                <span class="status-badge beginner">动手实践</div>
+                <span>实验 04：逻辑组合应用</span>
+                <span class="status-badge beginner">动手实践</span>
             </div>
+
+
             <div class="lab-body split">
                 <div class="panel html-viewer">
 <div class="panel-label">HTML 预览</div>
+
+
 &lt;h3&gt;入场资格审查&lt;/h3&gt;
 &lt;div id="gate-output"&gt;
     &lt;p&gt;访客信息: ...&lt;/p&gt;
     &lt;p&gt;审查结果: ...&lt;/p&gt;
 &lt;/div&gt;
                 </div>
+
+
                 <div class="panel code-editor" id="code-gate" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
+
+
 // --- 访客信息 ---
 const age = 25;
 const hasTicket = true;
@@ -429,20 +512,33 @@ outputDiv.innerHTML = `
     <p style="font-weight:bold; font-size: 18px;">审查结果: ${message}</p>
 `;
                 </div>
+
+
             </div>
+
+
             <div class="action-bar">
                 <button class="btn btn-run" onclick="runGateLab()">▶ 审查资格</button>
                 <button class="btn btn-reset" onclick="resetGateLab()">↺ 重置代码</button>
             </div>
+
+
             <div class="preview-box">
                 <h3>入场资格审查</h3>
                 <div id="gate-output">
                     <p>访客信息: ...</p>
                     <p>审查结果: ...</p>
                 </div>
+
+
             </div>
+
+
         </div>
-    </section>
+
+
+        </section>
+
 
     <section id="precedence">
         <h2>7. 运算符优先级</h2>
@@ -456,14 +552,16 @@ outputDiv.innerHTML = `
             <tr><td>最高</td><td>括号 <code>()</code></td><td><code>(1 + 2) * 3</code> (括号总是最先)</td></tr>
             <tr><td>高</td><td>一元运算符 (<code>++</code>, <code>--</code>, <code>!</code>)</td><td><code>!true && false</code> (<code>!true</code> 先算)</td></tr>
             <tr><td>中高</td><td>算术 (先 <code>**</code>, 再 <code>* / %</code>, 最后 <code>+ -</code>)</td><td><code>5 + 2 * 3</code> (<code>2 * 3</code> 先算)</td></tr>
-            <tr><td>中</td><td>比较运算符 (<code>></code>, <code><</code>)</td><td><code>3 > 2 && 1 > 0</code> (<code>3 > 2</code> 先算)</td></tr>
-            <tr><td>中低</td><td>相等运算符 (<code>===</code>, <code>!==</code>)</td><td><code>a > b === true</code> (<code>a > b</code> 先算)</td></tr>
-            <tr><td>低</td><td>逻辑运算符 (先 <code>&&</code>, 后 <code>||</code>)</td><td><code>isVIP || age > 18 && hasTicket</code> (<code>&&</code> 先算)</td></tr>
+            <tr><td>中</td><td>比较运算符 (<code>&gt;</code>, <code>&lt;</code>)</td><td><code>3 &gt; 2 && 1 &gt; 0</code> (<code>3 &gt; 2</code> 先算)</td></tr>
+            <tr><td>中低</td><td>相等运算符 (<code>===</code>, <code>!==</code>)</td><td><code>a &gt; b === true</code> (<code>a &gt; b</code> 先算)</td></tr>
+            <tr><td>低</td><td>逻辑运算符 (先 <code>&&&</code>, 后 <code>||</code>)</td><td><code>isVIP || age &gt; 18 && hasTicket</code> (<code>&&&</code> 先算)</td></tr>
             <tr><td>最低</td><td>赋值运算符 (<code>=</code>, <code>+=</code>)</td><td><code>x = 5 + 3</code> (右边全部算完再赋值)</td></tr>
             </tbody>
         </table>
         <div class="tip-box">
-            <span class="tip-title">终极法则：不确定就加括号！</div>
+            <span class="tip-title">终极法则：不确定就加括号！</span>
+
+
             <p>编写代码时，清晰性远比炫技重要。如果你不确定运算顺序，或者想让代码的意图更明显，请毫不犹豫地使用括号 <code>()</code>。</p>
 <pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>// 不清晰的写法
 const isValid = age >= 18 && age <= 65 || isVIP;
@@ -476,7 +574,10 @@ const isValid = isAdult || isVIP;
 const isValid = (age >= 18 && age <= 65) || isVIP;
 </code></pre>
         </div>
-    </section>
+
+
+        </section>
+
 
     <section id="coercion">
         <h2>8. 隐式类型转换 (Implicit Coercion)</h2>
@@ -484,7 +585,7 @@ const isValid = (age >= 18 && age <= 65) || isVIP;
         <h3>常见转换场景</h3>
         <ul style="margin-left: 20px;">
             <li><strong><code>+</code> 运算符</strong>: 一边是字符串，另一边会被转换成字符串进行拼接。</li>
-            <li><strong><code>-</code>, <code>*</code>, <code>/</code>, <code>%</code> 运算符</strong>: 操作数会被转换成数字进行计算。</li>
+            <li><strong><code>-</code>, <code>*</code>, <code>/</code> 运算符</strong>: 操作数会被转换成数字进行计算。</li>
             <li><strong>逻辑判断</strong>: 在 <code>if</code> 或逻辑运算中，非布尔值会被转换成布尔值。</li>
         </ul>
 <pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>// 减法 -> 转数字
@@ -500,8 +601,7 @@ if ('hello') { // 字符串 'hello' 被转为 true
 if (0) { // 数字 0 被转为 false
     console.log('This will NOT run');
 }
-</code></pre>
-        <div class="warning-box">
+</code></pre>        <div class="warning-box">
             <strong>如何避免转换陷阱？</strong>
             <ul class="checklist">
                 <li>始终使用 <code>===</code> 和 <code>!==</code> 进行比较。</li>
@@ -509,16 +609,25 @@ if (0) { // 数字 0 被转为 false
                 <li>了解哪些值会转换为 <code>false</code>：<code>0</code>, <code>""</code> (空字符串), <code>null</code>, <code>undefined</code>, <code>NaN</code>。其他所有值都转换为 <code>true</code>。</li>
             </ul>
         </div>
+
+
     
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验：第25次课-JS运算符与表达式实践</div>
-                <span id="25js-status" class="status-badge">未运行</div>
+                <span>实验：第25次课-JS运算符与表达式实践</span>
+
+
+                <span id="25js-status" class="status-badge">未运行</span>
+
+
             </div>
+
+
             <div class="lab-body css-js-experiment">
                 <div>
-                    <div class="html-editor" id="25js-js" contenteditable="true">
-<div class="panel-label">JavaScript (可编辑)</div>// 第25次课-JS运算符与表达式实验
+                    <div class="html-editor" id="25js-js" contenteditable="true">&lt;div class="panel-label"&gt;JavaScript (可编辑)</div>
+
+// 第25次课-JS运算符与表达式实验
 
 // 在这里编写你的JavaScript代码
 
@@ -527,66 +636,43 @@ console.log('第25次课-JS运算符与表达式实验开始');
 
 // 在这里添加更多JavaScript代码
 </div>
+
+
                 </div>
+
+
                 <div>
                     <div class="preview-box" id="25js-preview">
                         <div class="panel-label">预览效果</div>
+
+
                         <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
                             <h3>第25次课-JS运算符与表达式实验</h3>
                             <div id="25js-output">
                                 <p>点击「运行代码」查看结果</p>
                             </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
+
+        </div>
+
+
             <div class="action-bar">
                 <button class="btn btn-run" onclick="runJsExperiment('25js-js', '25js-preview', '25js-status')">▶ 运行代码</button>
                 <button class="btn btn-reset" onclick="resetJsExperiment('25js-js', '25js-preview', '25js-status')">↺ 重置</button>
             </div>
+
+
         </div>
 
-        <div class="lab-card">
-            <div class="lab-header">
-                <span>实验：第25次课-JS运算符与表达式实践</div>
-                <span id="25js-status" class="status-badge">未运行</div>
-            </div>
-            <div class="lab-body css-js-experiment">
-                <div>
-                    <div class="html-editor" id="25js-js" contenteditable="true">
-<div class="panel-label">JavaScript (可编辑)</div>// 第25次课-JS运算符与表达式实验
 
-// 在这里编写你的JavaScript代码
+    </section>
 
-// 示例代码
-console.log('第25次课-JS运算符与表达式实验开始');
-
-// 在这里添加更多JavaScript代码
-</div>
-                </div>
-                <div>
-                    <div class="preview-box" id="25js-preview">
-                        <div class="panel-label">预览效果</div>
-                        <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                            <h3>第25次课-JS运算符与表达式实验</h3>
-                            <div id="25js-output">
-                                <p>点击「运行代码」查看结果</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="action-bar">
-                <button class="btn btn-run" onclick="runJsExperiment('25js-js', '25js-preview', '25js-status')">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="resetJsExperiment('25js-js', '25js-preview', '25js-status')">↺ 重置</button>
-            </div>
-        </div>
-</section>
     <section id="summary">
         <h2>9. 综合案例与本课小结</h2>
         <h3>综合案例：商品折扣计算</h3>
         <p>假设一个场景：计算一件商品在不同优惠活动下的最终价格。</p>
-<pre style="background: var(--code-bg); padding: 14px 16px; border-radius: 10px; overflow-x: auto; font-family: var(--font-mono); font-size: 13px;"><code>const originalPrice = 120; // 商品原价
+<pre><code>const originalPrice = 120; // 商品原价
 const memberDiscount = 0.8;  // 会员折扣 8折
 const couponValue = 10;      // 优惠券减10元
 
@@ -614,25 +700,25 @@ console.log('最终价格: ' + finalPrice.toFixed(2));
             <li><strong>表达式</strong>产生值，<strong>语句</strong>执行动作。</li>
             <li><strong>赋值运算符</strong> (<code>=</code>, <code>+=</code>) 用于更新变量。</li>
             <li><strong>算术运算符</strong> (<code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code>) 用于数学计算，注意 <code>+</code> 的拼接功能。</li>
-            <li><strong>比较运算符</strong> (<code>></code>, <code><</code>) 和 <strong>相等运算符</strong> (<code>===</code>, <code>!==</code>) 产生布尔值，是逻辑判断的基础。<strong>始终用 <code>===</code></strong>。</li>
-            <li><strong>逻辑运算符</strong> (<code>&&</code>, <code>||</code>, <code>!</code>) 用于组合条件，它们的<strong>短路特性</strong>非常有用。</li>
+            <li><strong>比较运算符</strong> (<code>&gt;</code>, <code>&lt;</code>) 和 <strong>相等运算符</strong> (<code>===</code>, <code>!==</code>) 产生布尔值，是逻辑判断的基础。<strong>始终用 <code>===</code></strong>。</li>
+            <li><strong>逻辑运算符</strong> (<code>&&&</code>, <code>||</code>, <code>!</code>) 用于组合条件，它们的<strong>短路特性</strong>非常有用。</li>
             <li>当不确定运算顺序时，使用<strong>括号 <code>()</code></strong> 来明确意图。</li>
         </ul>
         <div class="note-box">
             <strong>下一课预告：</strong>
             <p>我们已经掌握了如何创造出能判断真假的“条件表达式”。下一课，我们将学习如何使用 <code>if...else</code> 语句，让程序根据这些条件的真假来决定执行哪一段代码，真正实现“智能”的程序流程控制！</p>
         </div>
-    </section>
+
+
+        </section>
+
+
 </main>
 
+
     
+
 </body>
+
 </html>
-
-
-
-
-
-
-
 

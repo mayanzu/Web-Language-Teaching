@@ -28,36 +28,29 @@
         <a class="sidebar-link" href="#lab-console" class="sub-link">7. 实验练习</a>
         <a class="sidebar-link" href="#summary" class="sub-link">8. 课程小结</a>
     </div>
+
 </nav>
 <main class="content">
     <header id="intro">
         <h1>第24课：JS变量与数据类型</h1>
         <p class="intro">这一节课我们要解决一个根本问题：程序如何「记住」信息？变量就是贴在数据上的“标签”，而数据类型则决定了这些信息能做什么。学完本课，你将能创建、使用和理解程序中最基础的构建单元。</p>
         <div class="pill-list">
-            <span class="pill">变量声明: let / const / var</div>
-            <span class="pill">命名规则</div>
-            <span class="pill">字符串 & 模板字符串</div>
-            <span class="pill">数字 & NaN</div>
-            <span class="pill">布尔值: true / false</div>
-            <span class="pill">undefined vs null</div>
-            <span class="pill">typeof 运算符</div>
-            <span class="pill">类型转换</div>
-        </div>
-        <div class="lab-card" style="margin-top: 30px;">
-            <div class="lab-header">
-                <span>今日目标</div>
-                <span class="status-badge beginner">Suitable for Beginners</div>
-            </div>
-            <div class="lab-body">
-                <ul class="checklist">
-                    <li>能用自己的话解释什么是变量，以及为什么需要变量。</li>
-                    <li>掌握 <code>let</code>、<code>const</code> 和 <code>var</code> 的核心区别，并遵循最佳实践。</li>
-                    <li>认识并使用 JavaScript 中最常见的几种基础类型：String, Number, Boolean, Undefined, Null。</li>
-                    <li>掌握模板字符串、`NaN` 等重要特性。</li>
-                    <li>会使用 <code>typeof</code> 检查变量类型，并理解显式和隐式类型转换。</li>
-                    <li>通过动手实验，在实践中巩固变量和数据类型的知识。</li>
-                </ul>
-            </div>
+            <span class="pill">变量声明: let / const / var</span>
+
+            <span class="pill">命名规则</span>
+
+            <span class="pill">字符串 & 模板字符串</span>
+
+            <span class="pill">数字 & NaN</span>
+
+            <span class="pill">布尔值: true / false</span>
+
+            <span class="pill">undefined vs null</span>
+
+            <span class="pill">typeof 运算符</span>
+
+            <span class="pill">类型转换</span>
+
         </div>
     </header>
 
@@ -66,20 +59,23 @@
         <p>想象一下，你在玩一个游戏，游戏需要记录你的得分、用户名和剩余生命值。如果程序没有办法"记住"这些信息，那么每次分数变化，或者你下次登录时，所有数据都将丢失。</p>
         <p><strong>变量，就是程序用来存储和管理这些动态信息的机制。</strong></p>
         <div class="tip-box">
-            <span class="tip-title">生活中的类比</div>
+            <span class="tip-title">生活中的类比</span>
+
             <ul class="checklist">
                 <li><strong>游戏存档：</strong> 你的角色名、等级、金币数量，这些都是变量。游戏过程中，这些值会不断改变。</li>
                 <li><strong>手机联系人：</strong> 你为每个朋友存储了名字（变量名）和电话号码（变量值）。</li>
                 <li><strong>购物清单：</strong> 你写下要买的"苹果"，数量是"5个"。"苹果数量"就是一个变量，它的值是5。</li>
             </ul>
         </div>
+
         <p>没有变量，程序将是静态的、一次性的，无法处理任何需要追踪和记忆的任务。因此，变量是所有编程语言的基石。</p>
         
         <div class="lab-card" style="margin-top: 30px;">
             <div class="lab-header">
-                <span>💻 动手试试：游戏得分系统</div>
-                <span class="status-badge beginner">Interactive Demo</div>
+                <span>💻 动手试试：游戏得分系统</span>
+                <span class="status-badge beginner">Interactive Demo</span>
             </div>
+
             <div class="lab-body">
                 <p style="margin-bottom: 12px;">打开浏览器控制台（按 F12），复制下面的代码并运行，看看变量如何存储和更新游戏数据：</p>
 <pre><code>// 创建游戏变量
@@ -109,8 +105,10 @@ console.log(`玩家 ${playerName} 的总得分: ${score}`);
 console.log(`剩余生命: ${lives}`);
 </code></pre>
             </div>
+
         </div>
-    </section>
+
+        </section>
 
     <section id="what-is-variable">
         <h2>二、变量是什么？</h2>
@@ -146,12 +144,14 @@ console.log(`剩余生命: ${lives}`);
         <div class="note-box">
             <strong>核心思想：</strong>变量的核心作用是为数据提供一个易于记忆和引用的名称，让我们不必关心数据在计算机内存中的具体位置。
         </div>
+
         
         <div class="lab-card" style="margin-top: 30px;">
             <div class="lab-header">
-                <span>💻 动手试试：变量的生命周期</div>
-                <span class="status-badge beginner">Interactive Demo</div>
+                <span>💻 动手试试：变量的生命周期</span>
+                <span class="status-badge beginner">Interactive Demo</span>
             </div>
+
             <div class="lab-body">
                 <p style="margin-bottom: 12px;">在控制台运行以下代码，观察变量从声明到使用的完整过程：</p>
 <pre><code>// 1. 声明变量（只是告诉 JavaScript 这个名字要用了）
@@ -183,14 +183,18 @@ let totalScore = myScore + finalScore;
 console.log('总分:', totalScore); // 1249
 </code></pre>
             </div>
+
         </div>
+
         
         <div class="tip-box" style="margin-top: 30px;">
-            <span class="tip-title">接下来学什么?</div>
+            <span class="tip-title">接下来学什么?</span>
+
             <p>现在你已经知道了"变量是什么"和"如何使用变量"。但是你可能会疑惑：变量里到底能存储哪些类型的数据？<code>100</code>、<code>'小明'</code>、<code>true</code> 这些值有什么区别？</p>
             <p><strong>在学习如何声明变量之前，让我们先了解 JavaScript 的数据类型。</strong>这样你就能更好地理解变量里能装什么"东西"。</p>
         </div>
-    </section>
+
+        </section>
 
     <section id="declare">
         <h2>四、如何声明变量？</h2>
@@ -198,7 +202,7 @@ console.log('总分:', totalScore); // 1249
         <p>现代 JavaScript 中，我们主要使用 <code>let</code> 和 <code>const</code> 来声明变量。<code>var</code> 是一个较旧的关键字，虽然仍能使用，但通常不推荐。</p>
         
         <h3 id="let-const-var">let, const, 和 var 的区别</h3>
-        <p>这三者在“可变性”和“作用域”上有所不同。</p>
+        <p>这三者在"可变性"和"作用域"上有所不同。</p>
         <table class="prop-table">
             <thead>
             <tr><th>关键字</th><th>是否允许重新赋值</th><th>作用域</th><th>是否存在变量提升</th><th>推荐用法</th></tr>
@@ -245,8 +249,8 @@ user.name = 'Bob'; // ✅ 合法！可以修改对象内部的属性
             <strong>为什么不推荐使用 `var`？</strong>
             <p><code>var</code> 存在两个主要问题，容易导致意外的 bug：</p>
             <ul class="checklist">
-                <li><strong>变量提升 (Hoisting):</strong> <code>var</code> 声明的变量会被“提升”到其作用域的顶部，你可以在声明前使用它（值为 `undefined`），这不符合直觉。</li>
-                <li><strong>没有块级作用域:</strong> <code>var</code> 只认函数作用域，在 <code>if</code> 或 <code>for</code> 循环中声明的变量会“泄露”到外部。</li>
+                <li><strong>变量提升 (Hoisting):</strong> <code>var</code> 声明的变量会被"提升"到其作用域的顶部，你可以在声明前使用它（值为 `undefined`），这不符合直觉。</li>
+                <li><strong>没有块级作用域:</strong> <code>var</code> 只认函数作用域，在 <code>if</code> 或 <code>for</code> 循环中声明的变量会"泄露"到外部。</li>
             </ul>
 <pre><code>// var 的问题示例
 if (true) {
@@ -262,15 +266,17 @@ if (true) {
 </code></pre>
             <strong>实践建议：</strong> 默认使用 <code>const</code>。当你确定这个变量的值需要被改变时，再换成 <code>let</code>。完全忘记 <code>var</code>。
         </div>
+
         
         <div class="lab-card" style="margin-top: 30px;">
             <div class="lab-header">
-                <span>💻 动手试试：let vs const 实战</div>
-                <span class="status-badge beginner">Interactive Demo</div>
+                <span>💻 动手试试：let vs const 实战</span>
+                <span class="status-badge beginner">Interactive Demo</span>
             </div>
+
             <div class="lab-body">
                 <p style="margin-bottom: 12px;">复制以下代码到控制台，理解 let 和 const 的实际应用场景：</p>
-<pre><code>// === 使用 let（值会改变的情况） ===
+<pre><code>// === 使用 let（值会改变的情况）===
 let temperature = 25;
 console.log('现在温度:', temperature);
 
@@ -283,7 +289,7 @@ count = count + 1;
 count = count + 1;
 console.log('计数器:', count); // 3
 
-// === 使用 const（值不会改变的情况） ===
+// === 使用 const（值不会改变的情况）===
 const appName = '我的应用';
 const version = '1.0.0';
 const maxUsers = 1000;
@@ -325,8 +331,10 @@ console.log('更新后的爱好:', hobbies);
                     <strong>小结：</strong> 用 <code>const</code> 保护变量引用不被修改，用 <code>let</code> 处理需要重新赋值的场景。
                 </p>
             </div>
+
         </div>
-    </section>
+
+        </section>
 
     <section id="naming">
         <h3>变量命名规则</h3>
@@ -347,12 +355,14 @@ console.log('更新后的爱好:', hobbies);
                 <li><strong>常量命名:</strong> 对于永不改变的硬编码值（如数学常数），有时会使用全大写加下划线。例如：<code>const PI = 3.14;</code>, <code>const MAX_CONNECTIONS = 5;</code>。</li>
             </ul>
         </div>
+
         
         <div class="lab-card" style="margin-top: 30px;">
             <div class="lab-header">
-                <span>💻 动手试试：好的命名 vs 差的命名</div>
-                <span class="status-badge beginner">Interactive Demo</div>
+                <span>💻 动手试试：好的命名 vs 差的命名</span>
+                <span class="status-badge beginner">Interactive Demo</span>
             </div>
+
             <div class="lab-body">
                 <p style="margin-bottom: 12px;">在控制台运行下面两段代码，感受好的命名如何提升代码可读性：</p>
 <pre><code>// ❌ 差的命名 - 完全看不懂在做什么
@@ -403,8 +413,10 @@ console.log('邮箱已验证:', isEmailVerified);
                     <strong>体会：</strong> 好的变量名就像注释，让代码自解释，别人（包括未来的你）一看就懂！
                 </p>
             </div>
+
         </div>
-    </section>
+
+        </section>
 
     <section id="types-overview">
         <h2>三、JavaScript 数据类型概览</h2>
@@ -469,6 +481,7 @@ console.log('邮箱已验证:', isEmailVerified);
                 </tbody>
             </table>
         </div>
+
         
         <p style="margin-top: 20px;"><strong>本课重点：</strong>我们将详细学习前 5 种最常用的基础类型（String, Number, Boolean, Undefined, Null），Symbol 和 BigInt 在进阶课程中介绍，Object 类型将在后续课程深入学习。</p>
         
@@ -516,7 +529,8 @@ const htmlContent = `
 </code></pre>
 
         <div class="tip-box">
-            <span class="tip-title">字符串常用操作</div>
+            <span class="tip-title">字符串常用操作</span>
+
 <pre style="margin-top: 10px;"><code>const str = 'Hello World';
 
 // 获取字符串长度
@@ -576,7 +590,8 @@ console.log(isNaN(123));       // false
 </code></pre>
 
         <div class="tip-box">
-            <span class="tip-title">数字常用操作与方法</div>
+            <span class="tip-title">数字常用操作与方法</span>
+
 <pre style="margin-top: 10px;"><code>// 数学运算
 console.log(10 + 5);  // 15 (加法)
 console.log(10 - 5);  // 5  (减法)
@@ -664,7 +679,7 @@ console.log(Boolean('0'));      // true (字符串 "0" 是真值！)
         </div>
 
         <h3 id="type-null-undefined">Null 和 Undefined</h3>
-        <p>这两个类型都表示“没有值”，但它们的语义有所不同，是初学者常见的困惑点。</p>
+        <p>这两个类型都表示"没有值"，但它们的语义有所不同，是初学者常见的困惑点。</p>
         <table class="prop-table">
             <thead>
             <tr><th>类型</th><th>含义</th><th>典型场景</th></tr>
@@ -672,7 +687,7 @@ console.log(Boolean('0'));      // true (字符串 "0" 是真值！)
             <tbody>
             <tr>
                 <td><code>undefined</code></td>
-                <td><strong>“未定义”</strong> - 变量已被声明，但尚未被赋值。这是变量的默认初始状态。</td>
+                <td><strong>"未定义"</strong> - 变量已被声明，但尚未被赋值。这是变量的默认初始状态。</td>
                 <td>
                     <code>let x; console.log(x); // undefined</code><br>
                     函数没有返回值时，默认返回 `undefined`。
@@ -680,7 +695,7 @@ console.log(Boolean('0'));      // true (字符串 "0" 是真值！)
             </tr>
             <tr>
                 <td><code>null</code></td>
-                <td><strong>“空值”</strong> - 一个被明确赋予的、表示“没有对象”或“空”的值。</td>
+                <td><strong>"空值"</strong> - 一个被明确赋予的、表示"没有对象"或"空"的值。</td>
                 <td>
                     当你期望一个变量将来会指向一个对象，但现在还没有时，可以手动设置为 `null`。<br>
                     <code>let user = null;</code>
@@ -689,7 +704,8 @@ console.log(Boolean('0'));      // true (字符串 "0" 是真值！)
             </tbody>
         </table>
         <div class="tip-box">
-            <span class="tip-title">简单区分</div>
+            <span class="tip-title">简单区分</span>
+
             <p><code>undefined</code> 是 JavaScript 自动给的，表示"你忘了给值"或"这个东西不存在"。<br>
             <code>null</code> 是我们程序员手动给的，表示"我确定这里现在什么都没有"。</p>
 <pre style="margin-top: 10px;"><code>// undefined 的常见情况
@@ -719,13 +735,15 @@ console.log(typeof null);        // "object" (历史遗留bug)
 console.log(typeof undefined);   // "undefined"
 </code></pre>
         </div>
+
         
         <div class="note-box" style="margin-top: 30px;">
             <strong>现在你已经了解了数据类型！</strong>
             <p>你已经知道了 JavaScript 中有哪些基础数据类型（String, Number, Boolean, Null, Undefined），以及它们各自的特点和用法。</p>
             <p><strong>接下来，让我们学习如何用 <code>let</code> 和 <code>const</code> 来声明变量，</strong>把这些不同类型的数据存储起来并使用它们。</p>
         </div>
-    </section>
+
+        </section>
 
     <section id="declare">
         <h2>五、使用 typeof 检查类型</h2>
@@ -737,14 +755,14 @@ console.log(typeof undefined);  // "undefined"
 console.log(typeof {});         // "object" (对象)
 console.log(typeof []);         // "object" (数组也是一种特殊的对象)
 console.log(typeof null);       // "object" (这是一个著名的历史遗留问题)
-</code></pre>
-        <div class="warning-box">
+</code></pre>        <div class="warning-box">
             <strong>注意：</strong>
             <ul class="checklist">
                 <li><code>typeof null</code> 返回 <code>'object'</code> 是 JavaScript 早期版本的一个错误，现在为了兼容性被保留了下来。要检查一个值是否为 null，最可靠的方法是 <code>value === null</code>。</li>
             </ul>
         </div>
-    </section>
+
+        </section>
 
     <section id="conversion">
         <h2>六、数据类型转换</h2>
@@ -802,22 +820,25 @@ console.log(5 == '5'); // true (不推荐使用)
 console.log(5 === '5'); // false (推荐使用)
 </code></pre>
         <div class="tip-box">
-            <span class="tip-title">最佳实践</div>
+            <span class="tip-title">最佳实践</span>
+
             <p>为了避免隐式转换带来的不确定性，建议：</p>
             <ul class="checklist">
                 <li>在进行数学运算前，明确使用 <code>Number()</code>, <code>parseInt()</code> 或 <code>parseFloat()</code> 转换类型。</li>
                 <li>在比较值时，始终使用严格相等运算符 <code>===</code> 和 <code>!==</code>。</li>
             </ul>
         </div>
-    </section>
+
+        </section>
 
     <section id="lab-console">
         <h2>七、实验 01：在浏览器控制台玩变量</h2>
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验 01：用控制台熟悉变量和类型</div>
-                <span class="status-badge beginner">Hands-on</div>
+                <span>实验 01：用控制台熟悉变量和类型</span>
+                <span class="status-badge beginner">Hands-on</span>
             </div>
+
             <div class="lab-body">
                 <ol class="lab-steps">
                     <li>打开浏览器 → 任意网页 → 按 <code>F12</code> 或右键检查 → 切换到「Console / 控制台」。</li>
@@ -829,8 +850,10 @@ console.log(5 === '5'); // false (推荐使用)
                     <li>尝试执行 <code>'20' - 5</code> 和 <code>'20' * 2</code>，理解隐式转换。</li>
                 </ol>
             </div>
+
         </div>
-    </section>
+
+        </section>
 
     <section id="lab-profile">
         <h2>八、实验 02：用变量和类型描述一个人</h2>
@@ -838,13 +861,17 @@ console.log(5 === '5'); // false (推荐使用)
         
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验 02：个人信息小卡片</div>
-                <span id="profile-status" class="status-badge">未运行</div>
+                <span>实验 02：个人信息小卡片</span>
+
+                <span id="profile-status" class="status-badge">未运行</span>
+
             </div>
+
             <div class="lab-body css-js-experiment">
                 <div>
-                    <div class="html-editor" id="profile-js" contenteditable="true">
-<div class="panel-label">JavaScript (可编辑)</div>// 使用 const 声明三种不同类型的变量
+                    <div class="html-editor" id="profile-js" contenteditable="true">&lt;div class="panel-label"&gt;JavaScript (可编辑)</div>
+
+// 使用 const 声明三种不同类型的变量
 const userName = '李明';     // 字符串类型
 const userAge = 18;          // 数字类型
 const isStudent = true;      // 布尔类型
@@ -871,40 +898,59 @@ console.log('userAge 的类型:', typeof userAge);
 console.log('isStudent 的类型:', typeof isStudent);
 console.log('userCity 的类型:', typeof userCity);
 console.log('userScore 的类型:', typeof userScore);</div>
+
                 </div>
+
                 <div>
                     <div class="preview-box" id="profile-preview">
                         <div class="panel-label">预览效果</div>
+
                         <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); max-width: 400px; margin: 0 auto;">
                             <h2 style="color: #1a1a1a; margin-bottom: 20px; border-bottom: 2px solid #1a1a1a; padding-bottom: 10px;">个人信息</h2>
                             <div style="padding: 12px 0; border-bottom: 1px solid #e1e4e8;">
                                 <div style="color: #7f8c8d; font-size: 14px;">姓名</div>
+
                                 <div style="color: #1a1a1a; font-size: 18px; font-weight: 600; margin-top: 4px;" id="name">--</div>
+
                             </div>
+
                             <div style="padding: 12px 0; border-bottom: 1px solid #e1e4e8;">
                                 <div style="color: #7f8c8d; font-size: 14px;">年龄</div>
+
                                 <div style="color: #1a1a1a; font-size: 18px; font-weight: 600; margin-top: 4px;" id="age">--</div>
+
                             </div>
+
                             <div style="padding: 12px 0; border-bottom: 1px solid #e1e4e8;">
                                 <div style="color: #7f8c8d; font-size: 14px;">是否是学生</div>
+
                                 <div style="color: #1a1a1a; font-size: 18px; font-weight: 600; margin-top: 4px;" id="student">--</div>
+
                             </div>
+
                             <div style="padding: 12px 0; border-bottom: 1px solid #e1e4e8;">
                                 <div style="color: #7f8c8d; font-size: 14px;">城市</div>
+
                                 <div style="color: #1a1a1a; font-size: 18px; font-weight: 600; margin-top: 4px;" id="city">--</div>
+
                             </div>
+
                             <div style="padding: 12px 0;">
                                 <div style="color: #7f8c8d; font-size: 14px;">分数</div>
+
                                 <div style="color: #1a1a1a; font-size: 18px; font-weight: 600; margin-top: 4px;" id="score">--</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
+
+        </div>
+
+            </div>
+
             <div class="action-bar">
                 <button class="btn btn-run" onclick="runProfileExperiment()">▶ 运行代码</button>
                 <button class="btn btn-reset" onclick="resetProfileExperiment()">↺ 重置</button>
             </div>
+
         </div>
 
     <h3 style="color: var(--color-heading); margin: 25px 0 12px; font-size: 16px;">练习任务</h3>
@@ -917,7 +963,8 @@ console.log('userScore 的类型:', typeof userScore);</div>
     </ol>
 
                 <div class="tip-box" style="margin-top: 20px;">
-                    <span class="tip-title">关键知识点</div>
+                    <span class="tip-title">关键知识点</span>
+
                     <ul class="checklist">
                         <li>使用 <code>const</code> 声明不会改变的变量</li>
                         <li>三种基础类型：String（字符串）、Number（数字）、Boolean（布尔）</li>
@@ -926,27 +973,40 @@ console.log('userScore 的类型:', typeof userScore);</div>
                         <li>三元运算符 <code>? :</code> 用于条件判断</li>
                     </ul>
                 </div>
+
             </div>
+
         </div>
 
         <!-- 页面内交互演示 -->
         <div class="lab-card" style="margin-top: 30px;">
             <div class="lab-header">
-                <span>💻 在线演示</div>
-                <span class="status-badge beginner">Interactive</div>
+                <span>💻 在线演示</span>
+                <span class="status-badge beginner">Interactive</span>
             </div>
+
             <div class="lab-body split">
                 <div class="panel html-viewer">
                     <div class="panel-label">预览区域</div>
+
                     <div class="profile-card">
                         <h3>个人信息</h3>
-                        <p>姓名：<span id="profile-name">（未设置）</div></p>
-                        <p>年龄：<span id="profile-age">--</div></p>
-                        <p>是否是学生：<span id="profile-student">--</div></p>
+                        <p>姓名：<span id="profile-name">（未设置）</span>
+
+</p>
+                        <p>年龄：<span id="profile-age">--</span>
+
+</p>
+                        <p>是否是学生：<span id="profile-student">--</span>
+
+</p>
                     </div>
+
                 </div>
+
                 <div class="panel code-editor" id="code-profile" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
+
 // 修改下面这些变量的值，然后点击「更新卡片」
 
 let userName = '小明';     // string
@@ -961,26 +1021,35 @@ if (nameEl) nameEl.textContent = userName;
 if (ageEl) ageEl.textContent = userAge + ' 岁';
 if (studentEl) studentEl.textContent = isStudent ? '是' : '否';
                 </div>
+
             </div>
+
             <div class="action-bar">
                 <button class="btn btn-run" onclick="runProfileLab()">▶ 更新卡片</button>
                 <button class="btn btn-reset" onclick="resetProfileLab()">↺ 重置代码</button>
             </div>
+
             <div class="preview-box" id="profile-console">
 // 提示：尝试把 userName 改成你的名字，userAge 改成年龄，isStudent 改成 false/true，
 // 然后点击「更新卡片」，观察上方卡片内容的变化。
             </div>
+
         </div>
+
     
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验：第24次课-JS变量与数据类型实践</div>
-                <span id="24js-status" class="status-badge">未运行</div>
+                <span>实验：第24次课-JS变量与数据类型实践</span>
+
+                <span id="24js-status" class="status-badge">未运行</span>
+
             </div>
+
             <div class="lab-body css-js-experiment">
                 <div>
-                    <div class="html-editor" id="24js-js" contenteditable="true">
-<div class="panel-label">JavaScript (可编辑)</div>// 第24次课-JS变量与数据类型实验
+                    <div class="html-editor" id="24js-js" contenteditable="true">&lt;div class="panel-label"&gt;JavaScript (可编辑)</div>
+
+// 第24次课-JS变量与数据类型实验
 
 // 在这里编写你的JavaScript代码
 
@@ -989,61 +1058,32 @@ console.log('第24次课-JS变量与数据类型实验开始');
 
 // 在这里添加更多JavaScript代码
 </div>
+
                 </div>
+
                 <div>
                     <div class="preview-box" id="24js-preview">
                         <div class="panel-label">预览效果</div>
+
                         <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
                             <h3>第24次课-JS变量与数据类型实验</h3>
                             <div id="24js-output">
                                 <p>点击「运行代码」查看结果</p>
                             </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
+
+        </div>
+
             <div class="action-bar">
                 <button class="btn btn-run" onclick="runJsExperiment('24js-js', '24js-preview', '24js-status')">▶ 运行代码</button>
                 <button class="btn btn-reset" onclick="resetJsExperiment('24js-js', '24js-preview', '24js-status')">↺ 重置</button>
             </div>
+
         </div>
 
-        <div class="lab-card">
-            <div class="lab-header">
-                <span>实验：第24次课-JS变量与数据类型实践</div>
-                <span id="24js-status" class="status-badge">未运行</div>
-            </div>
-            <div class="lab-body css-js-experiment">
-                <div>
-                    <div class="html-editor" id="24js-js" contenteditable="true">
-<div class="panel-label">JavaScript (可编辑)</div>// 第24次课-JS变量与数据类型实验
+    </section>
 
-// 在这里编写你的JavaScript代码
-
-// 示例代码
-console.log('第24次课-JS变量与数据类型实验开始');
-
-// 在这里添加更多JavaScript代码
-</div>
-                </div>
-                <div>
-                    <div class="preview-box" id="24js-preview">
-                        <div class="panel-label">预览效果</div>
-                        <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                            <h3>第24次课-JS变量与数据类型实验</h3>
-                            <div id="24js-output">
-                                <p>点击「运行代码」查看结果</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="action-bar">
-                <button class="btn btn-run" onclick="runJsExperiment('24js-js', '24js-preview', '24js-status')">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="resetJsExperiment('24js-js', '24js-preview', '24js-status')">↺ 重置</button>
-            </div>
-        </div>
-</section>
     <section id="summary">
         <h2>九、本课小结</h2>
         <ul class="checklist">
@@ -1057,18 +1097,13 @@ console.log('第24次课-JS变量与数据类型实验开始');
             <li>类型转换分为<strong>显式</strong> (手动转换) 和<strong>隐式</strong> (自动转换)，为避免意外，推荐使用 <code>===</code> 进行比较并手动转换数据。</li>
         </ul>
         <div class="note-box">
-            <strong>下一课预告：</strong>我们将学习各种运算符（算术、比较、逻辑等），利用本课所学的变量和类型，让程序真正地“动起来”进行计算和判断。</div>
-    </section>
+            <strong>下一课预告：</strong>我们将学习各种运算符（算术、比较、逻辑等），利用本课所学的变量和类型，让程序真正地"动起来"进行计算和判断。</div>
+
+        </section>
+
 </main>
 
-
 </body>
+
 </html>
-
-
-
-
-
-
-
 

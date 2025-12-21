@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>第8课：HTML表单基础</title>
     <link rel='stylesheet' href='../统一讲义样式模板.css'>
-    <script src='../js/lecture-utils.js'></script>\n</head>
+    <script src='../js/lecture-utils.js'></script>
+</head>
 <body>
     <!-- 侧边栏导航 -->
     <nav class="sidebar">
@@ -734,115 +735,94 @@
                 <span id="8html-status" class="status-badge">未运行</div>
             </div>
             <div class="lab-body">
-                <div class="html-editor" id="8html-html" contenteditable="true">
-<div class="panel-label">HTML (可编辑)</div>&lt;!DOCTYPE html&gt;
+                <div class="panel-label">HTML (可编辑)</div>
+<div class="html-editor" id="8html-html" contenteditable="true">
+&lt;!DOCTYPE html&gt;
 &lt;html lang="zh-CN"&gt;
 &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
     &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
     &lt;title&gt;第8次课-HTML表单基础&lt;/title&gt;
-    &lt;style&gt;
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        .form-group {
-            margin: 15px 0;
-        }
-        label {
-            display: inline-block;
-            width: 120px;
-            vertical-align: top;
-        }
-    &lt;/style&gt;
+
 &lt;/head&gt;
 &lt;body&gt;
-    &lt;div class="container"&gt;
-        &lt;h1&gt;HTML表单基础综合实践&lt;/h1&gt;
-        &lt;p&gt;在这里编写你的HTML代码，实践第8次课-HTML表单基础的知识。&lt;/p&gt;
+    &lt;h1&gt;HTML表单基础综合实践&lt;/h1&gt;
+    &lt;p&gt;在这里编写你的HTML代码，实践第8次课-HTML表单基础的知识。&lt;/p&gt;
+    
+    &lt;!-- 注册表单示例 --&gt;
+    &lt;form action="https://example.com/register" method="post"&gt;
+        &lt;h2&gt;注册表单&lt;/h2&gt;
         
-        &lt;!-- 注册表单示例 --&gt;
-        &lt;form action="https://example.com/register" method="post"&gt;
-            &lt;h2&gt;注册表单&lt;/h2&gt;
+        &lt;p&gt;
+            &lt;label for="username"&gt;用户名：&lt;/label&gt;
+            &lt;input type="text" id="username" name="username" placeholder="请输入用户名" required&gt;
+        &lt;/p&gt;
+        
+        &lt;p&gt;
+            &lt;label for="password"&gt;密码：&lt;/label&gt;
+            &lt;input type="password" id="password" name="password" placeholder="请输入密码" required&gt;
+        &lt;/p&gt;
+        
+        &lt;p&gt;
+            &lt;label for="confirm-password"&gt;确认密码：&lt;/label&gt;
+            &lt;input type="password" id="confirm-password" name="confirm-password" placeholder="请确认密码" required&gt;
+        &lt;/p&gt;
+        
+        &lt;p&gt;
+            &lt;label for="email"&gt;邮箱：&lt;/label&gt;
+            &lt;input type="email" id="email" name="email" placeholder="请输入邮箱" required&gt;
+        &lt;/p&gt;
+        
+        &lt;p&gt;
+            &lt;label for="age"&gt;年龄：&lt;/label&gt;
+            &lt;input type="number" id="age" name="age" min="0" max="120" step="1" placeholder="请输入年龄"&gt;
+        &lt;/p&gt;
+        
+        &lt;p&gt;
+            &lt;label&gt;性别：&lt;/label&gt;
+            &lt;input type="radio" id="male" name="gender" value="male" checked&gt;
+            &lt;label for="male"&gt;男&lt;/label&gt;
             
-            &lt;div class="form-group"&gt;
-                &lt;label for="username"&gt;用户名：&lt;/label&gt;
-                &lt;input type="text" id="username" name="username" placeholder="请输入用户名" required&gt;
-            &lt;/div&gt;
+            &lt;input type="radio" id="female" name="gender" value="female"&gt;
+            &lt;label for="female"&gt;女&lt;/label&gt;
             
-            &lt;div class="form-group"&gt;
-                &lt;label for="password"&gt;密码：&lt;/label&gt;
-                &lt;input type="password" id="password" name="password" placeholder="请输入密码" required&gt;
-            &lt;/div&gt;
+            &lt;input type="radio" id="other" name="gender" value="other"&gt;
+            &lt;label for="other"&gt;其他&lt;/label&gt;
+        &lt;/p&gt;
+        
+        &lt;p&gt;
+            &lt;label&gt;爱好：&lt;/label&gt;
+            &lt;input type="checkbox" id="reading" name="hobby" value="reading"&gt;
+            &lt;label for="reading"&gt;阅读&lt;/label&gt;
             
-            &lt;div class="form-group"&gt;
-                &lt;label for="confirm-password"&gt;确认密码：&lt;/label&gt;
-                &lt;input type="password" id="confirm-password" name="confirm-password" placeholder="请确认密码" required&gt;
-            &lt;/div&gt;
+            &lt;input type="checkbox" id="music" name="hobby" value="music"&gt;
+            &lt;label for="music"&gt;音乐&lt;/label&gt;
             
-            &lt;div class="form-group"&gt;
-                &lt;label for="email"&gt;邮箱：&lt;/label&gt;
-                &lt;input type="email" id="email" name="email" placeholder="请输入邮箱" required&gt;
-            &lt;/div&gt;
+            &lt;input type="checkbox" id="sports" name="hobby" value="sports"&gt;
+            &lt;label for="sports"&gt;运动&lt;/label&gt;
             
-            &lt;div class="form-group"&gt;
-                &lt;label for="age"&gt;年龄：&lt;/label&gt;
-                &lt;input type="number" id="age" name="age" min="0" max="120" step="1" placeholder="请输入年龄"&gt;
-            &lt;/div&gt;
+            &lt;input type="checkbox" id="travel" name="hobby" value="travel"&gt;
+            &lt;label for="travel"&gt;旅行&lt;/label&gt;
             
-            &lt;div class="form-group"&gt;
-                &lt;label&gt;性别：&lt;/label&gt;
-                &lt;input type="radio" id="male" name="gender" value="male" checked&gt;
-                &lt;label for="male"&gt;男&lt;/label&gt;
-                
-                &lt;input type="radio" id="female" name="gender" value="female"&gt;
-                &lt;label for="female"&gt;女&lt;/label&gt;
-                
-                &lt;input type="radio" id="other" name="gender" value="other"&gt;
-                &lt;label for="other"&gt;其他&lt;/label&gt;
-            &lt;/div&gt;
-            
-            &lt;div class="form-group"&gt;
-                &lt;label&gt;爱好：&lt;/label&gt;
-                &lt;input type="checkbox" id="reading" name="hobby" value="reading"&gt;
-                &lt;label for="reading"&gt;阅读&lt;/label&gt;
-                
-                &lt;input type="checkbox" id="music" name="hobby" value="music"&gt;
-                &lt;label for="music"&gt;音乐&lt;/label&gt;
-                
-                &lt;input type="checkbox" id="sports" name="hobby" value="sports"&gt;
-                &lt;label for="sports"&gt;运动&lt;/label&gt;
-                
-                &lt;input type="checkbox" id="travel" name="hobby" value="travel"&gt;
-                &lt;label for="travel"&gt;旅行&lt;/label&gt;
-                
-                &lt;input type="checkbox" id="cooking" name="hobby" value="cooking"&gt;
-                &lt;label for="cooking"&gt;烹饪&lt;/label&gt;
-            &lt;/div&gt;
-            
-            &lt;div class="form-group"&gt;
-                &lt;label for="birthday"&gt;生日：&lt;/label&gt;
-                &lt;input type="date" id="birthday" name="birthday"&gt;
-            &lt;/div&gt;
-            
-            &lt;div class="form-group"&gt;
-                &lt;label for="phone"&gt;电话：&lt;/label&gt;
-                &lt;input type="tel" id="phone" name="phone" placeholder="请输入电话号码"&gt;
-            &lt;/div&gt;
-            
-            &lt;div class="form-group"&gt;
-                &lt;input type="submit" value="注册"&gt;
-                &lt;input type="reset" value="重置"&gt;
-            &lt;/div&gt;
-        &lt;/form&gt;
-    &lt;/div&gt;
+            &lt;input type="checkbox" id="cooking" name="hobby" value="cooking"&gt;
+            &lt;label for="cooking"&gt;烹饪&lt;/label&gt;
+        &lt;/p&gt;
+        
+        &lt;p&gt;
+            &lt;label for="birthday"&gt;生日：&lt;/label&gt;
+            &lt;input type="date" id="birthday" name="birthday"&gt;
+        &lt;/p&gt;
+        
+        &lt;p&gt;
+            &lt;label for="phone"&gt;电话：&lt;/label&gt;
+            &lt;input type="tel" id="phone" name="phone" placeholder="请输入电话号码"&gt;
+        &lt;/p&gt;
+        
+        &lt;p&gt;
+            &lt;input type="submit" value="注册"&gt;
+            &lt;input type="reset" value="重置"&gt;
+        &lt;/p&gt;
+    &lt;/form&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 </div>
