@@ -1,61 +1,53 @@
 <!DOCTYPE html>
+
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>第2课：HTML排版与文本格式化</title>
-                
-    <link rel='stylesheet' href='../统一讲义样式模板.css'>
-    <script src='../js/lecture-utils.js'></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>第2课：HTML排版与文本格式化</title>
+<link href="../统一讲义样式模板.css" rel="stylesheet"/>
+<script src="../js/lecture-utils.js"></script>
 </head>
 <body>
-    <!-- 侧边栏导航 -->
-    <nav class="sidebar">
-        <div class="sidebar-nav">
-            <h3>课程导航</h3>
-            <a class="sidebar-link" href="#intro">👋 课程概览</a>
-            
-            <h3>Part 1: HTML排版</h3>
-            <a class="sidebar-link" href="#headings" class="sub-link">1. 标题与段落</a>
-            <a class="sidebar-link" href="#text-formatting" class="sub-link">2. 文本样式</a>
-            <a class="sidebar-link" href="#line-break" class="sub-link">3. 换行与水平线</a>
-            <a class="sidebar-link" href="#special-characters" class="sub-link">4. 特殊字符</a>
-            
-            <h3>Part 2: 实战练习</h3>
-            <a class="sidebar-link" href="#exercise" class="sub-link">5. 课后练习</a>
-        </div>
-    </nav>
-
-    <!-- 主内容区 -->
-    <main class="content">
-        <header id="intro">
-            <h1>第2课：HTML排版与文本格式化</h1>
-            <p class="intro">
+<!-- 侧边栏导航 -->
+<nav class="sidebar">
+<div class="sidebar-nav">
+<h3>课程导航</h3>
+<a class="sidebar-link" href="#intro">👋 课程概览</a>
+<h3>Part 1: HTML排版</h3>
+<a class="sub-link" href="#headings">1. 标题与段落</a>
+<a class="sub-link" href="#text-formatting">2. 文本样式</a>
+<a class="sub-link" href="#line-break">3. 换行与水平线</a>
+<a class="sub-link" href="#special-characters">4. 特殊字符</a>
+<h3>Part 2: 实战练习</h3>
+<a class="sub-link" href="#exercise">5. 课后练习</a>
+</div>
+</nav>
+<!-- 主内容区 -->
+<main class="content">
+<header id="intro">
+<h1>第2课：HTML排版与文本格式化</h1>
+<p class="intro">
                 在本节课中，我们将学习HTML中的排版与文本格式化，包括标题、段落、文本样式、换行和特殊字符等内容。
                 通过本节课的学习，你将能够创建结构清晰、样式丰富的HTML文本内容。
             </p>
-        </header>
-
-        <!-- 第一部分：HTML排版 -->
-        <section id="headings">
-            <h2>1. 标题与段落</h2>
-            <p>
+</header>
+<!-- 第一部分：HTML排版 -->
+<section id="headings">
+<h2>1. 标题与段落</h2>
+<p>
                 HTML提供了多种标签来定义不同级别的标题和段落，帮助你组织页面内容结构。
             </p>
-            
-            <h3>1.1 标题标签</h3>
-            <p>
+<h3>1.1 标题标签</h3>
+<p>
                 HTML提供了6级标题标签，从&lt;h1&gt;到&lt;h6&gt;，其中&lt;h1&gt;是最高级别的标题，&lt;h6&gt;是最低级别的标题。
             </p>
-            
-            <div class="lab-card">
-                <div class="lab-header">
-                    <span>实验 01：标题标签的使用</div>
-                    <span id="badge-1" class="status-badge">未运行</div>
-                </div>
-                <div class="lab-body">
-                    <div class="html-editor" id="html-1" contenteditable="true">
-<div class="panel-label">HTML (可编辑)</div>
+<div class="lab-card">
+<div class="lab-header">
+<span>实验 01：标题标签的使用</span>
+<span class="status-badge" id="badge-1">未运行</span>
+<div class="lab-body">
+<div class="panel-label">HTML (可编辑)</div><div class="html-editor" contenteditable="true" id="html-1">
 &lt;!DOCTYPE html&gt;
 &lt;html lang="zh-CN"&gt;
 &lt;head&gt;
@@ -72,29 +64,24 @@
 &lt;/body&gt;
 &lt;/html&gt;
 </div>
-                </div>
-                <div class="action-bar">
-                    <button class="btn btn-run" onclick="runHtmlExperiment('html-1', 'preview-1', 'badge-1')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetHtmlExperiment('html-1', 'preview-1', 'badge-1')">↺ 重置</button>
-                </div>
-                <div class="preview-box" id="preview-1">
-                    <div class="panel-label">预览效果</div>
-                </div>
-            </div>
-            
-            <h3>1.2 段落标签</h3>
-            <p>
+</div>
+<div class="action-bar">
+<button class="btn btn-run" onclick="runHtmlExperiment('html-1', 'preview-1', 'badge-1')">▶ 运行代码</button>
+<button class="btn btn-reset" onclick="resetHtmlExperiment('html-1', 'preview-1', 'badge-1')">↺ 重置</button>
+</div>
+<div class="preview-box" id="preview-1">
+<div class="panel-label">预览效果</div>
+</div>
+<h3>1.2 段落标签</h3>
+<p>
                 段落标签&lt;p&gt;用于定义HTML中的段落。
             </p>
-            
-            <div class="lab-card">
-                <div class="lab-header">
-                    <span>实验 02：段落标签的使用</div>
-                    <span id="badge-2" class="status-badge">未运行</div>
-                </div>
-                <div class="lab-body">
-                    <div class="html-editor" id="html-2" contenteditable="true">
-<div class="panel-label">HTML (可编辑)</div>
+<div class="lab-card">
+<div class="lab-header">
+<span>实验 02：段落标签的使用</span>
+<span class="status-badge" id="badge-2">未运行</span>
+<div class="lab-body">
+<div class="panel-label">HTML (可编辑)</div><div class="html-editor" contenteditable="true" id="html-2">
 &lt;!DOCTYPE html&gt;
 &lt;html lang="zh-CN"&gt;
 &lt;head&gt;
@@ -108,74 +95,69 @@
 &lt;/body&gt;
 &lt;/html&gt;
 </div>
-                </div>
-                <div class="action-bar">
-                    <button class="btn btn-run" onclick="runHtmlExperiment('html-2', 'preview-2', 'badge-2')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetHtmlExperiment('html-2', 'preview-2', 'badge-2')">↺ 重置</button>
-                </div>
-                <div class="preview-box" id="preview-2">
-                    <div class="panel-label">预览效果</div>
-                </div>
-            </div>
-        </section>
-
-        <section id="text-formatting">
-            <h2>2. 文本样式</h2>
-            <p>
+</div>
+<div class="action-bar">
+<button class="btn btn-run" onclick="runHtmlExperiment('html-2', 'preview-2', 'badge-2')">▶ 运行代码</button>
+<button class="btn btn-reset" onclick="resetHtmlExperiment('html-2', 'preview-2', 'badge-2')">↺ 重置</button>
+</div>
+<div class="preview-box" id="preview-2">
+<div class="panel-label">预览效果</div>
+</div>
+</div></div></section>
+<section id="text-formatting">
+<h2>2. 文本样式</h2>
+<p>
                 HTML提供了多种标签来格式化文本，如粗体、斜体、下划线等。
             </p>
-            
-            <h3>2.1 常用文本格式化标签</h3>
-            <table class="prop-table">
-                <thead>
-                    <tr>
-                        <th>标签</th>
-                        <th>描述</th>
-                        <th>示例</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>&lt;strong&gt;</td>
-                        <td>粗体文本（强调重要性）</td>
-                        <td>&lt;strong&gt;粗体文本&lt;/strong&gt;</td>
-                    </tr>
-                    <tr>
-                        <td>&lt;em&gt;</td>
-                        <td>斜体文本（强调重点）</td>
-                        <td>&lt;em&gt;斜体文本&lt;/em&gt;</td>
-                    </tr>
-                    <tr>
-                        <td>&lt;u&gt;</td>
-                        <td>下划线文本</td>
-                        <td>&lt;u&gt;下划线文本&lt;/u&gt;</td>
-                    </tr>
-                    <tr>
-                        <td>&lt;s&gt;</td>
-                        <td>删除线文本</td>
-                        <td>&lt;s&gt;删除线文本&lt;/s&gt;</td>
-                    </tr>
-                    <tr>
-                        <td>&lt;sub&gt;</td>
-                        <td>下标文本</td>
-                        <td>H&lt;sub&gt;2&lt;/sub&gt;O</td>
-                    </tr>
-                    <tr>
-                        <td>&lt;sup&gt;</td>
-                        <td>上标文本</td>
-                        <td>2&lt;sup&gt;3&lt;/sup&gt;=8</td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <div class="lab-card">
-                <div class="lab-header">
-                    <span>实验 03：文本格式化标签的使用</div>
-                    <span id="badge-3" class="status-badge">未运行</div>
-                </div>
-                <div class="lab-body">
-                    <div class="html-editor" id="html-3" contenteditable="true">
-<div class="panel-label">HTML (可编辑)</div>
+<h3>2.1 常用文本格式化标签</h3>
+<table class="prop-table">
+<thead>
+<tr>
+<th>标签</th>
+<th>描述</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;strong&gt;</td>
+<td>粗体文本（强调重要性）</td>
+<td>&lt;strong&gt;粗体文本&lt;/strong&gt;</td>
+</tr>
+<tr>
+<td>&lt;em&gt;</td>
+<td>斜体文本（强调重点）</td>
+<td>&lt;em&gt;斜体文本&lt;/em&gt;</td>
+</tr>
+<tr>
+<td>&lt;u&gt;</td>
+<td>下划线文本</td>
+<td>&lt;u&gt;下划线文本&lt;/u&gt;</td>
+</tr>
+<tr>
+<td>&lt;s&gt;</td>
+<td>删除线文本</td>
+<td>&lt;s&gt;删除线文本&lt;/s&gt;</td>
+</tr>
+<tr>
+<td>&lt;sub&gt;</td>
+<td>下标文本</td>
+<td>H&lt;sub&gt;2&lt;/sub&gt;O</td>
+</tr>
+<tr>
+<td>&lt;sup&gt;</td>
+<td>上标文本</td>
+<td>2&lt;sup&gt;3&lt;/sup&gt;=8</td>
+</tr>
+</tbody>
+</table>
+<div class="lab-card">
+<div class="lab-header">
+<span>实验 03：文本格式化标签的使用</span>
+<span class="status-badge" id="badge-3">未运行</span>
+</div>
+<div class="lab-body">
+<div class="panel-label">HTML (可编辑)</div><div class="html-editor" contenteditable="true" id="html-3">
 &lt;!DOCTYPE html&gt;
 &lt;html lang="zh-CN"&gt;
 &lt;head&gt;
@@ -194,36 +176,31 @@
 &lt;/body&gt;
 &lt;/html&gt;
 </div>
-                </div>
-                <div class="action-bar">
-                    <button class="btn btn-run" onclick="runHtmlExperiment('html-3', 'preview-3', 'badge-3')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetHtmlExperiment('html-3', 'preview-3', 'badge-3')">↺ 重置</button>
-                </div>
-                <div class="preview-box" id="preview-3">
-                    <div class="panel-label">预览效果</div>
-                </div>
-            </div>
-        </section>
-
-        <section id="line-break">
-            <h2>3. 换行与水平线</h2>
-            <p>
+</div>
+<div class="action-bar">
+<button class="btn btn-run" onclick="runHtmlExperiment('html-3', 'preview-3', 'badge-3')">▶ 运行代码</button>
+<button class="btn btn-reset" onclick="resetHtmlExperiment('html-3', 'preview-3', 'badge-3')">↺ 重置</button>
+</div>
+<div class="preview-box" id="preview-3">
+<div class="panel-label">预览效果</div>
+</div>
+</div></section>
+<section id="line-break">
+<h2>3. 换行与水平线</h2>
+<p>
                 在HTML中，你可以使用特定标签来控制文本的换行和添加水平线。
             </p>
-            
-            <h3>3.1 换行标签</h3>
-            <p>
+<h3>3.1 换行标签</h3>
+<p>
                 换行标签&lt;br&gt;用于在文本中插入换行符。
             </p>
-            
-            <div class="lab-card">
-                <div class="lab-header">
-                    <span>实验 04：换行标签的使用</div>
-                    <span id="badge-4" class="status-badge">未运行</div>
-                </div>
-                <div class="lab-body">
-                    <div class="html-editor" id="html-4" contenteditable="true">
-<div class="panel-label">HTML (可编辑)</div>
+<div class="lab-card">
+<div class="lab-header">
+<span>实验 04：换行标签的使用</span>
+<span class="status-badge" id="badge-4">未运行</span>
+</div>
+<div class="lab-body">
+<div class="panel-label">HTML (可编辑)</div><div class="html-editor" contenteditable="true" id="html-4">
 &lt;!DOCTYPE html&gt;
 &lt;html lang="zh-CN"&gt;
 &lt;head&gt;
@@ -237,29 +214,25 @@
 &lt;/body&gt;
 &lt;/html&gt;
 </div>
-                </div>
-                <div class="action-bar">
-                    <button class="btn btn-run" onclick="runHtmlExperiment('html-4', 'preview-4', 'badge-4')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetHtmlExperiment('html-4', 'preview-4', 'badge-4')">↺ 重置</button>
-                </div>
-                <div class="preview-box" id="preview-4">
-                    <div class="panel-label">预览效果</div>
-                </div>
-            </div>
-            
-            <h3>3.2 水平线标签</h3>
-            <p>
+</div>
+<div class="action-bar">
+<button class="btn btn-run" onclick="runHtmlExperiment('html-4', 'preview-4', 'badge-4')">▶ 运行代码</button>
+<button class="btn btn-reset" onclick="resetHtmlExperiment('html-4', 'preview-4', 'badge-4')">↺ 重置</button>
+</div>
+<div class="preview-box" id="preview-4">
+<div class="panel-label">预览效果</div>
+</div>
+<h3>3.2 水平线标签</h3>
+<p>
                 水平线标签&lt;hr&gt;用于在页面中插入一条水平线，用于分隔不同的内容区块。
             </p>
-            
-            <div class="lab-card">
-                <div class="lab-header">
-                    <span>实验 05：水平线标签的使用</div>
-                    <span id="badge-5" class="status-badge">未运行</div>
-                </div>
-                <div class="lab-body">
-                    <div class="html-editor" id="html-5" contenteditable="true">
-<div class="panel-label">HTML (可编辑)</div>
+<div class="lab-card">
+<div class="lab-header">
+<span>实验 05：水平线标签的使用</span>
+<span class="status-badge" id="badge-5">未运行</span>
+</div>
+<div class="lab-body">
+<div class="panel-label">HTML (可编辑)</div><div class="html-editor" contenteditable="true" id="html-5">
 &lt;!DOCTYPE html&gt;
 &lt;html lang="zh-CN"&gt;
 &lt;head&gt;
@@ -278,104 +251,99 @@
 &lt;/body&gt;
 &lt;/html&gt;
 </div>
-                </div>
-                <div class="action-bar">
-                    <button class="btn btn-run" onclick="runHtmlExperiment('html-5', 'preview-5', 'badge-5')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetHtmlExperiment('html-5', 'preview-5', 'badge-5')">↺ 重置</button>
-                </div>
-                <div class="preview-box" id="preview-5">
-                    <div class="panel-label">预览效果</div>
-                </div>
-            </div>
-        </section>
-
-        <section id="special-characters">
-            <h2>4. 特殊字符</h2>
-            <p>
+</div>
+<div class="action-bar">
+<button class="btn btn-run" onclick="runHtmlExperiment('html-5', 'preview-5', 'badge-5')">▶ 运行代码</button>
+<button class="btn btn-reset" onclick="resetHtmlExperiment('html-5', 'preview-5', 'badge-5')">↺ 重置</button>
+</div>
+<div class="preview-box" id="preview-5">
+<div class="panel-label">预览效果</div>
+</div>
+</div></div></section>
+<section id="special-characters">
+<h2>4. 特殊字符</h2>
+<p>
                 在HTML中，有些字符具有特殊含义，如&lt;、&gt;和&amp;。如果你想在页面中显示这些字符，需要使用HTML实体。
             </p>
-            
-            <h3>4.1 常用HTML实体</h3>
-            <table class="prop-table">
-                <thead>
-                    <tr>
-                        <th>字符</th>
-                        <th>HTML实体</th>
-                        <th>描述</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>&lt;</td>
-                        <td>&amp;lt;</td>
-                        <td>小于号</td>
-                    </tr>
-                    <tr>
-                        <td>&gt;</td>
-                        <td>&amp;gt;</td>
-                        <td>大于号</td>
-                    </tr>
-                    <tr>
-                        <td>&amp;</td>
-                        <td>&amp;amp;</td>
-                        <td>和号</td>
-                    </tr>
-                    <tr>
-                        <td>"</td>
-                        <td>&amp;quot;</td>
-                        <td>引号</td>
-                    </tr>
-                    <tr>
-                        <td>'</td>
-                        <td>&amp;apos;</td>
-                        <td>撇号</td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;</td>
-                        <td>&amp;nbsp;</td>
-                        <td>空格</td>
-                    </tr>
-                    <tr>
-                        <td>©</td>
-                        <td>&amp;copy;</td>
-                        <td>版权符号</td>
-                    </tr>
-                    <tr>
-                        <td>®</td>
-                        <td>&amp;reg;</td>
-                        <td>注册商标</td>
-                    </tr>
-                    <tr>
-                        <td>™</td>
-                        <td>&amp;trade;</td>
-                        <td>商标</td>
-                    </tr>
-                    <tr>
-                        <td>¥</td>
-                        <td>&amp;yen;</td>
-                        <td>日元符号</td>
-                    </tr>
-                    <tr>
-                        <td>€</td>
-                        <td>&amp;euro;</td>
-                        <td>欧元符号</td>
-                    </tr>
-                    <tr>
-                        <td>£</td>
-                        <td>&amp;pound;</td>
-                        <td>英镑符号</td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <div class="lab-card">
-                <div class="lab-header">
-                    <span>实验 06：HTML实体的使用</div>
-                    <span id="badge-6" class="status-badge">未运行</div>
-                </div>
-                <div class="lab-body">
-                    <div class="html-editor" id="html-6" contenteditable="true">
-<div class="panel-label">HTML (可编辑)</div>
+<h3>4.1 常用HTML实体</h3>
+<table class="prop-table">
+<thead>
+<tr>
+<th>字符</th>
+<th>HTML实体</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;</td>
+<td>&amp;lt;</td>
+<td>小于号</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>&amp;gt;</td>
+<td>大于号</td>
+</tr>
+<tr>
+<td>&amp;</td>
+<td>&amp;amp;</td>
+<td>和号</td>
+</tr>
+<tr>
+<td>"</td>
+<td>&amp;quot;</td>
+<td>引号</td>
+</tr>
+<tr>
+<td>'</td>
+<td>&amp;apos;</td>
+<td>撇号</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>&amp;nbsp;</td>
+<td>空格</td>
+</tr>
+<tr>
+<td>&copy;</td>
+<td>&amp;copy;</td>
+<td>版权符号</td>
+</tr>
+<tr>
+<td>&reg;</td>
+<td>&amp;reg;</td>
+<td>注册商标</td>
+</tr>
+<tr>
+<td>&trade;</td>
+<td>&amp;trade;</td>
+<td>商标</td>
+</tr>
+<tr>
+<td>&yen;</td>
+<td>&amp;yen;</td>
+<td>日元符号</td>
+</tr>
+<tr>
+<td>&euro;</td>
+<td>&amp;euro;</td>
+<td>欧元符号</td>
+</tr>
+<tr>
+<td>&pound;</td>
+<td>&amp;pound;</td>
+<td>英镑符号</td>
+</tr>
+</tbody>
+</table>
+<div class="lab-card">
+<div class="lab-header">
+<span>实验 06：HTML实体的使用</span>
+<span class="status-badge" id="badge-6">未运行</span>
+</div>
+<div class="lab-body">
+<div class="panel-label">HTML (可编辑)</div><div class="html-editor" contenteditable="true" id="html-6">
 &lt;!DOCTYPE html&gt;
 &lt;html lang="zh-CN"&gt;
 &lt;head&gt;
@@ -384,67 +352,62 @@
 &lt;/head&gt;
 &lt;body&gt;
     &lt;h2&gt;HTML实体示例&lt;/h2&gt;
-    &lt;p&gt;5 &lt; 10&lt;/p&gt; &lt;!-- 显示：5 < 10 --&gt;
-    &lt;p&gt;10 &gt; 5&lt;/p&gt; &lt;!-- 显示：10 > 5 --&gt;
-    &lt;p&gt;AT&amp;T&lt;/p&gt; &lt;!-- 显示：AT&T --&gt;
-    &lt;p&gt;版权所有 © 2025&lt;/p&gt; &lt;!-- 显示：版权所有 © 2025 --&gt;
-    &lt;p&gt;注册商标 ®&lt;/p&gt; &lt;!-- 显示：注册商标 ® --&gt;
-    &lt;p&gt;商标 ™&lt;/p&gt; &lt;!-- 显示：商标 ™ --&gt;
-    &lt;p&gt;¥100&lt;/p&gt; &lt;!-- 显示：¥100 --&gt;
-    &lt;p&gt;€50&lt;/p&gt; &lt;!-- 显示：€50 --&gt;
-    &lt;p&gt;£20&lt;/p&gt; &lt;!-- 显示：£20 --&gt;
+    &lt;p&gt;5 &lt; 10&lt;/p&gt; &lt;!-- 显示：5 &lt; 10 --&gt;
+    &lt;p&gt;10 &gt; 5&lt;/p&gt; &lt;!-- 显示：10 &gt; 5 --&gt;
+    &lt;p&gt;AT&amp;T&lt;/p&gt; &lt;!-- 显示：AT&amp;T --&gt;
+    &lt;p&gt;版权所有 &copy; 2025&lt;/p&gt; &lt;!-- 显示：版权所有 &copy; 2025 --&gt;
+    &lt;p&gt;注册商标 &reg;&lt;/p&gt; &lt;!-- 显示：注册商标 &reg; --&gt;
+    &lt;p&gt;商标 &trade;&lt;/p&gt; &lt;!-- 显示：商标 &trade; --&gt;
+    &lt;p&gt;&yen;100&lt;/p&gt; &lt;!-- 显示：&yen;100 --&gt;
+    &lt;p&gt;&euro;50&lt;/p&gt; &lt;!-- 显示：&euro;50 --&gt;
+    &lt;p&gt;&pound;20&lt;/p&gt; &lt;!-- 显示：&pound;20 --&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 </div>
-                </div>
-                <div class="action-bar">
-                    <button class="btn btn-run" onclick="runHtmlExperiment('html-6', 'preview-6', 'badge-6')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetHtmlExperiment('html-6', 'preview-6', 'badge-6')">↺ 重置</button>
-                </div>
-                <div class="preview-box" id="preview-6">
-                    <div class="panel-label">预览效果</div>
-                </div>
-            </div>
-        </section>
-
-        <section id="exercise">
-            <h2>5. 课后练习</h2>
-            <p>
+</div>
+<div class="action-bar">
+<button class="btn btn-run" onclick="runHtmlExperiment('html-6', 'preview-6', 'badge-6')">▶ 运行代码</button>
+<button class="btn btn-reset" onclick="resetHtmlExperiment('html-6', 'preview-6', 'badge-6')">↺ 重置</button>
+</div>
+<div class="preview-box" id="preview-6">
+<div class="panel-label">预览效果</div>
+</div>
+</div></section>
+<section id="exercise">
+<h2>5. 课后练习</h2>
+<p>
                 现在，让我们通过一个简单的练习来巩固本节课所学的内容。
             </p>
-            
-            <div class="lab-card">
-                <div class="lab-header">
-                    <span>练习：创建一个简单的HTML文档</div>
-                    <span class="status-badge beginner">Beginner</div>
-                </div>
-                <div class="lab-body">
-                    <h3>练习目标</h3>
-                    <p>创建一个包含标题、段落、文本样式和特殊字符的HTML文档。</p>
-                    
-                    <h3>练习步骤</h3>
-                    <ol class="lab-steps">
-                        <li>创建一个新的HTML文件，命名为<code>exercise-2.html</code></li>
-                        <li>添加HTML基本结构（DOCTYPE、html、head、body标签）</li>
-                        <li>在head标签中添加title标签，设置页面标题为"HTML排版练习"</li>
-                        <li>在body标签中添加以下内容：
+<div class="lab-card">
+<div class="lab-header">
+<span>练习：创建一个简单的HTML文档</span>
+<span class="status-badge beginner">Beginner</span>
+</div>
+<div class="lab-body">
+<h3>练习目标</h3>
+<p>创建一个包含标题、段落、文本样式和特殊字符的HTML文档。</p>
+<h3>练习步骤</h3>
+<ol class="lab-steps">
+<li>创建一个新的HTML文件，命名为<code>exercise-2.html</code></li>
+<li>添加HTML基本结构（DOCTYPE、html、head、body标签）</li>
+<li>在head标签中添加title标签，设置页面标题为"HTML排版练习"</li>
+<li>在body标签中添加以下内容：
                             <ul>
-                                <li>一个一级标题"HTML排版练习"</li>
-                                <li>一个段落，包含粗体、斜体和下划线文本</li>
-                                <li>一个水平线</li>
-                                <li>一个二级标题"文本格式化示例"</li>
-                                <li>一个段落，包含下标和上标文本</li>
-                                <li>一个段落，包含特殊字符（小于号、大于号、和号）</li>
-                                <li>一个段落，包含版权符号和商标符号</li>
-                            </ul>
-                        </li>
-                        <li>保存文件并在浏览器中打开，查看效果</li>
-                    </ol>
-                    
-                    <h3>示例输出</h3>
-                    <div class="example-box">
-                        <h4>exercise-2.html</h4>
-                        <pre><code>&lt;!DOCTYPE html&gt;
+<li>一个一级标题"HTML排版练习"</li>
+<li>一个段落，包含粗体、斜体和下划线文本</li>
+<li>一个水平线</li>
+<li>一个二级标题"文本格式化示例"</li>
+<li>一个段落，包含下标和上标文本</li>
+<li>一个段落，包含特殊字符（小于号、大于号、和号）</li>
+<li>一个段落，包含版权符号和商标符号</li>
+</ul>
+</li>
+<li>保存文件并在浏览器中打开，查看效果</li>
+</ol>
+<h3>示例输出</h3>
+<div class="example-box">
+<h4>exercise-2.html</h4>
+<pre><code>&lt;!DOCTYPE html&gt;
 &lt;html lang="zh-CN"&gt;
 &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
@@ -458,21 +421,19 @@
     &lt;h2&gt;文本格式化示例&lt;/h2&gt;
     &lt;p&gt;H&lt;sub&gt;2&lt;/sub&gt;O 是水的化学式，2&lt;sup&gt;3&lt;/sup&gt; = 8&lt;/p&gt;
     &lt;p&gt;5 &lt; 10，10 &gt; 5，AT&amp;T是一家电信公司&lt;/p&gt;
-    &lt;p&gt;版权所有 © 2025，注册商标 ®，商标 ™&lt;/p&gt;
+    &lt;p&gt;版权所有 &copy; 2025，注册商标 &reg;，商标 &trade;&lt;/p&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
-                    </div>
-                </div>
-            </div>
-        
-        <div class="lab-card">
-            <div class="lab-header">
-                <span>实验：第2次课-HTML排版实践</div>
-                <span id="2html-status" class="status-badge">未运行</div>
-            </div>
-            <div class="lab-body">
-                <div class="panel-label">HTML (可编辑)</div>
-<div class="html-editor" id="2html-html" contenteditable="true">
+</div>
+</div>
+<div class="lab-card">
+<div class="lab-header">
+<span>实验：第2次课-HTML排版实践</span>
+<span class="status-badge" id="2html-status">未运行</span>
+</div>
+<div class="lab-body">
+<div class="panel-label">HTML (可编辑)</div>
+<div class="html-editor" contenteditable="true" id="2html-html">
 &lt;!DOCTYPE html&gt;
 &lt;html lang="zh-CN"&gt;
 &lt;head&gt;
@@ -489,38 +450,25 @@
 &lt;/body&gt;
 &lt;/html&gt;
 </div>
-            </div>
-            <div class="action-bar">
-                <button class="btn btn-run" onclick="runHtmlExperiment('2html-html', '2html-preview', '2html-status')">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="resetHtmlExperiment('2html-html', '2html-preview', '2html-status')">↺ 重置</button>
-            </div>
-            <div class="preview-box" id="2html-preview">
-                <div class="panel-label">预览效果</div>
-            </div>
-        </div>
-</section></main>
-
-    <script>
+</div>
+<div class="action-bar">
+<button class="btn btn-run" onclick="runHtmlExperiment('2html-html', '2html-preview', '2html-status')">▶ 运行代码</button>
+<button class="btn btn-reset" onclick="resetHtmlExperiment('2html-html', '2html-preview', '2html-status')">↺ 重置</button>
+</div>
+<div class="preview-box" id="2html-preview">
+<div class="panel-label">预览效果</div>
+</div>
+</div></div></section></main>
+<script>
         // 代码高亮功能（可选）
         document.querySelectorAll('pre code').forEach((block) => {
             // 简单的代码高亮实现
             block.innerHTML = block.innerHTML
-                .replace(/(&lt;.*?&gt;)/g, '<span style="color: #d73a49;">$1</div>')
-                .replace(/(\b\w+\b)(?=\s*:)/g, '<span style="color: #6f42c1;">$1</div>')
-                .replace(/(".*?")/g, '<span style="color: #032f62;">$1</div>')
-                .replace(/(\/\/.*$)/gm, '<span style="color: #6a737d;">$1</div>');
+                .replace(/(&lt;.*?&gt;)/g, '<span style="color: #d73a49;">$1</span>')
+                .replace(/(\b\w+\b)(?=\s*:)/g, '<span style="color: #6f42c1;">$1</span>')
+                .replace(/(".*?")/g, '<span style="color: #032f62;">$1</span>')
+                .replace(/(\/\/.*$)/gm, '<span style="color: #6a737d;">$1</span>');
         });
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-

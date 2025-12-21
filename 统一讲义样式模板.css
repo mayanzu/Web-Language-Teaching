@@ -637,6 +637,20 @@ table tr:hover td {
     font-weight: 500;
 }
 
+/* HTML 预览器样式 */
+.html-viewer {
+    font-family: var(--font-mono);
+    white-space: pre-wrap;
+    background: #f6f8fa;
+    padding: 15px;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 1.5;
+    overflow-x: auto;
+    color: var(--code-text);
+    border: 1px solid var(--border-color);
+}
+
 /* 响应式设计 */
 @media (max-width: 900px) {
     .lab-body.css-js-experiment {

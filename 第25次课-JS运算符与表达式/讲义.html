@@ -213,8 +213,8 @@ outputDiv.innerHTML = `
 
 
             <div class="action-bar">
-                <button class="btn btn-run" onclick="runCartLab()">▶ 重新计算</button>
-                <button class="btn btn-reset" onclick="resetCartLab()">↺ 重置代码</button>
+                <button class="btn btn-run" onclick="runJsDomExperiment('code-cart', null)">▶ 重新计算</button>
+                <button class="btn btn-reset" onclick="resetJsDomExperiment('code-cart', 'cart-output', null)">↺ 重置代码</button>
             </div>
 
 
@@ -286,8 +286,6 @@ console.log(++b); // b 变为 6, 然后打印 6
             <div class="lab-body split">
                 <div class="panel html-viewer">
 <div class="panel-label">HTML 预览</div>
-
-
 &lt;h3&gt;当前计数:&lt;/h3&gt;
 &lt;p id="count-display"&gt;0&lt;/p&gt;
 &lt;button onclick="increment()"&gt;增加 +1&lt;/button&gt;
@@ -318,8 +316,8 @@ function decrement() {
 
 
             <div class="action-bar">
-                <button class="btn btn-run" onclick="runCounterLab()">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="resetCounterLab()">↺ 重置代码</button>
+                <button class="btn btn-run" onclick="runJsDomExperiment('code-counter', null)">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetJsDomExperiment('code-counter', 'count-display', null)">↺ 重置代码</button>
             </div>
 
 
@@ -518,8 +516,8 @@ outputDiv.innerHTML = `
 
 
             <div class="action-bar">
-                <button class="btn btn-run" onclick="runGateLab()">▶ 审查资格</button>
-                <button class="btn btn-reset" onclick="resetGateLab()">↺ 重置代码</button>
+                <button class="btn btn-run" onclick="runJsDomExperiment('code-gate', null)">▶ 审查资格</button>
+                <button class="btn btn-reset" onclick="resetJsDomExperiment('code-gate', 'gate-output', null)">↺ 重置代码</button>
             </div>
 
 
@@ -625,8 +623,8 @@ if (0) { // 数字 0 被转为 false
 
             <div class="lab-body css-js-experiment">
                 <div>
-                    <div class="html-editor" id="25js-js" contenteditable="true">&lt;div class="panel-label"&gt;JavaScript (可编辑)</div>
-
+                    <div class="html-editor" id="25js-js" contenteditable="true">
+<div class="panel-label">JavaScript (可编辑)</div>
 // 第25次课-JS运算符与表达式实验
 
 // 在这里编写你的JavaScript代码

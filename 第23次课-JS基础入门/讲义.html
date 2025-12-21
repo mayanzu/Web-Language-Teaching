@@ -663,7 +663,7 @@ console.log('这行文字会显示在控制台里');
         <div class="warning-box">
             <span class="tip-title" style="color: #E65100;">常见错误示范</span>
             <p><strong>错误：把需要操作 DOM 的脚本放在 &lt;head&gt; 里</strong></p>
-<pre style="background: var(--code-bg); padding: 10px 14px; border-radius: 8px; overflow-x: auto; font-family: var(--font-mono); font-size: 12px; margin-top: 8px;"><code>&lt;head&gt;
+<pre><code>&lt;head&gt;
   &lt;script&gt;
     // ❌ 错误！这时 #demo 还不存在
     document.getElementById('demo').textContent = 'Hello';
@@ -673,7 +673,7 @@ console.log('这行文字会显示在控制台里');
   &lt;div id="demo"&gt;原始内容&lt;/div&gt;
 &lt;/body&gt;</code></pre>
             <p style="margin-top: 10px;"><strong>解决方法 1：移到 &lt;body&gt; 底部</strong></p>
-<pre style="background: var(--code-bg); padding: 10px 14px; border-radius: 8px; overflow-x: auto; font-family: var(--font-mono); font-size: 12px; margin-top: 8px;"><code>&lt;body&gt;
+<pre><code>&lt;body&gt;
   &lt;div id="demo"&gt;原始内容&lt;/div&gt;
   
   &lt;script&gt;
@@ -682,7 +682,7 @@ console.log('这行文字会显示在控制台里');
   &lt;/script&gt;
 &lt;/body&gt;</code></pre>
             <p style="margin-top: 10px;"><strong>解决方法 2：使用 defer 属性</strong></p>
-<pre style="background: var(--code-bg); padding: 10px 14px; border-radius: 8px; overflow-x: auto; font-family: var(--font-mono); font-size: 12px; margin-top: 8px;"><code>&lt;head&gt;
+<pre><code>&lt;head&gt;
   &lt;script src="app.js" defer&gt;&lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
@@ -715,32 +715,30 @@ console.log('这行文字会显示在控制台里');
 
             <div class="lab-body split">
                 <div class="panel html-viewer">
-                    <div class="panel-label">HTML 预览</div>
-
-                    &lt;h3&gt;预览区&lt;/h3&gt;
-                    &lt;p&gt;下面这个标题的文字会被右侧的 JavaScript 修改：&lt;/p&gt;
-                    &lt;h2 id="demo-title"&gt;原始标题&lt;/h2&gt;
+<div class="panel-label">HTML 预览</div>
+&lt;h3&gt;预览区&lt;/h3&gt;
+&lt;p&gt;下面这个标题的文字会被右侧的 JavaScript 修改：&lt;/p&gt;
+&lt;h2 id="demo-title"&gt;原始标题&lt;/h2&gt;
                 </div>
 
                 <div class="panel code-editor" id="code-title" contenteditable="true">
-                    <div class="panel-label">JavaScript (可编辑)</div>
+<div class="panel-label">JavaScript (可编辑)</div>
+// 第 1 步：通过 id 找到页面上的标题元素
+const titleElement = document.getElementById('demo-title');
 
-                    // 第 1 步：通过 id 找到页面上的标题元素
-                    const titleElement = document.getElementById('demo-title');
-                    
-                    // 第 2 步：修改这个元素的文字内容
-                    // TODO：把下面这行的文字改成你想要的内容
-                    
-                    if (titleElement) {
-                      titleElement.textContent = '原始标题（请在这里改成你想要的文案）';
-                    }
+// 第 2 步：修改这个元素的文字内容
+// TODO：把下面这行的文字改成你想要的内容
+
+if (titleElement) {
+  titleElement.textContent = '原始标题（请在这里改成你想要的文案）';
+}
                 </div>
 
             </div>
 
             <div class="action-bar">
-                <button class="btn btn-run" onclick="runTitleLab()">▶ 运行修改</button>
-                <button class="btn btn-reset" onclick="resetTitleLab()">↺ 重置代码</button>
+                <button class="btn btn-run" onclick="runJsExperiment('code-title', 'title-console')">▶ 运行修改</button>
+                <button class="btn btn-reset" onclick="resetJsExperiment('code-title', 'title-console')">↺ 重置代码</button>
             </div>
 
             <div class="preview-box" id="title-console">
@@ -768,35 +766,33 @@ console.log('这行文字会显示在控制台里');
 
             <div class="lab-body split">
                 <div class="panel html-viewer">
-                    <div class="panel-label">HTML 预览</div>
-
-                    &lt;h3&gt;欢迎实验&lt;/h3&gt;
-                    &lt;p&gt;点击下面的按钮，会执行右侧的 JavaScript 代码：&lt;/p&gt;
-                    &lt;button id="welcome-btn"&gt;点我弹出欢迎信息&lt;/button&gt;
+<div class="panel-label">HTML 预览</div>
+&lt;h3&gt;欢迎实验&lt;/h3&gt;
+&lt;p&gt;点击下面的按钮，会执行右侧的 JavaScript 代码：&lt;/p&gt;
+&lt;button id="welcome-btn"&gt;点我弹出欢迎信息&lt;/button&gt;
                 </div>
 
                 <div class="panel code-editor" id="code-alert" contenteditable="true">
-                    <div class="panel-label">JavaScript (可编辑)</div>
+<div class="panel-label">JavaScript (可编辑)</div>
+// 第 1 步：找到按钮元素
+const btn = document.getElementById('welcome-btn');
 
-                    // 第 1 步：找到按钮元素
-                    const btn = document.getElementById('welcome-btn');
-                    
-                    // 第 2 步：给按钮添加「点击」事件监听器
-                    // 意思是：当用户点击这个按钮时，执行下面花括号里的代码
-                    
-                    if (btn) {
-                      btn.addEventListener('click', function () {
-                        // TODO：修改这里的提示语，变成你自己的欢迎语
-                        alert('欢迎来到 JavaScript 的世界！');
-                      });
-                    }
+// 第 2 步：给按钮添加「点击」事件监听器
+// 意思是：当用户点击这个按钮时，执行下面花括号里的代码
+
+if (btn) {
+  btn.addEventListener('click', function () {
+    // TODO：修改这里的提示语，变成你自己的欢迎语
+    alert('欢迎来到 JavaScript 的世界！');
+  });
+}
                 </div>
 
             </div>
 
             <div class="action-bar">
-                <button class="btn btn-run" onclick="runAlertLab()">▶ 绑定点击事件</button>
-                <button class="btn btn-reset" onclick="resetAlertLab()">↺ 重置代码</button>
+                <button class="btn btn-run" onclick="runJsExperiment('code-alert', 'alert-console')">▶ 绑定点击事件</button>
+                <button class="btn btn-reset" onclick="resetJsExperiment('code-alert', 'alert-console')">↺ 重置代码</button>
             </div>
 
             <div class="preview-box" id="alert-console">
@@ -823,16 +819,32 @@ console.log('这行文字会显示在控制台里');
 
             <div class="lab-body css-js-experiment">
                 <div>
-                    <div class="html-editor" id="23js-js" contenteditable="true">&lt;div class="panel-label"&gt;JavaScript (可编辑)</div>
+                    <div class="html-editor" id="23js-js" contenteditable="true">
+<div class="panel-label">JavaScript (可编辑)</div>
+// 实验：点击按钮改变文字颜色
 
-// 第23次课-JS基础入门实验
+// 1. 获取预览区元素
+const outputDiv = document.getElementById('23js-output');
 
-// 在这里编写你的JavaScript代码
+// 2. 向预览区添加 HTML 内容
+outputDiv.innerHTML = `
+  &lt;p id="my-text"&gt;这是一段可以变色的文字&lt;/p&gt;
+  &lt;button onclick="changeColor()"&gt;变红&lt;/button&gt;
+  &lt;button onclick="resetColor()"&gt;重置&lt;/button&gt;
+`;
 
-// 示例代码
-console.log('第23次课-JS基础入门实验开始');
+// 3. 定义功能函数
+function changeColor() {
+  const text = document.getElementById('my-text');
+  text.style.color = 'red';
+  text.style.fontSize = '24px';
+}
 
-// 在这里添加更多JavaScript代码
+function resetColor() {
+  const text = document.getElementById('my-text');
+  text.style.color = 'black';
+  text.style.fontSize = '16px';
+}
                     </div>
 
                 </div>

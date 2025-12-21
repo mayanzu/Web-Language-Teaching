@@ -21,6 +21,17 @@ document.addEventListener('DOMContentLoaded', function() {
         const id = editor.id.replace('-html', '');
         initialContents[id] = editor.innerHTML;
     });
+
+    // 存储所有代码编辑器和预览区域的初始内容
+    const allEditors = document.querySelectorAll('.code-editor, .html-editor');
+    allEditors.forEach(editor => {
+        if (editor.id) initialContents[editor.id] = editor.innerHTML;
+    });
+
+    const allPreviews = document.querySelectorAll('[id*="preview"], [id*="output"], [id*="display"]');
+    allPreviews.forEach(preview => {
+        if (preview.id) initialContents[preview.id] = preview.innerHTML;
+    });
 });
 
 // 运行HTML实验
@@ -130,6 +141,58 @@ function runJsExperiment(editorId, previewId, statusId) {
                 status.className = 'status-badge active';
             }
         }
+    }
+}
+
+// 运行JS DOM实验 (不覆盖预览区，只执行代码)
+function runJsDomExperiment(editorId, statusId) {
+    const editor = document.getElementById(editorId);
+    const status = document.getElementById(statusId);
+    
+    if (editor) {
+        let code = editor.innerText;
+        code = code.replace('JavaScript (可编辑)', '');
+        
+        // 自动查找顶层函数并挂载到 window，以便 HTML 中的 onclick 能调用
+        const functionMatches = code.matchAll(/(?:async\s+)?function\s+([a-zA-Z_$][0-9a-zA-Z_$]*)\s*\(/g);
+        let exportCode = '\n// Auto-export functions to window\n';
+        for (const match of functionMatches) {
+            const funcName = match[1];
+            exportCode += `if (typeof ${funcName} === 'function') { window.${funcName} = ${funcName}; }\n`;
+        }
+        
+        try {
+            // 使用普通 eval (保留局部作用域，支持 let 重复运行)，但配合 exportCode 暴露函数
+            eval(code + exportCode);
+            
+            if (status) {
+                status.textContent = '已运行';
+                status.className = 'status-badge active';
+            }
+        } catch (error) {
+            console.error(error);
+            alert('运行出错: ' + error.message);
+        }
+    }
+}
+
+// 重置JS DOM实验
+function resetJsDomExperiment(editorId, previewId, statusId) {
+    const editor = document.getElementById(editorId);
+    const preview = document.getElementById(previewId);
+    const status = document.getElementById(statusId);
+    
+    if (editor && initialContents[editorId]) {
+        editor.innerHTML = initialContents[editorId];
+    }
+    
+    if (preview && initialContents[previewId]) {
+        preview.innerHTML = initialContents[previewId];
+    }
+    
+    if (status) {
+        status.textContent = '未运行';
+        status.className = 'status-badge';
     }
 }
 

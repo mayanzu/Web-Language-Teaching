@@ -352,21 +352,21 @@ function selectByClass() {
     let result = `✅ 找到${boxes.length}个盒子:\n`;
     boxes.forEach((box, index) =&gt; {
         result += `${index + 1}. ${box.innerText}\n`;
-        });
-        output.innerText = result;
-    }
+    });
+    output.innerText = result;
+}
 
-    function selectSpecial() {
-        // 使用CSS选择器选择特殊盒子
-        const special = document.querySelector('.box.special');
-        const output = document.getElementById('output');
+function selectSpecial() {
+    // 使用CSS选择器选择特殊盒子
+    const special = document.querySelector('.box.special');
+    const output = document.getElementById('output');
   
-        if (special) {
-            output.innerText = `✅ 找到特殊盒子: "${special.innerText}"`;
-            } else {
-                output.innerText = '❌ 未找到特殊盒子';
-            }
-        }</div>
+    if (special) {
+        output.innerText = `✅ 找到特殊盒子: "${special.innerText}"`;
+    } else {
+        output.innerText = '❌ 未找到特殊盒子';
+    }
+}</div>
 
 
           </div>
@@ -376,15 +376,24 @@ function selectByClass() {
 
 
         <div class="action-bar">
-          <button class="btn btn-run" onclick="runLab1()">▶ 运行代码</button>
-          <button class="btn btn-reset" onclick="resetLab1()">↻ 重置</button>
+          <button class="btn btn-run" onclick="runJsDomExperiment('lab1-code', null)">▶ 运行代码</button>
+          <button class="btn btn-reset" onclick="resetJsDomExperiment('lab1-code', 'lab1-preview', null)">↻ 重置</button>
           <span style="color:#999;font-size:13px;">点击按钮测试不同的选择器</span>
 
 
         </div>
 
 
-        <div class="preview-box" id="lab1-preview"></div>
+        <div class="preview-box" id="lab1-preview">
+            <h3 id="title">元素选择练习</h3>
+            <div class="box">盒子1</div>
+            <div class="box">盒子2</div>
+            <div class="box special">特殊盒子</div>
+            <button onclick="selectById()">选择标题(ID)</button>
+            <button onclick="selectByClass()">选择所有盒子</button>
+            <button onclick="selectSpecial()">选择特殊盒子</button>
+            <div id="output" style="margin-top:15px;padding:10px;background:#f0f0f0;border-radius:5px;"></div>
+        </div>
 
 
       </div>
@@ -622,29 +631,29 @@ img.removeAttribute('alt');
         // 使用innerText安全地设置文本
         title.innerText = input.value;
         input.value = '';
-        } else {
-            alert('请输入标题内容');
-        }
+    } else {
+        alert('请输入标题内容');
     }
+}
 
-    function changeContent() {
-        const input = document.getElementById('contentInput');
-        const content = document.getElementById('displayContent');
+function changeContent() {
+    const input = document.getElementById('contentInput');
+    const content = document.getElementById('displayContent');
   
-        if (input.value.trim()) {
-            // 使用innerHTML设置HTML内容
-            content.innerHTML = input.value;
-            input.value = '';
-            } else {
-                alert('请输入内容');
-            }
-        }
+    if (input.value.trim()) {
+        // 使用innerHTML设置HTML内容
+        content.innerHTML = input.value;
+        input.value = '';
+    } else {
+        alert('请输入内容');
+    }
+}
 
-        function clearContent() {
-            const content = document.getElementById('displayContent');
-            content.innerHTML = '';
-            alert('✅ 内容已清空');
-        }</div>
+function clearContent() {
+    const content = document.getElementById('displayContent');
+    content.innerHTML = '';
+    alert('✅ 内容已清空');
+}</div>
 
 
           </div>
@@ -654,15 +663,31 @@ img.removeAttribute('alt');
 
 
         <div class="action-bar">
-          <button class="btn btn-run" onclick="runLab2()">▶ 运行代码</button>
-          <button class="btn btn-reset" onclick="resetLab2()">↻ 重置</button>
+          <button class="btn btn-run" onclick="runJsDomExperiment('lab2-code', null)">▶ 运行代码</button>
+          <button class="btn btn-reset" onclick="resetJsDomExperiment('lab2-code', 'lab2-preview', null)">↻ 重置</button>
           <span style="color:#999;font-size:13px;">试试输入文本和HTML代码</span>
 
 
         </div>
 
 
-        <div class="preview-box" id="lab2-preview"></div>
+        <div class="preview-box" id="lab2-preview">
+            <h3>✏️ 动态内容编辑器</h3>
+            <div>
+                <input id="titleInput" placeholder="输入新标题">
+                <button onclick="changeTitle()">修改标题</button>
+            </div>
+            <div style="margin-top:10px;">
+                <textarea id="contentInput" placeholder="输入HTML内容" style="width:300px;height:60px;"></textarea>
+                <br>
+                <button onclick="changeContent()">修改内容</button>
+                <button onclick="clearContent()">清空内容</button>
+            </div>
+            <div id="display" style="margin-top:15px;padding:15px;background:#fff3cd;border-radius:5px;">
+                <h2 id="displayTitle">默认标题</h2>
+                <div id="displayContent">默认内容</div>
+            </div>
+        </div>
 
 
       </div>
@@ -760,16 +785,35 @@ if (box.classList.contains('highlight')) {
 
 
             <div class="html-editor" contenteditable="true" id="lab3-code">function toggleTheme() {
-    const display = document.getElementById('display');
-    display.classList.toggle('theme-dark');
-}
-
-function toggleSize() {
-    const display = document.getElementById('display');
-    display.classList.toggle('large-text');
-}</div>
+        <div class="action-bar">
+          <button class="btn btn-run" onclick="runJsDomExperiment('lab3-code', null)">▶ 运行代码</button>
+          <button class="btn btn-reset" onclick="resetJsDomExperiment('lab3-code', 'lab3-preview', null)">↻ 重置</button>
+          <span style="color:#999;font-size:13px;">试试不同的样式切换效果</span>
 
 
+        </div>
+
+
+        <div class="preview-box" id="lab3-preview">
+            <h3>样式切换器</h3>
+            <div>
+                <button onclick="toggleTheme()">切换主题</button>
+                <button onclick="toggleSize()">切换大小</button>
+            </div>
+            <div id="display" style="margin-top:15px;padding:15px;background:#f0f0f0;">
+                这是一段可以改变样式的文本
+            </div>
+            <style>
+                .theme-dark {
+                    background-color: #333;
+                    color: white;
+                    padding: 20px;
+                }
+                .large-text {
+                    font-size: 20px;
+                }
+            </style>
+        </div>
           </div>
 
 
@@ -877,30 +921,53 @@ function addTodo() {
     const text = input.value.trim();
   
     if (!text) {
-        alert('请输入待办事项');
-        return;
-    }
-  
-    // 创建待办项
-    const todoItem = document.createElement('div');
-    todoItem.className = 'todo-item';
-    todoItem.id = 'todo-' + (++todoCount);
-  
-    const todoText = document.createElement('span');
-    todoText.innerText = text;
-  
-    const deleteBtn = document.createElement('button');
-    deleteBtn.className = 'delete-btn';
-    deleteBtn.innerText = '删除';
-    deleteBtn.onclick = function() {
-        todoItem.remove();
-    };
-  
     todoItem.appendChild(todoText);
     todoItem.appendChild(deleteBtn);
   
     document.getElementById('todoList').appendChild(todoItem);
     input.value = '';
+}</div>
+
+
+          </div>
+
+
+        </div>
+
+
+        <div class="action-bar">
+          <button class="btn btn-run" onclick="runJsDomExperiment('lab4-code', null)">▶ 运行代码</button>
+          <button class="btn btn-reset" onclick="resetJsDomExperiment('lab4-code', 'lab4-preview', null)">↻ 重置</button>
+          <span style="color:#999;font-size:13px;">动态创建和删除元素</span>
+
+
+        </div>
+
+
+        <div class="preview-box" id="lab4-preview">
+            <h3>动态待办列表</h3>
+            <input id="todoInput" placeholder="输入待办事项">
+            <button onclick="addTodo()">添加</button>
+            <div id="todoList" style="margin-top:15px;"></div>
+            <style>
+                .todo-item {
+                    padding: 10px;
+                    margin: 5px 0;
+                    background: #f0f0f0;
+                    border-radius: 5px;
+                    display: flex;
+                    justify-content: space-between;
+                }
+                .delete-btn {
+                    background: #ff4444;
+                    color: white;
+                    border: none;
+                    padding: 5px 10px;
+                    border-radius: 3px;
+                    cursor: pointer;
+                }
+            </style>
+        </div>
 }</div>
 
 
@@ -997,29 +1064,6 @@ function addTodo() {
             <div class="html-editor" contenteditable="true" id="lab5-code">let cardId = 0;
 
 function addCard() {
-    const titleInput = document.getElementById('cardTitle');
-    const title = titleInput.value.trim();
-  
-    if (!title) {
-        alert('请输入卡片标题');
-        return;
-    }
-  
-    const card = document.createElement('div');
-    card.className = 'card';
-    card.id = 'card-' + (++cardId);
-  
-    const cardTitle = document.createElement('div');
-    cardTitle.className = 'card-title';
-    cardTitle.innerText = title;
-  
-    const deleteBtn = document.createElement('button');
-    deleteBtn.className = 'card-btn';
-    deleteBtn.innerText = '删除';
-    deleteBtn.onclick = function() {
-        card.remove();
-    };
-  
     card.appendChild(cardTitle);
     card.appendChild(deleteBtn);
   
@@ -1042,16 +1086,64 @@ function clearAll() {
 
 
         <div class="action-bar">
-          <button class="btn btn-run" onclick="runLab5()">▶ 运行代码</button>
-          <button class="btn btn-reset" onclick="resetLab5()">↻ 重置</button>
+          <button class="btn btn-run" onclick="runJsDomExperiment('lab5-code', null)">▶ 运行代码</button>
+          <button class="btn btn-reset" onclick="resetJsDomExperiment('lab5-code', 'lab5-preview', null)">↻ 重置</button>
           <span style="color:#999;font-size:13px;">完整的卡片管理系统</span>
 
 
         </div>
 
 
-        <div class="preview-box" id="lab5-preview"></div>
+        <div class="preview-box" id="lab5-preview">
+            <h3>🎴 卡片管理器</h3>
+            <input id="cardTitle" placeholder="卡片标题">
+            <button onclick="addCard()">添加卡片</button>
+            <button onclick="clearAll()">清空全部</button>
+            <div id="cardGrid"></div>
+            <style>
+                .card {
+                    padding: 15px;
+                    margin: 10px 0;
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    color: white;
+                    border-radius: 8px;
+                }
+                .card-title { font-size: 16px; font-weight: bold; }
+                .card-btn {
+                    background: rgba(255,255,255,0.3);
+                    color: white;
+                    border: none;
+                    padding: 5px 10px;
+                    margin-top: 8px;
+                    border-radius: 4px;
+                    cursor: pointer;
+                }
+            </style>
+        </div>
+    if (confirm('确定要删除所有卡片吗?')) {
+        document.getElementById('cardGrid').innerHTML = '';
+        cardId = 0;
+    }
+}</div>
 
+
+          </div>
+
+
+        </div>
+
+
+        <div class="action-bar">
+          <button class="btn btn-run" onclick="runLab5()">▶ 运行代码</button>
+          <button class="btn btn-reset" onclick="resetLab5()">↻ 重置</button>
+          <span style="color:#999;font-size:13px;">完整的卡片管理系统</span>
+
+
+            <div class="lab-body css-js-experiment">
+                <div>
+                    <div class="html-editor" id="29jsdom-js" contenteditable="true">
+<div class="panel-label">JavaScript (可编辑)</div>
+// 第29次课-JS DOM操作实验
 
       </div>
 
@@ -1077,10 +1169,10 @@ function clearAll() {
       </div>
 
 
-      
-      <div class="note-box">
-        <span class="tip-title">下一课预告</span>
-
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runJsDomExperiment('29jsdom-js', '29jsdom-status')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetJsDomExperiment('29jsdom-js', '29jsdom-preview', '29jsdom-status')">↺ 重置</button>
+            </div>
 
         <p>第8课将学习<strong>事件处理</strong>,让网页能够响应用户的点击、输入等各种操作,构建完整的交互式应用!</p>
       </div>

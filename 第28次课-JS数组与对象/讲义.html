@@ -347,10 +347,10 @@ function addTask() {
     if (task) {
         tasks.push(task);
         input.value = '';
-        document.getElementById('output').innerText =
+        document.getElementById('lab1-output').innerText =
         `✅ 已添加：${task}\n当前共${tasks.length}个任务`;
         } else {
-            document.getElementById('output').innerText =
+            document.getElementById('lab1-output').innerText =
             "请输入任务内容！";
         }
     }
@@ -358,21 +358,21 @@ function addTask() {
     function removeLastTask() {
         if (tasks.length &gt; 0) {
             const removed = tasks.pop();
-            document.getElementById('output').innerText =
+            document.getElementById('lab1-output').innerText =
             `🗑️ 已删除：${removed}\n剩余${tasks.length}个任务`;
             } else {
-                document.getElementById('output').innerText = "📭 任务列表已空！";
+                document.getElementById('lab1-output').innerText = "📭 任务列表已空！";
             }
         }
 
         function showTasks() {
             if (tasks.length === 0) {
-                document.getElementById('output').innerText = "📭 暂无任务";
+                document.getElementById('lab1-output').innerText = "📭 暂无任务";
                 } else {
                     const taskList = tasks.map((task, index) =&gt;
                     `${index + 1}. ${task}`
                     ).join('\n');
-                    document.getElementById('output').innerText =
+                    document.getElementById('lab1-output').innerText =
                     `当前任务列表：\n${taskList}`;
                 }
             }</div>
@@ -385,15 +385,24 @@ function addTask() {
 
 
         <div class="action-bar">
-          <button class="btn btn-run" onclick="runLab1()">▶ 运行代码</button>
-          <button class="btn btn-reset" onclick="resetLab1()">↻ 重置</button>
+          <button class="btn btn-run" onclick="runJsDomExperiment('lab1-code', null)">▶ 运行代码</button>
+          <button class="btn btn-reset" onclick="resetJsDomExperiment('lab1-code', 'lab1-preview', null)">↻ 重置</button>
           <span style="color:#999;font-size:13px;">测试数组的添加、删除和显示功能</span>
 
 
         </div>
 
 
-        <div class="preview-box" id="lab1-preview"></div>
+        <div class="preview-box" id="lab1-preview">
+            <h3>待办事项管理</h3>
+            <div>
+                <input id="taskInput" placeholder="输入新任务">
+                <button onclick="addTask()">添加</button>
+                <button onclick="removeLastTask()">删除最后一个</button>
+                <button onclick="showTasks()">显示全部</button>
+            </div>
+            <div id="lab1-output" style="margin-top:15px;padding:10px;background:#f9f9f9;border-radius:5px;white-space:pre-line;"></div>
+        </div>
 
 
       </div>
@@ -689,7 +698,7 @@ function updateStudent() {
     if (age) student.age = parseInt(age);
     if (major) student.major = major;
   
-    document.getElementById('output').innerText =
+    document.getElementById('lab2-output').innerText =
     "✅ 信息已更新！\n点击'显示信息'查看";
 }
 
@@ -697,7 +706,7 @@ function showStudent() {
     const info = student.getInfo();
     const propCount = Object.keys(student).length - 1;
   
-    document.getElementById('output').innerText =
+    document.getElementById('lab2-output').innerText =
     `📋 学生信息：\n${info}\n\n共有${propCount}个属性`;
 }</div>
 
@@ -709,15 +718,25 @@ function showStudent() {
 
 
         <div class="action-bar">
-          <button class="btn btn-run" onclick="runLab2()">▶ 运行代码</button>
-          <button class="btn btn-reset" onclick="resetLab2()">↻ 重置</button>
+          <button class="btn btn-run" onclick="runJsDomExperiment('lab2-code', null)">▶ 运行代码</button>
+          <button class="btn btn-reset" onclick="resetJsDomExperiment('lab2-code', 'lab2-preview', null)">↻ 重置</button>
           <span style="color:#999;font-size:13px;">测试对象属性的修改和方法调用</span>
 
 
         </div>
 
 
-        <div class="preview-box" id="lab2-preview"></div>
+        <div class="preview-box" id="lab2-preview">
+            <h3>👨‍🎓 学生信息管理</h3>
+            <div>
+                <input id="nameInput" placeholder="姓名">
+                <input id="ageInput" placeholder="年龄" type="number">
+                <input id="majorInput" placeholder="专业">
+                <button onclick="updateStudent()">更新信息</button>
+                <button onclick="showStudent()">显示信息</button>
+            </div>
+            <div id="lab2-output" style="margin-top:15px;padding:10px;background:#f0f8ff;border-radius:5px;white-space:pre-line;"></div>
+        </div>
 
 
       </div>
@@ -938,7 +957,7 @@ function showAll() {
     const list = students.map(s =&gt;
     `${s.name}（${s.age}岁）- ${s.score}分 [${s.grade}]`
     ).join('\n');
-    document.getElementById('output').innerText =
+    document.getElementById('lab3-output').innerText =
     `📋 全部学生（${students.length}人）：\n${list}`;
 }
 
@@ -946,20 +965,20 @@ function showTopStudent() {
     const top = students.reduce((max, s) =&gt;
     s.score &gt; max.score ? s : max
 );
-document.getElementById('output').innerText =
+document.getElementById('lab3-output').innerText =
 `🏆 最高分学生：\n${top.name} - ${top.score}分 [${top.grade}]`;
 }
 
 function showAverage() {
     const avg = students.reduce((sum, s) =&gt; sum + s.score, 0) / students.length;
-    document.getElementById('output').innerText =
+    document.getElementById('lab3-output').innerText =
     `📈 平均分：${avg.toFixed(2)}分`;
 }
 
 function showPassed() {
     const passed = students.filter(s =&gt; s.score &gt;= 60);
     const list = passed.map(s =&gt; `${s.name}: ${s.score}分`).join('\n');
-    document.getElementById('output').innerText =
+    document.getElementById('lab3-output').innerText =
     `✅ 及格学生（${passed.length}/${students.length}人）：\n${list}`;
 }</div>
 
@@ -971,15 +990,24 @@ function showPassed() {
 
 
         <div class="action-bar">
-          <button class="btn btn-run" onclick="runLab3()">▶ 运行代码</button>
-          <button class="btn btn-reset" onclick="resetLab3()">↻ 重置</button>
+          <button class="btn btn-run" onclick="runJsDomExperiment('lab3-code', null)">▶ 运行代码</button>
+          <button class="btn btn-reset" onclick="resetJsDomExperiment('lab3-code', 'lab3-preview', null)">↻ 重置</button>
           <span style="color:#999;font-size:13px;">综合运用数组方法和对象操作</span>
 
 
         </div>
 
 
-        <div class="preview-box" id="lab3-preview"></div>
+        <div class="preview-box" id="lab3-preview">
+            <h3>📊 学生成绩分析系统</h3>
+            <div>
+                <button onclick="showAll()">显示全部学生</button>
+                <button onclick="showTopStudent()">最高分学生</button>
+                <button onclick="showAverage()">计算平均分</button>
+                <button onclick="showPassed()">及格学生</button>
+            </div>
+            <div id="lab3-output" style="margin-top:15px;padding:12px;background:#f5f5f5;border-radius:5px;white-space:pre-line;"></div>
+        </div>
 
 
       </div>
@@ -1135,16 +1163,41 @@ function showStats() {
     `最早出版：${oldest}年\n` +
     `作者数量：${authors.length}位\n` +
     `作者列表：${authors.join(', ')}`;
-}</div>
-
-
-          </div>
+        <div class="action-bar">
+          <button class="btn btn-run" onclick="runJsDomExperiment('lab4-code', null)">▶ 运行代码</button>
+          <button class="btn btn-reset" onclick="resetJsDomExperiment('lab4-code', 'lab4-preview', null)">↻ 重置</button>
+          <span style="color:#999;font-size:13px;">完整的图书管理系统，包含增删查改功能</span>
 
 
         </div>
 
 
-        <div class="action-bar">
+        <div class="preview-box" id="lab4-preview">
+            <div class="book-manager">
+                <h3>图书管理系统</h3>
+                <div class="input-row">
+                    <input id="bookTitle" placeholder="书名">
+                    <input id="bookAuthor" placeholder="作者">
+                    <input id="bookYear" type="number" placeholder="出版年份">
+                </div>
+                <div class="btn-group">
+                    <button class="book-btn" onclick="addBook()">➕ 添加图书</button>
+                    <button class="book-btn" onclick="showAllBooks()">📖 显示全部</button>
+                    <button class="book-btn" onclick="searchByAuthor()">按作者搜索</button>
+                    <button class="book-btn" onclick="showStats()">📊 统计信息</button>
+                </div>
+                <div id="book-result">等待操作...</div>
+            </div>
+            <style>
+                .book-manager { max-width: 500px; padding: 20px; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+                .input-row { display: flex; gap: 8px; margin-bottom: 10px; }
+                .input-row input { flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 6px; }
+                .btn-group { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin: 12px 0; }
+                .book-btn { padding: 10px; background: #0066CC; color: white; border: none; border-radius: 6px; cursor: pointer; }
+                .book-btn:hover { background: #0055B3; }
+                #book-result { margin-top: 15px; padding: 12px; background: #f9f9f9; border-radius: 6px; min-height: 100px; white-space: pre-line; }
+            </style>
+        </div>
           <button class="btn btn-run" onclick="runLab4()">▶ 运行代码</button>
           <button class="btn btn-reset" onclick="resetLab4()">↻ 重置</button>
           <span style="color:#999;font-size:13px;">完整的图书管理系统，包含增删查改功能</span>
@@ -1191,11 +1244,11 @@ function showStats() {
           <li><strong>JSON：</strong>数据交换格式，JSON.stringify()和JSON.parse()</li>
           <li><strong>嵌套结构：</strong>数组包含对象、对象包含数组的复杂数据结构</li>
         </ul>
-      </div>
-
-
-      
-      <div class="tip-box">
+            <div class="lab-body css-js-experiment">
+                <div>
+                    <div class="html-editor" id="28js-js" contenteditable="true">
+<div class="panel-label">JavaScript (可编辑)</div>
+// 第28次课-JS数组与对象实验tip-box">
             <span class="tip-title">💪 练习建议</span>
 
 
@@ -1247,8 +1300,8 @@ console.log('第28次课-JS数组与对象实验开始');
         </div>
 
             <div class="action-bar">
-                <button class="btn btn-run" onclick="run28jsExperiment()">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="reset28jsExperiment()">↺ 重置</button>
+                <button class="btn btn-run" onclick="runJsDomExperiment('28js-js', '28js-status')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetJsDomExperiment('28js-js', '28js-preview', '28js-status')">↺ 重置</button>
             </div>
 
         </div>

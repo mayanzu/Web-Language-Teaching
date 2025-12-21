@@ -869,8 +869,8 @@ console.log(5 === '5'); // false (推荐使用)
 
             <div class="lab-body css-js-experiment">
                 <div>
-                    <div class="html-editor" id="profile-js" contenteditable="true">&lt;div class="panel-label"&gt;JavaScript (可编辑)</div>
-
+                    <div class="html-editor" id="profile-js" contenteditable="true">
+<div class="panel-label">JavaScript (可编辑)</div>
 // 使用 const 声明三种不同类型的变量
 const userName = '李明';     // 字符串类型
 const userAge = 18;          // 数字类型
@@ -897,7 +897,8 @@ console.log('userName 的类型:', typeof userName);
 console.log('userAge 的类型:', typeof userAge);
 console.log('isStudent 的类型:', typeof isStudent);
 console.log('userCity 的类型:', typeof userCity);
-console.log('userScore 的类型:', typeof userScore);</div>
+console.log('userScore 的类型:', typeof userScore);
+                    </div>
 
                 </div>
 
@@ -947,8 +948,8 @@ console.log('userScore 的类型:', typeof userScore);</div>
             </div>
 
             <div class="action-bar">
-                <button class="btn btn-run" onclick="runProfileExperiment()">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="resetProfileExperiment()">↺ 重置</button>
+                <button class="btn btn-run" onclick="runJsDomExperiment('profile-js', 'profile-status')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetJsDomExperiment('profile-js', 'profile-preview', 'profile-status')">↺ 重置</button>
             </div>
 
         </div>
@@ -986,27 +987,20 @@ console.log('userScore 的类型:', typeof userScore);</div>
             </div>
 
             <div class="lab-body split">
-                <div class="panel html-viewer">
+                <div class="panel html-viewer" id="profile-demo-preview">
                     <div class="panel-label">预览区域</div>
 
                     <div class="profile-card">
                         <h3>个人信息</h3>
-                        <p>姓名：<span id="profile-name">（未设置）</span>
-
-</p>
-                        <p>年龄：<span id="profile-age">--</span>
-
-</p>
-                        <p>是否是学生：<span id="profile-student">--</span>
-
-</p>
+                        <p>姓名：<span id="profile-name">（未设置）</span></p>
+                        <p>年龄：<span id="profile-age">--</span></p>
+                        <p>是否是学生：<span id="profile-student">--</span></p>
                     </div>
 
                 </div>
 
                 <div class="panel code-editor" id="code-profile" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
-
 // 修改下面这些变量的值，然后点击「更新卡片」
 
 let userName = '小明';     // string
@@ -1025,8 +1019,8 @@ if (studentEl) studentEl.textContent = isStudent ? '是' : '否';
             </div>
 
             <div class="action-bar">
-                <button class="btn btn-run" onclick="runProfileLab()">▶ 更新卡片</button>
-                <button class="btn btn-reset" onclick="resetProfileLab()">↺ 重置代码</button>
+                <button class="btn btn-run" onclick="runJsDomExperiment('code-profile', null)">▶ 更新卡片</button>
+                <button class="btn btn-reset" onclick="resetJsDomExperiment('code-profile', 'profile-demo-preview', null)">↺ 重置代码</button>
             </div>
 
             <div class="preview-box" id="profile-console">
@@ -1040,24 +1034,35 @@ if (studentEl) studentEl.textContent = isStudent ? '是' : '否';
         <div class="lab-card">
             <div class="lab-header">
                 <span>实验：第24次课-JS变量与数据类型实践</span>
-
                 <span id="24js-status" class="status-badge">未运行</span>
-
             </div>
 
             <div class="lab-body css-js-experiment">
                 <div>
-                    <div class="html-editor" id="24js-js" contenteditable="true">&lt;div class="panel-label"&gt;JavaScript (可编辑)</div>
+                    <div class="html-editor" id="24js-js" contenteditable="true">
+<div class="panel-label">JavaScript (可编辑)</div>
+// 实验：计算 BMI 指数
+// 公式：BMI = 体重(kg) / (身高(m) * 身高(m))
 
-// 第24次课-JS变量与数据类型实验
+// 1. 定义变量
+let weight = 70;   // 公斤
+let height = 1.75; // 米
 
-// 在这里编写你的JavaScript代码
+// 2. 计算 BMI
+let bmi = weight / (height * height);
 
-// 示例代码
-console.log('第24次课-JS变量与数据类型实验开始');
+// 3. 获取输出元素
+const output = document.getElementById('24js-output');
 
-// 在这里添加更多JavaScript代码
-</div>
+// 4. 显示结果
+output.innerHTML = `
+  &lt;p&gt;体重: ${weight} kg&lt;/p&gt;
+  &lt;p&gt;身高: ${height} m&lt;/p&gt;
+  &lt;p&gt;BMI: &lt;strong&gt;${bmi.toFixed(1)}&lt;/strong&gt;&lt;/p&gt;
+`;
+
+// 尝试修改上面的 weight 和 height 变量，重新运行看看！
+                    </div>
 
                 </div>
 
@@ -1066,18 +1071,21 @@ console.log('第24次课-JS变量与数据类型实验开始');
                         <div class="panel-label">预览效果</div>
 
                         <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                            <h3>第24次课-JS变量与数据类型实验</h3>
+                            <h3>BMI 计算器</h3>
                             <div id="24js-output">
                                 <p>点击「运行代码」查看结果</p>
                             </div>
+                        </div>
+
+                    </div>
+
+                </div>
 
             </div>
 
-        </div>
-
             <div class="action-bar">
-                <button class="btn btn-run" onclick="runJsExperiment('24js-js', '24js-preview', '24js-status')">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="resetJsExperiment('24js-js', '24js-preview', '24js-status')">↺ 重置</button>
+                <button class="btn btn-run" onclick="runJsDomExperiment('24js-js', '24js-status')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetJsDomExperiment('24js-js', '24js-preview', '24js-status')">↺ 重置</button>
             </div>
 
         </div>

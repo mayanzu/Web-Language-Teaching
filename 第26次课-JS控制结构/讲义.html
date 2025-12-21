@@ -230,8 +230,8 @@ function evaluateScore() {
 
 
             <div class="action-bar">
-                <button class="btn btn-run" onclick="runGradeLab()">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="resetGradeLab()">↺ 重置代码</button>
+                <button class="btn btn-run" onclick="runJsDomExperiment('code-grade', null)">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetJsDomExperiment('code-grade', 'grade-result', null)">↺ 重置代码</button>
             </div>
 
 
@@ -443,8 +443,8 @@ function checkWeekday() {
 
 
             <div class="action-bar">
-                <button class="btn btn-run" onclick="runWeekdayLab()">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="resetWeekdayLab()">↺ 重置代码</button>
+                <button class="btn btn-run" onclick="runJsDomExperiment('code-weekday', null)">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetJsDomExperiment('code-weekday', 'weekday-result', null)">↺ 重置代码</button>
             </div>
 
 
@@ -590,8 +590,8 @@ function generateTable() {
 
 
             <div class="action-bar">
-                <button class="btn btn-run" onclick="runTableLab()">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="resetTableLab()">↺ 重置代码</button>
+                <button class="btn btn-run" onclick="runJsDomExperiment('code-table', null)">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetJsDomExperiment('code-table', 'table-output', null)">↺ 重置代码</button>
             </div>
 
 
@@ -792,8 +792,8 @@ function checkPrime() {
 
 
             <div class="action-bar">
-                <button class="btn btn-run" onclick="runPrimeLab()">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="resetPrimeLab()">↺ 重置代码</button>
+                <button class="btn btn-run" onclick="runJsDomExperiment('code-prime', null)">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetJsDomExperiment('code-prime', 'prime-result', null)">↺ 重置代码</button>
             </div>
 
 
@@ -814,24 +814,35 @@ function checkPrime() {
         <div class="lab-card">
             <div class="lab-header">
                 <span>实验：第26次课-JS控制结构实践</span>
-
                 <span id="26js-status" class="status-badge">未运行</span>
-
             </div>
 
             <div class="lab-body css-js-experiment">
                 <div>
-                    <div class="html-editor" id="26js-js" contenteditable="true">&lt;div class="panel-label"&gt;JavaScript (可编辑)</div>
+                    <div class="html-editor" id="26js-js" contenteditable="true">
+<div class="panel-label">JavaScript (可编辑)</div>
+// 实验：计算 1 到 100 的和
+// 使用 for 循环计算 1+2+3+...+100 的结果
 
-// 第26次课-JS控制结构实验
+// 1. 定义变量保存总和
+let sum = 0;
 
-// 在这里编写你的JavaScript代码
+// 2. 使用 for 循环累加
+for (let i = 1; i <= 100; i++) {
+    sum += i;
+}
 
-// 示例代码
-console.log('第26次课-JS控制结构实验开始');
+// 3. 获取输出元素
+const output = document.getElementById('26js-output');
 
-// 在这里添加更多JavaScript代码
-</div>
+// 4. 显示结果
+output.innerHTML = `
+  &lt;p&gt;计算范围: 1 到 100&lt;/p&gt;
+  &lt;p&gt;总和结果: &lt;strong style="color: blue; font-size: 24px;"&gt;${sum}&lt;/strong&gt;&lt;/p&gt;
+`;
+
+// 挑战：尝试修改代码，只计算 1 到 100 之间偶数的和！
+                    </div>
 
                 </div>
 
@@ -840,18 +851,21 @@ console.log('第26次课-JS控制结构实验开始');
                         <div class="panel-label">预览效果</div>
 
                         <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                            <h3>第26次课-JS控制结构实验</h3>
+                            <h3>累加计算器</h3>
                             <div id="26js-output">
                                 <p>点击「运行代码」查看结果</p>
                             </div>
+                        </div>
+
+                    </div>
+
+                </div>
 
             </div>
 
-        </div>
-
             <div class="action-bar">
-                <button class="btn btn-run" onclick="run26jsExperiment()">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="reset26jsExperiment()">↺ 重置</button>
+                <button class="btn btn-run" onclick="runJsDomExperiment('26js-js', '26js-status')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetJsDomExperiment('26js-js', '26js-preview', '26js-status')">↺ 重置</button>
             </div>
 
         </div>
@@ -968,12 +982,12 @@ initGame();
 
 
             <div class="action-bar">
-                <button class="btn btn-run" onclick="runGameLab()">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="resetGameLab()">↺ 重置代码</button>
+                <button class="btn btn-run" onclick="runJsDomExperiment('code-game', null)">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetJsDomExperiment('code-game', 'game-preview', null)">↺ 重置代码</button>
             </div>
 
 
-            <div class="preview-box">
+            <div class="preview-box" id="game-preview">
                 <h3>猜数字游戏</h3>
                 <p>我想了一个 1-100 之间的数字，你能猜出来吗？</p>
                 <p>你有 10 次机会！</p>
