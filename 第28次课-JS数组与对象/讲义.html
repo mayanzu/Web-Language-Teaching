@@ -308,36 +308,28 @@ const arr = [1, 2, 3, 4, 5];
 arr.reverse();
 console.log(arr);  // [5, 4, 3, 2, 1]</code></pre>
 
-      <div class="lab-card">
-        <div class="lab-header">
+        <div class="lab-card">
+            <div class="lab-header">
                 <span>🔬 实验1：待办事项管理器</span>
                 <span class="status-badge beginner">基础</span>
             </div>
 
+            <div class="lab-body split">
+                <div class="panel html-viewer">
+<div class="panel-label">HTML 预览</div>
+<h3>待办事项管理</h3>
+<div>
+    <input id="taskInput" placeholder="输入新任务">
+    <button onclick="addTask()">添加</button>
+    <button onclick="removeLastTask()">删除最后一个</button>
+    <button onclick="showTasks()">显示全部</button>
+</div>
+<div id="lab1-output" style="margin-top:15px;padding:10px;background:#f9f9f9;border-radius:5px;white-space:pre-line;"></div>
+                </div>
 
-        <div class="lab-body split">
-          <div class="panel">
-            <div class="panel-label">HTML</div>
-
-
-            <div class="html-viewer">&lt;h3&gt;待办事项管理&lt;/h3&gt;
-    &lt;div&gt;
-        &lt;input id="taskInput" placeholder="输入新任务"&gt;
-            &lt;button onclick="addTask()"&gt;添加&lt;/button&gt;
-                &lt;button onclick="removeLastTask()"&gt;删除最后一个&lt;/button&gt;
-                    &lt;button onclick="showTasks()"&gt;显示全部&lt;/button&gt;
-                    &lt;/div&gt;
-                    &lt;div id="output" style="margin-top:15px;padding:10px;background:#f9f9f9;border-radius:5px;white-space:pre-line;"&gt;&lt;/div&gt;</div>
-
-
-          </div>
-
-
-          <div class="panel">
-            <div class="panel-label">JavaScript (可编辑)</div>
-
-
-            <div class="html-editor" contenteditable="true" id="lab1-code">// 待办事项数组
+                <div class="panel code-editor" id="lab1-code" contenteditable="true">
+<div class="panel-label">JavaScript (可编辑)</div>
+// 待办事项数组
 const tasks = ["学习JavaScript", "完成作业"];
 
 function addTask() {
@@ -349,63 +341,55 @@ function addTask() {
         input.value = '';
         document.getElementById('lab1-output').innerText =
         `✅ 已添加：${task}\n当前共${tasks.length}个任务`;
-        } else {
-            document.getElementById('lab1-output').innerText =
-            "请输入任务内容！";
-        }
+    } else {
+        document.getElementById('lab1-output').innerText =
+        "请输入任务内容！";
     }
+}
 
-    function removeLastTask() {
-        if (tasks.length &gt; 0) {
-            const removed = tasks.pop();
-            document.getElementById('lab1-output').innerText =
-            `🗑️ 已删除：${removed}\n剩余${tasks.length}个任务`;
-            } else {
-                document.getElementById('lab1-output').innerText = "📭 任务列表已空！";
-            }
-        }
+function removeLastTask() {
+    if (tasks.length > 0) {
+        const removed = tasks.pop();
+        document.getElementById('lab1-output').innerText =
+        `🗑️ 已删除：${removed}\n剩余${tasks.length}个任务`;
+    } else {
+        document.getElementById('lab1-output').innerText = "📭 任务列表已空！";
+    }
+}
 
-        function showTasks() {
-            if (tasks.length === 0) {
-                document.getElementById('lab1-output').innerText = "📭 暂无任务";
-                } else {
-                    const taskList = tasks.map((task, index) =&gt;
-                    `${index + 1}. ${task}`
-                    ).join('\n');
-                    document.getElementById('lab1-output').innerText =
-                    `当前任务列表：\n${taskList}`;
-                }
-            }</div>
+function showTasks() {
+    if (tasks.length === 0) {
+        document.getElementById('lab1-output').innerText = "📭 暂无任务";
+    } else {
+        const taskList = tasks.map((task, index) =>
+        `${index + 1}. ${task}`
+        ).join('\n');
+        document.getElementById('lab1-output').innerText =
+        `当前任务列表：\n${taskList}`;
+    }
+}
+                </div>
 
-
-          </div>
-
-
-        </div>
-
-
-        <div class="action-bar">
-          <button class="btn btn-run" onclick="runJsDomExperiment('lab1-code', null)">▶ 运行代码</button>
-          <button class="btn btn-reset" onclick="resetJsDomExperiment('lab1-code', 'lab1-preview', null)">↻ 重置</button>
-          <span style="color:#999;font-size:13px;">测试数组的添加、删除和显示功能</span>
-
-
-        </div>
-
-
-        <div class="preview-box" id="lab1-preview">
-            <h3>待办事项管理</h3>
-            <div>
-                <input id="taskInput" placeholder="输入新任务">
-                <button onclick="addTask()">添加</button>
-                <button onclick="removeLastTask()">删除最后一个</button>
-                <button onclick="showTasks()">显示全部</button>
             </div>
-            <div id="lab1-output" style="margin-top:15px;padding:10px;background:#f9f9f9;border-radius:5px;white-space:pre-line;"></div>
+
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runJsDomExperiment('lab1-code', null)">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetJsDomExperiment('lab1-code', 'lab1-preview', null)">↻ 重置</button>
+                <span style="color:#999;font-size:13px;">测试数组的添加、删除和显示功能</span>
+            </div>
+
+            <div class="preview-box" id="lab1-preview">
+                <h3>待办事项管理</h3>
+                <div>
+                    <input id="taskInput" placeholder="输入新任务">
+                    <button onclick="addTask()">添加</button>
+                    <button onclick="removeLastTask()">删除最后一个</button>
+                    <button onclick="showTasks()">显示全部</button>
+                </div>
+                <div id="lab1-output" style="margin-top:15px;padding:10px;background:#f9f9f9;border-radius:5px;white-space:pre-line;"></div>
+            </div>
+
         </div>
-
-
-      </div>
 
 
         </section>
@@ -648,37 +632,29 @@ const obj2 = { b: 3, c: 4 };
 const merged = { ...obj1, ...obj2 };
 console.log(merged);  // { a: 1, b: 3, c: 4 }</code></pre>
 
-      <div class="lab-card">
-        <div class="lab-header">
+        <div class="lab-card">
+            <div class="lab-header">
                 <span>🔬 实验2：学生信息管理</span>
                 <span class="status-badge beginner">基础</span>
             </div>
 
+            <div class="lab-body split">
+                <div class="panel html-viewer">
+<div class="panel-label">HTML 预览</div>
+<h3>👨‍🎓 学生信息管理</h3>
+<div>
+    <input id="nameInput" placeholder="姓名">
+    <input id="ageInput" placeholder="年龄" type="number">
+    <input id="majorInput" placeholder="专业">
+    <button onclick="updateStudent()">更新信息</button>
+    <button onclick="showStudent()">显示信息</button>
+</div>
+<div id="lab2-output" style="margin-top:15px;padding:10px;background:#f0f8ff;border-radius:5px;white-space:pre-line;"></div>
+                </div>
 
-        <div class="lab-body split">
-          <div class="panel">
-            <div class="panel-label">HTML</div>
-
-
-            <div class="html-viewer">&lt;h3&gt;👨‍🎓 学生信息管理&lt;/h3&gt;
-    &lt;div&gt;
-        &lt;input id="nameInput" placeholder="姓名"&gt;
-            &lt;input id="ageInput" placeholder="年龄" type="number"&gt;
-                &lt;input id="majorInput" placeholder="专业"&gt;
-                    &lt;button onclick="updateStudent()"&gt;更新信息&lt;/button&gt;
-                        &lt;button onclick="showStudent()"&gt;显示信息&lt;/button&gt;
-                        &lt;/div&gt;
-                        &lt;div id="output" style="margin-top:15px;padding:10px;background:#f0f8ff;border-radius:5px;white-space:pre-line;"&gt;&lt;/div&gt;</div>
-
-
-          </div>
-
-
-          <div class="panel">
-            <div class="panel-label">JavaScript (可编辑)</div>
-
-
-            <div class="html-editor" contenteditable="true" id="lab2-code">// 学生对象
+                <div class="panel code-editor" id="lab2-code" contenteditable="true">
+<div class="panel-label">JavaScript (可编辑)</div>
+// 学生对象
 const student = {
     name: "小明",
     age: 20,
@@ -708,38 +684,30 @@ function showStudent() {
   
     document.getElementById('lab2-output').innerText =
     `📋 学生信息：\n${info}\n\n共有${propCount}个属性`;
-}</div>
+}
+                </div>
 
-
-          </div>
-
-
-        </div>
-
-
-        <div class="action-bar">
-          <button class="btn btn-run" onclick="runJsDomExperiment('lab2-code', null)">▶ 运行代码</button>
-          <button class="btn btn-reset" onclick="resetJsDomExperiment('lab2-code', 'lab2-preview', null)">↻ 重置</button>
-          <span style="color:#999;font-size:13px;">测试对象属性的修改和方法调用</span>
-
-
-        </div>
-
-
-        <div class="preview-box" id="lab2-preview">
-            <h3>👨‍🎓 学生信息管理</h3>
-            <div>
-                <input id="nameInput" placeholder="姓名">
-                <input id="ageInput" placeholder="年龄" type="number">
-                <input id="majorInput" placeholder="专业">
-                <button onclick="updateStudent()">更新信息</button>
-                <button onclick="showStudent()">显示信息</button>
             </div>
-            <div id="lab2-output" style="margin-top:15px;padding:10px;background:#f0f8ff;border-radius:5px;white-space:pre-line;"></div>
+
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runJsDomExperiment('lab2-code', null)">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetJsDomExperiment('lab2-code', 'lab2-preview', null)">↻ 重置</button>
+                <span style="color:#999;font-size:13px;">测试对象属性的修改和方法调用</span>
+            </div>
+
+            <div class="preview-box" id="lab2-preview">
+                <h3>👨‍🎓 学生信息管理</h3>
+                <div>
+                    <input id="nameInput" placeholder="姓名">
+                    <input id="ageInput" placeholder="年龄" type="number">
+                    <input id="majorInput" placeholder="专业">
+                    <button onclick="updateStudent()">更新信息</button>
+                    <button onclick="showStudent()">显示信息</button>
+                </div>
+                <div id="lab2-output" style="margin-top:15px;padding:10px;background:#f0f8ff;border-radius:5px;white-space:pre-line;"></div>
+            </div>
+
         </div>
-
-
-      </div>
 
 
         </section>
@@ -931,20 +899,28 @@ console.log(company.getTotalSalary());  // 58000</code></pre>
     &lt;div&gt;
         &lt;button onclick="showAll()"&gt;显示全部学生&lt;/button&gt;
             &lt;button onclick="showTopStudent()"&gt;最高分学生&lt;/button&gt;
-                &lt;button onclick="showAverage()"&gt;计算平均分&lt;/button&gt;
-                    &lt;button onclick="showPassed()"&gt;及格学生&lt;/button&gt;
-                    &lt;/div&gt;
-                    &lt;div id="output" style="margin-top:15px;padding:12px;background:#f5f5f5;border-radius:5px;white-space:pre-line;"&gt;&lt;/div&gt;</div>
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>🔬 实验3：学生成绩分析系统</span>
+                <span class="status-badge advanced">进阶</span>
+            </div>
 
+            <div class="lab-body split">
+                <div class="panel html-viewer">
+<div class="panel-label">HTML 预览</div>
+<h3>📊 学生成绩分析系统</h3>
+<div>
+    <button onclick="showAll()">显示全部学生</button>
+    <button onclick="showTopStudent()">最高分学生</button>
+    <button onclick="showAverage()">计算平均分</button>
+    <button onclick="showPassed()">及格学生</button>
+</div>
+<div id="lab3-output" style="margin-top:15px;padding:12px;background:#f5f5f5;border-radius:5px;white-space:pre-line;"></div>
+                </div>
 
-          </div>
-
-
-          <div class="panel">
-            <div class="panel-label">JavaScript (可编辑)</div>
-
-
-            <div class="html-editor" contenteditable="true" id="lab3-code">// 学生数据（数组包含对象）
+                <div class="panel code-editor" id="lab3-code" contenteditable="true">
+<div class="panel-label">JavaScript (可编辑)</div>
+// 学生数据（数组包含对象）
 const students = [
     { name: "张三", age: 20, score: 85, grade: "A" },
     { name: "李四", age: 21, score: 92, grade: "A+" },
@@ -954,7 +930,7 @@ const students = [
 ];
 
 function showAll() {
-    const list = students.map(s =&gt;
+    const list = students.map(s =>
     `${s.name}（${s.age}岁）- ${s.score}分 [${s.grade}]`
     ).join('\n');
     document.getElementById('lab3-output').innerText =
@@ -962,71 +938,47 @@ function showAll() {
 }
 
 function showTopStudent() {
-    const top = students.reduce((max, s) =&gt;
-    s.score &gt; max.score ? s : max
-);
-document.getElementById('lab3-output').innerText =
-`🏆 最高分学生：\n${top.name} - ${top.score}分 [${top.grade}]`;
+    const top = students.reduce((max, s) =>
+    s.score > max.score ? s : max
+    );
+    document.getElementById('lab3-output').innerText =
+    `🏆 最高分学生：\n${top.name} - ${top.score}分 [${top.grade}]`;
 }
 
 function showAverage() {
-    const avg = students.reduce((sum, s) =&gt; sum + s.score, 0) / students.length;
+    const avg = students.reduce((sum, s) => sum + s.score, 0) / students.length;
     document.getElementById('lab3-output').innerText =
     `📈 平均分：${avg.toFixed(2)}分`;
 }
 
 function showPassed() {
-    const passed = students.filter(s =&gt; s.score &gt;= 60);
-    const list = passed.map(s =&gt; `${s.name}: ${s.score}分`).join('\n');
+    const passed = students.filter(s => s.score >= 60);
+    const list = passed.map(s => `${s.name}: ${s.score}分`).join('\n');
     document.getElementById('lab3-output').innerText =
     `✅ 及格学生（${passed.length}/${students.length}人）：\n${list}`;
-}</div>
+}
+                </div>
 
-
-          </div>
-
-
-        </div>
-
-
-        <div class="action-bar">
-          <button class="btn btn-run" onclick="runJsDomExperiment('lab3-code', null)">▶ 运行代码</button>
-          <button class="btn btn-reset" onclick="resetJsDomExperiment('lab3-code', 'lab3-preview', null)">↻ 重置</button>
-          <span style="color:#999;font-size:13px;">综合运用数组方法和对象操作</span>
-
-
-        </div>
-
-
-        <div class="preview-box" id="lab3-preview">
-            <h3>📊 学生成绩分析系统</h3>
-            <div>
-                <button onclick="showAll()">显示全部学生</button>
-                <button onclick="showTopStudent()">最高分学生</button>
-                <button onclick="showAverage()">计算平均分</button>
-                <button onclick="showPassed()">及格学生</button>
             </div>
-            <div id="lab3-output" style="margin-top:15px;padding:12px;background:#f5f5f5;border-radius:5px;white-space:pre-line;"></div>
-        </div>
 
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runJsDomExperiment('lab3-code', null)">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetJsDomExperiment('lab3-code', 'lab3-preview', null)">↻ 重置</button>
+                <span style="color:#999;font-size:13px;">综合运用数组方法和对象操作</span>
+            </div>
 
-      </div>
+            <div class="preview-box" id="lab3-preview">
+                <h3>📊 学生成绩分析系统</h3>
+                <div>
+                    <button onclick="showAll()">显示全部学生</button>
+                    <button onclick="showTopStudent()">最高分学生</button>
+                    <button onclick="showAverage()">计算平均分</button>
+                    <button onclick="showPassed()">及格学生</button>
+                </div>
+                <div id="lab3-output" style="margin-top:15px;padding:12px;background:#f5f5f5;border-radius:5px;white-space:pre-line;"></div>
+            </div>
 
-
-        </section>
-
-
-    <section id="practical">
-      <h2>九、综合实战:图书管理系统</h2>
-      
-      <p>让我们综合运用数组和对象的所有知识:数组方法、对象操作、数据遍历、嵌套结构等,构建一个功能完整的图书管理系统。</p>
-      
-      <div class="tip-box">
-            <span class="tip-title">本案例涵盖的知识点</span>
-
-
-        <ul class="checklist">
-          <li>使用对象数组存储图书信息</li>
+        </div>i>使用对象数组存储图书信息</li>
           <li>数组的增删改查操作</li>
           <li>数组遍历和筛选方法</li>
           <li>对象属性的访问和修改</li>
@@ -1069,21 +1021,45 @@ function showPassed() {
                                         .book-manager { max-width: 500px; padding: 20px; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
                                         .input-row { display: flex; gap: 8px; margin-bottom: 10px; }
                                         .input-row input { flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 6px; }
-                                        .btn-group { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin: 12px 0; }
-                                        .book-btn { padding: 10px; background: #0066CC; color: white; border: none; border-radius: 6px; cursor: pointer; }
-                                        .book-btn:hover { background: #0055B3; }
-                                        #book-result { margin-top: 15px; padding: 12px; background: #f9f9f9; border-radius: 6px; min-height: 100px; white-space: pre-line; }
-                                    &lt;/style&gt;</div>
+      <div class="lab-card">
+        <div class="lab-header">
+                <span>🔬 实验4：图书管理系统</span>
+                <span class="status-badge advanced">综合</span>
+            </div>
 
+        <div class="lab-body split">
+          <div class="panel html-viewer">
+<div class="panel-label">HTML 预览</div>
+<div class="book-manager">
+    <h3>图书管理系统</h3>
+    <div class="input-row">
+        <input id="bookTitle" placeholder="书名">
+        <input id="bookAuthor" placeholder="作者">
+        <input id="bookYear" type="number" placeholder="出版年份">
+    </div>
+    <div class="btn-group">
+        <button class="book-btn" onclick="addBook()">➕ 添加图书</button>
+        <button class="book-btn" onclick="showAllBooks()">📖 显示全部</button>
+        <button class="book-btn" onclick="searchByAuthor()">按作者搜索</button>
+        <button class="book-btn" onclick="showStats()">📊 统计信息</button>
+    </div>
+    <div id="book-result">等待操作...</div>
+</div>
 
+<style>
+    .book-manager { max-width: 500px; padding: 20px; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .input-row { display: flex; gap: 8px; margin-bottom: 10px; }
+    .input-row input { flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 6px; }
+    .btn-group { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin: 12px 0; }
+    .book-btn { padding: 10px; background: #0066CC; color: white; border: none; border-radius: 6px; cursor: pointer; }
+    .book-btn:hover { background: #0055B3; }
+    #book-result { margin-top: 15px; padding: 12px; background: #f9f9f9; border-radius: 6px; min-height: 100px; white-space: pre-line; }
+</style>
           </div>
 
-
-          <div class="panel">
-            <div class="panel-label">JavaScript (可编辑)</div>
-
-
-            <div class="html-editor" contenteditable="true" id="lab4-code">// 图书库（对象数组）
+          <div class="panel code-editor" id="lab4-code" contenteditable="true">
+<div class="panel-label">JavaScript (可编辑)</div>
+// 图书库（对象数组）
 const library = [
     { title: "JavaScript高级程序设计", author: "Nicholas", year: 2020 },
     { title: "你不知道的JavaScript", author: "Kyle", year: 2019 }
@@ -1116,7 +1092,7 @@ function showAllBooks() {
         return;
     }
   
-    const bookList = library.map((book, index) =&gt;
+    const bookList = library.map((book, index) =>
     `${index + 1}. 《${book.title}》\n   作者：${book.author} | ${book.year}年`
     ).join('\n\n');
   
@@ -1133,15 +1109,15 @@ function searchByAuthor() {
         return;
     }
   
-    const results = library.filter(book =&gt;
+    const results = library.filter(book =>
     book.author.includes(author)
-);
+    );
   
-if (results.length === 0) {
-    document.getElementById('book-result').innerText =
-    `❌ 未找到作者"${author}"的图书`;
+    if (results.length === 0) {
+        document.getElementById('book-result').innerText =
+        `❌ 未找到作者"${author}"的图书`;
     } else {
-        const list = results.map(b =&gt;
+        const list = results.map(b =>
         `《${b.title}》- ${b.author} (${b.year})`
         ).join('\n');
         document.getElementById('book-result').innerText =
@@ -1151,10 +1127,10 @@ if (results.length === 0) {
 
 function showStats() {
     const total = library.length;
-    const years = library.map(b =&gt; b.year);
+    const years = library.map(b => b.year);
     const newest = Math.max(...years);
     const oldest = Math.min(...years);
-    const authors = [...new Set(library.map(b =&gt; b.author))];
+    const authors = [...new Set(library.map(b => b.author))];
   
     document.getElementById('book-result').innerText =
     `📊 统计信息：\n` +
@@ -1163,14 +1139,16 @@ function showStats() {
     `最早出版：${oldest}年\n` +
     `作者数量：${authors.length}位\n` +
     `作者列表：${authors.join(', ')}`;
+}
+          </div>
+
+        </div>
+
         <div class="action-bar">
           <button class="btn btn-run" onclick="runJsDomExperiment('lab4-code', null)">▶ 运行代码</button>
           <button class="btn btn-reset" onclick="resetJsDomExperiment('lab4-code', 'lab4-preview', null)">↻ 重置</button>
           <span style="color:#999;font-size:13px;">完整的图书管理系统，包含增删查改功能</span>
-
-
         </div>
-
 
         <div class="preview-box" id="lab4-preview">
             <div class="book-manager">
@@ -1198,50 +1176,8 @@ function showStats() {
                 #book-result { margin-top: 15px; padding: 12px; background: #f9f9f9; border-radius: 6px; min-height: 100px; white-space: pre-line; }
             </style>
         </div>
-          <button class="btn btn-run" onclick="runLab4()">▶ 运行代码</button>
-          <button class="btn btn-reset" onclick="resetLab4()">↻ 重置</button>
-          <span style="color:#999;font-size:13px;">完整的图书管理系统，包含增删查改功能</span>
 
-
-        </div>
-
-
-        <div class="preview-box" id="lab4-preview"></div>
-
-
-      </div>
-
-
-
-      <div class="tip-box">
-            <span class="tip-title">案例知识点总结</span>
-
-
-        <ul class="checklist">
-          <li>使用对象数组存储结构化数据</li>
-          <li>数组方法：push, filter, map的综合应用</li>
-          <li>ES6特性：解构赋值、模板字符串、展开运算符</li>
-          <li>数据验证和用户提示</li>
-          <li>Set数据结构去重</li>
-        </ul>
-      </div>
-
-
-        </section>
-
-
-    <section style="margin-top:80px;padding-top:40px;border-top:2px solid var(--border-color);">
-      <h2>课程总结</h2>
-      <div class="note-box">
-        <span class="tip-title">本课重点回顾</span>
-
-
-        <ul class="checklist">
-          <li><strong>数组：</strong>有序的数据集合，索引从0开始，支持丰富的操作方法</li>
-          <li><strong>数组方法：</strong>push/pop、map/filter/reduce、forEach、find、sort等</li>
-          <li><strong>对象：</strong>键值对集合，用于描述实体的属性和方法</li>
-          <li><strong>对象操作：</strong>属性访问、添加/删除、遍历、Object静态方法</li>
-          <li><strong>JSON：</strong>数据交换格式，JSON.stringify()和JSON.parse()</li>
+      </div>i><strong>JSON：</strong>数据交换格式，JSON.stringify()和JSON.parse()</li>
           <li><strong>嵌套结构：</strong>数组包含对象、对象包含数组的复杂数据结构</li>
         </ul>
             <div class="lab-body css-js-experiment">
@@ -1264,24 +1200,51 @@ function showStats() {
         <div class="lab-card">
             <div class="lab-header">
                 <span>实验：第28次课-JS数组与对象实践</span>
-
                 <span id="28js-status" class="status-badge">未运行</span>
-
             </div>
 
             <div class="lab-body css-js-experiment">
                 <div>
-                    <div class="html-editor" id="28js-js" contenteditable="true">&lt;div class="panel-label"&gt;JavaScript (可编辑)</div>
+                    <div class="html-editor" id="28js-js" contenteditable="true">
+<div class="panel-label">JavaScript (可编辑)</div>
+// 实验：简易购物车系统
+// 目标：计算购物车总价，支持添加商品
 
-// 第28次课-JS数组与对象实验
+// 1. 初始化购物车数据
+const cart = [
+    { name: "苹果", price: 5, count: 2 },
+    { name: "香蕉", price: 3, count: 5 }
+];
 
-// 在这里编写你的JavaScript代码
+// 2. 显示购物车
+function renderCart() {
+    const output = document.getElementById('28js-output');
+    
+    // 计算总价
+    const total = cart.reduce((sum, item) => sum + item.price * item.count, 0);
+    
+    // 生成列表HTML
+    const listHtml = cart.map(item => 
+        `<li>${item.name} - ￥${item.price} x ${item.count} = ￥${item.price * item.count}</li>`
+    ).join('');
+    
+    output.innerHTML = `
+        <h3>🛒 购物车清单</h3>
+        <ul>${listHtml}</ul>
+        <p><strong>总价：￥${total}</strong></p>
+        <button onclick="addItem()" style="margin-top:10px;padding:5px 10px;">添加商品(测试)</button>
+    `;
+}
 
-// 示例代码
-console.log('第28次课-JS数组与对象实验开始');
+// 3. 添加商品测试
+function addItem() {
+    cart.push({ name: "橙子", price: 4, count: 1 });
+    renderCart();
+}
 
-// 在这里添加更多JavaScript代码
-</div>
+// 4. 启动
+renderCart();
+                    </div>
 
                 </div>
 
@@ -1290,14 +1253,16 @@ console.log('第28次课-JS数组与对象实验开始');
                         <div class="panel-label">预览效果</div>
 
                         <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                            <h3>第28次课-JS数组与对象实验</h3>
                             <div id="28js-output">
-                                <p>点击「运行代码」查看结果</p>
+                                <p>点击「运行代码」查看购物车</p>
                             </div>
+                        </div>
+
+                    </div>
+
+                </div>
 
             </div>
-
-        </div>
 
             <div class="action-bar">
                 <button class="btn btn-run" onclick="runJsDomExperiment('28js-js', '28js-status')">▶ 运行代码</button>
@@ -1306,183 +1271,9 @@ console.log('第28次课-JS数组与对象实验开始');
 
         </div>
 
-
     </section>
 
 </main>
-
-
-      <script>
-        // 新增：存储初始HTML内容的对象
-        const initialHtmlContent = {};
-        let initial28HtmlContent = '';
-
-        // 页面加载时保存初始HTML内容
-        document.addEventListener('DOMContentLoaded', function() {
-            // 获取所有html-editor元素
-            const editors = document.querySelectorAll('.html-editor[id^="html-"]');
-            editors.forEach(editor => {
-                const id = editor.id.replace('html-', '');
-                initialHtmlContent[id] = editor.innerHTML;
-            });
-
-            // 保存最后一个实验的初始内容
-            const lastEditor = document.getElementById('lab1-code');
-            if (lastEditor) {
-                initial28HtmlContent = lastEditor.innerHTML;
-            }
-        });
-
-        // 双栏交互实验室功能
-        function applyHTML(id) {
-            const editor = document.getElementById('html-' + id);
-            const preview = document.getElementById('preview-' + id);
-            const badge = document.getElementById('badge-' + id);
-            
-            if (editor && preview) {
-                preview.innerHTML = editor.innerText;
-                
-                // 更新状态徽章
-                badge.innerText = "运行中 (Active)";
-                badge.className = "status-badge status-active";
-            }
-        }
-        
-        function resetHTML(id) {
-            const editor = document.getElementById('html-' + id);
-            const preview = document.getElementById('preview-' + id);
-            const badge = document.getElementById('badge-' + id);
-            
-            // 恢复编辑器的初始内容
-            if (editor && initialHtmlContent[id]) {
-                editor.innerHTML = initialHtmlContent[id];
-            }
-
-            if (preview) {
-                preview.innerHTML = '<div class="preview-label">预览效果</div>
-
-';
-            }
-            
-            // 更新状态徽章
-            badge.innerText = "未运行 (Inactive)";
-            badge.className = "status-badge";
-        }
-
-        // JS 编辑器功能
-        function applyJS(id) {
-            const editor = document.getElementById('js-' + id);
-            const preview = document.getElementById('preview-' + id);
-            const badge = document.getElementById('badge-' + id);
-            
-            if (editor && preview) {
-                // 获取编辑器内容
-                let jsContent = editor.innerText;
-                // 移除标签文本
-                const labelText = "JS (可编辑)";
-                if (jsContent.indexOf(labelText) !== -1) {
-                    jsContent = jsContent.replace(labelText, "");
-                }
-                
-                // 执行 JS 代码
-                try {
-                    eval(jsContent);
-                    // 更新状态徽章
-                    badge.innerText = "运行中 (Active)";
-                    badge.className = "status-badge status-active";
-                } catch (error) {
-                    alert('代码执行出错: ' + error.message);
-                }
-            }
-        }
-
-        function removeJS(id) {
-            const editor = document.getElementById('js-' + id);
-            const preview = document.getElementById('preview-' + id);
-            const badge = document.getElementById('badge-' + id);
-            
-            // 恢复编辑器的初始内容
-            if (editor && initialHtmlContent[id]) {
-                editor.innerHTML = initialHtmlContent[id];
-            }
-
-            // 更新状态徽章
-            badge.innerText = "未运行 (Inactive)";
-            badge.className = "status-badge";
-        }
-
-        // 实验01：待办事项管理器
-        function runLab1() {
-            const editor = document.getElementById('lab1-code');
-            
-            if (editor) {
-                // 获取编辑器内容
-                let jsContent = editor.innerText;
-                // 移除标签文本
-                const labelText = "JavaScript (可编辑)";
-                if (jsContent.indexOf(labelText) !== -1) {
-                    jsContent = jsContent.replace(labelText, "");
-                }
-                
-                // 执行 JS 代码
-                try {
-                    eval(jsContent);
-                } catch (error) {
-                    alert('代码执行出错: ' + error.message);
-                }
-            }
-        }
-
-        function resetLab1() {
-            const editor = document.getElementById('lab1-code');
-            
-            // 恢复编辑器的初始内容
-            if (editor && initial28HtmlContent) {
-                editor.innerHTML = initial28HtmlContent;
-            } else {
-                // 如果初始内容未保存，重置为默认内容
-                editor.innerHTML = `// 待办事项数组
-const tasks = ["学习JavaScript", "完成作业"];
-
-function addTask() {
-  const input = document.getElementById('taskInput');
-  const task = input.value.trim();
-  
-  if (task) {
-    tasks.push(task);
-    input.value = '';
-    document.getElementById('output').innerText = 
-      `✅ 已添加：${task}\n当前共${tasks.length}个任务`;
-  } else {
-    document.getElementById('output').innerText = 
-      "请输入任务内容！";
-  }
-}
-
-function removeLastTask() {
-  if (tasks.length > 0) {
-    const removed = tasks.pop();
-    document.getElementById('output').innerText = 
-      `🗑️ 已删除：${removed}\n剩余${tasks.length}个任务`;
-  } else {
-    document.getElementById('output').innerText = "📭 任务列表已空！";
-  }
-}
-
-function showTasks() {
-  if (tasks.length === 0) {
-    document.getElementById('output').innerText = "📭 暂无任务";
-  } else {
-    const taskList = tasks.map((task, index) => 
-      `${index + 1}. ${task}`
-    ).join('\n');
-    document.getElementById('output').innerText = 
-      `当前任务列表：\n${taskList}`;
-  }
-}`;
-            }
-        }
-    </script>
 
 </body>
 

@@ -749,51 +749,47 @@ if (box.classList.contains('highlight')) {
                 <span>🔬 实验3：样式切换器</span>
                 <span class="status-badge beginner">基础</span>
             </div>
-
-
         <div class="lab-body split">
           <div class="panel">
             <div class="panel-label">HTML</div>
-
-
             <div class="html-viewer">&lt;h3&gt;样式切换器&lt;/h3&gt;
     &lt;div&gt;
         &lt;button onclick="toggleTheme()"&gt;切换主题&lt;/button&gt;
-            &lt;button onclick="toggleSize()"&gt;切换大小&lt;/button&gt;
-            &lt;/div&gt;
-            &lt;div id="display" style="margin-top:15px;padding:15px;background:#f0f0f0;"&gt;
-                这是一段可以改变样式的文本
-            &lt;/div&gt;
+        &lt;button onclick="toggleSize()"&gt;切换大小&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div id="display" style="margin-top:15px;padding:15px;background:#f0f0f0;"&gt;
+        这是一段可以改变样式的文本
+    &lt;/div&gt;
   
-            &lt;style&gt;
-                .theme-dark {
-                    background-color: #333;
-                    color: white;
-                    padding: 20px;
-                }
-                .large-text {
-                    font-size: 20px;
-                }
-            &lt;/style&gt;</div>
-
-
+    &lt;style&gt;
+        .theme-dark {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+        }
+        .large-text {
+            font-size: 20px;
+        }
+    &lt;/style&gt;</div>
           </div>
-
-
           <div class="panel">
             <div class="panel-label">JavaScript (可编辑)</div>
-
-
             <div class="html-editor" contenteditable="true" id="lab3-code">function toggleTheme() {
+    const display = document.getElementById('display');
+    display.classList.toggle('theme-dark');
+}
+
+function toggleSize() {
+    const display = document.getElementById('display');
+    display.classList.toggle('large-text');
+}</div>
+          </div>
+        </div>
         <div class="action-bar">
           <button class="btn btn-run" onclick="runJsDomExperiment('lab3-code', null)">▶ 运行代码</button>
           <button class="btn btn-reset" onclick="resetJsDomExperiment('lab3-code', 'lab3-preview', null)">↻ 重置</button>
           <span style="color:#999;font-size:13px;">试试不同的样式切换效果</span>
-
-
         </div>
-
-
         <div class="preview-box" id="lab3-preview">
             <h3>样式切换器</h3>
             <div>
@@ -814,27 +810,7 @@ if (box.classList.contains('highlight')) {
                 }
             </style>
         </div>
-          </div>
-
-
-        </div>
-
-
-        <div class="action-bar">
-          <button class="btn btn-run" onclick="runLab3()">▶ 运行代码</button>
-          <button class="btn btn-reset" onclick="resetLab3()">↻ 重置</button>
-          <span style="color:#999;font-size:13px;">试试不同的样式切换效果</span>
-
-
-        </div>
-
-
-        <div class="preview-box" id="lab3-preview"></div>
-
-
       </div>
-
-
         </section>
 
 
@@ -875,75 +851,71 @@ box.remove();
                 <span>🔬 实验4：动态待办列表</span>
                 <span class="status-badge advanced">进阶</span>
             </div>
-
-
         <div class="lab-body split">
           <div class="panel">
             <div class="panel-label">HTML</div>
-
-
             <div class="html-viewer">&lt;h3&gt;动态待办列表&lt;/h3&gt;
     &lt;input id="todoInput" placeholder="输入待办事项"&gt;
-        &lt;button onclick="addTodo()"&gt;添加&lt;/button&gt;
-            &lt;div id="todoList" style="margin-top:15px;"&gt;&lt;/div&gt;
+    &lt;button onclick="addTodo()"&gt;添加&lt;/button&gt;
+    &lt;div id="todoList" style="margin-top:15px;"&gt;&lt;/div&gt;
   
-                &lt;style&gt;
-                    .todo-item {
-                        padding: 10px;
-                        margin: 5px 0;
-                        background: #f0f0f0;
-                        border-radius: 5px;
-                        display: flex;
-                        justify-content: space-between;
-                    }
-                    .delete-btn {
-                        background: #ff4444;
-                        color: white;
-                        border: none;
-                        padding: 5px 10px;
-                        border-radius: 3px;
-                        cursor: pointer;
-                    }
-                &lt;/style&gt;</div>
-
-
+    &lt;style&gt;
+        .todo-item {
+            padding: 10px;
+            margin: 5px 0;
+            background: #f0f0f0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .delete-btn {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    &lt;/style&gt;</div>
           </div>
-
-
           <div class="panel">
             <div class="panel-label">JavaScript (可编辑)</div>
-
-
-            <div class="html-editor" contenteditable="true" id="lab4-code">let todoCount = 0;
-
-function addTodo() {
+            <div class="html-editor" contenteditable="true" id="lab4-code">function addTodo() {
     const input = document.getElementById('todoInput');
     const text = input.value.trim();
-  
+    
     if (!text) {
-    todoItem.appendChild(todoText);
-    todoItem.appendChild(deleteBtn);
-  
-    document.getElementById('todoList').appendChild(todoItem);
+        alert('请输入内容');
+        return;
+    }
+    
+    const todoList = document.getElementById('todoList');
+    const item = document.createElement('div');
+    item.className = 'todo-item';
+    
+    const span = document.createElement('span');
+    span.innerText = text;
+    
+    const btn = document.createElement('button');
+    btn.className = 'delete-btn';
+    btn.innerText = '删除';
+    btn.onclick = function() {
+        item.remove();
+    };
+    
+    item.appendChild(span);
+    item.appendChild(btn);
+    todoList.appendChild(item);
+    
     input.value = '';
 }</div>
-
-
           </div>
-
-
         </div>
-
-
         <div class="action-bar">
           <button class="btn btn-run" onclick="runJsDomExperiment('lab4-code', null)">▶ 运行代码</button>
           <button class="btn btn-reset" onclick="resetJsDomExperiment('lab4-code', 'lab4-preview', null)">↻ 重置</button>
           <span style="color:#999;font-size:13px;">动态创建和删除元素</span>
-
-
         </div>
-
-
         <div class="preview-box" id="lab4-preview">
             <h3>动态待办列表</h3>
             <input id="todoInput" placeholder="输入待办事项">
@@ -968,30 +940,7 @@ function addTodo() {
                 }
             </style>
         </div>
-}</div>
-
-
-          </div>
-
-
-        </div>
-
-
-        <div class="action-bar">
-          <button class="btn btn-run" onclick="runLab4()">▶ 运行代码</button>
-          <button class="btn btn-reset" onclick="resetLab4()">↻ 重置</button>
-          <span style="color:#999;font-size:13px;">动态创建和删除元素</span>
-
-
-        </div>
-
-
-        <div class="preview-box" id="lab4-preview"></div>
-
-
       </div>
-
-
         </section>
 
 
@@ -1020,80 +969,80 @@ function addTodo() {
                 <span>🔬 综合实战：卡片管理器</span>
                 <span class="status-badge advanced">综合</span>
             </div>
-
-
         <div class="lab-body split">
           <div class="panel">
             <div class="panel-label">HTML</div>
-
-
             <div class="html-viewer">&lt;h3&gt;🎴 卡片管理器&lt;/h3&gt;
     &lt;input id="cardTitle" placeholder="卡片标题"&gt;
-        &lt;button onclick="addCard()"&gt;添加卡片&lt;/button&gt;
-            &lt;button onclick="clearAll()"&gt;清空全部&lt;/button&gt;
-                &lt;div id="cardGrid"&gt;&lt;/div&gt;
+    &lt;button onclick="addCard()"&gt;添加卡片&lt;/button&gt;
+    &lt;button onclick="clearAll()"&gt;清空全部&lt;/button&gt;
+    &lt;div id="cardGrid"&gt;&lt;/div&gt;
   
-                    &lt;style&gt;
-                        .card {
-                            padding: 15px;
-                            margin: 10px 0;
-                            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                            color: white;
-                            border-radius: 8px;
-                        }
-                        .card-title { font-size: 16px; font-weight: bold; }
-                        .card-btn {
-                            background: rgba(255,255,255,0.3);
-                            color: white;
-                            border: none;
-                            padding: 5px 10px;
-                            margin-top: 8px;
-                            border-radius: 4px;
-                            cursor: pointer;
-                        }
-                    &lt;/style&gt;</div>
-
-
+    &lt;style&gt;
+        .card {
+            padding: 15px;
+            margin: 10px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+        }
+        .card-title { font-size: 16px; font-weight: bold; }
+        .card-btn {
+            background: rgba(255,255,255,0.3);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            margin-top: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    &lt;/style&gt;</div>
           </div>
-
-
           <div class="panel">
             <div class="panel-label">JavaScript (可编辑)</div>
-
-
-            <div class="html-editor" contenteditable="true" id="lab5-code">let cardId = 0;
-
-function addCard() {
-    card.appendChild(cardTitle);
-    card.appendChild(deleteBtn);
-  
-    document.getElementById('cardGrid').appendChild(card);
-    titleInput.value = '';
+            <div class="html-editor" contenteditable="true" id="lab5-code">function addCard() {
+    const input = document.getElementById('cardTitle');
+    const title = input.value.trim();
+    
+    if (!title) {
+        alert('请输入标题');
+        return;
+    }
+    
+    const grid = document.getElementById('cardGrid');
+    const card = document.createElement('div');
+    card.className = 'card';
+    
+    const h4 = document.createElement('div');
+    h4.className = 'card-title';
+    h4.innerText = title;
+    
+    const btn = document.createElement('button');
+    btn.className = 'card-btn';
+    btn.innerText = '删除卡片';
+    btn.onclick = function() {
+        card.remove();
+    };
+    
+    card.appendChild(h4);
+    card.appendChild(btn);
+    grid.appendChild(card);
+    
+    input.value = '';
 }
 
 function clearAll() {
     if (confirm('确定要删除所有卡片吗?')) {
         document.getElementById('cardGrid').innerHTML = '';
-        cardId = 0;
     }
 }</div>
-
-
           </div>
-
-
         </div>
-
-
         <div class="action-bar">
           <button class="btn btn-run" onclick="runJsDomExperiment('lab5-code', null)">▶ 运行代码</button>
           <button class="btn btn-reset" onclick="resetJsDomExperiment('lab5-code', 'lab5-preview', null)">↻ 重置</button>
           <span style="color:#999;font-size:13px;">完整的卡片管理系统</span>
-
-
         </div>
-
-
         <div class="preview-box" id="lab5-preview">
             <h3>🎴 卡片管理器</h3>
             <input id="cardTitle" placeholder="卡片标题">
@@ -1120,34 +1069,7 @@ function clearAll() {
                 }
             </style>
         </div>
-    if (confirm('确定要删除所有卡片吗?')) {
-        document.getElementById('cardGrid').innerHTML = '';
-        cardId = 0;
-    }
-}</div>
-
-
-          </div>
-
-
-        </div>
-
-
-        <div class="action-bar">
-          <button class="btn btn-run" onclick="runLab5()">▶ 运行代码</button>
-          <button class="btn btn-reset" onclick="resetLab5()">↻ 重置</button>
-          <span style="color:#999;font-size:13px;">完整的卡片管理系统</span>
-
-
-            <div class="lab-body css-js-experiment">
-                <div>
-                    <div class="html-editor" id="29jsdom-js" contenteditable="true">
-<div class="panel-label">JavaScript (可编辑)</div>
-// 第29次课-JS DOM操作实验
-
       </div>
-
-
         </section>
 
 
@@ -1155,8 +1077,6 @@ function clearAll() {
       <h2>课程总结</h2>
       <div class="note-box">
         <span class="tip-title">本课重点回顾</span>
-
-
         <ul class="checklist">
           <li><strong>DOM概念:</strong>文档对象模型,将HTML转换为JavaScript可操作的树形结构</li>
           <li><strong>元素选择:</strong>getElementById、querySelector、querySelectorAll等方法</li>
@@ -1167,234 +1087,118 @@ function clearAll() {
           <li><strong>元素删除:</strong>remove方法</li>
         </ul>
       </div>
+      
+      <div class="lab-card">
+        <div class="lab-header">
+            <span>🔬 课后挑战：简易评论区</span>
+            <span class="status-badge advanced">挑战</span>
+        </div>
+        <div class="lab-body split">
+            <div class="panel">
+                <div class="panel-label">HTML</div>
+                <div class="html-viewer">&lt;h3&gt;💬 评论区&lt;/h3&gt;
+&lt;div class="comment-box"&gt;
+    &lt;textarea id="commentInput" placeholder="写下你的评论..."&gt;&lt;/textarea&gt;
+    &lt;button onclick="postComment()"&gt;发布评论&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="commentList"&gt;&lt;/div&gt;
 
-
-            <div class="action-bar">
-                <button class="btn btn-run" onclick="runJsDomExperiment('29jsdom-js', '29jsdom-status')">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="resetJsDomExperiment('29jsdom-js', '29jsdom-preview', '29jsdom-status')">↺ 重置</button>
+&lt;style&gt;
+    .comment-box { margin-bottom: 20px; }
+    #commentInput { width: 100%; height: 60px; margin-bottom: 10px; }
+    .comment { 
+        background: #fff; 
+        padding: 10px; 
+        margin-bottom: 10px; 
+        border-left: 4px solid #007bff;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .comment-time { color: #999; font-size: 12px; margin-bottom: 5px; }
+    .comment-text { font-size: 14px; }
+    .delete-link { 
+        color: red; 
+        font-size: 12px; 
+        float: right; 
+        cursor: pointer; 
+        text-decoration: underline;
+    }
+&lt;/style&gt;</div>
             </div>
-
-        <p>第8课将学习<strong>事件处理</strong>,让网页能够响应用户的点击、输入等各种操作,构建完整的交互式应用!</p>
+            <div class="panel">
+                <div class="panel-label">JavaScript (可编辑)</div>
+                <div class="html-editor" contenteditable="true" id="final-code">function postComment() {
+    const input = document.getElementById('commentInput');
+    const text = input.value.trim();
+    
+    if (!text) {
+        alert('评论不能为空');
+        return;
+    }
+    
+    const list = document.getElementById('commentList');
+    const comment = document.createElement('div');
+    comment.className = 'comment';
+    
+    const time = new Date().toLocaleString();
+    
+    comment.innerHTML = `
+        &lt;span class="delete-link" onclick="this.parentElement.remove()"&gt;删除&lt;/span&gt;
+        &lt;div class="comment-time"&gt;${time}&lt;/div&gt;
+        &lt;div class="comment-text"&gt;${text}&lt;/div&gt;
+    `;
+    
+    // 插入到最前面
+    if (list.firstChild) {
+        list.insertBefore(comment, list.firstChild);
+    } else {
+        list.appendChild(comment);
+    }
+    
+    input.value = '';
+}</div>
+            </div>
+        </div>
+        <div class="action-bar">
+            <button class="btn btn-run" onclick="runJsDomExperiment('final-code', null)">▶ 运行代码</button>
+            <button class="btn btn-reset" onclick="resetJsDomExperiment('final-code', 'final-preview', null)">↻ 重置</button>
+        </div>
+        <div class="preview-box" id="final-preview">
+            <h3>💬 评论区</h3>
+            <div class="comment-box">
+                <textarea id="commentInput" placeholder="写下你的评论..."></textarea>
+                <button onclick="postComment()">发布评论</button>
+            </div>
+            <div id="commentList"></div>
+            <style>
+                .comment-box { margin-bottom: 20px; }
+                #commentInput { width: 100%; height: 60px; margin-bottom: 10px; }
+                .comment { 
+                    background: #fff; 
+                    padding: 10px; 
+                    margin-bottom: 10px; 
+                    border-left: 4px solid #007bff;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                }
+                .comment-time { color: #999; font-size: 12px; margin-bottom: 5px; }
+                .comment-text { font-size: 14px; }
+                .delete-link { 
+                    color: red; 
+                    font-size: 12px; 
+                    float: right; 
+                    cursor: pointer; 
+                    text-decoration: underline;
+                }
+            </style>
+        </div>
       </div>
 
-
-    
-        <div class="lab-card">
-            <div class="lab-header">
-                <span>实验：第29次课-JS DOM操作实践</span>
-
-                <span id="29jsdom-status" class="status-badge">未运行</span>
-
-            </div>
-
-            <div class="lab-body css-js-experiment">
-                <div>
-                    <div class="html-editor" id="29jsdom-js" contenteditable="true">&lt;div class="panel-label"&gt;JavaScript (可编辑)</div>
-
-// 第29次课-JS DOM操作实验
-
-// 在这里编写你的JavaScript代码
-
-// 示例代码
-console.log('第29次课-JS DOM操作实验开始');
-
-// 在这里添加更多JavaScript代码
-</div>
-
-                </div>
-
-                <div>
-                    <div class="preview-box" id="29jsdom-preview">
-                        <div class="panel-label">预览效果</div>
-
-                        <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                            <h3>第29次课-JS DOM操作实验</h3>
-                            <div id="29jsdom-output">
-                                <p>点击「运行代码」查看结果</p>
-                            </div>
-
-            </div>
-
-        </div>
-
-            <div class="action-bar">
-                <button class="btn btn-run" onclick="run29jsdomExperiment()">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="reset29jsdomExperiment()">↺ 重置</button>
-            </div>
-
-        </div>
-
-
+      <p>第30课将学习<strong>事件处理</strong>,让网页能够响应用户的点击、输入等各种操作,构建完整的交互式应用!</p>
     </section>
 
 </main>
 
-
-      <script>
-        // 新增：存储初始HTML内容的对象
-        const initialHtmlContent = {};
-        let initial29HtmlContent = '';
-
-        // 页面加载时保存初始HTML内容
-        document.addEventListener('DOMContentLoaded', function() {
-            // 获取所有html-editor元素
-            const editors = document.querySelectorAll('.html-editor[id^="html-"]');
-            editors.forEach(editor => {
-                const id = editor.id.replace('html-', '');
-                initialHtmlContent[id] = editor.innerHTML;
-            });
-
-            // 保存最后一个实验的初始内容
-            const lastEditor = document.getElementById('lab1-code');
-            if (lastEditor) {
-                initial29HtmlContent = lastEditor.innerHTML;
-            }
-        });
-
-        // 双栏交互实验室功能
-        function applyHTML(id) {
-            const editor = document.getElementById('html-' + id);
-            const preview = document.getElementById('preview-' + id);
-            const badge = document.getElementById('badge-' + id);
-            
-            if (editor && preview) {
-                preview.innerHTML = editor.innerText;
-                
-                // 更新状态徽章
-                badge.innerText = "运行中 (Active)";
-                badge.className = "status-badge status-active";
-            }
-        }
-        
-        function resetHTML(id) {
-            const editor = document.getElementById('html-' + id);
-            const preview = document.getElementById('preview-' + id);
-            const badge = document.getElementById('badge-' + id);
-            
-            // 恢复编辑器的初始内容
-            if (editor && initialHtmlContent[id]) {
-                editor.innerHTML = initialHtmlContent[id];
-            }
-
-            if (preview) {
-                preview.innerHTML = '<div class="preview-label">预览效果</div>
-
-';
-            }
-            
-            // 更新状态徽章
-            badge.innerText = "未运行 (Inactive)";
-            badge.className = "status-badge";
-        }
-
-        // JS 编辑器功能
-        function applyJS(id) {
-            const editor = document.getElementById('js-' + id);
-            const preview = document.getElementById('preview-' + id);
-            const badge = document.getElementById('badge-' + id);
-            
-            if (editor && preview) {
-                // 获取编辑器内容
-                let jsContent = editor.innerText;
-                // 移除标签文本
-                const labelText = "JS (可编辑)";
-                if (jsContent.indexOf(labelText) !== -1) {
-                    jsContent = jsContent.replace(labelText, "");
-                }
-                
-                // 执行 JS 代码
-                try {
-                    eval(jsContent);
-                    // 更新状态徽章
-                    badge.innerText = "运行中 (Active)";
-                    badge.className = "status-badge status-active";
-                } catch (error) {
-                    alert('代码执行出错: ' + error.message);
-                }
-            }
-        }
-
-        function removeJS(id) {
-            const editor = document.getElementById('js-' + id);
-            const preview = document.getElementById('preview-' + id);
-            const badge = document.getElementById('badge-' + id);
-            
-            // 恢复编辑器的初始内容
-            if (editor && initialHtmlContent[id]) {
-                editor.innerHTML = initialHtmlContent[id];
-            }
-
-            // 更新状态徽章
-            badge.innerText = "未运行 (Inactive)";
-            badge.className = "status-badge";
-        }
-
-        // 实验01：元素选择练习
-        function runLab1() {
-            const editor = document.getElementById('lab1-code');
-            
-            if (editor) {
-                // 获取编辑器内容
-                let jsContent = editor.innerText;
-                // 移除标签文本
-                const labelText = "JavaScript (可编辑)";
-                if (jsContent.indexOf(labelText) !== -1) {
-                    jsContent = jsContent.replace(labelText, "");
-                }
-                
-                // 执行 JS 代码
-                try {
-                    eval(jsContent);
-                } catch (error) {
-                    alert('代码执行出错: ' + error.message);
-                }
-            }
-        }
-
-        function resetLab1() {
-            const editor = document.getElementById('lab1-code');
-            
-            // 恢复编辑器的初始内容
-            if (editor && initial29HtmlContent) {
-                editor.innerHTML = initial29HtmlContent;
-            } else {
-                // 如果初始内容未保存，重置为默认内容
-                editor.innerHTML = `function selectById() {
-  // 通过ID选择标题
-  const title = document.getElementById('title');
-  const output = document.getElementById('output');
-  output.innerText = \`✅ 找到标题: "\${title.innerText}"\`;
-}
-
-function selectByClass() {
-  // 通过class选择所有盒子
-  const boxes = document.querySelectorAll('.box');
-  const output = document.getElementById('output');
-  
-  let result = \`✅ 找到\${boxes.length}个盒子:\n\`;
-  boxes.forEach((box, index) => {
-    result += \`\${index + 1}. \${box.innerText}\n\`;
-  });
-  output.innerText = result;
-}
-
-function selectSpecial() {
-  // 使用CSS选择器选择特殊盒子
-  const special = document.querySelector('.box.special');
-  const output = document.getElementById('output');
-  
-  if (special) {
-    output.innerText = \`✅ 找到特殊盒子: "\${special.innerText}"\`;
-  } else {
-    output.innerText = '❌ 未找到特殊盒子';
-  }
-}`;
-            }
-        }
-    </script>
-
+<script src="../js/lecture-utils.js"></script>
 </body>
-
 </html>
 
 
