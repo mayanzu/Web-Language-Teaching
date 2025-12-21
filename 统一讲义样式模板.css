@@ -476,18 +476,6 @@ table tr:hover td {
     border-bottom-left-radius: 8px;
 }
 
-.code-editor {
-    background: var(--code-bg);
-    padding: 20px;
-    font-family: var(--font-mono);
-    font-size: 28px;
-    line-height: 1.6;
-    color: var(--code-text);
-    outline: none;
-    overflow-y: auto;
-    white-space: pre-wrap;
-}
-
 /* 按钮样式 */
 .btn {
     padding: 8px 16px;
@@ -644,8 +632,8 @@ table tr:hover td {
     background: #f6f8fa;
     padding: 15px;
     border-radius: 4px;
-    font-size: 16px;
-    line-height: 1.5;
+    font-size: 21px;
+    line-height: 1.6;
     overflow-x: auto;
     color: var(--code-text);
     border: 1px solid var(--border-color);
