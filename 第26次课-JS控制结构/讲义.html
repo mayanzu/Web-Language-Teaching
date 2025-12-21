@@ -6,6 +6,7 @@
     <title>第26课：JS控制结构</title>
     
     <link rel='stylesheet' href='../统一讲义样式模板.css'>
+    <script src='../js/lecture-utils.js'></script>
 </head>
 <body>
 <nav class="sidebar">
@@ -901,286 +902,151 @@ initGame();
     </section>
 </main>
 
-    <script>
-        // 新增：存储初始HTML内容的对象
-        const initialHtmlContent = {};
-        let initial26HtmlContent = '';
+    
+<script>
+// 存储实验代码的初始内容
+const initialLabContents = {};
 
-        // 页面加载时保存初始HTML内容
-        document.addEventListener('DOMContentLoaded', function() {
-            // 获取所有css-editor元素
-            const editors = document.querySelectorAll('.css-editor[id^="css-"]');
-            editors.forEach(editor => {
-                const id = editor.id.replace('css-', '');
-                initialHtmlContent[id] = editor.innerHTML;
-            });
+// 页面加载时保存实验代码的初始内容
+document.addEventListener('DOMContentLoaded', function() {
+    // 保存所有可编辑代码面板的初始内容
+    const codeEditors = document.querySelectorAll('.code-editor[id^="code-"]');
+    codeEditors.forEach(editor => {
+        const id = editor.id.replace('code-', '');
+        initialLabContents[id] = editor.innerHTML;
+    });
+});
 
-            // 保存最后一个实验的初始内容
-            const lastEditor = document.getElementById('26js-js');
-            if (lastEditor) {
-                initial26HtmlContent = lastEditor.innerHTML;
-            }
-        });
-
-        // 双栏交互实验室功能
-        function applyHTML(id) {
-            const editor = document.getElementById('html-' + id);
-            const preview = document.getElementById('preview-' + id);
-            const badge = document.getElementById('badge-' + id);
-            
-            if (editor && preview) {
-                preview.innerHTML = editor.innerText;
-                
-                // 更新状态徽章
-                badge.innerText = "运行中 (Active)";
-                badge.className = "status-badge status-active";
-            }
-        }
+// 成绩评定实验 - 运行
+function runGradeLab() {
+    const editor = document.getElementById('code-grade');
+    if (editor) {
+        let code = editor.innerText;
+        // 移除编辑器标签
+        code = code.replace('JavaScript (可编辑)', '');
         
-        function resetHTML(id) {
-            const editor = document.getElementById('html-' + id);
-            const preview = document.getElementById('preview-' + id);
-            const badge = document.getElementById('badge-' + id);
-            
-            // 恢复编辑器的初始内容
-            if (editor && initialHtmlContent[id]) {
-                editor.innerHTML = initialHtmlContent[id];
-            }
-
-            if (preview) {
-                preview.innerHTML = '<div class="preview-label">预览效果</div>';
-            }
-            
-            // 更新状态徽章
-            badge.innerText = "未运行 (Inactive)";
-            badge.className = "status-badge";
+        // 执行代码
+        try {
+            eval(code);
+        } catch (error) {
+            console.error('代码执行错误:', error);
         }
-
-        // JS 编辑器功能
-        function applyJS(id) {
-            const editor = document.getElementById('js-' + id);
-            const preview = document.getElementById('preview-' + id);
-            const badge = document.getElementById('badge-' + id);
-            
-            if (editor && preview) {
-                // 获取编辑器内容
-                let jsContent = editor.innerText;
-                // 移除标签文本
-                const labelText = "JS (可编辑)";
-                if (jsContent.indexOf(labelText) !== -1) {
-                    jsContent = jsContent.replace(labelText, "");
-                }
-                
-                // 执行 JS 代码
-                try {
-                    eval(jsContent);
-                    // 更新状态徽章
-                    badge.innerText = "运行中 (Active)";
-                    badge.className = "status-badge status-active";
-                } catch (error) {
-                    alert('代码执行出错: ' + error.message);
-                }
-            }
-        }
-
-        function removeJS(id) {
-            const editor = document.getElementById('js-' + id);
-            const preview = document.getElementById('preview-' + id);
-            const badge = document.getElementById('badge-' + id);
-            
-            // 恢复编辑器的初始内容
-            if (editor && initialHtmlContent[id]) {
-                editor.innerHTML = initialHtmlContent[id];
-            }
-
-            // 更新状态徽章
-            badge.innerText = "未运行 (Inactive)";
-            badge.className = "status-badge";
-        }
-
-        // 第26次课实验功能
-        function run26jsExperiment() {
-            const editor = document.getElementById('26js-js');
-            const preview = document.getElementById('26js-preview');
-            const status = document.getElementById('26js-status');
-            
-            if (editor && preview) {
-                // 获取编辑器内容
-                let jsContent = editor.innerText;
-                // 移除标签文本
-                const labelText = "JS (可编辑)";
-                if (jsContent.indexOf(labelText) !== -1) {
-                    jsContent = jsContent.replace(labelText, "");
-                }
-                
-                // 执行 JS 代码
-                try {
-                    eval(jsContent);
-                    // 更新状态徽章
-                    status.innerText = "运行中";
-                    status.className = "status-badge status-active";
-                } catch (error) {
-                    alert('代码执行出错: ' + error.message);
-                }
-            }
-        }
-
-        function reset26jsExperiment() {
-            const editor = document.getElementById('26js-js');
-            const preview = document.getElementById('26js-preview');
-            const status = document.getElementById('26js-status');
-            
-            // 恢复编辑器的初始内容
-            if (editor && initial26HtmlContent) {
-                editor.innerHTML = initial26HtmlContent;
-            }
-            
-            // 更新状态徽章
-            status.innerText = "未运行";
-            status.className = "status-badge";
-        }
-
-        // 实验01：成绩评定系统
-        function runGradeLab() {
-            const editor = document.getElementById('code-grade');
-            
-            if (editor) {
-                // 获取编辑器内容
-                let jsContent = editor.innerText;
-                // 移除标签文本
-                const labelText = "JavaScript (可编辑)";
-                if (jsContent.indexOf(labelText) !== -1) {
-                    jsContent = jsContent.replace(labelText, "");
-                }
-                
-                // 执行 JS 代码
-                try {
-                    eval(jsContent);
-                } catch (error) {
-                    alert('代码执行出错: ' + error.message);
-                }
-            }
-        }
-
-        function resetGradeLab() {
-            const editor = document.getElementById('code-grade');
-            
-            // 恢复编辑器的初始内容
-            if (editor && initialHtmlContent['grade']) {
-                editor.innerHTML = initialHtmlContent['grade'];
-            } else {
-                // 如果初始内容未保存，重置为默认内容
-                editor.innerHTML = `
-<div class="panel-label">JavaScript (可编辑)</div>
-function evaluateScore() {
-    const scoreInput = document.getElementById('score-input');
-    const resultDiv = document.getElementById('grade-result');
-    const score = Number(scoreInput.value);
-    
-    let grade = '';
-    let comment = '';
-    
-    if (score >= 90) {
-        grade = 'A 优秀';
-        comment = '非常棒！继续保持！';
-    } else if (score >= 80) {
-        grade = 'B 良好';
-        comment = '很不错，再接再厉！';
-    } else if (score >= 70) {
-        grade = 'C 中等';
-        comment = '还可以，需要更加努力。';
-    } else if (score >= 60) {
-        grade = 'D 及格';
-        comment = '刚刚及格，要加油了！';
-    } else {
-        grade = 'F 不及格';
-        comment = '需要认真复习，下次一定能过！';
     }
-    
-    resultDiv.innerHTML = `
-        &lt;p style="font-size: 20px; font-weight: bold;"&gt;等级: ${grade}&lt;/p&gt;
-        &lt;p&gt;${comment}&lt;/p&gt;
-    `;
 }
-                `;
-            }
-        }
 
-        // 实验02：星期几查询器
-        function runWeekdayLab() {
-            const editor = document.getElementById('code-weekday');
-            
-            if (editor) {
-                // 获取编辑器内容
-                let jsContent = editor.innerText;
-                // 移除标签文本
-                const labelText = "JavaScript (可编辑)";
-                if (jsContent.indexOf(labelText) !== -1) {
-                    jsContent = jsContent.replace(labelText, "");
-                }
-                
-                // 执行 JS 代码
-                try {
-                    eval(jsContent);
-                } catch (error) {
-                    alert('代码执行出错: ' + error.message);
-                }
-            }
-        }
-
-        function resetWeekdayLab() {
-            const editor = document.getElementById('code-weekday');
-            
-            // 恢复编辑器的初始内容
-            if (editor && initialHtmlContent['weekday']) {
-                editor.innerHTML = initialHtmlContent['weekday'];
-            } else {
-                // 如果初始内容未保存，重置为默认内容
-                editor.innerHTML = `
-<div class="panel-label">JavaScript (可编辑)</div>
-function checkWeekday() {
-    const dayInput = document.getElementById('day-input');
-    const resultDiv = document.getElementById('weekday-result');
-    const day = Number(dayInput.value);
-    
-    let dayName;
-    let isWeekend = false;
-    
-    switch (day) {
-        case 1:
-            dayName = '星期一';
-            break;
-        case 2:
-            dayName = '星期二';
-            break;
-        case 3:
-            dayName = '星期三';
-            break;
-        case 4:
-            dayName = '星期四';
-            break;
-        case 5:
-            dayName = '星期五';
-            break;
-        case 6:
-            dayName = '星期六';
-            isWeekend = true;
-            break;
-        case 7:
-            dayName = '星期日';
-            isWeekend = true;
-            break;
-        default:
-            dayName = '无效输入';
+// 成绩评定实验 - 重置
+function resetGradeLab() {
+    const editor = document.getElementById('code-grade');
+    if (editor && initialLabContents['grade']) {
+        // 恢复编辑器的初始内容（保留缩进）
+        editor.innerHTML = initialLabContents['grade'];
     }
-    
-    const weekendMsg = isWeekend ? '🎉 周末啦！' : '💼 工作日';
-    resultDiv.innerHTML = `&lt;p&gt;&lt;strong&gt;${dayName}&lt;/strong&gt; - ${weekendMsg}&lt;/p&gt;`;
 }
-                `;
-            }
+
+// 星期查询实验 - 运行
+function runWeekdayLab() {
+    const editor = document.getElementById('code-weekday');
+    if (editor) {
+        let code = editor.innerText;
+        // 移除编辑器标签
+        code = code.replace('JavaScript (可编辑)', '');
+        
+        // 执行代码
+        try {
+            eval(code);
+        } catch (error) {
+            console.error('代码执行错误:', error);
         }
-    </script>
+    }
+}
+
+// 星期查询实验 - 重置
+function resetWeekdayLab() {
+    const editor = document.getElementById('code-weekday');
+    if (editor && initialLabContents['weekday']) {
+        // 恢复编辑器的初始内容（保留缩进）
+        editor.innerHTML = initialLabContents['weekday'];
+    }
+}
+
+// 乘法表实验 - 运行
+function runTableLab() {
+    const editor = document.getElementById('code-table');
+    if (editor) {
+        let code = editor.innerText;
+        // 移除编辑器标签
+        code = code.replace('JavaScript (可编辑)', '');
+        
+        // 执行代码
+        try {
+            eval(code);
+        } catch (error) {
+            console.error('代码执行错误:', error);
+        }
+    }
+}
+
+// 乘法表实验 - 重置
+function resetTableLab() {
+    const editor = document.getElementById('code-table');
+    if (editor && initialLabContents['table']) {
+        // 恢复编辑器的初始内容（保留缩进）
+        editor.innerHTML = initialLabContents['table'];
+    }
+}
+
+// 质数判断实验 - 运行
+function runPrimeLab() {
+    const editor = document.getElementById('code-prime');
+    if (editor) {
+        let code = editor.innerText;
+        // 移除编辑器标签
+        code = code.replace('JavaScript (可编辑)', '');
+        
+        // 执行代码
+        try {
+            eval(code);
+        } catch (error) {
+            console.error('代码执行错误:', error);
+        }
+    }
+}
+
+// 质数判断实验 - 重置
+function resetPrimeLab() {
+    const editor = document.getElementById('code-prime');
+    if (editor && initialLabContents['prime']) {
+        // 恢复编辑器的初始内容（保留缩进）
+        editor.innerHTML = initialLabContents['prime'];
+    }
+}
+
+// 猜数字游戏实验 - 运行
+function runGameLab() {
+    const editor = document.getElementById('code-game');
+    if (editor) {
+        let code = editor.innerText;
+        // 移除编辑器标签
+        code = code.replace('JavaScript (可编辑)', '');
+        
+        // 执行代码
+        try {
+            eval(code);
+        } catch (error) {
+            console.error('代码执行错误:', error);
+        }
+    }
+}
+
+// 猜数字游戏实验 - 重置
+function resetGameLab() {
+    const editor = document.getElementById('code-game');
+    if (editor && initialLabContents['game']) {
+        // 恢复编辑器的初始内容（保留缩进）
+        editor.innerHTML = initialLabContents['game'];
+    }
+}
+</script>
 </body>
 </html>
 
