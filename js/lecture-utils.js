@@ -6,6 +6,9 @@
 // 存储所有实验的初始内容
 const initialContents = {};
 
+// 存储 HTML+CSS 实验的初始内容
+const initialHtmlCssContents = {};
+
 // 页面加载时初始化所有实验的初始内容
 document.addEventListener('DOMContentLoaded', function() {
     // 存储所有HTML编辑器的初始内容
@@ -13,6 +16,14 @@ document.addEventListener('DOMContentLoaded', function() {
     htmlEditors.forEach(editor => {
         const id = editor.id.replace('html-', '');
         initialContents[id] = editor.innerHTML;
+        // 同时存储到 HTML+CSS 专用对象
+        initialHtmlCssContents[editor.id] = editor.innerHTML;
+    });
+    
+    // 存储所有CSS编辑器的初始内容
+    const cssEditors = document.querySelectorAll('[id^="css-"]');
+    cssEditors.forEach(editor => {
+        initialHtmlCssContents[editor.id] = editor.innerHTML;
     });
     
     // 存储特定实验的初始内容
@@ -105,6 +116,89 @@ function runCssExperiment(editorId, previewId, statusId) {
             status.textContent = '已运行';
             status.className = 'status-badge active';
         }
+    }
+}
+
+// 运行 HTML + CSS 组合实验
+function runHtmlCssExperiment(htmlEditorId, cssEditorId, previewId, statusId) {
+    const htmlEditor = document.getElementById(htmlEditorId);
+    const cssEditor = document.getElementById(cssEditorId);
+    const preview = document.getElementById(previewId);
+    const status = document.getElementById(statusId);
+    
+    if (htmlEditor && cssEditor && preview) {
+        // 获取 HTML 代码
+        let htmlCode = htmlEditor.innerText;
+        htmlCode = htmlCode.replace('HTML (可编辑)', '').trim();
+        
+        // 获取 CSS 代码
+        let cssCode = cssEditor.innerText;
+        cssCode = cssCode.replace('CSS (可编辑)', '').trim();
+        
+        // 清空预览区域
+        preview.innerHTML = '';
+        
+        // 创建一个隔离的容器
+        const container = document.createElement('div');
+        container.className = 'html-css-preview-container';
+        
+        // 创建 style 标签并添加 scoped 样式
+        const style = document.createElement('style');
+        // 为 CSS 规则添加容器前缀，实现样式隔离
+        const scopedCss = cssCode.replace(/([^{}]+)\{/g, function(match, selector) {
+            // 处理多个选择器（逗号分隔）
+            const selectors = selector.split(',').map(s => {
+                s = s.trim();
+                // 跳过 @规则
+                if (s.startsWith('@')) return s;
+                // 为每个选择器添加容器前缀
+                return `#${previewId} .html-css-preview-container ${s}`;
+            });
+            return selectors.join(', ') + ' {';
+        });
+        style.textContent = scopedCss;
+        
+        // 注入 HTML 内容
+        container.innerHTML = htmlCode;
+        
+        // 添加到预览区域
+        preview.appendChild(style);
+        preview.appendChild(container);
+        
+        // 更新状态
+        if (status) {
+            status.textContent = '已运行';
+            status.className = 'status-badge active';
+        }
+    }
+}
+
+// 重置 HTML + CSS 组合实验
+function resetHtmlCssExperiment(htmlEditorId, cssEditorId, previewId, statusId) {
+    const htmlEditor = document.getElementById(htmlEditorId);
+    const cssEditor = document.getElementById(cssEditorId);
+    const preview = document.getElementById(previewId);
+    const status = document.getElementById(statusId);
+    
+    // 恢复 HTML 编辑器的初始内容
+    if (htmlEditor && initialHtmlCssContents[htmlEditorId]) {
+        htmlEditor.innerHTML = initialHtmlCssContents[htmlEditorId];
+    }
+    
+    // 恢复 CSS 编辑器的初始内容
+    if (cssEditor && initialHtmlCssContents[cssEditorId]) {
+        cssEditor.innerHTML = initialHtmlCssContents[cssEditorId];
+    }
+    
+    // 清空预览区域
+    if (preview) {
+        preview.innerHTML = '';
+    }
+    
+    // 更新状态
+    if (status) {
+        status.textContent = '动手实践';
+        status.className = 'status-badge beginner';
     }
 }
 

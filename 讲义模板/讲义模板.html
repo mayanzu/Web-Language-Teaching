@@ -24,6 +24,7 @@
         <a class="sidebar-link" href="#section-1-1" class="sub-link">1.1 小节标题</a>
         <a class="sidebar-link" href="#section-1-2" class="sub-link">1.2 小节标题</a>
         <a class="sidebar-link" href="#lab-1" class="sub-link">实验 01</a>
+        <a class="sidebar-link" href="#lab-html-css" class="sub-link">实验 1.5 (HTML+CSS)</a>
         
         <h3>Part 2: 第二部分标题</h3>
         <a class="sidebar-link" href="#section-2-1" class="sub-link">2.1 小节标题</a>
@@ -369,6 +370,83 @@ console.log(greeting);
             <div class="action-bar">
                 <button class="btn btn-run" onclick="runHtmlExperiment('html-html-demo', 'preview-html-demo', 'badge-html-demo')">▶ 运行代码</button>
                 <button class="btn btn-reset" onclick="resetHtmlExperiment('html-html-demo', 'preview-html-demo', 'badge-html-demo')">↺ 重置代码</button>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         实验卡片组件 - HTML + CSS 组合型
+         用于：HTML 结构 + CSS 样式的组合练习
+         ============================================ -->
+    <section id="lab-html-css">
+        <h2>实验 1.5：HTML + CSS 组合实践</h2>
+        <p>这是一个 HTML + CSS 组合实验，学生可以同时编辑 HTML 结构和 CSS 样式，点击运行后查看综合效果。</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 1.5：HTML + CSS 样式练习</span>
+                <span class="status-badge beginner" id="badge-html-css-demo">动手实践</span>
+            </div>
+            
+            <div class="lab-body split">
+                <!-- HTML 代码编辑区 -->
+                <div class="panel code-editor" id="html-html-css-demo" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
+&lt;div class="card"&gt;
+    &lt;h3&gt;卡片标题&lt;/h3&gt;
+    &lt;p&gt;这是卡片内容，可以包含任意文字。&lt;/p&gt;
+    &lt;button class="btn"&gt;点击按钮&lt;/button&gt;
+&lt;/div&gt;
+                </div>
+                
+                <!-- CSS 代码编辑区 -->
+                <div class="panel code-editor" id="css-html-css-demo" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+.card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    max-width: 300px;
+}
+
+.card h3 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.btn {
+    background: #4285f4;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btn:hover {
+    background: #3367d6;
+}
+                </div>
+            </div>
+            
+            <!-- 预览区 -->
+            <div class="preview-box" id="preview-html-css-demo">
+                <div class="panel-label">预览效果</div>
+                <div id="preview-content-html-css-demo"></div>
+            </div>
+            
+            <!-- 操作按钮 -->
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runHtmlCssExperiment('html-html-css-demo', 'css-html-css-demo', 'preview-content-html-css-demo', 'badge-html-css-demo')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetHtmlCssExperiment('html-html-css-demo', 'css-html-css-demo', 'preview-content-html-css-demo', 'badge-html-css-demo')">↺ 重置代码</button>
             </div>
         </div>
     </section>
