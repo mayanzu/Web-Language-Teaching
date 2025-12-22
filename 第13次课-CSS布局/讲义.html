@@ -143,11 +143,13 @@
             <div class="lab-card">
                 <div class="lab-header">
                     <span>实验 01：浮动与清除浮动 (Clearfix)</span>
-                    <span id="badge-1" class="status-badge">未运行</span>
+                    <span id="badge-1" class="status-badge beginner">动手实践</span>
                 </div>
-                <div class="lab-body">
-                    <div class="panel html-viewer">
-<div class="panel-label">HTML (只读)</div>
+                
+                <div class="lab-body split">
+                    <!-- HTML 代码编辑区 -->
+                    <div class="panel code-editor" id="html-1" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
 &lt;!-- 父容器 --&gt;
 &lt;div class="container clearfix"&gt;
   &lt;div class="box left"&gt;左浮动&lt;/div&gt;
@@ -155,7 +157,9 @@
 &lt;/div&gt;
 &lt;p&gt;我是下面的内容，如果清除浮动失败，我会跑上去。&lt;/p&gt;
                     </div>
-                    <div class="panel css-editor" id="css-1" contenteditable="true">
+                    
+                    <!-- CSS 代码编辑区 -->
+                    <div class="panel code-editor" id="css-1" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
 .container {
   background-color: #eee;
@@ -190,16 +194,17 @@
 }
                     </div>
                 </div>
-                <div class="action-bar">
-                    <button class="btn btn-run" onclick="runCssExperiment('css-1', 'preview-1', 'badge-1')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetCssExperiment('css-1', 'preview-1', 'badge-1')">↺ 重置</button>
-                </div>
+                
+                <!-- 预览区 -->
                 <div class="preview-box" id="preview-1">
-                    <div class="container clearfix">
-                        <div class="box left">左浮动</div>
-                        <div class="box right">右浮动</div>
-                    </div>
-                    <p style="margin-top:10px;">我是下面的内容，如果清除浮动失败，我会跑上去。</p>
+                    <div class="panel-label">预览效果</div>
+                    <div id="preview-content-1"></div>
+                </div>
+                
+                <!-- 操作按钮 -->
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="runHtmlCssExperiment('html-1', 'css-1', 'preview-content-1', 'badge-1')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHtmlCssExperiment('html-1', 'css-1', 'preview-content-1', 'badge-1')">↺ 重置代码</button>
                 </div>
             </div>
         </section>
@@ -222,11 +227,13 @@
             <div class="lab-card">
                 <div class="lab-header">
                     <span>实验 02：相对与绝对定位</span>
-                    <span id="badge-2" class="status-badge">未运行</span>
+                    <span id="badge-2" class="status-badge beginner">动手实践</span>
                 </div>
-                <div class="lab-body">
-                    <div class="panel html-viewer">
-<div class="panel-label">HTML (只读)</div>
+                
+                <div class="lab-body split">
+                    <!-- HTML 代码编辑区 -->
+                    <div class="panel code-editor" id="html-2" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
 &lt;div class="card"&gt;
   &lt;h4&gt;特价商品&lt;/h4&gt;
   &lt;p&gt;这里是商品描述...&lt;/p&gt;
@@ -235,7 +242,9 @@
   &lt;span class="badge"&gt;HOT&lt;/span&gt;
 &lt;/div&gt;
                     </div>
-                    <div class="panel css-editor" id="css-2" contenteditable="true">
+                    
+                    <!-- CSS 代码编辑区 -->
+                    <div class="panel code-editor" id="css-2" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
 .card {
   width: 200px;
@@ -266,16 +275,17 @@
 }
                     </div>
                 </div>
-                <div class="action-bar">
-                    <button class="btn btn-run" onclick="runCssExperiment('css-2', 'preview-2', 'badge-2')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetCssExperiment('css-2', 'preview-2', 'badge-2')">↺ 重置</button>
+                
+                <!-- 预览区 -->
+                <div class="preview-box" id="preview-2">
+                    <div class="panel-label">预览效果</div>
+                    <div id="preview-content-2"></div>
                 </div>
-                <div class="preview-box" id="preview-2" style="background: #f0f2f5;">
-                    <div class="card">
-                        <h4 style="margin:0">特价商品</h4>
-                        <p style="font-size:12px; color:#666">这里是商品描述...</p>
-                        <span class="badge">HOT</span>
-                    </div>
+                
+                <!-- 操作按钮 -->
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="runHtmlCssExperiment('html-2', 'css-2', 'preview-content-2', 'badge-2')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHtmlCssExperiment('html-2', 'css-2', 'preview-content-2', 'badge-2')">↺ 重置代码</button>
                 </div>
             </div>
 
@@ -307,11 +317,13 @@
             <div class="lab-card">
                 <div class="lab-header">
                     <span>实验 03：Flexbox 完美居中与分布</span>
-                    <span id="badge-3" class="status-badge">未运行</span>
+                    <span id="badge-3" class="status-badge beginner">动手实践</span>
                 </div>
-                <div class="lab-body">
-                    <div class="panel html-viewer">
-<div class="panel-label">HTML (只读)</div>
+                
+                <div class="lab-body split">
+                    <!-- HTML 代码编辑区 -->
+                    <div class="panel code-editor" id="html-3" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
 &lt;!-- 模拟一个导航栏 --&gt;
 &lt;div class="navbar"&gt;
   &lt;div class="logo"&gt;LOGO&lt;/div&gt;
@@ -323,7 +335,9 @@
   &lt;div class="user"&gt;登录&lt;/div&gt;
 &lt;/div&gt;
                     </div>
-                    <div class="panel css-editor" id="css-3" contenteditable="true">
+                    
+                    <!-- CSS 代码编辑区 -->
+                    <div class="panel code-editor" id="css-3" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
 .navbar {
   height: 60px;
@@ -352,20 +366,17 @@
 .user { background: #0066cc; padding: 5px 15px; border-radius: 4px; }
                     </div>
                 </div>
-                <div class="action-bar">
-                    <button class="btn btn-run" onclick="runCssExperiment('css-3', 'preview-3', 'badge-3')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetCssExperiment('css-3', 'preview-3', 'badge-3')">↺ 重置</button>
-                </div>
+                
+                <!-- 预览区 -->
                 <div class="preview-box" id="preview-3">
-                    <div class="navbar">
-                        <div class="logo">LOGO</div>
-                        <div class="menu">
-                            <span>首页</span>
-                            <span>产品</span>
-                            <span>关于</span>
-                        </div>
-                        <div class="user">登录</div>
-                    </div>
+                    <div class="panel-label">预览效果</div>
+                    <div id="preview-content-3"></div>
+                </div>
+                
+                <!-- 操作按钮 -->
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="runHtmlCssExperiment('html-3', 'css-3', 'preview-content-3', 'badge-3')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHtmlCssExperiment('html-3', 'css-3', 'preview-content-3', 'badge-3')">↺ 重置代码</button>
                 </div>
             </div>
         </section>
@@ -384,11 +395,13 @@
             <div class="lab-card">
                 <div class="lab-header">
                     <span>实验 04：经典网页骨架布局</span>
-                    <span id="badge-4" class="status-badge">未运行</span>
+                    <span id="badge-4" class="status-badge beginner">动手实践</span>
                 </div>
-                <div class="lab-body">
-                    <div class="panel html-viewer">
-<div class="panel-label">HTML (只读)</div>
+                
+                <div class="lab-body split">
+                    <!-- HTML 代码编辑区 -->
+                    <div class="panel code-editor" id="html-4" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
 &lt;div class="grid-container"&gt;
   &lt;div class="header"&gt;Header&lt;/div&gt;
   &lt;div class="sidebar"&gt;Sidebar&lt;/div&gt;
@@ -396,7 +409,9 @@
   &lt;div class="footer"&gt;Footer&lt;/div&gt;
 &lt;/div&gt;
                     </div>
-                    <div class="panel css-editor" id="css-4" contenteditable="true">
+                    
+                    <!-- CSS 代码编辑区 -->
+                    <div class="panel code-editor" id="css-4" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
 .grid-container {
   display: grid;
@@ -431,17 +446,17 @@
 }
                     </div>
                 </div>
-                <div class="action-bar">
-                    <button class="btn btn-run" onclick="runCssExperiment('css-4', 'preview-4', 'badge-4')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetCssExperiment('css-4', 'preview-4', 'badge-4')">↺ 重置</button>
-                </div>
+                
+                <!-- 预览区 -->
                 <div class="preview-box" id="preview-4">
-                    <div class="grid-container">
-                        <div class="header">Header</div>
-                        <div class="sidebar">Sidebar</div>
-                        <div class="main">Main Content</div>
-                        <div class="footer">Footer</div>
-                    </div>
+                    <div class="panel-label">预览效果</div>
+                    <div id="preview-content-4"></div>
+                </div>
+                
+                <!-- 操作按钮 -->
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="runHtmlCssExperiment('html-4', 'css-4', 'preview-content-4', 'badge-4')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHtmlCssExperiment('html-4', 'css-4', 'preview-content-4', 'badge-4')">↺ 重置代码</button>
                 </div>
             </div>
         </section>
@@ -466,17 +481,21 @@
             <div class="lab-card">
                 <div class="lab-header">
                     <span>实验 05：响应式卡片 (请调整浏览器宽度测试)</span>
-                    <span id="badge-5" class="status-badge">未运行</span>
+                    <span id="badge-5" class="status-badge beginner">动手实践</span>
                 </div>
-                <div class="lab-body">
-                    <div class="panel html-viewer">
-<div class="panel-label">HTML (只读)</div>
+                
+                <div class="lab-body split">
+                    <!-- HTML 代码编辑区 -->
+                    <div class="panel code-editor" id="html-5" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
 &lt;div class="responsive-box"&gt;
   &lt;p&gt;我是响应式盒子&lt;/p&gt;
   &lt;p class="info"&gt;当前：电脑模式&lt;/p&gt;
 &lt;/div&gt;
                     </div>
-                    <div class="panel css-editor" id="css-5" contenteditable="true">
+                    
+                    <!-- CSS 代码编辑区 -->
+                    <div class="panel code-editor" id="css-5" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
 .responsive-box {
   background: #6c5ce7;
@@ -504,27 +523,40 @@
 }
                     </div>
                 </div>
-                <div class="action-bar">
-                    <button class="btn btn-run" onclick="runCssExperiment('css-5', 'preview-5', 'badge-5')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetCssExperiment('css-5', 'preview-5', 'badge-5')">↺ 重置</button>
-                </div>
+                
+                <!-- 预览区 -->
                 <div class="preview-box" id="preview-5">
-                    <div class="responsive-box">
-                        <p>我是响应式盒子</p>
-                        <p class="info">当前模式：桌面端（请尝试缩放浏览器窗口宽度）</p>
-                    </div>
+                    <div class="panel-label">预览效果</div>
+                    <div id="preview-content-5"></div>
+                </div>
+                
+                <!-- 操作按钮 -->
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="runHtmlCssExperiment('html-5', 'css-5', 'preview-content-5', 'badge-5')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHtmlCssExperiment('html-5', 'css-5', 'preview-content-5', 'badge-5')">↺ 重置代码</button>
                 </div>
             </div>
         
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验：第13次课-CSS布局实践</span>
-                <span id="badge-6" class="status-badge">未运行</span>
+                <span>实验 06：CSS布局综合实践</span>
+                <span id="badge-6" class="status-badge beginner">动手实践</span>
             </div>
-            <div class="lab-body">
-                <div class="panel">
-                    <div class="panel-label">CSS (可编辑)</div>
-                    <div class="html-editor" id="css-6" contenteditable="true">/* 第13次课-CSS布局实验 */
+            
+            <div class="lab-body split">
+                <!-- HTML 代码编辑区 -->
+                <div class="panel code-editor" id="html-6" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
+&lt;div class="container"&gt;
+    &lt;h3&gt;CSS实验&lt;/h3&gt;
+    &lt;p&gt;这是CSS实验的预览效果&lt;/p&gt;
+&lt;/div&gt;
+                </div>
+                
+                <!-- CSS 代码编辑区 -->
+                <div class="panel code-editor" id="css-6" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* 第13次课-CSS布局实验 */
 .container {
     width: 200px;
     height: 200px;
@@ -536,21 +568,20 @@
     /* 在这里添加你的CSS样式 */
 }
 
-/* 在这里添加更多CSS样式 */</div>
-                </div>
-                <div class="panel">
-                    <div class="panel-label">预览效果</div>
-                    <div class="preview-box" id="preview-6">
-                        <div class="container">
-                            <h3>CSS实验</h3>
-                            <p>这是CSS实验的预览效果</p>
-                        </div>
-                    </div>
+/* 在这里添加更多CSS样式 */
                 </div>
             </div>
+            
+            <!-- 预览区 -->
+            <div class="preview-box" id="preview-6">
+                <div class="panel-label">预览效果</div>
+                <div id="preview-content-6"></div>
+            </div>
+            
+            <!-- 操作按钮 -->
             <div class="action-bar">
-                <button class="btn btn-run" onclick="runCssExperiment('css-6', 'preview-6', 'badge-6')">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="resetCssExperiment('css-6', 'preview-6', 'badge-6')">↺ 重置</button>
+                <button class="btn btn-run" onclick="runHtmlCssExperiment('html-6', 'css-6', 'preview-content-6', 'badge-6')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetHtmlCssExperiment('html-6', 'css-6', 'preview-content-6', 'badge-6')">↺ 重置代码</button>
             </div>
         </div>
 </section>

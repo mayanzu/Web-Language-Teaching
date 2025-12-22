@@ -91,16 +91,20 @@ p {
             <div class="lab-card">
                 <div class="lab-header">
                     <span>实验 01：基本选择器</span>
-                    <span id="badge-1" class="status-badge">未运行</span>
+                    <span id="badge-1" class="status-badge beginner">动手实践</span>
                 </div>
-                <div class="lab-body">
-                    <div class="panel html-viewer">
-<div class="panel-label">HTML (只读)</div>
+                
+                <div class="lab-body split">
+                    <!-- HTML 代码编辑区 -->
+                    <div class="panel code-editor" id="html-1" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
 &lt;p&gt;这是一个普通段落&lt;/p&gt;
 &lt;p class="highlight"&gt;这是一个高亮段落&lt;/p&gt;
 &lt;div id="header"&gt;页面标题&lt;/div&gt;
                     </div>
-                    <div class="panel css-editor" id="css-1" contenteditable="true">
+                    
+                    <!-- CSS 代码编辑区 -->
+                    <div class="panel code-editor" id="css-1" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
 p {
   color: blue;
@@ -115,14 +119,17 @@ p {
 }
                     </div>
                 </div>
-                <div class="action-bar">
-                    <button class="btn btn-run" onclick="runCssExperiment('css-1', 'preview-1', 'badge-1')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetCssExperiment('css-1', 'preview-1', 'badge-1')">↺ 重置</button>
-                </div>
+                
+                <!-- 预览区 -->
                 <div class="preview-box" id="preview-1">
-                    <p>这是一个普通段落</p>
-                    <p class="highlight">这是一个高亮段落</p>
-                    <div id="header">页面标题</div>
+                    <div class="panel-label">预览效果</div>
+                    <div id="preview-content-1"></div>
+                </div>
+                
+                <!-- 操作按钮 -->
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="runHtmlCssExperiment('html-1', 'css-1', 'preview-content-1', 'badge-1')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHtmlCssExperiment('html-1', 'css-1', 'preview-content-1', 'badge-1')">↺ 重置代码</button>
                 </div>
             </div>
         </section>
@@ -196,11 +203,13 @@ p {
             <div class="lab-card">
                 <div class="lab-header">
                     <span>实验 02：后代选择器</span>
-                    <span id="badge-2" class="status-badge">未运行</span>
+                    <span id="badge-2" class="status-badge beginner">动手实践</span>
                 </div>
-                <div class="lab-body">
-                    <div class="panel html-viewer">
-<div class="panel-label">HTML (只读)</div>
+                
+                <div class="lab-body split">
+                    <!-- HTML 代码编辑区 -->
+                    <div class="panel code-editor" id="html-2" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
 &lt;div class="box"&gt;
     &lt;p&gt;这是一个段落，包含 &lt;span&gt;span 元素&lt;/span&gt;。&lt;/p&gt;
     &lt;div&gt;
@@ -208,7 +217,9 @@ p {
     &lt;/div&gt;
 &lt;/div&gt;
                     </div>
-                    <div class="panel css-editor" id="css-2" contenteditable="true">
+                    
+                    <!-- CSS 代码编辑区 -->
+                    <div class="panel code-editor" id="css-2" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
 .box span {
     background-color: lightyellow;
@@ -220,17 +231,17 @@ p {
 }
                     </div>
                 </div>
-                <div class="action-bar">
-                    <button class="btn btn-run" onclick="runCssExperiment('css-2', 'preview-2', 'badge-2')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetCssExperiment('css-2', 'preview-2', 'badge-2')">↺ 重置</button>
-                </div>
+                
+                <!-- 预览区 -->
                 <div class="preview-box" id="preview-2">
-                    <div class="box">
-                        <p>这是一个段落，包含 <span>span 元素</span>。</p>
-                        <div>
-                            <p>嵌套段落中的 <span>另一个 span</span>。</p>
-                        </div>
-                    </div>
+                    <div class="panel-label">预览效果</div>
+                    <div id="preview-content-2"></div>
+                </div>
+                
+                <!-- 操作按钮 -->
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="runHtmlCssExperiment('html-2', 'css-2', 'preview-content-2', 'badge-2')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHtmlCssExperiment('html-2', 'css-2', 'preview-content-2', 'badge-2')">↺ 重置代码</button>
                 </div>
             </div>
         </section>
@@ -282,11 +293,13 @@ p {
             <div class="lab-card">
                 <div class="lab-header">
                     <span>实验 03：子代选择器</span>
-                    <span id="badge-3" class="status-badge">未运行</span>
+                    <span id="badge-3" class="status-badge beginner">动手实践</span>
                 </div>
-                <div class="lab-body">
-                    <div class="panel html-viewer">
-<div class="panel-label">HTML (只读)</div>
+                
+                <div class="lab-body split">
+                    <!-- HTML 代码编辑区 -->
+                    <div class="panel code-editor" id="html-3" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
 &lt;div class="article"&gt;
     &lt;h2&gt;直接子元素标题（加粗蓝色）&lt;/h2&gt;
     &lt;p&gt;直接子元素段落（加粗蓝色）&lt;/p&gt;
@@ -303,7 +316,9 @@ p {
     &lt;p&gt;另一个直接子元素段落（加粗蓝色）&lt;/p&gt;
 &lt;/div&gt;
                     </div>
-                    <div class="panel css-editor" id="css-3" contenteditable="true">
+                    
+                    <!-- CSS 代码编辑区 -->
+                    <div class="panel code-editor" id="css-3" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
 /* 选择.article的直接子元素h2和p */
 .article > h2,
@@ -315,26 +330,17 @@ p {
 }
                     </div>
                 </div>
-                <div class="action-bar">
-                    <button class="btn btn-run" onclick="runCssExperiment('css-3', 'preview-3', 'badge-3')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetCssExperiment('css-3', 'preview-3', 'badge-3')">↺ 重置</button>
-                </div>
+                
+                <!-- 预览区 -->
                 <div class="preview-box" id="preview-3">
-                    <div class="article">
-                        <h2>直接子元素标题（加粗蓝色）</h2>
-                        <p>直接子元素段落（加粗蓝色）</p>
-                        
-                        <div class="content">
-                            <h2>嵌套在div中的标题（正常样式）</h2>
-                            <p>嵌套在div中的段落（正常样式）</p>
-                            <div>
-                                <h2>更深层嵌套的标题（正常样式）</h2>
-                                <p>更深层嵌套的段落（正常样式）</p>
-                            </div>
-                        </div>
-                        
-                        <p>另一个直接子元素段落（加粗蓝色）</p>
-                    </div>
+                    <div class="panel-label">预览效果</div>
+                    <div id="preview-content-3"></div>
+                </div>
+                
+                <!-- 操作按钮 -->
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="runHtmlCssExperiment('html-3', 'css-3', 'preview-content-3', 'badge-3')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHtmlCssExperiment('html-3', 'css-3', 'preview-content-3', 'badge-3')">↺ 重置代码</button>
                 </div>
             </div>
         </section>
@@ -375,11 +381,13 @@ p {
             <div class="lab-card">
                 <div class="lab-header">
                     <span>实验 04：相邻兄弟选择器</span>
-                    <span id="badge-4" class="status-badge">未运行</span>
+                    <span id="badge-4" class="status-badge beginner">动手实践</span>
                 </div>
-                <div class="lab-body">
-                    <div class="panel html-viewer">
-<div class="panel-label">HTML (只读)</div>
+                
+                <div class="lab-body split">
+                    <!-- HTML 代码编辑区 -->
+                    <div class="panel code-editor" id="html-4" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
 &lt;h2&gt;章节标题&lt;/h2&gt;
 &lt;p&gt;紧跟在h2后的段落（红色斜体）&lt;/p&gt;
 &lt;p&gt;不紧跟h2的段落（不受影响）&lt;/p&gt;
@@ -388,7 +396,9 @@ p {
 &lt;p&gt;紧跟在高亮段落后的段落（加粗黄色）&lt;/p&gt;
 &lt;p&gt;另一个段落（不受影响）&lt;/p&gt;
                     </div>
-                    <div class="panel css-editor" id="css-4" contenteditable="true">
+                    
+                    <!-- CSS 代码编辑区 -->
+                    <div class="panel code-editor" id="css-4" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
 /* 选择紧跟在h2后面的p */
 h2 + p {
@@ -407,18 +417,17 @@ h2 + p {
 }
                     </div>
                 </div>
-                <div class="action-bar">
-                    <button class="btn btn-run" onclick="runCssExperiment('css-4', 'preview-4', 'badge-4')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetCssExperiment('css-4', 'preview-4', 'badge-4')">↺ 重置</button>
-                </div>
+                
+                <!-- 预览区 -->
                 <div class="preview-box" id="preview-4">
-                    <h2>章节标题</h2>
-                    <p>紧跟在h2后的段落（红色斜体）</p>
-                    <p>不紧跟h2的段落（不受影响）</p>
-                    
-                    <p class="highlight">高亮段落</p>
-                    <p>紧跟在高亮段落后的段落（加粗黄色）</p>
-                    <p>另一个段落（不受影响）</p>
+                    <div class="panel-label">预览效果</div>
+                    <div id="preview-content-4"></div>
+                </div>
+                
+                <!-- 操作按钮 -->
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="runHtmlCssExperiment('html-4', 'css-4', 'preview-content-4', 'badge-4')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHtmlCssExperiment('html-4', 'css-4', 'preview-content-4', 'badge-4')">↺ 重置代码</button>
                 </div>
             </div>
         </section>
@@ -464,11 +473,13 @@ h2 + p {
             <div class="lab-card">
                 <div class="lab-header">
                     <span>实验 05：通用兄弟选择器</span>
-                    <span id="badge-5" class="status-badge">未运行</span>
+                    <span id="badge-5" class="status-badge beginner">动手实践</span>
                 </div>
-                <div class="lab-body">
-                    <div class="panel html-viewer">
-<div class="panel-label">HTML (只读)</div>
+                
+                <div class="lab-body split">
+                    <!-- HTML 代码编辑区 -->
+                    <div class="panel code-editor" id="html-5" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
 &lt;h3&gt;小节标题&lt;/h3&gt;
 &lt;li&gt;列表项1（绿色加粗）&lt;/li&gt;
 &lt;li&gt;列表项2（绿色加粗）&lt;/li&gt;
@@ -482,7 +493,9 @@ h2 + p {
 &lt;div&gt;普通div（不受影响）&lt;/div&gt;
 &lt;div class="item"&gt;项目3（蓝色背景）&lt;/div&gt;
                     </div>
-                    <div class="panel css-editor" id="css-5" contenteditable="true">
+                    
+                    <!-- CSS 代码编辑区 -->
+                    <div class="panel code-editor" id="css-5" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
 /* 选择h3后面所有的li兄弟元素 */
 h3 ~ li {
@@ -501,23 +514,17 @@ h3 ~ li {
 }
                     </div>
                 </div>
-                <div class="action-bar">
-                    <button class="btn btn-run" onclick="runCssExperiment('css-5', 'preview-5', 'badge-5')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetCssExperiment('css-5', 'preview-5', 'badge-5')">↺ 重置</button>
-                </div>
+                
+                <!-- 预览区 -->
                 <div class="preview-box" id="preview-5">
-                    <h3>小节标题</h3>
-                    <li>列表项1（绿色加粗）</li>
-                    <li>列表项2（绿色加粗）</li>
-                    <p>段落元素</p>
-                    <li>列表项3（绿色加粗）</li>
-                    <li>列表项4（绿色加粗）</li>
-
-                    <div class="active">激活的项目</div>
-                    <div class="item">项目1（蓝色背景）</div>
-                    <div class="item">项目2（蓝色背景）</div>
-                    <div>普通div（不受影响）</div>
-                    <div class="item">项目3（蓝色背景）</div>
+                    <div class="panel-label">预览效果</div>
+                    <div id="preview-content-5"></div>
+                </div>
+                
+                <!-- 操作按钮 -->
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="runHtmlCssExperiment('html-5', 'css-5', 'preview-content-5', 'badge-5')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetHtmlCssExperiment('html-5', 'css-5', 'preview-content-5', 'badge-5')">↺ 重置代码</button>
                 </div>
             </div>
         </section>
