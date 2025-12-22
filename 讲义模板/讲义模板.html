@@ -20,23 +20,29 @@
         <h3>课程导航</h3>
         <a class="sidebar-link" href="#intro">👋 课程概览</a>
         
+        <!-- Part 1: 一级章节使用中文数字 -->
         <h3>Part 1: 第一部分标题</h3>
-        <a class="sidebar-link" href="#section-1-1" class="sub-link">1.1 小节标题</a>
-        <a class="sidebar-link" href="#section-1-2" class="sub-link">1.2 小节标题</a>
-        <a class="sidebar-link" href="#lab-1" class="sub-link">实验 01</a>
-        <a class="sidebar-link" href="#lab-html-css" class="sub-link">实验 1.5 (HTML+CSS)</a>
+        <a class="sidebar-link sub-link" href="#chapter-1">一、第一章标题</a>
+        <a class="sidebar-link sub-link" href="#section-1-1">1.1 小节标题</a>
+        <a class="sidebar-link sub-link" href="#section-1-2">1.2 小节标题</a>
+        <a class="sidebar-link sub-link" href="#lab-1">🔬 实验 01</a>
         
+        <!-- Part 2: 第二部分 -->
         <h3>Part 2: 第二部分标题</h3>
-        <a class="sidebar-link" href="#section-2-1" class="sub-link">2.1 小节标题</a>
-        <a class="sidebar-link" href="#section-2-2" class="sub-link">2.2 小节标题</a>
-        <a class="sidebar-link" href="#lab-2" class="sub-link">实验 02</a>
+        <a class="sidebar-link sub-link" href="#chapter-2">二、第二章标题</a>
+        <a class="sidebar-link sub-link" href="#section-2-1">2.1 小节标题</a>
+        <a class="sidebar-link sub-link" href="#section-2-2">2.2 小节标题</a>
+        <a class="sidebar-link sub-link" href="#lab-2">🔬 实验 02</a>
         
+        <!-- Part 3: 第三部分 -->
         <h3>Part 3: 第三部分标题</h3>
-        <a class="sidebar-link" href="#section-3-1" class="sub-link">3.1 小节标题</a>
-        <a class="sidebar-link" href="#lab-3" class="sub-link">实验 03</a>
+        <a class="sidebar-link sub-link" href="#chapter-3">三、第三章标题</a>
+        <a class="sidebar-link sub-link" href="#section-3-1">3.1 小节标题</a>
+        <a class="sidebar-link sub-link" href="#lab-3">🔬 实验 03</a>
         
+        <!-- 总结 -->
         <h3>总结与练习</h3>
-        <a class="sidebar-link" href="#summary" class="sub-link">📝 课程小结</a>
+        <a class="sidebar-link sub-link" href="#summary">📝 课程小结</a>
     </div>
 </nav>
 
@@ -66,277 +72,66 @@
 
 
     <!-- ============================================
-         正文内容示例 - 各类元素展示
+         第一部分：第一章内容
          ============================================ -->
-
-    <!-- 一级章节 -->
-    <section id="section-1-1">
-        <h2>一、章节标题（使用中文数字）</h2>
+    
+    <!-- 一级章节：使用 h2 + 中文数字 -->
+    <section id="chapter-1">
+        <h2>一、第一章标题</h2>
         <p>这是普通段落文本。段落是讲义的基础组成部分，用于解释概念、描述知识点。段落之间会有适当的间距，保持良好的阅读体验。</p>
         <p>第二个段落示例。可以在段落中使用<strong>粗体</strong>来强调重要内容，使用<code>行内代码</code>来表示代码片段、属性名或关键字。</p>
     </section>
 
-
-    <!-- 二级小节 -->
-    <section id="section-1-2">
-        <h3>1.1 二级小节标题</h3>
+    <!-- 二级小节：使用 h3 + 数字编号 -->
+    <section id="section-1-1">
+        <h3>1.1 小节标题</h3>
         <p>二级小节用于将一个大章节进一步细分。每个小节应该聚焦于一个具体的知识点。</p>
         
-        <!-- 三级小节 -->
-        <h4>更细分的内容（三级标题）</h4>
-        <p>当需要在二级小节下进一步细分时，可以使用三级标题 h4。</p>
-    </section>
-
-
-    <!-- ============================================
-         提示框组件 - tip-box
-         用于：小技巧、类比说明、辅助理解的内容
-         ============================================ -->
-    <section id="tip-box-demo">
-        <h2>二、提示框组件展示</h2>
-        
+        <!-- 提示框组件 tip-box -->
         <div class="tip-box">
             <span class="tip-title">小技巧 / 类比说明</span>
-            <p>tip-box 用于提供额外的小技巧、生活类比或辅助理解的内容。这类内容不是核心知识，但能帮助学生更好地理解。</p>
+            <p>tip-box 用于提供额外的小技巧、生活类比或辅助理解的内容。</p>
             <ul class="checklist">
                 <li>可以包含无序列表</li>
                 <li>用于列举要点</li>
                 <li>每项保持简洁</li>
             </ul>
         </div>
+        
+        <!-- 三级标题：使用 h4 -->
+        <h4>更细分的内容（三级标题）</h4>
+        <p>当需要在二级小节下进一步细分时，可以使用三级标题 h4。</p>
     </section>
 
-
-    <!-- ============================================
-         笔记框组件 - note-box
-         用于：重要概念、核心定义、需要记住的内容
-         ============================================ -->
-    <section id="note-box-demo">
-        <h3>2.1 笔记框组件</h3>
+    <section id="section-1-2">
+        <h3>1.2 小节标题</h3>
+        <p>这是另一个二级小节的内容。</p>
         
+        <!-- 笔记框组件 note-box -->
         <div class="note-box">
             <strong>核心概念 / 重要定义：</strong>
             <p>note-box 用于强调重要的概念或定义。学生应该特别注意并记住这些内容。</p>
-            <p>可以包含多个段落，也可以嵌入代码示例：</p>
 <pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>// 示例代码
 const example = '这是一个示例';
 console.log(example);
 </code></pre>
         </div>
-    </section>
-
-
-    <!-- ============================================
-         警告框组件 - warning-box
-         用于：常见错误、易错点、需要特别注意的内容
-         ============================================ -->
-    <section id="warning-box-demo">
-        <h3>2.2 警告框组件</h3>
         
+        <!-- 警告框组件 warning-box -->
         <div class="warning-box">
             <strong>常见错误 / 易错点！</strong>
             <p>warning-box 用于警告学生常见的错误或需要特别注意的陷阱。</p>
 <pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>// ❌ 错误示例
 const wrong = 'mistake';
 
-// ✅ 正确示例
+// ✅ 正确示例  
 const right = 'correct';
 </code></pre>
         </div>
     </section>
 
-
     <!-- ============================================
-         表格组件 - prop-table
-         用于：属性对照、概念比较、知识点总结
-         ============================================ -->
-    <section id="table-demo">
-        <h2>三、表格组件展示</h2>
-        <p>表格用于呈现结构化的信息，如属性列表、概念对比、知识点总结等。</p>
-        
-        <table class="prop-table">
-            <thead>
-                <tr>
-                    <th>属性/概念</th>
-                    <th>说明</th>
-                    <th>示例</th>
-                    <th>备注</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><code>property1</code></td>
-                    <td>属性1的详细说明</td>
-                    <td><code>value1</code></td>
-                    <td>可选的备注信息</td>
-                </tr>
-                <tr>
-                    <td><code>property2</code></td>
-                    <td>属性2的详细说明</td>
-                    <td><code>value2</code></td>
-                    <td>可选的备注信息</td>
-                </tr>
-                <tr>
-                    <td><code>property3</code></td>
-                    <td>属性3的详细说明，可以是较长的描述文本</td>
-                    <td><code>value3</code></td>
-                    <td>-</td>
-                </tr>
-            </tbody>
-        </table>
-        
-        <!-- 简单对比表格 -->
-        <h3>3.1 对比类表格</h3>
-        <table class="prop-table">
-            <thead>
-                <tr>
-                    <th>对比项</th>
-                    <th>概念A</th>
-                    <th>概念B</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>特征1</td>
-                    <td>A的特征描述</td>
-                    <td>B的特征描述</td>
-                </tr>
-                <tr>
-                    <td>特征2</td>
-                    <td>A的特征描述</td>
-                    <td>B的特征描述</td>
-                </tr>
-                <tr>
-                    <td>适用场景</td>
-                    <td>场景A描述</td>
-                    <td>场景B描述</td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-
-
-    <!-- ============================================
-         列表组件
-         ============================================ -->
-    <section id="list-demo">
-        <h2>四、列表组件展示</h2>
-        
-        <h3>4.1 普通无序列表</h3>
-        <ul>
-            <li>列表项1：基础用法</li>
-            <li>列表项2：包含<code>代码</code>的列表项</li>
-            <li>列表项3：包含<strong>强调</strong>的列表项</li>
-        </ul>
-        
-        <h3>4.2 有序列表（步骤说明）</h3>
-        <ol class="lab-steps">
-            <li>第一步：准备工作</li>
-            <li>第二步：执行操作</li>
-            <li>第三步：检查结果</li>
-            <li>第四步：完成任务</li>
-        </ol>
-        
-        <h3>4.3 清单列表（checklist）</h3>
-        <ul class="checklist">
-            <li>检查项1：确认已完成基础配置</li>
-            <li>检查项2：确认代码语法正确</li>
-            <li>检查项3：确认测试通过</li>
-        </ul>
-    </section>
-
-
-    <!-- ============================================
-         代码块组件
-         ============================================ -->
-    <section id="code-demo">
-        <h2>五、代码块组件展示</h2>
-        
-        <h3>5.1 HTML 代码块</h3>
-<pre class="html"><code>&lt;!DOCTYPE html&gt;
-&lt;html lang="zh-CN"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;title&gt;页面标题&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h1&gt;Hello World&lt;/h1&gt;
-    &lt;p&gt;这是一个段落。&lt;/p&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-
-        <h3>5.2 CSS 代码块</h3>
-<pre class="css"><code>/* CSS 样式示例 */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.title {
-    font-size: 24px;
-    color: #333;
-    font-weight: bold;
-}
-</code></pre>
-
-        <h3>5.3 JavaScript 代码块</h3>
-<pre class="js"><code>// JavaScript 代码示例
-function greet(name) {
-    const message = `Hello, ${name}!`;
-    console.log(message);
-    return message;
-}
-
-// 调用函数
-greet('World');
-</code></pre>
-
-        <h3>5.4 带注释的代码块</h3>
-<pre><code>// 这是一个带有详细注释的代码示例
-let score = 0;           // 初始化分数
-let playerName = '玩家'; // 玩家名称
-
-// 增加分数的函数
-function addScore(points) {
-    score += points;     // 累加分数
-    console.log(`${playerName} 获得 ${points} 分，当前总分：${score}`);
-}
-
-addScore(100); // 输出: 玩家 获得 100 分，当前总分：100
-addScore(50);  // 输出: 玩家 获得 50 分，当前总分：150
-</code></pre>
-    </section>
-
-
-    <!-- ============================================
-         实验卡片组件 - 只读展示型
-         用于：示例展示、概念说明、不需要交互的代码
-         ============================================ -->
-    <section id="lab-readonly">
-        <h2>六、实验卡片 - 只读展示型</h2>
-        <p>只读展示型实验卡片用于展示代码示例，学生只需观察学习，无需动手操作。</p>
-        
-        <div class="lab-card">
-            <div class="lab-header">
-                <span>示例：基础代码展示</span>
-                <span class="status-badge readonly">只读</span>
-            </div>
-            <div class="lab-body">
-                <p style="margin-bottom: 12px;">这是对示例的说明文字，解释代码的作用和要点：</p>
-<pre><code>// 示例代码 - 学生只需观察学习
-const greeting = 'Hello, World!';
-console.log(greeting);
-</code></pre>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- ============================================
-         实验卡片组件 - 动手实践型（HTML实验）
-         用于：HTML 代码编辑和即时预览
+         实验 01：HTML 动手实践
          ============================================ -->
     <section id="lab-1">
         <h2>实验 01：HTML 动手实践</h2>
@@ -376,16 +171,116 @@ console.log(greeting);
 
 
     <!-- ============================================
-         实验卡片组件 - HTML + CSS 组合型
-         用于：HTML 结构 + CSS 样式的组合练习
+         第二部分：第二章内容
          ============================================ -->
-    <section id="lab-html-css">
-        <h2>实验 1.5：HTML + CSS 组合实践</h2>
-        <p>这是一个 HTML + CSS 组合实验，学生可以同时编辑 HTML 结构和 CSS 样式，点击运行后查看综合效果。</p>
+    
+    <section id="chapter-2">
+        <h2>二、第二章标题</h2>
+        <p>表格用于呈现结构化的信息，如属性列表、概念对比、知识点总结等。</p>
+        
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>属性/概念</th>
+                    <th>说明</th>
+                    <th>示例</th>
+                    <th>备注</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>property1</code></td>
+                    <td>属性1的详细说明</td>
+                    <td><code>value1</code></td>
+                    <td>可选的备注信息</td>
+                </tr>
+                <tr>
+                    <td><code>property2</code></td>
+                    <td>属性2的详细说明</td>
+                    <td><code>value2</code></td>
+                    <td>可选的备注信息</td>
+                </tr>
+                <tr>
+                    <td><code>property3</code></td>
+                    <td>属性3的详细说明</td>
+                    <td><code>value3</code></td>
+                    <td>-</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="section-2-1">
+        <h3>2.1 小节标题</h3>
+        
+        <h4>普通无序列表</h4>
+        <ul>
+            <li>列表项1：基础用法</li>
+            <li>列表项2：包含<code>代码</code>的列表项</li>
+            <li>列表项3：包含<strong>强调</strong>的列表项</li>
+        </ul>
+        
+        <h4>有序列表（步骤说明）</h4>
+        <ol class="lab-steps">
+            <li>第一步：准备工作</li>
+            <li>第二步：执行操作</li>
+            <li>第三步：检查结果</li>
+            <li>第四步：完成任务</li>
+        </ol>
+        
+        <h4>清单列表（checklist）</h4>
+        <ul class="checklist">
+            <li>检查项1：确认已完成基础配置</li>
+            <li>检查项2：确认代码语法正确</li>
+            <li>检查项3：确认测试通过</li>
+        </ul>
+    </section>
+
+    <section id="section-2-2">
+        <h3>2.2 小节标题</h3>
+        
+        <h4>HTML 代码块</h4>
+<pre class="html"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;页面标题&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Hello World&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+        <h4>CSS 代码块</h4>
+<pre class="css"><code>/* CSS 样式示例 */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+</code></pre>
+
+        <h4>JavaScript 代码块</h4>
+<pre class="js"><code>// JavaScript 代码示例
+function greet(name) {
+    const message = `Hello, ${name}!`;
+    console.log(message);
+    return message;
+}
+</code></pre>
+    </section>
+
+    <!-- ============================================
+         实验 02：HTML + CSS 组合实践
+         ============================================ -->
+    <section id="lab-2">
+        <h2>实验 02：HTML + CSS 组合实践</h2>
+        <p>这是一个 HTML + CSS 组合实验，学生可以同时编辑 HTML 结构和 CSS 样式。</p>
         
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验 1.5：HTML + CSS 样式练习</span>
+                <span>实验 02：HTML + CSS 样式练习</span>
                 <span class="status-badge beginner" id="badge-html-css-demo">动手实践</span>
             </div>
             
@@ -453,23 +348,68 @@ console.log(greeting);
 
 
     <!-- ============================================
-         实验卡片组件 - JavaScript DOM 交互型
-         用于：JS 代码操作页面元素
+         第三部分：第三章内容
          ============================================ -->
-    <section id="lab-2">
-        <h2>实验 02：JavaScript 交互实践</h2>
+    
+    <section id="chapter-3">
+        <h2>三、第三章标题</h2>
+        <p>这是第三章的主要内容介绍。</p>
+        
+        <!-- 只读展示型实验卡片 -->
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>示例：只读代码展示</span>
+                <span class="status-badge readonly">只读</span>
+            </div>
+            <div class="lab-body">
+                <p style="margin-bottom: 12px;">只读展示型实验卡片用于展示代码示例，学生只需观察学习：</p>
+<pre><code>// 示例代码 - 学生只需观察学习
+const greeting = 'Hello, World!';
+console.log(greeting);
+</code></pre>
+            </div>
+        </div>
+        
+        <!-- Real World 案例卡片 -->
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>案例：真实应用场景</span>
+                <span class="status-badge beginner">Real World</span>
+            </div>
+            <div class="lab-body">
+                <p><strong>实际应用场景：</strong></p>
+                <ul class="checklist">
+                    <li><strong>功能1</strong>：描述这个功能在实际中如何使用</li>
+                    <li><strong>功能2</strong>：描述另一个相关功能的应用</li>
+                    <li><strong>功能3</strong>：更多实际应用描述</li>
+                </ul>
+                <p style="margin-top: 10px; color: #666; font-size: 14px;">如果没有这个技术，用户体验会受到什么影响的说明。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="section-3-1">
+        <h3>3.1 小节标题</h3>
+        <p>这是第三章的一个小节内容。</p>
+    </section>
+
+    <!-- ============================================
+         实验 03：JavaScript 交互实践
+         ============================================ -->
+    <section id="lab-3">
+        <h2>实验 03：JavaScript 交互实践</h2>
         <p>这是一个 JavaScript 实验，代码会操作下方预览区的页面元素。</p>
         
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验 02：JS DOM 操作练习</span>
-                <span class="status-badge beginner">动手实践</span>
+                <span>实验 03：JS DOM 操作练习</span>
+                <span class="status-badge beginner" id="badge-js-demo">动手实践</span>
             </div>
             
             <div class="lab-body split">
                 <!-- HTML 预览说明 -->
                 <div class="panel html-viewer">
-<div class="panel-label">HTML 预览</div>
+<div class="panel-label">HTML 结构</div>
 &lt;h3&gt;计数器演示&lt;/h3&gt;
 &lt;p id="counter-display"&gt;当前计数: 0&lt;/p&gt;
 &lt;button onclick="increment()"&gt;+1&lt;/button&gt;
@@ -496,12 +436,12 @@ function decrement() {
             
             <!-- 操作按钮 -->
             <div class="action-bar">
-                <button class="btn btn-run" onclick="runJsDomExperiment('code-counter-demo', null)">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="resetJsDomExperiment('code-counter-demo', 'counter-output', null)">↺ 重置代码</button>
+                <button class="btn btn-run" onclick="runJsDomExperiment('code-counter-demo', 'badge-js-demo')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetJsDomExperiment('code-counter-demo', 'counter-preview', 'badge-js-demo')">↺ 重置代码</button>
             </div>
             
             <!-- 实际预览区 -->
-            <div class="preview-box">
+            <div class="preview-box" id="counter-preview">
                 <h3>计数器演示</h3>
                 <p id="counter-display" style="font-size: 32px; font-weight: bold; color: var(--color-accent); margin: 15px 0;">当前计数: 0</p>
                 <button class="btn btn-run" onclick="increment()">+1</button>
@@ -512,146 +452,10 @@ function decrement() {
 
 
     <!-- ============================================
-         实验卡片组件 - 带输入的交互型
-         用于：需要用户输入参数的实验
-         ============================================ -->
-    <section id="lab-3">
-        <h2>实验 03：带输入的交互实验</h2>
-        <p>这是一个需要用户输入参数的实验，结合输入框和按钮进行交互。</p>
-        
-        <div class="lab-card">
-            <div class="lab-header">
-                <span>实验 03：参数化交互练习</span>
-                <span class="status-badge advanced">进阶实践</span>
-            </div>
-            
-            <div class="lab-body split">
-                <!-- HTML 预览说明 -->
-                <div class="panel html-viewer">
-<div class="panel-label">HTML 预览</div>
-&lt;h3&gt;温度转换器&lt;/h3&gt;
-&lt;p&gt;摄氏度: &lt;input id="celsius" type="number" value="25"&gt;&lt;/p&gt;
-&lt;button onclick="convert()"&gt;转换为华氏度&lt;/button&gt;
-&lt;div id="result"&gt;&lt;/div&gt;
-                </div>
-                
-                <!-- JS 代码编辑区 -->
-                <div class="panel code-editor" id="code-temp-demo" contenteditable="true">
-<div class="panel-label">JavaScript (可编辑)</div>
-function convert() {
-    const celsiusInput = document.getElementById('celsius');
-    const resultDiv = document.getElementById('result');
-    
-    const celsius = Number(celsiusInput.value);
-    const fahrenheit = celsius * 9/5 + 32;
-    
-    resultDiv.innerHTML = `
-        &lt;p&gt;${celsius}°C = ${fahrenheit.toFixed(1)}°F&lt;/p&gt;
-    `;
-}
-                </div>
-            </div>
-            
-            <!-- 操作按钮 -->
-            <div class="action-bar">
-                <button class="btn btn-run" onclick="runJsDomExperiment('code-temp-demo', null)">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="resetJsDomExperiment('code-temp-demo', 'result', null)">↺ 重置代码</button>
-            </div>
-            
-            <!-- 实际预览区 -->
-            <div class="preview-box">
-                <h3>温度转换器</h3>
-                <p>摄氏度: <input id="celsius" type="number" value="25" style="padding: 6px; border: 1px solid #ddd; border-radius: 4px; width: 100px;"></p>
-                <button class="btn btn-run" onclick="convert()" style="margin-top: 10px;">转换为华氏度</button>
-                <div id="result" style="margin-top: 15px; padding: 10px; background: #f9f9f9; border-radius: 6px; min-height: 40px;"></div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- ============================================
-         案例卡片组件 - Real World 案例
-         用于：展示真实应用场景
-         ============================================ -->
-    <section id="real-world-demo">
-        <h2>七、真实案例展示</h2>
-        
-        <div class="lab-card">
-            <div class="lab-header">
-                <span>案例：社交媒体中的应用</span>
-                <span class="status-badge beginner">Real World</span>
-            </div>
-            <div class="lab-body">
-                <p><strong>实际应用场景：</strong></p>
-                <ul class="checklist">
-                    <li><strong>功能1</strong>：描述这个功能在实际中如何使用</li>
-                    <li><strong>功能2</strong>：描述另一个相关功能的应用</li>
-                    <li><strong>功能3</strong>：更多实际应用描述</li>
-                </ul>
-                <p style="margin-top: 10px; color: #666; font-size: 18px;">如果没有这个技术，用户体验会受到什么影响的说明。</p>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- ============================================
-         综合案例区域
-         用于：整合本课所有知识点的完整案例
-         ============================================ -->
-    <section id="comprehensive-demo">
-        <h2>八、综合案例</h2>
-        <p>下面是一个综合运用本课所有知识点的完整案例：</p>
-        
-        <div class="lab-card">
-            <div class="lab-header">
-                <span>综合案例：完整功能实现</span>
-                <span class="status-badge advanced">综合实战</span>
-            </div>
-            
-            <div class="lab-body split">
-                <div class="panel html-viewer">
-<div class="panel-label">HTML 预览</div>
-&lt;h3&gt;综合案例标题&lt;/h3&gt;
-&lt;p&gt;案例描述和使用说明&lt;/p&gt;
-&lt;div id="comprehensive-output"&gt;&lt;/div&gt;
-                </div>
-                
-                <div class="panel code-editor" id="code-comprehensive" contenteditable="true">
-<div class="panel-label">JavaScript (可编辑)</div>
-// 综合案例代码
-// 整合本课所有知识点
-
-function runComprehensive() {
-    const output = document.getElementById('comprehensive-output');
-    
-    // 在这里实现完整的功能
-    output.innerHTML = '&lt;p&gt;综合案例运行结果&lt;/p&gt;';
-}
-
-// 初始化
-runComprehensive();
-                </div>
-            </div>
-            
-            <div class="action-bar">
-                <button class="btn btn-run" onclick="runJsDomExperiment('code-comprehensive', null)">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="resetJsDomExperiment('code-comprehensive', 'comprehensive-output', null)">↺ 重置代码</button>
-            </div>
-            
-            <div class="preview-box" id="comprehensive-preview">
-                <h3>综合案例标题</h3>
-                <p>案例描述和使用说明</p>
-                <div id="comprehensive-output" style="margin-top: 15px; padding: 15px; background: #f9f9f9; border-radius: 6px; min-height: 100px;"></div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- ============================================
          课程小结区域
          ============================================ -->
     <section id="summary">
-        <h2>九、本课小结</h2>
+        <h2>四、本课小结</h2>
         
         <h3>知识点回顾</h3>
         <ul class="checklist">

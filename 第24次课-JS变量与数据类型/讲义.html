@@ -21,29 +21,29 @@
         <a class="sidebar-link" href="#intro">👋 课程概览</a>
         
         <h3>Part 1: 变量基础</h3>
-        <a class="sidebar-link" href="#what-is-variable" class="sub-link">1.1 什么是变量</a>
-        <a class="sidebar-link" href="#let-const-var" class="sub-link">1.2 let / const / var</a>
-        <a class="sidebar-link" href="#naming" class="sub-link">1.3 命名规则</a>
-        <a class="sidebar-link" href="#lab-variable" class="sub-link">实验 01</a>
+        <a class="sidebar-link sub-link" href="#what-is-variable">1.1 什么是变量</a>
+        <a class="sidebar-link sub-link" href="#let-const-var">1.2 let / const / var</a>
+        <a class="sidebar-link sub-link" href="#naming">1.3 命名规则</a>
+        <a class="sidebar-link sub-link" href="#lab-variable">🔬 实验 01</a>
         
         <h3>Part 2: 数据类型</h3>
-        <a class="sidebar-link" href="#types-overview" class="sub-link">2.1 类型概览</a>
-        <a class="sidebar-link" href="#type-string" class="sub-link">2.2 字符串</a>
-        <a class="sidebar-link" href="#type-number" class="sub-link">2.3 数字</a>
-        <a class="sidebar-link" href="#type-boolean" class="sub-link">2.4 布尔值</a>
-        <a class="sidebar-link" href="#type-null-undefined" class="sub-link">2.5 Null 和 Undefined</a>
-        <a class="sidebar-link" href="#lab-types" class="sub-link">实验 02</a>
+        <a class="sidebar-link sub-link" href="#types-overview">2.1 类型概览</a>
+        <a class="sidebar-link sub-link" href="#type-string">2.2 字符串</a>
+        <a class="sidebar-link sub-link" href="#type-number">2.3 数字</a>
+        <a class="sidebar-link sub-link" href="#type-boolean">2.4 布尔值</a>
+        <a class="sidebar-link sub-link" href="#type-null-undefined">2.5 Null 和 Undefined</a>
+        <a class="sidebar-link sub-link" href="#lab-types">🔬 实验 02</a>
         
         <h3>Part 3: 类型检测与转换</h3>
-        <a class="sidebar-link" href="#typeof" class="sub-link">3.1 typeof 检查类型</a>
-        <a class="sidebar-link" href="#conversion" class="sub-link">3.2 类型转换</a>
-        <a class="sidebar-link" href="#lab-conversion" class="sub-link">实验 03</a>
+        <a class="sidebar-link sub-link" href="#typeof">3.1 typeof 检查类型</a>
+        <a class="sidebar-link sub-link" href="#conversion">3.2 类型转换</a>
+        <a class="sidebar-link sub-link" href="#lab-conversion">🔬 实验 03</a>
         
         <h3>Part 4: 综合实验</h3>
-        <a class="sidebar-link" href="#lab-profile" class="sub-link">综合实验</a>
+        <a class="sidebar-link sub-link" href="#lab-profile">🔬 综合实验</a>
         
         <h3>总结与练习</h3>
-        <a class="sidebar-link" href="#summary" class="sub-link">📝 课程小结</a>
+        <a class="sidebar-link sub-link" href="#summary">📝 课程小结</a>
     </div>
 </nav>
 
@@ -849,39 +849,47 @@ if (weightInput && heightInput && resultDiv) {
     // 获取输入值并转换为数字
     const weight = Number(weightInput.value);  // 公斤
     const heightCm = Number(heightInput.value);  // 厘米
-    const heightM = heightCm / 100;  // 转换为米
     
-    // 计算 BMI
-    // 公式: BMI = 体重(kg) / 身高(m)²
-    const bmi = weight / (heightM * heightM);
-    
-    // 判断 BMI 等级
-    let status = '';
-    let color = '';
-    if (bmi < 18.5) {
-        status = '偏瘦';
-        color = 'blue';
-    } else if (bmi < 24) {
-        status = '正常';
-        color = 'green';
-    } else if (bmi < 28) {
-        status = '偏胖';
-        color = 'orange';
+    // 验证输入是否有效
+    if (isNaN(weight) || isNaN(heightCm) || weight <= 0 || heightCm <= 0) {
+        resultDiv.innerHTML = `
+            <p style="color: red;">请输入有效的数字！</p>
+        `;
     } else {
-        status = '肥胖';
-        color = 'red';
+        const heightM = heightCm / 100;  // 转换为米
+        
+        // 计算 BMI
+        // 公式: BMI = 体重(kg) / 身高(m)²
+        const bmi = weight / (heightM * heightM);
+        
+        // 判断 BMI 等级
+        let status = '';
+        let color = '';
+        if (bmi < 18.5) {
+            status = '偏瘦';
+            color = 'blue';
+        } else if (bmi < 24) {
+            status = '正常';
+            color = 'green';
+        } else if (bmi < 28) {
+            status = '偏胖';
+            color = 'orange';
+        } else {
+            status = '肥胖';
+            color = 'red';
+        }
+        
+        // 显示结果
+        resultDiv.innerHTML = `
+            <p>体重: <strong>${weight}</strong> kg</p>
+            <p>身高: <strong>${heightCm}</strong> cm = <strong>${heightM.toFixed(2)}</strong> m</p>
+            <hr>
+            <p style="font-size: 24px;">
+                BMI: <strong>${bmi.toFixed(1)}</strong>
+            </p>
+            <p>状态: <strong>${status}</strong></p>
+        `;
     }
-    
-    // 显示结果
-    resultDiv.innerHTML = `
-        <p>体重: <strong>${weight}</strong> kg</p>
-        <p>身高: <strong>${heightCm}</strong> cm = <strong>${heightM}</strong> m</p>
-        <hr>
-        <p style="font-size: 24px;">
-            BMI: <strong style="color: ${color};">${bmi.toFixed(1)}</strong>
-        </p>
-        <p>状态: <strong style="color: ${color};">${status}</strong></p>
-    `;
 }
                 </div>
             </div>
