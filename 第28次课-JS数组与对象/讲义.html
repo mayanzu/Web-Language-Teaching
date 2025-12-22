@@ -1,1275 +1,1236 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>第28课：JS数组与对象</title>
-  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第28课：JS数组与对象</title>
+    
+    <!-- 统一样式引用 -->
     <link rel='stylesheet' href='../统一讲义样式模板.css'>
+    <!-- 通用工具函数库 -->
+    <script src='../js/lecture-utils.js'></script>
 </head>
 <body>
+
+<!-- ============================================
+     侧边栏导航 - 课程目录
+     ============================================ -->
 <nav class="sidebar">
     <div class="sidebar-nav">
         <h3>课程导航</h3>
         <a class="sidebar-link" href="#intro">👋 课程概览</a>
         
-        <h3>Part 1: 数组</h3>
-        <a class="sidebar-link" href="#array-basics" class="sub-link">1. 数组基础</a>
-        <a class="sidebar-link" href="#array-methods" class="sub-link">2. 数组方法</a>
-        <a class="sidebar-link" href="#array-iteration" class="sub-link">3. 数组遍历</a>
+        <h3>Part 1: 数组基础</h3>
+        <a class="sidebar-link" href="#section-1-1" class="sub-link">1.1 什么是数组</a>
+        <a class="sidebar-link" href="#section-1-2" class="sub-link">1.2 创建数组</a>
+        <a class="sidebar-link" href="#section-1-3" class="sub-link">1.3 访问与修改元素</a>
+        <a class="sidebar-link" href="#lab-1" class="sub-link">实验 01</a>
         
-        <h3>Part 2: 对象</h3>
-        <a class="sidebar-link" href="#object-basics" class="sub-link">4. 对象基础</a>
-        <a class="sidebar-link" href="#json" class="sub-link">5. JSON数据格式</a>
+        <h3>Part 2: 数组方法</h3>
+        <a class="sidebar-link" href="#section-2-1" class="sub-link">2.1 常用数组方法</a>
+        <a class="sidebar-link" href="#section-2-2" class="sub-link">2.2 高阶数组方法</a>
+        <a class="sidebar-link" href="#lab-2" class="sub-link">实验 02</a>
         
-        <h3>Part 3: 实战练习</h3>
-        <a class="sidebar-link" href="#practical" class="sub-link">6. 综合实战</a>
+        <h3>Part 3: 对象基础</h3>
+        <a class="sidebar-link" href="#section-3-1" class="sub-link">3.1 什么是对象</a>
+        <a class="sidebar-link" href="#section-3-2" class="sub-link">3.2 创建与访问对象</a>
+        <a class="sidebar-link" href="#section-3-3" class="sub-link">3.3 对象方法</a>
+        <a class="sidebar-link" href="#lab-3" class="sub-link">实验 03</a>
+        
+        <h3>Part 4: 综合应用</h3>
+        <a class="sidebar-link" href="#section-4-1" class="sub-link">4.1 数组与对象结合</a>
+        <a class="sidebar-link" href="#lab-4" class="sub-link">实验 04</a>
+        
+        <h3>总结与练习</h3>
+        <a class="sidebar-link" href="#summary" class="sub-link">📝 课程小结</a>
     </div>
-
-
 </nav>
 
-  <main class="content">
-    <section id="intro">
-      <h1>第28课：JS数组与对象</h1>
-      <p class="intro">如果说变量是存储单个数据的盒子,那么数组就是一排编号的盒子,对象就是带标签的盒子。本课学习如何用数组管理列表数据,用对象组织复杂信息,它们是JavaScript中最重要的数据结构。</p>
-      <div class="pill-list">
-        <span class="pill">数组创建与访问</span>
+
+<!-- ============================================
+     主内容区域
+     ============================================ -->
+<main class="content">
+
+    <!-- ============================================
+         课程头部 - 概览区域
+         ============================================ -->
+    <header id="intro">
+        <h1>第28课：JS数组与对象</h1>
+        <p class="intro">数组和对象是JavaScript中最重要的两种数据结构。数组用于存储有序的数据集合，对象用于存储键值对形式的复杂数据。掌握它们是进行实际开发的基础。</p>
+        
+        <!-- 知识点标签列表 -->
+        <div class="pill-list">
+            <span class="pill">数组创建</span>
+            <span class="pill">数组方法</span>
+            <span class="pill">对象创建</span>
+            <span class="pill">属性访问</span>
+            <span class="pill">遍历</span>
+            <span class="pill">解构赋值</span>
+        </div>
+    </header>
 
 
-        <span class="pill">数组方法</span>
+    <!-- ============================================
+         Part 1: 数组基础
+         ============================================ -->
 
-
-        <span class="pill">数组遍历</span>
-
-
-        <span class="pill">对象属性与方法</span>
-
-
-        <span class="pill">JSON数据格式</span>
-
-
-        <span class="pill">嵌套结构</span>
-
-
-      </div>
-        </section>
-
-
-    <section id="why-data-structures">
-      <h2>一、为什么需要数组和对象?</h2>
-      <p>假设你要管理一个班级30个学生的信息,如果用单个变量:</p>
-      <pre><code>let student1 = "张三";
-let student2 = "李四";
-let student3 = "王五";
-// ... 要写30个变量!</code></pre>
-      <p>这样做有几个问题:变量太多难以管理、无法批量处理、代码重复冗长。<strong>数组和对象就是为了解决这些问题而生。</strong></p>
-      
-      <div class="tip-box">
-            <span class="tip-title">生活中的类比</span>
-
-
+    <section id="section-1-1">
+        <h2>一、什么是数组？</h2>
+        <p>数组是一种特殊的数据结构，用于在单个变量中存储多个值。可以把数组想象成一个有编号的储物柜，每个格子都可以存放一个物品。</p>
+        
+        <div class="tip-box">
+            <span class="tip-title">💡 生活中的数组</span>
+            <ul class="checklist">
+                <li><strong>班级名单：</strong>按座号排列的学生姓名</li>
+                <li><strong>购物清单：</strong>要购买的商品列表</li>
+                <li><strong>待办事项：</strong>按顺序要完成的任务</li>
+                <li><strong>成绩单：</strong>各科目的分数</li>
+            </ul>
+        </div>
+        
+        <p>数组的特点：</p>
         <ul class="checklist">
-          <li><strong>数组 = 编号的储物柜:</strong>每个柜子有编号(索引),按顺序排列,适合存储同类物品(如学生名单、成绩列表)</li>
-          <li><strong>对象 = 带标签的文件夹:</strong>每个资料有名称标签(属性名),方便查找,适合存储不同类型的相关信息(如用户信息:姓名、年龄、邮箱)</li>
-          <li><strong>JSON = 通用数据格式:</strong>就像快递单,不同公司都能看懂的标准格式,用于程序间传递数据</li>
+            <li><strong>有序集合：</strong>元素按顺序排列，通过索引访问</li>
+            <li><strong>索引从0开始：</strong>第一个元素的索引是0，不是1</li>
+            <li><strong>可存储任意类型：</strong>数字、字符串、对象、甚至其他数组</li>
+            <li><strong>长度可变：</strong>可以动态添加或删除元素</li>
         </ul>
-      </div>
+    </section>
 
 
+    <section id="section-1-2">
+        <h3>1.2 创建数组</h3>
+        <p>JavaScript提供了多种创建数组的方式：</p>
+        
+        <h4>方式一：数组字面量（推荐）</h4>
+<pre class="js"><code>// 空数组
+let emptyArray = [];
 
-      <p>使用数组和对象后,代码变得简洁高效:</p>
-      <pre><code>// 用数组管理学生列表
-const students = ["张三", "李四", "王五", /*...*/];
+// 带初始值的数组
+let fruits = ['苹果', '香蕉', '橙子'];
+let numbers = [1, 2, 3, 4, 5];
+let mixed = [1, '文本', true, null];  // 可以混合不同类型
+</code></pre>
 
-// 用对象管理单个学生的详细信息
-const student = {
-  name: "张三",
-  age: 18,
-  grade: "高一",
-  score: 95
-};</code></pre>
+        <h4>方式二：Array构造函数</h4>
+<pre class="js"><code>// 创建空数组
+let arr1 = new Array();
 
-      <p>数组和对象让我们能够:</p>
-      <ul class="checklist">
-        <li><strong>批量管理:</strong>用一个变量管理多个相关数据</li>
-        <li><strong>结构化组织:</strong>让复杂数据井井有条</li>
-        <li><strong>高效操作:</strong>提供丰富的方法进行增删改查</li>
-        <li><strong>数据传输:</strong>通过JSON格式在前后端传递数据</li>
-      </ul>
-        </section>
+// 创建指定长度的数组
+let arr2 = new Array(5);  // 长度为5的空数组
 
+// 创建带初始值的数组
+let arr3 = new Array('a', 'b', 'c');
+</code></pre>
 
-    <section id="array-basics">
-      <h2>二、数组基础</h2>
-      
-      <h3>2.1 什么是数组?</h3>
-      <p>数组（Array）是一种<strong>有序的数据集合</strong>,可以存储多个值。每个值都有一个索引（下标）,从0开始。可以把数组想象成一排编号的盒子,每个盒子可以放一个数据。</p>
-      
-      <table class="prop-table">
-        <thead>
-          <tr><th>概念</th><th>说明</th><th>示例</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>索引 (Index)</strong></td>
-            <td>元素在数组中的位置编号,从0开始</td>
-            <td>fruits[0] 表示第1个元素</td>
-          </tr>
-          <tr>
-            <td><strong>元素 (Element)</strong></td>
-            <td>数组中存储的每一个值</td>
-            <td>"苹果"、"香蕉" 都是元素</td>
-          </tr>
-          <tr>
-            <td><strong>长度 (Length)</strong></td>
-            <td>数组包含的元素个数</td>
-            <td>fruits.length 返回元素数量</td>
-          </tr>
-        </tbody>
-      </table>
+        <h4>方式三：Array.of() 和 Array.from()</h4>
+<pre class="js"><code>// Array.of() - 创建包含指定元素的数组
+let arr4 = Array.of(1, 2, 3);  // [1, 2, 3]
+let arr5 = Array.of(5);        // [5]，不是长度为5的数组
 
-      <h3>2.2 创建和访问数组</h3>
-      
-      <pre><code>// 创建数组
-const fruits = ["苹果", "香蕉", "橙子"];
-const numbers = [1, 2, 3, 4, 5];
-const mixed = [1, "hello", true, null];  // 可以包含不同类型
+// Array.from() - 从类数组或可迭代对象创建数组
+let str = 'Hello';
+let arr6 = Array.from(str);    // ['H', 'e', 'l', 'l', 'o']
 
-// 空数组
-const empty = [];
+// 带映射函数
+let arr7 = Array.from([1, 2, 3], x => x * 2);  // [2, 4, 6]
+</code></pre>
 
-// 访问元素
-console.log(fruits[0]);  // "苹果"（第一个元素）
-console.log(fruits[1]);  // "香蕉"（第二个元素）
-console.log(fruits[2]);  // "橙子"（第三个元素）
-
-// 数组长度
-console.log(fruits.length);  // 3</code></pre>
-
-      <div class="tip-box">
-            <span class="tip-title">数组的特点</span>
+        <div class="note-box">
+            <strong>推荐使用字面量语法：</strong>
+            <p>在实际开发中，优先使用数组字面量 <code>[]</code> 创建数组，语法简洁、意图明确。</p>
+        </div>
+    </section>
 
 
-        <ul class="checklist">
-          <li>索引从0开始，最后一个元素的索引是 <code>length - 1</code></li>
-          <li>可以存储任意类型的数据</li>
-          <li>长度可以动态改变</li>
-          <li>是引用类型（传递引用而非值）</li>
-        </ul>
-      </div>
+    <section id="section-1-3">
+        <h3>1.3 访问与修改数组元素</h3>
+        <p>使用方括号语法 <code>[]</code> 和索引来访问数组元素：</p>
+        
+<pre class="js"><code>let colors = ['红', '绿', '蓝', '黄'];
 
-
-
-      <h3>1.2 修改数组元素</h3>
-      <pre><code>const colors = ["红", "绿", "蓝"];
+// 访问元素（索引从0开始）
+console.log(colors[0]);  // '红'（第一个元素）
+console.log(colors[2]);  // '蓝'（第三个元素）
+console.log(colors[4]);  // undefined（不存在的索引）
 
 // 修改元素
-colors[1] = "黄";
-console.log(colors);  // ["红", "黄", "蓝"]
+colors[1] = '青';
+console.log(colors);  // ['红', '青', '蓝', '黄']
 
-// 添加元素（通过索引）
-colors[3] = "紫";
-console.log(colors);  // ["红", "黄", "蓝", "紫"]
+// 获取数组长度
+console.log(colors.length);  // 4
 
-// 获取最后一个元素
-const last = colors[colors.length - 1];
-console.log(last);  // "紫"</code></pre>
+// 访问最后一个元素
+console.log(colors[colors.length - 1]);  // '黄'
 
-      <h3>1.3 多维数组</h3>
-      <pre><code>// 二维数组（数组的数组）
-const matrix = [
-  [1, 2, 3],
-  [4, 5, 6],
-  [7, 8, 9]
+// 添加新元素
+colors[4] = '紫';
+console.log(colors);  // ['红', '青', '蓝', '黄', '紫']
+</code></pre>
+
+        <div class="warning-box">
+            <strong>常见错误！</strong>
+            <p>索引从0开始，不是从1开始。<code>arr[1]</code> 是第二个元素，不是第一个！</p>
+<pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>// ❌ 错误：以为索引从1开始
+let first = colors[1];  // 这是第二个元素！
+
+// ✅ 正确：索引从0开始
+let first = colors[0];  // 这才是第一个元素
+</code></pre>
+        </div>
+
+        <h4>数组长度的特殊用法</h4>
+<pre class="js"><code>let arr = [1, 2, 3, 4, 5];
+
+// 通过修改length截断数组
+arr.length = 3;
+console.log(arr);  // [1, 2, 3]
+
+// 通过修改length扩展数组
+arr.length = 5;
+console.log(arr);  // [1, 2, 3, empty × 2]
+</code></pre>
+    </section>
+
+
+    <!-- ============================================
+         实验 01：数组基础操作
+         ============================================ -->
+    <section id="lab-1">
+        <h2>实验 01：数组基础操作</h2>
+        <p>练习创建数组和访问数组元素。</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 01：学生成绩管理</span>
+                <span class="status-badge beginner" id="badge-lab1">动手实践</span>
+            </div>
+            
+            <div class="lab-body split">
+                <!-- HTML 预览说明 -->
+                <div class="panel html-viewer">
+<div class="panel-label">HTML 预览</div>
+&lt;h3&gt;学生成绩管理&lt;/h3&gt;
+&lt;p&gt;成绩列表：&lt;span id="scores-display"&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;学生人数：&lt;span id="count"&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;第一名成绩：&lt;span id="first"&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;最后一名成绩：&lt;span id="last"&gt;&lt;/span&gt;&lt;/p&gt;
+                </div>
+                
+                <!-- JS 代码编辑区 -->
+                <div class="panel code-editor" id="code-lab1" contenteditable="true">
+<div class="panel-label">JavaScript (可编辑)</div>
+// 创建成绩数组
+let scores = [85, 92, 78, 95, 88, 76, 90];
+
+// 显示成绩列表
+document.getElementById('scores-display').textContent = scores.join(', ');
+
+// 显示学生人数
+document.getElementById('count').textContent = scores.length + ' 人';
+
+// 显示第一名成绩（索引0）
+document.getElementById('first').textContent = scores[0];
+
+// 显示最后一名成绩
+document.getElementById('last').textContent = scores[scores.length - 1];
+                </div>
+            </div>
+            
+            <!-- 操作按钮 -->
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runJsDomExperiment('code-lab1', 'badge-lab1')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetJsDomExperiment('code-lab1', null, 'badge-lab1')">↺ 重置代码</button>
+            </div>
+            
+            <!-- 实际预览区 -->
+            <div class="preview-box">
+                <h3>学生成绩管理</h3>
+                <p>成绩列表：<span id="scores-display" style="color: var(--color-accent);"></span></p>
+                <p>学生人数：<span id="count" style="font-weight: bold;"></span></p>
+                <p>第一名成绩：<span id="first" style="color: #28a745; font-weight: bold;"></span></p>
+                <p>最后一名成绩：<span id="last" style="color: #dc3545; font-weight: bold;"></span></p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         Part 2: 数组方法
+         ============================================ -->
+
+    <section id="section-2-1">
+        <h2>二、常用数组方法</h2>
+        <p>JavaScript数组提供了丰富的内置方法，让我们能够方便地操作数组数据。</p>
+        
+        <h3>2.1 添加和删除元素</h3>
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>方法</th>
+                    <th>说明</th>
+                    <th>返回值</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>push()</code></td>
+                    <td>在数组末尾添加元素</td>
+                    <td>新数组长度</td>
+                </tr>
+                <tr>
+                    <td><code>pop()</code></td>
+                    <td>删除数组末尾元素</td>
+                    <td>被删除的元素</td>
+                </tr>
+                <tr>
+                    <td><code>unshift()</code></td>
+                    <td>在数组开头添加元素</td>
+                    <td>新数组长度</td>
+                </tr>
+                <tr>
+                    <td><code>shift()</code></td>
+                    <td>删除数组开头元素</td>
+                    <td>被删除的元素</td>
+                </tr>
+                <tr>
+                    <td><code>splice()</code></td>
+                    <td>在指定位置添加/删除元素</td>
+                    <td>被删除的元素数组</td>
+                </tr>
+            </tbody>
+        </table>
+
+<pre class="js"><code>let fruits = ['苹果', '香蕉'];
+
+// push - 末尾添加
+fruits.push('橙子');
+console.log(fruits);  // ['苹果', '香蕉', '橙子']
+
+// pop - 末尾删除
+let last = fruits.pop();
+console.log(last);    // '橙子'
+console.log(fruits);  // ['苹果', '香蕉']
+
+// unshift - 开头添加
+fruits.unshift('草莓');
+console.log(fruits);  // ['草莓', '苹果', '香蕉']
+
+// shift - 开头删除
+let first = fruits.shift();
+console.log(first);   // '草莓'
+console.log(fruits);  // ['苹果', '香蕉']
+
+// splice - 在指定位置操作
+fruits.splice(1, 0, '芒果');  // 在索引1处插入
+console.log(fruits);  // ['苹果', '芒果', '香蕉']
+
+fruits.splice(1, 1);  // 删除索引1处的1个元素
+console.log(fruits);  // ['苹果', '香蕉']
+</code></pre>
+
+        <h3>2.2 查找元素</h3>
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>方法</th>
+                    <th>说明</th>
+                    <th>返回值</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>indexOf()</code></td>
+                    <td>查找元素第一次出现的索引</td>
+                    <td>索引值，未找到返回-1</td>
+                </tr>
+                <tr>
+                    <td><code>lastIndexOf()</code></td>
+                    <td>查找元素最后一次出现的索引</td>
+                    <td>索引值，未找到返回-1</td>
+                </tr>
+                <tr>
+                    <td><code>includes()</code></td>
+                    <td>判断数组是否包含某元素</td>
+                    <td>true 或 false</td>
+                </tr>
+                <tr>
+                    <td><code>find()</code></td>
+                    <td>查找符合条件的第一个元素</td>
+                    <td>元素值或undefined</td>
+                </tr>
+                <tr>
+                    <td><code>findIndex()</code></td>
+                    <td>查找符合条件的第一个元素的索引</td>
+                    <td>索引值，未找到返回-1</td>
+                </tr>
+            </tbody>
+        </table>
+
+<pre class="js"><code>let numbers = [1, 2, 3, 2, 4];
+
+// indexOf / lastIndexOf
+console.log(numbers.indexOf(2));      // 1（第一次出现）
+console.log(numbers.lastIndexOf(2));  // 3（最后一次出现）
+console.log(numbers.indexOf(5));      // -1（未找到）
+
+// includes
+console.log(numbers.includes(3));  // true
+console.log(numbers.includes(5));  // false
+
+// find - 查找符合条件的元素
+let users = [
+    { name: '小明', age: 20 },
+    { name: '小红', age: 25 },
+    { name: '小刚', age: 30 }
 ];
 
-console.log(matrix[0][0]);  // 1
-console.log(matrix[1][2]);  // 6
-console.log(matrix[2][1]);  // 8</code></pre>
-        </section>
+let user = users.find(u => u.age > 22);
+console.log(user);  // { name: '小红', age: 25 }
+
+// findIndex - 查找符合条件的元素索引
+let index = users.findIndex(u => u.name === '小刚');
+console.log(index);  // 2
+</code></pre>
+
+        <h3>2.3 数组转换与合并</h3>
+<pre class="js"><code>// join - 数组转字符串
+let arr = ['Hello', 'World'];
+console.log(arr.join(' '));  // 'Hello World'
+console.log(arr.join('-'));  // 'Hello-World'
+
+// concat - 合并数组（不修改原数组）
+let arr1 = [1, 2];
+let arr2 = [3, 4];
+let combined = arr1.concat(arr2);
+console.log(combined);  // [1, 2, 3, 4]
+
+// slice - 截取数组（不修改原数组）
+let colors = ['红', '橙', '黄', '绿', '蓝'];
+console.log(colors.slice(1, 4));  // ['橙', '黄', '绿']
+console.log(colors.slice(2));     // ['黄', '绿', '蓝']
+console.log(colors.slice(-2));    // ['绿', '蓝']
+
+// reverse - 反转数组（修改原数组）
+let nums = [1, 2, 3];
+nums.reverse();
+console.log(nums);  // [3, 2, 1]
+
+// sort - 排序（修改原数组）
+let letters = ['c', 'a', 'b'];
+letters.sort();
+console.log(letters);  // ['a', 'b', 'c']
+
+// 数字排序需要比较函数
+let scores = [85, 92, 78, 95];
+scores.sort((a, b) => a - b);  // 升序
+console.log(scores);  // [78, 85, 92, 95]
+scores.sort((a, b) => b - a);  // 降序
+console.log(scores);  // [95, 92, 85, 78]
+</code></pre>
+    </section>
 
 
-    <section id="array-methods">
-      <h2>三、数组的常用方法</h2>
-      <p>JavaScript为数组提供了丰富的内置方法,让数据操作变得简单高效。掌握这些方法是操作数组的关键。</p>
-      
-      <h3>3.1 添加和删除元素</h3>
-      <pre><code>const arr = ["a", "b", "c"];
+    <section id="section-2-2">
+        <h3>2.2 高阶数组方法</h3>
+        <p>高阶方法接受函数作为参数，是现代JavaScript中处理数组的核心方式。</p>
+        
+        <div class="note-box">
+            <strong>什么是高阶方法？</strong>
+            <p>高阶方法是指接受函数作为参数的方法。它们让我们能用声明式的方式处理数组，代码更简洁、更易读。</p>
+        </div>
 
-// push()方法：在数组末尾添加一个或多个元素
-// 返回新数组的长度
-arr.push("d");
-console.log(arr);  // ["a", "b", "c", "d"]
+        <h4>forEach - 遍历数组</h4>
+<pre class="js"><code>let fruits = ['苹果', '香蕉', '橙子'];
 
-// pop()方法：删除并返回数组最后一个元素
-// 原数组会被修改
-const last = arr.pop();
-console.log(last);  // "d"
-console.log(arr);   // ["a", "b", "c"]
+// 遍历每个元素
+fruits.forEach(function(fruit, index) {
+    console.log(`${index}: ${fruit}`);
+});
 
-// unshift()方法：在数组开头添加一个或多个元素
-// 返回新数组的长度
-arr.unshift("z");
-console.log(arr);  // ["z", "a", "b", "c"]
+// 箭头函数写法
+fruits.forEach((fruit, index) => {
+    console.log(`${index}: ${fruit}`);
+});
+</code></pre>
 
-// shift()方法：删除并返回数组第一个元素
-// 原数组会被修改
-const first = arr.shift();
-console.log(first);  // "z"
-console.log(arr);    // ["a", "b", "c"]</code></pre>
+        <h4>map - 转换数组</h4>
+<pre class="js"><code>let numbers = [1, 2, 3, 4, 5];
 
-      <h3>3.2 splice：万能方法</h3>
-      <p><code>splice()</code> 方法可以删除、插入和替换元素,是操作数组最强大的方法之一。</p>
-      
-      <pre><code>const numbers = [1, 2, 3, 4, 5];
-
-// splice()方法参数：(起始索引, 删除数量, 新元素...)
-// 删除元素：splice(起始索引, 删除数量)
-numbers.splice(2, 1);  // 从索引2开始删除1个元素
-console.log(numbers);  // [1, 2, 4, 5]
-
-// 插入元素：splice(起始索引, 0, 新元素...)
-numbers.splice(2, 0, 3);  // 在索引2处插入3
-console.log(numbers);  // [1, 2, 3, 4, 5]
-
-// 替换元素：splice(起始索引, 删除数量, 新元素...)
-numbers.splice(1, 2, 10, 20);  // 从索引1开始，删除2个，插入10和20
-console.log(numbers);  // [1, 10, 20, 4, 5]</code></pre>
-      <h3>3.3 查找和判断</h3>
-      <pre><code>const fruits = ["苹果", "香蕉", "橙子", "香蕉"];
-
-// indexOf()方法：查找元素第一次出现的索引
-// 如果找不到返回-1
-console.log(fruits.indexOf("香蕉"));     // 1（第一次出现）
-console.log(fruits.indexOf("葡萄"));     // -1（不存在）
-
-// includes()方法：判断数组是否包含某个元素
-// 返回布尔值
-console.log(fruits.includes("苹果"));    // true
-console.log(fruits.includes("葡萄"));    // false
-
-// find()方法：查找满足条件的第一个元素
-// 参数是回调函数，返回第一个使回调函数返回true的元素
-const numbers = [1, 5, 10, 15, 20];
-const found = numbers.find(num => num > 10);
-console.log(found);  // 15
-
-// findIndex()方法：查找满足条件的第一个元素的索引
-// 如果找不到返回-1
-const index = numbers.findIndex(num => num > 10);
-console.log(index);  // 3</code></pre>
-
-      <h3>3.4 数组转换方法</h3>
-      <p>这些方法用于将数组转换为其他形式,是数据处理的核心方法。</p>
-      
-      <pre><code>const arr = [1, 2, 3, 4, 5];
-
-// map()方法：转换每个元素，返回新数组
-// (在第5课已学习，这里复习)
-const doubled = arr.map(num => num * 2);
+// 每个元素乘以2
+let doubled = numbers.map(num => num * 2);
 console.log(doubled);  // [2, 4, 6, 8, 10]
 
-// filter()方法：筛选符合条件的元素
-// (在第5课已学习，这里复习)
-const evens = arr.filter(num => num % 2 === 0);
-console.log(evens);  // [2, 4]
+// 提取对象属性
+let users = [
+    { name: '小明', age: 20 },
+    { name: '小红', age: 25 }
+];
+let names = users.map(user => user.name);
+console.log(names);  // ['小明', '小红']
+</code></pre>
 
-// reduce()方法：累积计算，归约为单个值
-// (在第5课已学习，这里复习)
-const sum = arr.reduce((total, num) => total + num, 0);
+        <h4>filter - 筛选数组</h4>
+<pre class="js"><code>let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+// 筛选偶数
+let evens = numbers.filter(num => num % 2 === 0);
+console.log(evens);  // [2, 4, 6, 8, 10]
+
+// 筛选大于5的数
+let big = numbers.filter(num => num > 5);
+console.log(big);  // [6, 7, 8, 9, 10]
+
+// 筛选成年用户
+let users = [
+    { name: '小明', age: 17 },
+    { name: '小红', age: 25 },
+    { name: '小刚', age: 15 }
+];
+let adults = users.filter(user => user.age >= 18);
+console.log(adults);  // [{ name: '小红', age: 25 }]
+</code></pre>
+
+        <h4>reduce - 累积计算</h4>
+<pre class="js"><code>let numbers = [1, 2, 3, 4, 5];
+
+// 计算总和
+let sum = numbers.reduce((total, num) => total + num, 0);
 console.log(sum);  // 15
 
-// join()方法：将数组所有元素用分隔符连接成字符串
-// 参数是分隔符，默认为逗号
-const str = arr.join(", ");
-console.log(str);  // "1, 2, 3, 4, 5"
+// 计算乘积
+let product = numbers.reduce((result, num) => result * num, 1);
+console.log(product);  // 120
 
-// slice()方法：提取数组的一部分，返回新数组
-// 参数：(起始索引, 结束索引)，不包括结束索引
-// 不会修改原数组
-const sub = arr.slice(1, 3);
-console.log(sub);  // [2, 3]</code></pre>
+// 找出最大值
+let max = numbers.reduce((max, num) => num > max ? num : max, numbers[0]);
+console.log(max);  // 5
 
-      <h3>3.5 排序和反转</h3>
-      <pre><code>const numbers = [3, 1, 4, 1, 5, 9];
-
-// sort()方法：对数组进行排序（会修改原数组）
-// 参数是比较函数：(a, b) => a - b 表示升序
-numbers.sort((a, b) => a - b);  // 升序
-console.log(numbers);  // [1, 1, 3, 4, 5, 9]
-
-// 降序排列：返回 b - a
-numbers.sort((a, b) => b - a);  // 降序
-console.log(numbers);  // [9, 5, 4, 3, 1, 1]
-
-// reverse()方法：反转数组（会修改原数组）
-const arr = [1, 2, 3, 4, 5];
-arr.reverse();
-console.log(arr);  // [5, 4, 3, 2, 1]</code></pre>
-
-        <div class="lab-card">
-            <div class="lab-header">
-                <span>🔬 实验1：待办事项管理器</span>
-                <span class="status-badge beginner">基础</span>
-            </div>
-
-            <div class="lab-body split">
-                <div class="panel html-viewer">
-<div class="panel-label">HTML 预览</div>
-<h3>待办事项管理</h3>
-<div>
-    <input id="taskInput" placeholder="输入新任务">
-    <button onclick="addTask()">添加</button>
-    <button onclick="removeLastTask()">删除最后一个</button>
-    <button onclick="showTasks()">显示全部</button>
-</div>
-<div id="lab1-output" style="margin-top:15px;padding:10px;background:#f9f9f9;border-radius:5px;white-space:pre-line;"></div>
-                </div>
-
-                <div class="panel code-editor" id="lab1-code" contenteditable="true">
-<div class="panel-label">JavaScript (可编辑)</div>
-// 待办事项数组
-const tasks = ["学习JavaScript", "完成作业"];
-
-function addTask() {
-    const input = document.getElementById('taskInput');
-    const task = input.value.trim();
-  
-    if (task) {
-        tasks.push(task);
-        input.value = '';
-        document.getElementById('lab1-output').innerText =
-        `✅ 已添加：${task}\n当前共${tasks.length}个任务`;
-    } else {
-        document.getElementById('lab1-output').innerText =
-        "请输入任务内容！";
+// 数组去重
+let arr = [1, 2, 2, 3, 3, 3, 4];
+let unique = arr.reduce((result, item) => {
+    if (!result.includes(item)) {
+        result.push(item);
     }
-}
-
-function removeLastTask() {
-    if (tasks.length > 0) {
-        const removed = tasks.pop();
-        document.getElementById('lab1-output').innerText =
-        `🗑️ 已删除：${removed}\n剩余${tasks.length}个任务`;
-    } else {
-        document.getElementById('lab1-output').innerText = "📭 任务列表已空！";
-    }
-}
-
-function showTasks() {
-    if (tasks.length === 0) {
-        document.getElementById('lab1-output').innerText = "📭 暂无任务";
-    } else {
-        const taskList = tasks.map((task, index) =>
-        `${index + 1}. ${task}`
-        ).join('\n');
-        document.getElementById('lab1-output').innerText =
-        `当前任务列表：\n${taskList}`;
-    }
-}
-                </div>
-
-            </div>
-
-            <div class="action-bar">
-                <button class="btn btn-run" onclick="runJsDomExperiment('lab1-code', null)">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="resetJsDomExperiment('lab1-code', 'lab1-preview', null)">↻ 重置</button>
-                <span style="color:#999;font-size:13px;">测试数组的添加、删除和显示功能</span>
-            </div>
-
-            <div class="preview-box" id="lab1-preview">
-                <h3>待办事项管理</h3>
-                <div>
-                    <input id="taskInput" placeholder="输入新任务">
-                    <button onclick="addTask()">添加</button>
-                    <button onclick="removeLastTask()">删除最后一个</button>
-                    <button onclick="showTasks()">显示全部</button>
-                </div>
-                <div id="lab1-output" style="margin-top:15px;padding:10px;background:#f9f9f9;border-radius:5px;white-space:pre-line;"></div>
-            </div>
-
-        </div>
-
-
-        </section>
-
-
-    <section id="array-iteration">
-      <h2>四、数组遍历方法</h2>
-      <p>遍历就是依次访问数组的每个元素。掌握数组遍历方法是处理列表数据的核心技能。</p>
-      
-      <h3>4.1 for循环遍历</h3>
-      <pre><code>const numbers = [10, 20, 30, 40, 50];
-
-// 传统for循环
-for (let i = 0; i < numbers.length; i++) {
-  console.log(`索引${i}: ${numbers[i]}`);
-}
-
-// for...of循环（ES6）
-for (let num of numbers) {
-  console.log(num);
-}</code></pre>
-
-      <h3>4.2 forEach方法</h3>
-      <p>forEach()方法在第5课已经学习过，这里是复习。</p>
-      
-      <pre><code>const fruits = ["苹果", "香蕉", "橙子"];
-
-// forEach()方法：遍历每个元素（第5课已学）
-fruits.forEach(function(fruit, index) {
-  console.log(`${index}: ${fruit}`);
-});
-
-// 箭头函数版本
-fruits.forEach((fruit, index) => {
-  console.log(`${index}: ${fruit}`);
-});</code></pre>
-
-      <h3>4.3 高级遍历方法</h3>
-      <pre><code>const numbers = [1, 2, 3, 4, 5];
-
-// every()方法：检查是否所有元素都满足条件
-// 返回布尔值，所有元素都满足才返回true
-const allPositive = numbers.every(num => num > 0);
-console.log(allPositive);  // true
-
-// some()方法：检查是否至少有一个元素满足条件
-// 返回布尔值，只要有一个满足就返回true
-const hasEven = numbers.some(num => num % 2 === 0);
-console.log(hasEven);  // true
-
-// map()方法：转换为新数组（第5课已学，这里复习）
-const squared = numbers.map(num => num * num);
-console.log(squared);  // [1, 4, 9, 16, 25]</code></pre>
-        </section>
-
-
-    <section id="object-basics">
-      <h2>五、对象基础</h2>
-      
-      <h3>5.1 什么是对象?</h3>
-      <p>对象（Object）是一种<strong>无序的键值对集合</strong>,用于存储结构化数据。每个键值对称为对象的属性。如果说数组是按编号存储,对象就是按名称(标签)存储。</p>
-      
-      <table class="prop-table">
-        <thead>
-          <tr><th>概念</th><th>说明</th><th>示例</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>属性 (Property)</strong></td>
-            <td>对象中的键值对,键是属性名,值是属性值</td>
-            <td>name: "张三"</td>
-          </tr>
-          <tr>
-            <td><strong>方法 (Method)</strong></td>
-            <td>属性值为函数的属性</td>
-            <td>greet: function() { }</td>
-          </tr>
-          <tr>
-            <td><strong>访问方式</strong></td>
-            <td>点语法或方括号语法</td>
-            <td>obj.name 或 obj["name"]</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h3>5.2 创建和访问对象</h3>
-      
-      <pre><code>// 创建对象
-const person = {
-  name: "张三",
-  age: 25,
-  city: "北京",
-  isStudent: false
-};
-
-// 访问属性
-console.log(person.name);      // "张三"（点语法）
-console.log(person["age"]);    // 25（方括号语法）
-
-// 空对象
-const empty = {};</code></pre>
-
-      <div class="note-box">
-        <span class="tip-title">📌 对象的特点</span>
-
-
-        <ul class="checklist">
-          <li>键（key）通常是字符串，值（value）可以是任意类型</li>
-          <li>无序的键值对集合</li>
-          <li>引用类型</li>
-          <li>可以包含方法（函数作为值）</li>
-        </ul>
-      </div>
-
-
-
-      <h3>4.2 对象方法</h3>
-      <pre><code>const calculator = {
-  x: 10,
-  y: 5,
-  
-  // 方法：对象中的函数
-  add: function() {
-    return this.x + this.y;
-  },
-  
-  // ES6简写语法
-  subtract() {
-    return this.x - this.y;
-  },
-  
-  // 箭头函数（注意：this行为不同）
-  multiply: () => {
-    // 箭头函数没有自己的this
-    return "使用箭头函数时this不指向对象";
-  }
-};
-
-console.log(calculator.add());       // 15
-console.log(calculator.subtract());  // 5</code></pre>
-
-      <h3>4.3 this关键字</h3>
-      <pre><code>const user = {
-  name: "李四",
-  greet: function() {
-    console.log(`你好，我是${this.name}`);
-  },
-  
-  introduce() {
-    console.log(`我的名字是${this.name}`);
-  }
-};
-
-user.greet();      // "你好，我是李四"
-user.introduce();  // "我的名字是李四"</code></pre>
-        </section>
-
-
-    <section id="object-operations">
-      <h2>六、对象的高级操作</h2>
-      <p>除了基本的属性访问,JavaScript还提供了许多强大的对象操作方法,让对象管理更加灵活。</p>
-      
-      <h3>6.1 添加、修改、删除属性</h3>
-      <pre><code>const person = {
-  name: "王五",
-  age: 30
-};
-
-// 添加新属性
-person.city = "上海";
-person["country"] = "中国";
-
-// 修改属性
-person.age = 31;
-
-// 删除属性
-delete person.country;
-
-console.log(person);
-// { name: "王五", age: 31, city: "上海" }</code></pre>
-
-      <h3>5.2 检查属性</h3>
-      <pre><code>const car = {
-  brand: "Tesla",
-  model: "Model 3",
-  year: 2023
-};
-
-// in 操作符
-console.log("brand" in car);    // true
-console.log("color" in car);    // false
-
-// hasOwnProperty 方法
-console.log(car.hasOwnProperty("model"));  // true
-console.log(car.hasOwnProperty("price"));  // false</code></pre>
-
-      <h3>6.3 遍历对象</h3>
-      <pre><code>const student = {
-  name: "赵六",
-  age: 20,
-  grade: "大二"
-};
-
-// for...in 循环
-for (let key in student) {
-  console.log(`${key}: ${student[key]}`);
-}
-
-// Object.keys()方法：获取对象所有键，返回数组
-const keys = Object.keys(student);
-console.log(keys);  // ["name", "age", "grade"]
-
-// Object.values()方法：获取对象所有值，返回数组
-const values = Object.values(student);
-console.log(values);  // ["赵六", 20, "大二"]
-
-// Object.entries()方法：获取对象所有键值对，返回二维数组
-const entries = Object.entries(student);
-console.log(entries);
-// [["name", "赵六"], ["age", 20], ["grade", "大二"]]
-
-// 遍历键值对
-Object.entries(student).forEach(([key, value]) => {
-  console.log(`${key}: ${value}`);
-});</code></pre>
-
-      <h3>6.4 对象复制</h3>
-      <pre><code>const original = { x: 1, y: 2 };
-
-// Object.assign()方法：浅拷贝对象
-// 第一个参数是目标对象，后面的是源对象
-const copy1 = Object.assign({}, original);
-
-// 浅拷贝：展开运算符（ES6）
-const copy2 = { ...original };
-
-// 合并对象
-const obj1 = { a: 1, b: 2 };
-const obj2 = { b: 3, c: 4 };
-const merged = { ...obj1, ...obj2 };
-console.log(merged);  // { a: 1, b: 3, c: 4 }</code></pre>
-
-        <div class="lab-card">
-            <div class="lab-header">
-                <span>🔬 实验2：学生信息管理</span>
-                <span class="status-badge beginner">基础</span>
-            </div>
-
-            <div class="lab-body split">
-                <div class="panel html-viewer">
-<div class="panel-label">HTML 预览</div>
-<h3>👨‍🎓 学生信息管理</h3>
-<div>
-    <input id="nameInput" placeholder="姓名">
-    <input id="ageInput" placeholder="年龄" type="number">
-    <input id="majorInput" placeholder="专业">
-    <button onclick="updateStudent()">更新信息</button>
-    <button onclick="showStudent()">显示信息</button>
-</div>
-<div id="lab2-output" style="margin-top:15px;padding:10px;background:#f0f8ff;border-radius:5px;white-space:pre-line;"></div>
-                </div>
-
-                <div class="panel code-editor" id="lab2-code" contenteditable="true">
-<div class="panel-label">JavaScript (可编辑)</div>
-// 学生对象
-const student = {
-    name: "小明",
-    age: 20,
-    major: "计算机科学",
-  
-    getInfo() {
-        return `姓名：${this.name}\n年龄：${this.age}岁\n专业：${this.major}`;
-    }
-};
-
-function updateStudent() {
-    const name = document.getElementById('nameInput').value;
-    const age = document.getElementById('ageInput').value;
-    const major = document.getElementById('majorInput').value;
-  
-    if (name) student.name = name;
-    if (age) student.age = parseInt(age);
-    if (major) student.major = major;
-  
-    document.getElementById('lab2-output').innerText =
-    "✅ 信息已更新！\n点击'显示信息'查看";
-}
-
-function showStudent() {
-    const info = student.getInfo();
-    const propCount = Object.keys(student).length - 1;
-  
-    document.getElementById('lab2-output').innerText =
-    `📋 学生信息：\n${info}\n\n共有${propCount}个属性`;
-}
-                </div>
-
-            </div>
-
-            <div class="action-bar">
-                <button class="btn btn-run" onclick="runJsDomExperiment('lab2-code', null)">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="resetJsDomExperiment('lab2-code', 'lab2-preview', null)">↻ 重置</button>
-                <span style="color:#999;font-size:13px;">测试对象属性的修改和方法调用</span>
-            </div>
-
-            <div class="preview-box" id="lab2-preview">
-                <h3>👨‍🎓 学生信息管理</h3>
-                <div>
-                    <input id="nameInput" placeholder="姓名">
-                    <input id="ageInput" placeholder="年龄" type="number">
-                    <input id="majorInput" placeholder="专业">
-                    <button onclick="updateStudent()">更新信息</button>
-                    <button onclick="showStudent()">显示信息</button>
-                </div>
-                <div id="lab2-output" style="margin-top:15px;padding:10px;background:#f0f8ff;border-radius:5px;white-space:pre-line;"></div>
-            </div>
-
-        </div>
-
-
-        </section>
-
-
-    <section id="json">
-      <h2>七、JSON数据格式</h2>
-      
-      <h3>7.1 什么是JSON?</h3>
-      <p>JSON（JavaScript Object Notation）是一种<strong>轻量级的数据交换格式</strong>,是前后端通信的标准语言。就像快递单的标准格式,让不同的程序都能读懂彼此的数据。</p>
-      
-      <div class="tip-box">
-            <span class="tip-title">为什么需要JSON?</span>
-
-
-        <ul class="checklist">
-          <li>前端JavaScript对象无法直接传给后端</li>
-          <li>需要一种文本格式,方便网络传输</li>
-          <li>JSON既是JavaScript原生支持,又是跨语言通用格式</li>
-          <li>几乎所有编程语言都能解析JSON</li>
-        </ul>
-      </div>
-
-
-
-      <h3>7.2 JSON的语法规则</h3>
-      <div class="note-box">
-        <span class="tip-title">JSON的特点</span>
-
-
-        <ul class="checklist">
-          <li>键必须用双引号包裹</li>
-          <li>值可以是：字符串、数字、对象、数组、布尔值、null</li>
-          <li>不能包含函数、undefined、Symbol</li>
-          <li>广泛用于数据传输和存储</li>
-        </ul>
-      </div>
-
-
-
-      <h3>7.3 JSON与JavaScript对象的转换</h3>
-      <pre><code>// JavaScript对象
-const person = {
-  name: "小红",
-  age: 22,
-  hobbies: ["读书", "旅游"]
-};
-
-// JSON.stringify()方法：将JavaScript对象转换为JSON字符串
-// 用于数据传输或存储
-const jsonString = JSON.stringify(person);
-console.log(jsonString);
-// '{"name":"小红","age":22,"hobbies":["读书","旅游"]}'
-
-// JSON.parse()方法：将JSON字符串转换为JavaScript对象
-// 用于接收和解析数据
-const jsonStr = '{"name":"小刚","age":25,"city":"北京"}';
-const obj = JSON.parse(jsonStr);
-console.log(obj.name);  // "小刚"
-
-// JSON.stringify()的第三个参数：格式化输出
-// 第二个参数为null，第三个参数指定缩进空格数
-const formatted = JSON.stringify(person, null, 2);
-console.log(formatted);
-/*
-{
-  "name": "小红",
-  "age": 22,
-  "hobbies": [
-    "读书",
-    "旅游"
-  ]
-}
-*/</code></pre>
-
-      <h3>7.4 深拷贝技巧</h3>
-      <pre><code>const original = {
-  name: "原对象",
-  data: { x: 1, y: 2 }
-};
-
-// 使用JSON实现深拷贝（有局限性）
-// 先转成JSON字符串，再解析回对象，得到完全独立的副本
-const deepCopy = JSON.parse(JSON.stringify(original));
-
-deepCopy.data.x = 100;
-console.log(original.data.x);  // 1（不受影响）
-console.log(deepCopy.data.x);  // 100
-
-// 注意：这种方法无法复制函数、undefined等特殊值</code></pre>
-        </section>
-
-
-    <section id="nested">
-      <h2>八、嵌套结构的实战应用</h2>
-      <p>实际开发中,数据往往是数组和对象的组合嵌套。掌握嵌套结构的处理是操作复杂数据的关键能力。</p>
-      
-      <h3>8.1 数组中包含对象</h3>
-      <p>最常见的数据结构：对象数组，用于表示列表数据。</p>
-      
-      <pre><code>const students = [
-  { name: "张三", age: 20, score: 85 },
-  { name: "李四", age: 21, score: 92 },
-  { name: "王五", age: 19, score: 78 }
+    return result;
+}, []);
+console.log(unique);  // [1, 2, 3, 4]
+</code></pre>
+
+        <h4>some 和 every - 条件判断</h4>
+<pre class="js"><code>let numbers = [1, 2, 3, 4, 5];
+
+// some - 是否存在满足条件的元素
+console.log(numbers.some(num => num > 4));   // true
+console.log(numbers.some(num => num > 10));  // false
+
+// every - 是否所有元素都满足条件
+console.log(numbers.every(num => num > 0));  // true
+console.log(numbers.every(num => num > 3));  // false
+</code></pre>
+
+        <div class="tip-box">
+            <span class="tip-title">💡 链式调用</span>
+            <p>高阶方法可以链式调用，组合使用更加强大：</p>
+<pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>let users = [
+    { name: '小明', age: 17, score: 85 },
+    { name: '小红', age: 25, score: 92 },
+    { name: '小刚', age: 30, score: 78 }
 ];
 
-// 访问元素
-console.log(students[0].name);  // "张三"
-console.log(students[1].score);  // 92
+// 筛选成年人，提取姓名
+let adultNames = users
+    .filter(user => user.age >= 18)
+    .map(user => user.name);
+console.log(adultNames);  // ['小红', '小刚']
+</code></pre>
+        </div>
+    </section>
 
-// 遍历
-students.forEach(student => {
-  console.log(`${student.name}: ${student.score}分`);
-});
 
-// 筛选
-const topStudents = students.filter(s => s.score >= 90);
-console.log(topStudents);  // [{ name: "李四", age: 21, score: 92 }]
+    <!-- ============================================
+         实验 02：数组方法练习
+         ============================================ -->
+    <section id="lab-2">
+        <h2>实验 02：数组方法练习</h2>
+        <p>练习使用数组的各种方法处理数据。</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 02：成绩统计分析</span>
+                <span class="status-badge beginner" id="badge-lab2">动手实践</span>
+            </div>
+            
+            <div class="lab-body split">
+                <div class="panel html-viewer">
+<div class="panel-label">HTML 预览</div>
+&lt;h3&gt;成绩统计分析&lt;/h3&gt;
+&lt;button onclick="showAll()"&gt;显示全部&lt;/button&gt;
+&lt;button onclick="showPassed()"&gt;及格名单&lt;/button&gt;
+&lt;button onclick="showAverage()"&gt;平均分&lt;/button&gt;
+&lt;button onclick="showTop3()"&gt;前三名&lt;/button&gt;
+&lt;div id="result"&gt;&lt;/div&gt;
+                </div>
+                
+                <div class="panel code-editor" id="code-lab2" contenteditable="true">
+<div class="panel-label">JavaScript (可编辑)</div>
+// 成绩数据
+const scores = [85, 92, 78, 95, 88, 56, 90, 72, 68, 99];
+
+// 显示全部成绩
+function showAll() {
+    const result = '全部成绩：' + scores.join(', ');
+    document.getElementById('result').innerHTML = result;
+}
+
+// 显示及格名单（>= 60分）
+function showPassed() {
+    const passed = scores.filter(s => s >= 60);
+    const result = `及格人数：${passed.length}人&lt;br&gt;成绩：${passed.join(', ')}`;
+    document.getElementById('result').innerHTML = result;
+}
 
 // 计算平均分
-const avgScore = students.reduce((sum, s) => sum + s.score, 0) / students.length;
-console.log(avgScore);  // 85</code></pre>
+function showAverage() {
+    const sum = scores.reduce((total, s) => total + s, 0);
+    const avg = (sum / scores.length).toFixed(2);
+    document.getElementById('result').innerHTML = '平均分：' + avg;
+}
 
-      <h3>7.2 对象包含数组</h3>
-      <pre><code>const班级 = {
-  name: "高三(1)班",
-  teacher: "王老师",
-  students: ["张三", "李四", "王五"],
-  scores: {
-    math: [85, 92, 78],
-    english: [88, 90, 82]
-  },
-  
-  getAverage(subject) {
-    const scores = this.scores[subject];
-    const sum = scores.reduce((a, b) => a + b, 0);
-    return sum / scores.length;
-  }
-};
-
-console.log(班级.students[0]);  // "张三"
-console.log(班级.getAverage("math"));  // 85</code></pre>
-
-      <h3>7.3 复杂嵌套结构</h3>
-      <pre><code>const company = {
-  name: "科技公司",
-  departments: [
-    {
-      name: "研发部",
-      employees: [
-        { name: "张工", position: "工程师", salary: 15000 },
-        { name: "李工", position: "架构师", salary: 25000 }
-      ]
-    },
-    {
-      name: "市场部",
-      employees: [
-        { name: "王经理", position: "市场经理", salary: 18000 }
-      ]
-    }
-  ],
-  
-  getTotalSalary() {
-    let total = 0;
-    this.departments.forEach(dept => {
-      dept.employees.forEach(emp => {
-        total += emp.salary;
-      });
-    });
-    return total;
-  }
-};
-
-console.log(company.getTotalSalary());  // 58000</code></pre>
-
-      <div class="lab-card">
-        <div class="lab-header">
-                <span>🔬 实验3：学生成绩分析系统</span>
-                <span class="status-badge advanced">进阶</span>
+// 显示前三名
+function showTop3() {
+    const sorted = [...scores].sort((a, b) => b - a);
+    const top3 = sorted.slice(0, 3);
+    const result = `🥇 ${top3[0]}分&lt;br&gt;🥈 ${top3[1]}分&lt;br&gt;🥉 ${top3[2]}分`;
+    document.getElementById('result').innerHTML = result;
+}
+                </div>
             </div>
+            
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runJsDomExperiment('code-lab2', 'badge-lab2')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetJsDomExperiment('code-lab2', 'result', 'badge-lab2')">↺ 重置代码</button>
+            </div>
+            
+            <div class="preview-box">
+                <h3>成绩统计分析</h3>
+                <div style="margin: 15px 0;">
+                    <button class="btn btn-run" onclick="showAll()">显示全部</button>
+                    <button class="btn btn-run" onclick="showPassed()" style="margin-left: 10px;">及格名单</button>
+                    <button class="btn btn-run" onclick="showAverage()" style="margin-left: 10px;">平均分</button>
+                    <button class="btn btn-run" onclick="showTop3()" style="margin-left: 10px;">前三名</button>
+                </div>
+                <div id="result" style="padding: 15px; background: #f9f9f9; border-radius: 6px; min-height: 60px; font-size: 18px;"></div>
+            </div>
+        </div>
+    </section>
 
 
-        <div class="lab-body split">
-          <div class="panel">
-            <div class="panel-label">HTML</div>
+    <!-- ============================================
+         Part 3: 对象基础
+         ============================================ -->
+
+    <section id="section-3-1">
+        <h2>三、什么是对象？</h2>
+        <p>对象是JavaScript中最重要的数据类型之一。对象用于存储键值对（属性名-属性值）的集合，可以表示真实世界中的实体。</p>
+        
+        <div class="tip-box">
+            <span class="tip-title">💡 对象的类比</span>
+            <p>把对象想象成一张"名片"或"身份证"：</p>
+            <ul class="checklist">
+                <li><strong>属性名</strong>：相当于表单的标签（姓名、年龄、地址）</li>
+                <li><strong>属性值</strong>：相当于填写的内容（张三、25、北京）</li>
+                <li><strong>方法</strong>：对象能执行的动作（说话、走路）</li>
+            </ul>
+        </div>
+        
+        <p>数组 vs 对象：</p>
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>对比项</th>
+                    <th>数组</th>
+                    <th>对象</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>访问方式</td>
+                    <td>通过数字索引：<code>arr[0]</code></td>
+                    <td>通过属性名：<code>obj.name</code></td>
+                </tr>
+                <tr>
+                    <td>适用场景</td>
+                    <td>有序的数据列表</td>
+                    <td>描述一个实体的多个属性</td>
+                </tr>
+                <tr>
+                    <td>示例</td>
+                    <td><code>['苹果', '香蕉', '橙子']</code></td>
+                    <td><code>{ name: '张三', age: 25 }</code></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
 
 
-            <div class="html-viewer">&lt;h3&gt;📊 学生成绩分析系统&lt;/h3&gt;
-    &lt;div&gt;
-        &lt;button onclick="showAll()"&gt;显示全部学生&lt;/button&gt;
-            &lt;button onclick="showTopStudent()"&gt;最高分学生&lt;/button&gt;
+    <section id="section-3-2">
+        <h3>3.2 创建与访问对象</h3>
+        
+        <h4>创建对象</h4>
+<pre class="js"><code>// 方式一：对象字面量（推荐）
+let person = {
+    name: '张三',
+    age: 25,
+    city: '北京',
+    isStudent: false
+};
+
+// 方式二：new Object()
+let person2 = new Object();
+person2.name = '李四';
+person2.age = 30;
+
+// 方式三：Object.create()
+let person3 = Object.create(null);
+person3.name = '王五';
+</code></pre>
+
+        <h4>访问属性</h4>
+<pre class="js"><code>let person = {
+    name: '张三',
+    age: 25,
+    'favorite color': '蓝色'  // 带空格的属性名需要引号
+};
+
+// 点语法（推荐）
+console.log(person.name);  // '张三'
+console.log(person.age);   // 25
+
+// 方括号语法
+console.log(person['name']);           // '张三'
+console.log(person['favorite color']); // '蓝色'
+
+// 使用变量访问属性
+let key = 'age';
+console.log(person[key]);  // 25
+
+// 访问不存在的属性
+console.log(person.height);  // undefined
+</code></pre>
+
+        <h4>修改和添加属性</h4>
+<pre class="js"><code>let person = { name: '张三' };
+
+// 修改属性
+person.name = '李四';
+console.log(person.name);  // '李四'
+
+// 添加新属性
+person.age = 25;
+person['city'] = '上海';
+console.log(person);  // { name: '李四', age: 25, city: '上海' }
+
+// 删除属性
+delete person.city;
+console.log(person);  // { name: '李四', age: 25 }
+</code></pre>
+
+        <div class="note-box">
+            <strong>点语法 vs 方括号语法：</strong>
+            <ul class="checklist">
+                <li>点语法更简洁，但属性名必须是有效标识符</li>
+                <li>方括号语法更灵活，可以使用变量、表达式或特殊字符</li>
+                <li>当属性名包含空格、特殊字符或是变量时，必须用方括号</li>
+            </ul>
+        </div>
+    </section>
+
+
+    <section id="section-3-3">
+        <h3>3.3 对象方法</h3>
+        <p>对象的属性值可以是函数，这种函数称为"方法"。方法定义了对象能执行的动作。</p>
+        
+<pre class="js"><code>let person = {
+    name: '张三',
+    age: 25,
+    
+    // 方法：对象的行为
+    sayHello: function() {
+        console.log('你好，我是' + this.name);
+    },
+    
+    // ES6简写语法
+    introduce() {
+        console.log(`我叫${this.name}，今年${this.age}岁`);
+    },
+    
+    // 带参数的方法
+    greet(greeting) {
+        console.log(`${greeting}，我是${this.name}`);
+    }
+};
+
+// 调用方法
+person.sayHello();       // '你好，我是张三'
+person.introduce();      // '我叫张三，今年25岁'
+person.greet('大家好');  // '大家好，我是张三'
+</code></pre>
+
+        <div class="warning-box">
+            <strong>关于 this 关键字</strong>
+            <p><code>this</code> 在对象方法中指向调用该方法的对象。注意：箭头函数没有自己的 <code>this</code>！</p>
+<pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>// ❌ 箭头函数中的this不是对象本身
+let obj = {
+    name: '测试',
+    wrong: () => {
+        console.log(this.name);  // undefined
+    }
+};
+
+// ✅ 普通函数中的this指向对象
+let obj2 = {
+    name: '测试',
+    right: function() {
+        console.log(this.name);  // '测试'
+    }
+};
+</code></pre>
+        </div>
+
+        <h4>常用对象操作方法</h4>
+<pre class="js"><code>let person = { name: '张三', age: 25, city: '北京' };
+
+// Object.keys() - 获取所有属性名
+let keys = Object.keys(person);
+console.log(keys);  // ['name', 'age', 'city']
+
+// Object.values() - 获取所有属性值
+let values = Object.values(person);
+console.log(values);  // ['张三', 25, '北京']
+
+// Object.entries() - 获取键值对数组
+let entries = Object.entries(person);
+console.log(entries);
+// [['name', '张三'], ['age', 25], ['city', '北京']]
+
+// 检查属性是否存在
+console.log('name' in person);           // true
+console.log(person.hasOwnProperty('age')); // true
+
+// Object.assign() - 合并对象
+let extra = { job: '工程师', hobby: '编程' };
+let merged = Object.assign({}, person, extra);
+console.log(merged);
+// { name: '张三', age: 25, city: '北京', job: '工程师', hobby: '编程' }
+
+// 展开运算符合并（ES6）
+let merged2 = { ...person, ...extra };
+console.log(merged2);  // 同上
+</code></pre>
+    </section>
+
+
+    <!-- ============================================
+         实验 03：对象操作练习
+         ============================================ -->
+    <section id="lab-3">
+        <h2>实验 03：对象操作练习</h2>
+        <p>练习创建和操作对象。</p>
+        
         <div class="lab-card">
             <div class="lab-header">
-                <span>🔬 实验3：学生成绩分析系统</span>
-                <span class="status-badge advanced">进阶</span>
+                <span>实验 03：个人信息卡片</span>
+                <span class="status-badge beginner" id="badge-lab3">动手实践</span>
             </div>
-
+            
             <div class="lab-body split">
                 <div class="panel html-viewer">
 <div class="panel-label">HTML 预览</div>
-<h3>📊 学生成绩分析系统</h3>
-<div>
-    <button onclick="showAll()">显示全部学生</button>
-    <button onclick="showTopStudent()">最高分学生</button>
-    <button onclick="showAverage()">计算平均分</button>
-    <button onclick="showPassed()">及格学生</button>
-</div>
-<div id="lab3-output" style="margin-top:15px;padding:12px;background:#f5f5f5;border-radius:5px;white-space:pre-line;"></div>
+&lt;h3&gt;个人信息卡片&lt;/h3&gt;
+&lt;div id="card"&gt;&lt;/div&gt;
+&lt;button onclick="showCard()"&gt;显示信息&lt;/button&gt;
+&lt;button onclick="addHobby()"&gt;添加爱好&lt;/button&gt;
+&lt;button onclick="updateAge()"&gt;过生日&lt;/button&gt;
                 </div>
-
-                <div class="panel code-editor" id="lab3-code" contenteditable="true">
+                
+                <div class="panel code-editor" id="code-lab3" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
-// 学生数据（数组包含对象）
-const students = [
-    { name: "张三", age: 20, score: 85, grade: "A" },
-    { name: "李四", age: 21, score: 92, grade: "A+" },
-    { name: "王五", age: 19, score: 78, grade: "B" },
-    { name: "赵六", age: 20, score: 65, grade: "C" },
-    { name: "孙七", age: 22, score: 95, grade: "A+" }
-];
-
-function showAll() {
-    const list = students.map(s =>
-    `${s.name}（${s.age}岁）- ${s.score}分 [${s.grade}]`
-    ).join('\n');
-    document.getElementById('lab3-output').innerText =
-    `📋 全部学生（${students.length}人）：\n${list}`;
-}
-
-function showTopStudent() {
-    const top = students.reduce((max, s) =>
-    s.score > max.score ? s : max
-    );
-    document.getElementById('lab3-output').innerText =
-    `🏆 最高分学生：\n${top.name} - ${top.score}分 [${top.grade}]`;
-}
-
-function showAverage() {
-    const avg = students.reduce((sum, s) => sum + s.score, 0) / students.length;
-    document.getElementById('lab3-output').innerText =
-    `📈 平均分：${avg.toFixed(2)}分`;
-}
-
-function showPassed() {
-    const passed = students.filter(s => s.score >= 60);
-    const list = passed.map(s => `${s.name}: ${s.score}分`).join('\n');
-    document.getElementById('lab3-output').innerText =
-    `✅ 及格学生（${passed.length}/${students.length}人）：\n${list}`;
-}
-                </div>
-
-            </div>
-
-            <div class="action-bar">
-                <button class="btn btn-run" onclick="runJsDomExperiment('lab3-code', null)">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="resetJsDomExperiment('lab3-code', 'lab3-preview', null)">↻ 重置</button>
-                <span style="color:#999;font-size:13px;">综合运用数组方法和对象操作</span>
-            </div>
-
-            <div class="preview-box" id="lab3-preview">
-                <h3>📊 学生成绩分析系统</h3>
-                <div>
-                    <button onclick="showAll()">显示全部学生</button>
-                    <button onclick="showTopStudent()">最高分学生</button>
-                    <button onclick="showAverage()">计算平均分</button>
-                    <button onclick="showPassed()">及格学生</button>
-                </div>
-                <div id="lab3-output" style="margin-top:15px;padding:12px;background:#f5f5f5;border-radius:5px;white-space:pre-line;"></div>
-            </div>
-
-        </div>i>使用对象数组存储图书信息</li>
-          <li>数组的增删改查操作</li>
-          <li>数组遍历和筛选方法</li>
-          <li>对象属性的访问和修改</li>
-          <li>数据统计和计算</li>
-          <li>DOM操作与数据结构结合</li>
-        </ul>
-      </div>
-
-
-
-      <div class="lab-card">
-        <div class="lab-header">
-                <span>🔬 实验4：图书管理系统</span>
-                <span class="status-badge advanced">综合</span>
-            </div>
-
-
-        <div class="lab-body split">
-          <div class="panel">
-            <div class="panel-label">HTML</div>
-            <div class="html-viewer">&lt;div class="book-manager"&gt;
-    &lt;h3&gt;图书管理系统&lt;/h3&gt;
-        &lt;div class="input-row"&gt;
-            &lt;input id="bookTitle" placeholder="书名"&gt;
-                &lt;input id="bookAuthor" placeholder="作者"&gt;
-                    &lt;input id="bookYear" type="number" placeholder="出版年份"&gt;
-                    &lt;/div&gt;
-                    &lt;div class="btn-group"&gt;
-                        &lt;button class="book-btn" onclick="addBook()"&gt;➕ 添加图书&lt;/button&gt;
-                            &lt;button class="book-btn" onclick="showAllBooks()"&gt;📖 显示全部&lt;/button&gt;
-                                &lt;button class="book-btn" onclick="searchByAuthor()"&gt;按作者搜索&lt;/button&gt;
-                                    &lt;button class="book-btn" onclick="showStats()"&gt;📊 统计信息&lt;/button&gt;
-                                    &lt;/div&gt;
-                                    &lt;div id="book-result"&gt;等待操作...&lt;/div&gt;
-                                    &lt;/div&gt;
-  
-                                    &lt;style&gt;
-                                        .book-manager { max-width: 500px; padding: 20px; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-                                        .input-row { display: flex; gap: 8px; margin-bottom: 10px; }
-                                        .input-row input { flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 6px; }
-      <div class="lab-card">
-        <div class="lab-header">
-                <span>🔬 实验4：图书管理系统</span>
-                <span class="status-badge advanced">综合</span>
-            </div>
-
-        <div class="lab-body split">
-          <div class="panel html-viewer">
-<div class="panel-label">HTML 预览</div>
-<div class="book-manager">
-    <h3>图书管理系统</h3>
-    <div class="input-row">
-        <input id="bookTitle" placeholder="书名">
-        <input id="bookAuthor" placeholder="作者">
-        <input id="bookYear" type="number" placeholder="出版年份">
-    </div>
-    <div class="btn-group">
-        <button class="book-btn" onclick="addBook()">➕ 添加图书</button>
-        <button class="book-btn" onclick="showAllBooks()">📖 显示全部</button>
-        <button class="book-btn" onclick="searchByAuthor()">按作者搜索</button>
-        <button class="book-btn" onclick="showStats()">📊 统计信息</button>
-    </div>
-    <div id="book-result">等待操作...</div>
-</div>
-
-<style>
-    .book-manager { max-width: 500px; padding: 20px; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-    .input-row { display: flex; gap: 8px; margin-bottom: 10px; }
-    .input-row input { flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 6px; }
-    .btn-group { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin: 12px 0; }
-    .book-btn { padding: 10px; background: #0066CC; color: white; border: none; border-radius: 6px; cursor: pointer; }
-    .book-btn:hover { background: #0055B3; }
-    #book-result { margin-top: 15px; padding: 12px; background: #f9f9f9; border-radius: 6px; min-height: 100px; white-space: pre-line; }
-</style>
-          </div>
-
-          <div class="panel code-editor" id="lab4-code" contenteditable="true">
-<div class="panel-label">JavaScript (可编辑)</div>
-// 图书库（对象数组）
-const library = [
-    { title: "JavaScript高级程序设计", author: "Nicholas", year: 2020 },
-    { title: "你不知道的JavaScript", author: "Kyle", year: 2019 }
-];
-
-function addBook() {
-    const title = document.getElementById('bookTitle').value;
-    const author = document.getElementById('bookAuthor').value;
-    const year = parseInt(document.getElementById('bookYear').value);
-  
-    if (!title || !author || !year) {
-        document.getElementById('book-result').innerText =
-        "请填写完整信息！";
-        return;
-    }
-  
-    library.push({ title, author, year });
-    document.getElementById('book-result').innerText =
-    `✅ 已添加《${title}》\n当前共${library.length}本图书`;
-  
-    // 清空输入框
-    document.getElementById('bookTitle').value = '';
-    document.getElementById('bookAuthor').value = '';
-    document.getElementById('bookYear').value = '';
-}
-
-function showAllBooks() {
-    if (library.length === 0) {
-        document.getElementById('book-result').innerText = "📭 图书库为空";
-        return;
-    }
-  
-    const bookList = library.map((book, index) =>
-    `${index + 1}. 《${book.title}》\n   作者：${book.author} | ${book.year}年`
-    ).join('\n\n');
-  
-    document.getElementById('book-result').innerText =
-    `图书列表（共${library.length}本）：\n\n${bookList}`;
-}
-
-function searchByAuthor() {
-    const author = document.getElementById('bookAuthor').value;
-  
-    if (!author) {
-        document.getElementById('book-result').innerText =
-        "请在作者栏输入要搜索的作者名";
-        return;
-    }
-  
-    const results = library.filter(book =>
-    book.author.includes(author)
-    );
-  
-    if (results.length === 0) {
-        document.getElementById('book-result').innerText =
-        `❌ 未找到作者"${author}"的图书`;
-    } else {
-        const list = results.map(b =>
-        `《${b.title}》- ${b.author} (${b.year})`
-        ).join('\n');
-        document.getElementById('book-result').innerText =
-        `搜索结果（${results.length}本）：\n${list}`;
-    }
-}
-
-function showStats() {
-    const total = library.length;
-    const years = library.map(b => b.year);
-    const newest = Math.max(...years);
-    const oldest = Math.min(...years);
-    const authors = [...new Set(library.map(b => b.author))];
-  
-    document.getElementById('book-result').innerText =
-    `📊 统计信息：\n` +
-    `总图书数：${total}本\n` +
-    `最新出版：${newest}年\n` +
-    `最早出版：${oldest}年\n` +
-    `作者数量：${authors.length}位\n` +
-    `作者列表：${authors.join(', ')}`;
-}
-          </div>
-
-        </div>
-
-        <div class="action-bar">
-          <button class="btn btn-run" onclick="runJsDomExperiment('lab4-code', null)">▶ 运行代码</button>
-          <button class="btn btn-reset" onclick="resetJsDomExperiment('lab4-code', 'lab4-preview', null)">↻ 重置</button>
-          <span style="color:#999;font-size:13px;">完整的图书管理系统，包含增删查改功能</span>
-        </div>
-
-        <div class="preview-box" id="lab4-preview">
-            <div class="book-manager">
-                <h3>图书管理系统</h3>
-                <div class="input-row">
-                    <input id="bookTitle" placeholder="书名">
-                    <input id="bookAuthor" placeholder="作者">
-                    <input id="bookYear" type="number" placeholder="出版年份">
-                </div>
-                <div class="btn-group">
-                    <button class="book-btn" onclick="addBook()">➕ 添加图书</button>
-                    <button class="book-btn" onclick="showAllBooks()">📖 显示全部</button>
-                    <button class="book-btn" onclick="searchByAuthor()">按作者搜索</button>
-                    <button class="book-btn" onclick="showStats()">📊 统计信息</button>
-                </div>
-                <div id="book-result">等待操作...</div>
-            </div>
-            <style>
-                .book-manager { max-width: 500px; padding: 20px; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-                .input-row { display: flex; gap: 8px; margin-bottom: 10px; }
-                .input-row input { flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 6px; }
-                .btn-group { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin: 12px 0; }
-                .book-btn { padding: 10px; background: #0066CC; color: white; border: none; border-radius: 6px; cursor: pointer; }
-                .book-btn:hover { background: #0055B3; }
-                #book-result { margin-top: 15px; padding: 12px; background: #f9f9f9; border-radius: 6px; min-height: 100px; white-space: pre-line; }
-            </style>
-        </div>
-
-      </div>
-      <ul class="checklist">
-          <li><strong>JSON：</strong>数据交换格式，JSON.stringify()和JSON.parse()</li>
-          <li><strong>嵌套结构：</strong>数组包含对象、对象包含数组的复杂数据结构</li>
-        </ul>
-
-
-
+// 创建个人信息对象
+let person = {
+    name: '小明',
+    age: 20,
+    city: '北京',
+    hobbies: ['编程', '游戏'],
     
+    // 自我介绍方法
+    introduce() {
+        return `大家好，我是${this.name}，${this.age}岁，来自${this.city}`;
+    }
+};
+
+// 显示信息卡片
+function showCard() {
+    let html = `
+        &lt;p&gt;&lt;strong&gt;姓名：&lt;/strong&gt;${person.name}&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;年龄：&lt;/strong&gt;${person.age}&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;城市：&lt;/strong&gt;${person.city}&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;爱好：&lt;/strong&gt;${person.hobbies.join('、')}&lt;/p&gt;
+        &lt;p&gt;&lt;em&gt;${person.introduce()}&lt;/em&gt;&lt;/p&gt;
+    `;
+    document.getElementById('card').innerHTML = html;
+}
+
+// 添加爱好
+function addHobby() {
+    let hobby = prompt('请输入新爱好：');
+    if (hobby) {
+        person.hobbies.push(hobby);
+        showCard();
+    }
+}
+
+// 过生日
+function updateAge() {
+    person.age++;
+    alert(`生日快乐！${person.name}现在${person.age}岁了！`);
+    showCard();
+}
+                </div>
+            </div>
+            
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runJsDomExperiment('code-lab3', 'badge-lab3')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetJsDomExperiment('code-lab3', 'card', 'badge-lab3')">↺ 重置代码</button>
+            </div>
+            
+            <div class="preview-box">
+                <h3>个人信息卡片</h3>
+                <div id="card" style="padding: 15px; background: #f9f9f9; border-radius: 6px; margin: 15px 0; min-height: 100px;"></div>
+                <div>
+                    <button class="btn btn-run" onclick="showCard()">显示信息</button>
+                    <button class="btn btn-run" onclick="addHobby()" style="margin-left: 10px;">添加爱好</button>
+                    <button class="btn btn-run" onclick="updateAge()" style="margin-left: 10px;">过生日</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         Part 4: 综合应用
+         ============================================ -->
+
+    <section id="section-4-1">
+        <h2>四、数组与对象的结合</h2>
+        <p>在实际开发中，数组和对象经常结合使用。最常见的场景是"对象数组"——用数组存储多个同类型的对象。</p>
+        
+        <h4>对象数组的创建和遍历</h4>
+<pre class="js"><code>// 学生列表
+let students = [
+    { name: '小明', age: 20, score: 85 },
+    { name: '小红', age: 21, score: 92 },
+    { name: '小刚', age: 19, score: 78 }
+];
+
+// 遍历对象数组
+students.forEach(student => {
+    console.log(`${student.name}：${student.score}分`);
+});
+
+// 筛选优秀学生
+let excellent = students.filter(s => s.score >= 90);
+console.log(excellent);  // [{ name: '小红', age: 21, score: 92 }]
+
+// 提取所有姓名
+let names = students.map(s => s.name);
+console.log(names);  // ['小明', '小红', '小刚']
+
+// 计算平均分
+let avgScore = students.reduce((sum, s) => sum + s.score, 0) / students.length;
+console.log(avgScore);  // 85
+</code></pre>
+
+        <h4>解构赋值</h4>
+        <p>ES6的解构赋值让我们能更方便地从数组和对象中提取数据：</p>
+        
+<pre class="js"><code>// 数组解构
+let colors = ['红', '绿', '蓝'];
+let [first, second, third] = colors;
+console.log(first);   // '红'
+console.log(second);  // '绿'
+
+// 跳过元素
+let [a, , b] = [1, 2, 3];
+console.log(a, b);  // 1, 3
+
+// 剩余元素
+let [head, ...rest] = [1, 2, 3, 4];
+console.log(head);  // 1
+console.log(rest);  // [2, 3, 4]
+
+// 对象解构
+let person = { name: '张三', age: 25, city: '北京' };
+let { name, age } = person;
+console.log(name);  // '张三'
+console.log(age);   // 25
+
+// 重命名
+let { name: userName, age: userAge } = person;
+console.log(userName);  // '张三'
+
+// 默认值
+let { name, job = '未知' } = person;
+console.log(job);  // '未知'
+
+// 函数参数解构
+function printUser({ name, age }) {
+    console.log(`${name}，${age}岁`);
+}
+printUser(person);  // '张三，25岁'
+</code></pre>
+
+        <div class="note-box">
+            <strong>解构赋值的实际应用：</strong>
+            <ul class="checklist">
+                <li>从函数返回多个值</li>
+                <li>简化函数参数</li>
+                <li>交换变量值：<code>[a, b] = [b, a]</code></li>
+                <li>从API响应中提取数据</li>
+            </ul>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         实验 04：综合实战
+         ============================================ -->
+    <section id="lab-4">
+        <h2>实验 04：综合实战</h2>
+        <p>综合运用数组和对象的知识，构建一个简单的学生管理系统。</p>
+        
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验：第28次课-JS数组与对象实践</span>
-                <span id="28js-status" class="status-badge">未运行</span>
+                <span>实验 04：学生管理系统</span>
+                <span class="status-badge advanced" id="badge-lab4">综合实战</span>
             </div>
-
-            <div class="lab-body css-js-experiment">
-                <div>
-                    <div class="html-editor" id="28js-js" contenteditable="true">
-<div class="panel-label">JavaScript (可编辑)</div>// 实验：简易购物车系统
-// 目标：计算购物车总价，支持添加商品
-
-// 1. 初始化购物车数据
-const cart = [
-    { name: "苹果", price: 5, count: 2 },
-    { name: "香蕉", price: 3, count: 5 }
+            
+            <div class="lab-body split">
+                <div class="panel html-viewer">
+<div class="panel-label">HTML 预览</div>
+&lt;h3&gt;学生管理系统&lt;/h3&gt;
+&lt;div&gt;
+  &lt;input id="name-input" placeholder="姓名"&gt;
+  &lt;input id="score-input" type="number" placeholder="成绩"&gt;
+  &lt;button onclick="addStudent()"&gt;添加学生&lt;/button&gt;
+&lt;/div&gt;
+&lt;div&gt;
+  &lt;button onclick="showAllStudents()"&gt;显示全部&lt;/button&gt;
+  &lt;button onclick="showStats()"&gt;统计信息&lt;/button&gt;
+  &lt;button onclick="sortByScore()"&gt;按成绩排序&lt;/button&gt;
+&lt;/div&gt;
+&lt;div id="student-list"&gt;&lt;/div&gt;
+                </div>
+                
+                <div class="panel code-editor" id="code-lab4" contenteditable="true">
+<div class="panel-label">JavaScript (可编辑)</div>
+// 学生数据
+let students = [
+    { id: 1, name: '小明', score: 85 },
+    { id: 2, name: '小红', score: 92 },
+    { id: 3, name: '小刚', score: 78 }
 ];
+let nextId = 4;
 
-// 2. 显示购物车
-function renderCart() {
-    const output = document.getElementById('28js-output');
+// 添加学生
+function addStudent() {
+    const name = document.getElementById('name-input').value;
+    const score = Number(document.getElementById('score-input').value);
     
-    // 计算总价
-    const total = cart.reduce((sum, item) => sum + item.price * item.count, 0);
+    if (!name || isNaN(score)) {
+        alert('请输入有效的姓名和成绩');
+        return;
+    }
     
-    // 生成列表HTML
-    const listHtml = cart.map(item => 
-        `<li>${item.name} - ￥${item.price} x ${item.count} = ￥${item.price * item.count}</li>`
+    students.push({ id: nextId++, name, score });
+    document.getElementById('name-input').value = '';
+    document.getElementById('score-input').value = '';
+    showAllStudents();
+}
+
+// 显示全部学生
+function showAllStudents() {
+    const html = students.map(s => 
+        `&lt;p&gt;${s.id}. ${s.name} - ${s.score}分 
+        &lt;span onclick="removeStudent(${s.id})" style="color:red;cursor:pointer"&gt;[删除]&lt;/span&gt;&lt;/p&gt;`
     ).join('');
+    document.getElementById('student-list').innerHTML = html || '暂无学生';
+}
+
+// 删除学生
+function removeStudent(id) {
+    students = students.filter(s => s.id !== id);
+    showAllStudents();
+}
+
+// 显示统计信息
+function showStats() {
+    if (students.length === 0) {
+        document.getElementById('student-list').innerHTML = '暂无数据';
+        return;
+    }
     
-    output.innerHTML = `
-        <h3>🛒 购物车清单</h3>
-        <ul>${listHtml}</ul>
-        <p><strong>总价：￥${total}</strong></p>
-        <button onclick="addItem()" style="margin-top:10px;padding:5px 10px;">添加商品(测试)</button>
+    const total = students.length;
+    const avg = (students.reduce((sum, s) => sum + s.score, 0) / total).toFixed(2);
+    const max = Math.max(...students.map(s => s.score));
+    const min = Math.min(...students.map(s => s.score));
+    const passed = students.filter(s => s.score >= 60).length;
+    
+    document.getElementById('student-list').innerHTML = `
+        &lt;p&gt;总人数：${total}&lt;/p&gt;
+        &lt;p&gt;平均分：${avg}&lt;/p&gt;
+        &lt;p&gt;最高分：${max}&lt;/p&gt;
+        &lt;p&gt;最低分：${min}&lt;/p&gt;
+        &lt;p&gt;及格人数：${passed}&lt;/p&gt;
     `;
 }
 
-// 3. 添加商品测试
-function addItem() {
-    cart.push({ name: "橙子", price: 4, count: 1 });
-    renderCart();
+// 按成绩排序
+function sortByScore() {
+    students.sort((a, b) => b.score - a.score);
+    showAllStudents();
 }
-
-// 4. 启动
-renderCart();
-                    </div>
-
                 </div>
-
-                <div>
-                    <div class="preview-box" id="28js-preview">
-                        <div class="panel-label">预览效果</div>
-
-                        <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                            <div id="28js-output">
-                                <p>点击「运行代码」查看购物车</p>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-
             </div>
-
+            
             <div class="action-bar">
-                <button class="btn btn-run" onclick="runJsDomExperiment('28js-js', '28js-status')">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="resetJsDomExperiment('28js-js', '28js-preview', '28js-status')">↺ 重置</button>
+                <button class="btn btn-run" onclick="runJsDomExperiment('code-lab4', 'badge-lab4')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetJsDomExperiment('code-lab4', 'student-list', 'badge-lab4')">↺ 重置代码</button>
             </div>
-
+            
+            <div class="preview-box">
+                <h3>学生管理系统</h3>
+                <div style="margin: 15px 0;">
+                    <input id="name-input" placeholder="姓名" style="padding: 8px; margin-right: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                    <input id="score-input" type="number" placeholder="成绩" style="padding: 8px; margin-right: 10px; border: 1px solid #ddd; border-radius: 4px; width: 80px;">
+                    <button class="btn btn-run" onclick="addStudent()">添加学生</button>
+                </div>
+                <div style="margin: 15px 0;">
+                    <button class="btn btn-run" onclick="showAllStudents()">显示全部</button>
+                    <button class="btn btn-run" onclick="showStats()" style="margin-left: 10px;">统计信息</button>
+                    <button class="btn btn-run" onclick="sortByScore()" style="margin-left: 10px;">按成绩排序</button>
+                </div>
+                <div id="student-list" style="padding: 15px; background: #f9f9f9; border-radius: 6px; min-height: 100px;"></div>
+            </div>
         </div>
-
     </section>
+
+
+    <!-- ============================================
+         真实案例展示
+         ============================================ -->
+    <section id="real-world-demo">
+        <h2>五、真实案例展示</h2>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>案例：电商购物车中的应用</span>
+                <span class="status-badge beginner">Real World</span>
+            </div>
+            <div class="lab-body">
+                <p><strong>实际应用场景：</strong></p>
+                <ul class="checklist">
+                    <li><strong>购物车：</strong>使用对象数组存储商品信息（名称、价格、数量），用数组方法计算总价</li>
+                    <li><strong>用户列表：</strong>社交媒体的好友列表、关注列表都是对象数组</li>
+                    <li><strong>商品筛选：</strong>电商网站的价格筛选、分类筛选使用 filter 方法</li>
+                    <li><strong>数据展示：</strong>用 map 方法将数据转换为 HTML 元素</li>
+                </ul>
+<pre class="js"><code>// 购物车示例
+let cart = [
+    { id: 1, name: 'iPhone', price: 8999, qty: 1 },
+    { id: 2, name: 'AirPods', price: 1999, qty: 2 },
+    { id: 3, name: '充电器', price: 199, qty: 1 }
+];
+
+// 计算总价
+let total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+console.log('总价：' + total);  // 13196
+
+// 筛选贵重商品
+let expensive = cart.filter(item => item.price > 1000);
+console.log(expensive);
+</code></pre>
+                <p style="margin-top: 10px; color: #666; font-size: 18px;">如果没有数组和对象，我们将无法有效地管理和处理这些复杂的数据结构。</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         课程小结区域
+         ============================================ -->
+    <section id="summary">
+        <h2>六、本课小结</h2>
+        
+        <h3>知识点回顾</h3>
+        <ul class="checklist">
+            <li><strong>数组创建</strong>：使用字面量 <code>[]</code> 或 <code>Array</code> 构造函数创建数组</li>
+            <li><strong>数组访问</strong>：通过索引访问元素，索引从0开始</li>
+            <li><strong>数组方法</strong>：push/pop、shift/unshift、splice、map、filter、reduce等</li>
+            <li><strong>对象创建</strong>：使用字面量 <code>{}</code> 创建对象，存储键值对</li>
+            <li><strong>对象访问</strong>：点语法或方括号语法访问属性</li>
+            <li><strong>解构赋值</strong>：从数组和对象中方便地提取数据</li>
+        </ul>
+        
+        <h3>重点记忆</h3>
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>概念</th>
+                    <th>要点</th>
+                    <th>示例</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>数组创建</td>
+                    <td>字面量语法最常用</td>
+                    <td><code>let arr = [1, 2, 3];</code></td>
+                </tr>
+                <tr>
+                    <td>对象创建</td>
+                    <td>键值对形式</td>
+                    <td><code>let obj = { name: '张三' };</code></td>
+                </tr>
+                <tr>
+                    <td>map方法</td>
+                    <td>转换数组元素</td>
+                    <td><code>arr.map(x => x * 2)</code></td>
+                </tr>
+                <tr>
+                    <td>filter方法</td>
+                    <td>筛选符合条件的元素</td>
+                    <td><code>arr.filter(x => x > 0)</code></td>
+                </tr>
+                <tr>
+                    <td>reduce方法</td>
+                    <td>累积计算</td>
+                    <td><code>arr.reduce((a, b) => a + b, 0)</code></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- 下一课预告 -->
+        <div class="note-box">
+            <strong>下一课预告：</strong>
+            <p>下一课我们将学习【JS DOM操作】。学会使用JavaScript操作网页元素，实现动态的页面交互效果。</p>
+        </div>
+    </section>
+
 
 </main>
 
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-

@@ -1,716 +1,789 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>第27课：JS函数</title>
-  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第27课：JS函数</title>
+    
+    <!-- 统一样式引用 -->
     <link rel='stylesheet' href='../统一讲义样式模板.css'>
+    <!-- 通用工具函数库 -->
     <script src='../js/lecture-utils.js'></script>
 </head>
 <body>
+
+<!-- ============================================
+     侧边栏导航
+     ============================================ -->
 <nav class="sidebar">
     <div class="sidebar-nav">
         <h3>课程导航</h3>
         <a class="sidebar-link" href="#intro">👋 课程概览</a>
         
         <h3>Part 1: 函数基础</h3>
-        <a class="sidebar-link" href="#what-is-function" class="sub-link">1. 函数是什么</a>
-        <a class="sidebar-link" href="#function-declaration" class="sub-link">2. 函数的声明方式</a>
-        <a class="sidebar-link" href="#parameters" class="sub-link">3. 参数与返回值</a>
+        <a class="sidebar-link" href="#why-function" class="sub-link">1.1 为什么需要函数</a>
+        <a class="sidebar-link" href="#function-declare" class="sub-link">1.2 函数声明与调用</a>
+        <a class="sidebar-link" href="#lab-greet" class="sub-link">实验 01：问候函数</a>
         
-        <h3>Part 2: 函数进阶</h3>
-        <a class="sidebar-link" href="#scope" class="sub-link">4. 作用域与闭包</a>
-        <a class="sidebar-link" href="#higher-order" class="sub-link">5. 高阶函数</a>
+        <h3>Part 2: 参数与返回值</h3>
+        <a class="sidebar-link" href="#parameters" class="sub-link">2.1 参数详解</a>
+        <a class="sidebar-link" href="#return-value" class="sub-link">2.2 返回值</a>
+        <a class="sidebar-link" href="#lab-calc" class="sub-link">实验 02：计算器函数</a>
         
-        <h3>Part 3: 实战练习</h3>
-        <a class="sidebar-link" href="#practical" class="sub-link">6. 综合实战</a>
+        <h3>Part 3: 函数进阶</h3>
+        <a class="sidebar-link" href="#function-expression" class="sub-link">3.1 函数表达式</a>
+        <a class="sidebar-link" href="#arrow-function" class="sub-link">3.2 箭头函数</a>
+        <a class="sidebar-link" href="#lab-arrow" class="sub-link">实验 03：箭头函数</a>
+        
+        <h3>Part 4: 作用域</h3>
+        <a class="sidebar-link" href="#scope" class="sub-link">4.1 作用域基础</a>
+        <a class="sidebar-link" href="#closure" class="sub-link">4.2 闭包初探</a>
+        <a class="sidebar-link" href="#lab-counter" class="sub-link">实验 04：计数器闭包</a>
+        
+        <h3>总结与练习</h3>
+        <a class="sidebar-link" href="#comprehensive" class="sub-link">综合案例：密码生成器</a>
+        <a class="sidebar-link" href="#summary" class="sub-link">📝 课程小结</a>
     </div>
-
-
 </nav>
 
-  <main class="content">
-    <section id="intro">
-      <h1>第27课：JS函数</h1>
-      <p class="intro">如果把程序看成工厂流水线,函数就是一台台专用机器:输入原料,机器内部按步骤处理,再输出结果。本课将学习如何「造机器」和「用机器」,让代码更加模块化、可复用、易维护。</p>
-      <div class="pill-list">
-        <span class="pill">函数声明与调用</span>
+
+<!-- ============================================
+     主内容区域
+     ============================================ -->
+<main class="content">
+
+    <!-- ============================================
+         课程头部
+         ============================================ -->
+    <header id="intro">
+        <h1>第27课：JS函数</h1>
+        <p class="intro">如果把程序比作工厂流水线，函数就是一台台专用机器：输入原料（参数），机器内部按步骤处理（函数体），再输出产品（返回值）。本课将学习如何"造机器"和"用机器"，让代码更加模块化、可复用、易维护。</p>
+        
+        <div class="pill-list">
+            <span class="pill">函数声明</span>
+            <span class="pill">函数调用</span>
+            <span class="pill">参数与返回值</span>
+            <span class="pill">箭头函数</span>
+            <span class="pill">作用域</span>
+            <span class="pill">闭包</span>
+        </div>
+    </header>
 
 
-        <span class="pill">参数与返回值</span>
-
-
-        <span class="pill">箭头函数</span>
-
-
-        <span class="pill">作用域与闭包</span>
-
-
-        <span class="pill">高阶函数</span>
-
-
-        <span class="pill">回调函数</span>
-
-
-      </div>
-        </section>
-
+    <!-- ============================================
+         Part 1: 函数基础
+         ============================================ -->
 
     <section id="why-function">
-      <h2>一、为什么需要函数?</h2>
-      <p>想象你正在开发一个计算器程序,需要多次计算两个数的和。如果每次都重复写相同的代码,不仅麻烦,而且一旦计算逻辑需要修改,就要改很多地方。</p>
-      <p><strong>函数,就是把重复的代码封装起来,给它一个名字,需要时调用这个名字即可。</strong></p>
-      <div class="tip-box">
+        <h2>一、为什么需要函数？</h2>
+        <p>想象你正在开发一个程序，需要多次计算两个数的和。如果每次都重复写相同的代码：</p>
+        
+<pre class="js"><code>// 第一次计算
+let result1 = 3 + 5;
+console.log('结果1:', result1);
+
+// 第二次计算
+let result2 = 10 + 20;
+console.log('结果2:', result2);
+
+// 第三次计算...代码不断重复
+</code></pre>
+        
+        <p>这样做有什么问题？</p>
+        <ul>
+            <li><strong>代码重复</strong>：相同逻辑写了很多遍</li>
+            <li><strong>难以维护</strong>：如果计算方式要改，每处都得改</li>
+            <li><strong>可读性差</strong>：看不出代码的意图</li>
+        </ul>
+        
+        <p><strong>函数的解决方案</strong>：把重复的代码封装起来，给它一个名字，需要时调用即可。</p>
+        
+        <div class="tip-box">
             <span class="tip-title">生活中的类比</span>
-
-
-        <ul class="checklist">
-          <li><strong>洗衣机:</strong>放入脏衣服和洗衣液(输入/参数),按下开始键,内部执行洗涤程序(函数体),最后得到干净的衣服(输出/返回值)</li>
-          <li><strong>菜谱:</strong>一道菜的做法就是一个"函数",食材是参数,烹饪步骤是函数体,做好的菜是返回值</li>
-          <li><strong>ATM取款:</strong>输入金额(参数),ATM执行验证、扣款、出钞等步骤(函数体),返回现金和凭条(返回值)</li>
-        </ul>
-      </div>
-
-
-      <p>没有函数,我们的代码将充满重复、难以维护。函数让我们能够:</p>
-      <ul class="checklist">
-        <li><strong>避免重复:</strong>写一次代码,多次调用</li>
-        <li><strong>易于维护:</strong>修改功能时只需改一处</li>
-        <li><strong>降低复杂度:</strong>把大问题拆分成小问题</li>
-        <li><strong>提高可读性:</strong>通过函数名清晰表达代码意图</li>
-      </ul>
-        </section>
-
-
-    <section id="what-is-function">
-      <h2>二、函数是什么?</h2>
-      
-      <h3>2.1 函数的本质</h3>
-      <p>从技术角度看,函数是一段可以重复使用的代码块,它接收输入(参数),执行特定任务,并可能产生输出(返回值)。</p>
-      <p>一个函数的生命周期可以分为几个阶段:</p>
-      <table class="prop-table">
-        <thead>
-          <tr><th>阶段</th><th>解释</th><th>示例代码</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>定义 (Definition)</strong></td>
-            <td>创建函数,告诉JavaScript这个函数叫什么、做什么</td>
-            <td><code>function add(a, b) { return a + b; }</code></td>
-          </tr>
-          <tr>
-            <td><strong>调用 (Invocation)</strong></td>
-            <td>使用函数,传入实际参数,执行函数体</td>
-            <td><code>add(3, 5)</code></td>
-          </tr>
-          <tr>
-            <td><strong>执行 (Execution)</strong></td>
-            <td>函数体内的代码逐行运行</td>
-            <td><code>a + b</code> 计算结果</td>
-          </tr>
-          <tr>
-            <td><strong>返回 (Return)</strong></td>
-            <td>函数执行完毕,将结果返回给调用者</td>
-            <td><code>return 8</code></td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h3>2.2 函数的组成部分</h3>
-      <p>一个完整的函数包含以下要素:</p>
-      <ul class="checklist">
-        <li><strong>function 关键字:</strong>声明这是一个函数</li>
-        <li><strong>函数名:</strong>遵循变量命名规则,应该具有描述性(如 calculateTotal、validateEmail)</li>
-        <li><strong>参数列表:</strong>小括号内,多个参数用逗号分隔</li>
-        <li><strong>函数体:</strong>大括号内,包含要执行的代码</li>
-        <li><strong>返回值:</strong>使用 return 语句返回结果(可选)</li>
-      </ul>
-
-      <h3>2.3 函数的基本语法</h3>
-      <pre><code>// 函数声明
-function functionName(参数1, 参数2) {
-  // 函数体：执行的代码
-  return 结果; // 返回值（可选）
-}
-
-// 函数调用
-functionName(实参1, 实参2);</code></pre>
-
-      <h3>2.4 简单示例</h3>
-      <pre><code>// 定义一个问候函数
-function greet(name) {
-  return "你好，" + name + "！";
-}
-
-// 调用函数
-console.log(greet("小明"));  // 输出：你好，小明！
-console.log(greet("小红"));  // 输出：你好，小红！</code></pre>
-
-      <div class="note-box">
-        <span class="tip-title">📌 重要术语</span>
-
-
-        <table class="prop-table">
-          <thead>
-            <tr><th>术语</th><th>含义</th><th>示例</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>形参 (Parameter)</strong></td>
-              <td>函数定义时的占位符变量</td>
-              <td><code>function greet(name)</code> 中的 name</td>
-            </tr>
-            <tr>
-              <td><strong>实参 (Argument)</strong></td>
-              <td>调用函数时传入的实际值</td>
-              <td><code>greet("小明")</code> 中的 "小明"</td>
-            </tr>
-            <tr>
-              <td><strong>返回值 (Return Value)</strong></td>
-              <td>函数执行后返回的结果</td>
-              <td><code>return "你好，" + name</code></td>
-            </tr>
-            <tr>
-              <td><strong>函数体 (Function Body)</strong></td>
-              <td>大括号内要执行的代码</td>
-              <td><code>{ return "你好，" + name + "！"; }</code></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-
-        </section>
-
-
-    <section id="function-declaration">
-      <h2>三、函数的声明方式</h2>
-      <p>JavaScript 提供了多种方式来定义函数,每种方式都有其特点和适用场景。理解它们的区别能帮助你写出更优雅的代码。</p>
-      
-      <h3>3.1 函数声明 (Function Declaration)</h3>
-      <p>这是最传统、最常见的函数定义方式。使用 <code>function</code> 关键字声明的函数具有一个重要特性:<strong>函数提升 (Hoisting)</strong>。</p>
-      <div class="tip-box">
-            <span class="tip-title">什么是函数提升?</span>
-
-
-        <p>JavaScript 引擎在执行代码前,会先扫描整个作用域,将所有函数声明"提升"到作用域顶部。这意味着你可以在函数声明之前调用它。</p>
-        <p><strong>优点:</strong>代码组织更灵活,可以把主要逻辑放在前面,辅助函数放在后面。</p>
-        <p><strong>注意:</strong>只有函数声明会提升,函数表达式不会。</p>
-      </div>
-
-
-      
-      <pre><code>// 函数声明
+            <ul class="checklist">
+                <li><strong>洗衣机</strong>：放入脏衣服（参数），按下开始键，内部执行洗涤程序（函数体），得到干净的衣服（返回值）</li>
+                <li><strong>菜谱</strong>：食材是参数，烹饪步骤是函数体，做好的菜是返回值</li>
+                <li><strong>ATM取款</strong>：输入金额（参数），ATM执行验证、扣款（函数体），返回现金（返回值）</li>
+            </ul>
+        </div>
+        
+        <p>使用函数后，代码变得简洁高效：</p>
+        
+<pre class="js"><code>// 定义函数（造机器）
 function add(a, b) {
-  return a + b;
+    return a + b;
 }
 
-// ✅ 可以在声明前调用（函数提升）
-console.log(multiply(3, 4));  // 12
-
-function multiply(x, y) {
-  return x * y;
-}</code></pre>
-
-      <div class="tip-box">
-            <span class="tip-title">函数提升（Hoisting）</span>
+// 调用函数（用机器）
+let result1 = add(3, 5);     // 8
+let result2 = add(10, 20);   // 30
+let result3 = add(100, 200); // 300
+</code></pre>
+    </section>
 
 
-        <p>函数声明会被提升到作用域顶部，因此可以在声明之前调用函数。这是与函数表达式的重要区别。</p>
-      </div>
-
-
-
-      <h3>3.2 无参数与多参数函数</h3>
-      <pre><code>// 无参数函数
-function sayHello() {
-  console.log("Hello World!");
+    <section id="function-declare">
+        <h2>二、函数声明与调用</h2>
+        
+        <h3>2.1 函数声明的语法</h3>
+        <p>创建函数的标准方式是<strong>函数声明</strong>：</p>
+        
+<pre class="js"><code>function 函数名(参数1, 参数2, ...) {
+    // 函数体：要执行的代码
+    return 返回值;  // 可选
 }
-
-sayHello();  // 输出：Hello World!
-
-// 多参数函数
-function calculateRectangleArea(width, height) {
-  return width * height;
-}
-
-let area = calculateRectangleArea(5, 10);
-console.log(area);  // 输出：50</code></pre>
-        </section>
-
-
-    <section id="function-expression">
-      <h2>四、函数表达式 (Function Expression)</h2>
-      <p>除了函数声明,我们还可以把函数作为一个值赋给变量。这种方式创建的函数叫做<strong>函数表达式</strong>。</p>
-      
-      <h3>4.1 匿名函数表达式</h3>
-      <p>将函数赋值给变量,函数本身没有名称。<strong>重要:</strong>函数表达式不会被提升!</p>
-      <div class="warning-box">
-        <span class="tip-title">注意</span>
-
-
-        <p>函数表达式必须先定义,后调用。如果在定义前调用,会报错:<code>ReferenceError: Cannot access before initialization</code></p>
-      </div>
-
-
-      
-      <pre><code>// 函数表达式
-const subtract = function(a, b) {
-  return a - b;
-};
-
-console.log(subtract(10, 3));  // 7
-
-// ❌ 不能在声明前调用
-// console.log(divide(10, 2));  // 错误！
-
-const divide = function(a, b) {
-  return a / b;
-};
-
-console.log(divide(10, 2));  // 5</code></pre>
-
-      <h3>4.2 命名函数表达式</h3>
-      <p>函数表达式也可以有名字，这在递归调用时特别有用。</p>
-      <pre><code>const factorial = function fact(n) {
-  if (n <= 1) return 1;
-  return n * fact(n - 1);  // 递归调用自身
-};
-
-console.log(factorial(5));  // 120</code></pre>
-
-      <div class="tip-box">
-            <span class="tip-title">函数声明 vs 函数表达式</span>
-
-
+</code></pre>
+        
         <table class="prop-table">
-          <thead>
-            <tr>
-              <th>特性</th>
-              <th>函数声明</th>
-              <th>函数表达式</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>语法</td>
-              <td><code>function name() {}</code></td>
-              <td><code>const name = function() {}</code></td>
-            </tr>
-            <tr>
-              <td>提升</td>
-              <td>✅ 提升（可先调用后声明）</td>
-              <td>❌ 不提升</td>
-            </tr>
-            <tr>
-              <td>使用场景</td>
-              <td>顶层独立函数</td>
-              <td>需要条件性创建函数时</td>
-            </tr>
-          </tbody>
+            <thead>
+                <tr>
+                    <th>组成部分</th>
+                    <th>说明</th>
+                    <th>示例</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>function</code> 关键字</td>
+                    <td>声明这是一个函数</td>
+                    <td><code>function</code></td>
+                </tr>
+                <tr>
+                    <td>函数名</td>
+                    <td>遵循变量命名规则，应有描述性</td>
+                    <td><code>calculateTotal</code></td>
+                </tr>
+                <tr>
+                    <td>参数列表</td>
+                    <td>小括号内，多个参数用逗号分隔</td>
+                    <td><code>(price, quantity)</code></td>
+                </tr>
+                <tr>
+                    <td>函数体</td>
+                    <td>大括号内，包含要执行的代码</td>
+                    <td><code>{ return price * quantity; }</code></td>
+                </tr>
+                <tr>
+                    <td>返回值</td>
+                    <td>使用 <code>return</code> 返回结果（可选）</td>
+                    <td><code>return total;</code></td>
+                </tr>
+            </tbody>
         </table>
-      </div>
-
-
-        </section>
-
-
-    <section id="arrow-function">
-      <h2>五、箭头函数 (Arrow Function - ES6)</h2>
-      <p>ES6(2015年)引入了一种全新的、更简洁的函数语法:<strong>箭头函数</strong>。它使用 <code>=></code> 符号,特别适合用于简短的函数和回调函数。</p>
-      
-      <h3>5.1 箭头函数的语法演进</h3>
-      <p>让我们看看同一个功能如何从传统函数一步步简化为箭头函数:</p>
-      
-      <pre><code>// 传统函数表达式
-const square1 = function(x) {
-  return x * x;
-};
-
-// 箭头函数
-const square2 = (x) => {
-  return x * x;
-};
-
-// 单参数可省略括号，单表达式可省略return和大括号
-const square3 = x => x * x;
-
-console.log(square3(5));  // 25</code></pre>
-
-      <h3>5.2 箭头函数的各种形式</h3>
-      <p>箭头函数根据参数数量和函数体复杂度，有多种简写形式：</p>
-      <pre><code>// 无参数
-const greet = () => "Hello!";
-
-// 单个参数
-const double = n => n * 2;
-
-// 多个参数
-const add = (a, b) => a + b;
-
-// 多行函数体
-const calculateDiscount = (price, discount) => {
-  const discountAmount = price * discount;
-  return price - discountAmount;
-};
-
-// 返回对象（需要用括号包裹）
-const createUser = (name, age) => ({ name: name, age: age });</code></pre>
-
-      <div class="note-box">
-        <span class="tip-title">📌 箭头函数的特点</span>
-
-
-        <ul class="checklist">
-          <li>更简洁的语法</li>
-          <li>没有自己的 <code>this</code>（继承外层作用域的this）</li>
-          <li>不能用作构造函数</li>
-          <li>没有 <code>arguments</code> 对象</li>
-          <li>适合用于回调函数和方法链</li>
-        </ul>
-      </div>
-
-
-        </section>
-
-
-    <section id="parameters">
-      <h2>六、函数参数的高级特性</h2>
-      <p>ES6 为函数参数引入了许多强大的新特性,让参数处理更加灵活和优雅。</p>
-      
-      <h3>6.1 默认参数 (Default Parameters)</h3>
-      <p>在函数定义时,可以为参数指定默认值。如果调用时没有传递该参数(或传入 <code>undefined</code>),将使用默认值。</p>
-      <div class="tip-box">
-            <span class="tip-title">默认参数的优势</span>
-
-
-        <ul class="checklist">
-          <li>避免了 ES5 中冗长的 <code>name = name || '默认值'</code> 写法</li>
-          <li>代码更清晰、易读</li>
-          <li>可以使用表达式作为默认值</li>
-        </ul>
-      </div>
-
-
-      
-      <pre><code>// ES6 默认参数
-function greet(name = "访客", greeting = "你好") {
-  return `${greeting}，${name}！`;
+        
+        <h3>2.2 函数调用</h3>
+        <p>函数定义后不会自动执行，需要<strong>调用</strong>才能运行：</p>
+        
+<pre class="js"><code>// 定义函数
+function sayHello() {
+    console.log('Hello, World!');
 }
 
-console.log(greet());                    // "你好，访客！"
-console.log(greet("小明"));              // "你好，小明！"
-console.log(greet("小红", "欢迎"));      // "欢迎，小红！"
-
-// ES5 实现默认参数的方式
-function greetOld(name, greeting) {
-  name = name || "访客";
-  greeting = greeting || "你好";
-  return greeting + "，" + name + "！";
-}</code></pre>
-
-      <h3>6.2 剩余参数 (Rest Parameters)</h3>
-      <p>使用 <code>...参数名</code> 可以将不定数量的参数收集到一个数组中。这在参数数量不确定时非常有用。</p>
-      <div class="note-box">
-        <span class="tip-title">📌 剩余参数 vs arguments</span>
-
-
-        <p>ES5 中可以使用 <code>arguments</code> 对象访问所有参数，但它不是真正的数组。剩余参数是真正的数组，可以直接使用数组方法。</p>
-      </div>
-
-
-      
-      <pre><code>// 计算任意数量数字的和
-function sum(...numbers) {
-  let total = 0;
-  for (let num of numbers) {
-    total += num;
-  }
-  return total;
+// 调用函数（函数名后加括号）
+sayHello();  // 输出: Hello, World!
+sayHello();  // 可以多次调用
+</code></pre>
+        
+        <div class="warning-box">
+            <strong>定义 vs 调用</strong>
+            <ul>
+                <li><strong>定义函数</strong>：只是告诉 JavaScript "有这么一个函数"，不会执行</li>
+                <li><strong>调用函数</strong>：函数名 + <code>()</code>，才会真正执行函数体</li>
+            </ul>
+<pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>function greet() {
+    console.log('Hi!');
 }
 
-console.log(sum(1, 2, 3));           // 6
-console.log(sum(1, 2, 3, 4, 5));     // 15
-console.log(sum());                  // 0
+greet;    // ❌ 只是引用函数，不会执行
+greet();  // ✅ 调用函数，输出 Hi!
+</code></pre>
+        </div>
+    </section>
 
-// 结合普通参数和剩余参数
-function introduce(firstName, lastName, ...hobbies) {
-  console.log(`我叫${firstName} ${lastName}`);
-  console.log(`爱好：${hobbies.join(", ")}`);
-}
 
-introduce("张", "三", "篮球", "编程", "旅游");
-// 我叫张 三
-// 爱好：篮球, 编程, 旅游</code></pre>
-
-      <h3>6.3 参数解构 (Destructuring Parameters)</h3>
-      <p>可以在参数位置直接使用解构语法，从对象或数组中提取值。这让函数接收复杂数据时更加简洁。</p>
-      <pre><code>// 对象解构参数
-function createUser({ name, age, city = "未知" }) {
-  console.log(`${name}，${age}岁，来自${city}`);
-}
-
-createUser({ name: "小明", age: 20, city: "北京" });
-// 小明，20岁，来自北京
-
-createUser({ name: "小红", age: 22 });
-// 小红，22岁，来自未知
-
-// 数组解构参数
-function getCoordinates([x, y]) {
-  return `坐标：(${x}, ${y})`;
-}
-
-console.log(getCoordinates([10, 20]));  // 坐标：(10, 20)</code></pre>
-
+    <section id="lab-greet">
+        <h2>实验 01：问候函数</h2>
+        <p>创建一个问候函数，根据传入的名字生成个性化问候语。</p>
+        
         <div class="lab-card">
             <div class="lab-header">
-                <span>🔬 实验1：参数处理器</span>
-                <span class="status-badge beginner">基础</span>
+                <span>实验 01：创建和调用函数</span>
+                <span class="status-badge beginner">动手实践</span>
             </div>
-
+            
             <div class="lab-body split">
                 <div class="panel html-viewer">
 <div class="panel-label">HTML 预览</div>
-<h3>参数处理器</h3>
-<div>
-    <input id="name" placeholder="姓名">
-    <input id="age" placeholder="年龄" type="number">
-    <input id="city" placeholder="城市（可选）">
-    <button onclick="processUser()">处理用户信息</button>
-</div>
-<div id="lab1-output" style="margin-top:15px;padding:10px;background:#f0f0f0;border-radius:5px;"></div>
+&lt;h3&gt;问候生成器&lt;/h3&gt;
+&lt;p&gt;输入姓名: &lt;input id="name-input" type="text" value="小明"&gt;&lt;/p&gt;
+&lt;button onclick="generateGreeting()"&gt;生成问候&lt;/button&gt;
+&lt;div id="greet-result"&gt;&lt;/div&gt;
                 </div>
-
-                <div class="panel code-editor" id="lab1-code" contenteditable="true">
+                
+                <div class="panel code-editor" id="code-greet" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
-// 使用默认参数和解构
-function createUserInfo({ name, age, city = "未填写" } = {}) {
-    if (!name || !age) {
-        return "❌ 姓名和年龄是必填项！";
+// 定义问候函数
+function greet(name) {
+    // 获取当前小时
+    const hour = new Date().getHours();
+    let greeting;
+    
+    // 根据时间选择问候语
+    if (hour < 12) {
+        greeting = '早上好';
+    } else if (hour < 18) {
+        greeting = '下午好';
+    } else {
+        greeting = '晚上好';
     }
-    return `✅ 用户信息：${name}，${age}岁，来自${city}`;
+    
+    return `${greeting}，${name}！欢迎来学习 JavaScript！`;
 }
 
-function processUser() {
-    const nameVal = document.getElementById('name').value;
-    const ageVal = document.getElementById('age').value;
-    const cityVal = document.getElementById('city').value;
-  
-    const result = createUserInfo({
-        name: nameVal,
-        age: ageVal,
-        city: cityVal
-    });
-  
-    document.getElementById('lab1-output').innerText = result;
+function generateGreeting() {
+    const nameInput = document.getElementById('name-input');
+    const resultDiv = document.getElementById('greet-result');
+    
+    // 调用问候函数
+    const message = greet(nameInput.value);
+    resultDiv.innerHTML = `&lt;p style="font-size: 20px;"&gt;${message}&lt;/p&gt;`;
 }
                 </div>
-
             </div>
-
+            
             <div class="action-bar">
-                <button class="btn btn-run" onclick="runJsDomExperiment('lab1-code', null)">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="resetJsDomExperiment('lab1-code', 'lab1-preview', null)">↻ 重置</button>
-                <span style="color:#999;font-size:13px;">提示：填写姓名和年龄，城市可选</span>
+                <button class="btn btn-run" onclick="runJsDomExperiment('code-greet', null)">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetJsDomExperiment('code-greet', 'greet-result', null)">↺ 重置代码</button>
             </div>
-
-            <div class="preview-box" id="lab1-preview">
-                <h3>参数处理器</h3>
-                <div>
-                    <input id="name" placeholder="姓名">
-                    <input id="age" placeholder="年龄" type="number">
-                    <input id="city" placeholder="城市（可选）">
-                    <button onclick="processUser()">处理用户信息</button>
-                </div>
-                <div id="lab1-output" style="margin-top:15px;padding:10px;background:#f0f0f0;border-radius:5px;"></div>
+            
+            <div class="preview-box">
+                <h3>问候生成器</h3>
+                <p>输入姓名: <input id="name-input" type="text" value="小明" style="padding: 6px; border: 1px solid #ddd; border-radius: 4px;"></p>
+                <button class="btn btn-run" onclick="generateGreeting()">生成问候</button>
+                <div id="greet-result" style="margin-top: 15px; padding: 10px; background: #f9f9f9; border-radius: 6px; min-height: 50px;"></div>
             </div>
-
         </div>
+    </section>
 
 
-        </section>
+    <!-- ============================================
+         Part 2: 参数与返回值
+         ============================================ -->
+
+    <section id="parameters">
+        <h2>三、参数详解</h2>
+        <p>参数让函数更加灵活，可以处理不同的输入数据。</p>
+        
+        <h3>3.1 形参与实参</h3>
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>术语</th>
+                    <th>定义</th>
+                    <th>位置</th>
+                    <th>示例</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>形参 (Parameter)</strong></td>
+                    <td>函数定义时的占位符</td>
+                    <td>函数声明</td>
+                    <td><code>function add(<strong>a, b</strong>)</code></td>
+                </tr>
+                <tr>
+                    <td><strong>实参 (Argument)</strong></td>
+                    <td>函数调用时传入的实际值</td>
+                    <td>函数调用</td>
+                    <td><code>add(<strong>3, 5</strong>)</code></td>
+                </tr>
+            </tbody>
+        </table>
+        
+<pre class="js"><code>// a, b 是形参（定义时）
+function multiply(a, b) {
+    return a * b;
+}
+
+// 10, 5 是实参（调用时）
+let result = multiply(10, 5);  // 50
+</code></pre>
+        
+        <h3>3.2 参数默认值</h3>
+        <p>ES6 允许为参数设置默认值，当调用时未传入该参数时使用默认值：</p>
+        
+<pre class="js"><code>function greet(name = '访客', greeting = '你好') {
+    return `${greeting}，${name}！`;
+}
+
+console.log(greet());              // "你好，访客！"
+console.log(greet('小明'));        // "你好，小明！"
+console.log(greet('小明', '早上好')); // "早上好，小明！"
+</code></pre>
+        
+        <h3>3.3 多个参数</h3>
+        <p>函数可以接收任意数量的参数，但参数过多会使函数难以使用：</p>
+        
+<pre class="js"><code>// 计算商品总价
+function calculateTotal(price, quantity, discount = 0) {
+    let total = price * quantity;
+    total = total - total * discount;
+    return total;
+}
+
+// 原价100，买2件，打8折（0.2的折扣）
+let total = calculateTotal(100, 2, 0.2);
+console.log(total);  // 160
+</code></pre>
+        
+        <div class="tip-box">
+            <span class="tip-title">参数数量建议</span>
+            <p>一般建议函数参数不超过 3 个。如果需要更多参数，考虑使用对象来传递：</p>
+<pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>// ❌ 参数太多，难以记住顺序
+function createUser(name, age, email, phone, address) { }
+
+// ✅ 使用对象，清晰明了
+function createUser(options) {
+    const { name, age, email } = options;
+    // ...
+}
+createUser({ name: '小明', age: 18, email: 'test@example.com' });
+</code></pre>
+        </div>
+    </section>
 
 
     <section id="return-value">
-      <h2>七、返回值详解</h2>
-      <p>返回值是函数与外界通信的主要方式。理解 <code>return</code> 语句的工作机制对于编写高质量函数至关重要。</p>
-      
-      <h3>7.1 return 的双重作用</h3>
-      <p><code>return</code> 语句有两个重要作用:</p>
-      <ul class="checklist">
-        <li><strong>返回结果:</strong>将值返回给函数的调用者</li>
-        <li><strong>终止执行:</strong>一旦执行到 return,函数立即结束,后续代码不会执行</li>
-      </ul>
-      
-      <pre><code>function calculateTotal(price, quantity) {
-  let total = price * quantity;
-  return total;  // 返回计算结果
-  console.log("这行代码不会执行");  // ❌ 永远不会运行
+        <h3>3.4 返回值</h3>
+        <p><code>return</code> 语句用于从函数中返回一个值，并<strong>立即结束函数执行</strong>。</p>
+        
+<pre class="js"><code>function divide(a, b) {
+    if (b === 0) {
+        return '错误：除数不能为0';  // 提前返回
+    }
+    return a / b;
 }
 
-let amount = calculateTotal(50, 3);
-console.log(amount);  // 150</code></pre>
-
-      <h3>7.2 多个返回点</h3>
-      <p>函数可以有多个 <code>return</code> 语句，通常用于不同条件下返回不同结果。</p>
-      <pre><code>function checkAge(age) {
-  if (age < 0) {
-    return "年龄不能为负数";
-  }
-  if (age < 18) {
-    return "未成年";
-  }
-  if (age < 60) {
-    return "成年";
-  }
-  return "老年";
+console.log(divide(10, 2));  // 5
+console.log(divide(10, 0));  // "错误：除数不能为0"
+</code></pre>
+        
+        <h4>返回值的特点</h4>
+        <ul class="checklist">
+            <li>函数只能返回<strong>一个值</strong>（可以是数组或对象来包含多个值）</li>
+            <li><code>return</code> 后的代码不会执行</li>
+            <li>没有 <code>return</code> 或只写 <code>return;</code>，函数返回 <code>undefined</code></li>
+        </ul>
+        
+<pre class="js"><code>// 返回多个值：使用数组
+function getMinMax(numbers) {
+    const min = Math.min(...numbers);
+    const max = Math.max(...numbers);
+    return [min, max];  // 返回数组
 }
 
-console.log(checkAge(15));   // "未成年"
-console.log(checkAge(30));   // "成年"
-console.log(checkAge(-5));   // "年龄不能为负数"</code></pre>
+const [min, max] = getMinMax([3, 1, 4, 1, 5, 9]);
+console.log(min, max);  // 1 9
 
-      <h3>7.3 返回复杂数据类型</h3>
-      <p>函数不仅可以返回基本类型（数字、字符串等），还可以返回对象、数组等复杂数据结构。</p>
-      <pre><code>// 返回对象
-function getUserInfo(id) {
-  return {
-    id: id,
-    name: "用户" + id,
-    status: "active"
-  };
-}
-
-const user = getUserInfo(101);
-console.log(user.name);  // "用户101"
-
-// 返回数组
-function getTopThree(scores) {
-  return scores.sort((a, b) => b - a).slice(0, 3);
-}
-
-const top = getTopThree([85, 92, 78, 95, 88]);
-console.log(top);  // [95, 92, 88]</code></pre>
-
-      <h3>7.4 没有返回值的情况</h3>
-      <p>如果函数没有 <code>return</code> 语句，或者 <code>return</code> 后面没有值，函数会返回 <code>undefined</code>。</p>
-      <pre><code>// 无return语句的函数返回 undefined
+// 没有返回值的函数
 function logMessage(msg) {
-  console.log(msg);
-  // 没有return
+    console.log(msg);
+    // 没有 return，返回 undefined
 }
 
-const result = logMessage("Hello");
+let result = logMessage('Hello');
 console.log(result);  // undefined
+</code></pre>
+    </section>
 
-// 空return
-function emptyReturn() {
-  return;  // 提前结束，返回undefined
+
+    <section id="lab-calc">
+        <h2>实验 02：计算器函数</h2>
+        <p>创建一组计算器函数，实现加、减、乘、除四则运算。</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 02：参数与返回值实践</span>
+                <span class="status-badge beginner">动手实践</span>
+            </div>
+            
+            <div class="lab-body split">
+                <div class="panel html-viewer">
+<div class="panel-label">HTML 预览</div>
+&lt;h3&gt;简易计算器&lt;/h3&gt;
+&lt;p&gt;数字1: &lt;input id="num1" type="number" value="10"&gt;&lt;/p&gt;
+&lt;p&gt;数字2: &lt;input id="num2" type="number" value="3"&gt;&lt;/p&gt;
+&lt;button onclick="doCalculate('add')"&gt;+&lt;/button&gt;
+&lt;button onclick="doCalculate('sub')"&gt;-&lt;/button&gt;
+&lt;button onclick="doCalculate('mul')"&gt;×&lt;/button&gt;
+&lt;button onclick="doCalculate('div')"&gt;÷&lt;/button&gt;
+&lt;div id="calc-result"&gt;&lt;/div&gt;
+                </div>
+                
+                <div class="panel code-editor" id="code-calc" contenteditable="true">
+<div class="panel-label">JavaScript (可编辑)</div>
+// 四则运算函数
+function add(a, b) {
+    return a + b;
 }
 
-console.log(emptyReturn());  // undefined</code></pre>
-        </section>
+function subtract(a, b) {
+    return a - b;
+}
 
+function multiply(a, b) {
+    return a * b;
+}
+
+function divide(a, b) {
+    if (b === 0) {
+        return '错误：除数不能为0';
+    }
+    return a / b;
+}
+
+function doCalculate(operation) {
+    const a = Number(document.getElementById('num1').value);
+    const b = Number(document.getElementById('num2').value);
+    const resultDiv = document.getElementById('calc-result');
+    
+    let result;
+    let symbol;
+    
+    switch (operation) {
+        case 'add':
+            result = add(a, b);
+            symbol = '+';
+            break;
+        case 'sub':
+            result = subtract(a, b);
+            symbol = '-';
+            break;
+        case 'mul':
+            result = multiply(a, b);
+            symbol = '×';
+            break;
+        case 'div':
+            result = divide(a, b);
+            symbol = '÷';
+            break;
+    }
+    
+    resultDiv.innerHTML = `&lt;p style="font-size: 24px;"&gt;${a} ${symbol} ${b} = ${result}&lt;/p&gt;`;
+}
+                </div>
+            </div>
+            
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runJsDomExperiment('code-calc', null)">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetJsDomExperiment('code-calc', 'calc-result', null)">↺ 重置代码</button>
+            </div>
+            
+            <div class="preview-box">
+                <h3>简易计算器</h3>
+                <p>数字1: <input id="num1" type="number" value="10" style="padding: 6px; border: 1px solid #ddd; border-radius: 4px; width: 80px;"></p>
+                <p>数字2: <input id="num2" type="number" value="3" style="padding: 6px; border: 1px solid #ddd; border-radius: 4px; width: 80px;"></p>
+                <div style="margin: 15px 0;">
+                    <button class="btn btn-run" onclick="doCalculate('add')">+</button>
+                    <button class="btn btn-run" onclick="doCalculate('sub')">-</button>
+                    <button class="btn btn-run" onclick="doCalculate('mul')">×</button>
+                    <button class="btn btn-run" onclick="doCalculate('div')">÷</button>
+                </div>
+                <div id="calc-result" style="padding: 15px; background: #f9f9f9; border-radius: 6px; min-height: 50px;"></div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         Part 3: 函数进阶
+         ============================================ -->
+
+    <section id="function-expression">
+        <h2>四、函数表达式</h2>
+        <p>除了函数声明，还可以用<strong>函数表达式</strong>创建函数：</p>
+        
+<pre class="js"><code>// 函数声明
+function add1(a, b) {
+    return a + b;
+}
+
+// 函数表达式（将函数赋值给变量）
+const add2 = function(a, b) {
+    return a + b;
+};
+
+// 两种方式调用相同
+add1(1, 2);  // 3
+add2(1, 2);  // 3
+</code></pre>
+        
+        <h3>函数声明 vs 函数表达式</h3>
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>特性</th>
+                    <th>函数声明</th>
+                    <th>函数表达式</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>语法</td>
+                    <td><code>function name() {}</code></td>
+                    <td><code>const name = function() {}</code></td>
+                </tr>
+                <tr>
+                    <td>提升 (Hoisting)</td>
+                    <td>会提升，可以在声明前调用</td>
+                    <td>不会提升，必须先定义再调用</td>
+                </tr>
+                <tr>
+                    <td>使用场景</td>
+                    <td>通用函数</td>
+                    <td>回调函数、立即执行函数</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="note-box">
+            <strong>什么是提升 (Hoisting)？</strong>
+            <p>JavaScript 会在代码执行前，先把函数声明"提升"到作用域顶部：</p>
+<pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>// ✅ 函数声明：可以先调用
+sayHi();  // "Hi!"
+function sayHi() {
+    console.log('Hi!');
+}
+
+// ❌ 函数表达式：不能先调用
+sayBye();  // 报错：Cannot access 'sayBye' before initialization
+const sayBye = function() {
+    console.log('Bye!');
+};
+</code></pre>
+        </div>
+    </section>
+
+
+    <section id="arrow-function">
+        <h3>4.2 箭头函数 (Arrow Function)</h3>
+        <p>ES6 引入了更简洁的函数写法——箭头函数：</p>
+        
+<pre class="js"><code>// 传统函数
+const add1 = function(a, b) {
+    return a + b;
+};
+
+// 箭头函数
+const add2 = (a, b) => {
+    return a + b;
+};
+
+// 箭头函数简写（单行返回时可省略 {} 和 return）
+const add3 = (a, b) => a + b;
+
+// 单参数时可省略括号
+const double = x => x * 2;
+
+// 无参数时必须写空括号
+const sayHi = () => console.log('Hi!');
+</code></pre>
+        
+        <h4>箭头函数的简写规则</h4>
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>情况</th>
+                    <th>完整写法</th>
+                    <th>简写</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>无参数</td>
+                    <td><code>() => { return 1; }</code></td>
+                    <td><code>() => 1</code></td>
+                </tr>
+                <tr>
+                    <td>单参数</td>
+                    <td><code>(x) => { return x * 2; }</code></td>
+                    <td><code>x => x * 2</code></td>
+                </tr>
+                <tr>
+                    <td>多参数</td>
+                    <td><code>(a, b) => { return a + b; }</code></td>
+                    <td><code>(a, b) => a + b</code></td>
+                </tr>
+                <tr>
+                    <td>多行函数体</td>
+                    <td colspan="2">不能简写，必须用 <code>{}</code> 和 <code>return</code></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="tip-box">
+            <span class="tip-title">何时使用箭头函数？</span>
+            <ul class="checklist">
+                <li>✅ 简单的单行函数</li>
+                <li>✅ 回调函数（如数组方法中的回调）</li>
+                <li>⚠️ 箭头函数没有自己的 <code>this</code>，在需要 <code>this</code> 的场景要小心使用</li>
+            </ul>
+        </div>
+    </section>
+
+
+    <section id="lab-arrow">
+        <h2>实验 03：箭头函数练习</h2>
+        <p>使用箭头函数处理数组，体验简洁的函数式编程风格。</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 03：箭头函数与数组方法</span>
+                <span class="status-badge advanced">进阶实践</span>
+            </div>
+            
+            <div class="lab-body split">
+                <div class="panel html-viewer">
+<div class="panel-label">HTML 预览</div>
+&lt;h3&gt;数组处理演示&lt;/h3&gt;
+&lt;button onclick="processArray()"&gt;处理数组&lt;/button&gt;
+&lt;div id="array-result"&gt;&lt;/div&gt;
+                </div>
+                
+                <div class="panel code-editor" id="code-arrow" contenteditable="true">
+<div class="panel-label">JavaScript (可编辑)</div>
+function processArray() {
+    const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    const resultDiv = document.getElementById('array-result');
+    
+    // 使用箭头函数进行数组操作
+    
+    // 1. map: 每个元素翻倍
+    const doubled = numbers.map(n => n * 2);
+    
+    // 2. filter: 筛选偶数
+    const evens = numbers.filter(n => n % 2 === 0);
+    
+    // 3. reduce: 计算总和
+    const sum = numbers.reduce((acc, n) => acc + n, 0);
+    
+    // 4. find: 找到第一个大于5的数
+    const firstBig = numbers.find(n => n > 5);
+    
+    resultDiv.innerHTML = `
+        &lt;p&gt;&lt;strong&gt;原数组:&lt;/strong&gt; [${numbers.join(', ')}]&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;翻倍 (map):&lt;/strong&gt; [${doubled.join(', ')}]&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;偶数 (filter):&lt;/strong&gt; [${evens.join(', ')}]&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;总和 (reduce):&lt;/strong&gt; ${sum}&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;第一个大于5 (find):&lt;/strong&gt; ${firstBig}&lt;/p&gt;
+    `;
+}
+                </div>
+            </div>
+            
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runJsDomExperiment('code-arrow', null)">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetJsDomExperiment('code-arrow', 'array-result', null)">↺ 重置代码</button>
+            </div>
+            
+            <div class="preview-box">
+                <h3>数组处理演示</h3>
+                <button class="btn btn-run" onclick="processArray()">处理数组</button>
+                <div id="array-result" style="margin-top: 15px; padding: 15px; background: #f9f9f9; border-radius: 6px; min-height: 100px;"></div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         Part 4: 作用域
+         ============================================ -->
 
     <section id="scope">
-      <h2>八、作用域与闭包</h2>
-      <p>作用域决定了变量的可见性和生命周期。理解作用域是掌握JavaScript的关键,而闭包则是JavaScript最强大也最容易误解的特性之一。</p>
-      
-      <h3>8.1 什么是作用域?</h3>
-      <p><strong>作用域</strong>(Scope)是变量的可访问范围。可以把它想象成一个个嵌套的房间,每个房间都有自己的"可见区域"。</p>
-      <div class="tip-box">
-            <span class="tip-title">作用域的类型</span>
+        <h2>五、作用域 (Scope)</h2>
+        <p>作用域决定了变量在代码中的<strong>可访问范围</strong>。理解作用域对于编写正确、无 bug 的代码至关重要。</p>
+        
+        <h3>5.1 全局作用域与局部作用域</h3>
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>作用域类型</th>
+                    <th>定义位置</th>
+                    <th>可访问范围</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>全局作用域</strong></td>
+                    <td>函数外部</td>
+                    <td>整个程序任何地方</td>
+                </tr>
+                <tr>
+                    <td><strong>函数作用域</strong></td>
+                    <td>函数内部</td>
+                    <td>仅在函数内部</td>
+                </tr>
+                <tr>
+                    <td><strong>块级作用域</strong></td>
+                    <td><code>{}</code> 内部（let/const）</td>
+                    <td>仅在该代码块内</td>
+                </tr>
+            </tbody>
+        </table>
+        
+<pre class="js"><code>// 全局变量
+let globalVar = '我是全局变量';
 
-
-        <ul class="checklist">
-          <li><strong>全局作用域:</strong>整个程序都能访问</li>
-          <li><strong>函数作用域:</strong>只在函数内部可访问</li>
-          <li><strong>块级作用域:</strong>只在代码块(如 if、for)内可访问(let/const)</li>
-        </ul>
-      </div>
-
-
-
-      <h3>8.2 全局作用域与局部作用域</h3>
-      
-      <pre><code>// 全局作用域
-let globalVar = "我是全局变量";
-
-function testScope() {
-  // 局部作用域
-  let localVar = "我是局部变量";
-  console.log(globalVar);  // ✅ 可以访问全局变量
-  console.log(localVar);   // ✅ 可以访问局部变量
+function myFunction() {
+    // 局部变量（函数作用域）
+    let localVar = '我是局部变量';
+    
+    console.log(globalVar);  // ✅ 可以访问全局变量
+    console.log(localVar);   // ✅ 可以访问局部变量
+    
+    if (true) {
+        // 块级作用域
+        let blockVar = '我是块级变量';
+        console.log(blockVar);  // ✅ 可以访问
+    }
+    // console.log(blockVar);  // ❌ 错误：blockVar 不存在
 }
 
-testScope();
+myFunction();
 console.log(globalVar);  // ✅ 可以访问
-// console.log(localVar);   // ❌ 错误！局部变量在函数外不可访问</code></pre>
+// console.log(localVar);   // ❌ 错误：localVar 不存在
+</code></pre>
+        
+        <div class="warning-box">
+            <strong>避免全局变量污染</strong>
+            <p>过多的全局变量会导致命名冲突和难以调试的 bug。尽量将变量限制在需要的作用域内：</p>
+<pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>// ❌ 不好：污染全局作用域
+var count = 0;
+var name = 'test';
 
-      <h3>8.3 块级作用域 (ES6)</h3>
-      <p>ES6 引入了 <code>let</code> 和 <code>const</code>，它们具有块级作用域，而 <code>var</code> 只有函数作用域。</p>
-      <pre><code>// let 和 const 具有块级作用域
-if (true) {
-  let blockVar = "块级变量";
-  const blockConst = "块级常量";
-  console.log(blockVar);  // ✅ 可以访问
-}
-
-// console.log(blockVar);  // ❌ 错误！块外不可访问
-
-// var 没有块级作用域
-if (true) {
-  var oldVar = "var变量";
-}
-console.log(oldVar);  // ✅ 可以访问（不推荐）</code></pre>
-
-      <h3>8.4 作用域链 (Scope Chain)</h3>
-      <p>当访问一个变量时，JavaScript 会按照由内向外的顺序查找：</p>
-      <ol class="lab-steps">
-        <li>先在当前作用域查找</li>
-        <li>如果找不到，去外层作用域查找</li>
-        <li>一直找到全局作用域</li>
-        <li>如果还是找不到，报 ReferenceError 错误</li>
-      </ol>
-      <pre><code>let level1 = "全局";
-
-function outer() {
-  let level2 = "外层";
-  
-  function inner() {
-    let level3 = "内层";
-    console.log(level3);  // ✅ 内层变量
-    console.log(level2);  // ✅ 外层变量
-    console.log(level1);  // ✅ 全局变量
-  }
-  
-  inner();
-  // console.log(level3);  // ❌ 无法访问inner的变量
-}
-
-outer();</code></pre>
-
-      <h3>8.5 闭包 (Closure) - JavaScript的精髓</h3>
-      <p>闭包是JavaScript最强大的特性之一。简单来说，<strong>闭包就是函数能够"记住"它被创建时的环境</strong>。</p>
-      <div class="note-box">
-        <span class="tip-title">📌 闭包的定义</span>
-
-
-        <p>当一个函数可以访问并"记住"其外层作用域的变量时，即使外层函数已经执行完毕，就形成了闭包。</p>
-      </div>
-
-
-      
-      <pre><code>// 经典计数器闭包
+// ✅ 好：封装在函数内
 function createCounter() {
-  let count = 0;  // 私有变量
-  
-  return function() {
-    count++;
-    return count;
-  };
+    let count = 0;  // 局部变量
+    // ...
+}
+</code></pre>
+        </div>
+    </section>
+
+
+    <section id="closure">
+        <h3>5.2 闭包 (Closure) 初探</h3>
+        <p>闭包是 JavaScript 中一个强大但容易让人困惑的概念。简单来说：</p>
+        <p><strong>闭包 = 函数 + 函数能访问的外部变量</strong></p>
+        
+<pre class="js"><code>function createCounter() {
+    let count = 0;  // 这个变量被"闭包"了
+    
+    // 返回一个函数
+    return function() {
+        count++;
+        return count;
+    };
 }
 
 const counter = createCounter();
@@ -718,512 +791,330 @@ console.log(counter());  // 1
 console.log(counter());  // 2
 console.log(counter());  // 3
 
-// 每个计数器都有独立的count
+// 每次调用 createCounter() 都会创建新的闭包
 const counter2 = createCounter();
-console.log(counter2());  // 1</code></pre>
+console.log(counter2());  // 1（独立的 count）
+</code></pre>
+        
+        <div class="tip-box">
+            <span class="tip-title">闭包的作用</span>
+            <ul class="checklist">
+                <li><strong>数据私有化</strong>：外部无法直接访问 <code>count</code>，只能通过返回的函数操作</li>
+                <li><strong>状态保持</strong>：<code>count</code> 的值在多次调用间得以保持</li>
+                <li><strong>模块化</strong>：可以创建独立的、互不干扰的实例</li>
+            </ul>
+        </div>
+        
+        <div class="note-box">
+            <strong>闭包何时形成？</strong>
+            <p>当一个函数内部定义了另一个函数，且内部函数引用了外部函数的变量时，闭包就形成了。即使外部函数已经执行完毕，内部函数仍然可以访问那些变量。</p>
+        </div>
+    </section>
 
-      <div class="note-box">
-        <span class="tip-title">📌 闭包的应用场景</span>
 
-
-        <ul class="checklist">
-          <li>数据隐藏和封装（私有变量）</li>
-          <li>创建函数工厂</li>
-          <li>回调函数中保留状态</li>
-          <li>模块化模式</li>
-        </ul>
-      </div>
-
-
-
+    <section id="lab-counter">
+        <h2>实验 04：计数器闭包</h2>
+        <p>使用闭包创建一个功能完整的计数器，体验闭包的强大。</p>
+        
         <div class="lab-card">
             <div class="lab-header">
-                <span>🔬 实验2：作用域可视化</span>
-                <span class="status-badge beginner">基础</span>
+                <span>实验 04：闭包实战</span>
+                <span class="status-badge advanced">进阶实践</span>
             </div>
-
+            
             <div class="lab-body split">
                 <div class="panel html-viewer">
 <div class="panel-label">HTML 预览</div>
-<h3>作用域测试</h3>
-<button onclick="testGlobal()">访问全局变量</button>
-<button onclick="testLocal()">访问局部变量</button>
-<button onclick="testClosure()">测试闭包</button>
-<div id="lab2-result" style="margin-top:15px;padding:10px;background:#f9f9f9;border-radius:5px;white-space:pre-line;"></div>
+&lt;h3&gt;闭包计数器&lt;/h3&gt;
+&lt;div id="counter-display" style="font-size: 48px;"&gt;0&lt;/div&gt;
+&lt;button onclick="increment()"&gt;+1&lt;/button&gt;
+&lt;button onclick="decrement()"&gt;-1&lt;/button&gt;
+&lt;button onclick="resetCounter()"&gt;重置&lt;/button&gt;
+&lt;p id="counter-info"&gt;&lt;/p&gt;
                 </div>
-
-                <div class="panel code-editor" id="lab2-code" contenteditable="true">
+                
+                <div class="panel code-editor" id="code-closure" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
-let globalMessage = "🌍 我是全局变量";
-
-function testGlobal() {
-    document.getElementById('lab2-result').innerText =
-    `全局变量: ${globalMessage}\n可以在任何地方访问`;
-}
-
-function testLocal() {
-    let localMessage = "🏠 我是局部变量";
-    document.getElementById('lab2-result').innerText =
-    `局部变量: ${localMessage}\n只能在函数内部访问`;
-}
-
-// 闭包示例
-function createGreeter(greeting) {
-    return function(name) {
-        return `${greeting}, ${name}!`;
-    };
-}
-
-const sayHello = createGreeter("你好");
-const sayHi = createGreeter("嗨");
-
-function testClosure() {
-    const result = `闭包示例：\n${sayHello("小明")}\n${sayHi("小红")}\n\n闭包保留了外层函数的变量！`;
-    document.getElementById('lab2-result').innerText = result;
-}
-                </div>
-
-            </div>
-
-            <div class="action-bar">
-                <button class="btn btn-run" onclick="runJsDomExperiment('lab2-code', null)">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="resetJsDomExperiment('lab2-code', 'lab2-preview', null)">↻ 重置</button>
-                <span style="color:#999;font-size:13px;">点击按钮测试不同的作用域</span>
-            </div>
-
-            <div class="preview-box" id="lab2-preview">
-                <h3>作用域测试</h3>
-                <button onclick="testGlobal()">访问全局变量</button>
-                <button onclick="testLocal()">访问局部变量</button>
-                <button onclick="testClosure()">测试闭包</button>
-                <div id="lab2-result" style="margin-top:15px;padding:10px;background:#f9f9f9;border-radius:5px;white-space:pre-line;"></div>
-            </div>
-
-        </div>
-
-
-        </section>
-
-
-    <section id="higher-order">
-      <h2>九、高阶函数 (Higher-Order Functions)</h2>
-      <p>JavaScript中的函数是"一等公民"(First-Class Citizens),这意味着函数可以像普通值一样被传递、赋值、作为参数或返回值。这为我们带来了强大的编程范式。</p>
-      
-      <h3>9.1 什么是高阶函数?</h3>
-      <p><strong>高阶函数</strong>是满足以下至少一个条件的函数:</p>
-      <ul class="checklist">
-        <li>接受一个或多个函数作为参数</li>
-        <li>返回一个函数</li>
-      </ul>
-      <div class="tip-box">
-            <span class="tip-title">为什么需要高阶函数?</span>
-
-
-        <p>高阶函数让代码更加抽象、灵活和可复用。例如,<code>map</code>、<code>filter</code>、<code>reduce</code> 等数组方法都是高阶函数。</p>
-      </div>
-
-
-      
-      <pre><code>// 接受函数作为参数
-function repeat(n, action) {
-  for (let i = 0; i < n; i++) {
-    action(i);
-  }
-}
-
-repeat(3, function(i) {
-  console.log(`第 ${i + 1} 次执行`);
-});
-// 第 1 次执行
-// 第 2 次执行
-// 第 3 次执行</code></pre>
-
-      <h3>9.2 回调函数 (Callback Functions)</h3>
-      <p><strong>回调函数</strong>是作为参数传递给另一个函数的函数。它让我们可以定制函数的行为，是异步编程的基础。</p>
-      <div class="note-box">
-        <span class="tip-title">📌 回调函数的应用场景</span>
-
-
-        <ul class="checklist">
-          <li>数组方法：map、filter、forEach、reduce 等</li>
-          <li>事件处理：按钮点击、鼠标移动等</li>
-          <li>异步操作：setTimeout、Ajax 请求等</li>
-          <li>自定义行为：根据传入的函数执行不同操作</li>
-        </ul>
-      </div>
-
-
-      
-      <pre><code>// 数组方法中的回调
-const numbers = [1, 2, 3, 4, 5];
-
-// forEach()方法：遍历数组的每个元素
-// 参数是一个回调函数，对每个元素执行一次
-numbers.forEach(function(num) {
-  console.log(num * 2);
-});
-
-// map()方法：转换数组，返回新数组
-// 回调函数的返回值组成新数组
-const doubled = numbers.map(function(num) {
-  return num * 2;
-});
-console.log(doubled);  // [2, 4, 6, 8, 10]
-
-// filter()方法：筛选数组，返回符合条件的元素
-// 回调函数返回true的元素会被保留
-const evens = numbers.filter(function(num) {
-  return num % 2 === 0;
-});
-console.log(evens);  // [2, 4]
-
-// reduce()方法：累积计算，将数组归约为单个值
-// 第一个参数是回调函数(累积值, 当前值)，第二个参数是初始值
-const sum = numbers.reduce(function(total, num) {
-  return total + num;
-}, 0);
-console.log(sum);  // 15</code></pre>
-
-      <h3>9.3 使用箭头函数简化回调</h3>
-      <p>箭头函数的简洁语法特别适合用作回调函数，让代码更加优雅。</p>
-      <pre><code>const numbers = [1, 2, 3, 4, 5];
-
-// 使用箭头函数更简洁
-numbers.forEach(num => console.log(num * 2));
-
-const doubled = numbers.map(num => num * 2);
-const evens = numbers.filter(num => num % 2 === 0);
-const sum = numbers.reduce((total, num) => total + num, 0);
-
-console.log(doubled);  // [2, 4, 6, 8, 10]
-console.log(evens);    // [2, 4]
-console.log(sum);      // 15</code></pre>
-
-      <h3>9.4 返回函数的函数 (Function Factory)</h3>
-      <p>函数可以返回另一个函数，这种模式叫做"函数工厂"。它可以根据参数创建定制化的函数。</p>
-      <pre><code>// 函数工厂
-function createMultiplier(factor) {
-  return function(number) {
-    return number * factor;
-  };
-}
-
-const double = createMultiplier(2);
-const triple = createMultiplier(3);
-
-console.log(double(5));  // 10
-console.log(triple(5));  // 15
-
-// 柯里化示例
-function curry(a) {
-  return function(b) {
-    return function(c) {
-      return a + b + c;
-    };
-  };
-}
-
-console.log(curry(1)(2)(3));  // 6
-
-// 箭头函数版本
-const curryArrow = a => b => c => a + b + c;
-console.log(curryArrow(1)(2)(3));  // 6</code></pre>
-
-        <div class="lab-card">
-            <div class="lab-header">
-                <span>🔬 实验3：数组处理器</span>
-                <span class="status-badge advanced">进阶</span>
-            </div>
-
-            <div class="lab-body split">
-                <div class="panel html-viewer">
-<div class="panel-label">HTML 预览</div>
-<h3>学生成绩处理系统</h3>
-<div>
-    <button onclick="showAll()">显示所有成绩</button>
-    <button onclick="showPassed()">显示及格成绩</button>
-    <button onclick="showAverage()">计算平均分</button>
-    <button onclick="showTop()">显示前三名</button>
-</div>
-<div id="lab3-output" style="margin-top:15px;padding:12px;background:#f5f5f5;border-radius:5px;white-space:pre-line;"></div>
-                </div>
-
-                <div class="panel code-editor" id="lab3-code" contenteditable="true">
-<div class="panel-label">JavaScript (可编辑)</div>
-const scores = [85, 92, 78, 95, 88, 76, 90, 82];
-
-function showAll() {
-    const result = `所有成绩：\n${scores.join(', ')}`;
-    document.getElementById('lab3-output').innerText = result;
-}
-
-function showPassed() {
-    const passed = scores.filter(score => score >= 60);
-    const result = `及格成绩（≥60）：\n${passed.join(', ')}\n共${passed.length}人及格`;
-    document.getElementById('lab3-output').innerText = result;
-}
-
-function showAverage() {
-    const sum = scores.reduce((total, score) => total + score, 0);
-    const avg = (sum / scores.length).toFixed(2);
-    const result = `平均分：${avg}`;
-    document.getElementById('lab3-output').innerText = result;
-}
-
-function showTop() {
-    const top3 = [...scores].sort((a, b) => b - a).slice(0, 3);
-    const result = `前三名成绩：\n🥇 ${top3[0]}\n🥈 ${top3[1]}\n🥉 ${top3[2]}`;
-    document.getElementById('lab3-output').innerText = result;
-}
-                </div>
-
-            </div>
-
-            <div class="action-bar">
-                <button class="btn btn-run" onclick="runJsDomExperiment('lab3-code', null)">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="resetJsDomExperiment('lab3-code', 'lab3-preview', null)">↻ 重置</button>
-                <span style="color:#999;font-size:13px;">使用高阶函数处理数组数据</span>
-            </div>
-
-            <div class="preview-box" id="lab3-preview">
-                <h3>学生成绩处理系统</h3>
-                <div>
-                    <button onclick="showAll()">显示所有成绩</button>
-                    <button onclick="showPassed()">显示及格成绩</button>
-                    <button onclick="showAverage()">计算平均分</button>
-                    <button onclick="showTop()">显示前三名</button>
-                </div>
-                <div id="lab3-output" style="margin-top:15px;padding:12px;background:#f5f5f5;border-radius:5px;white-space:pre-line;"></div>
-            </div>
-
-        </div>
-
-
-        </section>
-
-
-    <section id="practical">
-      <h2>十、综合实战:计算器系统</h2>
-      
-      <p>让我们综合运用本课学到的所有知识:函数声明、箭头函数、对象方法、参数验证、高阶函数等,构建一个功能完整的计算器系统。</p>
-      
-      <div class="tip-box">
-            <span class="tip-title">本案例涵盖的知识点</span>
-
-
-        <ul class="checklist">
-          <li>使用对象存储函数(函数作为对象的值)</li>
-          <li>箭头函数简化代码</li>
-          <li>参数验证(isNaN 检查)</li>
-          <li>高阶函数应用(函数调度模式)</li>
-          <li>返回值处理和错误提示</li>
-          <li>DOM 操作与函数结合</li>
-        </ul>
-      </div>
-
-
-
-      <div class="lab-card">
-        <div class="lab-header">
-                <span>🔬 实验4：多功能计算器</span>
-                <span class="status-badge advanced">综合</span>
-            </div>
-
-
-        <div class="lab-body split">
-          <div class="panel">
-            <div class="panel-label">HTML</div>
-            <div class="html-viewer">&lt;!DOCTYPE html&gt;
-    &lt;html&gt;
-        &lt;head&gt;
-            &lt;meta charset="UTF-8"&gt;
-                &lt;title&gt;计算器&lt;/title&gt;
-                    &lt;style&gt;
-                        .calculator { max-width: 400px; padding: 20px; background: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-                        .calc-input { width: 100%; padding: 10px; margin: 5px 0; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; }
-                        .calc-buttons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 12px; }
-                        .calc-btn { padding: 12px; border: none; background: #0066CC; color: white; border-radius: 6px; cursor: pointer; font-size: 14px; }
-                        .calc-btn:hover { background: #0055B3; }
-                        .calc-btn.secondary { background: #6c757d; }
-                        #calc-result { margin-top: 15px; padding: 12px; background: #f0f8ff; border-radius: 6px; font-weight: bold; color: #0066CC; }
-      <div class="lab-card">
-        <div class="lab-header">
-                <span>🔬 实验4：多功能计算器</span>
-                <span class="status-badge advanced">综合</span>
-            </div>
-
-        <div class="lab-body split">
-          <div class="panel html-viewer">
-<div class="panel-label">HTML 预览</div>
-<div class="calculator">
-    <h3 style="margin-bottom:15px;">📐 多功能计算器</h3>
-    <input type="number" id="num1" class="calc-input" placeholder="第一个数字" style="width: 100%; padding: 10px; margin: 5px 0; border: 1px solid #ddd; border-radius: 6px;">
-    <input type="number" id="num2" class="calc-input" placeholder="第二个数字" style="width: 100%; padding: 10px; margin: 5px 0; border: 1px solid #ddd; border-radius: 6px;">
-    <div class="calc-buttons" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 12px;">
-        <button class="calc-btn" onclick="calculate('add')">加法 +</button>
-        <button class="calc-btn" onclick="calculate('subtract')">减法 -</button>
-        <button class="calc-btn" onclick="calculate('multiply')">乘法 ×</button>
-        <button class="calc-btn" onclick="calculate('divide')">除法 ÷</button>
-        <button class="calc-btn secondary" onclick="calculate('power')">幂运算 ^</button>
-        <button class="calc-btn secondary" onclick="calculate('mod')">取余 %</button>
-        <button class="calc-btn secondary" onclick="calculate('max')">最大值</button>
-        <button class="calc-btn secondary" onclick="calculate('min')">最小值</button>
-    </div>
-    <div id="calc-result" style="margin-top: 15px; padding: 12px; background: #f0f8ff; border-radius: 6px; font-weight: bold; color: #0066CC;">等待计算...</div>
-</div>
-          </div>
-
-          <div class="panel code-editor" id="lab4-code" contenteditable="true">
-<div class="panel-label">JavaScript (可编辑)</div>
-// 基础运算函数
-const operations = {
-    add: (a, b) => a + b,
-    subtract: (a, b) => a - b,
-    multiply: (a, b) => a * b,
-    divide: (a, b) => b !== 0 ? a / b : "除数不能为0",
-    power: (a, b) => Math.pow(a, b),
-    mod: (a, b) => a % b,
-    max: (a, b) => Math.max(a, b),
-    min: (a, b) => Math.min(a, b)
-};
-
-// 运算符名称映射
-const opNames = {
-    add: "加法", subtract: "减法",
-    multiply: "乘法", divide: "除法",
-    power: "幂运算", mod: "取余",
-    max: "最大值", min: "最小值"
-};
-
-// 主计算函数
-function calculate(operation) {
-    const num1 = parseFloat(document.getElementById('num1').value);
-    const num2 = parseFloat(document.getElementById('num2').value);
-  
-    if (isNaN(num1) || isNaN(num2)) {
-        document.getElementById('calc-result').innerText =
-        "请输入有效的数字！";
-        return;
-    }
-  
-    const result = operations[operation](num1, num2);
-    const opName = opNames[operation];
-  
-    document.getElementById('calc-result').innerText =
-    `${opName}结果：${num1} 和 ${num2} = ${result}`;
-}
-          </div>
-
-        </div>
-
-        <div class="action-bar">
-          <button class="btn btn-run" onclick="runJsDomExperiment('lab4-code', null)">▶ 运行代码</button>
-          <button class="btn btn-reset" onclick="resetJsDomExperiment('lab4-code', 'lab4-preview', null)">↻ 重置</button>
-          <span style="color:#999;font-size:13px;">输入两个数字，点击运算按钮查看结果</span>
-        </div>
-
-        <div class="preview-box" id="lab4-preview">
-            <div class="calculator">
-                <h3 style="margin-bottom:15px;">📐 多功能计算器</h3>
-                <input type="number" id="num1" class="calc-input" placeholder="第一个数字" style="width: 100%; padding: 10px; margin: 5px 0; border: 1px solid #ddd; border-radius: 6px;">
-                <input type="number" id="num2" class="calc-input" placeholder="第二个数字" style="width: 100%; padding: 10px; margin: 5px 0; border: 1px solid #ddd; border-radius: 6px;">
-                <div class="calc-buttons" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 12px;">
-                    <button class="calc-btn" onclick="calculate('add')">加法 +</button>
-                    <button class="calc-btn" onclick="calculate('subtract')">减法 -</button>
-                    <button class="calc-btn" onclick="calculate('multiply')">乘法 ×</button>
-                    <button class="calc-btn" onclick="calculate('divide')">除法 ÷</button>
-                    <button class="calc-btn secondary" onclick="calculate('power')">幂运算 ^</button>
-                    <button class="calc-btn secondary" onclick="calculate('mod')">取余 %</button>
-                    <button class="calc-btn secondary" onclick="calculate('max')">最大值</button>
-                    <button class="calc-btn secondary" onclick="calculate('min')">最小值</button>
-                </div>
-                <div id="calc-result" style="margin-top: 15px; padding: 12px; background: #f0f8ff; border-radius: 6px; font-weight: bold; color: #0066CC;">等待计算...</div>
-            </div>
-        </div>
-
-      </div>
-
-        <ul class="checklist">
-          <li><strong>函数定义：</strong>函数声明、函数表达式、箭头函数三种方式</li>
-          <li><strong>参数处理：</strong>默认参数、剩余参数、参数解构</li>
-          <li><strong>返回值：</strong>return语句、多返回点、返回对象/数组</li>
-          <li><strong>作用域：</strong>全局作用域、局部作用域、块级作用域、闭包</li>
-          <li><strong>高阶函数：</strong>函数作为参数和返回值、回调函数、数组方法</li>
-        </ul>
-      </div>
-
-
-      
-
-
-        <div class="lab-card">
-            <div class="lab-header">
-                <span>实验：第27次课-JS函数实践</span>
-                <span id="27js-status" class="status-badge">未运行</span>
-            </div>
-
-            <div class="lab-body css-js-experiment">
-                <div>
-                    <div class="html-editor" id="27js-js" contenteditable="true">
-<div class="panel-label">JavaScript (可编辑)</div>// 实验：创建一个简单的计数器闭包
-// 目标：点击按钮，数字增加，且数字保存在闭包中
-
-// 1. 创建计数器工厂函数
-function createCounter(startValue = 0) {
-    let count = startValue;
+// 使用闭包创建计数器
+function createCounter(initialValue = 0) {
+    let count = initialValue;  // 私有变量
     
-    return function() {
-        count++;
-        return count;
+    // 返回一个包含多个方法的对象
+    return {
+        increment: function() {
+            count++;
+            return count;
+        },
+        decrement: function() {
+            count--;
+            return count;
+        },
+        reset: function() {
+            count = initialValue;
+            return count;
+        },
+        getCount: function() {
+            return count;
+        }
     };
 }
 
-// 2. 创建一个计数器实例
+// 创建计数器实例
 const myCounter = createCounter(0);
 
-// 3. 定义点击处理函数
-function handleCount() {
-    const newValue = myCounter();
-    const output = document.getElementById('27js-output');
+function updateDisplay() {
+    document.getElementById('counter-display').innerText = myCounter.getCount();
+    document.getElementById('counter-info').innerText = 
+        `count 变量被闭包保护，外部无法直接访问`;
+}
+
+function increment() {
+    myCounter.increment();
+    updateDisplay();
+}
+
+function decrement() {
+    myCounter.decrement();
+    updateDisplay();
+}
+
+function resetCounter() {
+    myCounter.reset();
+    updateDisplay();
+}
+
+// 初始化显示
+updateDisplay();
+                </div>
+            </div>
+            
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runJsDomExperiment('code-closure', null)">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetJsDomExperiment('code-closure', 'counter-preview', null)">↺ 重置代码</button>
+            </div>
+            
+            <div class="preview-box" id="counter-preview">
+                <h3>闭包计数器</h3>
+                <div id="counter-display" style="font-size: 48px; font-weight: bold; color: #0066CC; margin: 20px 0;">0</div>
+                <button class="btn btn-run" onclick="increment()">+1</button>
+                <button class="btn btn-run" onclick="decrement()">-1</button>
+                <button class="btn btn-reset" onclick="resetCounter()">重置</button>
+                <p id="counter-info" style="margin-top: 15px; color: #666;"></p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         综合案例
+         ============================================ -->
+
+    <section id="comprehensive">
+        <h2>六、综合案例：随机密码生成器</h2>
+        <p>综合运用本课所学的函数知识，创建一个功能完整的密码生成器。</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>综合案例：密码生成器</span>
+                <span class="status-badge advanced">综合实战</span>
+            </div>
+            
+            <div class="lab-body split">
+                <div class="panel html-viewer">
+<div class="panel-label">HTML 预览</div>
+&lt;h3&gt;🔐 随机密码生成器&lt;/h3&gt;
+&lt;p&gt;密码长度: &lt;input id="pwd-length" type="number" value="12" min="6" max="32"&gt;&lt;/p&gt;
+&lt;p&gt;
+    &lt;label&gt;&lt;input type="checkbox" id="include-upper" checked&gt; 大写字母&lt;/label&gt;
+    &lt;label&gt;&lt;input type="checkbox" id="include-lower" checked&gt; 小写字母&lt;/label&gt;
+    &lt;label&gt;&lt;input type="checkbox" id="include-num" checked&gt; 数字&lt;/label&gt;
+    &lt;label&gt;&lt;input type="checkbox" id="include-symbol"&gt; 特殊符号&lt;/label&gt;
+&lt;/p&gt;
+&lt;button onclick="generatePassword()"&gt;生成密码&lt;/button&gt;
+&lt;div id="pwd-result"&gt;&lt;/div&gt;
+                </div>
+                
+                <div class="panel code-editor" id="code-password" contenteditable="true">
+<div class="panel-label">JavaScript (可编辑)</div>
+// 字符集定义
+const CHARS = {
+    upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+    lower: 'abcdefghijklmnopqrstuvwxyz',
+    numbers: '0123456789',
+    symbols: '!@#$%^&*()_+-=[]{}|;:,.<>?'
+};
+
+// 获取随机字符
+const getRandomChar = (str) => str[Math.floor(Math.random() * str.length)];
+
+// 打乱字符串
+const shuffleString = (str) => {
+    const arr = str.split('');
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr.join('');
+};
+
+// 生成密码的主函数
+function createPasswordGenerator() {
+    return function(length, options) {
+        let charPool = '';
+        let password = '';
+        
+        // 根据选项构建字符池
+        if (options.upper) {
+            charPool += CHARS.upper;
+            password += getRandomChar(CHARS.upper);  // 确保至少包含一个
+        }
+        if (options.lower) {
+            charPool += CHARS.lower;
+            password += getRandomChar(CHARS.lower);
+        }
+        if (options.numbers) {
+            charPool += CHARS.numbers;
+            password += getRandomChar(CHARS.numbers);
+        }
+        if (options.symbols) {
+            charPool += CHARS.symbols;
+            password += getRandomChar(CHARS.symbols);
+        }
+        
+        if (charPool === '') {
+            return '请至少选择一种字符类型';
+        }
+        
+        // 填充剩余长度
+        while (password.length < length) {
+            password += getRandomChar(charPool);
+        }
+        
+        // 打乱顺序
+        return shuffleString(password);
+    };
+}
+
+// 使用闭包创建生成器
+const generatePwd = createPasswordGenerator();
+
+function generatePassword() {
+    const length = Number(document.getElementById('pwd-length').value);
+    const options = {
+        upper: document.getElementById('include-upper').checked,
+        lower: document.getElementById('include-lower').checked,
+        numbers: document.getElementById('include-num').checked,
+        symbols: document.getElementById('include-symbol').checked
+    };
     
-    output.innerHTML = `
-        &lt;h3&gt;当前计数：${newValue}&lt;/h3&gt;
-        &lt;p&gt;每次点击，闭包内的 count 都会增加&lt;/p&gt;
+    const password = generatePwd(length, options);
+    const strength = evaluateStrength(password);
+    
+    document.getElementById('pwd-result').innerHTML = `
+        &lt;p style="font-size: 24px; font-family: monospace; 
+           background: #f0f0f0; padding: 15px; border-radius: 6px;
+           word-break: break-all;"&gt;${password}&lt;/p&gt;
+        &lt;p&gt;密码强度: ${strength}&lt;/p&gt;
     `;
 }
-                    </div>
 
+// 评估密码强度
+function evaluateStrength(pwd) {
+    let score = 0;
+    if (pwd.length >= 8) score++;
+    if (pwd.length >= 12) score++;
+    if (/[A-Z]/.test(pwd)) score++;
+    if (/[a-z]/.test(pwd)) score++;
+    if (/[0-9]/.test(pwd)) score++;
+    if (/[^A-Za-z0-9]/.test(pwd)) score++;
+    
+    const levels = ['❌ 极弱', '⚠️ 弱', '🔸 一般', '✅ 强', '💪 很强', '🔒 极强'];
+    return levels[Math.min(score, 5)];
+}
                 </div>
-
-                <div>
-                    <div class="preview-box" id="27js-preview">
-                        <div class="panel-label">预览效果</div>
-
-                        <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                            <h3>闭包计数器</h3>
-                            <button onclick="handleCount()" style="padding: 10px 20px; font-size: 16px; background: #0066CC; color: white; border: none; border-radius: 4px; cursor: pointer;">点击 +1</button>
-                            <div id="27js-output" style="margin-top: 15px;">
-                                <p>点击按钮开始计数</p>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-
             </div>
-
+            
             <div class="action-bar">
-                <button class="btn btn-run" onclick="runJsDomExperiment('27js-js', '27js-status')">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="resetJsDomExperiment('27js-js', '27js-preview', '27js-status')">↺ 重置</button>
+                <button class="btn btn-run" onclick="runJsDomExperiment('code-password', null)">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetJsDomExperiment('code-password', 'pwd-result', null)">↺ 重置代码</button>
             </div>
-
+            
+            <div class="preview-box">
+                <h3>🔐 随机密码生成器</h3>
+                <p>密码长度: <input id="pwd-length" type="number" value="12" min="6" max="32" style="padding: 6px; border: 1px solid #ddd; border-radius: 4px; width: 60px;"></p>
+                <p style="display: flex; gap: 15px; flex-wrap: wrap;">
+                    <label><input type="checkbox" id="include-upper" checked> 大写字母</label>
+                    <label><input type="checkbox" id="include-lower" checked> 小写字母</label>
+                    <label><input type="checkbox" id="include-num" checked> 数字</label>
+                    <label><input type="checkbox" id="include-symbol"> 特殊符号</label>
+                </p>
+                <button class="btn btn-run" onclick="generatePassword()">生成密码</button>
+                <div id="pwd-result" style="margin-top: 15px;"></div>
+            </div>
         </div>
-
     </section>
+
+
+    <!-- ============================================
+         课程小结
+         ============================================ -->
+
+    <section id="summary">
+        <h2>七、本课小结</h2>
+        
+        <h3>知识点回顾</h3>
+        <ul class="checklist">
+            <li><strong>函数</strong>是可重复使用的代码块，接收参数、执行任务、返回结果</li>
+            <li><strong>函数声明</strong>使用 <code>function</code> 关键字，会被提升</li>
+            <li><strong>函数表达式</strong>将函数赋值给变量，不会被提升</li>
+            <li><strong>箭头函数</strong>是更简洁的函数写法，适合回调和简单函数</li>
+            <li><strong>参数</strong>让函数更灵活，可以设置默认值</li>
+            <li><strong>返回值</strong>使用 <code>return</code>，会立即结束函数执行</li>
+            <li><strong>作用域</strong>决定变量的可访问范围（全局、函数、块级）</li>
+            <li><strong>闭包</strong>让函数可以"记住"其定义时的作用域</li>
+        </ul>
+        
+        <h3>重点记忆</h3>
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>概念</th>
+                    <th>语法/示例</th>
+                    <th>要点</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>函数声明</td>
+                    <td><code>function name() {}</code></td>
+                    <td>会提升，可先调用后声明</td>
+                </tr>
+                <tr>
+                    <td>箭头函数</td>
+                    <td><code>(a, b) => a + b</code></td>
+                    <td>简洁，无自己的 this</td>
+                </tr>
+                <tr>
+                    <td>默认参数</td>
+                    <td><code>function f(x = 10)</code></td>
+                    <td>未传参时使用默认值</td>
+                </tr>
+                <tr>
+                    <td>闭包</td>
+                    <td>函数 + 外部变量</td>
+                    <td>数据私有化、状态保持</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="note-box">
+            <strong>下一课预告：</strong>
+            <p>我们将学习 <strong>数组与对象</strong>——JavaScript 中最重要的数据结构。数组用于管理列表数据，对象用于组织复杂信息，它们是构建任何应用的基础。</p>
+        </div>
+    </section>
+
 
 </main>
 
 </body>
-
 </html>

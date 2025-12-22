@@ -4,255 +4,213 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>第1课：HTML基础入门</title>
-                
+    
+    <!-- 统一样式引用 -->
     <link rel='stylesheet' href='../统一讲义样式模板.css'>
+    <!-- 通用工具函数库 -->
+    <script src='../js/lecture-utils.js'></script>
 </head>
 <body>
-    <!-- 侧边栏导航 -->
-    <nav class="sidebar">
-        <div class="sidebar-nav">
-            <h3>课程导航</h3>
-            <a class="sidebar-link" href="#intro">👋 课程概览</a>
-            
-            <h3>Part 1: HTML基础</h3>
-            <a class="sidebar-link" href="#what-is-html" class="sub-link">1. 什么是HTML</a>
-            <a class="sidebar-link" href="#html-structure" class="sub-link">2. HTML文档结构</a>
-            <a class="sidebar-link" href="#basic-tags" class="sub-link">3. 常用文本标签</a>
-            <a class="sidebar-link" href="#first-page" class="sub-link">4. 第一个HTML页面</a>
-            
-            <h3>Part 2: 实战练习</h3>
-            <a class="sidebar-link" href="#exercise" class="sub-link">5. 课后练习</a>
+
+<!-- ============================================
+     侧边栏导航 - 课程目录
+     ============================================ -->
+<nav class="sidebar">
+    <div class="sidebar-nav">
+        <h3>课程导航</h3>
+        <a class="sidebar-link" href="#intro">👋 课程概览</a>
+        
+        <h3>Part 1: HTML基础</h3>
+        <a class="sidebar-link" href="#section-1-1" class="sub-link">1.1 什么是HTML</a>
+        <a class="sidebar-link" href="#section-1-2" class="sub-link">1.2 HTML文档结构</a>
+        <a class="sidebar-link" href="#section-1-3" class="sub-link">1.3 常用文本标签</a>
+        <a class="sidebar-link" href="#lab-1" class="sub-link">实验 01</a>
+        
+        <h3>Part 2: 实战练习</h3>
+        <a class="sidebar-link" href="#section-2-1" class="sub-link">2.1 第一个HTML页面</a>
+        <a class="sidebar-link" href="#lab-2" class="sub-link">实验 02</a>
+        
+        <h3>总结与练习</h3>
+        <a class="sidebar-link" href="#summary" class="sub-link">📝 课程小结</a>
+    </div>
+</nav>
+
+
+<!-- ============================================
+     主内容区域
+     ============================================ -->
+<main class="content">
+
+    <!-- ============================================
+         课程头部 - 概览区域
+         ============================================ -->
+    <header id="intro">
+        <h1>第1课：HTML基础入门</h1>
+        <p class="intro">欢迎来到HTML的世界！在这门课程中，我们将一起探索HTML的基础知识，了解它如何构建网页的骨架。这节课我们会从最基础的概念开始，让零基础的你也能轻松入门。</p>
+        
+        <!-- 知识点标签列表 -->
+        <div class="pill-list">
+            <span class="pill">HTML概念</span>
+            <span class="pill">文档结构</span>
+            <span class="pill">文本标签</span>
+            <span class="pill">标题标签</span>
+            <span class="pill">段落标签</span>
+            <span class="pill">HTML页面</span>
         </div>
-    </nav>
+    </header>
 
-    <!-- 主内容区 -->
-    <main class="content">
-        <header id="intro">
-            <h1>第1课：HTML基础入门</h1>
-            <p class="intro">
-                欢迎来到HTML的世界！在这门课程中，我们将一起探索HTML的基础知识，了解它如何构建网页的骨架。
-                这节课我们会从最基础的概念开始，让零基础的你也能轻松入门。
-            </p>
-        </header>
 
-        <!-- 第一部分：HTML基础 -->
-        <section id="what-is-html">
-            <h2>1. 什么是HTML</h2>
-            <p>
-                HTML是HyperText Markup Language的缩写，翻译成中文是「超文本标记语言」。
-            </p>
-            
-            <h3>1.1 HTML的作用</h3>
-            <p>
-                HTML是用于创建网页的标准标记语言，它的主要作用是：
-            </p>
-            
-            <ul>
-                <li><strong>定义内容结构</strong>：HTML使用各种标签来定义网页中的不同内容，如标题、段落、图片、链接等。</li>
-                <li><strong>描述网页内容</strong>：HTML标签告诉浏览器页面上有什么内容，以及这些内容是什么类型。</li>
-                <li><strong>连接互联网</strong>：HTML通过链接（Hyperlink）将不同的网页连接起来，形成了庞大的互联网。</li>
-            </ul>
-            
-            <div class="tip-box">
-                <span class="tip-title">💡 超文本的含义</div>
-                <p>「超文本」指的是包含链接的文本，用户可以通过点击链接从一个页面跳转到另一个页面，
-                这也是互联网能够连接全球信息的基础。</p>
+    <!-- ============================================
+         正文内容示例 - 各类元素展示
+         ============================================ -->
+
+    <!-- 一级章节 -->
+    <section id="section-1-1">
+        <h2>一、什么是HTML</h2>
+        <p>HTML是HyperText Markup Language的缩写，翻译成中文是「超文本标记语言」。</p>
+        <p>HTML是用于创建网页的标准标记语言，它的主要作用是定义内容结构、描述网页内容和连接互联网。</p>
+        
+        <div class="tip-box">
+            <span class="tip-title">💡 超文本的含义</span>
+            <p>「超文本」指的是包含链接的文本，用户可以通过点击链接从一个页面跳转到另一个页面，这也是互联网能够连接全球信息的基础。</p>
+        </div>
+    </section>
+
+
+    <!-- 二级小节 -->
+    <section id="section-1-2">
+        <h2>二、HTML文档结构</h2>
+        <p>一个完整的HTML文档包含固定的结构，由多个标签嵌套组成。让我们从最基础的HTML文档结构开始学习。</p>
+        
+        <h3>2.1 基本HTML文档结构</h3>
+        <p>每个HTML文档都应该包含以下基本结构：</p>
+        
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>标签</th>
+                    <th>作用</th>
+                    <th>说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>&lt;!DOCTYPE html&gt;</code></td>
+                    <td>文档类型声明</td>
+                    <td>告诉浏览器这是一个HTML5文档，必须放在最前面</td>
+                </tr>
+                <tr>
+                    <td><code>&lt;html&gt;</code></td>
+                    <td>HTML根元素</td>
+                    <td>所有其他HTML元素都嵌套在这个标签内</td>
+                </tr>
+                <tr>
+                    <td><code>&lt;head&gt;</code></td>
+                    <td>头部元素</td>
+                    <td>包含文档的元数据，如字符集、标题等，这些内容不会直接显示在页面上</td>
+                </tr>
+                <tr>
+                    <td><code>&lt;body&gt;</code></td>
+                    <td>主体元素</td>
+                    <td>包含浏览器显示的所有页面内容，如文本、图片、链接等</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- 三级小节 -->
+    <section id="section-1-3">
+        <h2>三、常用文本标签</h2>
+        <p>HTML提供了许多用于格式化文本的标签，让我们从最常用的文本标签开始学习。</p>
+        
+        <h3>3.1 标题标签</h3>
+        <p>HTML提供了6级标题标签，从<code>&lt;h1&gt;</code>到<code>&lt;h6&gt;</code>，其中<code>&lt;h1&gt;</code>级别最高，<code>&lt;h6&gt;</code>级别最低。</p>
+        
+        <h3>3.2 段落和换行标签</h3>
+        <p><code>&lt;p&gt;</code>标签用于定义段落，<code>&lt;br&gt;</code>标签用于插入换行符。</p>
+    </section>
+
+    <!-- ============================================
+         实验卡片组件 - 动手实践型（HTML实验）
+         用于：HTML 代码编辑和即时预览
+         ============================================ -->
+    <section id="lab-1">
+        <h2>实验 01：HTML 基础标签练习</h2>
+        <p>这是一个 HTML 实验，学生可以编辑左侧代码，点击运行后在右侧查看效果。</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 01：HTML 基础标签练习</span>
+                <span class="status-badge beginner" id="badge-html-demo">动手实践</span>
             </div>
-        </section>
-
-        <section id="html-structure">
-            <h2>2. HTML文档结构</h2>
-            <p>
-                一个完整的HTML文档包含固定的结构，由多个标签嵌套组成。
-                让我们从最基础的HTML文档结构开始学习。
-            </p>
             
-            <h3>2.1 基本HTML文档结构</h3>
-            <p>
-                每个HTML文档都应该包含以下基本结构：
-            </p>
-            
-            <div class="lab-card">
-                <div class="lab-header">
-                    <span>实验 01：HTML文档基本结构</span>
-                    <span id="badge-1" class="status-badge">未运行</span>
-                </div>
-                <div class="lab-body">
-                    <div class="panel html-editor" id="html-1" contenteditable="true">
+            <div class="lab-body split">
+                <!-- 代码编辑区 -->
+                <div class="panel code-editor" id="html-html-demo" contenteditable="true">
 <div class="panel-label">HTML (可编辑)</div>
 &lt;!DOCTYPE html&gt;
 &lt;html lang="zh-CN"&gt;
 &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
     &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;我的第一个HTML页面&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h1&gt;欢迎来到HTML世界！&lt;/h1&gt;
-    &lt;p&gt;这是我的第一个HTML页面。&lt;/p&gt;
-    &lt;p&gt;我正在学习HTML，这很有趣！&lt;/p&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-                    </div>
-                </div>
-                <div class="action-bar">
-                    <button class="btn btn-run" onclick="applyHTML('1')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetHTML('1')">↺ 重置</button>
-                </div>
-                <div class="preview-box" id="preview-1">
-                    <div class="preview-label">预览效果</div>
-                    <!-- 预览内容将在这里显示 -->
-                </div>
-            </div>
-            
-            <h3>2.2 结构说明</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>标签</th>
-                        <th>作用</th>
-                        <th>说明</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>&lt;!DOCTYPE html&gt;</code></td>
-                        <td>文档类型声明</td>
-                        <td>告诉浏览器这是一个HTML5文档，必须放在最前面</td>
-                    </tr>
-                    <tr>
-                        <td><code>&lt;html&gt;</code></td>
-                        <td>HTML根元素</td>
-                        <td>所有其他HTML元素都嵌套在这个标签内</td>
-                    </tr>
-                    <tr>
-                        <td><code>&lt;head&gt;</code></td>
-                        <td>头部元素</td>
-                        <td>包含文档的元数据，如字符集、标题等，这些内容不会直接显示在页面上</td>
-                    </tr>
-                    <tr>
-                        <td><code>&lt;body&gt;</code></td>
-                        <td>主体元素</td>
-                        <td>包含浏览器显示的所有页面内容，如文本、图片、链接等</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <section id="basic-tags">
-            <h2>3. 常用文本标签</h2>
-            <p>
-                HTML提供了许多用于格式化文本的标签，让我们从最常用的文本标签开始学习。
-            </p>
-            
-            <h3>3.1 标题标签</h3>
-            <p>
-                HTML提供了6级标题标签，从<code>&lt;h1&gt;</code>到<code>&lt;h6&gt;</code>，其中<code>&lt;h1&gt;</code>级别最高，<code>&lt;h6&gt;</code>级别最低。
-            </p>
-            
-            <div class="lab-card">
-                <div class="lab-header">
-                    <span>实验 02：标题标签的使用</span>
-                    <span id="badge-2" class="status-badge">未运行</span>
-                </div>
-                <div class="lab-body">
-                    <div class="panel html-editor" id="html-2" contenteditable="true">
-<div class="panel-label">HTML (可编辑)</div>
-&lt;!DOCTYPE html&gt;
-&lt;html lang="zh-CN"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;title&gt;标题标签示例&lt;/title&gt;
+    &lt;title&gt;HTML基础标签练习&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
     &lt;h1&gt;这是一级标题&lt;/h1&gt;
     &lt;h2&gt;这是二级标题&lt;/h2&gt;
     &lt;h3&gt;这是三级标题&lt;/h3&gt;
-    &lt;h4&gt;这是四级标题&lt;/h4&gt;
-    &lt;h5&gt;这是五级标题&lt;/h5&gt;
-    &lt;h6&gt;这是六级标题&lt;/h6&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-                    </div>
-                </div>
-                <div class="action-bar">
-                    <button class="btn btn-run" onclick="applyHTML('2')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetHTML('2')">↺ 重置</button>
-                </div>
-                <div class="preview-box" id="preview-2">
-                    <div class="preview-label">预览效果</div>
-                    <!-- 预览内容将在这里显示 -->
-                </div>
-            </div>
-            
-            <h3>3.2 段落和换行标签</h3>
-            <p>
-                <code>&lt;p&gt;</code>标签用于定义段落，<code>&lt;br&gt;</code>标签用于插入换行符。
-            </p>
-            
-            <div class="lab-card">
-                <div class="lab-header">
-                    <span>实验 03：段落和换行标签</span>
-                    <span id="badge-3" class="status-badge">未运行</span>
-                </div>
-                <div class="lab-body">
-                    <div class="panel html-editor" id="html-3" contenteditable="true">
-<div class="panel-label">HTML (可编辑)</div>
-&lt;!DOCTYPE html&gt;
-&lt;html lang="zh-CN"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;title&gt;段落和换行示例&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h1&gt;我的第一篇作文&lt;/h1&gt;
     
     &lt;p&gt;这是第一段内容。HTML中的段落标签会自动在段落前后添加空白，使内容更易读。&lt;/p&gt;
     
     &lt;p&gt;这是第二段内容。&lt;br&gt;
     这里使用了换行标签，所以这一行会另起一行显示。&lt;/p&gt;
-    
-    &lt;p&gt;这是第三段内容。&lt;/p&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-                    </div>
                 </div>
-                <div class="action-bar">
-                    <button class="btn btn-run" onclick="applyHTML('3')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetHTML('3')">↺ 重置</button>
-                </div>
-                <div class="preview-box" id="preview-3">
-                    <div class="preview-label">预览效果</div>
-                    <!-- 预览内容将在这里显示 -->
+                
+                <!-- 预览区 -->
+                <div class="panel preview-area" id="preview-html-demo">
+                    <div class="panel-label">预览效果</div>
                 </div>
             </div>
-        </section>
+            
+            <!-- 操作按钮 -->
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runHtmlExperiment('html-html-demo', 'preview-html-demo', 'badge-html-demo')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetHtmlExperiment('html-html-demo', 'preview-html-demo', 'badge-html-demo')">↺ 重置代码</button>
+            </div>
+        </div>
+    </section>
 
-        <section id="first-page">
-            <h2>4. 第一个HTML页面</h2>
-            <p>
-                现在，让我们动手创建你的第一个完整HTML页面。
-            </p>
+    <!-- 第二个实验 -->
+    <section id="section-2-1">
+        <h2>四、创建你的第一个HTML页面</h2>
+        <p>现在，让我们动手创建你的第一个完整HTML页面。</p>
+        
+        <h3>4.1 动手实践</h3>
+        <p>按照以下步骤操作，创建你的第一个HTML页面：</p>
+        
+        <ol class="lab-steps">
+            <li>打开一个文本编辑器（如记事本、VS Code等）</li>
+            <li>输入HTML代码（可以参考下面的实验）</li>
+            <li>将文件保存为 <code>index.html</code></li>
+            <li>使用浏览器打开这个文件，你将看到你的第一个HTML页面</li>
+        </ol>
+    </section>
+
+    <section id="lab-2">
+        <h2>实验 02：创建第一个HTML页面</h2>
+        <p>动手创建你的第一个完整HTML页面，实践本节课所学的所有知识。</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 02：创建第一个HTML页面</span>
+                <span class="status-badge beginner" id="badge-html-page">动手实践</span>
+            </div>
             
-            <h3>4.1 动手实践</h3>
-            <p>
-                按照以下步骤操作，创建你的第一个HTML页面：
-            </p>
-            
-            <ol>
-                <li>打开一个文本编辑器（如记事本、VS Code等）</li>
-                <li>输入HTML代码（可以参考下面的实验）</li>
-                <li>将文件保存为 <code>index.html</code></li>
-                <li>使用浏览器打开这个文件，你将看到你的第一个HTML页面</li>
-            </ol>
-            
-            <div class="lab-card">
-                <div class="lab-header">
-                    <span>实验 04：创建你的第一个HTML页面</span>
-                    <span id="badge-4" class="status-badge">未运行</span>
-                </div>
-                <div class="lab-body">
-                    <div class="panel html-editor" id="html-4" contenteditable="true">
+            <div class="lab-body split">
+                <!-- 代码编辑区 -->
+                <div class="panel code-editor" id="html-html-page" contenteditable="true">
 <div class="panel-label">HTML (可编辑)</div>
 &lt;!DOCTYPE html&gt;
 &lt;html lang="zh-CN"&gt;
@@ -269,97 +227,86 @@
     &lt;p&gt;这是我的第一个HTML页面，我感到非常兴奋！&lt;/p&gt;
     
     &lt;h2&gt;我的爱好&lt;/h2&gt;
-    &lt;p&gt;我喜欢：&lt;/p&gt;
-    &lt;p&gt;阅读、编程、旅行...&lt;/p&gt;
+    &lt;p&gt;我喜欢：阅读、编程、旅行...&lt;/p&gt;
     
     &lt;h2&gt;我的目标&lt;/h2&gt;
     &lt;p&gt;我希望能够学会HTML、CSS和JavaScript，成为一名优秀的前端开发者。&lt;/p&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-                    </div>
                 </div>
-                <div class="action-bar">
-                    <button class="btn btn-run" onclick="applyHTML('4')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetHTML('4')">↺ 重置</button>
-                </div>
-                <div class="preview-box" id="preview-4">
-                    <div class="preview-label">预览效果</div>
-                    <!-- 预览内容将在这里显示 -->
+                
+                <!-- 预览区 -->
+                <div class="panel preview-area" id="preview-html-page">
+                    <div class="panel-label">预览效果</div>
                 </div>
             </div>
             
-            <h3>4.2 扩展练习</h3>
-            <p>
-                你可以尝试修改上面的代码，添加更多的内容，比如：
-            </p>
-            
-            <ul>
-                <li>添加更多的标题和段落</li>
-                <li>尝试使用不同级别的标题</li>
-                <li>在段落中使用<code>&lt;br&gt;</code>标签进行换行</li>
-            </ul>
-        </section>
-
-        <!-- 第二部分：实战练习 -->
-        <section id="exercise">
-            <h2>5. 课后练习</h2>
-            <p>
-                请完成以下练习，巩固本节课所学的知识：
-            </p>
-            
-            <ol>
-                <li>创建一个HTML页面，包含一个标题和三个段落</li>
-                <li>在页面中使用至少三种不同级别的标题</li>
-                <li>在段落中使用<code>&lt;br&gt;</code>标签进行换行</li>
-                <li>保存文件并在浏览器中查看效果</li>
-            </ol>
-        
-        <div class="lab-card">
-            <div class="lab-header">
-                <span>实验：第1次课-HTML基础实践</span>
-                <span id="1html-status" class="status-badge">未运行</span>
-            </div>
-            <div class="lab-body">
-                <div class="panel-label">HTML (可编辑)</div>
-<div class="html-editor" id="1html-html" contenteditable="true">
-&lt;!DOCTYPE html&gt;
-&lt;html lang="zh-CN"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;第1次课-HTML基础&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h1&gt;第1次课-HTML基础&lt;/h1&gt;
-    &lt;p&gt;在这里编写你的HTML代码，实践第1次课-HTML基础的知识。&lt;/p&gt;
-    
-    &lt;!-- 在这里添加你的HTML代码 --&gt;
-    
-&lt;/body&gt;
-&lt;/html&gt;
-</div>
-            </div>
+            <!-- 操作按钮 -->
             <div class="action-bar">
-                <button class="btn btn-run" onclick="run1htmlExperiment()">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="reset1htmlExperiment()">↺ 重置</button>
-            </div>
-            <div class="preview-box" id="1html-preview">
-                <div class="panel-label">预览效果</div>
+                <button class="btn btn-run" onclick="runHtmlExperiment('html-html-page', 'preview-html-page', 'badge-html-page')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetHtmlExperiment('html-html-page', 'preview-html-page', 'badge-html-page')">↺ 重置代码</button>
             </div>
         </div>
-</section></main>
+    </section>
 
-    <script src="../js/lecture-utils.js"></script>
-    <script>
-        // 第1次课-HTML基础实验交互逻辑
-        function run1htmlExperiment() {
-            runHtmlExperiment('1html-html', '1html-preview', '1html-status');
-        }
+    <!-- ============================================
+         课程小结区域
+         ============================================ -->
+    <section id="summary">
+        <h2>五、本课小结</h2>
         
-        function reset1htmlExperiment() {
-            resetHtmlExperiment('1html-html', '1html-preview', '1html-status');
-        }
-    </script>
+        <h3>知识点回顾</h3>
+        <ul class="checklist">
+            <li><strong>HTML概念</strong>：HTML是超文本标记语言，用于创建网页</li>
+            <li><strong>文档结构</strong>：了解HTML文档的基本结构，包括DOCTYPE、html、head、body等标签</li>
+            <li><strong>标题标签</strong>：掌握h1-h6标题标签的使用</li>
+            <li><strong>段落标签</strong>：掌握p标签和br标签的使用</li>
+            <li><strong>第一个HTML页面</strong>：学会创建和保存HTML文件</li>
+        </ul>
+        
+        <h3>重点记忆</h3>
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>概念</th>
+                    <th>要点</th>
+                    <th>示例</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>HTML</td>
+                    <td>超文本标记语言，用于创建网页</td>
+                    <td><code>&lt;html&gt;&lt;/html&gt;</code></td>
+                </tr>
+                <tr>
+                    <td>文档结构</td>
+                    <td>DOCTYPE声明+html+head+body</td>
+                    <td><code>&lt;!DOCTYPE html&gt;</code></td>
+                </tr>
+                <tr>
+                    <td>标题标签</td>
+                    <td>h1-h6，级别从高到低</td>
+                    <td><code>&lt;h1&gt;标题&lt;/h1&gt;</code></td>
+                </tr>
+                <tr>
+                    <td>段落标签</td>
+                    <td>p标签定义段落，br标签换行</td>
+                    <td><code>&lt;p&gt;段落&lt;/p&gt;</code></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- 下一课预告 -->
+        <div class="note-box">
+            <strong>下一课预告：</strong>
+            <p>下一课我们将学习【HTML排版】。预告内容简介，让学生对接下来的学习内容有所期待。</p>
+        </div>
+    </section>
+
+
+</main>
+
 </body>
 </html>
 

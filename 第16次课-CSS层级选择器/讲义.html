@@ -22,15 +22,27 @@
             <a class="sidebar-link sub-link" href="#adjacent-sibling-selector">5. 相邻兄弟选择器</a>
             <a class="sidebar-link sub-link" href="#general-sibling-selector">6. 通用兄弟选择器</a>
             <a class="sidebar-link sub-link" href="#practice">7. 实践应用</a>
+            
+            <h3>总结与练习</h3>
+            <a class="sidebar-link" href="#summary">📝 课程小结</a>
         </div>
     </nav>
 
     <main class="content">
-        <header>
+        <header id="intro">
             <h1>第16课：CSS层级选择器</h1>
             <p class="intro">
                 CSS层级选择器允许你根据元素在文档结构中的位置来选择元素。它们是CSS中基础但非常重要的选择器类型，让样式应用更加精确和灵活。本节课将学习后代选择器、子代选择器和兄弟选择器的用法。
             </p>
+            
+            <!-- 知识点标签列表 -->
+            <div class="pill-list">
+                <span class="pill">后代选择器</span>
+                <span class="pill">子代选择器</span>
+                <span class="pill">相邻兄弟选择器</span>
+                <span class="pill">通用兄弟选择器</span>
+                <span class="pill">CSS选择器</span>
+            </div>
         </header>
 
         <!-- 第一部分：CSS层级选择器 -->
@@ -593,7 +605,41 @@ article > h2 + p {
                 <button class="btn btn-reset" onclick="resetCssExperiment('css-6', 'preview-6', 'badge-6')">↺ 重置</button>
             </div>
         </div>
-</section></main>
+</section>
+
+        <!-- ============================================ -->
+        <!-- 课程小结区域 -->
+        <!-- ============================================ -->
+        <section id="summary">
+            <h2>八、课程小结</h2>
+            <p>
+                本节课我们学习了CSS层级选择器，它们是根据元素在文档结构中的位置来选择元素的强大工具。
+            </p>
+            
+            <h3>8.1 知识点回顾</h3>
+            <ul>
+                <li><strong>后代选择器</strong>：使用空格分隔，选择所有后代元素，如<code>div p</code></li>
+                <li><strong>子代选择器</strong>：使用<code>&gt;</code>分隔，只选择直接子元素，如<code>div > p</code></li>
+                <li><strong>相邻兄弟选择器</strong>：使用<code>+</code>分隔，选择下一个直接相邻元素，如<code>h2 + p</code></li>
+                <li><strong>通用兄弟选择器</strong>：使用<code>~</code>分隔，选择所有后面的兄弟元素，如<code>h2 ~ p</code></li>
+            </ul>
+            
+            <h3>8.2 重点记忆</h3>
+            <div class="tip-box">
+                <span class="tip-title">📌 选择器优先级</span>
+                <p>层级选择器的优先级取决于其组成部分的优先级，组合选择器不会改变单个选择器的优先级。</p>
+                <p>ID选择器 > 类选择器 > 元素选择器</p>
+            </div>
+            
+            <h3>8.3 最佳实践</h3>
+            <ol>
+                <li>优先使用较简单的选择器，避免过度复杂的嵌套</li>
+                <li>合理使用层级选择器，提高样式的精确性和可维护性</li>
+                <li>结合其他选择器使用，创建更强大的选择规则</li>
+                <li>考虑选择器的性能，避免不必要的层级嵌套</li>
+            </ol>
+        </section>
+    </main>
 </body>
 </html>
 

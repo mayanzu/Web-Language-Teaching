@@ -9,44 +9,73 @@
     <script src='../js/lecture-utils.js'></script>
 </head>
 <body>
-    <!-- 侧边栏导航 -->
-    <nav class="sidebar">
-        <div class="sidebar-nav">
-            <h3>课程导航</h3>
-            <a class="sidebar-link" href="#intro">👋 课程概览</a>
-            
-            <h3>Part 1: HTML5新特性</h3>
-            <a class="sidebar-link sub-link" href="#semantic-tags">1. 语义化标签</a>
-            <a class="sidebar-link sub-link" href="#form-controls">2. 表单控件</a>
-            <a class="sidebar-link sub-link" href="#multimedia">3. 多媒体支持</a>
-            <a class="sidebar-link sub-link" href="#canvas-svg">4. Canvas与SVG</a>
-            <a class="sidebar-link sub-link" href="#geolocation">5. 地理定位</a>
-            <a class="sidebar-link sub-link" href="#web-storage">6. Web存储</a>
-            
-            <h3>Part 2: 响应式设计</h3>
-            <a class="sidebar-link sub-link" href="#responsive-design">7. 响应式设计</a>
-            
-            <h3>Part 3: HTML最佳实践</h3>
-            <a class="sidebar-link sub-link" href="#best-practices">8. HTML最佳实践</a>
-            
-            <h3>Part 4: 实战练习</h3>
-            <a class="sidebar-link sub-link" href="#exercise">9. 课后练习</a>
+
+<!-- ============================================
+     侧边栏导航 - 课程目录
+     ============================================ -->
+<nav class="sidebar">
+    <div class="sidebar-nav">
+        <h3>课程导航</h3>
+        <a class="sidebar-link" href="#intro">👋 课程概览</a>
+        
+        <h3>Part 1: HTML5新特性</h3>
+        <a class="sidebar-link sub-link" href="#semantic-tags">1.1 语义化标签</a>
+        <a class="sidebar-link sub-link" href="#form-controls">1.2 表单控件</a>
+        <a class="sidebar-link sub-link" href="#multimedia">1.3 多媒体支持</a>
+        <a class="sidebar-link sub-link" href="#canvas-svg">1.4 Canvas与SVG</a>
+        <a class="sidebar-link sub-link" href="#geolocation">1.5 地理定位</a>
+        <a class="sidebar-link sub-link" href="#web-storage">1.6 Web存储</a>
+        
+        <h3>Part 2: 响应式设计</h3>
+        <a class="sidebar-link sub-link" href="#responsive-design">2.1 响应式设计</a>
+        
+        <h3>Part 3: HTML最佳实践</h3>
+        <a class="sidebar-link sub-link" href="#best-practices">3.1 HTML最佳实践</a>
+        
+        <h3>Part 4: 实战练习</h3>
+        <a class="sidebar-link sub-link" href="#exercise">4.1 课后练习</a>
+        <a class="sidebar-link sub-link" href="#lab-1">实验 01</a>
+        
+        <h3>总结与练习</h3>
+        <a class="sidebar-link" href="#summary">📝 课程小结</a>
+    </div>
+</nav>
+
+
+<!-- ============================================
+     主内容区域
+     ============================================ -->
+<main class="content">
+
+    <!-- ============================================
+         课程头部 - 概览区域
+         ============================================ -->
+    <header id="intro">
+        <h1>第12课：HTML5新特性与最佳实践</h1>
+        <p class="intro">
+            欢迎来到HTML5新特性与最佳实践课程！在这节课中，我们将学习HTML5引入的新特性，包括语义化标签、表单控件、多媒体支持、Canvas与SVG、地理定位和Web存储等。
+            同时，我们还将了解HTML最佳实践，包括文档结构、代码编写、可访问性和性能优化等方面的知识。
+        </p>
+        
+        <!-- 知识点标签列表 -->
+        <div class="pill-list">
+            <span class="pill">语义化标签</span>
+            <span class="pill">表单控件</span>
+            <span class="pill">多媒体支持</span>
+            <span class="pill">Canvas</span>
+            <span class="pill">SVG</span>
+            <span class="pill">地理定位</span>
+            <span class="pill">Web存储</span>
+            <span class="pill">响应式设计</span>
+            <span class="pill">HTML最佳实践</span>
         </div>
-    </nav>
+    </header>
 
-    <!-- 主内容区 -->
-    <main class="content">
-        <header id="intro">
-            <h1>第12课：HTML5新特性与最佳实践</h1>
-            <p class="intro">
-                欢迎来到HTML5新特性与最佳实践课程！在这节课中，我们将学习HTML5引入的新特性，包括语义化标签、表单控件、多媒体支持、Canvas与SVG、地理定位和Web存储等。
-                同时，我们还将了解HTML最佳实践，包括文档结构、代码编写、可访问性和性能优化等方面的知识。
-            </p>
-        </header>
-
-        <!-- 第一部分：HTML5新特性 -->
-        <section id="semantic-tags">
-            <h2>1. 语义化标签</h2>
+        <!-- ============================================
+         正文内容 - 语义化标签
+         ============================================ -->
+    <section id="semantic-tags">
+        <h2>一、语义化标签</h2>
             <p>
                 HTML5引入了一系列语义化标签，用于更清晰地描述页面结构，提高页面的可访问性和SEO友好性。
             </p>
@@ -92,8 +121,11 @@
             </table>
         </section>
 
-        <section id="form-controls">
-            <h2>2. 表单控件</h2>
+        <!-- ============================================
+         正文内容 - 表单控件
+         ============================================ -->
+    <section id="form-controls">
+        <h2>二、表单控件</h2>
             <p>
                 HTML5引入了一系列新的表单控件和属性，提高了表单的功能性和用户体验。
             </p>
@@ -143,28 +175,34 @@
             </table>
         </section>
 
-        <section id="multimedia">
-            <h2>3. 多媒体支持</h2>
+        <!-- ============================================
+         正文内容 - 多媒体支持
+         ============================================ -->
+    <section id="multimedia">
+        <h2>三、多媒体支持</h2>
             <p>
                 HTML5提供了强大的多媒体支持，允许我们直接在网页中嵌入和播放音频、视频等媒体内容。
             </p>
             
             <h3>3.1 音频标签</h3>
-            <pre><code>&lt;audio controls&gt;
+            <pre class="html"><code>&lt;audio controls&gt;
     &lt;source src="audio.mp3" type="audio/mpeg"&gt;
     您的浏览器不支持音频播放
 &lt;/audio&gt;</code></pre>
             
             <h3>3.2 视频标签</h3>
-            <pre><code>&lt;video controls width="640" height="360" poster="poster.jpg"&gt;
+            <pre class="html"><code>&lt;video controls width="640" height="360" poster="poster.jpg"&gt;
     &lt;source src="video.mp4" type="video/mp4"&gt;
     &lt;source src="video.webm" type="video/webm"&gt;
     您的浏览器不支持视频播放
 &lt;/video&gt;</code></pre>
         </section>
 
-        <section id="canvas-svg">
-            <h2>4. Canvas与SVG</h2>
+        <!-- ============================================
+         正文内容 - Canvas与SVG
+         ============================================ -->
+    <section id="canvas-svg">
+        <h2>四、Canvas与SVG</h2>
             <p>
                 HTML5引入了两种新的图形绘制技术：Canvas和SVG，用于在网页中绘制各种图形和动画。
             </p>
@@ -173,7 +211,7 @@
             <p>
                 Canvas是基于像素的绘图技术，适合绘制动态图形和动画。
             </p>
-            <pre><code>&lt;canvas id="myCanvas" width="200" height="100"&gt;&lt;/canvas&gt;
+            <pre class="html"><code>&lt;canvas id="myCanvas" width="200" height="100"&gt;&lt;/canvas&gt;
 
 &lt;script&gt;
     const canvas = document.getElementById('myCanvas');
@@ -186,17 +224,20 @@
             <p>
                 SVG是基于矢量的绘图技术，适合绘制静态图形和图标。
             </p>
-            <pre><code>&lt;svg width="100" height="100"&gt;
+            <pre class="html"><code>&lt;svg width="100" height="100"&gt;
     &lt;circle cx="50" cy="50" r="40" stroke="black" stroke-width="2" fill="red" /&gt;
 &lt;/svg&gt;</code></pre>
         </section>
 
-        <section id="geolocation">
-            <h2>5. 地理定位</h2>
+        <!-- ============================================
+         正文内容 - 地理定位
+         ============================================ -->
+    <section id="geolocation">
+        <h2>五、地理定位</h2>
             <p>
                 HTML5提供了地理定位API，允许网页获取用户的地理位置信息。
             </p>
-            <pre><code>&lt;button onclick="getLocation()"&gt;获取我的位置&lt;/button&gt;
+            <pre class="html"><code>&lt;button onclick="getLocation()"&gt;获取我的位置&lt;/button&gt;
 &lt;p id="demo"&gt;&lt;/p&gt;
 
 &lt;script&gt;
@@ -215,8 +256,11 @@
 &lt;/script&gt;</code></pre>
         </section>
 
-        <section id="web-storage">
-            <h2>6. Web存储</h2>
+        <!-- ============================================
+         正文内容 - Web存储
+         ============================================ -->
+    <section id="web-storage">
+        <h2>六、Web存储</h2>
             <p>
                 HTML5引入了Web存储API，允许网页在客户端存储数据，包括localStorage和sessionStorage。
             </p>
@@ -225,7 +269,7 @@
             <p>
                 localStorage用于长期存储数据，数据不会过期，直到被手动删除。
             </p>
-            <pre><code>&lt;script&gt;
+            <pre class="html"><code>&lt;script&gt;
     // 存储数据
     localStorage.setItem("username", "John");
     
@@ -243,7 +287,7 @@
             <p>
                 sessionStorage用于临时存储数据，数据只在当前会话中有效，关闭浏览器窗口后数据会被清除。
             </p>
-            <pre><code>&lt;script&gt;
+            <pre class="html"><code>&lt;script&gt;
     // 存储数据
     sessionStorage.setItem("username", "John");
     
@@ -258,8 +302,11 @@
 &lt;/script&gt;</code></pre>
         </section>
 
-        <section id="responsive-design">
-            <h2>7. 响应式设计</h2>
+        <!-- ============================================
+         正文内容 - 响应式设计
+         ============================================ -->
+    <section id="responsive-design">
+        <h2>七、响应式设计</h2>
             <p>
                 响应式设计是一种网页设计方法，使网页能够适应不同设备的屏幕尺寸和分辨率。
             </p>
@@ -316,8 +363,11 @@ body {
 }</code></pre>
         </section>
 
-        <section id="best-practices">
-            <h2>8. HTML最佳实践</h2>
+        <!-- ============================================
+         正文内容 - HTML最佳实践
+         ============================================ -->
+    <section id="best-practices">
+        <h2>八、HTML最佳实践</h2>
             <p>
                 遵循HTML最佳实践能够提高代码的质量、可读性和可维护性，确保页面符合现代Web标准。
             </p>
@@ -371,9 +421,11 @@ body {
             </div>
         </section>
 
-        <!-- 第二部分：实战练习 -->
-        <section id="exercise">
-            <h2>9. 课后练习</h2>
+        <!-- ============================================
+         正文内容 - 课后练习
+         ============================================ -->
+    <section id="exercise">
+        <h2>九、课后练习</h2>
             <p>
                 请完成以下练习，巩固本节课所学的知识：
             </p>
@@ -387,9 +439,11 @@ body {
             </ol>
         </section>
         
-        <!-- 课程总结 -->
-        <section>
-            <h2>课程总结</h2>
+        <!-- ============================================
+         课程小结区域
+         ============================================ -->
+    <section id="summary">
+        <h2>十、课程小结</h2>
             <p>
                 恭喜你完成了HTML基础课程的学习！在这12节课中，我们学习了HTML的基础知识和高级特性，包括：
             </p>

@@ -8,60 +8,89 @@
     <script src='../js/lecture-utils.js'></script>
 </head>
 <body>
-    <!-- 侧边栏导航 -->
-    <nav class="sidebar">
-        <div class="sidebar-nav">
-            <h3>课程导航</h3>
-            <a class="sidebar-link" href="#intro">👋 课程概览</a>
-            
-            <h3>Part 1: HTML语义化</h3>
-            <a class="sidebar-link" href="#what-is-semantic" class="sub-link">1. 什么是语义化</a>
-            <a class="sidebar-link" href="#semantic-tags" class="sub-link">2. 常见语义化标签</a>
-            <a class="sidebar-link" href="#semantic-structure" class="sub-link">3. 语义化结构设计</a>
-            <a class="sidebar-link" href="#semantic-benefits" class="sub-link">4. 语义化的优势</a>
-            
-            <h3>Part 2: 实战练习</h3>
-            <a class="sidebar-link" href="#exercise" class="sub-link">5. 课后练习</a>
+
+<!-- ============================================
+     侧边栏导航 - 课程目录
+     ============================================ -->
+<nav class="sidebar">
+    <div class="sidebar-nav">
+        <h3>课程导航</h3>
+        <a class="sidebar-link" href="#intro">👋 课程概览</a>
+        
+        <h3>Part 1: HTML语义化</h3>
+        <a class="sidebar-link" href="#what-is-semantic" class="sub-link">1.1 什么是语义化</a>
+        <a class="sidebar-link" href="#semantic-tags" class="sub-link">1.2 常见语义化标签</a>
+        <a class="sidebar-link" href="#lab-1" class="sub-link">实验 01</a>
+        <a class="sidebar-link" href="#semantic-structure" class="sub-link">1.3 语义化结构设计</a>
+        <a class="sidebar-link" href="#semantic-benefits" class="sub-link">1.4 语义化的优势</a>
+        
+        <h3>Part 2: 实战练习</h3>
+        <a class="sidebar-link" href="#exercise" class="sub-link">2.1 课后练习</a>
+        <a class="sidebar-link" href="#lab-2" class="sub-link">实验 02</a>
+        
+        <h3>总结与练习</h3>
+        <a class="sidebar-link" href="#summary" class="sub-link">📝 课程小结</a>
+    </div>
+</nav>
+
+
+<!-- ============================================
+     主内容区域
+     ============================================ -->
+<main class="content">
+
+    <!-- ============================================
+         课程头部 - 概览区域
+         ============================================ -->
+    <header id="intro">
+        <h1>第10课：HTML语义化标签</h1>
+        <p class="intro">
+            在本节课中，我们将学习HTML语义化标签。语义化是现代Web开发的重要概念，它强调使用具有明确含义的HTML标签来描述内容，而不仅仅是为了呈现效果。
+            通过本节课的学习，你将理解语义化的重要性，掌握常见的语义化标签，并能够设计语义化的HTML结构。
+        </p>
+        
+        <!-- 知识点标签列表 -->
+        <div class="pill-list">
+            <span class="pill">语义化标签</span>
+            <span class="pill">页面结构</span>
+            <span class="pill">可访问性</span>
+            <span class="pill">SEO优化</span>
+            <span class="pill">header标签</span>
+            <span class="pill">nav标签</span>
+            <span class="pill">main标签</span>
+            <span class="pill">article标签</span>
         </div>
-    </nav>
+    </header>
 
-    <!-- 主内容区 -->
-    <main class="content">
-        <header id="intro">
-            <h1>第10课：HTML语义化标签</h1>
-            <p class="intro">
-                在本节课中，我们将学习HTML语义化标签。语义化是现代Web开发的重要概念，它强调使用具有明确含义的HTML标签来描述内容，而不仅仅是为了呈现效果。
-                通过本节课的学习，你将理解语义化的重要性，掌握常见的语义化标签，并能够设计语义化的HTML结构。
-            </p>
-        </header>
-
-        <!-- 第一部分：HTML语义化 -->
-        <section id="what-is-semantic">
-            <h2>1. 什么是语义化</h2>
-            <p>
-                HTML语义化是指使用合适的HTML标签来描述内容的含义，使标签与内容的逻辑结构相匹配。语义化的HTML能够让浏览器、搜索引擎和开发者更容易理解页面的结构和内容。
-            </p>
+    <!-- ============================================
+         正文内容 - 什么是语义化
+         ============================================ -->
+    <section id="what-is-semantic">
+        <h2>一、什么是语义化</h2>
+        <p>
+            HTML语义化是指使用合适的HTML标签来描述内容的含义，使标签与内容的逻辑结构相匹配。语义化的HTML能够让浏览器、搜索引擎和开发者更容易理解页面的结构和内容。
+        </p>
+        
+        <h3>1.1 语义化的核心思想</h3>
+        <ul>
+            <li>使用正确的标签来表示正确的内容</li>
+            <li>让标签本身具有含义，而不仅仅是用于布局</li>
+            <li>提高HTML的可读性和可维护性</li>
+            <li>有利于搜索引擎优化（SEO）</li>
+            <li>提高页面的可访问性</li>
+        </ul>
+        
+        <h3>1.2 非语义化vs语义化</h3>
+        <p>
+            在HTML5之前，开发者通常使用<code>&lt;div&gt;</code>和<code>&lt;span&gt;</code>等非语义化标签来构建页面结构，然后通过CSS类名来表示其含义。
+            而HTML5引入了一系列语义化标签，如<code>&lt;header&gt;</code>、<code>&lt;nav&gt;</code>、<code>&lt;main&gt;</code>等，这些标签本身就具有明确的含义。
+        </p>
+        
+        <div class="example-box">
+            <h3>非语义化vs语义化对比</h3>
             
-            <h3>1.1 语义化的核心思想</h3>
-            <ul>
-                <li>使用正确的标签来表示正确的内容</li>
-                <li>让标签本身具有含义，而不仅仅是用于布局</li>
-                <li>提高HTML的可读性和可维护性</li>
-                <li>有利于搜索引擎优化（SEO）</li>
-                <li>提高页面的可访问性</li>
-            </ul>
-            
-            <h3>1.2 非语义化vs语义化</h3>
-            <p>
-                在HTML5之前，开发者通常使用<code>&lt;div&gt;</code>和<code>&lt;span&gt;</code>等非语义化标签来构建页面结构，然后通过CSS类名来表示其含义。
-                而HTML5引入了一系列语义化标签，如<code>&lt;header&gt;</code>、<code>&lt;nav&gt;</code>、<code>&lt;main&gt;</code>等，这些标签本身就具有明确的含义。
-            </p>
-            
-            <div class="example-box">
-                <h3>非语义化vs语义化对比</h3>
-                
-                <h4>非语义化代码：</h4>
-                <pre><code>&lt;div class="header"&gt;
+            <h4>非语义化代码：</h4>
+            <pre class="html"><code>&lt;div class="header"&gt;
     &lt;h1&gt;网站标题&lt;/h1&gt;
     &lt;div class="nav"&gt;
         &lt;a href="#"&gt;首页&lt;/a&gt;
@@ -84,9 +113,9 @@
 &lt;div class="footer"&gt;
     &lt;p&gt;版权信息&lt;/p&gt;
 &lt;/div&gt;</code></pre>
-                
-                <h4>语义化代码：</h4>
-                <pre><code>&lt;header&gt;
+            
+            <h4>语义化代码：</h4>
+            <pre class="html"><code>&lt;header&gt;
     &lt;h1&gt;网站标题&lt;/h1&gt;
     &lt;nav&gt;
         &lt;a href="#"&gt;首页&lt;/a&gt;
@@ -109,135 +138,147 @@
 &lt;footer&gt;
     &lt;p&gt;版权信息&lt;/p&gt;
 &lt;/footer&gt;</code></pre>
-            </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="semantic-tags">
-            <h2>2. 常见语义化标签</h2>
-            <p>
-                HTML5引入了一系列语义化标签，用于描述页面的不同部分。以下是一些常用的语义化标签：
-            </p>
+    <!-- ============================================
+         正文内容 - 常见语义化标签
+         ============================================ -->
+    <section id="semantic-tags">
+        <h2>二、常见语义化标签</h2>
+        <p>
+            HTML5引入了一系列语义化标签，用于描述页面的不同部分。以下是一些常用的语义化标签：
+        </p>
+        
+        <h3>2.1 页面结构标签</h3>
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>标签</th>
+                    <th>描述</th>
+                    <th>示例</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>&lt;header&gt;</code></td>
+                    <td>定义页面或区域的头部</td>
+                    <td>网站标题、导航栏等</td>
+                </tr>
+                <tr>
+                    <td><code>&lt;nav&gt;</code></td>
+                    <td>定义导航链接的容器</td>
+                    <td>主导航、侧边栏导航等</td>
+                </tr>
+                <tr>
+                    <td><code>&lt;main&gt;</code></td>
+                    <td>定义页面的主要内容</td>
+                    <td>页面的核心内容</td>
+                </tr>
+                <tr>
+                    <td><code>&lt;section&gt;</code></td>
+                    <td>定义页面中的一个区域或节</td>
+                    <td>文章的章节、产品展示等</td>
+                </tr>
+                <tr>
+                    <td><code>&lt;article&gt;</code></td>
+                    <td>定义独立的、完整的内容块</td>
+                    <td>博客文章、新闻报道等</td>
+                </tr>
+                <tr>
+                    <td><code>&lt;aside&gt;</code></td>
+                    <td>定义页面的侧边栏内容</td>
+                    <td>相关文章、广告等</td>
+                </tr>
+                <tr>
+                    <td><code>&lt;footer&gt;</code></td>
+                    <td>定义页面或区域的页脚</td>
+                    <td>版权信息、联系方式等</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>2.2 文本语义化标签</h3>
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>标签</th>
+                    <th>描述</th>
+                    <th>示例</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>&lt;h1&gt;-&lt;h6&gt;</code></td>
+                    <td>定义标题，h1级别最高，h6级别最低</td>
+                    <td>页面标题、章节标题等</td>
+                </tr>
+                <tr>
+                    <td><code>&lt;p&gt;</code></td>
+                    <td>定义段落</td>
+                    <td>文章内容、描述文本等</td>
+                </tr>
+                <tr>
+                    <td><code>&lt;strong&gt;</code></td>
+                    <td>定义重要文本</td>
+                    <td>强调关键词</td>
+                </tr>
+                <tr>
+                    <td><code>&lt;em&gt;</code></td>
+                    <td>定义强调文本</td>
+                    <td>强调语气</td>
+                </tr>
+                <tr>
+                    <td><code>&lt;mark&gt;</code></td>
+                    <td>定义标记的文本</td>
+                    <td>高亮显示</td>
+                </tr>
+                <tr>
+                    <td><code>&lt;blockquote&gt;</code></td>
+                    <td>定义长引用</td>
+                    <td>引用他人的话</td>
+                </tr>
+                <tr>
+                    <td><code>&lt;q&gt;</code></td>
+                    <td>定义短引用</td>
+                    <td>短的引用文本</td>
+                </tr>
+                <tr>
+                    <td><code>&lt;code&gt;</code></td>
+                    <td>定义计算机代码</td>
+                    <td>代码片段</td>
+                </tr>
+                <tr>
+                    <td><code>&lt;pre&gt;</code></td>
+                    <td>定义预格式化文本</td>
+                    <td>保留空格和换行的文本</td>
+                </tr>
+                <tr>
+                    <td><code>&lt;time&gt;</code></td>
+                    <td>定义日期和时间</td>
+                    <td>发布日期、事件时间等</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- ============================================
+         实验 01：语义化标签
+         ============================================ -->
+    <section id="lab-1">
+        <h2>实验 01：语义化标签</h2>
+        <p>通过这个实验，你将学习常见语义化标签的用法。</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 01：语义化标签</span>
+                <span class="status-badge beginner" id="badge-1">动手实践</span>
+            </div>
             
-            <h3>2.1 页面结构标签</h3>
-            <table class="prop-table">
-                <thead>
-                    <tr>
-                        <th>标签</th>
-                        <th>描述</th>
-                        <th>示例</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>&lt;header&gt;</code></td>
-                        <td>定义页面或区域的头部</td>
-                        <td>网站标题、导航栏等</td>
-                    </tr>
-                    <tr>
-                        <td><code>&lt;nav&gt;</code></td>
-                        <td>定义导航链接的容器</td>
-                        <td>主导航、侧边栏导航等</td>
-                    </tr>
-                    <tr>
-                        <td><code>&lt;main&gt;</code></td>
-                        <td>定义页面的主要内容</td>
-                        <td>页面的核心内容</td>
-                    </tr>
-                    <tr>
-                        <td><code>&lt;section&gt;</code></td>
-                        <td>定义页面中的一个区域或节</td>
-                        <td>文章的章节、产品展示等</td>
-                    </tr>
-                    <tr>
-                        <td><code>&lt;article&gt;</code></td>
-                        <td>定义独立的、完整的内容块</td>
-                        <td>博客文章、新闻报道等</td>
-                    </tr>
-                    <tr>
-                        <td><code>&lt;aside&gt;</code></td>
-                        <td>定义页面的侧边栏内容</td>
-                        <td>相关文章、广告等</td>
-                    </tr>
-                    <tr>
-                        <td><code>&lt;footer&gt;</code></td>
-                        <td>定义页面或区域的页脚</td>
-                        <td>版权信息、联系方式等</td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <h3>2.2 文本语义化标签</h3>
-            <table class="prop-table">
-                <thead>
-                    <tr>
-                        <th>标签</th>
-                        <th>描述</th>
-                        <th>示例</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>&lt;h1&gt;-&lt;h6&gt;</code></td>
-                        <td>定义标题，h1级别最高，h6级别最低</td>
-                        <td>页面标题、章节标题等</td>
-                    </tr>
-                    <tr>
-                        <td><code>&lt;p&gt;</code></td>
-                        <td>定义段落</td>
-                        <td>文章内容、描述文本等</td>
-                    </tr>
-                    <tr>
-                        <td><code>&lt;strong&gt;</code></td>
-                        <td>定义重要文本</td>
-                        <td>强调关键词</td>
-                    </tr>
-                    <tr>
-                        <td><code>&lt;em&gt;</code></td>
-                        <td>定义强调文本</td>
-                        <td>强调语气</td>
-                    </tr>
-                    <tr>
-                        <td><code>&lt;mark&gt;</code></td>
-                        <td>定义标记的文本</td>
-                        <td>高亮显示</td>
-                    </tr>
-                    <tr>
-                        <td><code>&lt;blockquote&gt;</code></td>
-                        <td>定义长引用</td>
-                        <td>引用他人的话</td>
-                    </tr>
-                    <tr>
-                        <td><code>&lt;q&gt;</code></td>
-                        <td>定义短引用</td>
-                        <td>短的引用文本</td>
-                    </tr>
-                    <tr>
-                        <td><code>&lt;code&gt;</code></td>
-                        <td>定义计算机代码</td>
-                        <td>代码片段</td>
-                    </tr>
-                    <tr>
-                        <td><code>&lt;pre&gt;</code></td>
-                        <td>定义预格式化文本</td>
-                        <td>保留空格和换行的文本</td>
-                    </tr>
-                    <tr>
-                        <td><code>&lt;time&gt;</code></td>
-                        <td>定义日期和时间</td>
-                        <td>发布日期、事件时间等</td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <div class="lab-card">
-                <div class="lab-header">
-                    <span>上下结构实验室：语义化标签</span>
-                    <span id="badge-1" class="status-badge">未运行</span>
-                </div>
-                <div class="lab-body">
-                    <div class="panel">
-                        <div class="panel-label">HTML (可编辑)</div>
-                        <div class="html-editor" id="html-1" contenteditable="true">
+            <div class="lab-body split">
+                <!-- 代码编辑区 -->
+                <div class="panel code-editor" id="html-1" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
 &lt;header&gt;
   &lt;h2&gt;&lt;header&gt; - 页面头部&lt;/h2&gt;
   &lt;p&gt;包含网站标题、标志和主导航&lt;/p&gt;
@@ -276,108 +317,71 @@
   &lt;h2&gt;&lt;footer&gt; - 页脚&lt;/h2&gt;
   &lt;p&gt;版权信息 &copy; 2025&lt;/p&gt;
 &lt;/footer&gt;
-                        </div>
-                        <!-- 隐藏的原始代码，用于重置功能 -->
-                        <div id="original-1" style="display: none;">
-&lt;header&gt;
-  &lt;h2&gt;&lt;header&gt; - 页面头部&lt;/h2&gt;
-  &lt;p&gt;包含网站标题、标志和主导航&lt;/p&gt;
-&lt;/header&gt;
-
-&lt;nav&gt;
-  &lt;h2&gt;&lt;nav&gt; - 导航栏&lt;/h2&gt;
-  &lt;a href="#"&gt;首页&lt;/a&gt; | &lt;a href="#"&gt;关于我们&lt;/a&gt; | &lt;a href="#"&gt;联系我们&lt;/a&gt;
-&lt;/nav&gt;
-
-&lt;main&gt;
-  &lt;h2&gt;&lt;main&gt; - 主要内容&lt;/h2&gt;
-  
-  &lt;section&gt;
-    &lt;h3&gt;&lt;section&gt; - 内容区域&lt;/h3&gt;
-    &lt;p&gt;这是一个内容区域&lt;/p&gt;
-    
-    &lt;article&gt;
-      &lt;h4&gt;&lt;article&gt; - 独立文章&lt;/h4&gt;
-      &lt;p&gt;这是一篇独立的文章内容&lt;/p&gt;
-    &lt;/article&gt;
-    
-    &lt;article&gt;
-      &lt;h4&gt;&lt;article&gt; - 独立文章&lt;/h4&gt;
-      &lt;p&gt;这是另一篇独立的文章内容&lt;/p&gt;
-    &lt;/article&gt;
-  &lt;/section&gt;
-  
-  &lt;aside&gt;
-    &lt;h3&gt;&lt;aside&gt; - 侧边栏&lt;/h3&gt;
-    &lt;p&gt;这是侧边栏内容，如相关文章、广告等&lt;/p&gt;
-  &lt;/aside&gt;
-&lt;/main&gt;
-
-&lt;footer&gt;
-  &lt;h2&gt;&lt;footer&gt; - 页脚&lt;/h2&gt;
-  &lt;p&gt;版权信息 &copy; 2025&lt;/p&gt;
-&lt;/footer&gt;
-                        </div>
-                    </div>
-                    <div class="panel">
-                        <div class="panel-label">预览效果</div>
-                        <div class="preview-box" id="preview-1">
-                            <header>
-                                <h2>&lt;header&gt; - 页面头部</h2>
-                                <p>包含网站标题、标志和主导航</p>
-                            </header>
-                            
-                            <nav>
-                                <h2>&lt;nav&gt; - 导航栏</h2>
-                                <a class="sidebar-link" href="#">首页</a> | <a class="sidebar-link" href="#">关于我们</a> | <a class="sidebar-link" href="#">联系我们</a>
-                            </nav>
-                            
-                            <main>
-                                <h2>&lt;main&gt; - 主要内容</h2>
-                                
-                                <section>
-                                    <h3>&lt;section&gt; - 内容区域</h3>
-                                    <p>这是一个内容区域</p>
-                                    
-                                    <article>
-                                        <h4>&lt;article&gt; - 独立文章</h4>
-                                        <p>这是一篇独立的文章内容</p>
-                                    </article>
-                                    
-                                    <article>
-                                        <h4>&lt;article&gt; - 独立文章</h4>
-                                        <p>这是另一篇独立的文章内容</p>
-                                    </article>
-                                </section>
-                                
-                                <aside>
-                                    <h3>&lt;aside&gt; - 侧边栏</h3>
-                                    <p>这是侧边栏内容，如相关文章、广告等</p>
-                                </aside>
-                            </main>
-                            
-                            <footer>
-                                <h2>&lt;footer&gt; - 页脚</h2>
-                                <p>版权信息 &copy; 2025</p>
-                            </footer>
-                        </div>
-                    </div>
                 </div>
-                <div class="action-bar">
-                    <button class="btn btn-run" onclick="runHtmlExperiment('html-1', 'preview-1', 'badge-1')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetHtmlExperiment('html-1', 'preview-1', 'badge-1')">↺ 重置</button>
+                
+                <!-- 预览区 -->
+                <div class="panel preview-area" id="preview-1">
+                    <div class="panel-label">预览效果</div>
+                    <header>
+                        <h2>&lt;header&gt; - 页面头部</h2>
+                        <p>包含网站标题、标志和主导航</p>
+                    </header>
+                    
+                    <nav>
+                        <h2>&lt;nav&gt; - 导航栏</h2>
+                        <a class="sidebar-link" href="#">首页</a> | <a class="sidebar-link" href="#">关于我们</a> | <a class="sidebar-link" href="#">联系我们</a>
+                    </nav>
+                    
+                    <main>
+                        <h2>&lt;main&gt; - 主要内容</h2>
+                        
+                        <section>
+                            <h3>&lt;section&gt; - 内容区域</h3>
+                            <p>这是一个内容区域</p>
+                            
+                            <article>
+                                <h4>&lt;article&gt; - 独立文章</h4>
+                                <p>这是一篇独立的文章内容</p>
+                            </article>
+                            
+                            <article>
+                                <h4>&lt;article&gt; - 独立文章</h4>
+                                <p>这是另一篇独立的文章内容</p>
+                            </article>
+                        </section>
+                        
+                        <aside>
+                            <h3>&lt;aside&gt; - 侧边栏</h3>
+                            <p>这是侧边栏内容，如相关文章、广告等</p>
+                        </aside>
+                    </main>
+                    
+                    <footer>
+                        <h2>&lt;footer&gt; - 页脚</h2>
+                        <p>版权信息 &copy; 2025</p>
+                    </footer>
                 </div>
             </div>
-        </section>
-
-        <section id="semantic-structure">
-            <h2>3. 语义化结构设计</h2>
-            <p>
-                设计语义化的HTML结构需要考虑页面的逻辑结构和内容关系，使用合适的语义化标签来组织页面。
-            </p>
             
-            <h3>3.1 典型的语义化页面结构</h3>
-            <pre><code>&lt;!DOCTYPE html&gt;
+            <!-- 操作按钮 -->
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runHtmlExperiment('html-1', 'preview-1', 'badge-1')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetHtmlExperiment('html-1', 'preview-1', 'badge-1')">↺ 重置代码</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         正文内容 - 语义化结构设计
+         ============================================ -->
+    <section id="semantic-structure">
+        <h2>三、语义化结构设计</h2>
+        <p>
+            设计语义化的HTML结构需要考虑页面的逻辑结构和内容关系，使用合适的语义化标签来组织页面。
+        </p>
+        
+        <h3>3.1 典型的语义化页面结构</h3>
+        <pre class="html"><code>&lt;!DOCTYPE html&gt;
 &lt;html lang="zh-CN"&gt;
 &lt;head&gt;
     &lt;meta charset="UTF-8"&gt;
@@ -439,90 +443,103 @@
     &lt;/footer&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
-            
-            <h3>3.2 语义化结构设计原则</h3>
-            <ol>
-                <li>从内容出发，先分析页面的逻辑结构</li>
-                <li>使用合适的语义化标签来表示不同的内容块</li>
-                <li>保持HTML结构的清晰和简洁</li>
-                <li>避免过度使用语义化标签</li>
-                <li>确保标签的嵌套关系合理</li>
-            </ol>
-        </section>
+        
+        <h3>3.2 语义化结构设计原则</h3>
+        <ol>
+            <li>从内容出发，先分析页面的逻辑结构</li>
+            <li>使用合适的语义化标签来表示不同的内容块</li>
+            <li>保持HTML结构的清晰和简洁</li>
+            <li>避免过度使用语义化标签</li>
+            <li>确保标签的嵌套关系合理</li>
+        </ol>
+    </section>
 
-        <section id="semantic-benefits">
-            <h2>4. 语义化的优势</h2>
-            <p>
-                使用语义化的HTML具有以下优势：
-            </p>
-            
-            <h3>4.1 提高页面的可访问性</h3>
-            <p>
-                语义化的HTML能够让屏幕阅读器等辅助技术更好地理解页面的结构和内容，从而提高页面的可访问性，使更多的用户能够访问和使用网站。
-            </p>
-            
-            <h3>4.2 有利于搜索引擎优化（SEO）</h3>
-            <p>
-                搜索引擎爬虫能够更好地理解语义化的HTML结构，从而更准确地索引页面内容，提高页面在搜索结果中的排名。
-            </p>
-            
-            <h3>4.3 提高代码的可读性和可维护性</h3>
-            <p>
-                语义化的HTML具有清晰的结构和含义，能够让开发者更容易理解和维护代码，特别是在团队协作和项目迭代过程中。
-            </p>
-            
-            <h3>4.4 更好的兼容性</h3>
-            <p>
-                现代浏览器对HTML5语义化标签的支持越来越好，使用语义化标签能够确保页面在不同浏览器中的一致性和兼容性。
-            </p>
-            
-            <h3>4.5 支持未来的Web技术</h3>
-            <p>
-                语义化是Web发展的趋势，使用语义化标签能够更好地支持未来的Web技术和标准，如人工智能、语音助手等。
-            </p>
-            
-            <div class="tip-box">
-                <span class="tip-title">语义化的最佳实践</span>
-                <p>1. 始终使用合适的标签来表示内容的含义</p>
-                <p>2. 避免使用非语义化标签来替代语义化标签</p>
-                <p>3. 使用<code>&lt;main&gt;</code>标签来表示页面的主要内容</p>
-                <p>4. 为图片添加合适的<code>alt</code>属性</p>
-                <p>5. 使用<code>&lt;time&gt;</code>标签来表示日期和时间</p>
-                <p>6. 为链接添加合适的<code>title</code>属性</p>
-            </div>
-        </section>
+    <!-- ============================================
+         正文内容 - 语义化的优势
+         ============================================ -->
+    <section id="semantic-benefits">
+        <h2>四、语义化的优势</h2>
+        <p>
+            使用语义化的HTML具有以下优势：
+        </p>
+        
+        <h3>4.1 提高页面的可访问性</h3>
+        <p>
+            语义化的HTML能够让屏幕阅读器等辅助技术更好地理解页面的结构和内容，从而提高页面的可访问性，使更多的用户能够访问和使用网站。
+        </p>
+        
+        <h3>4.2 有利于搜索引擎优化（SEO）</h3>
+        <p>
+            搜索引擎爬虫能够更好地理解语义化的HTML结构，从而更准确地索引页面内容，提高页面在搜索结果中的排名。
+        </p>
+        
+        <h3>4.3 提高代码的可读性和可维护性</h3>
+        <p>
+            语义化的HTML具有清晰的结构和含义，能够让开发者更容易理解和维护代码，特别是在团队协作和项目迭代过程中。
+        </p>
+        
+        <h3>4.4 更好的兼容性</h3>
+        <p>
+            现代浏览器对HTML5语义化标签的支持越来越好，使用语义化标签能够确保页面在不同浏览器中的一致性和兼容性。
+        </p>
+        
+        <h3>4.5 支持未来的Web技术</h3>
+        <p>
+            语义化是Web发展的趋势，使用语义化标签能够更好地支持未来的Web技术和标准，如人工智能、语音助手等。
+        </p>
+        
+        <div class="tip-box">
+            <span class="tip-title">语义化的最佳实践</span>
+            <p>1. 始终使用合适的标签来表示内容的含义</p>
+            <p>2. 避免使用非语义化标签来替代语义化标签</p>
+            <p>3. 使用<code>&lt;main&gt;</code>标签来表示页面的主要内容</p>
+            <p>4. 为图片添加合适的<code>alt</code>属性</p>
+            <p>5. 使用<code>&lt;time&gt;</code>标签来表示日期和时间</p>
+            <p>6. 为链接添加合适的<code>title</code>属性</p>
+        </div>
+    </section>
 
-        <!-- 第二部分：实战练习 -->
-        <section id="exercise">
-            <h2>5. 课后练习</h2>
-            <p>
-                请完成以下练习，巩固本节课所学的知识：
-            </p>
-            
-            <ol>
-                <li>创建一个HTML页面，使用语义化标签构建完整的页面结构</li>
-                <li>页面应包含以下部分：
-                    <ul>
-                        <li>页面头部（<code>&lt;header&gt;</code>），包含网站标题和导航栏（<code>&lt;nav&gt;</code>）</li>
-                        <li>主要内容（<code>&lt;main&gt;</code>），包含至少2个文章（<code>&lt;article&gt;</code>）</li>
-                        <li>侧边栏（<code>&lt;aside&gt;</code>），包含相关链接和广告</li>
-                        <li>页脚（<code>&lt;footer&gt;</code>），包含版权信息和联系方式</li>
-                    </ul>
-                </li>
-                <li>在文章中使用合适的文本语义化标签，如<code>&lt;h3&gt;</code>、<code>&lt;p&gt;</code>、<code>&lt;strong&gt;</code>、<code>&lt;time&gt;</code>等</li>
-                <li>确保页面的嵌套关系合理，语义化标签使用正确</li>
-                <li>为页面添加适当的CSS样式，使页面更加美观</li>
-            </ol>
+    <!-- ============================================
+         正文内容 - 课后练习
+         ============================================ -->
+    <section id="exercise">
+        <h2>五、课后练习</h2>
+        <p>
+            请完成以下练习，巩固本节课所学的知识：
+        </p>
+        
+        <ol>
+            <li>创建一个HTML页面，使用语义化标签构建完整的页面结构</li>
+            <li>页面应包含以下部分：
+                <ul>
+                    <li>页面头部（<code>&lt;header&gt;</code>），包含网站标题和导航栏（<code>&lt;nav&gt;</code>）</li>
+                    <li>主要内容（<code>&lt;main&gt;</code>），包含至少2个文章（<code>&lt;article&gt;</code>）</li>
+                    <li>侧边栏（<code>&lt;aside&gt;</code>），包含相关链接和广告</li>
+                    <li>页脚（<code>&lt;footer&gt;</code>），包含版权信息和联系方式</li>
+                </ul>
+            </li>
+            <li>在文章中使用合适的文本语义化标签，如<code>&lt;h3&gt;</code>、<code>&lt;p&gt;</code>、<code>&lt;strong&gt;</code>、<code>&lt;time&gt;</code>等</li>
+            <li>确保页面的嵌套关系合理，语义化标签使用正确</li>
+            <li>为页面添加适当的CSS样式，使页面更加美观</li>
+        </ol>
+    </section>
+
+    <!-- ============================================
+         实验 02：HTML语义化标签实践
+         ============================================ -->
+    <section id="lab-2">
+        <h2>实验 02：HTML语义化标签实践</h2>
+        <p>通过这个实验，你将综合运用语义化标签创建完整的页面结构。</p>
         
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验：第10次课-HTML语义化标签实践</span>
-                <span id="badge-2" class="status-badge">未运行</span>
+                <span>实验 02：HTML语义化标签实践</span>
+                <span class="status-badge beginner" id="badge-2">动手实践</span>
             </div>
+            
             <div class="lab-body">
-                <div class="panel">
-                    <div class="panel-label">HTML (可编辑)</div>
-                    <div class="html-editor" id="html-2" contenteditable="true">
+                <div class="panel-label">HTML (可编辑)</div>
+                <div class="panel code-editor" id="html-2" contenteditable="true">
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -541,52 +558,104 @@
     </div>
 </body>
 </html>
-                    </div>
-                    <!-- 隐藏的原始代码，用于重置功能 -->
-                    <div id="original-2" style="display: none;">
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>第10次课-HTML语义化标签</title>
-
-</head>
-<body>
-    <div class="container">
-        <h1>第10次课-HTML语义化标签</h1>
-        <p>在这里编写你的HTML代码，实践第10次课-HTML语义化标签的知识。</p>
-        
-        <!-- 在这里添加你的HTML代码 -->
-        
-    </div>
-</body>
-</html>
-                    </div>
                 </div>
-                <div class="panel">
-                    <div class="panel-label">预览效果</div>
-                    <div class="preview-box" id="preview-2">
-                        <div class="preview-label">预览效果</div>
-                    </div>
+                <!-- 隐藏的原始代码，用于重置功能 -->
+                <div id="original-2" style="display: none;">
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第10次课-HTML语义化标签</title>
+
+</head>
+<body>
+    <div class="container">
+        <h1>第10次课-HTML语义化标签</h1>
+        <p>在这里编写你的HTML代码，实践第10次课-HTML语义化标签的知识。</p>
+        
+        <!-- 在这里添加你的HTML代码 -->
+        
+    </div>
+</body>
+</html>
                 </div>
             </div>
+            
+            <!-- 操作按钮 -->
             <div class="action-bar">
                 <button class="btn btn-run" onclick="runHtmlExperiment('html-2', 'preview-2', 'badge-2')">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="resetHtmlExperiment('html-2', 'preview-2', 'badge-2')">↺ 重置</button>
+                <button class="btn btn-reset" onclick="resetHtmlExperiment('html-2', 'preview-2', 'badge-2')">↺ 重置代码</button>
+            </div>
+            
+            <!-- 预览区 -->
+            <div class="preview-box" id="preview-2">
+                <div class="panel-label">预览效果</div>
             </div>
         </div>
-</section></main>
+    </section>
+
+    <!-- ============================================
+         课程小结区域
+         ============================================ -->
+    <section id="summary">
+        <h2>六、本课小结</h2>
+        
+        <h3>知识点回顾</h3>
+        <ul class="checklist">
+            <li><strong>语义化概念</strong>：理解了HTML语义化的定义和核心思想</li>
+            <li><strong>常见语义化标签</strong>：掌握了header、nav、main、section、article、aside、footer等结构标签</li>
+            <li><strong>文本语义化标签</strong>：学习了h1-h6、p、strong、em、mark、blockquote等文本标签</li>
+            <li><strong>语义化结构设计</strong>：学会了如何设计语义化的页面结构</li>
+            <li><strong>语义化优势</strong>：理解了语义化对可访问性、SEO和代码维护的重要性</li>
+        </ul>
+        
+        <h3>重点记忆</h3>
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>概念</th>
+                    <th>要点</th>
+                    <th>示例</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>语义化核心</td>
+                    <td>使用有明确含义的标签描述内容</td>
+                    <td>&lt;header&gt;、&lt;nav&gt;、&lt;main&gt;等</td>
+                </tr>
+                <tr>
+                    <td>页面结构标签</td>
+                    <td>描述页面不同区域的语义</td>
+                    <td>&lt;section&gt;、&lt;article&gt;、&lt;aside&gt;、&lt;footer&gt;</td>
+                </tr>
+                <tr>
+                    <td>文本语义化</td>
+                    <td>描述文本内容的含义和重要性</td>
+                    <td>&lt;h1&gt;-&lt;h6&gt;、&lt;strong&gt;、&lt;em&gt;、&lt;time&gt;</td>
+                </tr>
+                <tr>
+                    <td>语义化优势</td>
+                    <td>提高可访问性、SEO和代码可维护性</td>
+                    <td>更好的屏幕阅读器支持、更高的搜索排名</td>
+                </tr>
+                <tr>
+                    <td>最佳实践</td>
+                    <td>从内容出发，使用合适的标签，保持结构清晰</td>
+                    <td>避免过度使用div，确保标签嵌套合理</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- 下一课预告 -->
+        <div class="note-box">
+            <strong>下一课预告：</strong>
+            <p>下一课我们将开始学习CSS基础，包括CSS选择器、样式规则、盒模型等核心概念。通过CSS学习，你将能够为HTML页面添加丰富的样式，创建美观的网页效果。</p>
+        </div>
+    </section>
+
+</main>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-

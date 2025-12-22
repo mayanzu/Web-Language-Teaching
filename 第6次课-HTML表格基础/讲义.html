@@ -4,55 +4,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>第6课：HTML表格基础</title>
-    <link rel='stylesheet' href='../统一讲义样式模板.css'>
-    <script src='../js/lecture-utils.js'></script>
     
-
+    <!-- 统一样式引用 -->
+    <link rel='stylesheet' href='../统一讲义样式模板.css'>
+    <!-- 通用工具函数库 -->
+    <script src='../js/lecture-utils.js'></script>
 </head>
 <body>
-    <!-- 侧边栏导航 -->
-    <nav class="sidebar">
-        <div class="sidebar-nav">
-            <h3>课程导航</h3>
-            <a class="sidebar-link" href="#intro">👋 课程概览</a>
-            
-            <h3>Part 1: HTML表格基础</h3>
-            <a class="sidebar-link" href="#table-structure" class="sub-link">1. 表格结构</a>
-            <a class="sidebar-link" href="#table-elements" class="sub-link">2. 表格元素</a>
-            <a class="sidebar-link" href="#table-attributes" class="sub-link">3. 表格属性</a>
-            <a class="sidebar-link" href="#simple-table" class="sub-link">4. 简单表格制作</a>
-            
-            <h3>Part 2: 实战练习</h3>
-            <a class="sidebar-link" href="#exercise" class="sub-link">5. 课后练习</a>
+
+<!-- ============================================
+     侧边栏导航 - 课程目录
+     ============================================ -->
+<nav class="sidebar">
+    <div class="sidebar-nav">
+        <h3>课程导航</h3>
+        <a class="sidebar-link" href="#intro">👋 课程概览</a>
+        
+        <h3>Part 1: HTML表格基础</h3>
+        <a class="sidebar-link" href="#table-structure" class="sub-link">1.1 表格结构</a>
+        <a class="sidebar-link" href="#table-elements" class="sub-link">1.2 表格元素</a>
+        <a class="sidebar-link" href="#table-attributes" class="sub-link">1.3 表格属性</a>
+        <a class="sidebar-link" href="#simple-table" class="sub-link">1.4 简单表格制作</a>
+        <a class="sidebar-link" href="#lab-1" class="sub-link">实验 01</a>
+        <a class="sidebar-link" href="#lab-2" class="sub-link">实验 02</a>
+        <a class="sidebar-link" href="#lab-3" class="sub-link">实验 03</a>
+        <a class="sidebar-link" href="#lab-4" class="sub-link">实验 04</a>
+        
+        <h3>Part 2: 实战练习</h3>
+        <a class="sidebar-link" href="#exercise" class="sub-link">2.1 课后练习</a>
+        <a class="sidebar-link" href="#lab-5" class="sub-link">实验 05</a>
+        
+        <h3>总结与练习</h3>
+        <a class="sidebar-link" href="#summary" class="sub-link">📝 课程小结</a>
+    </div>
+</nav>
+
+
+<!-- ============================================
+     主内容区域
+     ============================================ -->
+<main class="content">
+
+    <!-- ============================================
+         课程头部 - 概览区域
+         ============================================ -->
+    <header id="intro">
+        <h1>第6课：HTML表格基础</h1>
+        <p class="intro">
+            在本节课中，我们将学习HTML表格的基础知识。表格是网页中常用的内容组织方式，它可以清晰地展示结构化数据，如课程表、价格表、成绩表等。
+            通过本节课的学习，你将掌握HTML表格的基本结构、常用元素和属性，以及如何创建简单的表格。
+        </p>
+        
+        <!-- 知识点标签列表 -->
+        <div class="pill-list">
+            <span class="pill">表格结构</span>
+            <span class="pill">表格元素</span>
+            <span class="pill">表格属性</span>
+            <span class="pill">简单表格制作</span>
+            <span class="pill">学生成绩表</span>
+            <span class="pill">课程表</span>
         </div>
-    </nav>
+    </header>
 
-    <!-- 主内容区 -->
-    <main class="content">
-        <header id="intro">
-            <h1>第6课：HTML表格基础</h1>
-            <p class="intro">
-                在本节课中，我们将学习HTML表格的基础知识。表格是网页中常用的内容组织方式，它可以清晰地展示结构化数据，如课程表、价格表、成绩表等。
-                通过本节课的学习，你将掌握HTML表格的基本结构、常用元素和属性，以及如何创建简单的表格。
-            </p>
-        </header>
 
-        <!-- 第一部分：HTML表格基础 -->
-        <section id="table-structure">
-            <h2>1. 表格结构</h2>
-            <p>
-                HTML表格由行和列组成，形成一个网格结构。表格的基本结构包括：
-            </p>
-            
-            <ul>
-                <li>表格标题：描述表格的内容</li>
-                <li>表头：包含列标题</li>
-                <li>表体：包含表格的主要数据</li>
-                <li>表尾：包含表格的汇总数据（可选）</li>
-            </ul>
-            
-            <h3>1.1 表格的基本语法</h3>
-            <pre><code>&lt;table&gt;
+    <!-- ============================================
+         正文内容 - 表格结构
+         ============================================ -->
+    <section id="table-structure">
+        <h2>一、表格结构</h2>
+        <p>
+            HTML表格由行和列组成，形成一个网格结构。表格的基本结构包括：
+        </p>
+        
+        <ul>
+            <li>表格标题：描述表格的内容</li>
+            <li>表头：包含列标题</li>
+            <li>表体：包含表格的主要数据</li>
+            <li>表尾：包含表格的汇总数据（可选）</li>
+        </ul>
+        
+        <h3>1.1 表格的基本语法</h3>
+        <pre class="html"><code>&lt;table&gt;
     &lt;caption&gt;表格标题&lt;/caption&gt;
     &lt;thead&gt;
         &lt;tr&gt;
@@ -77,733 +109,551 @@
         &lt;/tr&gt;
     &lt;/tfoot&gt;
 &lt;/table&gt;</code></pre>
-            
-            <div class="lab-card">
-                <div class="lab-header">
-                    <span>上下结构实验室：表格基本结构</div>
-                    <span id="badge-1" class="status-badge">未运行</div>
-                </div>
-                <div class="lab-body">
-                    <div class="panel">
-                        <div class="panel-label">HTML (可编辑)</div>
-                        <div class="html-editor" id="html-1" contenteditable="true">
-&lt;table border="1" cellpadding="10" cellspacing="0"&gt;
-    &lt;caption&gt;表格标题&lt;/caption&gt;
-    &lt;thead&gt;
-        &lt;tr&gt;
-            &lt;th&gt;表头1&lt;/th&gt;
-            &lt;th&gt;表头2&lt;/th&gt;
-        &lt;/tr&gt;
-    &lt;/thead&gt;
-    &lt;tbody&gt;
-        &lt;tr&gt;
-            &lt;td&gt;数据1&lt;/td&gt;
-            &lt;td&gt;数据2&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-            &lt;td&gt;数据3&lt;/td&gt;
-            &lt;td&gt;数据4&lt;/td&gt;
-        &lt;/tr&gt;
-    &lt;/tbody&gt;
-    &lt;tfoot&gt;
-        &lt;tr&gt;
-            &lt;td&gt;汇总1&lt;/td&gt;
-            &lt;td&gt;汇总2&lt;/td&gt;
-        &lt;/tr&gt;
-    &lt;/tfoot&gt;
-&lt;/table&gt;
-                        </div>
-                        <!-- 隐藏的原始代码，用于重置功能 -->
-                        <div id="original-1" style="display: none;">
-&lt;table border="1" cellpadding="10" cellspacing="0"&gt;
-    &lt;caption&gt;表格标题&lt;/caption&gt;
-    &lt;thead&gt;
-        &lt;tr&gt;
-            &lt;th&gt;表头1&lt;/th&gt;
-            &lt;th&gt;表头2&lt;/th&gt;
-        &lt;/tr&gt;
-    &lt;/thead&gt;
-    &lt;tbody&gt;
-        &lt;tr&gt;
-            &lt;td&gt;数据1&lt;/td&gt;
-            &lt;td&gt;数据2&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-            &lt;td&gt;数据3&lt;/td&gt;
-            &lt;td&gt;数据4&lt;/td&gt;
-        &lt;/tr&gt;
-    &lt;/tbody&gt;
-    &lt;tfoot&gt;
-        &lt;tr&gt;
-            &lt;td&gt;汇总1&lt;/td&gt;
-            &lt;td&gt;汇总2&lt;/td&gt;
-        &lt;/tr&gt;
-    &lt;/tfoot&gt;
-&lt;/table&gt;
-                        </div>
-                    </div>
-                    <div class="panel">
-                        <div class="panel-label">预览效果</div>
-                        <div class="preview-box" id="preview-1">
-                            <table border="1" cellpadding="10" cellspacing="0">
-                                <caption>表格标题</caption>
-                                <thead>
-                                    <tr>
-                                        <th>表头1</th>
-                                        <th>表头2</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>数据1</td>
-                                        <td>数据2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>数据3</td>
-                                        <td>数据4</td>
-                                    </tr>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <td>汇总1</td>
-                                        <td>汇总2</td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="action-bar">
-                    <button class="btn btn-run" onclick="runHtmlExperiment('html-1', 'preview-1', 'badge-1')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetHtmlExperiment('html-1', 'preview-1', 'badge-1')">↺ 重置</button>
-                </div>
-            </div>
-        </section>
+    </section>
 
-        <section id="table-elements">
-            <h2>2. 表格元素</h2>
-            <p>
-                HTML表格使用多种元素来定义其结构，以下是一些常用的表格元素：
-            </p>
-            
-            <table>
-                <thead>
-                    <tr>
-                        <th>元素</th>
-                        <th>描述</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>&lt;table&gt;</code></td>
-                        <td>定义表格的容器</td>
-                    </tr>
-                    <tr>
-                        <td><code>&lt;caption&gt;</code></td>
-                        <td>定义表格的标题</td>
-                    </tr>
-                    <tr>
-                        <td><code>&lt;thead&gt;</code></td>
-                        <td>定义表格的表头部分</td>
-                    </tr>
-                    <tr>
-                        <td><code>&lt;tbody&gt;</code></td>
-                        <td>定义表格的表体部分</td>
-                    </tr>
-                    <tr>
-                        <td><code>&lt;tfoot&gt;</code></td>
-                        <td>定义表格的表尾部分</td>
-                    </tr>
-                    <tr>
-                        <td><code>&lt;tr&gt;</code></td>
-                        <td>定义表格的一行</td>
-                    </tr>
-                    <tr>
-                        <td><code>&lt;th&gt;</code></td>
-                        <td>定义表格的表头单元格</td>
-                    </tr>
-                    <tr>
-                        <td><code>&lt;td&gt;</code></td>
-                        <td>定义表格的数据单元格</td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <h3>2.1 &lt;th&gt; vs &lt;td&gt;</h3>
-            <p>
-                <code>&lt;th&gt;</code>和<code>&lt;td&gt;</code>都用于定义表格的单元格，但它们有以下区别：
-            </p>
-            
-            <ul>
-                <li><code>&lt;th&gt;</code>用于表头单元格，默认居中对齐且加粗显示</li>
-                <li><code>&lt;td&gt;</code>用于数据单元格，默认左对齐且正常显示</li>
-            </ul>
-        </section>
 
-        <section id="table-attributes">
-            <h2>3. 表格属性</h2>
-            <p>
-                虽然HTML5推荐使用CSS来设置表格的样式，但<code>&lt;table&gt;</code>标签仍然支持一些传统的属性，用于控制表格的外观。
-                以下是一些常用的表格属性：
-            </p>
-            
-            <table>
-                <thead>
-                    <tr>
-                        <th>属性</th>
-                        <th>描述</th>
-                        <th>示例</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>border</code></td>
-                        <td>指定表格边框的宽度（像素）</td>
-                        <td><code>border="1"</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>width</code></td>
-                        <td>指定表格的宽度（像素或百分比）</td>
-                        <td><code>width="500"</code>或<code>width="100%"</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>height</code></td>
-                        <td>指定表格的高度（像素或百分比）</td>
-                        <td><code>height="300"</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>cellpadding</code></td>
-                        <td>指定单元格内容与边框之间的间距（像素）</td>
-                        <td><code>cellpadding="5"</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>cellspacing</code></td>
-                        <td>指定单元格之间的间距（像素）</td>
-                        <td><code>cellspacing="0"</code></td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <div class="tip-box">
-                <span class="tip-title">样式建议</div>
-                <p>在现代Web开发中，我们通常使用CSS来设置表格的样式，而不是使用HTML属性。CSS提供了更强大、更灵活的样式控制能力。</p>
-            </div>
-            
-            <div class="lab-card">
-                <div class="lab-header">
-                    <span>上下结构实验室：表格属性</div>
-                    <span id="badge-2" class="status-badge">未运行</div>
-                </div>
-                <div class="lab-body">
-                    <div class="panel">
-                        <div class="panel-label">HTML (可编辑)</div>
-                        <div class="html-editor" id="html-2" contenteditable="true">
-&lt;!-- 不同border属性值的对比 --&gt;
-&lt;h3&gt;border="1"&lt;/h3&gt;
-&lt;table border="1" cellpadding="5" cellspacing="0" width="100%"&gt;
-    &lt;tr&gt;
-        &lt;th&gt;表头1&lt;/th&gt;
-        &lt;th&gt;表头2&lt;/th&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-        &lt;td&gt;数据1&lt;/td&gt;
-        &lt;td&gt;数据2&lt;/td&gt;
-    &lt;/tr&gt;
-&lt;/table&gt;
-
-&lt;h3&gt;border="3"&lt;/h3&gt;
-&lt;table border="3" cellpadding="10" cellspacing="2" width="100%"&gt;
-    &lt;tr&gt;
-        &lt;th&gt;表头1&lt;/th&gt;
-        &lt;th&gt;表头2&lt;/th&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-        &lt;td&gt;数据1&lt;/td&gt;
-        &lt;td&gt;数据2&lt;/td&gt;
-    &lt;/tr&gt;
-&lt;/table&gt;
-                        </div>
-                        <!-- 隐藏的原始代码，用于重置功能 -->
-                        <div id="original-2" style="display: none;">
-&lt;!-- 不同border属性值的对比 --&gt;
-&lt;h3&gt;border="1"&lt;/h3&gt;
-&lt;table border="1" cellpadding="5" cellspacing="0" width="100%"&gt;
-    &lt;tr&gt;
-        &lt;th&gt;表头1&lt;/th&gt;
-        &lt;th&gt;表头2&lt;/th&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-        &lt;td&gt;数据1&lt;/td&gt;
-        &lt;td&gt;数据2&lt;/td&gt;
-    &lt;/tr&gt;
-&lt;/table&gt;
-
-&lt;h3&gt;border="3"&lt;/h3&gt;
-&lt;table border="3" cellpadding="10" cellspacing="2" width="100%"&gt;
-    &lt;tr&gt;
-        &lt;th&gt;表头1&lt;/th&gt;
-        &lt;th&gt;表头2&lt;/th&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-        &lt;td&gt;数据1&lt;/td&gt;
-        &lt;td&gt;数据2&lt;/td&gt;
-    &lt;/tr&gt;
-&lt;/table&gt;
-                        </div>
-                    </div>
-                    <div class="panel">
-                        <div class="panel-label">预览效果</div>
-                        <div class="preview-box" id="preview-2">
-                            <!-- 不同border属性值的对比 -->
-                            <h3>border="1"</h3>
-                            <table border="1" cellpadding="5" cellspacing="0" width="100%">
-                                <tr>
-                                    <th>表头1</th>
-                                    <th>表头2</th>
-                                </tr>
-                                <tr>
-                                    <td>数据1</td>
-                                    <td>数据2</td>
-                                </tr>
-                            </table>
-
-                            <h3>border="3"</h3>
-                            <table border="3" cellpadding="10" cellspacing="2" width="100%">
-                                <tr>
-                                    <th>表头1</th>
-                                    <th>表头2</th>
-                                </tr>
-                                <tr>
-                                    <td>数据1</td>
-                                    <td>数据2</td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="action-bar">
-                    <button class="btn btn-run" onclick="runHtmlExperiment('html-2', 'preview-2', 'badge-2')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetHtmlExperiment('html-2', 'preview-2', 'badge-2')">↺ 重置</button>
-                </div>
-            </div>
-        </section>
-
-        <section id="simple-table">
-            <h2>4. 简单表格制作</h2>
-            <p>
-                现在，让我们创建一个简单的学生成绩表格，来实践所学的知识。
-            </p>
-            
-            <h3>4.1 示例：学生成绩表</h3>
-            <pre><code>&lt;table border="1" cellpadding="10" cellspacing="0" width="100%"&gt;
-    &lt;caption&gt;学生成绩表&lt;/caption&gt;
-    &lt;thead&gt;
-        &lt;tr&gt;
-            &lt;th&gt;学号&lt;/th&gt;
-            &lt;th&gt;姓名&lt;/th&gt;
-            &lt;th&gt;数学&lt;/th&gt;
-            &lt;th&gt;英语&lt;/th&gt;
-            &lt;th&gt;物理&lt;/th&gt;
-        &lt;/tr&gt;
-    &lt;/thead&gt;
-    &lt;tbody&gt;
-        &lt;tr&gt;
-            &lt;td&gt;001&lt;/td&gt;
-            &lt;td&gt;张三&lt;/td&gt;
-            &lt;td&gt;85&lt;/td&gt;
-            &lt;td&gt;92&lt;/td&gt;
-            &lt;td&gt;78&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-            &lt;td&gt;002&lt;/td&gt;
-            &lt;td&gt;李四&lt;/td&gt;
-            &lt;td&gt;90&lt;/td&gt;
-            &lt;td&gt;88&lt;/td&gt;
-            &lt;td&gt;95&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-            &lt;td&gt;003&lt;/td&gt;
-            &lt;td&gt;王五&lt;/td&gt;
-            &lt;td&gt;75&lt;/td&gt;
-            &lt;td&gt;80&lt;/td&gt;
-            &lt;td&gt;85&lt;/td&gt;
-        &lt;/tr&gt;
-    &lt;/tbody&gt;
-    &lt;tfoot&gt;
-        &lt;tr&gt;
-            &lt;th colspan="2"&gt;平均分&lt;/th&gt;
-            &lt;th&gt;83.3&lt;/th&gt;
-            &lt;th&gt;86.7&lt;/th&gt;
-            &lt;th&gt;86.0&lt;/th&gt;
-        &lt;/tr&gt;
-    &lt;/tfoot&gt;
-&lt;/table&gt;</code></pre>
-            
-            <h3>4.1 示例：学生成绩表</h3>
-            <pre><code>&lt;table border="1" cellpadding="10" cellspacing="0" width="100%"&gt;
-    &lt;caption&gt;学生成绩表&lt;/caption&gt;
-    &lt;thead&gt;
-        &lt;tr&gt;
-            &lt;th&gt;学号&lt;/th&gt;
-            &lt;th&gt;姓名&lt;/th&gt;
-            &lt;th&gt;数学&lt;/th&gt;
-            &lt;th&gt;英语&lt;/th&gt;
-            &lt;th&gt;物理&lt;/th&gt;
-        &lt;/tr&gt;
-    &lt;/thead&gt;
-    &lt;tbody&gt;
-        &lt;tr&gt;
-            &lt;td&gt;001&lt;/td&gt;
-            &lt;td&gt;张三&lt;/td&gt;
-            &lt;td&gt;85&lt;/td&gt;
-            &lt;td&gt;92&lt;/td&gt;
-            &lt;td&gt;78&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-            &lt;td&gt;002&lt;/td&gt;
-            &lt;td&gt;李四&lt;/td&gt;
-            &lt;td&gt;90&lt;/td&gt;
-            &lt;td&gt;88&lt;/td&gt;
-            &lt;td&gt;95&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-            &lt;td&gt;003&lt;/td&gt;
-            &lt;td&gt;王五&lt;/td&gt;
-            &lt;td&gt;75&lt;/td&gt;
-            &lt;td&gt;80&lt;/td&gt;
-            &lt;td&gt;85&lt;/td&gt;
-        &lt;/tr&gt;
-    &lt;/tbody&gt;
-    &lt;tfoot&gt;
-        &lt;tr&gt;
-            &lt;th colspan="2"&gt;平均分&lt;/th&gt;
-            &lt;th&gt;83.3&lt;/th&gt;
-            &lt;th&gt;86.7&lt;/th&gt;
-            &lt;th&gt;86.0&lt;/th&gt;
-        &lt;/tr&gt;
-    &lt;/tfoot&gt;
-&lt;/table&gt;</code></pre>
-            
-            <div class="lab-card">
-                <div class="lab-header">
-                    <span>上下结构实验室：学生成绩表</div>
-                    <span id="badge-3" class="status-badge">未运行</div>
-                </div>
-                <div class="lab-body">
-                    <div class="panel">
-                        <div class="panel-label">HTML (可编辑)</div>
-                        <div class="html-editor" id="html-3" contenteditable="true">
-&lt;table border="1" cellpadding="10" cellspacing="0" width="100%"&gt;
-    &lt;caption&gt;学生成绩表&lt;/caption&gt;
-    &lt;thead&gt;
-        &lt;tr&gt;
-            &lt;th&gt;学号&lt;/th&gt;
-            &lt;th&gt;姓名&lt;/th&gt;
-            &lt;th&gt;数学&lt;/th&gt;
-            &lt;th&gt;英语&lt;/th&gt;
-            &lt;th&gt;物理&lt;/th&gt;
-        &lt;/tr&gt;
-    &lt;/thead&gt;
-    &lt;tbody&gt;
-        &lt;tr&gt;
-            &lt;td&gt;001&lt;/td&gt;
-            &lt;td&gt;张三&lt;/td&gt;
-            &lt;td&gt;85&lt;/td&gt;
-            &lt;td&gt;92&lt;/td&gt;
-            &lt;td&gt;78&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-            &lt;td&gt;002&lt;/td&gt;
-            &lt;td&gt;李四&lt;/td&gt;
-            &lt;td&gt;90&lt;/td&gt;
-            &lt;td&gt;88&lt;/td&gt;
-            &lt;td&gt;95&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-            &lt;td&gt;003&lt;/td&gt;
-            &lt;td&gt;王五&lt;/td&gt;
-            &lt;td&gt;75&lt;/td&gt;
-            &lt;td&gt;80&lt;/td&gt;
-            &lt;td&gt;85&lt;/td&gt;
-        &lt;/tr&gt;
-    &lt;/tbody&gt;
-    &lt;tfoot&gt;
-        &lt;tr&gt;
-            &lt;th colspan="2"&gt;平均分&lt;/th&gt;
-            &lt;th&gt;83.3&lt;/th&gt;
-            &lt;th&gt;86.7&lt;/th&gt;
-            &lt;th&gt;86.0&lt;/th&gt;
-        &lt;/tr&gt;
-    &lt;/tfoot&gt;
-&lt;/table&gt;
-                        </div>
-                        <!-- 隐藏的原始代码，用于重置功能 -->
-                        <div id="original-3" style="display: none;">
-&lt;table border="1" cellpadding="10" cellspacing="0" width="100%"&gt;
-    &lt;caption&gt;学生成绩表&lt;/caption&gt;
-    &lt;thead&gt;
-        &lt;tr&gt;
-            &lt;th&gt;学号&lt;/th&gt;
-            &lt;th&gt;姓名&lt;/th&gt;
-            &lt;th&gt;数学&lt;/th&gt;
-            &lt;th&gt;英语&lt;/th&gt;
-            &lt;th&gt;物理&lt;/th&gt;
-        &lt;/tr&gt;
-    &lt;/thead&gt;
-    &lt;tbody&gt;
-        &lt;tr&gt;
-            &lt;td&gt;001&lt;/td&gt;
-            &lt;td&gt;张三&lt;/td&gt;
-            &lt;td&gt;85&lt;/td&gt;
-            &lt;td&gt;92&lt;/td&gt;
-            &lt;td&gt;78&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-            &lt;td&gt;002&lt;/td&gt;
-            &lt;td&gt;李四&lt;/td&gt;
-            &lt;td&gt;90&lt;/td&gt;
-            &lt;td&gt;88&lt;/td&gt;
-            &lt;td&gt;95&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-            &lt;td&gt;003&lt;/td&gt;
-            &lt;td&gt;王五&lt;/td&gt;
-            &lt;td&gt;75&lt;/td&gt;
-            &lt;td&gt;80&lt;/td&gt;
-            &lt;td&gt;85&lt;/td&gt;
-        &lt;/tr&gt;
-    &lt;/tbody&gt;
-    &lt;tfoot&gt;
-        &lt;tr&gt;
-            &lt;th colspan="2"&gt;平均分&lt;/th&gt;
-            &lt;th&gt;83.3&lt;/th&gt;
-            &lt;th&gt;86.7&lt;/th&gt;
-            &lt;th&gt;86.0&lt;/th&gt;
-        &lt;/tr&gt;
-    &lt;/tfoot&gt;
-&lt;/table&gt;
-                        </div>
-                    </div>
-                    <div class="panel">
-                        <div class="panel-label">预览效果</div>
-                        <div class="preview-box" id="preview-3">
-                            <table border="1" cellpadding="10" cellspacing="0" width="100%">
-                                <caption>学生成绩表</caption>
-                                <thead>
-                                    <tr>
-                                        <th>学号</th>
-                                        <th>姓名</th>
-                                        <th>数学</th>
-                                        <th>英语</th>
-                                        <th>物理</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>001</td>
-                                        <td>张三</td>
-                                        <td>85</td>
-                                        <td>92</td>
-                                        <td>78</td>
-                                    </tr>
-                                    <tr>
-                                        <td>002</td>
-                                        <td>李四</td>
-                                        <td>90</td>
-                                        <td>88</td>
-                                        <td>95</td>
-                                    </tr>
-                                    <tr>
-                                        <td>003</td>
-                                        <td>王五</td>
-                                        <td>75</td>
-                                        <td>80</td>
-                                        <td>85</td>
-                                    </tr>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th colspan="2">平均分</th>
-                                        <th>83.3</th>
-                                        <th>86.7</th>
-                                        <th>86.0</th>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="action-bar">
-                    <button class="btn btn-run" onclick="runHtmlExperiment('html-3', 'preview-3', 'badge-3')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetHtmlExperiment('html-3', 'preview-3', 'badge-3')">↺ 重置</button>
-                </div>
-            </div>
-            
-            <h3>4.2 示例：课程表</h3>
-            <pre><code>&lt;table border="1" cellpadding="10" cellspacing="0" width="100%"&gt;
-    &lt;caption&gt;周一课程表&lt;/caption&gt;
-    &lt;thead&gt;
-        &lt;tr&gt;
-            &lt;th&gt;时间&lt;/th&gt;
-            &lt;th&gt;第一节&lt;/th&gt;
-            &lt;th&gt;第二节&lt;/th&gt;
-            &lt;th&gt;第三节&lt;/th&gt;
-            &lt;th&gt;第四节&lt;/th&gt;
-        &lt;/tr&gt;
-    &lt;/thead&gt;
-    &lt;tbody&gt;
-        &lt;tr&gt;
-            &lt;td&gt;上午&lt;/td&gt;
-            &lt;td&gt;数学&lt;/td&gt;
-            &lt;td&gt;英语&lt;/td&gt;
-            &lt;td&gt;物理&lt;/td&gt;
-            &lt;td&gt;化学&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-            &lt;td&gt;下午&lt;/td&gt;
-            &lt;td&gt;语文&lt;/td&gt;
-            &lt;td&gt;历史&lt;/td&gt;
-            &lt;td&gt;地理&lt;/td&gt;
-            &lt;td&gt;生物&lt;/td&gt;
-        &lt;/tr&gt;
-    &lt;/tbody&gt;
-&lt;/table&gt;</code></pre>
-            
-            <div class="lab-card">
-                <div class="lab-header">
-                    <span>上下结构实验室：课程表</div>
-                    <span id="badge-4" class="status-badge">未运行</div>
-                </div>
-                <div class="lab-body">
-                    <div class="panel">
-                        <div class="panel-label">HTML (可编辑)</div>
-                        <div class="html-editor" id="html-4" contenteditable="true">
-&lt;table border="1" cellpadding="10" cellspacing="0" width="100%"&gt;
-    &lt;caption&gt;周一课程表&lt;/caption&gt;
-    &lt;thead&gt;
-        &lt;tr&gt;
-            &lt;th&gt;时间&lt;/th&gt;
-            &lt;th&gt;第一节&lt;/th&gt;
-            &lt;th&gt;第二节&lt;/th&gt;
-            &lt;th&gt;第三节&lt;/th&gt;
-            &lt;th&gt;第四节&lt;/th&gt;
-        &lt;/tr&gt;
-    &lt;/thead&gt;
-    &lt;tbody&gt;
-        &lt;tr&gt;
-            &lt;td&gt;上午&lt;/td&gt;
-            &lt;td&gt;数学&lt;/td&gt;
-            &lt;td&gt;英语&lt;/td&gt;
-            &lt;td&gt;物理&lt;/td&gt;
-            &lt;td&gt;化学&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-            &lt;td&gt;下午&lt;/td&gt;
-            &lt;td&gt;语文&lt;/td&gt;
-            &lt;td&gt;历史&lt;/td&gt;
-            &lt;td&gt;地理&lt;/td&gt;
-            &lt;td&gt;生物&lt;/td&gt;
-        &lt;/tr&gt;
-    &lt;/tbody&gt;
-&lt;/table&gt;
-                        </div>
-                        <!-- 隐藏的原始代码，用于重置功能 -->
-                        <div id="original-4" style="display: none;">
-&lt;table border="1" cellpadding="10" cellspacing="0" width="100%"&gt;
-    &lt;caption&gt;周一课程表&lt;/caption&gt;
-    &lt;thead&gt;
-        &lt;tr&gt;
-            &lt;th&gt;时间&lt;/th&gt;
-            &lt;th&gt;第一节&lt;/th&gt;
-            &lt;th&gt;第二节&lt;/th&gt;
-            &lt;th&gt;第三节&lt;/th&gt;
-            &lt;th&gt;第四节&lt;/th&gt;
-        &lt;/tr&gt;
-    &lt;/thead&gt;
-    &lt;tbody&gt;
-        &lt;tr&gt;
-            &lt;td&gt;上午&lt;/td&gt;
-            &lt;td&gt;数学&lt;/td&gt;
-            &lt;td&gt;英语&lt;/td&gt;
-            &lt;td&gt;物理&lt;/td&gt;
-            &lt;td&gt;化学&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-            &lt;td&gt;下午&lt;/td&gt;
-            &lt;td&gt;语文&lt;/td&gt;
-            &lt;td&gt;历史&lt;/td&gt;
-            &lt;td&gt;地理&lt;/td&gt;
-            &lt;td&gt;生物&lt;/td&gt;
-        &lt;/tr&gt;
-    &lt;/tbody&gt;
-&lt;/table&gt;
-                        </div>
-                    </div>
-                    <div class="panel">
-                        <div class="panel-label">预览效果</div>
-                        <div class="preview-box" id="preview-4">
-                            <table border="1" cellpadding="10" cellspacing="0" width="100%">
-                                <caption>周一课程表</caption>
-                                <thead>
-                                    <tr>
-                                        <th>时间</th>
-                                        <th>第一节</th>
-                                        <th>第二节</th>
-                                        <th>第三节</th>
-                                        <th>第四节</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>上午</td>
-                                        <td>数学</td>
-                                        <td>英语</td>
-                                        <td>物理</td>
-                                        <td>化学</td>
-                                    </tr>
-                                    <tr>
-                                        <td>下午</td>
-                                        <td>语文</td>
-                                        <td>历史</td>
-                                        <td>地理</td>
-                                        <td>生物</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="action-bar">
-                    <button class="btn btn-run" onclick="runHtmlExperiment('html-4', 'preview-4', 'badge-4')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetHtmlExperiment('html-4', 'preview-4', 'badge-4')">↺ 重置</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- 第二部分：实战练习 -->
-        <section id="exercise">
-            <h2>5. 课后练习</h2>
-            <p>
-                请完成以下练习，巩固本节课所学的知识：
-            </p>
-            
-            <ol>
-                <li>创建一个HTML页面，包含一个简单的学生信息表</li>
-                <li>表格应包含以下信息：学号、姓名、性别、年龄、班级</li>
-                <li>使用<code>&lt;caption&gt;</code>为表格添加标题</li>
-                <li>使用<code>&lt;thead&gt;</code>、<code>&lt;tbody&gt;</code>和<code>&lt;tfoot&gt;</code>来组织表格结构</li>
-                <li>为表格添加合适的<code>border</code>、<code>cellpadding</code>和<code>cellspacing</code>属性</li>
-                <li>创建一个课程表，包含周一至周五的课程安排</li>
-            </ol>
+    <!-- ============================================
+         实验 01：表格基本结构
+         ============================================ -->
+    <section id="lab-1">
+        <h2>实验 01：表格基本结构</h2>
+        <p>通过这个实验，你将了解HTML表格的基本结构和组成部分。</p>
         
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验：第6次课-HTML表格基础综合实践</div>
-                <span id="6html-status" class="status-badge">未运行</div>
+                <span>实验 01：表格基本结构</span>
+                <span class="status-badge beginner" id="badge-1">动手实践</span>
             </div>
+            
+            <div class="lab-body split">
+                <!-- 代码编辑区 -->
+                <div class="panel code-editor" id="html-1" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
+&lt;table border="1" cellpadding="10" cellspacing="0"&gt;
+    &lt;caption&gt;表格标题&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;表头1&lt;/th&gt;
+            &lt;th&gt;表头2&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;数据1&lt;/td&gt;
+            &lt;td&gt;数据2&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;数据3&lt;/td&gt;
+            &lt;td&gt;数据4&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+    &lt;tfoot&gt;
+        &lt;tr&gt;
+            &lt;td&gt;汇总1&lt;/td&gt;
+            &lt;td&gt;汇总2&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tfoot&gt;
+&lt;/table&gt;
+                </div>
+                
+                <!-- 预览区 -->
+                <div class="panel preview-area" id="preview-1">
+                    <div class="panel-label">预览效果</div>
+                    <table border="1" cellpadding="10" cellspacing="0">
+                        <caption>表格标题</caption>
+                        <thead>
+                            <tr>
+                                <th>表头1</th>
+                                <th>表头2</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>数据1</td>
+                                <td>数据2</td>
+                            </tr>
+                            <tr>
+                                <td>数据3</td>
+                                <td>数据4</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td>汇总1</td>
+                                <td>汇总2</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- 操作按钮 -->
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runHtmlExperiment('html-1', 'preview-1', 'badge-1')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetHtmlExperiment('html-1', 'preview-1', 'badge-1')">↺ 重置代码</button>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         正文内容 - 表格元素
+         ============================================ -->
+    <section id="table-elements">
+        <h2>二、表格元素</h2>
+        <p>
+            HTML表格使用多种元素来定义其结构，以下是一些常用的表格元素：
+        </p>
+        
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>元素</th>
+                    <th>描述</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>&lt;table&gt;</code></td>
+                    <td>定义表格的容器</td>
+                </tr>
+                <tr>
+                    <td><code>&lt;caption&gt;</code></td>
+                    <td>定义表格的标题</td>
+                </tr>
+                <tr>
+                    <td><code>&lt;thead&gt;</code></td>
+                    <td>定义表格的表头部分</td>
+                </tr>
+                <tr>
+                    <td><code>&lt;tbody&gt;</code></td>
+                    <td>定义表格的表体部分</td>
+                </tr>
+                <tr>
+                    <td><code>&lt;tfoot&gt;</code></td>
+                    <td>定义表格的表尾部分</td>
+                </tr>
+                <tr>
+                    <td><code>&lt;tr&gt;</code></td>
+                    <td>定义表格的一行</td>
+                </tr>
+                <tr>
+                    <td><code>&lt;th&gt;</code></td>
+                    <td>定义表格的表头单元格</td>
+                </tr>
+                <tr>
+                    <td><code>&lt;td&gt;</code></td>
+                    <td>定义表格的数据单元格</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>2.1 &lt;th&gt; vs &lt;td&gt;</h3>
+        <p>
+            <code>&lt;th&gt;</code>和<code>&lt;td&gt;</code>都用于定义表格的单元格，但它们有以下区别：
+        </p>
+        
+        <ul>
+            <li><code>&lt;th&gt;</code>用于表头单元格，默认居中对齐且加粗显示</li>
+            <li><code>&lt;td&gt;</code>用于数据单元格，默认左对齐且正常显示</li>
+        </ul>
+    </section>
+
+
+    <!-- ============================================
+         正文内容 - 表格属性
+         ============================================ -->
+    <section id="table-attributes">
+        <h2>三、表格属性</h2>
+        <p>
+            虽然HTML5推荐使用CSS来设置表格的样式，但<code>&lt;table&gt;</code>标签仍然支持一些传统的属性，用于控制表格的外观。
+            以下是一些常用的表格属性：
+        </p>
+        
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>属性</th>
+                    <th>描述</th>
+                    <th>示例</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>border</code></td>
+                    <td>指定表格边框的宽度（像素）</td>
+                    <td><code>border="1"</code></td>
+                </tr>
+                <tr>
+                    <td><code>width</code></td>
+                    <td>指定表格的宽度（像素或百分比）</td>
+                    <td><code>width="500"</code>或<code>width="100%"</code></td>
+                </tr>
+                <tr>
+                    <td><code>height</code></td>
+                    <td>指定表格的高度（像素或百分比）</td>
+                    <td><code>height="300"</code></td>
+                </tr>
+                <tr>
+                    <td><code>cellpadding</code></td>
+                    <td>指定单元格内容与边框之间的间距（像素）</td>
+                    <td><code>cellpadding="5"</code></td>
+                </tr>
+                <tr>
+                    <td><code>cellspacing</code></td>
+                    <td>指定单元格之间的间距（像素）</td>
+                    <td><code>cellspacing="0"</code></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- 提示框组件 -->
+        <div class="tip-box">
+            <span class="tip-title">样式建议</span>
+            <p>在现代Web开发中，我们通常使用CSS来设置表格的样式，而不是使用HTML属性。CSS提供了更强大、更灵活的样式控制能力。</p>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         实验 02：表格属性
+         ============================================ -->
+    <section id="lab-2">
+        <h2>实验 02：表格属性</h2>
+        <p>通过这个实验，你将了解不同表格属性对表格外观的影响。</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 02：表格属性</span>
+                <span class="status-badge beginner" id="badge-2">动手实践</span>
+            </div>
+            
+            <div class="lab-body split">
+                <!-- 代码编辑区 -->
+                <div class="panel code-editor" id="html-2" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
+&lt;!-- 不同border属性值的对比 --&gt;
+&lt;h3&gt;border="1"&lt;/h3&gt;
+&lt;table border="1" cellpadding="5" cellspacing="0" width="100%"&gt;
+    &lt;tr&gt;
+        &lt;th&gt;表头1&lt;/th&gt;
+        &lt;th&gt;表头2&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;数据1&lt;/td&gt;
+        &lt;td&gt;数据2&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;h3&gt;border="3"&lt;/h3&gt;
+&lt;table border="3" cellpadding="10" cellspacing="2" width="100%"&gt;
+    &lt;tr&gt;
+        &lt;th&gt;表头1&lt;/th&gt;
+        &lt;th&gt;表头2&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;数据1&lt;/td&gt;
+        &lt;td&gt;数据2&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+                </div>
+                
+                <!-- 预览区 -->
+                <div class="panel preview-area" id="preview-2">
+                    <div class="panel-label">预览效果</div>
+                    <!-- 不同border属性值的对比 -->
+                    <h3>border="1"</h3>
+                    <table border="1" cellpadding="5" cellspacing="0" width="100%">
+                        <tr>
+                            <th>表头1</th>
+                            <th>表头2</th>
+                        </tr>
+                        <tr>
+                            <td>数据1</td>
+                            <td>数据2</td>
+                        </tr>
+                    </table>
+
+                    <h3>border="3"</h3>
+                    <table border="3" cellpadding="10" cellspacing="2" width="100%">
+                        <tr>
+                            <th>表头1</th>
+                            <th>表头2</th>
+                        </tr>
+                        <tr>
+                            <td>数据1</td>
+                            <td>数据2</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- 操作按钮 -->
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runHtmlExperiment('html-2', 'preview-2', 'badge-2')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetHtmlExperiment('html-2', 'preview-2', 'badge-2')">↺ 重置代码</button>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         正文内容 - 简单表格制作
+         ============================================ -->
+    <section id="simple-table">
+        <h2>四、简单表格制作</h2>
+        <p>
+            现在，让我们创建一个简单的学生成绩表格，来实践所学的知识。
+        </p>
+    </section>
+
+
+    <!-- ============================================
+         实验 03：学生成绩表
+         ============================================ -->
+    <section id="lab-3">
+        <h2>实验 03：学生成绩表</h2>
+        <p>通过这个实验，你将学习如何创建一个完整的学生成绩表格。</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 03：学生成绩表</span>
+                <span class="status-badge beginner" id="badge-3">动手实践</span>
+            </div>
+            
+            <div class="lab-body split">
+                <!-- 代码编辑区 -->
+                <div class="panel code-editor" id="html-3" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
+&lt;table border="1" cellpadding="10" cellspacing="0" width="100%"&gt;
+    &lt;caption&gt;学生成绩表&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;学号&lt;/th&gt;
+            &lt;th&gt;姓名&lt;/th&gt;
+            &lt;th&gt;数学&lt;/th&gt;
+            &lt;th&gt;英语&lt;/th&gt;
+            &lt;th&gt;物理&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;001&lt;/td&gt;
+            &lt;td&gt;张三&lt;/td&gt;
+            &lt;td&gt;85&lt;/td&gt;
+            &lt;td&gt;92&lt;/td&gt;
+            &lt;td&gt;78&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;002&lt;/td&gt;
+            &lt;td&gt;李四&lt;/td&gt;
+            &lt;td&gt;90&lt;/td&gt;
+            &lt;td&gt;88&lt;/td&gt;
+            &lt;td&gt;95&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;003&lt;/td&gt;
+            &lt;td&gt;王五&lt;/td&gt;
+            &lt;td&gt;75&lt;/td&gt;
+            &lt;td&gt;80&lt;/td&gt;
+            &lt;td&gt;85&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+    &lt;tfoot&gt;
+        &lt;tr&gt;
+            &lt;th colspan="2"&gt;平均分&lt;/th&gt;
+            &lt;th&gt;83.3&lt;/th&gt;
+            &lt;th&gt;86.7&lt;/th&gt;
+            &lt;th&gt;86.0&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/tfoot&gt;
+&lt;/table&gt;
+                </div>
+                
+                <!-- 预览区 -->
+                <div class="panel preview-area" id="preview-3">
+                    <div class="panel-label">预览效果</div>
+                    <table border="1" cellpadding="10" cellspacing="0" width="100%">
+                        <caption>学生成绩表</caption>
+                        <thead>
+                            <tr>
+                                <th>学号</th>
+                                <th>姓名</th>
+                                <th>数学</th>
+                                <th>英语</th>
+                                <th>物理</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>001</td>
+                                <td>张三</td>
+                                <td>85</td>
+                                <td>92</td>
+                                <td>78</td>
+                            </tr>
+                            <tr>
+                                <td>002</td>
+                                <td>李四</td>
+                                <td>90</td>
+                                <td>88</td>
+                                <td>95</td>
+                            </tr>
+                            <tr>
+                                <td>003</td>
+                                <td>王五</td>
+                                <td>75</td>
+                                <td>80</td>
+                                <td>85</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th colspan="2">平均分</th>
+                                <th>83.3</th>
+                                <th>86.7</th>
+                                <th>86.0</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- 操作按钮 -->
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runHtmlExperiment('html-3', 'preview-3', 'badge-3')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetHtmlExperiment('html-3', 'preview-3', 'badge-3')">↺ 重置代码</button>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         实验 04：课程表
+         ============================================ -->
+    <section id="lab-4">
+        <h2>实验 04：课程表</h2>
+        <p>通过这个实验，你将学习如何创建一个课程表。</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 04：课程表</span>
+                <span class="status-badge beginner" id="badge-4">动手实践</span>
+            </div>
+            
+            <div class="lab-body split">
+                <!-- 代码编辑区 -->
+                <div class="panel code-editor" id="html-4" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
+&lt;table border="1" cellpadding="10" cellspacing="0" width="100%"&gt;
+    &lt;caption&gt;周一课程表&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;时间&lt;/th&gt;
+            &lt;th&gt;第一节&lt;/th&gt;
+            &lt;th&gt;第二节&lt;/th&gt;
+            &lt;th&gt;第三节&lt;/th&gt;
+            &lt;th&gt;第四节&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;上午&lt;/td&gt;
+            &lt;td&gt;数学&lt;/td&gt;
+            &lt;td&gt;英语&lt;/td&gt;
+            &lt;td&gt;物理&lt;/td&gt;
+            &lt;td&gt;化学&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;下午&lt;/td&gt;
+            &lt;td&gt;语文&lt;/td&gt;
+            &lt;td&gt;历史&lt;/td&gt;
+            &lt;td&gt;地理&lt;/td&gt;
+            &lt;td&gt;生物&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+                </div>
+                
+                <!-- 预览区 -->
+                <div class="panel preview-area" id="preview-4">
+                    <div class="panel-label">预览效果</div>
+                    <table border="1" cellpadding="10" cellspacing="0" width="100%">
+                        <caption>周一课程表</caption>
+                        <thead>
+                            <tr>
+                                <th>时间</th>
+                                <th>第一节</th>
+                                <th>第二节</th>
+                                <th>第三节</th>
+                                <th>第四节</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>上午</td>
+                                <td>数学</td>
+                                <td>英语</td>
+                                <td>物理</td>
+                                <td>化学</td>
+                            </tr>
+                            <tr>
+                                <td>下午</td>
+                                <td>语文</td>
+                                <td>历史</td>
+                                <td>地理</td>
+                                <td>生物</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- 操作按钮 -->
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runHtmlExperiment('html-4', 'preview-4', 'badge-4')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetHtmlExperiment('html-4', 'preview-4', 'badge-4')">↺ 重置代码</button>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         正文内容 - 课后练习
+         ============================================ -->
+    <section id="exercise">
+        <h2>五、课后练习</h2>
+        <p>
+            请完成以下练习，巩固本节课所学的知识：
+        </p>
+        
+        <ol>
+            <li>创建一个HTML页面，包含一个简单的学生信息表</li>
+            <li>表格应包含以下信息：学号、姓名、性别、年龄、班级</li>
+            <li>使用<code>&lt;caption&gt;</code>为表格添加标题</li>
+            <li>使用<code>&lt;thead&gt;</code>、<code>&lt;tbody&gt;</code>和<code>&lt;tfoot&gt;</code>来组织表格结构</li>
+            <li>为表格添加合适的<code>border</code>、<code>cellpadding</code>和<code>cellspacing</code>属性</li>
+            <li>创建一个课程表，包含周一至周五的课程安排</li>
+        </ol>
+    </section>
+
+
+    <!-- ============================================
+         实验 05：HTML表格基础综合实践
+         ============================================ -->
+    <section id="lab-5">
+        <h2>实验 05：HTML表格基础综合实践</h2>
+        <p>通过这个实验，你将综合运用本节课所学的知识，创建完整的表格。</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 05：HTML表格基础综合实践</span>
+                <span class="status-badge beginner" id="6html-status">动手实践</span>
+            </div>
+            
             <div class="lab-body">
                 <div class="panel-label">HTML (可编辑)</div>
-<div class="html-editor" id="6html-html" contenteditable="true">
+                <div class="panel code-editor" id="6html-html" contenteditable="true">
 &lt;!DOCTYPE html&gt;
 &lt;html lang="zh-CN"&gt;
 &lt;head&gt;
@@ -889,27 +739,75 @@
     &lt;/table&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-</div>
+                </div>
             </div>
+            
+            <!-- 操作按钮 -->
             <div class="action-bar">
                 <button class="btn btn-run" onclick="runHtmlExperiment('6html-html', '6html-preview', '6html-status')">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="resetHtmlExperiment('6html-html', '6html-preview', '6html-status')">↺ 重置</button>
+                <button class="btn btn-reset" onclick="resetHtmlExperiment('6html-html', '6html-preview', '6html-status')">↺ 重置代码</button>
             </div>
+            
+            <!-- 预览区 -->
             <div class="preview-box" id="6html-preview">
                 <div class="panel-label">预览效果</div>
             </div>
         </div>
-</section></main>
+    </section>
+
+
+    <!-- ============================================
+         课程小结区域
+         ============================================ -->
+    <section id="summary">
+        <h2>六、本课小结</h2>
+        
+        <h3>知识点回顾</h3>
+        <ul class="checklist">
+            <li><strong>表格结构</strong>：了解了HTML表格的基本结构，包括表头、表体和表尾</li>
+            <li><strong>表格元素</strong>：学习了常用的表格元素，如<code>&lt;table&gt;</code>、<code>&lt;tr&gt;</code>、<code>&lt;th&gt;</code>和<code>&lt;td&gt;</code></li>
+            <li><strong>表格属性</strong>：掌握了表格的基本属性，如<code>border</code>、<code>cellpadding</code>和<code>cellspacing</code></li>
+            <li><strong>简单表格制作</strong>：学会了如何创建学生成绩表和课程表</li>
+            <li><strong>表格语义化</strong>：理解了使用<code>&lt;thead&gt;</code>、<code>&lt;tbody&gt;</code>和<code>&lt;tfoot&gt;</code>的重要性</li>
+        </ul>
+        
+        <h3>重点记忆</h3>
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>概念</th>
+                    <th>要点</th>
+                    <th>示例</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>表格基本结构</td>
+                    <td>由行和列组成，包含标题、表头、表体和表尾</td>
+                    <td><code>&lt;table&gt;&lt;tr&gt;&lt;td&gt;...&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</code></td>
+                </tr>
+                <tr>
+                    <td>表头 vs 数据单元格</td>
+                    <td><code>&lt;th&gt;</code>用于表头，默认居中加粗；<code>&lt;td&gt;</code>用于数据，默认左对齐</td>
+                    <td><code>&lt;th&gt;姓名&lt;/th&gt;&lt;td&gt;张三&lt;/td&gt;</code></td>
+                </tr>
+                <tr>
+                    <td>表格属性</td>
+                    <td><code>border</code>设置边框宽度，<code>cellpadding</code>设置内边距，<code>cellspacing</code>设置外边距</td>
+                    <td><code>&lt;table border="1" cellpadding="5" cellspacing="0"&gt;</code></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- 下一课预告 -->
+        <div class="note-box">
+            <strong>下一课预告：</strong>
+            <p>下一课我们将学习【HTML表格进阶】。我们将深入学习表格的合并单元格、表格样式和更复杂的表格结构，让你的表格更加美观和功能强大。</p>
+        </div>
+    </section>
+
+
+</main>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-

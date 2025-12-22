@@ -4,145 +4,189 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>第8课：HTML表单基础</title>
+    
+    <!-- 统一样式引用 -->
     <link rel='stylesheet' href='../统一讲义样式模板.css'>
+    <!-- 通用工具函数库 -->
     <script src='../js/lecture-utils.js'></script>
 </head>
 <body>
-    <!-- 侧边栏导航 -->
-    <nav class="sidebar">
-        <div class="sidebar-nav">
-            <h3>课程导航</h3>
-            <a class="sidebar-link" href="#intro">👋 课程概览</a>
-            
-            <h3>Part 1: HTML表单基础</h3>
-            <a class="sidebar-link" href="#form-structure" class="sub-link">1. 表单结构</a>
-            <a class="sidebar-link" href="#input-types" class="sub-link">2. 文本输入控件</a>
-            <a class="sidebar-link" href="#radio-checkbox" class="sub-link">3. 单选按钮与复选框</a>
-            <a class="sidebar-link" href="#buttons" class="sub-link">4. 提交与重置按钮</a>
-            
-            <h3>Part 2: 实战练习</h3>
-            <a class="sidebar-link" href="#exercise" class="sub-link">5. 课后练习</a>
+
+<!-- ============================================
+     侧边栏导航 - 课程目录
+     ============================================ -->
+<nav class="sidebar">
+    <div class="sidebar-nav">
+        <h3>课程导航</h3>
+        <a class="sidebar-link" href="#intro">👋 课程概览</a>
+        
+        <h3>Part 1: HTML表单基础</h3>
+        <a class="sidebar-link" href="#form-structure" class="sub-link">1.1 表单结构</a>
+        <a class="sidebar-link" href="#lab-1" class="sub-link">实验 01</a>
+        <a class="sidebar-link" href="#input-types" class="sub-link">1.2 文本输入控件</a>
+        <a class="sidebar-link" href="#lab-2" class="sub-link">实验 02</a>
+        <a class="sidebar-link" href="#radio-checkbox" class="sub-link">1.3 单选按钮与复选框</a>
+        <a class="sidebar-link" href="#lab-3" class="sub-link">实验 03</a>
+        <a class="sidebar-link" href="#buttons" class="sub-link">1.4 提交与重置按钮</a>
+        <a class="sidebar-link" href="#lab-4" class="sub-link">实验 04</a>
+        
+        <h3>Part 2: 实战练习</h3>
+        <a class="sidebar-link" href="#exercise" class="sub-link">2.1 课后练习</a>
+        <a class="sidebar-link" href="#lab-5" class="sub-link">实验 05</a>
+        
+        <h3>总结与练习</h3>
+        <a class="sidebar-link" href="#summary" class="sub-link">📝 课程小结</a>
+    </div>
+</nav>
+
+
+<!-- ============================================
+     主内容区域
+     ============================================ -->
+<main class="content">
+
+    <!-- ============================================
+         课程头部 - 概览区域
+         ============================================ -->
+    <header id="intro">
+        <h1>第8课：HTML表单基础</h1>
+        <p class="intro">
+            在本节课中，我们将学习HTML表单的基础知识。表单是网页中用于收集用户输入的重要元素，它允许用户提交数据到服务器，
+            如注册表单、登录表单、搜索表单等。通过本节课的学习，你将掌握HTML表单的基本结构、常用输入控件和按钮，以及如何创建简单的表单。
+        </p>
+        
+        <!-- 知识点标签列表 -->
+        <div class="pill-list">
+            <span class="pill">表单结构</span>
+            <span class="pill">文本输入控件</span>
+            <span class="pill">单选按钮</span>
+            <span class="pill">复选框</span>
+            <span class="pill">提交按钮</span>
+            <span class="pill">重置按钮</span>
         </div>
-    </nav>
+    </header>
 
-    <!-- 主内容区 -->
-    <main class="content">
-        <header id="intro">
-            <h1>第8课：HTML表单基础</h1>
-            <p class="intro">
-                在本节课中，我们将学习HTML表单的基础知识。表单是网页中用于收集用户输入的重要元素，它允许用户提交数据到服务器，
-                如注册表单、登录表单、搜索表单等。通过本节课的学习，你将掌握HTML表单的基本结构、常用输入控件和按钮，以及如何创建简单的表单。
-            </p>
-        </header>
 
-        <!-- 第一部分：HTML表单基础 -->
-        <section id="form-structure">
-            <h2>1. 表单结构</h2>
-            <p>
-                HTML表单使用<code>&lt;form&gt;</code>标签定义，它是一个容器，包含各种表单控件，如输入框、按钮、选择框等。
-                表单的基本结构包括：
-            </p>
-            
-            <ul>
-                <li>表单标签：<code>&lt;form&gt;</code>，包含表单的属性</li>
-                <li>表单控件：如输入框、按钮、选择框等</li>
-                <li>表单标签：<code>&lt;label&gt;</code>，用于关联表单控件和文本</li>
-            </ul>
-            
-            <h3>1.1 表单的基本语法</h3>
-            <pre><code>&lt;form action="url" method="method"&gt;
+    <!-- ============================================
+         正文内容 - 表单结构
+         ============================================ -->
+    <section id="form-structure">
+        <h2>一、表单结构</h2>
+        <p>
+            HTML表单使用<code>&lt;form&gt;</code>标签定义，它是一个容器，包含各种表单控件，如输入框、按钮、选择框等。
+            表单的基本结构包括：
+        </p>
+        
+        <ul>
+            <li>表单标签：<code>&lt;form&gt;</code>，包含表单的属性</li>
+            <li>表单控件：如输入框、按钮、选择框等</li>
+            <li>表单标签：<code>&lt;label&gt;</code>，用于关联表单控件和文本</li>
+        </ul>
+        
+        <h3>1.1 表单的基本语法</h3>
+        <pre class="html"><code>&lt;form action="url" method="method"&gt;
     &lt;!-- 表单控件 --&gt;
 &lt;/form&gt;</code></pre>
+        
+        <h3>1.2 表单的重要属性</h3>
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>属性</th>
+                    <th>描述</th>
+                    <th>示例</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>action</code></td>
+                    <td>指定表单提交的目标URL</td>
+                    <td><code>action="https://example.com/submit"</code></td>
+                </tr>
+                <tr>
+                    <td><code>method</code></td>
+                    <td>指定表单提交的HTTP方法（GET或POST）</td>
+                    <td><code>method="post"</code></td>
+                </tr>
+                <tr>
+                    <td><code>enctype</code></td>
+                    <td>指定表单数据的编码类型</td>
+                    <td><code>enctype="multipart/form-data"</code></td>
+                </tr>
+                <tr>
+                    <td><code>target</code></td>
+                    <td>指定表单提交后在哪里显示响应</td>
+                    <td><code>target="_blank"</code></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>1.3 GET vs POST</h3>
+        <p>
+            <code>method</code>属性用于指定表单提交的HTTP方法，主要有两种：GET和POST。
+        </p>
+        
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>特性</th>
+                    <th>GET</th>
+                    <th>POST</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>数据位置</td>
+                    <td>URL中</td>
+                    <td>请求体中</td>
+                </tr>
+                <tr>
+                    <td>数据大小</td>
+                    <td>有限制（约2KB）</td>
+                    <td>无限制</td>
+                </tr>
+                <tr>
+                    <td>安全性</td>
+                    <td>较低，数据可见</td>
+                    <td>较高，数据不可见</td>
+                </tr>
+                <tr>
+                    <td>缓存</td>
+                    <td>可被缓存</td>
+                    <td>不可被缓存</td>
+                </tr>
+                <tr>
+                    <td>历史记录</td>
+                    <td>会被保存在历史记录中</td>
+                    <td>不会被保存在历史记录中</td>
+                </tr>
+                <tr>
+                    <td>适用场景</td>
+                    <td>搜索表单、获取数据</td>
+                    <td>注册表单、登录表单、提交数据</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+
+    <!-- ============================================
+         实验 01：表单结构
+         ============================================ -->
+    <section id="lab-1">
+        <h2>实验 01：表单结构</h2>
+        <p>通过这个实验，你将了解HTML表单的基本结构和属性。</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 01：表单结构</span>
+                <span class="status-badge beginner" id="badge-1">动手实践</span>
+            </div>
             
-            <h3>1.2 表单的重要属性</h3>
-            <table class="prop-table">
-                <thead>
-                    <tr>
-                        <th>属性</th>
-                        <th>描述</th>
-                        <th>示例</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>action</code></td>
-                        <td>指定表单提交的目标URL</td>
-                        <td><code>action="https://example.com/submit"</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>method</code></td>
-                        <td>指定表单提交的HTTP方法（GET或POST）</td>
-                        <td><code>method="post"</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>enctype</code></td>
-                        <td>指定表单数据的编码类型</td>
-                        <td><code>enctype="multipart/form-data"</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>target</code></td>
-                        <td>指定表单提交后在哪里显示响应</td>
-                        <td><code>target="_blank"</code></td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <h3>1.3 GET vs POST</h3>
-            <p>
-                <code>method</code>属性用于指定表单提交的HTTP方法，主要有两种：GET和POST。
-            </p>
-            
-            <table class="prop-table">
-                <thead>
-                    <tr>
-                        <th>特性</th>
-                        <th>GET</th>
-                        <th>POST</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>数据位置</td>
-                        <td>URL中</td>
-                        <td>请求体中</td>
-                    </tr>
-                    <tr>
-                        <td>数据大小</td>
-                        <td>有限制（约2KB）</td>
-                        <td>无限制</td>
-                    </tr>
-                    <tr>
-                        <td>安全性</td>
-                        <td>较低，数据可见</td>
-                        <td>较高，数据不可见</td>
-                    </tr>
-                    <tr>
-                        <td>缓存</td>
-                        <td>可被缓存</td>
-                        <td>不可被缓存</td>
-                    </tr>
-                    <tr>
-                        <td>历史记录</td>
-                        <td>会被保存在历史记录中</td>
-                        <td>不会被保存在历史记录中</td>
-                    </tr>
-                    <tr>
-                        <td>适用场景</td>
-                        <td>搜索表单、获取数据</td>
-                        <td>注册表单、登录表单、提交数据</td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <div class="lab-card">
-                <div class="lab-header">
-                    <span>上下结构实验室：表单结构</div>
-                    <span id="badge-1" class="status-badge">未运行</div>
-                </div>
-                <div class="lab-body">
-                    <div class="panel">
-                        <div class="panel-label">HTML (可编辑)</div>
-                        <div class="html-editor" id="html-1" contenteditable="true">
+            <div class="lab-body split">
+                <!-- 代码编辑区 -->
+                <div class="panel code-editor" id="html-1" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
 &lt;!-- 简单搜索表单示例 --&gt;
 &lt;h3&gt;搜索表单&lt;/h3&gt;
 &lt;form action="https://example.com/search" method="get"&gt;
@@ -167,155 +211,143 @@
     &lt;input type="submit" value="登录"&gt;
     &lt;input type="reset" value="重置"&gt;
 &lt;/form&gt;
-                        </div>
-                        <!-- 隐藏的原始代码，用于重置功能 -->
-                        <div id="original-1" style="display: none;">
-&lt;!-- 简单搜索表单示例 --&gt;
-&lt;h3&gt;搜索表单&lt;/h3&gt;
-&lt;form action="https://example.com/search" method="get"&gt;
-    &lt;label for="search"&gt;搜索：&lt;/label&gt;
-    &lt;input type="text" id="search" name="q" placeholder="请输入搜索关键词"&gt;
-    &lt;input type="submit" value="搜索"&gt;
-&lt;/form&gt;
-
-&lt;!-- 简单登录表单示例 --&gt;
-&lt;h3&gt;登录表单&lt;/h3&gt;
-&lt;form action="https://example.com/login" method="post"&gt;
-    &lt;label for="username"&gt;用户名：&lt;/label&gt;
-    &lt;input type="text" id="username" name="username" placeholder="请输入用户名"&gt;
-    
-    &lt;br&gt;&lt;br&gt;
-    
-    &lt;label for="password"&gt;密码：&lt;/label&gt;
-    &lt;input type="password" id="password" name="password" placeholder="请输入密码"&gt;
-    
-    &lt;br&gt;&lt;br&gt;
-    
-    &lt;input type="submit" value="登录"&gt;
-    &lt;input type="reset" value="重置"&gt;
-&lt;/form&gt;
-                        </div>
-                    </div>
-                    <div class="panel">
-                        <div class="panel-label">预览效果</div>
-                        <div class="preview-box" id="preview-1">
-                            <!-- 简单搜索表单示例 -->
-                            <h3>搜索表单</h3>
-                            <form action="https://example.com/search" method="get">
-                                <label for="search">搜索：</label>
-                                <input type="text" id="search" name="q" placeholder="请输入搜索关键词">
-                                <input type="submit" value="搜索">
-                            </form>
-
-                            <!-- 简单登录表单示例 -->
-                            <h3>登录表单</h3>
-                            <form action="https://example.com/login" method="post">
-                                <label for="username">用户名：</label>
-                                <input type="text" id="username" name="username" placeholder="请输入用户名">
-                                
-                                <br><br>
-                                
-                                <label for="password">密码：</label>
-                                <input type="password" id="password" name="password" placeholder="请输入密码">
-                                
-                                <br><br>
-                                
-                                <input type="submit" value="登录">
-                                <input type="reset" value="重置">
-                            </form>
-                        </div>
-                    </div>
                 </div>
-                <div class="action-bar">
-                    <button class="btn btn-run" onclick="runHtmlExperiment('html-1', 'preview-1', 'badge-1')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetHtmlExperiment('html-1', 'preview-1', 'badge-1')">↺ 重置</button>
+                
+                <!-- 预览区 -->
+                <div class="panel preview-area" id="preview-1">
+                    <div class="panel-label">预览效果</div>
+                    <!-- 简单搜索表单示例 -->
+                    <h3>搜索表单</h3>
+                    <form action="https://example.com/search" method="get">
+                        <label for="search">搜索：</label>
+                        <input type="text" id="search" name="q" placeholder="请输入搜索关键词">
+                        <input type="submit" value="搜索">
+                    </form>
+
+                    <!-- 简单登录表单示例 -->
+                    <h3>登录表单</h3>
+                    <form action="https://example.com/login" method="post">
+                        <label for="username">用户名：</label>
+                        <input type="text" id="username" name="username" placeholder="请输入用户名">
+                        
+                        <br><br>
+                        
+                        <label for="password">密码：</label>
+                        <input type="password" id="password" name="password" placeholder="请输入密码">
+                        
+                        <br><br>
+                        
+                        <input type="submit" value="登录">
+                        <input type="reset" value="重置">
+                    </form>
                 </div>
             </div>
-        </section>
+            
+            <!-- 操作按钮 -->
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runHtmlExperiment('html-1', 'preview-1', 'badge-1')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetHtmlExperiment('html-1', 'preview-1', 'badge-1')">↺ 重置代码</button>
+            </div>
+        </div>
+    </section>
 
-        <section id="input-types">
-            <h2>2. 文本输入控件</h2>
-            <p>
-                <code>&lt;input&gt;</code>标签是表单中最常用的控件，它可以根据<code>type</code>属性的值呈现不同的输入类型。
-                以下是一些常用的文本输入类型：
-            </p>
-            
-            <h3>2.1 文本输入框</h3>
-            <p>
-                <code>type="text"</code>用于创建单行文本输入框，它是<code>&lt;input&gt;</code>标签的默认类型。
-            </p>
-            
-            <pre><code>&lt;label for="username"&gt;用户名：&lt;/label&gt;
+
+    <!-- ============================================
+         正文内容 - 文本输入控件
+         ============================================ -->
+    <section id="input-types">
+        <h2>二、文本输入控件</h2>
+        <p>
+            <code>&lt;input&gt;</code>标签是表单中最常用的控件，它可以根据<code>type</code>属性的值呈现不同的输入类型。
+            以下是一些常用的文本输入类型：
+        </p>
+        
+        <h3>2.1 文本输入框</h3>
+        <p>
+            <code>type="text"</code>用于创建单行文本输入框，它是<code>&lt;input&gt;</code>标签的默认类型。
+        </p>
+        
+        <pre class="html"><code>&lt;label for="username"&gt;用户名：&lt;/label&gt;
 &lt;input type="text" id="username" name="username" placeholder="请输入用户名"&gt;</code></pre>
-            
-            <h3>2.2 密码输入框</h3>
-            <p>
-                <code>type="password"</code>用于创建密码输入框，输入的内容会被隐藏（显示为星号或圆点）。
-            </p>
-            
-            <pre><code>&lt;label for="password"&gt;密码：&lt;/label&gt;
+        
+        <h3>2.2 密码输入框</h3>
+        <p>
+            <code>type="password"</code>用于创建密码输入框，输入的内容会被隐藏（显示为星号或圆点）。
+        </p>
+        
+        <pre class="html"><code>&lt;label for="password"&gt;密码：&lt;/label&gt;
 &lt;input type="password" id="password" name="password" placeholder="请输入密码"&gt;</code></pre>
-            
-            <h3>2.3 数字输入框</h3>
-            <p>
-                <code>type="number"</code>用于创建数字输入框，它只允许输入数字。
-            </p>
-            
-            <pre><code>&lt;label for="age"&gt;年龄：&lt;/label&gt;
+        
+        <h3>2.3 数字输入框</h3>
+        <p>
+            <code>type="number"</code>用于创建数字输入框，它只允许输入数字。
+        </p>
+        
+        <pre class="html"><code>&lt;label for="age"&gt;年龄：&lt;/label&gt;
 &lt;input type="number" id="age" name="age" min="0" max="120" step="1"&gt;</code></pre>
-            
-            <h3>2.4 邮箱输入框</h3>
-            <p>
-                <code>type="email"</code>用于创建邮箱输入框，它会自动验证输入的内容是否符合邮箱格式。
-            </p>
-            
-            <pre><code>&lt;label for="email"&gt;邮箱：&lt;/label&gt;
+        
+        <h3>2.4 邮箱输入框</h3>
+        <p>
+            <code>type="email"</code>用于创建邮箱输入框，它会自动验证输入的内容是否符合邮箱格式。
+        </p>
+        
+        <pre class="html"><code>&lt;label for="email"&gt;邮箱：&lt;/label&gt;
 &lt;input type="email" id="email" name="email" placeholder="请输入邮箱"&gt;</code></pre>
-            
-            <h3>2.5 网址输入框</h3>
-            <p>
-                <code>type="url"</code>用于创建网址输入框，它会自动验证输入的内容是否符合网址格式。
-            </p>
-            
-            <pre><code>&lt;label for="website"&gt;个人网站：&lt;/label&gt;
+        
+        <h3>2.5 网址输入框</h3>
+        <p>
+            <code>type="url"</code>用于创建网址输入框，它会自动验证输入的内容是否符合网址格式。
+        </p>
+        
+        <pre class="html"><code>&lt;label for="website"&gt;个人网站：&lt;/label&gt;
 &lt;input type="url" id="website" name="website" placeholder="请输入网址"&gt;</code></pre>
-            
-            <h3>2.6 电话输入框</h3>
-            <p>
-                <code>type="tel"</code>用于创建电话输入框，它会在移动设备上显示数字键盘。
-            </p>
-            
-            <pre><code>&lt;label for="phone"&gt;电话：&lt;/label&gt;
+        
+        <h3>2.6 电话输入框</h3>
+        <p>
+            <code>type="tel"</code>用于创建电话输入框，它会在移动设备上显示数字键盘。
+        </p>
+        
+        <pre class="html"><code>&lt;label for="phone"&gt;电话：&lt;/label&gt;
 &lt;input type="tel" id="phone" name="phone" placeholder="请输入电话号码"&gt;</code></pre>
-            
-            <h3>2.7 日期和时间输入框</h3>
-            <p>
-                HTML5提供了多种日期和时间输入类型：
-            </p>
-            
-            <ul>
-                <li><code>type="date"</code>：日期选择器</li>
-                <li><code>type="time"</code>：时间选择器</li>
-                <li><code>type="datetime-local"</code>：日期和时间选择器</li>
-                <li><code>type="month"</code>：月份选择器</li>
-                <li><code>type="week"</code>：周选择器</li>
-            </ul>
-            
-            <pre><code>&lt;label for="birthday"&gt;生日：&lt;/label&gt;
+        
+        <h3>2.7 日期和时间输入框</h3>
+        <p>
+            HTML5提供了多种日期和时间输入类型：
+        </p>
+        
+        <ul>
+            <li><code>type="date"</code>：日期选择器</li>
+            <li><code>type="time"</code>：时间选择器</li>
+            <li><code>type="datetime-local"</code>：日期和时间选择器</li>
+            <li><code>type="month"</code>：月份选择器</li>
+            <li><code>type="week"</code>：周选择器</li>
+        </ul>
+        
+        <pre class="html"><code>&lt;label for="birthday"&gt;生日：&lt;/label&gt;
 &lt;input type="date" id="birthday" name="birthday"&gt;
 
 &lt;label for="meeting"&gt;会议时间：&lt;/label&gt;
 &lt;input type="datetime-local" id="meeting" name="meeting"&gt;</code></pre>
+    </section>
+
+
+    <!-- ============================================
+         实验 02：文本输入控件
+         ============================================ -->
+    <section id="lab-2">
+        <h2>实验 02：文本输入控件</h2>
+        <p>通过这个实验，你将学习各种文本输入控件的用法。</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 02：文本输入控件</span>
+                <span class="status-badge beginner" id="badge-2">动手实践</span>
+            </div>
             
-            <div class="lab-card">
-                <div class="lab-header">
-                    <span>上下结构实验室：文本输入控件</div>
-                    <span id="badge-2" class="status-badge">未运行</div>
-                </div>
-                <div class="lab-body">
-                    <div class="panel">
-                        <div class="panel-label">HTML (可编辑)</div>
-                        <div class="html-editor" id="html-2" contenteditable="true">
+            <div class="lab-body split">
+                <!-- 代码编辑区 -->
+                <div class="panel code-editor" id="html-2" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
 &lt;form&gt;
     &lt;label for="username"&gt;用户名：&lt;/label&gt;
     &lt;input type="text" id="username" name="username" placeholder="请输入用户名"&gt;
@@ -350,118 +382,86 @@
     &lt;label for="website"&gt;个人网站：&lt;/label&gt;
     &lt;input type="url" id="website" name="website" placeholder="请输入网址"&gt;
 &lt;/form&gt;
-                        </div>
-                        <!-- 隐藏的原始代码，用于重置功能 -->
-                        <div id="original-2" style="display: none;">
-&lt;form&gt;
-    &lt;label for="username"&gt;用户名：&lt;/label&gt;
-    &lt;input type="text" id="username" name="username" placeholder="请输入用户名"&gt;
-    
-    &lt;br&gt;&lt;br&gt;
-    
-    &lt;label for="password"&gt;密码：&lt;/label&gt;
-    &lt;input type="password" id="password" name="password" placeholder="请输入密码"&gt;
-    
-    &lt;br&gt;&lt;br&gt;
-    
-    &lt;label for="age"&gt;年龄：&lt;/label&gt;
-    &lt;input type="number" id="age" name="age" min="0" max="120" step="1"&gt;
-    
-    &lt;br&gt;&lt;br&gt;
-    
-    &lt;label for="email"&gt;邮箱：&lt;/label&gt;
-    &lt;input type="email" id="email" name="email" placeholder="请输入邮箱"&gt;
-    
-    &lt;br&gt;&lt;br&gt;
-    
-    &lt;label for="birthday"&gt;生日：&lt;/label&gt;
-    &lt;input type="date" id="birthday" name="birthday"&gt;
-    
-    &lt;br&gt;&lt;br&gt;
-    
-    &lt;label for="phone"&gt;电话：&lt;/label&gt;
-    &lt;input type="tel" id="phone" name="phone" placeholder="请输入电话号码"&gt;
-    
-    &lt;br&gt;&lt;br&gt;
-    
-    &lt;label for="website"&gt;个人网站：&lt;/label&gt;
-    &lt;input type="url" id="website" name="website" placeholder="请输入网址"&gt;
-&lt;/form&gt;
-                        </div>
-                    </div>
-                    <div class="panel">
-                        <div class="panel-label">预览效果</div>
-                        <div class="preview-box" id="preview-2">
-                            <form>
-                                <label for="username">用户名：</label>
-                                <input type="text" id="username" name="username" placeholder="请输入用户名">
-                                
-                                <br><br>
-                                
-                                <label for="password">密码：</label>
-                                <input type="password" id="password" name="password" placeholder="请输入密码">
-                                
-                                <br><br>
-                                
-                                <label for="age">年龄：</label>
-                                <input type="number" id="age" name="age" min="0" max="120" step="1">
-                                
-                                <br><br>
-                                
-                                <label for="email">邮箱：</label>
-                                <input type="email" id="email" name="email" placeholder="请输入邮箱">
-                                
-                                <br><br>
-                                
-                                <label for="birthday">生日：</label>
-                                <input type="date" id="birthday" name="birthday">
-                                
-                                <br><br>
-                                
-                                <label for="phone">电话：</label>
-                                <input type="tel" id="phone" name="phone" placeholder="请输入电话号码">
-                                
-                                <br><br>
-                                
-                                <label for="website">个人网站：</label>
-                                <input type="url" id="website" name="website" placeholder="请输入网址">
-                            </form>
-                        </div>
-                    </div>
                 </div>
-                <div class="action-bar">
-                    <button class="btn btn-run" onclick="runHtmlExperiment('html-2', 'preview-2', 'badge-2')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetHtmlExperiment('html-2', 'preview-2', 'badge-2')">↺ 重置</button>
+                
+                <!-- 预览区 -->
+                <div class="panel preview-area" id="preview-2">
+                    <div class="panel-label">预览效果</div>
+                    <form>
+                        <label for="username">用户名：</label>
+                        <input type="text" id="username" name="username" placeholder="请输入用户名">
+                        
+                        <br><br>
+                        
+                        <label for="password">密码：</label>
+                        <input type="password" id="password" name="password" placeholder="请输入密码">
+                        
+                        <br><br>
+                        
+                        <label for="age">年龄：</label>
+                        <input type="number" id="age" name="age" min="0" max="120" step="1">
+                        
+                        <br><br>
+                        
+                        <label for="email">邮箱：</label>
+                        <input type="email" id="email" name="email" placeholder="请输入邮箱">
+                        
+                        <br><br>
+                        
+                        <label for="birthday">生日：</label>
+                        <input type="date" id="birthday" name="birthday">
+                        
+                        <br><br>
+                        
+                        <label for="phone">电话：</label>
+                        <input type="tel" id="phone" name="phone" placeholder="请输入电话号码">
+                        
+                        <br><br>
+                        
+                        <label for="website">个人网站：</label>
+                        <input type="url" id="website" name="website" placeholder="请输入网址">
+                    </form>
                 </div>
             </div>
-        </section>
+            
+            <!-- 操作按钮 -->
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runHtmlExperiment('html-2', 'preview-2', 'badge-2')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetHtmlExperiment('html-2', 'preview-2', 'badge-2')">↺ 重置代码</button>
+            </div>
+        </div>
+    </section>
 
-        <section id="radio-checkbox">
-            <h2>3. 单选按钮与复选框</h2>
-            <p>
-                在HTML中，我们可以使用单选按钮和复选框来收集用户的选择。
-            </p>
-            
-            <h3>3.1 单选按钮</h3>
-            <p>
-                <code>type="radio"</code>用于创建单选按钮，它允许用户从一组选项中选择一个选项。
-                同一组的单选按钮必须具有相同的<code>name</code>属性。
-            </p>
-            
-            <pre><code>&lt;label&gt;性别：&lt;/label&gt;
+
+    <!-- ============================================
+         正文内容 - 单选按钮与复选框
+         ============================================ -->
+    <section id="radio-checkbox">
+        <h2>三、单选按钮与复选框</h2>
+        <p>
+            在HTML中，我们可以使用单选按钮和复选框来收集用户的选择。
+        </p>
+        
+        <h3>3.1 单选按钮</h3>
+        <p>
+            <code>type="radio"</code>用于创建单选按钮，它允许用户从一组选项中选择一个选项。
+            同一组的单选按钮必须具有相同的<code>name</code>属性。
+        </p>
+        
+        <pre class="html"><code>&lt;label&gt;性别：&lt;/label&gt;
 &lt;input type="radio" id="male" name="gender" value="male" checked&gt;
 &lt;label for="male"&gt;男&lt;/label&gt;
 
 &lt;input type="radio" id="female" name="gender" value="female"&gt;
 &lt;label for="female"&gt;女&lt;/label&gt;</code></pre>
-            
-            <h3>3.2 复选框</h3>
-            <p>
-                <code>type="checkbox"</code>用于创建复选框，它允许用户从一组选项中选择多个选项。
-                同一组的复选框通常具有相同的<code>name</code>属性。
-            </p>
-            
-            <pre><code>&lt;label&gt;爱好：&lt;/label&gt;
+        
+        <h3>3.2 复选框</h3>
+        <p>
+            <code>type="checkbox"</code>用于创建复选框，它允许用户从一组选项中选择多个选项。
+            同一组的复选框通常具有相同的<code>name</code>属性。
+        </p>
+        
+        <pre class="html"><code>&lt;label&gt;爱好：&lt;/label&gt;
 &lt;input type="checkbox" id="reading" name="hobby" value="reading"&gt;
 &lt;label for="reading"&gt;阅读&lt;/label&gt;
 
@@ -470,273 +470,259 @@
 
 &lt;input type="checkbox" id="sports" name="hobby" value="sports"&gt;
 &lt;label for="sports"&gt;运动&lt;/label&gt;</code></pre>
-            
-            <div class="lab-card">
-                <div class="lab-header">
-                    <span>上下结构实验室：单选按钮与复选框</div>
-                    <span id="badge-3" class="status-badge">未运行</div>
-                </div>
-                <div class="lab-body">
-                    <div class="panel">
-                        <div class="panel-label">HTML (可编辑)</div>
-                        <div class="html-editor" id="html-3" contenteditable="true">
-&lt;form&gt;
-    &lt;label&gt;性别：&lt;/label&gt;
-    &lt;input type="radio" id="male" name="gender" value="male" checked&gt;
-    &lt;label for="male"&gt;男&lt;/label&gt;
-    
-    &lt;input type="radio" id="female" name="gender" value="female"&gt;
-    &lt;label for="female"&gt;女&lt;/label&gt;
-    
-    &lt;input type="radio" id="other" name="gender" value="other"&gt;
-    &lt;label for="other"&gt;其他&lt;/label&gt;
-    
-    &lt;br&gt;&lt;br&gt;
-    
-    &lt;label&gt;爱好：&lt;/label&gt;
-    &lt;input type="checkbox" id="reading" name="hobby" value="reading"&gt;
-    &lt;label for="reading"&gt;阅读&lt;/label&gt;
-    
-    &lt;input type="checkbox" id="music" name="hobby" value="music"&gt;
-    &lt;label for="music"&gt;音乐&lt;/label&gt;
-    
-    &lt;input type="checkbox" id="sports" name="hobby" value="sports"&gt;
-    &lt;label for="sports"&gt;运动&lt;/label&gt;
-    
-    &lt;input type="checkbox" id="travel" name="hobby" value="travel"&gt;
-    &lt;label for="travel"&gt;旅行&lt;/label&gt;
-    
-    &lt;input type="checkbox" id="cooking" name="hobby" value="cooking"&gt;
-    &lt;label for="cooking"&gt;烹饪&lt;/label&gt;
-&lt;/form&gt;
-                        </div>
-                        <!-- 隐藏的原始代码，用于重置功能 -->
-                        <div id="original-3" style="display: none;">
-&lt;form&gt;
-    &lt;label&gt;性别：&lt;/label&gt;
-    &lt;input type="radio" id="male" name="gender" value="male" checked&gt;
-    &lt;label for="male"&gt;男&lt;/label&gt;
-    
-    &lt;input type="radio" id="female" name="gender" value="female"&gt;
-    &lt;label for="female"&gt;女&lt;/label&gt;
-    
-    &lt;input type="radio" id="other" name="gender" value="other"&gt;
-    &lt;label for="other"&gt;其他&lt;/label&gt;
-    
-    &lt;br&gt;&lt;br&gt;
-    
-    &lt;label&gt;爱好：&lt;/label&gt;
-    &lt;input type="checkbox" id="reading" name="hobby" value="reading"&gt;
-    &lt;label for="reading"&gt;阅读&lt;/label&gt;
-    
-    &lt;input type="checkbox" id="music" name="hobby" value="music"&gt;
-    &lt;label for="music"&gt;音乐&lt;/label&gt;
-    
-    &lt;input type="checkbox" id="sports" name="hobby" value="sports"&gt;
-    &lt;label for="sports"&gt;运动&lt;/label&gt;
-    
-    &lt;input type="checkbox" id="travel" name="hobby" value="travel"&gt;
-    &lt;label for="travel"&gt;旅行&lt;/label&gt;
-    
-    &lt;input type="checkbox" id="cooking" name="hobby" value="cooking"&gt;
-    &lt;label for="cooking"&gt;烹饪&lt;/label&gt;
-&lt;/form&gt;
-                        </div>
-                    </div>
-                    <div class="panel">
-                        <div class="panel-label">预览效果</div>
-                        <div class="preview-box" id="preview-3">
-                            <form>
-                                <label>性别：</label>
-                                <input type="radio" id="male" name="gender" value="male" checked>
-                                <label for="male">男</label>
-                                
-                                <input type="radio" id="female" name="gender" value="female">
-                                <label for="female">女</label>
-                                
-                                <input type="radio" id="other" name="gender" value="other">
-                                <label for="other">其他</label>
-                                
-                                <br><br>
-                                
-                                <label>爱好：</label>
-                                <input type="checkbox" id="reading" name="hobby" value="reading">
-                                <label for="reading">阅读</label>
-                                
-                                <input type="checkbox" id="music" name="hobby" value="music">
-                                <label for="music">音乐</label>
-                                
-                                <input type="checkbox" id="sports" name="hobby" value="sports">
-                                <label for="sports">运动</label>
-                                
-                                <input type="checkbox" id="travel" name="hobby" value="travel">
-                                <label for="travel">旅行</label>
-                                
-                                <input type="checkbox" id="cooking" name="hobby" value="cooking">
-                                <label for="cooking">烹饪</label>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="action-bar">
-                    <button class="btn btn-run" onclick="runHtmlExperiment('html-3', 'preview-3', 'badge-3')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetHtmlExperiment('html-3', 'preview-3', 'badge-3')">↺ 重置</button>
-                </div>
-            </div>
-        </section>
+    </section>
 
-        <section id="buttons">
-            <h2>4. 提交与重置按钮</h2>
-            <p>
-                表单通常包含提交按钮和重置按钮，用于提交表单数据和重置表单内容。
-            </p>
-            
-            <h3>4.1 提交按钮</h3>
-            <p>
-                <code>type="submit"</code>用于创建提交按钮，点击它会提交表单数据到<code>action</code>属性指定的URL。
-            </p>
-            
-            <pre><code>&lt;input type="submit" value="提交"&gt;</code></pre>
-            
-            <h3>4.2 重置按钮</h3>
-            <p>
-                <code>type="reset"</code>用于创建重置按钮，点击它会将表单中的所有控件重置为默认值。
-            </p>
-            
-            <pre><code>&lt;input type="reset" value="重置"&gt;</code></pre>
-            
-            <h3>4.3 普通按钮</h3>
-            <p>
-                <code>type="button"</code>用于创建普通按钮，它不会自动提交表单，通常用于触发JavaScript事件。
-            </p>
-            
-            <pre><code>&lt;input type="button" value="点击我" onclick="alert('Hello!')"&gt;</code></pre>
-            
-            <h3>4.4 button标签</h3>
-            <p>
-                除了使用<code>&lt;input&gt;</code>标签创建按钮外，我们还可以使用<code>&lt;button&gt;</code>标签创建按钮。
-                <code>&lt;button&gt;</code>标签提供了更灵活的样式和内容支持。
-            </p>
-            
-            <pre><code>&lt;button type="submit"&gt;提交&lt;/button&gt;
-&lt;button type="reset"&gt;重置&lt;/button&gt;
-&lt;button type="button" onclick="alert('Hello!')"&gt;点击我&lt;/button&gt;</code></pre>
-            
-            <div class="lab-card">
-                <div class="lab-header">
-                    <span>上下结构实验室：表单按钮</div>
-                    <span id="badge-4" class="status-badge">未运行</div>
-                </div>
-                <div class="lab-body">
-                    <div class="panel">
-                        <div class="panel-label">HTML (可编辑)</div>
-                        <div class="html-editor" id="html-4" contenteditable="true">
-&lt;form&gt;
-    &lt;input type="text" placeholder="请输入内容"&gt;
-    &lt;br&gt;&lt;br&gt;
-    
-    &lt;!-- 使用input标签创建按钮 --&gt;
-    &lt;h4&gt;使用input标签创建按钮&lt;/h4&gt;
-    &lt;input type="submit" value="提交"&gt;
-    &lt;input type="reset" value="重置"&gt;
-    &lt;input type="button" value="点击我" onclick="alert('Hello from input button!')"&gt;
-    
-    &lt;br&gt;&lt;br&gt;
-    
-    &lt;!-- 使用button标签创建按钮 --&gt;
-    &lt;h4&gt;使用button标签创建按钮&lt;/h4&gt;
-    &lt;button type="submit"&gt;提交按钮&lt;/button&gt;
-    &lt;button type="reset"&gt;重置按钮&lt;/button&gt;
-    &lt;button type="button" onclick="alert('Hello from button tag!')"&gt;点击我&lt;/button&gt;
-&lt;/form&gt;
-                        </div>
-                        <!-- 隐藏的原始代码，用于重置功能 -->
-                        <div id="original-4" style="display: none;">
-&lt;form&gt;
-    &lt;input type="text" placeholder="请输入内容"&gt;
-    &lt;br&gt;&lt;br&gt;
-    
-    &lt;!-- 使用input标签创建按钮 --&gt;
-    &lt;h4&gt;使用input标签创建按钮&lt;/h4&gt;
-    &lt;input type="submit" value="提交"&gt;
-    &lt;input type="reset" value="重置"&gt;
-    &lt;input type="button" value="点击我" onclick="alert('Hello from input button!')"&gt;
-    
-    &lt;br&gt;&lt;br&gt;
-    
-    &lt;!-- 使用button标签创建按钮 --&gt;
-    &lt;h4&gt;使用button标签创建按钮&lt;/h4&gt;
-    &lt;button type="submit"&gt;提交按钮&lt;/button&gt;
-    &lt;button type="reset"&gt;重置按钮&lt;/button&gt;
-    &lt;button type="button" onclick="alert('Hello from button tag!')"&gt;点击我&lt;/button&gt;
-&lt;/form&gt;
-                        </div>
-                    </div>
-                    <div class="panel">
-                        <div class="panel-label">预览效果</div>
-                        <div class="preview-box" id="preview-4">
-                            <form>
-                                <input type="text" placeholder="请输入内容">
-                                <br><br>
-                                
-                                <!-- 使用input标签创建按钮 -->
-                                <h4>使用input标签创建按钮</h4>
-                                <input type="submit" value="提交">
-                                <input type="reset" value="重置">
-                                <input type="button" value="点击我" onclick="alert('Hello from input button!')">
-                                
-                                <br><br>
-                                
-                                <!-- 使用button标签创建按钮 -->
-                                <h4>使用button标签创建按钮</h4>
-                                <button type="submit">提交按钮</button>
-                                <button type="reset">重置按钮</button>
-                                <button type="button" onclick="alert('Hello from button tag!')">点击我</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="action-bar">
-                    <button class="btn btn-run" onclick="runHtmlExperiment('html-4', 'preview-4', 'badge-4')">▶ 运行代码</button>
-                    <button class="btn btn-reset" onclick="resetHtmlExperiment('html-4', 'preview-4', 'badge-4')">↺ 重置</button>
-                </div>
-            </div>
-        </section>
 
-        <!-- 第二部分：实战练习 -->
-        <section id="exercise">
-            <h2>5. 课后练习</h2>
-            <p>
-                请完成以下练习，巩固本节课所学的知识：
-            </p>
-            
-            <ol>
-                <li>创建一个HTML页面，包含一个注册表单</li>
-                <li>表单应包含以下字段：
-                    <ul>
-                        <li>用户名（文本输入框）</li>
-                        <li>密码（密码输入框）</li>
-                        <li>确认密码（密码输入框）</li>
-                        <li>邮箱（邮箱输入框）</li>
-                        <li>年龄（数字输入框）</li>
-                        <li>性别（单选按钮）</li>
-                        <li>爱好（复选框，至少3个选项）</li>
-                        <li>生日（日期输入框）</li>
-                    </ul>
-                </li>
-                <li>为表单添加提交按钮和重置按钮</li>
-                <li>为所有表单控件添加合适的<code>label</code>标签和<code>placeholder</code>属性</li>
-                <li>设置表单的<code>action</code>和<code>method</code>属性</li>
-            </ol>
+    <!-- ============================================
+         实验 03：单选按钮与复选框
+         ============================================ -->
+    <section id="lab-3">
+        <h2>实验 03：单选按钮与复选框</h2>
+        <p>通过这个实验，你将学习单选按钮和复选框的用法。</p>
         
         <div class="lab-card">
             <div class="lab-header">
-                <span>实验：第8次课-HTML表单基础综合实践</div>
-                <span id="8html-status" class="status-badge">未运行</div>
+                <span>实验 03：单选按钮与复选框</span>
+                <span class="status-badge beginner" id="badge-3">动手实践</span>
             </div>
+            
+            <div class="lab-body split">
+                <!-- 代码编辑区 -->
+                <div class="panel code-editor" id="html-3" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
+&lt;form&gt;
+    &lt;label&gt;性别：&lt;/label&gt;
+    &lt;input type="radio" id="male" name="gender" value="male" checked&gt;
+    &lt;label for="male"&gt;男&lt;/label&gt;
+    
+    &lt;input type="radio" id="female" name="gender" value="female"&gt;
+    &lt;label for="female"&gt;女&lt;/label&gt;
+    
+    &lt;input type="radio" id="other" name="gender" value="other"&gt;
+    &lt;label for="other"&gt;其他&lt;/label&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label&gt;爱好：&lt;/label&gt;
+    &lt;input type="checkbox" id="reading" name="hobby" value="reading"&gt;
+    &lt;label for="reading"&gt;阅读&lt;/label&gt;
+    
+    &lt;input type="checkbox" id="music" name="hobby" value="music"&gt;
+    &lt;label for="music"&gt;音乐&lt;/label&gt;
+    
+    &lt;input type="checkbox" id="sports" name="hobby" value="sports"&gt;
+    &lt;label for="sports"&gt;运动&lt;/label&gt;
+    
+    &lt;input type="checkbox" id="travel" name="hobby" value="travel"&gt;
+    &lt;label for="travel"&gt;旅行&lt;/label&gt;
+    
+    &lt;input type="checkbox" id="cooking" name="hobby" value="cooking"&gt;
+    &lt;label for="cooking"&gt;烹饪&lt;/label&gt;
+&lt;/form&gt;
+                </div>
+                
+                <!-- 预览区 -->
+                <div class="panel preview-area" id="preview-3">
+                    <div class="panel-label">预览效果</div>
+                    <form>
+                        <label>性别：</label>
+                        <input type="radio" id="male" name="gender" value="male" checked>
+                        <label for="male">男</label>
+                        
+                        <input type="radio" id="female" name="gender" value="female">
+                        <label for="female">女</label>
+                        
+                        <input type="radio" id="other" name="gender" value="other">
+                        <label for="other">其他</label>
+                        
+                        <br><br>
+                        
+                        <label>爱好：</label>
+                        <input type="checkbox" id="reading" name="hobby" value="reading">
+                        <label for="reading">阅读</label>
+                        
+                        <input type="checkbox" id="music" name="hobby" value="music">
+                        <label for="music">音乐</label>
+                        
+                        <input type="checkbox" id="sports" name="hobby" value="sports">
+                        <label for="sports">运动</label>
+                        
+                        <input type="checkbox" id="travel" name="hobby" value="travel">
+                        <label for="travel">旅行</label>
+                        
+                        <input type="checkbox" id="cooking" name="hobby" value="cooking">
+                        <label for="cooking">烹饪</label>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- 操作按钮 -->
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runHtmlExperiment('html-3', 'preview-3', 'badge-3')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetHtmlExperiment('html-3', 'preview-3', 'badge-3')">↺ 重置代码</button>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         正文内容 - 提交与重置按钮
+         ============================================ -->
+    <section id="buttons">
+        <h2>四、提交与重置按钮</h2>
+        <p>
+            表单通常包含提交按钮和重置按钮，用于提交表单数据和重置表单内容。
+        </p>
+        
+        <h3>4.1 提交按钮</h3>
+        <p>
+            <code>type="submit"</code>用于创建提交按钮，点击它会提交表单数据到<code>action</code>属性指定的URL。
+        </p>
+        
+        <pre class="html"><code>&lt;input type="submit" value="提交"&gt;</code></pre>
+        
+        <h3>4.2 重置按钮</h3>
+        <p>
+            <code>type="reset"</code>用于创建重置按钮，点击它会将表单中的所有控件重置为默认值。
+        </p>
+        
+        <pre class="html"><code>&lt;input type="reset" value="重置"&gt;</code></pre>
+        
+        <h3>4.3 普通按钮</h3>
+        <p>
+            <code>type="button"</code>用于创建普通按钮，它不会自动提交表单，通常用于触发JavaScript事件。
+        </p>
+        
+        <pre class="html"><code>&lt;input type="button" value="点击我" onclick="alert('Hello!')"&gt;</code></pre>
+        
+        <h3>4.4 button标签</h3>
+        <p>
+            除了使用<code>&lt;input&gt;</code>标签创建按钮外，我们还可以使用<code>&lt;button&gt;</code>标签创建按钮。
+            <code>&lt;button&gt;</code>标签提供了更灵活的样式和内容支持。
+        </p>
+        
+        <pre class="html"><code>&lt;button type="submit"&gt;提交&lt;/button&gt;
+&lt;button type="reset"&gt;重置&lt;/button&gt;
+&lt;button type="button" onclick="alert('Hello!')"&gt;点击我&lt;/button&gt;</code></pre>
+    </section>
+
+
+    <!-- ============================================
+         实验 04：表单按钮
+         ============================================ -->
+    <section id="lab-4">
+        <h2>实验 04：表单按钮</h2>
+        <p>通过这个实验，你将学习各种表单按钮的用法。</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 04：表单按钮</span>
+                <span class="status-badge beginner" id="badge-4">动手实践</span>
+            </div>
+            
+            <div class="lab-body split">
+                <!-- 代码编辑区 -->
+                <div class="panel code-editor" id="html-4" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
+&lt;form&gt;
+    &lt;input type="text" placeholder="请输入内容"&gt;
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;!-- 使用input标签创建按钮 --&gt;
+    &lt;h4&gt;使用input标签创建按钮&lt;/h4&gt;
+    &lt;input type="submit" value="提交"&gt;
+    &lt;input type="reset" value="重置"&gt;
+    &lt;input type="button" value="点击我" onclick="alert('Hello from input button!')"&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;!-- 使用button标签创建按钮 --&gt;
+    &lt;h4&gt;使用button标签创建按钮&lt;/h4&gt;
+    &lt;button type="submit"&gt;提交按钮&lt;/button&gt;
+    &lt;button type="reset"&gt;重置按钮&lt;/button&gt;
+    &lt;button type="button" onclick="alert('Hello from button tag!')"&gt;点击我&lt;/button&gt;
+&lt;/form&gt;
+                </div>
+                
+                <!-- 预览区 -->
+                <div class="panel preview-area" id="preview-4">
+                    <div class="panel-label">预览效果</div>
+                    <form>
+                        <input type="text" placeholder="请输入内容">
+                        <br><br>
+                        
+                        <!-- 使用input标签创建按钮 -->
+                        <h4>使用input标签创建按钮</h4>
+                        <input type="submit" value="提交">
+                        <input type="reset" value="重置">
+                        <input type="button" value="点击我" onclick="alert('Hello from input button!')">
+                        
+                        <br><br>
+                        
+                        <!-- 使用button标签创建按钮 -->
+                        <h4>使用button标签创建按钮</h4>
+                        <button type="submit">提交按钮</button>
+                        <button type="reset">重置按钮</button>
+                        <button type="button" onclick="alert('Hello from button tag!')">点击我</button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- 操作按钮 -->
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runHtmlExperiment('html-4', 'preview-4', 'badge-4')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetHtmlExperiment('html-4', 'preview-4', 'badge-4')">↺ 重置代码</button>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         正文内容 - 课后练习
+         ============================================ -->
+    <section id="exercise">
+        <h2>五、课后练习</h2>
+        <p>
+            请完成以下练习，巩固本节课所学的知识：
+        </p>
+        
+        <ol>
+            <li>创建一个HTML页面，包含一个注册表单</li>
+            <li>表单应包含以下字段：
+                <ul>
+                    <li>用户名（文本输入框）</li>
+                    <li>密码（密码输入框）</li>
+                    <li>确认密码（密码输入框）</li>
+                    <li>邮箱（邮箱输入框）</li>
+                    <li>年龄（数字输入框）</li>
+                    <li>性别（单选按钮）</li>
+                    <li>爱好（复选框，至少3个选项）</li>
+                    <li>生日（日期输入框）</li>
+                </ul>
+            </li>
+            <li>为表单添加提交按钮和重置按钮</li>
+            <li>为所有表单控件添加合适的<code>label</code>标签和<code>placeholder</code>属性</li>
+            <li>设置表单的<code>action</code>和<code>method</code>属性</li>
+        </ol>
+    </section>
+
+
+    <!-- ============================================
+         实验 05：HTML表单基础综合实践
+         ============================================ -->
+    <section id="lab-5">
+        <h2>实验 05：HTML表单基础综合实践</h2>
+        <p>通过这个实验，你将综合运用本节课所学的知识，创建完整的表单。</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 05：HTML表单基础综合实践</span>
+                <span class="status-badge beginner" id="8html-status">动手实践</span>
+            </div>
+            
             <div class="lab-body">
                 <div class="panel-label">HTML (可编辑)</div>
-<div class="html-editor" id="8html-html" contenteditable="true">
+                <div class="panel code-editor" id="8html-html" contenteditable="true">
 &lt;!DOCTYPE html&gt;
 &lt;html lang="zh-CN"&gt;
 &lt;head&gt;
@@ -825,27 +811,86 @@
     &lt;/form&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-</div>
+                </div>
             </div>
+            
+            <!-- 操作按钮 -->
             <div class="action-bar">
                 <button class="btn btn-run" onclick="runHtmlExperiment('8html-html', '8html-preview', '8html-status')">▶ 运行代码</button>
-                <button class="btn btn-reset" onclick="resetHtmlExperiment('8html-html', '8html-preview', '8html-status')">↺ 重置</button>
+                <button class="btn btn-reset" onclick="resetHtmlExperiment('8html-html', '8html-preview', '8html-status')">↺ 重置代码</button>
             </div>
+            
+            <!-- 预览区 -->
             <div class="preview-box" id="8html-preview">
                 <div class="panel-label">预览效果</div>
             </div>
         </div>
-</section></main>
+    </section>
+
+
+    <!-- ============================================
+         课程小结区域
+         ============================================ -->
+    <section id="summary">
+        <h2>五、本课小结</h2>
+        
+        <h3>知识点回顾</h3>
+        <ul class="checklist">
+            <li><strong>表单结构</strong>：学习了表单的基本结构和<code>&lt;form&gt;</code>标签的属性</li>
+            <li><strong>文本输入控件</strong>：掌握了各种文本输入控件的用法，包括文本框、密码框、数字框等</li>
+            <li><strong>单选按钮与复选框</strong>：学会了如何使用单选按钮和复选框收集用户选择</li>
+            <li><strong>提交与重置按钮</strong>：了解了提交按钮、重置按钮和普通按钮的区别和用法</li>
+            <li><strong>label标签</strong>：学习了如何使用<code>&lt;label&gt;</code>标签关联表单控件和文本</li>
+            <li><strong>GET vs POST</strong>：理解了两种表单提交方法的区别和适用场景</li>
+        </ul>
+        
+        <h3>重点记忆</h3>
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>概念</th>
+                    <th>要点</th>
+                    <th>示例</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>表单基本结构</td>
+                    <td>使用<code>&lt;form&gt;</code>标签定义表单，包含各种表单控件</td>
+                    <td><code>&lt;form action="url" method="post"&gt;&lt;/form&gt;</code></td>
+                </tr>
+                <tr>
+                    <td>单选按钮</td>
+                    <td>同一组单选按钮必须具有相同的<code>name</code>属性</td>
+                    <td><code>&lt;input type="radio" name="gender" value="male"&gt;</code></td>
+                </tr>
+                <tr>
+                    <td>复选框</td>
+                    <td>允许用户从一组选项中选择多个选项</td>
+                    <td><code>&lt;input type="checkbox" name="hobby" value="reading"&gt;</code></td>
+                </tr>
+                <tr>
+                    <td>提交按钮</td>
+                    <td>用于提交表单数据</td>
+                    <td><code>&lt;input type="submit" value="提交"&gt;</code></td>
+                </tr>
+                <tr>
+                    <td>重置按钮</td>
+                    <td>用于重置表单内容</td>
+                    <td><code>&lt;input type="reset" value="重置"&gt;</code></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- 下一课预告 -->
+        <div class="note-box">
+            <strong>下一课预告：</strong>
+            <p>下一课我们将学习【HTML表单进阶】。我们将学习更多表单控件，如选择框、文本域和文件上传控件，并了解表单验证和高级表单设计。</p>
+        </div>
+    </section>
+
+
+</main>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-

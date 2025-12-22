@@ -1,152 +1,185 @@
-﻿<!DOCTYPE html>
-<html lang='zh-CN'>
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>第25次课-JS运算符与表达式 - 练习答案</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第25课练习答案：简易计算器</title>
     <style>
-        /* 简约风格样式 */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: #f0f2f5; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            min-height: 100vh; 
+            margin: 0; 
+            padding: 20px; 
         }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f9f9f9;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
+        .container { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 12px; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08); 
+            width: 100%; 
+            max-width: 480px; 
         }
-        
-        h1 {
+        h1 { 
+            text-align: center; 
+            color: #333; 
+            margin-bottom: 25px;
             font-size: 24px;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #e1e4e8;
         }
-        
-        h2 {
-            font-size: 20px;
-            font-weight: 600;
-            color: #34495e;
-            margin: 24px 0 12px;
+        .answer-box { 
+            background: #e8f5e9; 
+            border-left: 5px solid #4caf50; 
+            padding: 15px; 
+            margin-bottom: 25px; 
+            border-radius: 4px; 
         }
-        
-        h3 {
+        .answer-box h3 { 
+            margin-top: 0; 
+            color: #2e7d32; 
             font-size: 18px;
-            font-weight: 600;
-            color: #34495e;
-            margin: 20px 0 10px;
+            margin-bottom: 10px;
         }
-        
-        p {
-            margin-bottom: 16px;
-            font-size: 16px;
+        .input-group { 
+            display: flex; 
+            gap: 15px; 
+            margin-bottom: 20px; 
         }
-        
-        ul, ol {
-            margin: 16px 0;
-            padding-left: 24px;
+        input { 
+            flex: 1; 
+            padding: 12px; 
+            border: 2px solid #e0e0e0; 
+            border-radius: 8px; 
+            font-size: 16px; 
+            text-align: center;
+            transition: border-color 0.3s;
         }
-        
-        li {
-            margin-bottom: 8px;
-            font-size: 16px;
+        input:focus {
+            outline: none;
+            border-color: #2196f3;
         }
-        
-        .exercise-section {
-            background-color: white;
-            padding: 20px;
-            margin: 16px 0;
-            border-radius: 6px;
-            border: 1px solid #e1e4e8;
+        .btn-group { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 12px; 
+            margin-bottom: 25px; 
         }
-        
-        .code {
-            background-color: #f6f8fa;
-            padding: 16px;
-            margin: 16px 0;
-            border-radius: 6px;
-            font-family: 'Cascadia Code', 'SF Mono', 'Menlo', 'Monaco', 'Courier New', monospace;
-            font-size: 14px;
-            line-height: 1.5;
-            overflow-x: auto;
-            white-space: pre-wrap;
-            border: 1px solid #e1e4e8;
+        button { 
+            padding: 12px; 
+            border: none; 
+            border-radius: 8px; 
+            background: #4caf50; 
+            color: white; 
+            font-size: 24px; 
+            cursor: pointer; 
+            transition: transform 0.1s, opacity 0.2s; 
+            font-family: monospace;
         }
+        button:hover { opacity: 0.9; }
+        button:active { transform: scale(0.95); }
         
-        /* 答案文件特有样式 */
-        .answer-section {
-            background-color: white;
-            padding: 20px;
-            margin: 16px 0;
-            border-radius: 6px;
-            border: 1px solid #e1e4e8;
-        }
+        button.sub { background: #f44336; } 
+        button.mul { background: #ff9800; } 
+        button.div { background: #2196f3; } 
         
-        .answer-section h2 {
-            color: #27ae60;
-            border-bottom: 1px solid #e8f5e8;
-            padding-bottom: 10px;
+        #result { 
+            padding: 20px; 
+            background: #f8f9fa; 
+            border: 2px dashed #dee2e6; 
+            border-radius: 8px; 
+            text-align: center; 
+            font-size: 20px; 
+            font-weight: bold; 
+            color: #333; 
+            min-height: 70px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
         }
     </style>
 </head>
 <body>
-    <h1>第25次课-JS运算符与表达式 - 练习答案</h1>
-    
-    <div class='answer-section'>
-        <h2>练习答案</h2>
-        <p>以下是本次练习的参考答案：</p>
+    <div class="container">
+        <h1>🧮 简易计算器 (参考答案)</h1>
         
-        <h3>1. 主要知识点回顾</h3>
-        <p>本课学习的主要知识点包括：</p>
-        <ul>
-            <li>相关HTML标签和属性</li>
-            <li>CSS样式和选择器</li>
-            <li>JavaScript语法和API</li>
-            <li>最佳实践和常见问题</li>
-        </ul>
-        
-        <h3>2. 参考代码</h3>
-        <p>请根据本课内容编写符合要求的代码，参考讲义中的示例。</p>
-        <div class='code'>
-&lt;!-- 示例代码结构 --&gt;
-&lt;!DOCTYPE html&gt;
-&lt;html lang='zh-CN'&gt;
-&lt;head&gt;
-    &lt;meta charset='UTF-8'&gt;
-    &lt;meta name='viewport' content='width=device-width, initial-scale=1.0'&gt;
-    &lt;title&gt;示例&lt;/title&gt;
-    &lt;style&gt;
-        /* CSS样式 */
-    &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;!-- HTML内容 --&gt;
-    
-    &lt;script&gt;
-        // JavaScript代码
-    &lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
+        <div class="answer-box">
+            <h3>✅ 参考答案说明</h3>
+            <p style="color: #555;">本页面包含了完整的 JavaScript 实现代码。你可以右键点击页面选择"查看网页源代码"来学习具体的实现逻辑。</p>
         </div>
+
+        <!-- 计算器界面 -->
+        <div class="input-group">
+            <input type="number" id="num1" placeholder="输入数字 1" value="10">
+            <input type="number" id="num2" placeholder="输入数字 2" value="5">
+        </div>
+
+        <div class="btn-group">
+            <button id="addBtn" title="加法">+</button>
+            <button id="subBtn" class="sub" title="减法">-</button>
+            <button id="mulBtn" class="mul" title="乘法">×</button>
+            <button id="divBtn" class="div" title="除法">÷</button>
+        </div>
+
+        <div id="result">请点击上方按钮进行计算</div>
     </div>
-    
-    <div class='answer-section'>
-        <h2>学习建议</h2>
-        <p>在完成练习后，建议：</p>
-        <ul>
-            <li>回顾本课内容，加深理解</li>
-            <li>尝试修改和扩展答案代码</li>
-            <li>查阅相关文档和教程</li>
-            <li>与同学交流学习经验</li>
-        </ul>
-    </div>
+
+    <script>
+        // 1. 获取页面元素
+        const num1Input = document.getElementById('num1');
+        const num2Input = document.getElementById('num2');
+        const resultDiv = document.getElementById('result');
+        
+        const addBtn = document.getElementById('addBtn');
+        const subBtn = document.getElementById('subBtn');
+        const mulBtn = document.getElementById('mulBtn');
+        const divBtn = document.getElementById('divBtn');
+
+        // 2. 实现加法功能
+        addBtn.addEventListener('click', function() {
+            const n1 = Number(num1Input.value);
+            const n2 = Number(num2Input.value);
+            const sum = n1 + n2;
+            resultDiv.innerText = `${n1} + ${n2} = ${sum}`;
+            resultDiv.style.color = '#4caf50'; // 绿色
+        });
+
+        // 3. 实现减法功能
+        subBtn.addEventListener('click', function() {
+            const n1 = Number(num1Input.value);
+            const n2 = Number(num2Input.value);
+            const diff = n1 - n2;
+            resultDiv.innerText = `${n1} - ${n2} = ${diff}`;
+            resultDiv.style.color = '#f44336'; // 红色
+        });
+
+        // 4. 实现乘法功能
+        mulBtn.addEventListener('click', function() {
+            const n1 = Number(num1Input.value);
+            const n2 = Number(num2Input.value);
+            const prod = n1 * n2;
+            resultDiv.innerText = `${n1} × ${n2} = ${prod}`;
+            resultDiv.style.color = '#ff9800'; // 橙色
+        });
+
+        // 5. 实现除法功能
+        divBtn.addEventListener('click', function() {
+            const n1 = Number(num1Input.value);
+            const n2 = Number(num2Input.value);
+            
+            // 简单的除零检查
+            if (n2 === 0) {
+                resultDiv.innerText = '错误：除数不能为 0';
+                resultDiv.style.color = 'red';
+            } else {
+                const quot = n1 / n2;
+                // 如果是无限循环小数，保留2位小数
+                const displayQuot = Number.isInteger(quot) ? quot : quot.toFixed(2);
+                resultDiv.innerText = `${n1} ÷ ${n2} = ${displayQuot}`;
+                resultDiv.style.color = '#2196f3'; // 蓝色
+            }
+        });
+    </script>
 </body>
 </html>

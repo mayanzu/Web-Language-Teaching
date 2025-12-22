@@ -25,15 +25,29 @@
             
             <h3>Part 2: 实战练习</h3>
             <a class="sidebar-link sub-link" href="#exercise">7. 综合练习</a>
+            
+            <h3>总结与练习</h3>
+            <a class="sidebar-link" href="#summary">📝 课程小结</a>
         </div>
     </nav>
 
     <main class="content">
-        <header>
+        <header id="intro">
             <h1>第15课：CSS复合选择器</h1>
             <p class="intro">
                 CSS复合选择器是由两个或多个基础选择器组合而成的选择器，它可以更精确地选择HTML元素。本节课我们将学习各种复合选择器，包括后代选择器、子选择器、兄弟选择器、交集选择器和并集选择器。
             </p>
+            
+            <!-- 知识点标签列表 -->
+            <div class="pill-list">
+                <span class="pill">后代选择器</span>
+                <span class="pill">子选择器</span>
+                <span class="pill">相邻兄弟选择器</span>
+                <span class="pill">通用兄弟选择器</span>
+                <span class="pill">交集选择器</span>
+                <span class="pill">并集选择器</span>
+                <span class="pill">CSS选择器</span>
+            </div>
         </header>
 
         <!-- 第一部分：CSS复合选择器 -->
@@ -511,7 +525,45 @@ h3 ~ p {
                 <button class="btn btn-reset" onclick="resetCssExperiment('css-8', 'preview-8', 'badge-8')">↺ 重置</button>
             </div>
         </div>
-</section></main>
+</section>
+
+        <!-- ============================================ -->
+        <!-- 课程小结区域 -->
+        <!-- ============================================ -->
+        <section id="summary">
+            <h2>八、课程小结</h2>
+            <p>
+                本节课我们学习了CSS复合选择器，它们是由两个或多个基础选择器组合而成，可以更精确地选择HTML元素。
+            </p>
+            
+            <h3>8.1 知识点回顾</h3>
+            <ul>
+                <li><strong>后代选择器</strong>：使用空格分隔，选择所有后代元素，如<code>div p</code></li>
+                <li><strong>子选择器</strong>：使用<code>&gt;</code>分隔，选择直接子元素，如<code>div > p</code></li>
+                <li><strong>相邻兄弟选择器</strong>：使用<code>+</code>分隔，选择下一个直接相邻元素，如<code>h2 + p</code></li>
+                <li><strong>通用兄弟选择器</strong>：使用<code>~</code>分隔，选择所有后面的兄弟元素，如<code>h2 ~ p</code></li>
+                <li><strong>交集选择器</strong>：直接连接选择器，选择同时满足条件的元素，如<code>p.highlight</code></li>
+                <li><strong>并集选择器</strong>：使用逗号分隔，选择多个选择器匹配的元素，如<code>h1, h2, h3</code></li>
+            </ul>
+            
+            <h3>8.2 重点记忆</h3>
+            <div class="tip-box">
+                <span class="tip-title">📌 选择器组合技巧</span>
+                <p>1. 后代选择器 vs 子选择器：后代选择器选择所有后代，子选择器只选择直接子元素</p>
+                <p>2. 兄弟选择器：相邻兄弟选择器只选择下一个元素，通用兄弟选择器选择所有后面的元素</p>
+                <p>3. 交集选择器：可以结合多种条件，如元素+类+ID</p>
+                <p>4. 并集选择器：用于简化代码，共享相同样式</p>
+            </div>
+            
+            <h3>8.3 最佳实践</h3>
+            <ol>
+                <li>选择器要简洁明了，避免过度复杂的嵌套</li>
+                <li>优先使用类选择器，结合适当的复合选择器</li>
+                <li>考虑选择器的性能，避免不必要的通配符和复杂选择器</li>
+                <li>选择器名称要语义化，便于理解和维护</li>
+            </ol>
+        </section>
+    </main>
 </body>
 </html>
 

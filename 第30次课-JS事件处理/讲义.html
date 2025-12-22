@@ -1,186 +1,1056 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>第30课：JS事件处理</title>
-  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第30课：JS事件处理</title>
+    
+    <!-- 统一样式引用 -->
     <link rel='stylesheet' href='../统一讲义样式模板.css'>
+    <!-- 通用工具函数库 -->
+    <script src='../js/lecture-utils.js'></script>
 </head>
 <body>
+
+<!-- ============================================
+     侧边栏导航 - 课程目录
+     ============================================ -->
 <nav class="sidebar">
     <div class="sidebar-nav">
         <h3>课程导航</h3>
         <a class="sidebar-link" href="#intro">👋 课程概览</a>
         
         <h3>Part 1: 事件基础</h3>
-        <a class="sidebar-link" href="#what" class="sub-link">1. 什么是事件</a>
-        <a class="sidebar-link" href="#listen" class="sub-link">2. addEventListener</a>
+        <a class="sidebar-link" href="#section-1-1" class="sub-link">1.1 什么是事件</a>
+        <a class="sidebar-link" href="#section-1-2" class="sub-link">1.2 事件绑定方式</a>
+        <a class="sidebar-link" href="#lab-1" class="sub-link">实验 01</a>
         
-        <h3>Part 2: 事件类型</h3>
-        <a class="sidebar-link" href="#types" class="sub-link">3. 常用事件</a>
+        <h3>Part 2: 常用事件</h3>
+        <a class="sidebar-link" href="#section-2-1" class="sub-link">2.1 鼠标事件</a>
+        <a class="sidebar-link" href="#section-2-2" class="sub-link">2.2 键盘事件</a>
+        <a class="sidebar-link" href="#section-2-3" class="sub-link">2.3 表单事件</a>
+        <a class="sidebar-link" href="#lab-2" class="sub-link">实验 02</a>
         
-        <h3>Part 3: 实战练习</h3>
-        <a class="sidebar-link" href="#lab" class="sub-link">4. 实战应用</a>
-        <a class="sidebar-link" href="#summary" class="sub-link">5. 课程小结</a>
+        <h3>Part 3: 事件对象</h3>
+        <a class="sidebar-link" href="#section-3-1" class="sub-link">3.1 事件对象属性</a>
+        <a class="sidebar-link" href="#section-3-2" class="sub-link">3.2 阻止默认行为</a>
+        <a class="sidebar-link" href="#lab-3" class="sub-link">实验 03</a>
+        
+        <h3>Part 4: 综合应用</h3>
+        <a class="sidebar-link" href="#section-4-1" class="sub-link">4.1 事件委托</a>
+        <a class="sidebar-link" href="#lab-4" class="sub-link">实验 04</a>
+        
+        <h3>总结与练习</h3>
+        <a class="sidebar-link" href="#summary" class="sub-link">📝 课程小结</a>
     </div>
-
-
 </nav>
+
+
+<!-- ============================================
+     主内容区域
+     ============================================ -->
 <main class="content">
-  <header id="intro">
-    <h1>第30课：JS事件处理</h1>
-    <p class="intro">点击按钮、输入文字、移动鼠标、提交表单……这些用户操作在浏览器中都会触发「事件」。本课你将学会监听这些事件，并用函数来响应它们。</p>
-    <div class="pill-list">
-      <span class="pill">click 点击</span>
 
-
-      <span class="pill">input 输入</span>
-
-
-      <span class="pill">addEventListener</span>
-
-
-      <span class="pill">事件回调函数</span>
-
-
-    </div>
-
-
-  </header>
-  <section id="what">
-    <h2>一、什么是事件？</h2>
-    <p>事件就是「在浏览器中发生的一件事」，比如：</p>
-    <ul class="checklist">
-      <li>用户点击了一个按钮（<code>click</code>）。</li>
-      <li>用户在输入框中输入内容（<code>input</code>）。</li>
-      <li>页面加载完成（<code>load</code>）。</li>
-    </ul>
-      </section>
-
-  <section id="listen">
-    <h2>二、如何监听事件？</h2>
-    <p>最常用的方式是使用 <code>addEventListener</code>：</p>
-    <pre><code>const btn = document.querySelector('button');
-
-btn.addEventListener('click', function () {
-  console.log('按钮被点击了！');
-});</code></pre>
-    <ul class="checklist">
-      <li>第一个参数是事件类型，如 <code>'click'</code>。</li>
-      <li>第二个参数是一个函数（回调函数），事件发生时会被调用。</li>
-    </ul>
-      </section>
-
-  <section id="types">
-    <h2>三、常见的事件类型</h2>
-    <ul class="checklist">
-      <li><code>click</code>：鼠标点击。</li>
-      <li><code>input</code>：输入框内容发生变化。</li>
-      <li><code>submit</code>：表单提交。</li>
-      <li><code>change</code>：值改变并失去焦点（如下拉框）。</li>
-    </ul>
-      </section>
-
-  <section id="lab">
-    <h2>四、实验：点击按钮切换背景颜色</h2>
-    <div class="lab-card">
-      <div class="lab-header">
-        <span>🔬 实验1：切换背景色</span>
-        <span class="status-badge beginner">基础</span>
-      </div>
-      <div class="lab-body split">
-        <div class="panel">
-          <div class="panel-label">HTML</div>
-          <div class="html-viewer">&lt;button id="colorBtn"&gt;切换背景色&lt;/button&gt;
-&lt;div id="box" style="width:100px;height:100px;background:red;margin-top:10px;"&gt;&lt;/div&gt;</div>
+    <!-- ============================================
+         课程头部 - 概览区域
+         ============================================ -->
+    <header id="intro">
+        <h1>第30课：JS事件处理</h1>
+        <p class="intro">点击按钮、输入文字、移动鼠标、提交表单……这些用户操作在浏览器中都会触发「事件」。本课你将学会监听这些事件，并用函数来响应它们，让网页真正与用户互动起来！</p>
+        
+        <!-- 知识点标签列表 -->
+        <div class="pill-list">
+            <span class="pill">事件监听</span>
+            <span class="pill">addEventListener</span>
+            <span class="pill">鼠标事件</span>
+            <span class="pill">键盘事件</span>
+            <span class="pill">表单事件</span>
+            <span class="pill">事件对象</span>
         </div>
-        <div class="panel">
-          <div class="panel-label">JavaScript (可编辑)</div>
-          <div class="html-editor" contenteditable="true" id="lab1-code">const btn = document.getElementById('colorBtn');
-const box = document.getElementById('box');
+    </header>
 
+
+    <!-- ============================================
+         Part 1: 事件基础
+         ============================================ -->
+
+    <section id="section-1-1">
+        <h2>一、什么是事件？</h2>
+        <p>事件是浏览器中发生的「动作」或「事情」，可以是用户触发的（如点击），也可以是浏览器触发的（如页面加载完成）。</p>
+        
+        <div class="tip-box">
+            <span class="tip-title">💡 生活中的类比</span>
+            <ul class="checklist">
+                <li><strong>门铃：</strong>按下门铃（事件）→ 铃声响起（响应）</li>
+                <li><strong>电梯：</strong>按下楼层按钮（事件）→ 电梯运行（响应）</li>
+                <li><strong>手机：</strong>点击App图标（事件）→ 打开应用（响应）</li>
+            </ul>
+            <p>网页事件也是一样：用户做了某个操作，网页做出相应的反应。</p>
+        </div>
+        
+        <p><strong>常见的事件类型：</strong></p>
+        <ul class="checklist">
+            <li>用户点击了一个按钮（<code>click</code>）</li>
+            <li>用户在输入框中输入内容（<code>input</code>）</li>
+            <li>鼠标移入/移出元素（<code>mouseenter</code>、<code>mouseleave</code>）</li>
+            <li>按下键盘按键（<code>keydown</code>、<code>keyup</code>）</li>
+            <li>表单提交（<code>submit</code>）</li>
+            <li>页面加载完成（<code>load</code>）</li>
+        </ul>
+    </section>
+
+
+    <section id="section-1-2">
+        <h3>1.2 事件绑定方式</h3>
+        
+        <h4>方式一：HTML属性（不推荐）</h4>
+<pre class="html"><code>&lt;!-- 直接在HTML中绑定事件 --&gt;
+&lt;button onclick="alert('点击了!')"&gt;点我&lt;/button&gt;
+
+&lt;button onclick="handleClick()"&gt;点我&lt;/button&gt;
+&lt;script&gt;
+function handleClick() {
+    alert('点击了!');
+}
+&lt;/script&gt;
+</code></pre>
+        
+        <div class="warning-box">
+            <strong>不推荐这种方式！</strong>
+            <p>HTML属性绑定混合了HTML和JavaScript，不利于维护。推荐使用addEventListener。</p>
+        </div>
+
+        <h4>方式二：DOM属性</h4>
+<pre class="js"><code>const btn = document.querySelector('button');
+
+// 使用DOM属性绑定事件
+btn.onclick = function() {
+    alert('点击了!');
+};
+
+// 缺点：同一事件只能绑定一个处理函数
+btn.onclick = function() {
+    console.log('新的处理函数');
+};
+// 上面的函数会覆盖之前的
+</code></pre>
+
+        <h4>方式三：addEventListener（推荐）</h4>
+<pre class="js"><code>const btn = document.querySelector('button');
+
+// addEventListener(事件类型, 回调函数)
 btn.addEventListener('click', function() {
-    if (box.style.backgroundColor === 'red') {
-        box.style.backgroundColor = 'blue';
-    } else {
-        box.style.backgroundColor = 'red';
-    }
-});</div>
+    console.log('第一个处理函数');
+});
+
+// 可以绑定多个处理函数
+btn.addEventListener('click', function() {
+    console.log('第二个处理函数');
+});
+
+// 使用箭头函数
+btn.addEventListener('click', () => {
+    console.log('箭头函数处理');
+});
+
+// 使用命名函数（便于移除）
+function handleClick() {
+    console.log('命名函数处理');
+}
+btn.addEventListener('click', handleClick);
+</code></pre>
+
+        <h4>移除事件监听</h4>
+<pre class="js"><code>// 要移除事件，必须使用命名函数
+function handleClick() {
+    console.log('点击了');
+}
+
+btn.addEventListener('click', handleClick);
+
+// 移除事件监听
+btn.removeEventListener('click', handleClick);
+</code></pre>
+
+        <div class="note-box">
+            <strong>addEventListener的优势：</strong>
+            <ul class="checklist">
+                <li>可以为同一事件绑定多个处理函数</li>
+                <li>可以控制事件在捕获或冒泡阶段触发</li>
+                <li>可以方便地移除事件监听</li>
+                <li>HTML和JavaScript分离，代码更清晰</li>
+            </ul>
         </div>
-      </div>
-      <div class="action-bar">
-        <button class="btn btn-run" onclick="runJsDomExperiment('lab1-code', null)">▶ 运行代码</button>
-        <button class="btn btn-reset" onclick="resetJsDomExperiment('lab1-code', 'lab1-preview', null)">↻ 重置</button>
-      </div>
-      <div class="preview-box" id="lab1-preview">
-          <button id="colorBtn">切换背景色</button>
-          <div id="box" style="width:100px;height:100px;background:red;margin-top:10px;"></div>
-      </div>
-    </div>
+    </section>
 
 
-  
-    <div class="lab-card">
-      <div class="lab-header">
-        <span>🔬 实验2：点击计数器</span>
-        <span class="status-badge advanced">进阶</span>
-      </div>
-      <div class="lab-body split">
-        <div class="panel">
-          <div class="panel-label">HTML</div>
-          <div class="html-viewer">&lt;h3&gt;点击次数: &lt;span id="count"&gt;0&lt;/span&gt;&lt;/h3&gt;
+    <!-- ============================================
+         实验 01：事件绑定基础
+         ============================================ -->
+    <section id="lab-1">
+        <h2>实验 01：事件绑定基础</h2>
+        <p>练习使用addEventListener绑定事件。</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 01：点击计数器</span>
+                <span class="status-badge beginner" id="badge-lab1">动手实践</span>
+            </div>
+            
+            <div class="lab-body split">
+                <div class="panel html-viewer">
+<div class="panel-label">HTML 预览</div>
+&lt;h3&gt;点击计数器&lt;/h3&gt;
+&lt;p&gt;点击次数：&lt;span id="count"&gt;0&lt;/span&gt;&lt;/p&gt;
 &lt;button id="addBtn"&gt;+1&lt;/button&gt;
-&lt;button id="resetBtn"&gt;重置&lt;/button&gt;</div>
-        </div>
-        <div class="panel">
-          <div class="panel-label">JavaScript (可编辑)</div>
-          <div class="html-editor" contenteditable="true" id="lab2-code">let count = 0;
+&lt;button id="subBtn"&gt;-1&lt;/button&gt;
+&lt;button id="resetBtn"&gt;重置&lt;/button&gt;
+                </div>
+                
+                <div class="panel code-editor" id="code-lab1" contenteditable="true">
+<div class="panel-label">JavaScript (可编辑)</div>
+let count = 0;
 const countSpan = document.getElementById('count');
-const addBtn = document.getElementById('addBtn');
-const resetBtn = document.getElementById('resetBtn');
 
-addBtn.addEventListener('click', function() {
+// +1 按钮
+document.getElementById('addBtn').addEventListener('click', function() {
     count++;
     countSpan.innerText = count;
 });
 
-resetBtn.addEventListener('click', function() {
+// -1 按钮
+document.getElementById('subBtn').addEventListener('click', function() {
+    count--;
+    countSpan.innerText = count;
+});
+
+// 重置按钮
+document.getElementById('resetBtn').addEventListener('click', function() {
     count = 0;
     countSpan.innerText = count;
-});</div>
+});
+                </div>
+            </div>
+            
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runJsDomExperiment('code-lab1', 'badge-lab1')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetJsDomExperiment('code-lab1', null, 'badge-lab1')">↺ 重置代码</button>
+            </div>
+            
+            <div class="preview-box">
+                <h3>点击计数器</h3>
+                <p style="font-size: 24px;">点击次数：<span id="count" style="color: var(--color-accent); font-weight: bold;">0</span></p>
+                <div style="margin-top: 15px;">
+                    <button class="btn btn-run" id="addBtn">+1</button>
+                    <button class="btn btn-run" id="subBtn" style="margin-left: 10px;">-1</button>
+                    <button class="btn btn-reset" id="resetBtn" style="margin-left: 10px;">重置</button>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="action-bar">
-        <button class="btn btn-run" onclick="runJsDomExperiment('lab2-code', null)">▶ 运行代码</button>
-        <button class="btn btn-reset" onclick="resetJsDomExperiment('lab2-code', 'lab2-preview', null)">↻ 重置</button>
-      </div>
-      <div class="preview-box" id="lab2-preview">
-          <h3>点击次数: <span id="count">0</span></h3>
-          <button id="addBtn">+1</button>
-          <button id="resetBtn">重置</button>
-      </div>
-    </div>
-
     </section>
 
+
+    <!-- ============================================
+         Part 2: 常用事件
+         ============================================ -->
+
+    <section id="section-2-1">
+        <h2>二、常用事件类型</h2>
+        
+        <h3>2.1 鼠标事件</h3>
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>事件</th>
+                    <th>触发时机</th>
+                    <th>常用场景</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>click</code></td>
+                    <td>鼠标点击（按下并释放）</td>
+                    <td>按钮点击、链接跳转</td>
+                </tr>
+                <tr>
+                    <td><code>dblclick</code></td>
+                    <td>鼠标双击</td>
+                    <td>双击编辑、双击放大</td>
+                </tr>
+                <tr>
+                    <td><code>mouseenter</code></td>
+                    <td>鼠标移入元素</td>
+                    <td>显示提示、高亮效果</td>
+                </tr>
+                <tr>
+                    <td><code>mouseleave</code></td>
+                    <td>鼠标移出元素</td>
+                    <td>隐藏提示、恢复样式</td>
+                </tr>
+                <tr>
+                    <td><code>mousemove</code></td>
+                    <td>鼠标在元素上移动</td>
+                    <td>拖拽、跟随效果</td>
+                </tr>
+                <tr>
+                    <td><code>mousedown</code></td>
+                    <td>鼠标按下</td>
+                    <td>拖拽开始</td>
+                </tr>
+                <tr>
+                    <td><code>mouseup</code></td>
+                    <td>鼠标释放</td>
+                    <td>拖拽结束</td>
+                </tr>
+            </tbody>
+        </table>
+
+<pre class="js"><code>const box = document.getElementById('box');
+
+// 鼠标移入
+box.addEventListener('mouseenter', function() {
+    this.style.backgroundColor = '#0066CC';
+    this.style.color = 'white';
+});
+
+// 鼠标移出
+box.addEventListener('mouseleave', function() {
+    this.style.backgroundColor = '#f0f0f0';
+    this.style.color = 'black';
+});
+
+// 鼠标移动
+box.addEventListener('mousemove', function(e) {
+    console.log(`鼠标位置: (${e.clientX}, ${e.clientY})`);
+});
+</code></pre>
+    </section>
+
+
+    <section id="section-2-2">
+        <h3>2.2 键盘事件</h3>
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>事件</th>
+                    <th>触发时机</th>
+                    <th>常用场景</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>keydown</code></td>
+                    <td>按键按下</td>
+                    <td>快捷键、游戏控制</td>
+                </tr>
+                <tr>
+                    <td><code>keyup</code></td>
+                    <td>按键释放</td>
+                    <td>搜索建议、输入验证</td>
+                </tr>
+                <tr>
+                    <td><code>keypress</code></td>
+                    <td>按键按下（已废弃）</td>
+                    <td>不推荐使用</td>
+                </tr>
+            </tbody>
+        </table>
+
+<pre class="js"><code>// 监听整个文档的键盘事件
+document.addEventListener('keydown', function(e) {
+    console.log('按下了:', e.key);      // 按键值，如 'a', 'Enter'
+    console.log('键码:', e.keyCode);    // 键码（已废弃）
+    console.log('按键代码:', e.code);   // 按键代码，如 'KeyA', 'Enter'
+    
+    // 检测特殊键
+    if (e.ctrlKey) console.log('Ctrl被按下');
+    if (e.shiftKey) console.log('Shift被按下');
+    if (e.altKey) console.log('Alt被按下');
+});
+
+// 监听输入框的键盘事件
+const input = document.getElementById('search');
+input.addEventListener('keyup', function(e) {
+    // 按下Enter键提交
+    if (e.key === 'Enter') {
+        console.log('提交搜索:', this.value);
+    }
+});
+</code></pre>
+    </section>
+
+
+    <section id="section-2-3">
+        <h3>2.3 表单事件</h3>
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>事件</th>
+                    <th>触发时机</th>
+                    <th>常用场景</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>input</code></td>
+                    <td>输入内容改变时（实时）</td>
+                    <td>实时搜索、字数统计</td>
+                </tr>
+                <tr>
+                    <td><code>change</code></td>
+                    <td>值改变并失去焦点</td>
+                    <td>下拉框选择、复选框</td>
+                </tr>
+                <tr>
+                    <td><code>focus</code></td>
+                    <td>获得焦点</td>
+                    <td>显示提示、高亮输入框</td>
+                </tr>
+                <tr>
+                    <td><code>blur</code></td>
+                    <td>失去焦点</td>
+                    <td>验证输入、隐藏提示</td>
+                </tr>
+                <tr>
+                    <td><code>submit</code></td>
+                    <td>表单提交</td>
+                    <td>表单验证</td>
+                </tr>
+            </tbody>
+        </table>
+
+<pre class="js"><code>const input = document.getElementById('username');
+const form = document.getElementById('myForm');
+
+// input事件 - 实时监听输入
+input.addEventListener('input', function() {
+    console.log('当前输入:', this.value);
+    // 实时字数统计
+    document.getElementById('charCount').innerText = this.value.length;
+});
+
+// focus事件 - 获得焦点
+input.addEventListener('focus', function() {
+    this.style.borderColor = '#0066CC';
+});
+
+// blur事件 - 失去焦点
+input.addEventListener('blur', function() {
+    this.style.borderColor = '#ddd';
+    // 验证输入
+    if (this.value.length < 3) {
+        alert('用户名至少3个字符');
+    }
+});
+
+// submit事件 - 表单提交
+form.addEventListener('submit', function(e) {
+    e.preventDefault();  // 阻止默认提交
+    console.log('表单数据:', new FormData(this));
+});
+</code></pre>
+
+        <div class="tip-box">
+            <span class="tip-title">💡 input vs change</span>
+            <ul class="checklist">
+                <li><code>input</code>：每次输入内容改变都会触发，适合实时响应</li>
+                <li><code>change</code>：值改变且失去焦点后触发，适合最终确认</li>
+            </ul>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         实验 02：多种事件练习
+         ============================================ -->
+    <section id="lab-2">
+        <h2>实验 02：多种事件练习</h2>
+        <p>练习鼠标、键盘和表单事件。</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 02：实时搜索框</span>
+                <span class="status-badge beginner" id="badge-lab2">动手实践</span>
+            </div>
+            
+            <div class="lab-body split">
+                <div class="panel html-viewer">
+<div class="panel-label">HTML 预览</div>
+&lt;h3&gt;🔍 实时搜索&lt;/h3&gt;
+&lt;input id="searchInput" placeholder="输入搜索内容..."&gt;
+&lt;p&gt;字数：&lt;span id="charCount"&gt;0&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;状态：&lt;span id="status"&gt;等待输入&lt;/span&gt;&lt;/p&gt;
+&lt;div id="searchResult"&gt;&lt;/div&gt;
+                </div>
+                
+                <div class="panel code-editor" id="code-lab2" contenteditable="true">
+<div class="panel-label">JavaScript (可编辑)</div>
+const input = document.getElementById('searchInput');
+const charCount = document.getElementById('charCount');
+const status = document.getElementById('status');
+const result = document.getElementById('searchResult');
+
+// 模拟数据
+const data = ['JavaScript', 'HTML', 'CSS', 'Python', 'Java', 'React', 'Vue'];
+
+// 实时输入
+input.addEventListener('input', function() {
+    charCount.innerText = this.value.length;
+    
+    // 搜索匹配
+    const keyword = this.value.toLowerCase();
+    if (keyword) {
+        const matches = data.filter(item => 
+            item.toLowerCase().includes(keyword)
+        );
+        result.innerHTML = matches.length 
+            ? matches.map(m => `&lt;div&gt;${m}&lt;/div&gt;`).join('')
+            : '&lt;div&gt;无匹配结果&lt;/div&gt;';
+    } else {
+        result.innerHTML = '';
+    }
+});
+
+// 获得焦点
+input.addEventListener('focus', function() {
+    status.innerText = '正在输入...';
+    this.style.borderColor = '#0066CC';
+});
+
+// 失去焦点
+input.addEventListener('blur', function() {
+    status.innerText = '输入完成';
+    this.style.borderColor = '#ddd';
+});
+
+// 按Enter键
+input.addEventListener('keyup', function(e) {
+    if (e.key === 'Enter') {
+        alert('搜索: ' + this.value);
+    }
+});
+                </div>
+            </div>
+            
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runJsDomExperiment('code-lab2', 'badge-lab2')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetJsDomExperiment('code-lab2', 'searchResult', 'badge-lab2')">↺ 重置代码</button>
+            </div>
+            
+            <div class="preview-box">
+                <h3>🔍 实时搜索</h3>
+                <input id="searchInput" placeholder="输入搜索内容..." style="padding: 10px; width: 250px; border: 2px solid #ddd; border-radius: 6px; font-size: 16px;">
+                <p>字数：<span id="charCount" style="font-weight: bold;">0</span></p>
+                <p>状态：<span id="status" style="color: #666;">等待输入</span></p>
+                <div id="searchResult" style="margin-top: 10px; padding: 10px; background: #f9f9f9; border-radius: 6px; min-height: 30px;"></div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         Part 3: 事件对象
+         ============================================ -->
+
+    <section id="section-3-1">
+        <h2>三、事件对象</h2>
+        <p>当事件发生时，浏览器会创建一个事件对象（event），包含了事件的详细信息。</p>
+        
+        <h3>3.1 事件对象的常用属性</h3>
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>属性</th>
+                    <th>说明</th>
+                    <th>适用事件</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>e.target</code></td>
+                    <td>触发事件的元素</td>
+                    <td>所有事件</td>
+                </tr>
+                <tr>
+                    <td><code>e.currentTarget</code></td>
+                    <td>绑定事件的元素</td>
+                    <td>所有事件</td>
+                </tr>
+                <tr>
+                    <td><code>e.type</code></td>
+                    <td>事件类型</td>
+                    <td>所有事件</td>
+                </tr>
+                <tr>
+                    <td><code>e.clientX/Y</code></td>
+                    <td>鼠标相对视口的位置</td>
+                    <td>鼠标事件</td>
+                </tr>
+                <tr>
+                    <td><code>e.pageX/Y</code></td>
+                    <td>鼠标相对页面的位置</td>
+                    <td>鼠标事件</td>
+                </tr>
+                <tr>
+                    <td><code>e.key</code></td>
+                    <td>按下的键</td>
+                    <td>键盘事件</td>
+                </tr>
+                <tr>
+                    <td><code>e.ctrlKey/shiftKey/altKey</code></td>
+                    <td>是否按下修饰键</td>
+                    <td>键盘/鼠标事件</td>
+                </tr>
+            </tbody>
+        </table>
+
+<pre class="js"><code>// 事件对象作为回调函数的参数
+element.addEventListener('click', function(e) {
+    // 或者写成 (event) 或 (evt)
+    console.log('事件类型:', e.type);           // 'click'
+    console.log('触发元素:', e.target);         // 被点击的元素
+    console.log('绑定元素:', e.currentTarget);  // 绑定事件的元素
+    console.log('鼠标位置:', e.clientX, e.clientY);
+});
+
+// 使用箭头函数
+element.addEventListener('click', (e) => {
+    console.log(e.target.innerText);
+});
+</code></pre>
+
+        <div class="note-box">
+            <strong>target vs currentTarget：</strong>
+            <ul class="checklist">
+                <li><code>target</code>：实际触发事件的元素（可能是子元素）</li>
+                <li><code>currentTarget</code>：绑定事件处理函数的元素</li>
+                <li>在事件委托中，两者通常不同</li>
+            </ul>
+        </div>
+    </section>
+
+
+    <section id="section-3-2">
+        <h3>3.2 阻止默认行为和事件冒泡</h3>
+        
+        <h4>阻止默认行为</h4>
+<pre class="js"><code>// 阻止链接跳转
+const link = document.querySelector('a');
+link.addEventListener('click', function(e) {
+    e.preventDefault();  // 阻止默认行为
+    console.log('链接被点击，但不会跳转');
+});
+
+// 阻止表单提交
+const form = document.querySelector('form');
+form.addEventListener('submit', function(e) {
+    e.preventDefault();  // 阻止表单提交
+    // 进行表单验证...
+    console.log('表单验证通过后再提交');
+});
+
+// 阻止右键菜单
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+    console.log('右键菜单被禁用');
+});
+</code></pre>
+
+        <h4>阻止事件冒泡</h4>
+<pre class="js"><code>// 事件冒泡：子元素的事件会向上传递到父元素
+&lt;div id="parent"&gt;
+    &lt;button id="child"&gt;点击&lt;/button&gt;
+&lt;/div&gt;
+
+document.getElementById('parent').addEventListener('click', function() {
+    console.log('父元素被点击');
+});
+
+document.getElementById('child').addEventListener('click', function(e) {
+    e.stopPropagation();  // 阻止冒泡
+    console.log('子元素被点击');
+    // 不会触发父元素的click事件
+});
+</code></pre>
+
+        <div class="warning-box">
+            <strong>事件冒泡说明</strong>
+            <p>默认情况下，事件会从触发元素向上"冒泡"到祖先元素。点击按钮时，按钮的click事件会依次触发父元素的click事件。使用<code>e.stopPropagation()</code>可以阻止这种传播。</p>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         实验 03：事件对象练习
+         ============================================ -->
+    <section id="lab-3">
+        <h2>实验 03：事件对象练习</h2>
+        <p>练习使用事件对象获取信息。</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 03：鼠标追踪器</span>
+                <span class="status-badge beginner" id="badge-lab3">动手实践</span>
+            </div>
+            
+            <div class="lab-body split">
+                <div class="panel html-viewer">
+<div class="panel-label">HTML 预览</div>
+&lt;h3&gt;🎯 鼠标追踪器&lt;/h3&gt;
+&lt;div id="trackArea"&gt;在此区域移动鼠标&lt;/div&gt;
+&lt;p&gt;位置：&lt;span id="position"&gt;(0, 0)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;事件类型：&lt;span id="eventType"&gt;-&lt;/span&gt;&lt;/p&gt;
+                </div>
+                
+                <div class="panel code-editor" id="code-lab3" contenteditable="true">
+<div class="panel-label">JavaScript (可编辑)</div>
+const area = document.getElementById('trackArea');
+const posSpan = document.getElementById('position');
+const typeSpan = document.getElementById('eventType');
+
+// 鼠标移动
+area.addEventListener('mousemove', function(e) {
+    posSpan.innerText = `(${e.clientX}, ${e.clientY})`;
+    typeSpan.innerText = e.type;
+});
+
+// 鼠标进入
+area.addEventListener('mouseenter', function(e) {
+    this.style.backgroundColor = '#e3f2fd';
+    typeSpan.innerText = e.type;
+});
+
+// 鼠标离开
+area.addEventListener('mouseleave', function(e) {
+    this.style.backgroundColor = '#f0f0f0';
+    typeSpan.innerText = e.type;
+    posSpan.innerText = '(-, -)';
+});
+
+// 点击
+area.addEventListener('click', function(e) {
+    typeSpan.innerText = e.type;
+    alert(`点击位置: (${e.clientX}, ${e.clientY})`);
+});
+                </div>
+            </div>
+            
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runJsDomExperiment('code-lab3', 'badge-lab3')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetJsDomExperiment('code-lab3', null, 'badge-lab3')">↺ 重置代码</button>
+            </div>
+            
+            <div class="preview-box">
+                <h3>🎯 鼠标追踪器</h3>
+                <div id="trackArea" style="width: 100%; height: 150px; background: #f0f0f0; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; color: #666; cursor: crosshair; transition: background 0.3s;">在此区域移动鼠标</div>
+                <p style="margin-top: 15px;">位置：<span id="position" style="font-weight: bold; color: var(--color-accent);">(0, 0)</span></p>
+                <p>事件类型：<span id="eventType" style="font-weight: bold;">-</span></p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         Part 4: 综合应用
+         ============================================ -->
+
+    <section id="section-4-1">
+        <h2>四、事件委托</h2>
+        <p>事件委托是利用事件冒泡机制，将子元素的事件处理委托给父元素。这样可以减少事件监听器的数量，提高性能。</p>
+        
+<pre class="js"><code>// 传统方式：为每个按钮绑定事件
+const buttons = document.querySelectorAll('.btn');
+buttons.forEach(btn => {
+    btn.addEventListener('click', function() {
+        console.log(this.innerText);
+    });
+});
+
+// 事件委托：只在父元素绑定一个事件
+const container = document.getElementById('btn-container');
+container.addEventListener('click', function(e) {
+    // 判断点击的是否是按钮
+    if (e.target.classList.contains('btn')) {
+        console.log(e.target.innerText);
+    }
+});
+</code></pre>
+
+        <div class="tip-box">
+            <span class="tip-title">💡 事件委托的优势</span>
+            <ul class="checklist">
+                <li><strong>减少内存占用：</strong>只需绑定一个事件监听器</li>
+                <li><strong>动态元素支持：</strong>新添加的子元素自动拥有事件处理</li>
+                <li><strong>代码更简洁：</strong>统一在一处处理</li>
+            </ul>
+        </div>
+
+<pre class="js"><code>// 事件委托实际应用：动态列表
+const todoList = document.getElementById('todo-list');
+
+// 只在父元素绑定一次
+todoList.addEventListener('click', function(e) {
+    const target = e.target;
+    
+    // 点击删除按钮
+    if (target.classList.contains('delete-btn')) {
+        target.parentElement.remove();
+    }
+    
+    // 点击完成按钮
+    if (target.classList.contains('done-btn')) {
+        target.parentElement.classList.toggle('completed');
+    }
+});
+
+// 添加新项目时，不需要再绑定事件
+function addTodo(text) {
+    const li = document.createElement('li');
+    li.innerHTML = `
+        ${text}
+        &lt;button class="done-btn"&gt;完成&lt;/button&gt;
+        &lt;button class="delete-btn"&gt;删除&lt;/button&gt;
+    `;
+    todoList.appendChild(li);
+    // 新元素自动继承父元素的事件处理
+}
+</code></pre>
+    </section>
+
+
+    <!-- ============================================
+         实验 04：综合实战
+         ============================================ -->
+    <section id="lab-4">
+        <h2>实验 04：综合实战</h2>
+        <p>综合运用所学知识，构建一个交互式应用。</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 04：互动卡片游戏</span>
+                <span class="status-badge advanced" id="badge-lab4">综合实战</span>
+            </div>
+            
+            <div class="lab-body split">
+                <div class="panel html-viewer">
+<div class="panel-label">HTML 预览</div>
+&lt;h3&gt;🎮 点击变色游戏&lt;/h3&gt;
+&lt;p&gt;得分：&lt;span id="score"&gt;0&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;目标颜色：&lt;span id="targetColor"&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;div id="gameBoard"&gt;&lt;/div&gt;
+&lt;button id="startBtn"&gt;开始游戏&lt;/button&gt;
+                </div>
+                
+                <div class="panel code-editor" id="code-lab4" contenteditable="true">
+<div class="panel-label">JavaScript (可编辑)</div>
+let score = 0;
+let targetColor = '';
+const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#dfe6e9'];
+
+const board = document.getElementById('gameBoard');
+const scoreSpan = document.getElementById('score');
+const targetSpan = document.getElementById('targetColor');
+
+// 开始游戏
+document.getElementById('startBtn').addEventListener('click', function() {
+    score = 0;
+    scoreSpan.innerText = score;
+    createCards();
+    setTarget();
+});
+
+// 创建卡片
+function createCards() {
+    board.innerHTML = '';
+    for (let i = 0; i < 9; i++) {
+        const card = document.createElement('div');
+        card.className = 'game-card';
+        card.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        board.appendChild(card);
+    }
+}
+
+// 设置目标颜色
+function setTarget() {
+    const cards = board.querySelectorAll('.game-card');
+    const randomCard = cards[Math.floor(Math.random() * cards.length)];
+    targetColor = randomCard.style.backgroundColor;
+    targetSpan.style.backgroundColor = targetColor;
+    targetSpan.innerText = '点击这个颜色!';
+}
+
+// 事件委托处理点击
+board.addEventListener('click', function(e) {
+    if (e.target.classList.contains('game-card')) {
+        if (e.target.style.backgroundColor === targetColor) {
+            score += 10;
+            scoreSpan.innerText = score;
+            e.target.style.opacity = '0.3';
+            setTimeout(() => {
+                createCards();
+                setTarget();
+            }, 500);
+        } else {
+            score = Math.max(0, score - 5);
+            scoreSpan.innerText = score;
+            e.target.classList.add('shake');
+            setTimeout(() => e.target.classList.remove('shake'), 300);
+        }
+    }
+});
+                </div>
+            </div>
+            
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runJsDomExperiment('code-lab4', 'badge-lab4')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetJsDomExperiment('code-lab4', 'gameBoard', 'badge-lab4')">↺ 重置代码</button>
+            </div>
+            
+            <div class="preview-box">
+                <h3>🎮 点击变色游戏</h3>
+                <p>得分：<span id="score" style="font-size: 24px; font-weight: bold; color: var(--color-accent);">0</span></p>
+                <p>目标颜色：<span id="targetColor" style="display: inline-block; padding: 5px 15px; border-radius: 4px; color: white; font-weight: bold;"></span></p>
+                <div id="gameBoard" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 15px 0;"></div>
+                <button class="btn btn-run" id="startBtn">开始游戏</button>
+                <style>
+                    .game-card {
+                        width: 80px;
+                        height: 80px;
+                        border-radius: 8px;
+                        cursor: pointer;
+                        transition: all 0.3s;
+                    }
+                    .game-card:hover {
+                        transform: scale(1.05);
+                    }
+                    .shake {
+                        animation: shake 0.3s;
+                    }
+                    @keyframes shake {
+                        0%, 100% { transform: translateX(0); }
+                        25% { transform: translateX(-5px); }
+                        75% { transform: translateX(5px); }
+                    }
+                </style>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         真实案例展示
+         ============================================ -->
+    <section id="real-world-demo">
+        <h2>五、真实案例展示</h2>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>案例：网页交互中的应用</span>
+                <span class="status-badge beginner">Real World</span>
+            </div>
+            <div class="lab-body">
+                <p><strong>实际应用场景：</strong></p>
+                <ul class="checklist">
+                    <li><strong>表单验证：</strong>用户输入时实时验证，blur时显示错误提示</li>
+                    <li><strong>下拉菜单：</strong>鼠标移入显示，移出隐藏</li>
+                    <li><strong>图片轮播：</strong>点击按钮切换图片</li>
+                    <li><strong>无限滚动：</strong>监听scroll事件，滚动到底部加载更多</li>
+                    <li><strong>快捷键：</strong>监听keydown实现Ctrl+S保存等功能</li>
+                    <li><strong>拖拽排序：</strong>组合mousedown、mousemove、mouseup实现</li>
+                </ul>
+<pre class="js"><code>// 表单验证示例
+const emailInput = document.getElementById('email');
+
+emailInput.addEventListener('blur', function() {
+    const email = this.value;
+    const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    
+    if (!isValid) {
+        this.style.borderColor = 'red';
+        document.getElementById('error').innerText = '请输入有效的邮箱';
+    } else {
+        this.style.borderColor = 'green';
+        document.getElementById('error').innerText = '';
+    }
+});
+</code></pre>
+                <p style="margin-top: 10px; color: #666; font-size: 18px;">事件处理是构建交互式网页的核心，几乎所有用户操作都通过事件来响应。</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         课程小结区域
+         ============================================ -->
     <section id="summary">
-    <h2>五、本课小结</h2>
-    <ul class="checklist">
-      <li>事件是用户与网页交互时触发的各种「动作」。</li>
-      <li>使用 <code>addEventListener</code> 可以给元素绑定事件处理函数。</li>
-      <li>结合 DOM 操作和事件，可以做出各种交互效果。</li>
-    </ul>
-    <div class="note-box">
-            <strong>结课小结：</strong>经过 8 节课，你已经完成了从「认识网页」到「用 JS 操作和互动网页」的完整入门路径。</div>
-
-
-      </section>
+        <h2>六、本课小结</h2>
+        
+        <h3>知识点回顾</h3>
+        <ul class="checklist">
+            <li><strong>事件概念</strong>：浏览器中发生的动作，可由用户或浏览器触发</li>
+            <li><strong>事件绑定</strong>：推荐使用addEventListener方法</li>
+            <li><strong>常用事件</strong>：click、input、keydown、submit、mouseenter等</li>
+            <li><strong>事件对象</strong>：包含事件的详细信息，如target、key、clientX等</li>
+            <li><strong>阻止默认</strong>：e.preventDefault()阻止默认行为</li>
+            <li><strong>阻止冒泡</strong>：e.stopPropagation()阻止事件传播</li>
+            <li><strong>事件委托</strong>：利用冒泡，在父元素处理子元素事件</li>
+        </ul>
+        
+        <h3>重点记忆</h3>
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>操作</th>
+                    <th>方法</th>
+                    <th>示例</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>绑定事件</td>
+                    <td><code>addEventListener</code></td>
+                    <td><code>el.addEventListener('click', fn)</code></td>
+                </tr>
+                <tr>
+                    <td>移除事件</td>
+                    <td><code>removeEventListener</code></td>
+                    <td><code>el.removeEventListener('click', fn)</code></td>
+                </tr>
+                <tr>
+                    <td>阻止默认</td>
+                    <td><code>preventDefault</code></td>
+                    <td><code>e.preventDefault()</code></td>
+                </tr>
+                <tr>
+                    <td>阻止冒泡</td>
+                    <td><code>stopPropagation</code></td>
+                    <td><code>e.stopPropagation()</code></td>
+                </tr>
+                <tr>
+                    <td>获取目标</td>
+                    <td><code>e.target</code></td>
+                    <td><code>e.target.innerText</code></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- 课程总结 -->
+        <div class="note-box">
+            <strong>🎉 JavaScript基础课程完结！</strong>
+            <p>恭喜你完成了JavaScript基础课程的学习！从变量、数据类型、运算符，到控制结构、函数、数组与对象，再到DOM操作和事件处理，你已经掌握了JavaScript的核心知识。</p>
+            <p>接下来可以尝试：</p>
+            <ul class="checklist">
+                <li>做一个完整的小项目（如待办事项、计算器）</li>
+                <li>学习更多高级概念（异步编程、ES6+特性）</li>
+                <li>学习前端框架（React、Vue）</li>
+            </ul>
+        </div>
+    </section>
 
 
 </main>
 
-<script src="../js/lecture-utils.js"></script>
 </body>
 </html>
 
