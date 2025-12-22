@@ -72,18 +72,147 @@
     <section id="chapter-1">
         <h2>一、表格合并</h2>
         <p>
-            在HTML中，我们可以使用<code>colspan</code>和<code>rowspan</code>属性来合并单元格，创建更复杂的表格结构。
+            在HTML中，我们可以使用<code>colspan</code>和<code>rowspan</code>属性来合并单元格，创建更复杂和灵活的表格结构。这种技术在创建复杂数据表格、日程安排表、财务报表等场景中非常有用。
         </p>
         
-        <h3>1.1 colspan属性</h3>
+        <div class="tip-box">
+            <span class="tip-title">合并单元格的应用场景</span>
+            <ul>
+                <li>创建多级表头，如合并相同类别的列标题</li>
+                <li>在数据表格中显示跨行或跨列的汇总信息</li>
+                <li>制作复杂的日程表和课程表</li>
+                <li>创建包含合并单元格的财务报表</li>
+                <li>设计包含复杂布局的产品规格表</li>
+            </ul>
+        </div>
+        
+        <h3>1.1 colspan属性：合并列单元格</h3>
         <p>
-            <code>colspan</code>属性用于合并列单元格，指定一个单元格应横跨多少列。
+            <code>colspan</code>属性用于合并水平方向的单元格，指定一个单元格应横跨多少列。该属性可以应用于<code>&lt;th&gt;</code>和<code>&lt;td&gt;</code>元素。
         </p>
         
-        <h3>1.2 rowspan属性</h3>
+        <h4>1.1.1 colspan基本语法</h4>
+        <pre class="html"><code>&lt;td colspan="n"&gt;内容&lt;/td&gt;</code></pre>
+        <p>其中<code>n</code>是一个正整数，表示要合并的列数。</p>
+        
+        <h4>1.1.2 colspan示例</h4>
+        <div class="example-box">
+            <h5>合并表头列示例</h5>
+            <pre class="html"><code>&lt;table border="1" cellpadding="10" cellspacing="0"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;姓名&lt;/th&gt;
+            &lt;th colspan="3"&gt;成绩&lt;/th&gt;  <!-- 横跨3列 -->
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;th&gt;姓名&lt;/th&gt;
+            &lt;th&gt;数学&lt;/th&gt;
+            &lt;th&gt;英语&lt;/th&gt;
+            &lt;th&gt;物理&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;张三&lt;/td&gt;
+            &lt;td&gt;90&lt;/td&gt;
+            &lt;td&gt;85&lt;/td&gt;
+            &lt;td&gt;92&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+        </div>
+        
+        <h3>1.2 rowspan属性：合并行单元格</h3>
         <p>
-            <code>rowspan</code>属性用于合并行单元格，指定一个单元格应纵跨多少行。
+            <code>rowspan</code>属性用于合并垂直方向的单元格，指定一个单元格应纵跨多少行。该属性同样可以应用于<code>&lt;th&gt;</code>和<code>&lt;td&gt;</code>元素。
         </p>
+        
+        <h4>1.2.1 rowspan基本语法</h4>
+        <pre class="html"><code>&lt;td rowspan="n"&gt;内容&lt;/td&gt;</code></pre>
+        <p>其中<code>n</code>是一个正整数，表示要合并的行数。</p>
+        
+        <h4>1.2.2 rowspan示例</h4>
+        <div class="example-box">
+            <h5>合并数据行示例</h5>
+            <pre class="html"><code>&lt;table border="1" cellpadding="10" cellspacing="0"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;产品名称&lt;/th&gt;
+            &lt;th&gt;规格&lt;/th&gt;
+            &lt;th&gt;价格&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td rowspan="3"&gt;智能手机&lt;/td&gt;  <!-- 纵跨3行 -->
+            &lt;td&gt;64GB&lt;/td&gt;
+            &lt;td&gt;3999元&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;128GB&lt;/td&gt;
+            &lt;td&gt;4599元&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;256GB&lt;/td&gt;
+            &lt;td&gt;5199元&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+        </div>
+        
+        <h3>1.3 合并单元格的注意事项</h3>
+        <p>使用<code>colspan</code>和<code>rowspan</code>属性时，需要注意以下几点：</p>
+        
+        <div class="warning-box">
+            <strong>合并单元格的注意事项</strong>
+            <ul>
+                <li><strong>减少相应数量的单元格</strong>：当使用<code>colspan="2"</code>合并两列时，该行中应减少一个<code>&lt;td&gt;</code>或<code>&lt;th&gt;</code>元素；当使用<code>rowspan="2"</code>合并两行时，下一行中应减少一个相应的单元格</li>
+                <li><strong>保持表格结构完整</strong>：确保合并后表格的整体结构仍然完整，避免出现单元格数量不匹配的情况</li>
+                <li><strong>避免过度合并</strong>：过度使用合并单元格会使表格结构变得复杂，降低可访问性和可维护性</li>
+                <li><strong>考虑可访问性</strong>：合并单元格可能会使屏幕阅读器用户难以理解表格结构，应合理使用</li>
+                <li><strong>测试不同浏览器</strong>：不同浏览器对合并单元格的渲染可能略有差异，建议在主流浏览器中测试</li>
+            </ul>
+        </div>
+        
+        <h3>1.4 合并单元格的最佳实践</h3>
+        <div class="tip-box">
+            <span class="tip-title">合并单元格最佳实践</span>
+            <ul>
+                <li><strong>规划好表格结构</strong>：在创建表格之前，先规划好哪些单元格需要合并，避免中途修改</li>
+                <li><strong>使用语义化标签</strong>：合并单元格时，仍然要使用<code>&lt;thead&gt;</code>、<code>&lt;tbody&gt;</code>和<code>&lt;tfoot&gt;</code>等语义化标签</li>
+                <li><strong>为合并的单元格添加适当的样式</strong>：使用CSS为合并后的单元格添加适当的样式，如居中对齐、加粗等</li>
+                <li><strong>使用scope属性</strong>：对于合并的表头单元格，添加<code>scope</code>属性以提高可访问性</li>
+                <li><strong>保持代码整洁</strong>：使用适当的缩进和注释，使合并单元格的代码易于理解和维护</li>
+            </ul>
+        </div>
+        
+        <h3>1.5 常见问题及解决方案</h3>
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>问题</th>
+                    <th>原因</th>
+                    <th>解决方案</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>表格显示异常，单元格错位</td>
+                    <td>合并单元格后，没有减少相应数量的单元格</td>
+                    <td>确保每一行的单元格总数（包括合并的）保持一致</td>
+                </tr>
+                <tr>
+                    <td>合并后的单元格内容显示不完整</td>
+                    <td>单元格宽度或高度不足</td>
+                    <td>使用CSS调整单元格的宽度、高度或内边距</td>
+                </tr>
+                <tr>
+                    <td>屏幕阅读器无法正确读取表格</td>
+                    <td>合并单元格导致表格结构复杂，缺乏语义化</td>
+                    <td>合理使用<code>scope</code>属性，避免过度合并</td>
+                </tr>
+            </tbody>
+        </table>
     </section>
 
 
@@ -155,8 +284,263 @@
     <section id="chapter-2">
         <h2>二、合并单元格示例</h2>
         <p>
-            让我们通过一个简单的示例来学习如何使用<code>colspan</code>和<code>rowspan</code>属性合并单元格。
+            现在让我们通过几个实际的例子来学习如何使用<code>colspan</code>和<code>rowspan</code>属性创建各种复杂的表格结构。这些示例涵盖了不同的应用场景，帮助你掌握合并单元格的实际应用。
         </p>
+        
+        <h3>2.1 示例1：多级表头设计</h3>
+        <p>多级表头是合并单元格的常见应用场景，它可以帮助我们创建更有层次结构的数据表格。</p>
+        
+        <div class="example-box">
+            <h5>销售数据表格</h5>
+            <pre class="html"><code>&lt;table border="1" cellpadding="10" cellspacing="0" width="100%"&gt;
+    &lt;caption&gt;2025年季度销售数据&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th rowspan="2"&gt;产品类别&lt;/th&gt;
+            &lt;th colspan="4"&gt;季度销售额&lt;/th&gt;
+            &lt;th rowspan="2"&gt;年度总计&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Q1&lt;/th&gt;
+            &lt;th&gt;Q2&lt;/th&gt;
+            &lt;th&gt;Q3&lt;/th&gt;
+            &lt;th&gt;Q4&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td rowspan="3"&gt;电子产品&lt;/td&gt;
+            &lt;td&gt;15,000&lt;/td&gt;
+            &lt;td&gt;20,000&lt;/td&gt;
+            &lt;td&gt;18,000&lt;/td&gt;
+            &lt;td&gt;25,000&lt;/td&gt;
+            &lt;td&gt;78,000&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;12,000&lt;/td&gt;
+            &lt;td&gt;18,000&lt;/td&gt;
+            &lt;td&gt;15,000&lt;/td&gt;
+            &lt;td&gt;22,000&lt;/td&gt;
+            &lt;td&gt;67,000&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;10,000&lt;/td&gt;
+            &lt;td&gt;15,000&lt;/td&gt;
+            &lt;td&gt;13,000&lt;/td&gt;
+            &lt;td&gt;20,000&lt;/td&gt;
+            &lt;td&gt;58,000&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;服装&lt;/td&gt;
+            &lt;td&gt;8,000&lt;/td&gt;
+            &lt;td&gt;12,000&lt;/td&gt;
+            &lt;td&gt;15,000&lt;/td&gt;
+            &lt;td&gt;18,000&lt;/td&gt;
+            &lt;td&gt;53,000&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;食品&lt;/td&gt;
+            &lt;td&gt;6,000&lt;/td&gt;
+            &lt;td&gt;9,000&lt;/td&gt;
+            &lt;td&gt;11,000&lt;/td&gt;
+            &lt;td&gt;13,000&lt;/td&gt;
+            &lt;td&gt;39,000&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+    &lt;tfoot&gt;
+        &lt;tr&gt;
+            &lt;th colspan="2"&gt;季度合计&lt;/th&gt;
+            &lt;th&gt;41,000&lt;/th&gt;
+            &lt;th&gt;59,000&lt;/th&gt;
+            &lt;th&gt;59,000&lt;/th&gt;
+            &lt;th&gt;78,000&lt;/th&gt;
+            &lt;th&gt;237,000&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/tfoot&gt;
+&lt;/table&gt;</code></pre>
+        </div>
+        
+        <h3>2.2 示例2：复杂日程表</h3>
+        <p>日程表是另一个常见的合并单元格应用场景，它可以帮助我们清晰地展示时间安排。</p>
+        
+        <div class="example-box">
+            <h5>每周课程表</h5>
+            <pre class="html"><code>&lt;table border="1" cellpadding="10" cellspacing="0" width="100%"&gt;
+    &lt;caption&gt;2025年春季学期课程表&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th rowspan="2"&gt;时间&lt;/th&gt;
+            &lt;th colspan="5"&gt;星期&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;th&gt;周一&lt;/th&gt;
+            &lt;th&gt;周二&lt;/th&gt;
+            &lt;th&gt;周三&lt;/th&gt;
+            &lt;th&gt;周四&lt;/th&gt;
+            &lt;th&gt;周五&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td rowspan="2"&gt;上午&lt;/td&gt;
+            &lt;td&gt;数学&lt;/td&gt;
+            &lt;td&gt;英语&lt;/td&gt;
+            &lt;td&gt;物理&lt;/td&gt;
+            &lt;td&gt;化学&lt;/td&gt;
+            &lt;td&gt;语文&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;数学&lt;/td&gt;
+            &lt;td&gt;英语&lt;/td&gt;
+            &lt;td&gt;物理&lt;/td&gt;
+            &lt;td&gt;化学&lt;/td&gt;
+            &lt;td&gt;语文&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;中午&lt;/td&gt;
+            &lt;td colspan="5"&gt;午休&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td rowspan="2"&gt;下午&lt;/td&gt;
+            &lt;td&gt;历史&lt;/td&gt;
+            &lt;td&gt;地理&lt;/td&gt;
+            &lt;td&gt;生物&lt;/td&gt;
+            &lt;td&gt;政治&lt;/td&gt;
+            &lt;td rowspan="2"&gt;体育&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;历史&lt;/td&gt;
+            &lt;td&gt;地理&lt;/td&gt;
+            &lt;td&gt;生物&lt;/td&gt;
+            &lt;td&gt;政治&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+        </div>
+        
+        <h3>2.3 示例3：产品规格表</h3>
+        <p>产品规格表经常使用合并单元格来展示不同产品型号之间的异同。</p>
+        
+        <div class="example-box">
+            <h5>智能手机规格对比</h5>
+            <pre class="html"><code>&lt;table border="1" cellpadding="10" cellspacing="0" width="100%"&gt;
+    &lt;caption&gt;智能手机规格对比&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th rowspan="2"&gt;规格参数&lt;/th&gt;
+            &lt;th colspan="3"&gt;产品型号&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;th&gt;入门版&lt;/th&gt;
+            &lt;th&gt;标准版&lt;/th&gt;
+            &lt;th&gt;旗舰版&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td rowspan="3"&gt;显示屏&lt;/td&gt;
+            &lt;td&gt;6.1英寸 LCD&lt;/td&gt;
+            &lt;td&gt;6.3英寸 OLED&lt;/td&gt;
+            &lt;td&gt;6.5英寸 AMOLED&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;1080p 分辨率&lt;/td&gt;
+            &lt;td&gt;1440p 分辨率&lt;/td&gt;
+            &lt;td&gt;2160p 分辨率&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;60Hz 刷新率&lt;/td&gt;
+            &lt;td&gt;90Hz 刷新率&lt;/td&gt;
+            &lt;td&gt;120Hz 刷新率&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td rowspan="2"&gt;处理器&lt;/td&gt;
+            &lt;td&gt;骁龙778G&lt;/td&gt;
+            &lt;td&gt;骁龙8+ Gen 1&lt;/td&gt;
+            &lt;td&gt;骁龙8 Gen 2&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;6GB RAM&lt;/td&gt;
+            &lt;td&gt;8GB RAM&lt;/td&gt;
+            &lt;td&gt;12GB RAM&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td rowspan="2"&gt;存储容量&lt;/td&gt;
+            &lt;td&gt;128GB&lt;/td&gt;
+            &lt;td&gt;256GB&lt;/td&gt;
+            &lt;td&gt;512GB&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;不支持扩展&lt;/td&gt;
+            &lt;td&gt;不支持扩展&lt;/td&gt;
+            &lt;td&gt;支持1TB扩展&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+        </div>
+        
+        <h3>2.4 合并单元格设计原则</h3>
+        <p>在设计包含合并单元格的表格时，应遵循以下原则：</p>
+        
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>设计原则</th>
+                    <th>说明</th>
+                    <th>示例</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>保持简洁</td>
+                    <td>避免过度合并单元格，保持表格结构清晰</td>
+                    <td>只在必要时合并单元格，避免复杂的嵌套合并</td>
+                </tr>
+                <tr>
+                    <td>保持一致性</td>
+                    <td>相同类型的数据应使用相同的合并方式</td>
+                    <td>所有产品的规格参数行应使用相同的合并结构</td>
+                </tr>
+                <tr>
+                    <td>提高可读性</td>
+                    <td>使用适当的间距和样式，提高表格的可读性</td>
+                    <td>为合并的单元格添加不同的背景颜色或边框样式</td>
+                </tr>
+                <tr>
+                    <td>考虑可访问性</td>
+                    <td>确保屏幕阅读器能够正确解读表格结构</td>
+                    <td>为合并的表头添加<code>scope</code>属性</td>
+                </tr>
+                <tr>
+                    <td>保持语义化</td>
+                    <td>即使使用合并单元格，也要保持表格的语义化结构</td>
+                    <td>使用<code>&lt;thead&gt;</code>、<code>&lt;tbody&gt;</code>和<code>&lt;tfoot&gt;</code>标签</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>2.5 合并单元格的优缺点</h3>
+        <p>使用合并单元格既有优点也有缺点，在设计表格时需要权衡：</p>
+        
+        <div class="tip-box">
+            <span class="tip-title">合并单元格的优点</span>
+            <ul>
+                <li>可以创建更复杂、更有层次结构的表格</li>
+                <li>可以更有效地利用表格空间</li>
+                <li>可以突出显示重要的数据和汇总信息</li>
+                <li>可以创建更美观的表格布局</li>
+            </ul>
+        </div>
+        
+        <div class="warning-box">
+            <strong>合并单元格的缺点</strong>
+            <ul>
+                <li>会增加表格的复杂度，降低可维护性</li>
+                <li>可能会影响表格的可访问性</li>
+                <li>可能会导致表格在不同浏览器中显示不一致</li>
+                <li>会增加创建和修改表格的难度</li>
+            </ul>
+        </div>
     </section>
 
 
@@ -294,54 +678,174 @@
     <section id="chapter-3">
         <h2>三、复杂表格制作</h2>
         <p>
-            现在，让我们使用所学的知识来创建一个复杂的表格，例如一个包含合并单元格的课程表。
+            现在，让我们使用所学的知识来创建一个复杂的表格。我们将制作一个包含多个合并单元格的学生信息登记表，这个表格将展示如何处理复杂的表格结构和数据关系。
         </p>
         
-        <pre class="html"><code>&lt;table border="1" cellpadding="10" cellspacing="0" width="100%"&gt;
-    &lt;caption&gt;2025年春季学期课程表&lt;/caption&gt;
-    &lt;thead&gt;
+        <h3>3.1 复杂表格制作步骤</h3>
+        <p>创建复杂表格通常需要以下几个步骤：</p>
+        
+        <ol class="lab-steps">
+            <li><strong>需求分析</strong>：明确表格的用途和需要展示的数据</li>
+            <li><strong>结构规划</strong>：设计表格的行数、列数和单元格合并方案</li>
+            <li><strong>草图绘制</strong>：在纸上或使用设计工具绘制表格草图</li>
+            <li><strong>HTML结构编写</strong>：编写基础的HTML表格结构</li>
+            <li><strong>添加合并单元格</strong>：使用<code>colspan</code>和<code>rowspan</code>属性添加合并单元格</li>
+            <li><strong>内容填充</strong>：向表格中填充实际数据</li>
+            <li><strong>样式美化</strong>：使用CSS美化表格外观</li>
+            <li><strong>测试优化</strong>：在不同浏览器中测试表格显示效果并进行优化</li>
+        </ol>
+        
+        <h3>3.2 示例：学生信息登记表</h3>
+        <p>让我们创建一个包含个人信息、联系方式、教育背景和兴趣爱好等多个部分的学生信息登记表。</p>
+        
+        <div class="example-box">
+            <h5>学生信息登记表</h5>
+            <pre class="html"><code>&lt;table border="1" cellpadding="10" cellspacing="0" width="100%"&gt;
+    &lt;caption&gt;学生信息登记表&lt;/caption&gt;
+    &lt;tbody&gt;
         &lt;tr&gt;
-            &lt;th rowspan="2"&gt;时间&lt;/th&gt;
-            &lt;th colspan="5"&gt;课程安排&lt;/th&gt;
+            &lt;th colspan="4" style="background-color: #f0f0f0; font-size: 18px;"&gt;一、基本信息&lt;/th&gt;
         &lt;/tr&gt;
         &lt;tr&gt;
-            &lt;th&gt;周一&lt;/th&gt;
-            &lt;th&gt;周二&lt;/th&gt;
-            &lt;th&gt;周三&lt;/th&gt;
-            &lt;th&gt;周四&lt;/th&gt;
-            &lt;th&gt;周五&lt;/th&gt;
+            &lt;td width="15%"&gt;姓名&lt;/td&gt;
+            &lt;td width="35%"&gt;__________&lt;/td&gt;
+            &lt;td width="15%"&gt;性别&lt;/td&gt;
+            &lt;td width="35%"&gt;
+                &lt;input type="radio" name="gender" value="male"&gt; 男
+                &lt;input type="radio" name="gender" value="female"&gt; 女
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;出生日期&lt;/td&gt;
+            &lt;td&gt;&lt;input type="date"&gt;&lt;/td&gt;
+            &lt;td&gt;民族&lt;/td&gt;
+            &lt;td&gt;__________&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;籍贯&lt;/td&gt;
+            &lt;td&gt;__________&lt;/td&gt;
+            &lt;td&gt;政治面貌&lt;/td&gt;
+            &lt;td&gt;__________&lt;/td&gt;
+        &lt;/tr&gt;
+        
+        &lt;tr&gt;
+            &lt;th colspan="4" style="background-color: #f0f0f0; font-size: 18px;"&gt;二、联系方式&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;手机号码&lt;/td&gt;
+            &lt;td&gt;__________&lt;/td&gt;
+            &lt;td&gt;电子邮箱&lt;/td&gt;
+            &lt;td&gt;__________&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td rowspan="2"&gt;家庭地址&lt;/td&gt;
+            &lt;td rowspan="2"&gt;__________&lt;/td&gt;
+            &lt;td&gt;邮政编码&lt;/td&gt;
+            &lt;td&gt;__________&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;紧急联系人&lt;/td&gt;
+            &lt;td&gt;__________&lt;/td&gt;
+        &lt;/tr&gt;
+        
+        &lt;tr&gt;
+            &lt;th colspan="4" style="background-color: #f0f0f0; font-size: 18px;"&gt;三、教育背景&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;最高学历&lt;/td&gt;
+            &lt;td&gt;__________&lt;/td&gt;
+            &lt;td&gt;毕业院校&lt;/td&gt;
+            &lt;td&gt;__________&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;所学专业&lt;/td&gt;
+            &lt;td&gt;__________&lt;/td&gt;
+            &lt;td&gt;毕业时间&lt;/td&gt;
+            &lt;td&gt;__________&lt;/td&gt;
+        &lt;/tr&gt;
+        
+        &lt;tr&gt;
+            &lt;th colspan="4" style="background-color: #f0f0f0; font-size: 18px;"&gt;四、兴趣爱好&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td colspan="4"&gt;
+                &lt;input type="checkbox" name="hobby" value="reading"&gt; 阅读
+                &lt;input type="checkbox" name="hobby" value="sports"&gt; 运动
+                &lt;input type="checkbox" name="hobby" value="music"&gt; 音乐
+                &lt;input type="checkbox" name="hobby" value="travel"&gt; 旅行
+                &lt;input type="checkbox" name="hobby" value="coding"&gt; 编程
+                &lt;input type="checkbox" name="hobby" value="art"&gt; 艺术
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;其他爱好&lt;/td&gt;
+            &lt;td colspan="3"&gt;__________&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+        </div>
+        
+        <h3>3.3 复杂表格制作技巧</h3>
+        <p>创建复杂表格时，可以使用以下技巧来提高效率和质量：</p>
+        
+        <div class="tip-box">
+            <span class="tip-title">复杂表格制作技巧</span>
+            <ul>
+                <li><strong>使用模块化设计</strong>：将复杂表格分解为多个模块，如基本信息、联系方式等</li>
+                <li><strong>保持行列对齐</strong>：确保每行的单元格总数（包括合并的）保持一致</li>
+                <li><strong>使用注释</strong>：在代码中添加注释，说明各个模块的功能</li>
+                <li><strong>合理使用CSS</strong>：使用CSS来控制表格的外观，而不是依赖HTML属性</li>
+                <li><strong>测试不同数据量</strong>：在表格中填充不同数量的数据，测试表格的适应性</li>
+                <li><strong>考虑响应式设计</strong>：对于在移动设备上查看的表格，考虑使用响应式设计技术</li>
+            </ul>
+        </div>
+        
+        <h3>3.4 复杂表格的可访问性</h3>
+        <p>复杂表格可能会给屏幕阅读器用户带来困难，因此需要特别关注可访问性：</p>
+        
+        <div class="warning-box">
+            <strong>复杂表格的可访问性建议</strong>
+            <ul>
+                <li>使用<code>&lt;caption&gt;</code>为表格添加清晰的标题</li>
+                <li>使用<code>&lt;th&gt;</code>元素定义表头，并添加<code>scope</code>属性</li>
+                <li>避免过度合并单元格，尽量保持表格结构简单</li>
+                <li>对于非常复杂的表格，考虑将其拆分为多个简单表格</li>
+                <li>使用<code>id</code>和<code>headers</code>属性建立单元格与表头的关联</li>
+                <li>提供表格的文字说明，帮助用户理解表格结构</li>
+            </ul>
+        </div>
+        
+        <h3>3.5 使用id和headers属性增强可访问性</h3>
+        <p>对于复杂表格，我们可以使用<code>id</code>和<code>headers</code>属性来明确建立单元格与表头的关联，提高表格的可访问性。</p>
+        
+        <div class="example-box">
+            <h5>使用id和headers属性的示例</h5>
+            <pre class="html"><code>&lt;table border="1" cellpadding="10" cellspacing="0"&gt;
+    &lt;caption&gt;学生成绩表&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th id="name" scope="col"&gt;姓名&lt;/th&gt;
+            &lt;th id="math" scope="col"&gt;数学&lt;/th&gt;
+            &lt;th id="english" scope="col"&gt;英语&lt;/th&gt;
+            &lt;th id="physics" scope="col"&gt;物理&lt;/th&gt;
         &lt;/tr&gt;
     &lt;/thead&gt;
     &lt;tbody&gt;
         &lt;tr&gt;
-            &lt;td rowspan="2"&gt;上午&lt;/td&gt;
-            &lt;td&gt;数学&lt;/td&gt;
-            &lt;td&gt;英语&lt;/td&gt;
-            &lt;td&gt;物理&lt;/td&gt;
-            &lt;td&gt;化学&lt;/td&gt;
-            &lt;td&gt;语文&lt;/td&gt;
+            &lt;th id="student1" scope="row"&gt;张三&lt;/th&gt;
+            &lt;td headers="student1 math"&gt;90&lt;/td&gt;
+            &lt;td headers="student1 english"&gt;85&lt;/td&gt;
+            &lt;td headers="student1 physics"&gt;92&lt;/td&gt;
         &lt;/tr&gt;
         &lt;tr&gt;
-            &lt;td&gt;数学&lt;/td&gt;
-            &lt;td&gt;英语&lt;/td&gt;
-            &lt;td&gt;物理&lt;/td&gt;
-            &lt;td&gt;化学&lt;/td&gt;
-            &lt;td&gt;语文&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-            &lt;td rowspan="2"&gt;下午&lt;/td&gt;
-            &lt;td&gt;历史&lt;/td&gt;
-            &lt;td&gt;地理&lt;/td&gt;
-            &lt;td&gt;生物&lt;/td&gt;
-            &lt;td colspan="2" rowspan="2"&gt;社团活动&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-            &lt;td&gt;历史&lt;/td&gt;
-            &lt;td&gt;地理&lt;/td&gt;
-            &lt;td&gt;生物&lt;/td&gt;
+            &lt;th id="student2" scope="row"&gt;李四&lt;/th&gt;
+            &lt;td headers="student2 math"&gt;88&lt;/td&gt;
+            &lt;td headers="student2 english"&gt;92&lt;/td&gt;
+            &lt;td headers="student2 physics"&gt;89&lt;/td&gt;
         &lt;/tr&gt;
     &lt;/tbody&gt;
 &lt;/table&gt;</code></pre>
+        </div>
     </section>
 
 
@@ -472,65 +976,308 @@
     <section id="chapter-4">
         <h2>四、表格语义化</h2>
         <p>
-            语义化是指使用合适的HTML标签来表达内容的含义，而不仅仅是为了呈现效果。
-            对于表格，HTML5提供了一些语义化标签，用于提高表格的可访问性和可读性。
+            语义化是指使用合适的HTML标签来表达内容的含义，而不仅仅是为了呈现效果。对于表格，语义化意味着使用正确的HTML元素和属性来描述表格的结构和内容，使浏览器、搜索引擎和辅助技术能够更好地理解表格。
         </p>
         
-        <h3>4.1 语义化表格结构</h3>
+        <div class="tip-box">
+            <span class="tip-title">语义化表格的重要性</span>
+            <ul>
+                <li><strong>提高可访问性</strong>：屏幕阅读器可以更好地理解表格结构，帮助视觉障碍用户获取信息</li>
+                <li><strong>提高可读性</strong>：开发者可以更容易地理解表格的结构和内容，便于维护和修改</li>
+                <li><strong>有利于SEO</strong>：搜索引擎可以更好地理解表格内容，提高表格在搜索结果中的排名</li>
+                <li><strong>更好的浏览器支持</strong>：语义化标签在现代浏览器中得到更好的支持和优化</li>
+                <li><strong>未来兼容性</strong>：语义化HTML更符合Web标准，具有更好的未来兼容性</li>
+            </ul>
+        </div>
+        
+        <h3>4.1 语义化表格的基本结构</h3>
         <p>
-            一个语义化的表格应该包含以下结构：
+            一个完整的语义化表格应该包含以下结构元素：
         </p>
         
-        <ul>
-            <li><code>&lt;caption&gt;</code>：表格标题，描述表格的内容</li>
-            <li><code>&lt;thead&gt;</code>：表头，包含列标题</li>
-            <li><code>&lt;tbody&gt;</code>：表体，包含表格的主要数据</li>
-            <li><code>&lt;tfoot&gt;</code>：表尾，包含表格的汇总数据</li>
-        </ul>
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>元素</th>
+                    <th>描述</th>
+                    <th>作用</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>&lt;table&gt;</code></td>
+                    <td>表格容器</td>
+                    <td>定义整个表格的边界</td>
+                </tr>
+                <tr>
+                    <td><code>&lt;caption&gt;</code></td>
+                    <td>表格标题</td>
+                    <td>提供表格的简短描述，帮助用户理解表格内容</td>
+                </tr>
+                <tr>
+                    <td><code>&lt;thead&gt;</code></td>
+                    <td>表头区域</td>
+                    <td>包含表格的列标题，与表体内容分离</td>
+                </tr>
+                <tr>
+                    <td><code>&lt;tbody&gt;</code></td>
+                    <td>表体区域</td>
+                    <td>包含表格的主要数据内容</td>
+                </tr>
+                <tr>
+                    <td><code>&lt;tfoot&gt;</code></td>
+                    <td>表尾区域</td>
+                    <td>包含表格的汇总数据或总结信息</td>
+                </tr>
+                <tr>
+                    <td><code>&lt;tr&gt;</code></td>
+                    <td>表格行</td>
+                    <td>定义表格的一行</td>
+                </tr>
+                <tr>
+                    <td><code>&lt;th&gt;</code></td>
+                    <td>表头单元格</td>
+                    <td>定义表格的列标题或行标题</td></tr>
+                <tr>
+                    <td><code>&lt;td&gt;</code></td>
+                    <td>数据单元格</td>
+                    <td>包含表格的实际数据</td>
+                </tr>
+            </tbody>
+        </table>
         
-        <h3>4.2 表格的可访问性</h3>
-        <p>
-            为了提高表格的可访问性，我们可以使用以下属性：
-        </p>
+        <h3>4.2 语义化表格的最佳实践</h3>
+        <p>创建语义化表格时，应遵循以下最佳实践：</p>
         
-        <ul>
-            <li><code>scope</code>：指定表头单元格关联的行或列</li>
-            <li><code>id</code>和<code>headers</code>：建立单元格与表头的关联</li>
-        </ul>
+        <div class="tip-box">
+            <span class="tip-title">语义化表格最佳实践</span>
+            <ul>
+                <li><strong>始终使用标题</strong>：为每个表格添加<code>&lt;caption&gt;</code>元素，提供清晰的描述</li>
+                <li><strong>分离表头和表体</strong>：使用<code>&lt;thead&gt;</code>和<code>&lt;tbody&gt;</code>分离表头和数据</li>
+                <li><strong>使用正确的表头元素</strong>：使用<code>&lt;th&gt;</code>元素定义表头，而不是<code>&lt;td&gt;</code>元素</li>
+                <li><strong>添加表尾</strong>：使用<code>&lt;tfoot&gt;</code>元素添加汇总信息</li>
+                <li><strong>避免过度使用合并单元格</strong>：过度合并单元格会降低表格的可访问性</li>
+                <li><strong>使用适当的样式</strong>：使用CSS美化表格，而不是依赖HTML属性</li>
+            </ul>
+        </div>
         
-        <pre class="html"><code>&lt;table border="1" cellpadding="10" cellspacing="0"&gt;
-    &lt;caption&gt;学生成绩表&lt;/caption&gt;
+        <h3>4.3 表格的可访问性增强</h3>
+        <p>为了提高表格的可访问性，我们可以使用以下属性和技术：</p>
+        
+        <h4>4.3.1 scope属性</h4>
+        <p><code>scope</code>属性用于指定表头单元格关联的行或列，它可以取以下值：</p>
+        
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>值</th>
+                    <th>描述</th>
+                    <th>示例</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>col</code></td>
+                    <td>表头关联到当前列</td>
+                    <td><code>&lt;th scope="col"&gt;姓名&lt;/th&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>row</code></td>
+                    <td>表头关联到当前行</td>
+                    <td><code>&lt;th scope="row"&gt;张三&lt;/th&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>colgroup</code></td>
+                    <td>表头关联到一组列</td>
+                    <td><code>&lt;th scope="colgroup" colspan="3"&gt;成绩&lt;/th&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>rowgroup</code></td>
+                    <td>表头关联到一组行</td>
+                    <td><code>&lt;th scope="rowgroup" rowspan="3"&gt;电子产品&lt;/th&gt;</code></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h4>4.3.2 id和headers属性</h4>
+        <p>对于复杂表格，我们可以使用<code>id</code>和<code>headers</code>属性来明确建立单元格与表头的关联：</p>
+        
+        <div class="example-box">
+            <h5>使用id和headers属性的示例</h5>
+            <pre class="html"><code>&lt;table border="1" cellpadding="10" cellspacing="0"&gt;
+    &lt;caption&gt;复杂表格示例&lt;/caption&gt;
     &lt;thead&gt;
         &lt;tr&gt;
-            &lt;th scope="col"&gt;学号&lt;/th&gt;
-            &lt;th scope="col"&gt;姓名&lt;/th&gt;
-            &lt;th scope="col"&gt;数学&lt;/th&gt;
-            &lt;th scope="col"&gt;英语&lt;/th&gt;
+            &lt;th id="subject" scope="col"&gt;科目&lt;/th&gt;
+            &lt;th id="score1" scope="col"&gt;第一次考试&lt;/th&gt;
+            &lt;th id="score2" scope="col"&gt;第二次考试&lt;/th&gt;
+            &lt;th id="average" scope="col"&gt;平均分&lt;/th&gt;
         &lt;/tr&gt;
     &lt;/thead&gt;
     &lt;tbody&gt;
         &lt;tr&gt;
-            &lt;th scope="row"&gt;001&lt;/th&gt;
-            &lt;td&gt;张三&lt;/td&gt;
-            &lt;td&gt;85&lt;/td&gt;
-            &lt;td&gt;92&lt;/td&gt;
+            &lt;th id="math" scope="row"&gt;数学&lt;/th&gt;
+            &lt;td headers="math score1"&gt;90&lt;/td&gt;
+            &lt;td headers="math score2"&gt;95&lt;/td&gt;
+            &lt;td headers="math average"&gt;92.5&lt;/td&gt;
         &lt;/tr&gt;
         &lt;tr&gt;
-            &lt;th scope="row"&gt;002&lt;/th&gt;
-            &lt;td&gt;李四&lt;/td&gt;
-            &lt;td&gt;90&lt;/td&gt;
-            &lt;td&gt;88&lt;/td&gt;
+            &lt;th id="english" scope="row"&gt;英语&lt;/th&gt;
+            &lt;td headers="english score1"&gt;85&lt;/td&gt;
+            &lt;td headers="english score2"&gt;88&lt;/td&gt;
+            &lt;td headers="english average"&gt;86.5&lt;/td&gt;
         &lt;/tr&gt;
     &lt;/tbody&gt;
 &lt;/table&gt;</code></pre>
+        </div>
         
-        <div class="tip-box">
-            <span class="tip-title">语义化的重要性</span>
-            <p>语义化的表格具有以下优点：</p>
+        <h4>4.3.3 表列分组</h4>
+        <p>对于复杂表格，我们可以使用<code>&lt;colgroup&gt;</code>和<code>&lt;col&gt;</code>元素来对表格列进行分组，以便更好地组织和样式化表格：</p>
+        
+        <div class="example-box">
+            <h5>使用colgroup的示例</h5>
+            <pre class="html"><code>&lt;table border="1" cellpadding="10" cellspacing="0"&gt;
+    &lt;caption&gt;使用colgroup的表格&lt;/caption&gt;
+    &lt;colgroup&gt;
+        &lt;col style="background-color: #f0f0f0; font-weight: bold;"&gt;
+        &lt;col style="background-color: #e8f4f8;" span="2"&gt;
+        &lt;col style="background-color: #fff3cd; font-weight: bold;"&gt;
+    &lt;/colgroup&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th scope="col"&gt;科目&lt;/th&gt;
+            &lt;th scope="col"&gt;第一次考试&lt;/th&gt;
+            &lt;th scope="col"&gt;第二次考试&lt;/th&gt;
+            &lt;th scope="col"&gt;平均分&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;th scope="row"&gt;数学&lt;/th&gt;
+            &lt;td&gt;90&lt;/td&gt;
+            &lt;td&gt;95&lt;/td&gt;
+            &lt;td&gt;92.5&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;th scope="row"&gt;英语&lt;/th&gt;
+            &lt;td&gt;85&lt;/td&gt;
+            &lt;td&gt;88&lt;/td&gt;
+            &lt;td&gt;86.5&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+        </div>
+        
+        <h3>4.4 语义化表格与CSS的结合</h3>
+        <p>在现代Web开发中，我们通常使用CSS来控制表格的样式，而不是依赖HTML属性。以下是一些常用的CSS表格样式技巧：</p>
+        
+        <div class="example-box">
+            <h5>CSS表格样式示例</h5>
+            <pre class="html"><code>&lt;style&gt;
+    /* 表格基础样式 */
+    .semantic-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: Arial, sans-serif;
+        margin: 20px 0;
+    }
+    
+    /* 表格标题样式 */
+    .semantic-table caption {
+        font-size: 18px;
+        font-weight: bold;
+        margin: 10px 0;
+        text-align: left;
+    }
+    
+    /* 表头样式 */
+    .semantic-table th {
+        background-color: #4CAF50;
+        color: white;
+        font-weight: bold;
+        text-align: left;
+        padding: 12px;
+        border: 1px solid #ddd;
+    }
+    
+    /* 数据单元格样式 */
+    .semantic-table td {
+        padding: 12px;
+        border: 1px solid #ddd;
+    }
+    
+    /* 表体交替行样式 */
+    .semantic-table tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    
+    /* 表体行悬停效果 */
+    .semantic-table tbody tr:hover {
+        background-color: #ddd;
+    }
+    
+    /* 表尾样式 */
+    .semantic-table tfoot {
+        background-color: #e8f4f8;
+        font-weight: bold;
+    }
+&lt;/style&gt;
+
+&lt;table class="semantic-table"&gt;
+    &lt;caption&gt;语义化表格样式示例&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th scope="col"&gt;姓名&lt;/th&gt;
+            &lt;th scope="col"&gt;年龄&lt;/th&gt;
+            &lt;th scope="col"&gt;城市&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;张三&lt;/td&gt;
+            &lt;td&gt;25&lt;/td&gt;
+            &lt;td&gt;北京&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;李四&lt;/td&gt;
+            &lt;td&gt;30&lt;/td&gt;
+            &lt;td&gt;上海&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;王五&lt;/td&gt;
+            &lt;td&gt;28&lt;/td&gt;
+            &lt;td&gt;广州&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+    &lt;tfoot&gt;
+        &lt;tr&gt;
+            &lt;th scope="row" colspan="2"&gt;平均年龄&lt;/th&gt;
+            &lt;th&gt;27.7&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/tfoot&gt;
+&lt;/table&gt;</code></pre>
+        </div>
+        
+        <h3>4.5 语义化表格的测试与验证</h3>
+        <p>创建语义化表格后，我们应该进行测试和验证，确保表格在不同浏览器和辅助技术中都能正常工作：</p>
+        
+        <ol class="lab-steps">
+            <li><strong>浏览器测试</strong>：在主流浏览器（Chrome、Firefox、Safari、Edge）中测试表格显示效果</li>
+            <li><strong>屏幕阅读器测试</strong>：使用NVDA、JAWS或VoiceOver等屏幕阅读器测试表格的可访问性</li>
+            <li><strong>HTML验证</strong>：使用W3C HTML验证器验证表格的HTML结构是否符合标准</li>
+            <li><strong>可访问性验证</strong>：使用WAVE或axe等可访问性工具测试表格的可访问性</li>
+            <li><strong>响应式测试</strong>：在不同屏幕尺寸下测试表格的显示效果</li>
+        </ol>
+        
+        <div class="warning-box">
+            <strong>常见的表格可访问性问题</strong>
             <ul>
-                <li>提高可访问性：屏幕阅读器可以更好地理解表格结构</li>
-                <li>提高可读性：开发者可以更容易地理解表格的结构和内容</li>
-                <li>有利于SEO：搜索引擎可以更好地理解表格内容</li>
+                <li>缺少<code>&lt;caption&gt;</code>或描述性标题</li>
+                <li>使用<code>&lt;td&gt;</code>而不是<code>&lt;th&gt;</code>作为表头</li>
+                <li>缺少<code>scope</code>属性或<code>scope</code>属性使用不正确</li>
+                <li>过度使用合并单元格</li>
+                <li>没有使用<code>&lt;thead&gt;</code>、<code>&lt;tbody&gt;</code>和<code>&lt;tfoot&gt;</code>分离表格结构</li>
+                <li>表格内容与表头关联不明确</li>
             </ul>
         </div>
     </section>

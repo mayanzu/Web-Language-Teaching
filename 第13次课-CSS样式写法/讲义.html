@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>第19课：CSS样式写法</title>
+    <title>第13课：CSS样式写法</title>
     
     <link rel='stylesheet' href='../统一讲义样式模板.css'>
     <script src='../js/lecture-utils.js'></script>
@@ -14,19 +14,28 @@
         <h3>课程导航</h3>
         <a class="sidebar-link" href="#intro">👋 课程概览</a>
         
-        <h3>Part 1: CSS样式写法</h3>
-        <a class="sidebar-link sub-link" href="#inline-style">1. 内联样式</a>
-        <a class="sidebar-link sub-link" href="#internal-style">2. 内部样式表</a>
-        <a class="sidebar-link sub-link" href="#external-style">3. 外部样式表</a>
+        <h3>Part 1: CSS基础概念</h3>
+        <a class="sidebar-link sub-link" href="#css-intro">1. CSS基础概念</a>
+        <a class="sidebar-link sub-link" href="#css-reset">2. CSS Reset与Normalize.css</a>
         
-        <h3>Part 2: 样式规则</h3>
-        <a class="sidebar-link sub-link" href="#style-priority">4. 样式优先级</a>
-        <a class="sidebar-link sub-link" href="#css-syntax">5. CSS语法规则</a>
-        <a class="sidebar-link sub-link" href="#comment">6. CSS注释</a>
+        <h3>Part 2: CSS样式写法</h3>
+        <a class="sidebar-link sub-link" href="#inline-style">3. 内联样式</a>
+        <a class="sidebar-link sub-link" href="#internal-style">4. 内部样式表</a>
+        <a class="sidebar-link sub-link" href="#external-style">5. 外部样式表</a>
         
-        <h3>Part 3: 实战练习</h3>
-        <a class="sidebar-link sub-link" href="#lab-comparison">7. 实验练习</a>
-        <a class="sidebar-link sub-link" href="#lab-priority">8. 样式优先级测试</a>
+        <h3>Part 3: 样式规则</h3>
+        <a class="sidebar-link sub-link" href="#style-priority">6. 样式优先级</a>
+        <a class="sidebar-link sub-link" href="#css-syntax">7. CSS语法规则</a>
+        <a class="sidebar-link sub-link" href="#comment">8. CSS注释</a>
+        
+        <h3>Part 4: CSS架构与最佳实践</h3>
+        <a class="sidebar-link sub-link" href="#css-architecture">9. CSS架构与最佳实践</a>
+        
+        <h3>Part 5: 实战练习</h3>
+        <a class="sidebar-link sub-link" href="#lab-comparison">10. 实验练习</a>
+        <a class="sidebar-link sub-link" href="#lab-priority">11. 样式优先级测试</a>
+        <a class="sidebar-link sub-link" href="#lab-css-architecture">12. CSS架构与命名规范</a>
+        <a class="sidebar-link sub-link" href="#lab-css-preprocessor">13. CSS预处理器基础</a>
         
         <h3>总结与练习</h3>
         <a class="sidebar-link" href="#summary">📝 课程小结</a>
@@ -34,8 +43,8 @@
 </nav>
 <main class="content">
     <header id="intro">
-        <h1>第19课：CSS样式写法</h1>
-        <p class="intro">本课程将详细介绍CSS样式的各种写法，包括内联样式、内部样式表和外部样式表，并讲解它们的优先级和适用场景。学习本课，你将能够灵活运用不同的CSS样式写法来组织和管理网页样式。</p>
+        <h1>第13课：CSS样式写法</h1>
+        <p class="intro">本课程将详细介绍CSS样式的各种写法，包括内联样式、内部样式表和外部样式表，并讲解它们的优先级和适用场景。我们还将深入探讨CSS的基础概念、浏览器渲染机制和最佳实践，为你打下坚实的CSS基础。</p>
         <div class="pill-list">
             <span class="pill">内联样式</span>
             <span class="pill">内部样式表</span>
@@ -43,29 +52,157 @@
             <span class="pill">样式优先级</span>
             <span class="pill">CSS语法规则</span>
             <span class="pill">CSS注释</span>
+            <span class="pill">浏览器渲染</span>
+            <span class="pill">CSS Reset</span>
+            <span class="pill">CSS架构</span>
         </div>
     </header>
+    
+    <section id="css-intro">
+        <h2>一、CSS基础概念</h2>
+        <p>CSS（Cascading Style Sheets）是一种用于描述HTML或XML（包括各种XML方言，如SVG、MathML或XHTML）文档呈现的样式表语言。CSS描述了元素应该如何在屏幕、纸张或其他媒体上显示。</p>
+        
+        <h3>1.1 CSS的历史与发展</h3>
+        <p>CSS于1996年由W3C发布了第一个正式版本（CSS1），随后在1998年发布了CSS2，2011年发布了CSS3。CSS3采用了模块化的方式开发，各个模块独立发展，目前已经有多个模块成为W3C推荐标准。</p>
+        
+        <h3>1.2 CSS的作用</h3>
+        <ul>
+            <li><strong>内容与表现分离</strong>：HTML负责结构，CSS负责样式，JavaScript负责行为</li>
+            <li><strong>样式复用</strong>：可以在多个页面间共享样式</li>
+            <li><strong>响应式设计</strong>：可以根据不同设备调整样式</li>
+            <li><strong>易于维护</strong>：集中管理样式，便于修改和更新</li>
+        </ul>
+        
+        <h3>1.3 浏览器渲染机制</h3>
+        <p>理解浏览器如何处理CSS对于优化网页性能至关重要：</p>
+        <ol>
+            <li><strong>解析HTML生成DOM树</strong></li>
+            <li><strong>解析CSS生成CSSOM树</strong></li>
+            <li><strong>将DOM树与CSSOM树合并生成渲染树</strong></li>
+            <li><strong>布局（Layout）：计算元素的位置和大小</strong></li>
+            <li><strong>绘制（Painting）：将元素绘制到屏幕上</strong></li>
+            <li><strong>合成（Compositing）：将绘制的图层合并</strong></li>
+        </ol>
+        
+        <div class="tip-box">
+            <span class="tip-title">📌 性能优化建议</span>
+            <p>1. 避免使用复杂的CSS选择器，尤其是后代选择器</p>
+            <p>2. 减少重排（reflow）和重绘（repaint）</p>
+            <p>3. 合理使用CSS动画和过渡</p>
+            <p>4. 利用CSS containment属性</p>
+        </div>
+    </section>
+    
+    <section id="css-reset">
+        <h2>二、CSS Reset与Normalize.css</h2>
+        <p>不同浏览器对HTML元素有不同的默认样式，CSS Reset和Normalize.css可以帮助我们消除这些差异。</p>
+        
+        <h3>2.1 CSS Reset</h3>
+        <p>CSS Reset是一种将所有浏览器默认样式重置为一致状态的技术。</p>
+        <pre class="css"><code>/* 简单的CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: #0066cc;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}</code></pre>
+        
+        <h3>2.2 Normalize.css</h3>
+        <p>Normalize.css是一种更现代的替代方案，它保留了有用的浏览器默认样式，同时消除了浏览器差异。</p>
+        <div class="note-box">
+            <span class="tip-title">Normalize.css的优点</span>
+            <ul>
+                <li>保留有用的浏览器默认样式</li>
+                <li>标准化各种元素的样式</li>
+                <li>修复浏览器bug和常见的不一致</li>
+                <li>提高可用性和可访问性</li>
+            </ul>
+        </div>
+        
+        <h3>2.3 CSS Reset vs Normalize.css</h3>
+        <table class="prop-table">
+            <thead>
+                <tr><th>特性</th><th>CSS Reset</th><th>Normalize.css</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>浏览器默认样式</td><td>完全重置</td><td>保留有用的默认样式</td></tr>
+                <tr><td>代码体积</td><td>通常较小</td><td>通常较大</td></tr>
+                <tr><td>学习曲线</td><td>简单</td><td>需要理解其工作原理</td></tr>
+                <tr><td>可访问性</td><td>可能破坏</td><td>增强</td></tr>
+                <tr><td>浏览器支持</td><td>所有浏览器</td><td>现代浏览器</td></tr>
+            </tbody>
+        </table>
+    </section>
 
     <section id="inline-style">
-        <h2>一、内联样式</h2>
-        <p>内联样式是直接在HTML元素的style属性中定义的CSS样式。</p>
-        <p>内联样式的特点是优先级最高，直接作用于单个元素，但是不利于样式的复用和维护。</p>
-        <pre class="html"><code>&lt;p style="color: red; font-size: 20px;"&gt;这是一个红色的段落。&lt;/p&gt;</code></pre>
-        <div class="note-box">
-            <span class="tip-title">注意事项</span>
-            <ul>
-                <li>内联样式使用style属性，属性值是CSS声明的集合。</li>
-                <li>多个CSS声明之间用分号分隔。</li>
-                <li>内联样式的优先级最高，会覆盖其他样式写法。</li>
-                <li>内联样式不利于样式的复用和维护，仅在特殊情况下使用。</li>
-            </ul>
+        <h2>三、内联样式</h2>
+        <p>内联样式是直接在HTML元素的style属性中定义的CSS样式，是CSS样式应用的最直接方式。</p>
+        
+        <h3>3.1 内联样式的语法</h3>
+        <pre class="html"><code>&lt;p style="color: red; font-size: 20px; line-height: 1.5;"&gt;这是一个红色的段落。&lt;/p&gt;</code></pre>
+        
+        <h3>3.2 内联样式的特点</h3>
+        <ul>
+            <li><strong>优先级最高</strong>：内联样式会覆盖其他所有样式写法</li>
+            <li><strong>作用范围小</strong>：仅作用于单个元素</li>
+            <li><strong>编写简单</strong>：直接在元素上添加，无需额外文件</li>
+            <li><strong>维护困难</strong>：样式与结构混合，不利于批量修改</li>
+            <li><strong>复用性差</strong>：无法在多个元素间共享样式</li>
+        </ul>
+        
+        <h3>3.3 内联样式的适用场景</h3>
+        <ol>
+            <li>需要为单个元素应用特殊样式</li>
+            <li>动态生成的内容需要添加样式</li>
+            <li>调试样式时临时添加</li>
+            <li>电子邮件模板中（因为外部样式表支持有限）</li>
+        </ol>
+        
+        <h3>3.4 内联样式的缺点</h3>
+        <div class="warning-box">
+            <span class="tip-title">⚠️ 注意事项</span>
+            <p>1. <strong>样式与结构混合</strong>：违反了内容与表现分离的原则</p>
+            <p>2. <strong>增加HTML文件大小</strong>：每个元素都添加样式，导致文件体积增大</p>
+            <p>3. <strong>难以维护</strong>：修改样式需要逐个元素修改，效率低下</p>
+            <p>4. <strong>无法使用CSS高级特性</strong>：如伪类、伪元素、媒体查询等</p>
+        </div>
+        
+        <h3>3.5 内联样式的最佳实践</h3>
+        <div class="tip-box">
+            <span class="tip-title">📌 最佳实践</span>
+            <p>1. 尽量避免使用内联样式</p>
+            <p>2. 仅在必要时使用内联样式</p>
+            <p>3. 内联样式中不要使用!important</p>
+            <p>4. 内联样式中使用简写属性，减少代码量</p>
         </div>
     </section>
 
     <section id="internal-style">
-        <h2>二、内部样式表</h2>
-        <p>内部样式表是在HTML文档的head标签中使用style标签定义的CSS样式。</p>
-        <p>内部样式表的特点是作用于当前HTML文档，样式可以复用，但是不利于在多个HTML文档之间共享样式。</p>
+        <h2>四、内部样式表</h2>
+        <p>内部样式表是将CSS样式定义在HTML文档的head标签中，使用style标签包裹。这种方式将样式与结构分离到同一文件的不同部分，比内联样式更有利于维护。</p>
+        
+        <h3>4.1 内部样式表的语法</h3>
         <pre class="html"><code>&lt;!DOCTYPE html&gt;
 &lt;html lang="zh-CN"&gt;
 &lt;head&gt;
@@ -73,51 +210,166 @@
     &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
     &lt;title&gt;内部样式表示例&lt;/title&gt;
     &lt;style&gt;
+        /* 这是CSS注释 */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        h1 {
+            color: green;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
         p {
             color: blue;
             font-size: 18px;
+            line-height: 1.6;
+            margin: 10px 20px;
         }
-        h1 {
-            color: green;
+        
+        .highlight {
+            background-color: yellow;
+            padding: 5px;
         }
     &lt;/style&gt;
 &lt;/head&gt;
 &lt;body&gt;
     &lt;h1&gt;这是一个标题&lt;/h1&gt;
     &lt;p&gt;这是一个蓝色的段落。&lt;/p&gt;
+    &lt;p class="highlight"&gt;这是一个带有高亮样式的段落。&lt;/p&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
-        <div class="note-box">
-            <span class="tip-title">注意事项</span>
-            <ul>
-                <li>内部样式表使用style标签，位于head标签中。</li>
-                <li>style标签中的CSS样式作用于当前HTML文档。</li>
-                <li>内部样式表有利于样式的复用，但是仅作用于当前文档。</li>
-            </ul>
+        
+        <h3>4.2 内部样式表的特点</h3>
+        <ul>
+            <li><strong>样式与结构分离</strong>：样式集中管理，便于维护</li>
+            <li><strong>作用范围</strong>：仅作用于当前HTML文档</li>
+            <li><strong>优先级</strong>：高于外部样式表（如果在外部样式表之后定义）</li>
+            <li><strong>样式复用</strong>：可以在同一文档内复用样式</li>
+            <li><strong>支持CSS高级特性</strong>：可以使用伪类、伪元素、媒体查询等</li>
+        </ul>
+        
+        <h3>4.3 内部样式表的适用场景</h3>
+        <ol>
+            <li>单页面网站</li>
+            <li>测试和调试样式</li>
+            <li>需要在HTML文件中包含所有内容的场景</li>
+            <li>不希望外部资源请求的场景</li>
+        </ol>
+        
+        <h3>4.4 内部样式表的优缺点</h3>
+        <table class="prop-table">
+            <thead>
+                <tr><th>优点</th><th>缺点</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>样式与结构分离，便于维护</td>
+                    <td>样式无法在多个页面间共享</td>
+                </tr>
+                <tr>
+                    <td>减少HTTP请求</td>
+                    <td>增加HTML文件大小</td>
+                </tr>
+                <tr>
+                    <td>支持CSS高级特性</td>
+                    <td>无法利用浏览器缓存</td>
+                </tr>
+                <tr>
+                    <td>编写简单，无需额外文件</td>
+                    <td>对于多页面网站，维护困难</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>4.5 内部样式表的最佳实践</h3>
+        <div class="tip-box">
+            <span class="tip-title">📌 最佳实践</span>
+            <p>1. 始终将style标签放在head标签中</p>
+            <p>2. 使用CSS注释组织样式，提高可读性</p>
+            <p>3. 按逻辑顺序组织样式（如先重置样式，再布局样式，最后组件样式）</p>
+            <p>4. 为样式规则使用有意义的名称</p>
+            <p>5. 对于多页面网站，考虑使用外部样式表</p>
         </div>
+        
+        <h3>4.6 内部样式表的优先级</h3>
+        <p>当同时使用内联样式、内部样式表和外部样式表时，优先级顺序为：</p>
+        <p>内联样式 > 内部样式表 > 外部样式表</p>
+        <p>注意：如果内部样式表定义在外部样式表之前，内部样式表会覆盖外部样式表的样式；如果内部样式表定义在外部样式表之后，外部样式表会覆盖内部样式表的样式。</p>
     </section>
 
     <section id="external-style">
-        <h2>三、外部样式表</h2>
-        <p>外部样式表是将CSS样式定义在一个独立的.css文件中，然后在HTML文档中通过link标签引入。</p>
-        <p>外部样式表的特点是可以在多个HTML文档之间共享样式，有利于样式的复用和维护，是实际开发中最常用的样式写法。</p>
+        <h2>五、外部样式表</h2>
+        <p>外部样式表是将CSS样式定义在一个独立的.css文件中，然后通过link标签在HTML文档中引入。这是Web开发中最常用的样式应用方式，也是内容与表现分离的最佳实践。</p>
+        
+        <h3>5.1 外部样式表的使用步骤</h3>
         <div class="note-box">
-            <span class="tip-title">外部样式表的使用步骤</span>
+            <span class="tip-title">使用步骤</span>
             <ol>
-                <li>创建一个.css文件，例如style.css。</li>
-                <li>在.css文件中定义CSS样式。</li>
-                <li>在HTML文档的head标签中使用link标签引入.css文件。</li>
+                <li><strong>创建.css文件</strong>：例如style.css或main.css</li>
+                <li><strong>编写CSS样式</strong>：在.css文件中定义所需的样式规则</li>
+                <li><strong>引入样式表</strong>：在HTML文档的head标签中使用link标签引入.css文件</li>
             </ol>
         </div>
-        <pre class="css"><code>/* style.css */
-p {
-    color: red;
-    font-size: 20px;
+        
+        <h3>5.2 外部样式表的语法</h3>
+        <p><strong>CSS文件示例 (style.css)：</strong></p>
+        <pre class="css"><code>/* 这是CSS注释 */
+
+/* 重置浏览器默认样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+/* 基础样式 */
+body {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+}
+
+/* 标题样式 */
 h1 {
-    color: blue;
+    color: #2c3e50;
+    text-align: center;
+    margin: 20px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #3498db;
+}
+
+/* 段落样式 */
+p {
+    margin-bottom: 15px;
+    padding: 0 20px;
+}
+
+/* 链接样式 */
+a {
+    color: #3498db;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+/* 容器样式 */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }</code></pre>
+        
+        <p><strong>HTML文件中引入外部样式表：</strong></p>
         <pre class="html"><code>&lt;!DOCTYPE html&gt;
 &lt;html lang="zh-CN"&gt;
 &lt;head&gt;
@@ -125,43 +377,177 @@ h1 {
     &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
     &lt;title&gt;外部样式表示例&lt;/title&gt;
     &lt;link rel="stylesheet" href="style.css"&gt;
+    &lt;link rel="stylesheet" href="responsive.css" media="screen and (max-width: 768px)"&gt;
 &lt;/head&gt;
 &lt;body&gt;
-    &lt;h1&gt;这是一个标题&lt;/h1&gt;
-    &lt;p&gt;这是一个红色的段落。&lt;/p&gt;
+    &lt;div class="container"&gt;
+        &lt;h1&gt;这是一个标题&lt;/h1&gt;
+        &lt;p&gt;这是一个使用外部样式表的段落。&lt;/p&gt;
+        &lt;a href="#"&gt;这是一个链接&lt;/a&gt;
+    &lt;/div&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
+        
+        <h3>5.3 外部样式表的特点</h3>
+        <ul>
+            <li><strong>内容与表现完全分离</strong>：HTML负责结构，CSS负责样式</li>
+            <li><strong>样式复用</strong>：可以在多个HTML文档间共享样式</li>
+            <li><strong>浏览器缓存</strong>：CSS文件会被浏览器缓存，提高加载速度</li>
+            <li><strong>便于维护</strong>：集中管理样式，修改一处，多处生效</li>
+            <li><strong>支持CSS高级特性</strong>：可以使用所有CSS特性</li>
+            <li><strong>模块化开发</strong>：可以将样式拆分为多个文件，便于管理</li>
+        </ul>
+        
+        <h3>5.4 外部样式表的适用场景</h3>
+        <ol>
+            <li>多页面网站</li>
+            <li>大型Web应用</li>
+            <li>需要样式复用的场景</li>
+            <li>团队协作开发</li>
+            <li>需要响应式设计的网站</li>
+        </ol>
+        
+        <h3>5.5 外部样式表的优缺点</h3>
+        <table class="prop-table">
+            <thead>
+                <tr><th>优点</th><th>缺点</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>内容与表现完全分离</td>
+                    <td>增加HTTP请求</td>
+                </tr>
+                <tr>
+                    <td>样式可以在多个页面间共享</td>
+                    <td>依赖外部资源，可能导致样式加载延迟</td>
+                </tr>
+                <tr>
+                    <td>浏览器缓存，提高加载速度</td>
+                    <td>需要额外的文件管理</td>
+                </tr>
+                <tr>
+                    <td>便于维护和修改</td>
+                    <td>对于简单页面，可能显得繁琐</td>
+                </tr>
+                <tr>
+                    <td>支持模块化开发</td>
+                    <td>需要注意样式加载顺序</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>5.6 外部样式表的最佳实践</h3>
         <div class="tip-box">
-            <span class="tip-title">外部样式表的优点</span>
-            <ul>
-                <li>样式可以在多个HTML文档之间共享，有利于样式的复用和维护。</li>
-                <li>可以缓存.css文件，提高网页加载速度。</li>
-                <li>将HTML结构和CSS样式分离，有利于代码的组织和管理。</li>
-            </ul>
+            <span class="tip-title">📌 最佳实践</span>
+            <p>1. <strong>使用有意义的文件名</strong>：如main.css、style.css、responsive.css</p>
+            <p>2. <strong>合理组织CSS文件结构</strong>：按功能或组件拆分文件</p>
+            <p>3. <strong>使用CSS预处理器</strong>：如Sass、Less等，提高开发效率</p>
+            <p>4. <strong>压缩CSS文件</strong>：减少文件大小，提高加载速度</p>
+            <p>5. <strong>使用CDN加载公共CSS库</strong>：利用全球CDN节点，提高加载速度</p>
+            <p>6. <strong>注意样式加载顺序</strong>：先重置样式，再基础样式，最后组件样式</p>
+            <p>7. <strong>使用媒体查询实现响应式设计</strong></p>
+            <p>8. <strong>添加版本号或哈希值</strong>：便于缓存更新</p>
+        </div>
+        
+        <h3>5.7 外部样式表的加载机制</h3>
+        <p>了解外部样式表的加载机制对于优化网页性能很重要：</p>
+        <ol>
+            <li>HTML解析到link标签时，会并行下载CSS文件</li>
+            <li>CSS文件下载完成后，浏览器会解析CSS，生成CSSOM树</li>
+            <li>CSSOM树与DOM树合并生成渲染树</li>
+            <li>浏览器根据渲染树进行布局和绘制</li>
+        </ol>
+        
+        <div class="warning-box">
+            <span class="tip-title">⚠️ 性能优化建议</span>
+            <p>1. 避免使用@import引入CSS文件，会阻塞页面渲染</p>
+            <p>2. 将CSS文件放在head标签中，确保样式优先加载</p>
+            <p>3. 合并CSS文件，减少HTTP请求</p>
+            <p>4. 使用CSS Sprites技术，减少图片请求</p>
+            <p>5. 利用浏览器缓存，合理设置Cache-Control和Expires头</p>
         </div>
     </section>
 
     <section id="style-priority">
-        <h2>四、样式优先级</h2>
-        <p>当一个HTML元素应用了多种样式写法时，CSS会根据一定的优先级规则来决定最终应用哪个样式。</p>
-        <p>样式优先级从高到低依次为：</p>
+        <h2>六、样式优先级</h2>
+        <p>当一个HTML元素应用了多种样式时，CSS会根据特定的优先级规则来决定最终应用哪个样式。理解样式优先级对于调试和维护CSS代码至关重要。</p>
+        
+        <h3>6.1 优先级的基本概念</h3>
+        <p>优先级是浏览器决定哪个CSS规则应用于元素的机制。当多个规则冲突时，优先级高的规则会被应用。</p>
+        
+        <h3>6.2 优先级的计算规则</h3>
+        <p>优先级是基于选择器的特异性（Specificity）计算的，特异性高的选择器优先级更高。特异性可以通过以下规则计算：</p>
+        <ul>
+            <li><strong>内联样式</strong>：特异性为 (1, 0, 0, 0)</li>
+            <li><strong>ID选择器</strong>：特异性为 (0, 1, 0, 0)</li>
+            <li><strong>类选择器、属性选择器、伪类选择器</strong>：特异性为 (0, 0, 1, 0)</li>
+            <li><strong>元素选择器、伪元素选择器</strong>：特异性为 (0, 0, 0, 1)</li>
+            <li><strong>通配符选择器 (*)</strong>：特异性为 (0, 0, 0, 0)</li>
+            <li><strong>继承的样式</strong>：特异性为 (0, 0, 0, 0)</li>
+        </ul>
+        
+        <p>特异性的计算示例：</p>
+        <pre class="css"><code>/* 特异性：(0, 0, 1, 1) */
+div.highlight {}
+
+/* 特异性：(0, 1, 0, 1) */
+div#main {}
+
+/* 特异性：(0, 0, 2, 0) */
+.highlight.active {}
+
+/* 特异性：(0, 0, 1, 2) */
+div p.highlight {}</code></pre>
+        
+        <h3>6.3 优先级的顺序</h3>
+        <p>从高到低的优先级顺序：</p>
         <ol>
-            <li>!important声明</li>
-            <li>内联样式</li>
-            <li>ID选择器</li>
-            <li>类选择器、属性选择器、伪类选择器</li>
-            <li>元素选择器、伪元素选择器</li>
-            <li>通配符选择器</li>
-            <li>继承的样式</li>
+            <li><strong>!important声明</strong>：可以覆盖任何其他样式</li>
+            <li><strong>内联样式</strong>：直接写在元素的style属性中</li>
+            <li><strong>ID选择器</strong>：以#开头</li>
+            <li><strong>类选择器、属性选择器、伪类选择器</strong>：以.开头或使用方括号[]</li>
+            <li><strong>元素选择器、伪元素选择器</strong>：如div、p、::before</li>
+            <li><strong>通配符选择器 (*)</strong>：匹配所有元素</li>
+            <li><strong>继承的样式</strong>：从父元素继承的样式</li>
+            <li><strong>浏览器默认样式</strong>：浏览器内置的样式表</li>
         </ol>
+        
+        <h3>6.4 !important声明的使用</h3>
+        <p>!important声明可以覆盖任何其他样式，包括内联样式。它的语法是在属性值后添加!important：</p>
+        <pre class="css"><code>p {
+    color: red !important; /* 优先级最高 */
+}</code></pre>
+        
         <div class="warning-box">
-            <span class="tip-title">注意事项</span>
-            <ul>
-                <li>!important声明会覆盖所有其他样式，但是应尽量避免使用，因为它会破坏样式的正常优先级关系。</li>
-                <li>选择器的优先级可以通过计算选择器的特异性来确定。</li>
-                <li>当多个样式的优先级相同时，后面定义的样式会覆盖前面定义的样式。</li>
-            </ul>
+            <span class="tip-title">⚠️ !important使用建议</span>
+            <p>1. <strong>尽量避免使用!important</strong>，它会破坏样式的正常优先级关系</p>
+            <p>2. 仅在覆盖第三方库样式时使用!important</p>
+            <p>3. 不要在全局样式中使用!important</p>
+            <p>4. 不要在组件库或框架中使用!important</p>
+            <p>5. 如果必须使用!important，确保只在特定的、有明确理由的情况下使用</p>
         </div>
+        
+        <h3>6.5 优先级的继承规则</h3>
+        <p>有些CSS属性会从父元素继承到子元素，如color、font-family等，而有些属性则不会，如width、margin等。</p>
+        
+        <h3>6.6 优先级的最佳实践</h3>
+        <div class="tip-box">
+            <span class="tip-title">📌 最佳实践</span>
+            <p>1. <strong>使用语义化的类名</strong>，避免过度依赖ID选择器</p>
+            <p>2. <strong>保持选择器简单</strong>，避免使用复杂的嵌套选择器</p>
+            <p>3. <strong>利用CSS的级联特性</strong>，合理组织样式顺序</p>
+            <p>4. <strong>使用BEM等命名规范</strong>，避免样式冲突</p>
+            <p>5. <strong>优先使用类选择器</strong>，提高样式的复用性和可维护性</p>
+        </div>
+        
+        <h3>6.7 优先级的调试方法</h3>
+        <p>在浏览器开发者工具中可以查看元素的计算样式，了解哪些样式被应用，哪些被覆盖。这对于调试样式优先级问题非常有用：</p>
+        <ol>
+            <li>右键点击元素，选择"检查"或"审查元素"</li>
+            <li>在Styles或Computed面板中查看样式</li>
+            <li>被划掉的样式表示被覆盖</li>
+            <li>可以通过勾选/取消勾选来测试样式</li>
+        </ol>
     </section>
 
     <section id="css-syntax">
@@ -326,24 +712,442 @@ p {
             </div>
         </div>
 </section>
-    <section id="summary">
-        <h2>九、本课小结</h2>
-        <p>本课程详细介绍了CSS样式的各种写法，包括：</p>
+    <section id="css-architecture">
+        <h2>九、CSS架构与最佳实践</h2>
+        <p>在大型项目中，良好的CSS架构对于代码的可维护性和扩展性至关重要。以下是一些常用的CSS架构方法和最佳实践：</p>
+        
+        <h3>9.1 CSS命名规范</h3>
+        <p>使用一致的命名规范可以提高CSS代码的可读性和可维护性。常见的CSS命名规范包括：</p>
+        
+        <h4>9.1.1 BEM命名规范</h4>
+        <p>BEM（Block, Element, Modifier）是一种流行的CSS命名方法论，它将CSS类名分为三个部分：</p>
         <ul>
-            <li><strong>内联样式：</strong>直接在HTML元素的style属性中定义，优先级最高，但是不利于样式的复用和维护。</li>
-            <li><strong>内部样式表：</strong>在HTML文档的head标签中使用style标签定义，作用于当前HTML文档，样式可以复用。</li>
-            <li><strong>外部样式表：</strong>将CSS样式定义在独立的.css文件中，通过link标签引入，是实际开发中最常用的样式写法。</li>
-            <li><strong>样式优先级：</strong>!important声明 > 内联样式 > ID选择器 > 类选择器 > 元素选择器 > 通配符选择器 > 继承的样式。</li>
-            <li><strong>CSS语法：</strong>由选择器和声明块组成，声明块包含一个或多个CSS声明。</li>
-            <li><strong>CSS注释：</strong>用于解释CSS代码，提高代码的可读性和可维护性。</li>
+            <li><strong>Block（块）：</strong>独立的组件，如 <code>.button</code>, <code>.card</code></li>
+            <li><strong>Element（元素）：</strong>块的组成部分，如 <code>.button__icon</code>, <code>.card__title</code></li>
+            <li><strong>Modifier（修饰符）：</strong>块或元素的变体，如 <code>.button--primary</code>, <code>.card--large</code></li>
+        </ul>
+        <pre class="css"><code>/* BEM命名示例 */
+/* 块 */
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 元素 */
+.header__logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.header__nav {
+    display: flex;
+    gap: 20px;
+}
+
+/* 修饰符 */
+.header--fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}</code></pre>
+        
+        <h4>9.1.2 OOCSS命名规范</h4>
+        <p>OOCSS（Object-Oriented CSS）鼓励将样式抽象为可复用的对象，分离结构和皮肤：</p>
+        <ul>
+            <li><strong>结构（Structure）：</strong>定义布局和位置，如 <code>.container</code>, <code>.grid</code></li>
+            <li><strong>皮肤（Skin）：</strong>定义视觉样式，如 <code>.btn-primary</code>, <code>.text-center</code></li>
+        </ul>
+        
+        <h4>9.1.3 SMACSS命名规范</h4>
+        <p>SMACSS（Scalable and Modular Architecture for CSS）将CSS分为五个类别：</p>
+        <ul>
+            <li><strong>Base：</strong>基础样式，如重置样式、默认字体等</li>
+            <li><strong>Layout：</strong>布局样式，如 <code>.l-container</code>, <code>.l-header</code></li>
+            <li><strong>Module：</strong>组件样式，如 <code>.btn</code>, <code>.card</code></li>
+            <li><strong>State：</strong>状态样式，如 <code>.is-active</code>, <code>.is-hidden</code></li>
+            <li><strong>Theme：</strong>主题样式，如 <code>.theme-dark</code></li>
+        </ul>
+        
+        <h3>9.2 CSS模块化与组件化</h3>
+        <p>模块化是现代CSS开发的核心概念，它将CSS代码拆分为独立的、可复用的模块：</p>
+        
+        <h4>9.2.1 CSS Modules</h4>
+        <p>CSS Modules是一种CSS模块化方案，它将CSS文件作为模块处理，通过编译生成唯一的类名，避免命名冲突：</p>
+        <pre class="css"><code>/* styles.module.css */
+.container {
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+.title {
+    font-size: 24px;
+    color: #333;
+}</code></pre>
+        
+        <h4>9.2.2 CSS-in-JS</h4>
+        <p>CSS-in-JS是将CSS样式直接写在JavaScript文件中的方案，如Styled Components、Emotion等：</p>
+        <pre class="javascript"><code>// Styled Components示例
+import styled from 'styled-components';
+
+const Button = styled.button`
+    padding: 10px 20px;
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    
+    &:hover {
+        background-color: #0052a3;
+    }
+`;
+
+function App() {
+    return (
+        &lt;Button&gt;点击我&lt;/Button&gt;
+    );
+}</code></pre>
+        
+        <h3>9.3 CSS工程化工具</h3>
+        <p>现代CSS开发通常使用各种工程化工具来提高开发效率：</p>
+        
+        <h4>9.3.1 CSS预处理器</h4>
+        <p>CSS预处理器扩展了CSS语法，提供变量、嵌套、混合等功能：</p>
+        <ul>
+            <li><strong>Sass/SCSS：</strong>最流行的CSS预处理器，提供丰富的功能</li>
+            <li><strong>Less：</strong>简单易用，语法与CSS接近</li>
+            <li><strong>Stylus：</strong>语法灵活，支持省略分号和花括号</li>
+        </ul>
+        <pre class="scss"><code>/* SCSS示例 */
+$primary-color: #0066cc;
+$border-radius: 4px;
+
+@mixin button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: $border-radius;
+    cursor: pointer;
+    
+    &:hover {
+        opacity: 0.9;
+    }
+}
+
+.btn {
+    @include button;
+    background-color: $primary-color;
+    color: white;
+    
+    &--secondary {
+        background-color: #6c757d;
+    }
+}</code></pre>
+        
+        <h4>9.3.2 CSS后处理器</h4>
+        <p>CSS后处理器对CSS进行处理，如自动添加浏览器前缀、压缩代码等：</p>
+        <ul>
+            <li><strong>PostCSS：</strong>使用插件系统处理CSS，如 Autoprefixer、CSSnano</li>
+            <li><strong>Autoprefixer：</strong>自动添加浏览器前缀，解决浏览器兼容性问题</li>
+            <li><strong>CSSnano：</strong>压缩CSS代码，减小文件大小</li>
+        </ul>
+        
+        <h3>9.4 CSS最佳实践</h3>
+        <div class="tip-box">
+            <span class="tip-title">📌 CSS最佳实践</span>
+            <ul>
+                <li><strong>使用语义化的类名：</strong>类名应该反映元素的用途，而不是样式</li>
+                <li><strong>保持选择器简单：</strong>避免使用复杂的嵌套选择器，提高性能</li>
+                <li><strong>使用CSS变量：</strong>统一管理颜色、字体大小等样式值，便于主题切换</li>
+                <li><strong>遵循DRY原则：</strong>避免重复的CSS代码，使用混合、函数等复用样式</li>
+                <li><strong>合理组织CSS文件：</strong>按功能或组件拆分CSS文件，便于维护</li>
+                <li><strong>使用CSS Reset或Normalize.css：</strong>消除浏览器默认样式差异</li>
+                <li><strong>考虑响应式设计：</strong>使用媒体查询适应不同屏幕尺寸</li>
+                <li><strong>优化CSS性能：</strong>避免使用昂贵的CSS属性，如box-shadow、border-radius等</li>
+                <li><strong>使用CSS注释：</strong>解释CSS代码的用途，提高可维护性</li>
+                <li><strong>使用版本控制：</strong>管理CSS代码的变更，便于回滚和协作</li>
+            </ul>
+        </div>
+        
+        <h3>9.5 CSS性能优化</h3>
+        <p>优化CSS性能对于提高网页加载速度和用户体验至关重要：</p>
+        
+        <h4>9.5.1 选择器性能</h4>
+        <ul>
+            <li>避免使用通配符选择器（*），它会匹配所有元素</li>
+            <li>避免使用后代选择器，尤其是深层嵌套的后代选择器</li>
+            <li>优先使用类选择器，而不是ID选择器或元素选择器</li>
+            <li>避免使用属性选择器，如 <code>[class^="btn"]</code></li>
+        </ul>
+        
+        <h4>9.5.2 CSS文件优化</h4>
+        <ul>
+            <li>合并CSS文件，减少HTTP请求</li>
+            <li>压缩CSS文件，减小文件大小</li>
+            <li>使用CSS Sprites技术，减少图片请求</li>
+            <li>使用字体图标代替图片图标，减少HTTP请求</li>
+        </ul>
+        
+        <h4>9.5.3 渲染性能</h4>
+        <ul>
+            <li>避免使用CSS表达式，如 <code>expression(document.body.clientWidth > 800 ? "800px" : "auto")</code></li>
+            <li>合理使用CSS动画和过渡，避免过度使用</li>
+            <li>使用will-change属性，提示浏览器优化渲染</li>
+            <li>避免使用box-shadow和border-radius等昂贵的CSS属性</li>
+        </ul>
+    </section>
+    
+    <section id="lab-css-architecture">
+        <h2>十、实验：CSS架构与命名规范</h2>
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 03：BEM命名规范实践</span>
+                <span id="badge-3" class="status-badge beginner">动手实践</span>
+            </div>
+            <div class="lab-body split">
+                <!-- HTML 代码编辑区 -->
+                <div class="panel code-editor" id="html-3" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
+&lt;div class="card card--featured"&gt;
+    &lt;div class="card__header"&gt;
+        &lt;h3 class="card__title"&gt;BEM命名规范示例&lt;/h3&gt;
+        &lt;p class="card__subtitle"&gt;这是一个演示BEM命名规范的卡片组件&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="card__content"&gt;
+        &lt;p&gt;BEM命名规范使用Block__Element--Modifier的格式，使CSS类名更加清晰和可维护。&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="card__footer"&gt;
+        &lt;button class="btn btn--primary"&gt;主要按钮&lt;/button&gt;
+        &lt;button class="btn btn--secondary"&gt;次要按钮&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+                </div>
+                
+                <!-- CSS 代码编辑区 -->
+                <div class="panel code-editor" id="css-3" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* 第13次课-CSS架构与命名规范实验 */
+/* BEM命名规范示例 */
+
+/* Block: card */
+.card {
+    width: 300px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+/* Block modifier: card--featured */
+.card--featured {
+    border-color: #0066cc;
+    box-shadow: 0 4px 8px rgba(0,102,204,0.2);
+    transform: translateY(-5px);
+}
+
+/* Element: card__header */
+.card__header {
+    margin-bottom: 15px;
+}
+
+/* Element: card__title */
+.card__title {
+    margin: 0;
+    color: #333;
+    font-size: 24px;
+}
+
+/* Element: card__subtitle */
+.card__subtitle {
+    margin: 5px 0 0 0;
+    color: #666;
+    font-size: 14px;
+}
+
+/* Element: card__content */
+.card__content {
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+/* Element: card__footer */
+.card__footer {
+    display: flex;
+    gap: 10px;
+}
+
+/* Block: btn */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+/* Block modifier: btn--primary */
+.btn--primary {
+    background-color: #0066cc;
+    color: white;
+}
+
+/* Block modifier: btn--secondary */
+.btn--secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+/* Hover effects */
+.btn--primary:hover {
+    background-color: #0052a3;
+}
+
+.btn--secondary:hover {
+    background-color: #5a6268;
+}
+                </div>
+            </div>
+            
+            <!-- 预览区 -->
+            <div class="preview-box" id="preview-3">
+                <div class="panel-label">预览效果</div>
+                <div id="preview-content-3"></div>
+            </div>
+            
+            <!-- 操作按钮 -->
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runHtmlCssExperiment('html-3', 'css-3', 'preview-content-3', 'badge-3')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetHtmlCssExperiment('html-3', 'css-3', 'preview-content-3', 'badge-3')">↺ 重置代码</button>
+            </div>
+        </div>
+    </section>
+    
+    <section id="lab-css-preprocessor">
+        <h2>十一、实验：CSS预处理器基础</h2>
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 04：Sass基础语法</span>
+                <span id="badge-4" class="status-badge beginner">动手实践</span>
+            </div>
+            <div class="lab-body">
+                <p><strong>目标：</strong>了解Sass的基本语法特性，包括变量、嵌套、混合宏等。</p>
+                <ol class="lab-steps">
+                    <li>创建一个Sass文件，定义变量存储颜色、字体等样式值</li>
+                    <li>使用嵌套语法编写CSS规则</li>
+                    <li>创建混合宏实现样式复用</li>
+                    <li>使用继承功能减少重复代码</li>
+                    <li>将Sass代码编译为CSS并观察结果</li>
+                </ol>
+                
+                <div class="panel code-editor" id="css-4" contenteditable="true">
+<div class="panel-label">Sass (示例代码)</div>
+/* Sass变量定义 */
+$primary-color: #0066cc;
+$secondary-color: #6c757d;
+$font-family: 'Arial', sans-serif;
+$border-radius: 4px;
+
+/* 混合宏定义 */
+@mixin button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: $border-radius;
+    cursor: pointer;
+    font-family: $font-family;
+    transition: background-color 0.3s ease;
+    
+    &:hover {
+        opacity: 0.9;
+    }
+    
+    &:active {
+        transform: scale(0.98);
+    }
+}
+
+/* 嵌套语法 */
+.card {
+    width: 300px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: $border-radius;
+    padding: 20px;
+    margin: 20px;
+    
+    &__header {
+        margin-bottom: 15px;
+    }
+    
+    &__title {
+        color: $primary-color;
+        margin: 0;
+        font-size: 24px;
+    }
+    
+    &__content {
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+    
+    &__footer {
+        display: flex;
+        gap: 10px;
+    }
+}
+
+/* 使用混合宏 */
+.btn {
+    @include button;
+    
+    &--primary {
+        background-color: $primary-color;
+        color: white;
+    }
+    
+    &--secondary {
+        background-color: $secondary-color;
+        color: white;
+    }
+}
+                </div>
+                
+                <div class="tip-box">
+                    <span class="tip-title">📌 Sass编译说明</span>
+                    <p>Sass是一种CSS预处理器，需要编译成CSS才能在浏览器中使用。你可以使用以下工具进行编译：</p>
+                    <ul>
+                        <li><strong>命令行工具：</strong>使用<code>sass</code>命令行工具</li>
+                        <li><strong>构建工具：</strong>如Webpack、Gulp等</li>
+                        <li><strong>在线工具：</strong>如SassMeister、CodePen等</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="summary">
+        <h2>十、本课小结</h2>
+        <p>本课程详细介绍了CSS样式的各种写法、CSS架构与最佳实践，包括：</p>
+        <ul>
+            <li><strong>CSS样式写法：</strong>内联样式、内部样式表和外部样式表的特点、适用场景和优缺点</li>
+            <li><strong>样式优先级：</strong>特异性计算规则、!important声明的使用和调试方法</li>
+            <li><strong>CSS语法：</strong>选择器、声明块、CSS声明和注释的语法规则</li>
+            <li><strong>CSS架构：</strong>BEM、OOCSS、SMACSS等命名规范和模块化方案</li>
+            <li><strong>CSS工程化：</strong>预处理器、后处理器和构建工具的使用</li>
+            <li><strong>CSS最佳实践：</strong>命名规范、选择器优化、性能优化等</li>
         </ul>
         <div class="tip-box">
             <span class="tip-title">学习建议</span>
             <ul>
-                <li>在实际开发中，优先使用外部样式表来组织和管理CSS样式。</li>
-                <li>理解样式优先级的规则，避免使用!important声明。</li>
-                <li>使用CSS注释来提高代码的可读性和可维护性。</li>
-                <li>通过实验和练习，熟练掌握不同的CSS样式写法。</li>
+                <li>在实际开发中，优先使用外部样式表来组织和管理CSS样式</li>
+                <li>选择一种CSS命名规范并坚持使用，提高代码的一致性和可维护性</li>
+                <li>学习和使用CSS预处理器，提高开发效率和代码复用性</li>
+                <li>关注CSS性能，优化选择器和CSS文件，提高网页加载速度</li>
+                <li>定期复习和更新CSS知识，关注CSS的最新发展和最佳实践</li>
             </ul>
         </div>
     </section>

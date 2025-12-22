@@ -540,7 +540,230 @@ h3 ~ p {
                 <button class="btn btn-reset" onclick="resetHtmlCssExperiment('html-8', 'css-8', 'preview-content-8', 'badge-8')">↺ 重置代码</button>
             </div>
         </div>
-</section>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 09：复合选择器高级应用</span>
+                <span id="badge-9" class="status-badge intermediate">动手实践</span>
+            </div>
+            <div class="lab-body split">
+                <!-- HTML 代码编辑区 -->
+                <div class="panel code-editor" id="html-9" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
+&lt;div class="website-layout"&gt;
+    &lt;header class="header"&gt;
+        &lt;h1&gt;复合选择器高级应用&lt;/h1&gt;
+        &lt;nav class="nav"&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href="#"&gt;首页&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;关于我们&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;产品中心&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;联系我们&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+    
+    &lt;main class="main"&gt;
+        &lt;article class="article"&gt;
+            &lt;h2&gt;CSS复合选择器的高级应用&lt;/h2&gt;
+            &lt;p&gt;这篇文章将详细介绍CSS复合选择器的高级应用场景和最佳实践。&lt;/p&gt;
+            
+            &lt;h3&gt;1. 嵌套导航菜单&lt;/h3&gt;
+            &lt;p&gt;使用复合选择器可以轻松实现复杂的嵌套导航菜单样式。&lt;/p&gt;
+            
+            &lt;h3&gt;2. 文章布局&lt;/h3&gt;
+            &lt;p&gt;复合选择器可以用于创建灵活的文章布局，包括标题样式、段落样式和列表样式。&lt;/p&gt;
+            
+            &lt;h3&gt;3. 响应式设计&lt;/h3&gt;
+            &lt;p&gt;结合媒体查询，复合选择器可以实现强大的响应式设计。&lt;/p&gt;
+        &lt;/article&gt;
+        
+        &lt;aside class="sidebar"&gt;
+            &lt;div class="widget"&gt;
+                &lt;h3&gt;热门文章&lt;/h3&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;CSS选择器详解&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;响应式设计最佳实践&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;CSS布局技术&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+            
+            &lt;div class="widget"&gt;
+                &lt;h3&gt;相关资源&lt;/h3&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;CSS参考手册&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;浏览器兼容性&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#"&gt;学习资料&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+        &lt;/aside&gt;
+    &lt;/main&gt;
+    
+    &lt;footer class="footer"&gt;
+        &lt;p&gt;© 2025 复合选择器高级应用示例&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/div&gt;
+                </div>
+                
+                <!-- CSS 代码编辑区 -->
+                <div class="panel code-editor" id="css-9" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* 第15次课-复合选择器高级应用实验 */
+/* 复杂场景下的复合选择器应用 */
+
+/* 基础样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* 1. 后代选择器：选择所有header内的h1元素 */
+.header h1 {
+    color: #0066cc;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* 2. 子选择器：选择nav的直接子元素ul */
+.nav > ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    background-color: #f0f0f0;
+    padding: 10px 0;
+    border-radius: 4px;
+}
+
+/* 3. 后代选择器：选择nav内的所有a元素 */
+.nav a {
+    text-decoration: none;
+    color: #333;
+    padding: 10px 15px;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+/* 4. 相邻兄弟选择器：选择nav后面的main元素 */
+.nav + .main {
+    margin-top: 20px;
+}
+
+/* 5. 交集选择器：选择具有article类的div元素 */
+div.article {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* 6. 并集选择器：选择h2和h3元素 */
+.article h2, 
+.article h3 {
+    color: #0066cc;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* 7. 子选择器 + 后代选择器：选择article的直接子h2元素后面的p元素 */
+.article > h2 + p {
+    font-size: 1.1em;
+    color: #666;
+    font-style: italic;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-left: 4px solid #0066cc;
+    margin-bottom: 20px;
+}
+
+/* 8. 通用兄弟选择器：选择h3后面的所有p元素 */
+.article h3 ~ p {
+    margin-bottom: 15px;
+    line-height: 1.8;
+}
+
+/* 9. 复合选择器嵌套：导航链接悬停效果 */
+.nav li > a:hover {
+    background-color: #0066cc;
+    color: white;
+    border-radius: 4px;
+}
+
+/* 10. 后代选择器：侧边栏样式 */
+.sidebar .widget {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+/* 11. 交集选择器：侧边栏标题样式 */
+.widget h3 {
+    color: #333;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+
+/* 12. 后代选择器：侧边栏链接样式 */
+.widget ul li a {
+    color: #0066cc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/* 13. 后代选择器：侧边栏链接悬停效果 */
+.widget ul li a:hover {
+    color: #0052a3;
+    text-decoration: underline;
+}
+
+/* 页面布局 */
+.website-layout {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+}
+
+.main {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px 0;
+    border-top: 1px solid #ddd;
+    color: #666;
+    font-size: 0.9em;
+}
+                </div>
+            </div>
+            
+            <!-- 预览区 -->
+            <div class="preview-box" id="preview-9">
+                <div class="panel-label">预览效果</div>
+                <div id="preview-content-9"></div>
+            </div>
+            
+            <!-- 操作按钮 -->
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runHtmlCssExperiment('html-9', 'css-9', 'preview-content-9', 'badge-9')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetHtmlCssExperiment('html-9', 'css-9', 'preview-content-9', 'badge-9')">↺ 重置代码</button>
+            </div>
+        </div>
+    </section>
 
         <!-- ============================================ -->
         <!-- 课程小结区域 -->

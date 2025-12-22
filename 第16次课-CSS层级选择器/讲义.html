@@ -612,6 +612,288 @@ article > h2 + p {
                 <button class="btn btn-reset" onclick="resetCssExperiment('css-6', 'preview-6', 'badge-6')">↺ 重置</button>
             </div>
         </div>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 07：复杂导航菜单布局</span>
+                <span id="badge-7" class="status-badge intermediate">动手实践</span>
+            </div>
+            <div class="lab-body split">
+                <!-- HTML 代码编辑区 -->
+                <div class="panel code-editor" id="html-7" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
+&lt;div class="complex-nav"&gt;
+    &lt;header class="site-header"&gt;
+        &lt;div class="logo"&gt;网站Logo&lt;/div&gt;
+        &lt;nav class="main-nav"&gt;
+            &lt;ul class="nav-list"&gt;
+                &lt;li class="nav-item"&gt;
+                    &lt;a href="#" class="nav-link"&gt;首页&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li class="nav-item has-dropdown"&gt;
+                    &lt;a href="#" class="nav-link"&gt;产品中心&lt;/a&gt;
+                    &lt;ul class="dropdown-menu"&gt;
+                        &lt;li class="dropdown-item"&gt;
+                            &lt;a href="#" class="dropdown-link"&gt;产品1&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li class="dropdown-item"&gt;
+                            &lt;a href="#" class="dropdown-link"&gt;产品2&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li class="dropdown-item"&gt;
+                            &lt;a href="#" class="dropdown-link"&gt;产品3&lt;/a&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+                &lt;li class="nav-item has-dropdown"&gt;
+                    &lt;a href="#" class="nav-link"&gt;关于我们&lt;/a&gt;
+                    &lt;ul class="dropdown-menu"&gt;
+                        &lt;li class="dropdown-item"&gt;
+                            &lt;a href="#" class="dropdown-link"&gt;公司简介&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li class="dropdown-item"&gt;
+                            &lt;a href="#" class="dropdown-link"&gt;团队成员&lt;/a&gt;
+                        &lt;/li&gt;
+                        &lt;li class="dropdown-item"&gt;
+                            &lt;a href="#" class="dropdown-link"&gt;联系我们&lt;/a&gt;
+                        &lt;/li&gt;
+                    &lt;/ul&gt;
+                &lt;/li&gt;
+                &lt;li class="nav-item"&gt;
+                    &lt;a href="#" class="nav-link"&gt;联系我们&lt;/a&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+    
+    &lt;main class="site-main"&gt;
+        &lt;section class="hero"&gt;
+            &lt;h1&gt;层级选择器高级应用&lt;/h1&gt;
+            &lt;p&gt;这个实验展示了如何使用CSS层级选择器创建复杂的导航菜单和页面布局&lt;/p&gt;
+        &lt;/section&gt;
+        
+        &lt;section class="content-section"&gt;
+            &lt;h2&gt;主要内容区域&lt;/h2&gt;
+            &lt;div class="content-grid"&gt;
+                &lt;article class="content-card"&gt;
+                    &lt;h3&gt;内容卡片1&lt;/h3&gt;
+                    &lt;p&gt;这是内容卡片的描述文本，使用层级选择器可以轻松控制卡片的样式。&lt;/p&gt;
+                &lt;/article&gt;
+                &lt;article class="content-card"&gt;
+                    &lt;h3&gt;内容卡片2&lt;/h3&gt;
+                    &lt;p&gt;这是内容卡片的描述文本，使用层级选择器可以轻松控制卡片的样式。&lt;/p&gt;
+                &lt;/article&gt;
+                &lt;article class="content-card"&gt;
+                    &lt;h3&gt;内容卡片3&lt;/h3&gt;
+                    &lt;p&gt;这是内容卡片的描述文本，使用层级选择器可以轻松控制卡片的样式。&lt;/p&gt;
+                &lt;/article&gt;
+            &lt;/div&gt;
+        &lt;/section&gt;
+    &lt;/main&gt;
+&lt;/div&gt;
+                </div>
+                
+                <!-- CSS 代码编辑区 -->
+                <div class="panel code-editor" id="css-7" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* 第16次课-复杂导航菜单布局实验 */
+/* 复杂场景下的层级选择器应用 */
+
+/* 基础样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* 1. 网站头部样式 */
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0066cc;
+    color: white;
+    padding: 15px 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* 2. Logo样式 */
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* 3. 导航列表样式 */
+.nav-list {
+    display: flex;
+    list-style: none;
+    gap: 10px;
+}
+
+/* 4. 导航项样式 */
+.nav-item {
+    position: relative;
+}
+
+/* 5. 导航链接样式 */
+.nav-link {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+/* 6. 导航链接悬停效果 */
+.nav-link:hover {
+    background-color: rgba(255,255,255,0.2);
+}
+
+/* 7. 下拉菜单容器 */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    color: #333;
+    list-style: none;
+    min-width: 150px;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+/* 8. 带有下拉菜单的导航项悬停效果 */
+.nav-item.has-dropdown:hover > .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* 9. 下拉菜单项样式 */
+.dropdown-item {
+    border-bottom: 1px solid #eee;
+}
+
+/* 10. 最后一个下拉菜单项移除边框 */
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+/* 11. 下拉菜单链接样式 */
+.dropdown-link {
+    display: block;
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* 12. 下拉菜单链接悬停效果 */
+.dropdown-link:hover {
+    background-color: #f5f5f5;
+    color: #0066cc;
+}
+
+/* 13. 主要内容区域 */
+.site-main {
+    padding: 20px;
+}
+
+/* 14. Hero区域样式 */
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+/* 15. Hero标题样式 */
+.hero h1 {
+    color: #0066cc;
+    margin-bottom: 10px;
+    font-size: 36px;
+}
+
+/* 16. 内容区域样式 */
+.content-section {
+    margin-bottom: 30px;
+}
+
+/* 17. 内容网格布局 */
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* 18. 内容卡片样式 */
+.content-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+/* 19. 内容卡片悬停效果 */
+.content-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+/* 20. 内容卡片标题样式 */
+.content-card h3 {
+    color: #0066cc;
+    margin-bottom: 10px;
+}
+
+/* 21. 内容卡片段落样式 */
+.content-card p {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* 22. 相邻兄弟选择器：Hero区域后的内容区域 */
+.hero + .content-section {
+    margin-top: 40px;
+}
+
+/* 23. 通用兄弟选择器：标题后的所有段落 */
+.content-card h3 ~ p {
+    margin-top: 10px;
+}
+
+/* 24. 子选择器：内容网格的直接子元素 */
+.content-grid > .content-card {
+    border-left: 4px solid #0066cc;
+}
+                </div>
+            </div>
+            
+            <!-- 预览区 -->
+            <div class="preview-box" id="preview-7">
+                <div class="panel-label">预览效果</div>
+                <div id="preview-content-7"></div>
+            </div>
+            
+            <!-- 操作按钮 -->
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runHtmlCssExperiment('html-7', 'css-7', 'preview-content-7', 'badge-7')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetHtmlCssExperiment('html-7', 'css-7', 'preview-content-7', 'badge-7')">↺ 重置代码</button>
+            </div>
+        </div>
 </section>
 
         <!-- ============================================ -->
