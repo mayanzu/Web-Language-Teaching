@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>第20课：CSS样式进阶</title>
+    <title>第21课：CSS样式进阶</title>
     
     <link rel='stylesheet' href='../统一讲义样式模板.css'>
     <script src='../js/lecture-utils.js'></script>
@@ -36,7 +36,7 @@
 </nav>
 <main class="content">
     <header id="intro">
-        <h1>第20课：CSS样式进阶</h1>
+        <h1>第21课：CSS样式进阶</h1>
         <p class="intro">本课程将介绍CSS的高级特性，包括CSS变量、计算函数、阴影、渐变、变换、过渡和动画等。学习这些进阶特性，可以使你的网页设计更加生动、交互性更强。</p>
         <div class="pill-list">
             <span class="pill">CSS变量</span>
@@ -368,75 +368,57 @@ h2 {
         <div class="lab-card">
             <div class="lab-header">
                 <span>实验 01：CSS变量的使用</span>
-                <span class="status-badge beginner">动手实践</span>
-            </div>
-            <div class="lab-body">
-                <p><strong>目标：</strong>通过实际操作，掌握CSS变量的定义和使用。</p>
-                <ol class="lab-steps">
-                    <li>创建一个HTML文件，包含多个不同的元素。</li>
-                    <li>在:root伪类中定义CSS变量，包括颜色、字体大小、间距等。</li>
-                    <li>在不同的元素中使用这些CSS变量。</li>
-                    <li>创建一个按钮，通过JavaScript修改CSS变量的值，观察元素样式的变化。</li>
-                    <li>总结CSS变量的优缺点和适用场景。</li>
-                </ol>
-            </div>
-        </div>
-    </section>
-
-    <section id="lab-animation">
-        <h2>十、实验：创建动画效果</h2>
-        <div class="lab-card">
-            <div class="lab-header">
-                <span>实验 02：创建动画效果</span>
-                <span class="status-badge beginner">动手实践</span>
-            </div>
-            <div class="lab-body">
-                <p><strong>目标：</strong>通过实际操作，掌握CSS动画的创建方法。</p>
-                <ol class="lab-steps">
-                    <li>创建一个HTML文件，包含一个需要添加动画的元素。</li>
-                    <li>使用@keyframes规则定义一个动画，包括多个关键帧。</li>
-                    <li>使用animation属性将动画应用到元素上。</li>
-                    <li>调整动画的持续时间、时间函数、延迟时间和迭代次数等属性。</li>
-                    <li>创建多个不同的动画效果，如淡入淡出、旋转、缩放、平移等。</li>
-                    <li>尝试组合多个动画效果，观察最终的动画效果。</li>
-                </ol>
-            </div>
-        </div>
-    
-        <div class="lab-card">
-            <div class="lab-header">
-                <span>实验 03：CSS动画效果创建</span>
                 <span id="badge-1" class="status-badge beginner">动手实践</span>
             </div>
             <div class="lab-body">
                 <div class="panel html-viewer">
 <div class="panel-label">HTML</div>
-&lt;div class="container"&gt;
-    &lt;h3&gt;CSS实验&lt;/h3&gt;
-    &lt;p&gt;这是CSS实验的预览效果&lt;/p&gt;
+&lt;div class="variables-container"&gt;
+    &lt;h3&gt;CSS变量实验&lt;/h3&gt;
+    &lt;p&gt;这是一段使用CSS变量的文本&lt;/p&gt;
+    &lt;button class="variable-btn"&gt;切换主题&lt;/button&gt;
 &lt;/div&gt;
                 </div>
                 <div class="panel css-editor" id="css-1" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
-/* 第20次课-CSS样式进阶实验 */
-.container {
-    width: 200px;
-    height: 200px;
-    background-color: #f0f0f0;
-    padding: 20px;
-    border: 2px solid #333;
-    border-radius: 10px;
-    margin: 20px;
-    /* 在这里添加你的CSS样式 */
-    /* 尝试添加：transform, transition, animation 等 */
+/* 定义CSS变量 */
+:root {
+    --primary-color: #0066cc;
+    --background-color: #f5f5f5;
+    --text-color: #333;
+    --border-radius: 8px;
+    --padding: 20px;
 }
 
-/* 在这里添加更多CSS样式 */
-/* 例如动画定义 */
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
+/* 使用CSS变量 */
+.variables-container {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    padding: var(--padding);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--primary-color);
+    width: 300px;
+}
+
+.variables-container h3 {
+    color: var(--primary-color);
+}
+
+.variable-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* 定义深色主题变量 */
+.dark-theme {
+    --primary-color: #4ecdc4;
+    --background-color: #2c3e50;
+    --text-color: #f5f5f5;
 }
                 </div>
             </div>
@@ -446,9 +428,142 @@ h2 {
             </div>
             <div class="preview-box" id="preview-1">
                 <span class="preview-label">效果预览</span>
-                <div class="container">
-                    <h3>CSS实验</h3>
-                    <p>这是CSS实验的预览效果</p>
+                <div class="variables-container">
+                    <h3>CSS变量实验</h3>
+                    <p>这是一段使用CSS变量的文本</p>
+                    <button class="variable-btn">切换主题</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="lab-animation">
+        <h2>十、实验：创建动画效果</h2>
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 02：CSS变换与过渡</span>
+                <span id="badge-2" class="status-badge beginner">动手实践</span>
+            </div>
+            <div class="lab-body">
+                <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;div class="transform-container"&gt;
+    &lt;div class="transform-box"&gt;悬停查看效果&lt;/div&gt;
+&lt;/div&gt;
+                </div>
+                <div class="panel css-editor" id="css-2" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* 变换与过渡实验 */
+.transform-container {
+    padding: 50px;
+}
+
+.transform-box {
+    width: 150px;
+    height: 150px;
+    background-color: #0066cc;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    /* 添加过渡效果 */
+    transition: all 0.3s ease;
+}
+
+/* 悬停时的变换效果 */
+.transform-box:hover {
+    /* 尝试修改这些值 */
+    transform: rotate(5deg) scale(1.1) translateY(-10px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    background-color: #4ecdc4;
+}
+                </div>
+            </div>
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runCssExperiment('css-2', 'preview-2', 'badge-2')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetCssExperiment('css-2', 'preview-2', 'badge-2')">↺ 重置</button>
+            </div>
+            <div class="preview-box" id="preview-2">
+                <span class="preview-label">效果预览</span>
+                <div class="transform-container">
+                    <div class="transform-box">悬停查看效果</div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 03：CSS动画效果创建</span>
+                <span id="badge-3" class="status-badge beginner">动手实践</span>
+            </div>
+            <div class="lab-body">
+                <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;div class="animation-container"&gt;
+    &lt;div class="animation-box"&gt;动画效果&lt;/div&gt;
+&lt;/div&gt;
+                </div>
+                <div class="panel css-editor" id="css-3" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* 动画效果实验 */
+.animation-container {
+    padding: 50px;
+}
+
+.animation-box {
+    width: 100px;
+    height: 100px;
+    background-color: #ff6b6b;
+    border-radius: 8px;
+    /* 应用动画 */
+    animation: bounce 1.5s infinite;
+}
+
+/* 定义动画关键帧 */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-30px);
+    }
+    60% {
+        transform: translateY(-15px);
+    }
+}
+
+/* 尝试定义其他动画 */
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+                </div>
+            </div>
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runCssExperiment('css-3', 'preview-3', 'badge-3')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetCssExperiment('css-3', 'preview-3', 'badge-3')">↺ 重置</button>
+            </div>
+            <div class="preview-box" id="preview-3">
+                <span class="preview-label">效果预览</span>
+                <div class="animation-container">
+                    <div class="animation-box">动画效果</div>
                 </div>
             </div>
         </div>

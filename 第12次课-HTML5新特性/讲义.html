@@ -71,355 +71,328 @@
         </div>
     </header>
 
-        <!-- ============================================
-         正文内容 - 语义化标签
-         ============================================ -->
-    <section id="chapter-1">
-        <h2>一、语义化标签</h2>
-            <p>
-                HTML5引入了一系列语义化标签，用于更清晰地描述页面结构，提高页面的可访问性和SEO友好性。
-            </p>
-            
-            <h3>1.1 常用语义化标签</h3>
-            <table class="prop-table">
-                <thead>
-                    <tr>
-                        <th>标签</th>
-                        <th>描述</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>&lt;header&gt;</code></td>
-                        <td>页面或区块的头部</td>
-                    </tr>
-                    <tr>
-                        <td><code>&lt;nav&gt;</code></td>
-                        <td>导航链接区域</td>
-                    </tr>
-                    <tr>
-                        <td><code>&lt;main&gt;</code></td>
-                        <td>页面的主要内容</td>
-                    </tr>
-                    <tr>
-                        <td><code>&lt;article&gt;</code></td>
-                        <td>独立的文章内容</td>
-                    </tr>
-                    <tr>
-                        <td><code>&lt;section&gt;</code></td>
-                        <td>页面中的区块或章节</td>
-                    </tr>
-                    <tr>
-                        <td><code>&lt;aside&gt;</code></td>
-                        <td>侧边栏或附属内容</td>
-                    </tr>
-                    <tr>
-                        <td><code>&lt;footer&gt;</code></td>
-                        <td>页面或区块的底部</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+        <!-- ============================================         正文内容 - 语义化标签回顾         ============================================ -->    <section id="chapter-1">        <h2>一、语义化标签回顾</h2>            <p>                HTML5引入了一系列语义化标签，用于更清晰地描述页面结构。我们在第10次课已经详细学习了语义化标签，这里简单回顾一下核心概念。            </p>            <div class="tip-box">                <span class="tip-title">提示</span>                <p>语义化标签的核心价值是让浏览器和开发者都能理解页面结构，提高可访问性和SEO友好性。</p>            </div>            <h3>1.1 核心语义化标签结构</h3>            <pre class="html"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;语义化页面结构&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;页面头部&lt;/header&gt;
+    &lt;nav&gt;导航菜单&lt;/nav&gt;
+    &lt;main&gt;
+        &lt;article&gt;
+            &lt;h2&gt;文章标题&lt;/h2&gt;
+            &lt;section&gt;文章章节1&lt;/section&gt;
+            &lt;section&gt;文章章节2&lt;/section&gt;
+        &lt;/article&gt;
+        &lt;aside&gt;侧边栏&lt;/aside&gt;
+    &lt;/main&gt;
+    &lt;footer&gt;页面底部&lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>        </section>
 
-        <!-- ============================================
-         正文内容 - 表单控件
-         ============================================ -->
-    <section id="chapter-2">
-        <h2>二、表单控件</h2>
-            <p>
-                HTML5引入了一系列新的表单控件和属性，提高了表单的功能性和用户体验。
-            </p>
-            
-            <h3>2.1 新的表单类型</h3>
-            <table class="prop-table">
-                <thead>
-                    <tr>
-                        <th>类型</th>
-                        <th>描述</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><code>email</code></td>
-                        <td>电子邮件地址输入框</td>
-                    </tr>
-                    <tr>
-                        <td><code>url</code></td>
-                        <td>URL地址输入框</td>
-                    </tr>
-                    <tr>
-                        <td><code>tel</code></td>
-                        <td>电话号码输入框</td>
-                    </tr>
-                    <tr>
-                        <td><code>number</code></td>
-                        <td>数字输入框</td>
-                    </tr>
-                    <tr>
-                        <td><code>range</code></td>
-                        <td>滑块控件</td>
-                    </tr>
-                    <tr>
-                        <td><code>date</code></td>
-                        <td>日期选择器</td>
-                    </tr>
-                    <tr>
-                        <td><code>time</code></td>
-                        <td>时间选择器</td>
-                    </tr>
-                    <tr>
-                        <td><code>color</code></td>
-                        <td>颜色选择器</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <!-- ============================================
-         正文内容 - 多媒体支持
-         ============================================ -->
-    <section id="chapter-3">
-        <h2>三、多媒体支持</h2>
-            <p>
-                HTML5提供了强大的多媒体支持，允许我们直接在网页中嵌入和播放音频、视频等媒体内容。
-            </p>
-            
-            <h3>3.1 音频标签</h3>
-            <pre class="html"><code>&lt;audio controls&gt;
-    &lt;source src="audio.mp3" type="audio/mpeg"&gt;
-    您的浏览器不支持音频播放
-&lt;/audio&gt;</code></pre>
-            
-            <h3>3.2 视频标签</h3>
-            <pre class="html"><code>&lt;video controls width="640" height="360" poster="poster.jpg"&gt;
-    &lt;source src="video.mp4" type="video/mp4"&gt;
-    &lt;source src="video.webm" type="video/webm"&gt;
-    您的浏览器不支持视频播放
-&lt;/video&gt;</code></pre>
-        </section>
-
-        <!-- ============================================
-         正文内容 - Canvas与SVG
-         ============================================ -->
-    <section id="chapter-4">
-        <h2>四、Canvas与SVG</h2>
-            <p>
-                HTML5引入了两种新的图形绘制技术：Canvas和SVG，用于在网页中绘制各种图形和动画。
-            </p>
-            
-            <h3>4.1 Canvas</h3>
-            <p>
-                Canvas是基于像素的绘图技术，适合绘制动态图形和动画。
-            </p>
-            <pre class="html"><code>&lt;canvas id="myCanvas" width="200" height="100"&gt;&lt;/canvas&gt;
-
-&lt;script&gt;
-    const canvas = document.getElementById('myCanvas');
-    const ctx = canvas.getContext('2d');
-    ctx.fillStyle = '#FF0000';
-    ctx.fillRect(0, 0, 150, 75);
-&lt;/script&gt;</code></pre>
-            
-            <h3>4.2 SVG</h3>
-            <p>
-                SVG是基于矢量的绘图技术，适合绘制静态图形和图标。
-            </p>
-            <pre class="html"><code>&lt;svg width="100" height="100"&gt;
-    &lt;circle cx="50" cy="50" r="40" stroke="black" stroke-width="2" fill="red" /&gt;
-&lt;/svg&gt;</code></pre>
-        </section>
-
-        <!-- ============================================
-         正文内容 - 地理定位
-         ============================================ -->
-    <section id="chapter-5">
-        <h2>五、地理定位</h2>
-            <p>
-                HTML5提供了地理定位API，允许网页获取用户的地理位置信息。
-            </p>
-            <pre class="html"><code>&lt;button onclick="getLocation()"&gt;获取我的位置&lt;/button&gt;
-&lt;p id="demo"&gt;&lt;/p&gt;
-
-&lt;script&gt;
-    function getLocation() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
-        } else {
-            document.getElementById("demo").innerHTML = "您的浏览器不支持地理定位。";
+        <!-- ============================================         正文内容 - HTML5表单控件         ============================================ -->    <section id="chapter-2">        <h2>二、HTML5表单控件</h2>            <p>                HTML5引入了一系列新的表单控件，这些控件提供了更好的用户体验和内置验证功能。            </p>            <h3>2.1 新的表单输入类型</h3>            <p>HTML5新增了多种专门用途的输入类型，让用户能够更方便地输入特定类型的数据。</p>            <pre class="html"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;HTML5表单控件&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;HTML5表单控件示例&lt;/h2&gt;
+    &lt;form&gt;
+        &lt;p&gt;
+            &lt;label for="email"&gt;邮箱：&lt;/label&gt;
+            &lt;input type="email" id="email" name="email" placeholder="请输入邮箱" required&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;label for="url"&gt;网址：&lt;/label&gt;
+            &lt;input type="url" id="url" name="url" placeholder="请输入网址"&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;label for="tel"&gt;电话：&lt;/label&gt;
+            &lt;input type="tel" id="tel" name="tel" placeholder="请输入电话号码"&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;label for="number"&gt;数量：&lt;/label&gt;
+            &lt;input type="number" id="number" name="number" min="1" max="10" value="5"&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;label for="range"&gt;音量：&lt;/label&gt;
+            &lt;input type="range" id="range" name="range" min="0" max="100" value="50"&gt;
+            &lt;span id="rangeValue"&gt;50&lt;/span&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;label for="date"&gt;日期：&lt;/label&gt;
+            &lt;input type="date" id="date" name="date"&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;label for="time"&gt;时间：&lt;/label&gt;
+            &lt;input type="time" id="time" name="time"&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;label for="color"&gt;颜色：&lt;/label&gt;
+            &lt;input type="color" id="color" name="color" value="#ff0000"&gt;
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;input type="submit" value="提交"&gt;
+        &lt;/p&gt;
+    &lt;/form&gt;
+    &lt;script&gt;
+        // 实时显示滑块值
+        const range = document.getElementById('range');
+        const rangeValue = document.getElementById('rangeValue');
+        range.oninput = function() {
+            rangeValue.textContent = this.value;
         }
-    }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>            <div class="tip-box">                <span class="tip-title">效果说明</span>                <p>这段代码展示了HTML5新增的表单控件，包括：</p>                <ul>                    <li>email：自动验证邮箱格式</li>                    <li>url：自动验证网址格式</li>                    <li>tel：适合输入电话号码</li>                    <li>number：只能输入数字，支持min/max/step属性</li>                    <li>range：滑块控件，用于选择范围值</li>                    <li>date/time：日期和时间选择器</li>                    <li>color：颜色选择器</li>                </ul>            </div>        </section>
+
+        <!-- ============================================         正文内容 - HTML5多媒体支持         ============================================ -->    <section id="chapter-3">        <h2>三、HTML5多媒体支持</h2>            <p>                HTML5提供了内置的音频和视频标签，无需额外插件即可在网页中播放媒体内容。            </p>            <h3>3.1 音频播放</h3>            <p>使用<code>&lt;audio&gt;</code>标签可以直接在网页中播放音频文件。</p>            <pre class="html"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;HTML5音频示例&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;HTML5音频播放示例&lt;/h2&gt;
+    &lt;audio controls&gt;
+        &lt;source src="https://www.w3school.com.cn/i/horse.ogg" type="audio/ogg"&gt;
+        &lt;source src="https://www.w3school.com.cn/i/horse.mp3" type="audio/mpeg"&gt;
+        您的浏览器不支持音频播放功能。
+    &lt;/audio&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>            <h3>3.2 视频播放</h3>            <p>使用<code>&lt;video&gt;</code>标签可以直接在网页中播放视频文件。</p>            <pre class="html"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;HTML5视频示例&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;HTML5视频播放示例&lt;/h2&gt;
+    &lt;video controls width="640" height="360" poster="https://www.w3school.com.cn/i/pic_trulli.jpg"&gt;
+        &lt;source src="https://www.w3school.com.cn/i/movie.mp4" type="video/mp4"&gt;
+        &lt;source src="https://www.w3school.com.cn/i/movie.ogg" type="video/ogg"&gt;
+        您的浏览器不支持视频播放功能。
+    &lt;/video&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>        </section>
+
+        <!-- ============================================         正文内容 - HTML5绘图技术         ============================================ -->    <section id="chapter-4">        <h2>四、HTML5绘图技术</h2>            <p>                HTML5引入了两种绘图技术：Canvas和SVG，用于在网页中创建图形和动画。            </p>            <h3>4.1 Canvas绘图</h3>            <p>Canvas是基于像素的绘图技术，通过JavaScript动态生成图形，适合绘制复杂的动画效果。</p>            <pre class="html"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Canvas绘图示例&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;Canvas绘图示例&lt;/h2&gt;
+    &lt;canvas id="myCanvas" width="300" height="200" style="border:1px solid #000000;"&gt;
+        您的浏览器不支持Canvas元素。
+    &lt;/canvas&gt;
+    &lt;script&gt;
+        // 获取Canvas元素和绘图上下文
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        // 绘制矩形
+        ctx.fillStyle = '#FF0000';
+        ctx.fillRect(20, 20, 150, 100);
+        
+        // 绘制圆形
+        ctx.fillStyle = '#00FF00';
+        ctx.beginPath();
+        ctx.arc(200, 100, 50, 0, 2 * Math.PI);
+        ctx.fill();
+        
+        // 绘制文本
+        ctx.fillStyle = '#0000FF';
+        ctx.font = '20px Arial';
+        ctx.fillText('Hello Canvas!', 50, 170);
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>            <h3>4.2 SVG绘图</h3>            <p>SVG是基于矢量的绘图技术，使用XML格式描述图形，适合绘制静态图标和图形。</p>            <pre class="html"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;SVG绘图示例&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;SVG绘图示例&lt;/h2&gt;
+    &lt;svg width="300" height="200" style="border:1px solid #000000;"&gt;
+        <!-- 绘制矩形 -->
+        &lt;rect x="20" y="20" width="150" height="100" fill="#FF0000" /&gt;
+        
+        <!-- 绘制圆形 -->
+        &lt;circle cx="200" cy="100" r="50" fill="#00FF00" stroke="#000000" stroke-width="2" /&gt;
+        
+        <!-- 绘制文本 -->
+        &lt;text x="50" y="170" font-family="Arial" font-size="20" fill="#0000FF"&gt;
+            Hello SVG!
+        &lt;/text&gt;
+    &lt;/svg&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>        </section>
+
+        <!-- ============================================         正文内容 - HTML5地理定位         ============================================ -->    <section id="chapter-5">        <h2>五、HTML5地理定位</h2>            <p>                HTML5的地理定位API允许网页获取用户的地理位置信息，用于位置相关的应用开发。            </p>            <pre class="html"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;地理定位示例&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;HTML5地理定位示例&lt;/h2&gt;
+    &lt;button onclick="getLocation()"&gt;获取我的位置&lt;/button&gt;
+    &lt;p id="demo"&gt;&lt;/p&gt;
+    &lt;script&gt;
+        function getLocation() {
+            // 检查浏览器是否支持地理定位
+            if (navigator.geolocation) {
+                // 请求获取用户位置
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
+            } else {
+                document.getElementById("demo").innerHTML = "您的浏览器不支持地理定位功能。";
+            }
+        }
+        
+        // 成功获取位置时的回调函数
+        function showPosition(position) {
+            document.getElementById("demo").innerHTML = 
+                "纬度: " + position.coords.latitude + "&lt;br&gt;" +
+                "经度: " + position.coords.longitude + "&lt;br&gt;" +
+                "精度: " + position.coords.accuracy + " 米";
+        }
+        
+        // 获取位置失败时的回调函数
+        function showError(error) {
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    document.getElementById("demo").innerHTML = "用户拒绝了地理定位请求。";
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    document.getElementById("demo").innerHTML = "位置信息不可用。";
+                    break;
+                case error.TIMEOUT:
+                    document.getElementById("demo").innerHTML = "获取位置超时。";
+                    break;
+                case error.UNKNOWN_ERROR:
+                    document.getElementById("demo").innerHTML = "发生未知错误。";
+                    break;
+            }
+        }
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>            <div class="tip-box">                <span class="tip-title">注意事项</span>                <p>地理定位需要用户授权，浏览器会弹出提示窗口，询问用户是否允许网站获取位置信息。</p>            </div>        </section>
+
+        <!-- ============================================         正文内容 - HTML5 Web存储         ============================================ -->    <section id="chapter-6">        <h2>六、HTML5 Web存储</h2>            <p>                HTML5的Web存储API允许网页在客户端本地存储数据，比传统的Cookie更安全、更高效。            </p>            <h3>6.1 Web存储的两种类型</h3>            <table class="prop-table">                <thead>                    <tr>                        <th>存储类型</th>                        <th>生命周期</th>                        <th>适用场景</th>                    </tr>                </thead>                <tbody>                    <tr>                        <td>localStorage</td>                        <td>长期存储，直到手动删除</td>                        <td>用户偏好设置、主题选择</td>                    </tr>                    <tr>                        <td>sessionStorage</td>                        <td>会话期间，关闭浏览器后清除</td>                        <td>临时表单数据、购物车会话</td>                    </tr>                </tbody>            </table>            <h3>6.2 Web存储示例</h3>            <pre class="html"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Web存储示例&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;HTML5 Web存储示例&lt;/h2&gt;
+    &lt;div&gt;
+        &lt;h3&gt;localStorage演示&lt;/h3&gt;
+        &lt;p&gt;localStorage数据会长期保存，关闭浏览器后重新打开仍然存在。&lt;/p&gt;
+        &lt;input type="text" id="localInput" placeholder="输入要保存的内容"&gt;
+        &lt;button onclick="saveToLocal()"&gt;保存到localStorage&lt;/button&gt;
+        &lt;button onclick="loadFromLocal()"&gt;从localStorage读取&lt;/button&gt;
+        &lt;button onclick="clearLocal()"&gt;清除localStorage&lt;/button&gt;
+        &lt;p&gt;localStorage内容: &lt;span id="localOutput"&gt;&lt;/span&gt;&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div style="margin-top: 20px;"&gt;
+        &lt;h3&gt;sessionStorage演示&lt;/h3&gt;
+        &lt;p&gt;sessionStorage数据只在当前会话有效，关闭浏览器后会清除。&lt;/p&gt;
+        &lt;input type="text" id="sessionInput" placeholder="输入要保存的内容"&gt;
+        &lt;button onclick="saveToSession()"&gt;保存到sessionStorage&lt;/button&gt;
+        &lt;button onclick="loadFromSession()"&gt;从sessionStorage读取&lt;/button&gt;
+        &lt;button onclick="clearSession()"&gt;清除sessionStorage&lt;/button&gt;
+        &lt;p&gt;sessionStorage内容: &lt;span id="sessionOutput"&gt;&lt;/span&gt;&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;script&gt;
+        // localStorage操作
+        function saveToLocal() {
+            const input = document.getElementById('localInput');
+            localStorage.setItem('userData', input.value);
+            alert('数据已保存到localStorage');
+        }
+        function loadFromLocal() {
+            const output = document.getElementById('localOutput');
+            output.textContent = localStorage.getItem('userData') || '空';
+        }
+        function clearLocal() {
+            localStorage.removeItem('userData');
+            document.getElementById('localOutput').textContent = '';
+            alert('localStorage数据已清除');
+        }
+        
+        // sessionStorage操作
+        function saveToSession() {
+            const input = document.getElementById('sessionInput');
+            sessionStorage.setItem('tempData', input.value);
+            alert('数据已保存到sessionStorage');
+        }
+        function loadFromSession() {
+            const output = document.getElementById('sessionOutput');
+            output.textContent = sessionStorage.getItem('tempData') || '空';
+        }
+        function clearSession() {
+            sessionStorage.removeItem('tempData');
+            document.getElementById('sessionOutput').textContent = '';
+            alert('sessionStorage数据已清除');
+        }
+        
+        // 页面加载时自动读取数据
+        window.onload = function() {
+            loadFromLocal();
+            loadFromSession();
+        };
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>        </section>
+
+        <!-- ============================================         正文内容 - HTML与响应式设计         ============================================ -->    <section id="chapter-7">        <h2>七、HTML与响应式设计</h2>            <p>                响应式设计是一种使网页能够适应不同设备屏幕尺寸的设计方法。HTML5提供了基础支持，主要通过视口元标签实现。            </p>            <h3>7.1 视口元标签</h3>            <p>视口元标签是实现响应式设计的基础，它告诉浏览器如何缩放页面以适应不同设备。</p>            <pre class="html"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;!-- 视口元标签：设置页面宽度等于设备宽度，初始缩放比例为1 --&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;响应式设计基础&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h2&gt;响应式设计基础&lt;/h2&gt;
+    &lt;p&gt;添加视口元标签后，页面将根据不同设备屏幕尺寸自动调整。&lt;/p&gt;
+    &lt;img src="https://www.w3school.com.cn/i/ct_html5.gif" alt="HTML5" style="max-width: 100%; height: auto;"&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+        <!-- ============================================         正文内容 - HTML最佳实践         ============================================ -->    <section id="chapter-8">        <h2>八、HTML最佳实践</h2>            <p>                遵循HTML最佳实践可以提高代码质量、可读性和可维护性，确保页面符合现代Web标准。            </p>            <h3>8.1 基础最佳实践</h3>            <div class="tip-box">                <span class="tip-title">核心原则</span>                <p>编写HTML代码时，要做到：语义化、简洁性、可访问性和兼容性。</p>            </div>            <h3>8.2 文档结构规范</h3>            <pre class="html"><code>&lt;!DOCTYPE html&gt; &lt;!-- 必须放在第一行 --&gt;
+&lt;html lang="zh-CN"&gt; &lt;!-- 指定页面语言 --&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt; &lt;!-- 指定字符编码 --&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt; &lt;!-- 视口设置 --&gt;
+    &lt;title&gt;页面标题&lt;/title&gt; &lt;!-- 必须包含 --&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt; &lt;!-- 外部CSS放在顶部 --&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- 使用语义化标签组织页面结构 --&gt;
+    &lt;header&gt;页面头部&lt;/header&gt;
+    &lt;nav&gt;导航菜单&lt;/nav&gt;
+    &lt;main&gt;主要内容&lt;/main&gt;
+    &lt;footer&gt;页面底部&lt;/footer&gt;
     
-    function showPosition(position) {
-        document.getElementById("demo").innerHTML = "纬度: " + position.coords.latitude + 
-        "&lt;br&gt;经度: " + position.coords.longitude;
-    }
-&lt;/script&gt;</code></pre>
-        </section>
-
-        <!-- ============================================
-         正文内容 - Web存储
-         ============================================ -->
-    <section id="chapter-6">
-        <h2>六、Web存储</h2>
-            <p>
-                HTML5引入了Web存储API，允许网页在客户端存储数据，包括localStorage和sessionStorage。
-            </p>
-            
-            <h3>6.1 localStorage</h3>
-            <p>
-                localStorage用于长期存储数据，数据不会过期，直到被手动删除。
-            </p>
-            <pre class="html"><code>&lt;script&gt;
-    // 存储数据
-    localStorage.setItem("username", "John");
-    
-    // 获取数据
-    const username = localStorage.getItem("username");
-    
-    // 删除数据
-    localStorage.removeItem("username");
-    
-    // 清空所有数据
-    localStorage.clear();
-&lt;/script&gt;</code></pre>
-            
-            <h3>6.2 sessionStorage</h3>
-            <p>
-                sessionStorage用于临时存储数据，数据只在当前会话中有效，关闭浏览器窗口后数据会被清除。
-            </p>
-            <pre class="html"><code>&lt;script&gt;
-    // 存储数据
-    sessionStorage.setItem("username", "John");
-    
-    // 获取数据
-    const username = sessionStorage.getItem("username");
-    
-    // 删除数据
-    sessionStorage.removeItem("username");
-    
-    // 清空所有数据
-    sessionStorage.clear();
-&lt;/script&gt;</code></pre>
-        </section>
-
-        <!-- ============================================
-         正文内容 - 响应式设计
-         ============================================ -->
-    <section id="chapter-7">
-        <h2>七、响应式设计</h2>
-            <p>
-                响应式设计是一种网页设计方法，使网页能够适应不同设备的屏幕尺寸和分辨率。
-            </p>
-            
-            <h3>7.1 媒体查询</h3>
-            <p>
-                媒体查询是实现响应式设计的核心技术，它允许我们根据不同的屏幕尺寸应用不同的CSS样式。
-            </p>
-            <pre class="css"><code>/* 移动设备样式 */
-body {
-    font-size: 16px;
-}
-
-/* 平板设备样式 */
-@media (min-width: 768px) {
-    body {
-        font-size: 18px;
-    }
-}
-
-/* 桌面设备样式 */
-@media (min-width: 1024px) {
-    body {
-        font-size: 20px;
-    }
-}</code></pre>
-            
-            <h3>7.2 响应式布局示例</h3>
-            <p>
-                以下是一个简单的响应式布局示例，使用媒体查询实现不同屏幕尺寸下的不同布局。
-            </p>
-            <pre class="css"><code>.container {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.box {
-    flex: 1 0 100%;
-    padding: 20px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-
-@media (min-width: 600px) {
-    .box {
-        flex: 1 0 50%;
-    }
-}
-
-@media (min-width: 900px) {
-    .box {
-        flex: 1 0 33.33%;
-    }
-}</code></pre>
-        </section>
-
-        <!-- ============================================
-         正文内容 - HTML最佳实践
-         ============================================ -->
-    <section id="chapter-8">
-        <h2>八、HTML最佳实践</h2>
-            <p>
-                遵循HTML最佳实践能够提高代码的质量、可读性和可维护性，确保页面符合现代Web标准。
-            </p>
-            
-            <h3>8.1 文档结构最佳实践</h3>
-            <ol>
-                <li>使用正确的DOCTYPE声明：<code>&lt;!DOCTYPE html&gt;</code></li>
-                <li>指定语言属性：<code>&lt;html lang="zh-CN"&gt;</code></li>
-                <li>使用视口元标签：<code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code></li>
-                <li>使用语义化标签组织页面结构</li>
-                <li>保持HTML结构的清晰和简洁</li>
-            </ol>
-            
-            <h3>8.2 代码编写最佳实践</h3>
-            <ol>
-                <li>使用小写标签和属性名</li>
-                <li>使用双引号包裹属性值</li>
-                <li>闭合所有标签</li>
-                <li>使用缩进和换行提高代码可读性</li>
-                <li>避免使用内联样式和内联JavaScript</li>
-                <li>使用外部CSS和JavaScript文件</li>
-                <li>为图片添加alt属性</li>
-                <li>为链接添加title属性</li>
-                <li>使用相对路径引用资源</li>
-                <li>避免使用过时的HTML标签和属性</li>
-            </ol>
-            
-            <h3>8.3 可访问性最佳实践</h3>
-            <ol>
-                <li>使用语义化标签</li>
-                <li>为图片添加alt属性</li>
-                <li>使用label标签关联表单控件</li>
-                <li>为链接和按钮添加清晰的文本描述</li>
-                <li>确保页面有合理的标题层级</li>
-                <li>使用ARIA属性增强可访问性</li>
-            </ol>
-            
-            <h3>8.4 性能优化最佳实践</h3>
-            <ol>
-                <li>优化图片大小和格式</li>
-                <li>使用CDN加速资源加载</li>
-                <li>压缩HTML、CSS和JavaScript文件</li>
-                <li>延迟加载非关键资源</li>
-                <li>使用缓存策略</li>
-                <li>减少HTTP请求</li>
-            </ol>
-            
-            <div class="tip-box">
-                <span class="tip-title">HTML验证</span>
-                <p>使用HTML验证工具可以检查HTML代码是否符合标准，帮助我们发现和修复错误。推荐使用W3C HTML验证器：<a href="https://validator.w3.org/" target="_blank">https://validator.w3.org/</a></p>
-            </div>
-        </section>
+    &lt;script src="script.js"&gt;&lt;/script&gt; &lt;!-- 外部JavaScript放在底部 --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>            <h3>8.3 代码编写规范</h3>            <ul>                <li>使用小写字母编写标签和属性</li>                <li>使用双引号包裹属性值</li>                <li>闭合所有标签（包括自闭合标签）</li>                <li>使用缩进和换行提高可读性（建议使用4个空格缩进）</li>                <li>为图片添加<code>alt</code>属性，描述图片内容</li>                <li>为表单控件添加<code>label</code>标签</li>                <li>避免使用过时的HTML标签（如<code>&lt;font&gt;</code>、<code>&lt;center&gt;</code>）</li>            </ul>            <h3>8.4 HTML验证工具</h3>            <p>使用HTML验证工具可以检查代码是否符合标准，帮助发现和修复错误。</p>            <p>推荐工具：<a href="https://validator.w3.org/" target="_blank">W3C HTML验证器</a></p>        </section>
 
         <!-- ============================================
          正文内容 - 课后练习
