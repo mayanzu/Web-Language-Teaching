@@ -46,12 +46,36 @@
 
         <!-- 第一部分：CSS层级选择器 -->
         <section id="introduction">
-            <h2>1. CSS层级选择器概述</h2>
+            <h2>一、CSS层级选择器概述</h2>
             <p>CSS层级选择器是基于HTML文档的层级结构（树形结构）来选择元素的选择器。HTML文档中的元素通过嵌套关系形成父子、兄弟等层级关系，层级选择器正是利用这些关系来精确定位元素。</p>
+            
+            <div class="note-box">
+                <span class="tip-title">💡 生活类比：家族关系</span>
+                <p>
+                    把HTML结构想象成一个家族：
+                </p>
+                <ul>
+                    <li><strong>父元素/子元素</strong>：爸爸妈妈和孩子的关系</li>
+                    <li><strong>祖先/后代</strong>：爷爷奶奶和所有子孙的关系</li>
+                    <li><strong>兄弟元素</strong>：同一个父母的孩子（兄弟姐妹）</li>
+                </ul>
+                <p>
+                    层级选择器就是用CSS来描述这些"家族关系"，从而精确选中你想要的元素。
+                </p>
+            </div>
             
             <div class="note-box">
                 <span class="tip-title">什么是文档树结构？</span>
                 <p>HTML文档可以看作是一个倒置的树，根节点是&lt;html&gt;元素，其他元素都是它的子节点。每个元素可以有父元素、子元素和兄弟元素，这种关系被称为DOM（文档对象模型）树结构。</p>
+                <pre class="html"><code>&lt;html&gt;                    ← 根节点
+  ├─ &lt;head&gt;              ← html的子元素
+  └─ &lt;body&gt;              ← html的子元素，head的兄弟
+       ├─ &lt;header&gt;       ← body的子元素
+       ├─ &lt;main&gt;         ← header的兄弟
+       │    ├─ &lt;div&gt;     ← main的子元素
+       │    │    └─ &lt;p&gt;  ← div的子元素，main的后代
+       │    └─ &lt;p&gt;       ← div的兄弟
+       └─ &lt;footer&gt;       ← main的兄弟</code></pre>
             </div>
             
             <h3>1.1 层级选择器的类型</h3>
@@ -60,57 +84,118 @@
                     <tr>
                         <th>选择器类型</th>
                         <th>语法</th>
+                        <th>符号</th>
                         <th>描述</th>
+                        <th>记忆口诀</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>后代选择器</td>
                         <td><code>ancestor descendant</code></td>
+                        <td>空格</td>
                         <td>选择祖先元素的所有后代元素</td>
+                        <td>"空格=所有子孙"</td>
                     </tr>
                     <tr>
                         <td>子代选择器</td>
                         <td><code>parent > child</code></td>
+                        <td><code>></code></td>
                         <td>只选择父元素的直接子元素</td>
+                        <td>"大于号=亲生儿女"</td>
                     </tr>
                     <tr>
                         <td>相邻兄弟选择器</td>
                         <td><code>element + sibling</code></td>
-                        <td>选择元素的下一个直接相邻兄弟元素</td>
+                        <td><code>+</code></td>
+                        <td>选择紧挨着的下一个兄弟</td>
+                        <td>"加号=紧挨着的弟弟"</td>
                     </tr>
                     <tr>
                         <td>通用兄弟选择器</td>
                         <td><code>element ~ siblings</code></td>
-                        <td>选择元素后面的所有兄弟元素</td>
+                        <td><code>~</code></td>
+                        <td>选择后面的所有兄弟</td>
+                        <td>"波浪=所有弟弟妹妹"</td>
                     </tr>
                 </tbody>
             </table>
             
             <h3>1.2 层级选择器的优势</h3>
             <ul>
-                <li>更精确地定位目标元素</li>
-                <li>避免样式冲突</li>
-                <li>提高代码的可维护性</li>
-                <li>利用HTML结构关系编写更简洁的CSS</li>
+                <li><strong>精确定位</strong>：更精确地定位目标元素，减少class使用</li>
+                <li><strong>避免冲突</strong>：限定选择范围，避免全局样式污染</li>
+                <li><strong>可维护性</strong>：代码结构清晰，易于理解和修改</li>
+                <li><strong>性能优化</strong>：合理使用可以提高CSS选择效率</li>
             </ul>
+            
+            <div class="warning-box">
+                <strong>⚠️ 使用建议</strong>
+                <p>
+                    层级选择器虽然强大，但不要嵌套太深！建议层级不超过3层。
+                </p>
+                <pre class="css"><code>/* ❌ 太深了，不推荐 */
+body div.container ul li a span { ... }
+
+/* ✅ 简洁清晰 */
+.nav-link span { ... }</code></pre>
+            </div>
         </section>
 
         <section id="descendant-selector">
-            <h2>2. 后代选择器（Descendant Selector）</h2>
+            <h2>二、后代选择器（Descendant Selector）</h2>
             <p>后代选择器使用空格来选择某个元素的后代元素。后代元素可以是子元素、孙元素等任意层级的后代。</p>
 
             <div class="note-box">
-                <span class="tip-title">简单理解</span>
-                <p>后代选择器就像是"家族选择器"，它会选择指定祖先元素的所有后代，无论嵌套多少层。</p>
+                <span class="tip-title">💡 生活类比</span>
+                <p>后代选择器就像说"张家的所有后代"——不管是儿子、孙子、曾孙，只要是张家的后代都算。同样，<code>.box span</code>会选中<code>.box</code>内部所有的<code>span</code>，不管嵌套多深。</p>
             </div>
 
             <h3>2.1 语法</h3>
             <pre class="css"><code>ancestor descendant {
     /* CSS 规则 */
-}</code></pre>
+}
 
-            <h3>2.2 示例</h3>
+/* 实际例子 */
+.container p {
+    color: blue;
+}
+/* 选择 .container 内部的所有 p 元素 */</code></pre>
+
+            <h3>2.2 后代选择器 vs 子代选择器</h3>
+            <table class="prop-table">
+                <thead>
+                    <tr>
+                        <th>特性</th>
+                        <th>后代选择器（空格）</th>
+                        <th>子代选择器（>）</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>选择范围</td>
+                        <td>所有层级的后代</td>
+                        <td>仅直接子元素</td>
+                    </tr>
+                    <tr>
+                        <td>嵌套深度</td>
+                        <td>无限深</td>
+                        <td>仅一层</td>
+                    </tr>
+                    <tr>
+                        <td>精确度</td>
+                        <td>较低</td>
+                        <td>较高</td>
+                    </tr>
+                    <tr>
+                        <td>使用场景</td>
+                        <td>需要统一设置所有后代样式</td>
+                        <td>只需设置直接子元素样式</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>2.3 示例</h3>
             <div class="lab-card">
                 <div class="lab-header">
                     <span>实验 01：后代选择器</span>
@@ -153,30 +238,78 @@
                 </div>
             </div>
 
-            <h3>2.3 后代选择器的特点</h3>
+            <h3>2.4 后代选择器的特点</h3>
             <ul>
                 <li>选择器之间用空格分隔</li>
                 <li>选择所有层级的后代元素，无论嵌套多深</li>
                 <li>可以连续使用多个选择器，如 <code>div ul li a</code></li>
                 <li>优先级高于单独的选择器</li>
             </ul>
+            
+            <h3>2.5 常见应用场景</h3>
+            <div class="tip-box">
+                <span class="tip-title">📋 实际应用</span>
+                <pre class="css"><code>/* 导航栏内的所有链接 */
+.nav a {
+    text-decoration: none;
+    color: white;
+}
+
+/* 文章内的所有段落 */
+.article p {
+    line-height: 1.8;
+    margin-bottom: 1em;
+}
+
+/* 表格内的所有单元格 */
+.data-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}</code></pre>
+            </div>
         </section>
 
         <section id="child-selector">
-            <h2>3. 子代选择器（Child Selector）</h2>
+            <h2>三、子代选择器（Child Selector）</h2>
             <p>子代选择器使用 <code>&gt;</code> 来选择某个元素的直接子元素。与后代选择器不同，它只选择直接的子元素。</p>
 
             <div class="note-box">
-                <span class="tip-title">简单理解</span>
-                <p>子代选择器就像是"直系子女"，只选择直接的孩子，不选择孙子孙女。</p>
+                <span class="tip-title">💡 生活类比</span>
+                <p>子代选择器就像说"张三的亲生孩子"——只选择直接的子女，不包括孙子孙女。如果张三有儿子，儿子又有孩子，那孙子不会被选中。</p>
             </div>
 
             <h3>3.1 语法</h3>
             <pre class="css"><code>parent > child {
     /* CSS 规则 */
-}</code></pre>
+}
 
-            <h3>3.2 示例</h3>
+/* 实际例子 */
+.menu > li {
+    display: inline-block;
+}
+/* 只选择 .menu 的直接子 li，不选嵌套的 li */</code></pre>
+
+            <h3>3.2 为什么需要子代选择器？</h3>
+            <div class="warning-box">
+                <strong>问题场景</strong>
+                <p>当你有多层嵌套结构时，后代选择器会选中所有层级，可能导致意外效果：</p>
+                <pre class="html"><code>&lt;ul class="menu"&gt;
+    &lt;li&gt;首页&lt;/li&gt;
+    &lt;li&gt;产品
+        &lt;ul&gt;
+            &lt;li&gt;产品A&lt;/li&gt;  &lt;!-- 这个 li 也会被 .menu li 选中！ --&gt;
+            &lt;li&gt;产品B&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                <pre class="css"><code>/* 后代选择器：所有 li 都被选中 */
+.menu li { background: yellow; }
+
+/* 子代选择器：只有直接子 li 被选中 */
+.menu > li { background: yellow; }</code></pre>
+            </div>
+
+            <h3>3.3 示例</h3>
             <div class="lab-card">
                 <div class="lab-header">
                     <span>实验 02：子代选择器</span>
@@ -228,28 +361,64 @@
                 </div>
             </div>
 
-            <h3>3.3 子代选择器的特点</h3>
+            <h3>3.4 子代选择器的特点</h3>
             <ul>
                 <li>选择器之间用<code>&gt;</code>符号分隔</li>
                 <li>只选择直接子元素，不匹配深层嵌套的后代元素</li>
                 <li>优先级高于后代选择器</li>
                 <li>适合精确选择特定层级的元素</li>
             </ul>
+            
+            <h3>3.5 常见应用场景</h3>
+            <div class="tip-box">
+                <span class="tip-title">📋 实际应用</span>
+                <pre class="css"><code>/* 只给导航栏的直接子项加样式，不影响子菜单 */
+.nav > li {
+    display: inline-block;
+    position: relative;
+}
+
+/* 只给容器的直接子div加间距 */
+.container > div {
+    margin-bottom: 20px;
+}
+
+/* 卡片容器的直接子标题 */
+.card > h3 {
+    border-bottom: 1px solid #eee;
+}</code></pre>
+            </div>
         </section>
 
         <section id="adjacent-sibling-selector">
-            <h2>4. 相邻兄弟选择器（Adjacent Sibling Selector）</h2>
+            <h2>四、相邻兄弟选择器（Adjacent Sibling Selector）</h2>
             <p>相邻兄弟选择器使用 <code>+</code> 来选择紧跟在指定元素后面的第一个兄弟元素。</p>
 
             <div class="note-box">
-                <span class="tip-title">简单理解</span>
-                <p>相邻兄弟选择器就像是"紧挨着的弟弟妹妹"，只选择紧跟在后面的第一个兄弟元素。</p>
+                <span class="tip-title">💡 生活类比</span>
+                <p>相邻兄弟选择器就像说"排队时，小明后面紧挨着的那个人"——只选择紧跟在后面的第一个，不是所有后面的人。</p>
             </div>
-
+            
             <h3>4.1 语法</h3>
             <pre class="css"><code>element + sibling {
     /* CSS 规则 */
-}</code></pre>
+}
+
+/* 实际例子 */
+h2 + p {
+    font-size: 1.2em;
+    color: #666;
+}
+/* 选择紧跟在 h2 后面的第一个 p 元素 */</code></pre>
+            
+            <div class="warning-box">
+                <strong>⚠️ 注意事项</strong>
+                <ul>
+                    <li>两个元素必须有<strong>相同的父元素</strong></li>
+                    <li>只选择<strong>紧挨着的</strong>下一个兄弟，中间不能有其他元素</li>
+                    <li>只向<strong>后</strong>选择，不能选前面的兄弟</li>
+                </ul>
+            </div>
 
             <h3>4.2 示例</h3>
             <div class="lab-card">
@@ -312,23 +481,78 @@ h2 + p {
                 <li>两个元素必须拥有相同的父元素</li>
                 <li>只匹配下一个兄弟元素，不匹配前面的兄弟元素</li>
             </ul>
+            
+            <h3>4.4 常见应用场景</h3>
+            <div class="tip-box">
+                <span class="tip-title">📋 实际应用</span>
+                <pre class="css"><code>/* 标题后面的第一段（首段缩进取消） */
+h2 + p {
+    text-indent: 0;
+    font-weight: bold;
+}
+
+/* 图片后面紧跟的说明文字 */
+img + figcaption {
+    font-style: italic;
+    color: #666;
+}
+
+/* 表单中，输入框后面的错误提示 */
+input:invalid + .error-message {
+    display: block;
+}</code></pre>
+            </div>
         </section>
 
         <section id="general-sibling-selector">
-            <h2>5. 通用兄弟选择器（General Sibling Selector）</h2>
+            <h2>五、通用兄弟选择器（General Sibling Selector）</h2>
             <p>通用兄弟选择器使用 <code>~</code> 来选择指定元素后面的所有兄弟元素。</p>
 
             <div class="note-box">
-                <span class="tip-title">简单理解</span>
-                <p>通用兄弟选择器就像是"所有的弟弟妹妹"，选择指定元素之后的所有兄弟元素。</p>
+                <span class="tip-title">💡 生活类比</span>
+                <p>通用兄弟选择器就像说"排队时，小明后面的所有人"——不只是紧挨着的，而是后面排的所有人（只要是同一队的）。</p>
             </div>
+            
+            <h3>5.1 相邻兄弟 vs 通用兄弟</h3>
+            <table class="prop-table">
+                <thead>
+                    <tr>
+                        <th>特性</th>
+                        <th>相邻兄弟选择器（+）</th>
+                        <th>通用兄弟选择器（~）</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>选择范围</td>
+                        <td>只选择紧挨着的下一个</td>
+                        <td>选择后面的所有兄弟</td>
+                    </tr>
+                    <tr>
+                        <td>数量</td>
+                        <td>最多1个</td>
+                        <td>可以是多个</td>
+                    </tr>
+                    <tr>
+                        <td>中间是否可有其他元素</td>
+                        <td>不可以</td>
+                        <td>可以</td>
+                    </tr>
+                </tbody>
+            </table>
 
-            <h3>5.1 语法</h3>
+            <h3>5.2 语法</h3>
             <pre class="css"><code>element ~ siblings {
     /* CSS 规则 */
-}</code></pre>
+}
 
-            <h3>5.2 示例</h3>
+/* 实际例子 */
+.active ~ .item {
+    opacity: 0.5;
+}
+/* 选择 .active 后面的所有 .item 元素 */</code></pre>
+
+            <h3>5.3 示例</h3>
             <div class="lab-card">
                 <div class="lab-header">
                     <span>实验 04：通用兄弟选择器</span>
@@ -387,7 +611,7 @@ h3 ~ li {
                 </div>
             </div>
 
-            <h3>5.3 通用兄弟选择器的特点</h3>
+            <h3>5.4 通用兄弟选择器的特点</h3>
             <ul>
                 <li>选择器之间用<code>~</code>符号分隔</li>
                 <li>选择某个元素后面的所有兄弟元素，无论中间有多少其他元素</li>
@@ -395,11 +619,70 @@ h3 ~ li {
                 <li>只匹配后面的兄弟元素，不匹配前面的兄弟元素</li>
                 <li>可以匹配多个兄弟元素</li>
             </ul>
+            
+            <h3>5.5 常见应用场景</h3>
+            <div class="tip-box">
+                <span class="tip-title">📋 实际应用</span>
+                <pre class="css"><code>/* 复选框选中后，后面的所有标签变色 */
+input:checked ~ label {
+    color: green;
+}
+
+/* 折叠面板展开后，后面的内容显示 */
+.accordion-toggle:checked ~ .accordion-content {
+    display: block;
+}
+
+/* 当某个项目激活时，后面的项目变淡 */
+.active ~ .item {
+    opacity: 0.6;
+}</code></pre>
+            </div>
         </section>
 
         <section id="practice">
-            <h2>6. 实践应用</h2>
+            <h2>六、实践应用</h2>
             <p>层级选择器在实际开发中有许多应用场景，下面我们通过一个复杂的导航菜单示例来展示它们的强大功能。</p>
+            
+            <h3>6.1 四种选择器总结对比</h3>
+            <table class="prop-table">
+                <thead>
+                    <tr>
+                        <th>选择器</th>
+                        <th>符号</th>
+                        <th>选择范围</th>
+                        <th>典型场景</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>后代选择器</td>
+                        <td><code>空格</code></td>
+                        <td>所有后代（子、孙、曾孙...）</td>
+                        <td>统一设置容器内所有元素样式</td>
+                    </tr>
+                    <tr>
+                        <td>子代选择器</td>
+                        <td><code>></code></td>
+                        <td>仅直接子元素</td>
+                        <td>多层嵌套中只选第一层</td>
+                    </tr>
+                    <tr>
+                        <td>相邻兄弟选择器</td>
+                        <td><code>+</code></td>
+                        <td>紧挨着的下一个兄弟</td>
+                        <td>标题后的首段、图片说明</td>
+                    </tr>
+                    <tr>
+                        <td>通用兄弟选择器</td>
+                        <td><code>~</code></td>
+                        <td>后面的所有兄弟</td>
+                        <td>状态联动、折叠面板</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>6.2 综合实验</h3>
 
             <div class="lab-card">
                 <div class="lab-header">

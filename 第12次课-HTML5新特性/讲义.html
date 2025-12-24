@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>第12课：HTML5新特性与最佳实践</title>
-    <link rel='stylesheet' href='../统一讲义样式模板.css'>
+    <title>第12课：HTML5新特性</title>
     
+    <!-- 统一样式引用 -->
+    <link rel='stylesheet' href='../统一讲义样式模板.css'>
+    <!-- 通用工具函数库 -->
     <script src='../js/lecture-utils.js'></script>
 </head>
 <body>
@@ -18,23 +20,15 @@
         <h3>课程导航</h3>
         <a class="sidebar-link" href="#intro">👋 课程概览</a>
         
-        <h3>Part 1: HTML5新特性</h3>
-        <a class="sidebar-link sub-link" href="#chapter-1">一、语义化标签</a>
-        <a class="sidebar-link sub-link" href="#chapter-2">二、表单控件</a>
-        <a class="sidebar-link sub-link" href="#chapter-3">三、多媒体支持</a>
-        <a class="sidebar-link sub-link" href="#chapter-4">四、Canvas与SVG</a>
-        <a class="sidebar-link sub-link" href="#chapter-5">五、地理定位</a>
-        <a class="sidebar-link sub-link" href="#chapter-6">六、Web存储</a>
+        <h3>Part 1: HTML5概述</h3>
+        <a class="sidebar-link sub-link" href="#chapter-1">一、什么是HTML5</a>
+        <a class="sidebar-link sub-link" href="#chapter-2">二、HTML5新增表单控件</a>
+        <a class="sidebar-link sub-link" href="#lab-1">🔬 实验 01：表单控件练习</a>
         
-        <h3>Part 2: 响应式设计</h3>
-        <a class="sidebar-link sub-link" href="#chapter-7">七、响应式设计</a>
-        
-        <h3>Part 3: HTML最佳实践</h3>
-        <a class="sidebar-link sub-link" href="#chapter-8">八、HTML最佳实践</a>
-        
-        <h3>Part 4: 实战练习</h3>
-        <a class="sidebar-link sub-link" href="#chapter-9">九、课后练习</a>
-        <a class="sidebar-link sub-link" href="#lab-1">🔬 实验 1</a>
+        <h3>Part 2: HTML5新增元素</h3>
+        <a class="sidebar-link sub-link" href="#chapter-3">三、进度条与计量器</a>
+        <a class="sidebar-link sub-link" href="#chapter-4">四、详情与摘要</a>
+        <a class="sidebar-link sub-link" href="#lab-2">🔬 实验 02：新元素练习</a>
         
         <h3>总结与练习</h3>
         <a class="sidebar-link sub-link" href="#summary">📝 课程小结</a>
@@ -51,368 +45,564 @@
          课程头部 - 概览区域
          ============================================ -->
     <header id="intro">
-        <h1>第12课：HTML5新特性与最佳实践</h1>
-        <p class="intro">
-            欢迎来到HTML5新特性与最佳实践课程！在这节课中，我们将学习HTML5引入的新特性，包括语义化标签、表单控件、多媒体支持、Canvas与SVG、地理定位和Web存储等。
-            同时，我们还将了解HTML最佳实践，包括文档结构、代码编写、可访问性和性能优化等方面的知识。
-        </p>
+        <h1>第12课：HTML5新特性</h1>
+        <p class="intro">欢迎来到HTML5新特性的学习！HTML5是HTML的最新版本，它引入了许多实用的新功能。本节课我们将学习HTML5中最常用、最实用的新特性，包括新的表单控件和一些有趣的新元素。</p>
         
         <!-- 知识点标签列表 -->
         <div class="pill-list">
-            <span class="pill">语义化标签</span>
-            <span class="pill">表单控件</span>
-            <span class="pill">多媒体支持</span>
-            <span class="pill">Canvas</span>
-            <span class="pill">SVG</span>
-            <span class="pill">地理定位</span>
-            <span class="pill">Web存储</span>
-            <span class="pill">响应式设计</span>
-            <span class="pill">HTML最佳实践</span>
+            <span class="pill">HTML5简介</span>
+            <span class="pill">日期选择器</span>
+            <span class="pill">颜色选择器</span>
+            <span class="pill">范围滑块</span>
+            <span class="pill">进度条</span>
+            <span class="pill">详情折叠</span>
         </div>
     </header>
 
-        <!-- ============================================         正文内容 - 语义化标签回顾         ============================================ -->    <section id="chapter-1">        <h2>一、语义化标签回顾</h2>            <p>                HTML5引入了一系列语义化标签，用于更清晰地描述页面结构。我们在第10次课已经详细学习了语义化标签，这里简单回顾一下核心概念。            </p>            <div class="tip-box">                <span class="tip-title">提示</span>                <p>语义化标签的核心价值是让浏览器和开发者都能理解页面结构，提高可访问性和SEO友好性。</p>            </div>            <h3>1.1 核心语义化标签结构</h3>            <pre class="html"><code>&lt;!DOCTYPE html&gt;
-&lt;html lang="zh-CN"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;语义化页面结构&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;header&gt;页面头部&lt;/header&gt;
-    &lt;nav&gt;导航菜单&lt;/nav&gt;
-    &lt;main&gt;
-        &lt;article&gt;
-            &lt;h2&gt;文章标题&lt;/h2&gt;
-            &lt;section&gt;文章章节1&lt;/section&gt;
-            &lt;section&gt;文章章节2&lt;/section&gt;
-        &lt;/article&gt;
-        &lt;aside&gt;侧边栏&lt;/aside&gt;
-    &lt;/main&gt;
-    &lt;footer&gt;页面底部&lt;/footer&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>        </section>
 
-        <!-- ============================================         正文内容 - HTML5表单控件         ============================================ -->    <section id="chapter-2">        <h2>二、HTML5表单控件</h2>            <p>                HTML5引入了一系列新的表单控件，这些控件提供了更好的用户体验和内置验证功能。            </p>            <h3>2.1 新的表单输入类型</h3>            <p>HTML5新增了多种专门用途的输入类型，让用户能够更方便地输入特定类型的数据。</p>            <pre class="html"><code>&lt;!DOCTYPE html&gt;
-&lt;html lang="zh-CN"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;HTML5表单控件&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h2&gt;HTML5表单控件示例&lt;/h2&gt;
-    &lt;form&gt;
-        &lt;p&gt;
-            &lt;label for="email"&gt;邮箱：&lt;/label&gt;
-            &lt;input type="email" id="email" name="email" placeholder="请输入邮箱" required&gt;
-        &lt;/p&gt;
-        &lt;p&gt;
-            &lt;label for="url"&gt;网址：&lt;/label&gt;
-            &lt;input type="url" id="url" name="url" placeholder="请输入网址"&gt;
-        &lt;/p&gt;
-        &lt;p&gt;
-            &lt;label for="tel"&gt;电话：&lt;/label&gt;
-            &lt;input type="tel" id="tel" name="tel" placeholder="请输入电话号码"&gt;
-        &lt;/p&gt;
-        &lt;p&gt;
-            &lt;label for="number"&gt;数量：&lt;/label&gt;
-            &lt;input type="number" id="number" name="number" min="1" max="10" value="5"&gt;
-        &lt;/p&gt;
-        &lt;p&gt;
-            &lt;label for="range"&gt;音量：&lt;/label&gt;
-            &lt;input type="range" id="range" name="range" min="0" max="100" value="50"&gt;
-            &lt;span id="rangeValue"&gt;50&lt;/span&gt;
-        &lt;/p&gt;
-        &lt;p&gt;
-            &lt;label for="date"&gt;日期：&lt;/label&gt;
-            &lt;input type="date" id="date" name="date"&gt;
-        &lt;/p&gt;
-        &lt;p&gt;
-            &lt;label for="time"&gt;时间：&lt;/label&gt;
-            &lt;input type="time" id="time" name="time"&gt;
-        &lt;/p&gt;
-        &lt;p&gt;
-            &lt;label for="color"&gt;颜色：&lt;/label&gt;
-            &lt;input type="color" id="color" name="color" value="#ff0000"&gt;
-        &lt;/p&gt;
-        &lt;p&gt;
-            &lt;input type="submit" value="提交"&gt;
-        &lt;/p&gt;
-    &lt;/form&gt;
-    &lt;script&gt;
-        // 实时显示滑块值
-        const range = document.getElementById('range');
-        const rangeValue = document.getElementById('rangeValue');
-        range.oninput = function() {
-            rangeValue.textContent = this.value;
-        }
-    &lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>            <div class="tip-box">                <span class="tip-title">效果说明</span>                <p>这段代码展示了HTML5新增的表单控件，包括：</p>                <ul>                    <li>email：自动验证邮箱格式</li>                    <li>url：自动验证网址格式</li>                    <li>tel：适合输入电话号码</li>                    <li>number：只能输入数字，支持min/max/step属性</li>                    <li>range：滑块控件，用于选择范围值</li>                    <li>date/time：日期和时间选择器</li>                    <li>color：颜色选择器</li>                </ul>            </div>        </section>
-
-        <!-- ============================================         正文内容 - HTML5多媒体支持         ============================================ -->    <section id="chapter-3">        <h2>三、HTML5多媒体支持</h2>            <p>                HTML5提供了内置的音频和视频标签，无需额外插件即可在网页中播放媒体内容。            </p>            <h3>3.1 音频播放</h3>            <p>使用<code>&lt;audio&gt;</code>标签可以直接在网页中播放音频文件。</p>            <pre class="html"><code>&lt;!DOCTYPE html&gt;
-&lt;html lang="zh-CN"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;HTML5音频示例&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h2&gt;HTML5音频播放示例&lt;/h2&gt;
-    &lt;audio controls&gt;
-        &lt;source src="https://www.w3school.com.cn/i/horse.ogg" type="audio/ogg"&gt;
-        &lt;source src="https://www.w3school.com.cn/i/horse.mp3" type="audio/mpeg"&gt;
-        您的浏览器不支持音频播放功能。
-    &lt;/audio&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>            <h3>3.2 视频播放</h3>            <p>使用<code>&lt;video&gt;</code>标签可以直接在网页中播放视频文件。</p>            <pre class="html"><code>&lt;!DOCTYPE html&gt;
-&lt;html lang="zh-CN"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;HTML5视频示例&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h2&gt;HTML5视频播放示例&lt;/h2&gt;
-    &lt;video controls width="640" height="360" poster="https://www.w3school.com.cn/i/pic_trulli.jpg"&gt;
-        &lt;source src="https://www.w3school.com.cn/i/movie.mp4" type="video/mp4"&gt;
-        &lt;source src="https://www.w3school.com.cn/i/movie.ogg" type="video/ogg"&gt;
-        您的浏览器不支持视频播放功能。
-    &lt;/video&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>        </section>
-
-        <!-- ============================================         正文内容 - HTML5绘图技术         ============================================ -->    <section id="chapter-4">        <h2>四、HTML5绘图技术</h2>            <p>                HTML5引入了两种绘图技术：Canvas和SVG，用于在网页中创建图形和动画。            </p>            <h3>4.1 Canvas绘图</h3>            <p>Canvas是基于像素的绘图技术，通过JavaScript动态生成图形，适合绘制复杂的动画效果。</p>            <pre class="html"><code>&lt;!DOCTYPE html&gt;
-&lt;html lang="zh-CN"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;Canvas绘图示例&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h2&gt;Canvas绘图示例&lt;/h2&gt;
-    &lt;canvas id="myCanvas" width="300" height="200" style="border:1px solid #000000;"&gt;
-        您的浏览器不支持Canvas元素。
-    &lt;/canvas&gt;
-    &lt;script&gt;
-        // 获取Canvas元素和绘图上下文
-        const canvas = document.getElementById('myCanvas');
-        const ctx = canvas.getContext('2d');
-        
-        // 绘制矩形
-        ctx.fillStyle = '#FF0000';
-        ctx.fillRect(20, 20, 150, 100);
-        
-        // 绘制圆形
-        ctx.fillStyle = '#00FF00';
-        ctx.beginPath();
-        ctx.arc(200, 100, 50, 0, 2 * Math.PI);
-        ctx.fill();
-        
-        // 绘制文本
-        ctx.fillStyle = '#0000FF';
-        ctx.font = '20px Arial';
-        ctx.fillText('Hello Canvas!', 50, 170);
-    &lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>            <h3>4.2 SVG绘图</h3>            <p>SVG是基于矢量的绘图技术，使用XML格式描述图形，适合绘制静态图标和图形。</p>            <pre class="html"><code>&lt;!DOCTYPE html&gt;
-&lt;html lang="zh-CN"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;SVG绘图示例&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h2&gt;SVG绘图示例&lt;/h2&gt;
-    &lt;svg width="300" height="200" style="border:1px solid #000000;"&gt;
-        <!-- 绘制矩形 -->
-        &lt;rect x="20" y="20" width="150" height="100" fill="#FF0000" /&gt;
-        
-        <!-- 绘制圆形 -->
-        &lt;circle cx="200" cy="100" r="50" fill="#00FF00" stroke="#000000" stroke-width="2" /&gt;
-        
-        <!-- 绘制文本 -->
-        &lt;text x="50" y="170" font-family="Arial" font-size="20" fill="#0000FF"&gt;
-            Hello SVG!
-        &lt;/text&gt;
-    &lt;/svg&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>        </section>
-
-        <!-- ============================================         正文内容 - HTML5地理定位         ============================================ -->    <section id="chapter-5">        <h2>五、HTML5地理定位</h2>            <p>                HTML5的地理定位API允许网页获取用户的地理位置信息，用于位置相关的应用开发。            </p>            <pre class="html"><code>&lt;!DOCTYPE html&gt;
-&lt;html lang="zh-CN"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;地理定位示例&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h2&gt;HTML5地理定位示例&lt;/h2&gt;
-    &lt;button onclick="getLocation()"&gt;获取我的位置&lt;/button&gt;
-    &lt;p id="demo"&gt;&lt;/p&gt;
-    &lt;script&gt;
-        function getLocation() {
-            // 检查浏览器是否支持地理定位
-            if (navigator.geolocation) {
-                // 请求获取用户位置
-                navigator.geolocation.getCurrentPosition(showPosition, showError);
-            } else {
-                document.getElementById("demo").innerHTML = "您的浏览器不支持地理定位功能。";
-            }
-        }
-        
-        // 成功获取位置时的回调函数
-        function showPosition(position) {
-            document.getElementById("demo").innerHTML = 
-                "纬度: " + position.coords.latitude + "&lt;br&gt;" +
-                "经度: " + position.coords.longitude + "&lt;br&gt;" +
-                "精度: " + position.coords.accuracy + " 米";
-        }
-        
-        // 获取位置失败时的回调函数
-        function showError(error) {
-            switch(error.code) {
-                case error.PERMISSION_DENIED:
-                    document.getElementById("demo").innerHTML = "用户拒绝了地理定位请求。";
-                    break;
-                case error.POSITION_UNAVAILABLE:
-                    document.getElementById("demo").innerHTML = "位置信息不可用。";
-                    break;
-                case error.TIMEOUT:
-                    document.getElementById("demo").innerHTML = "获取位置超时。";
-                    break;
-                case error.UNKNOWN_ERROR:
-                    document.getElementById("demo").innerHTML = "发生未知错误。";
-                    break;
-            }
-        }
-    &lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>            <div class="tip-box">                <span class="tip-title">注意事项</span>                <p>地理定位需要用户授权，浏览器会弹出提示窗口，询问用户是否允许网站获取位置信息。</p>            </div>        </section>
-
-        <!-- ============================================         正文内容 - HTML5 Web存储         ============================================ -->    <section id="chapter-6">        <h2>六、HTML5 Web存储</h2>            <p>                HTML5的Web存储API允许网页在客户端本地存储数据，比传统的Cookie更安全、更高效。            </p>            <h3>6.1 Web存储的两种类型</h3>            <table class="prop-table">                <thead>                    <tr>                        <th>存储类型</th>                        <th>生命周期</th>                        <th>适用场景</th>                    </tr>                </thead>                <tbody>                    <tr>                        <td>localStorage</td>                        <td>长期存储，直到手动删除</td>                        <td>用户偏好设置、主题选择</td>                    </tr>                    <tr>                        <td>sessionStorage</td>                        <td>会话期间，关闭浏览器后清除</td>                        <td>临时表单数据、购物车会话</td>                    </tr>                </tbody>            </table>            <h3>6.2 Web存储示例</h3>            <pre class="html"><code>&lt;!DOCTYPE html&gt;
-&lt;html lang="zh-CN"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;Web存储示例&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h2&gt;HTML5 Web存储示例&lt;/h2&gt;
-    &lt;div&gt;
-        &lt;h3&gt;localStorage演示&lt;/h3&gt;
-        &lt;p&gt;localStorage数据会长期保存，关闭浏览器后重新打开仍然存在。&lt;/p&gt;
-        &lt;input type="text" id="localInput" placeholder="输入要保存的内容"&gt;
-        &lt;button onclick="saveToLocal()"&gt;保存到localStorage&lt;/button&gt;
-        &lt;button onclick="loadFromLocal()"&gt;从localStorage读取&lt;/button&gt;
-        &lt;button onclick="clearLocal()"&gt;清除localStorage&lt;/button&gt;
-        &lt;p&gt;localStorage内容: &lt;span id="localOutput"&gt;&lt;/span&gt;&lt;/p&gt;
-    &lt;/div&gt;
-    &lt;div style="margin-top: 20px;"&gt;
-        &lt;h3&gt;sessionStorage演示&lt;/h3&gt;
-        &lt;p&gt;sessionStorage数据只在当前会话有效，关闭浏览器后会清除。&lt;/p&gt;
-        &lt;input type="text" id="sessionInput" placeholder="输入要保存的内容"&gt;
-        &lt;button onclick="saveToSession()"&gt;保存到sessionStorage&lt;/button&gt;
-        &lt;button onclick="loadFromSession()"&gt;从sessionStorage读取&lt;/button&gt;
-        &lt;button onclick="clearSession()"&gt;清除sessionStorage&lt;/button&gt;
-        &lt;p&gt;sessionStorage内容: &lt;span id="sessionOutput"&gt;&lt;/span&gt;&lt;/p&gt;
-    &lt;/div&gt;
-    &lt;script&gt;
-        // localStorage操作
-        function saveToLocal() {
-            const input = document.getElementById('localInput');
-            localStorage.setItem('userData', input.value);
-            alert('数据已保存到localStorage');
-        }
-        function loadFromLocal() {
-            const output = document.getElementById('localOutput');
-            output.textContent = localStorage.getItem('userData') || '空';
-        }
-        function clearLocal() {
-            localStorage.removeItem('userData');
-            document.getElementById('localOutput').textContent = '';
-            alert('localStorage数据已清除');
-        }
-        
-        // sessionStorage操作
-        function saveToSession() {
-            const input = document.getElementById('sessionInput');
-            sessionStorage.setItem('tempData', input.value);
-            alert('数据已保存到sessionStorage');
-        }
-        function loadFromSession() {
-            const output = document.getElementById('sessionOutput');
-            output.textContent = sessionStorage.getItem('tempData') || '空';
-        }
-        function clearSession() {
-            sessionStorage.removeItem('tempData');
-            document.getElementById('sessionOutput').textContent = '';
-            alert('sessionStorage数据已清除');
-        }
-        
-        // 页面加载时自动读取数据
-        window.onload = function() {
-            loadFromLocal();
-            loadFromSession();
-        };
-    &lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>        </section>
-
-        <!-- ============================================         正文内容 - HTML与响应式设计         ============================================ -->    <section id="chapter-7">        <h2>七、HTML与响应式设计</h2>            <p>                响应式设计是一种使网页能够适应不同设备屏幕尺寸的设计方法。HTML5提供了基础支持，主要通过视口元标签实现。            </p>            <h3>7.1 视口元标签</h3>            <p>视口元标签是实现响应式设计的基础，它告诉浏览器如何缩放页面以适应不同设备。</p>            <pre class="html"><code>&lt;!DOCTYPE html&gt;
-&lt;html lang="zh-CN"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;!-- 视口元标签：设置页面宽度等于设备宽度，初始缩放比例为1 --&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;响应式设计基础&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h2&gt;响应式设计基础&lt;/h2&gt;
-    &lt;p&gt;添加视口元标签后，页面将根据不同设备屏幕尺寸自动调整。&lt;/p&gt;
-    &lt;img src="https://www.w3school.com.cn/i/ct_html5.gif" alt="HTML5" style="max-width: 100%; height: auto;"&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-
-        <!-- ============================================         正文内容 - HTML最佳实践         ============================================ -->    <section id="chapter-8">        <h2>八、HTML最佳实践</h2>            <p>                遵循HTML最佳实践可以提高代码质量、可读性和可维护性，确保页面符合现代Web标准。            </p>            <h3>8.1 基础最佳实践</h3>            <div class="tip-box">                <span class="tip-title">核心原则</span>                <p>编写HTML代码时，要做到：语义化、简洁性、可访问性和兼容性。</p>            </div>            <h3>8.2 文档结构规范</h3>            <pre class="html"><code>&lt;!DOCTYPE html&gt; &lt;!-- 必须放在第一行 --&gt;
-&lt;html lang="zh-CN"&gt; &lt;!-- 指定页面语言 --&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt; &lt;!-- 指定字符编码 --&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt; &lt;!-- 视口设置 --&gt;
-    &lt;title&gt;页面标题&lt;/title&gt; &lt;!-- 必须包含 --&gt;
-    &lt;link rel="stylesheet" href="style.css"&gt; &lt;!-- 外部CSS放在顶部 --&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;!-- 使用语义化标签组织页面结构 --&gt;
-    &lt;header&gt;页面头部&lt;/header&gt;
-    &lt;nav&gt;导航菜单&lt;/nav&gt;
-    &lt;main&gt;主要内容&lt;/main&gt;
-    &lt;footer&gt;页面底部&lt;/footer&gt;
-    
-    &lt;script src="script.js"&gt;&lt;/script&gt; &lt;!-- 外部JavaScript放在底部 --&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>            <h3>8.3 代码编写规范</h3>            <ul>                <li>使用小写字母编写标签和属性</li>                <li>使用双引号包裹属性值</li>                <li>闭合所有标签（包括自闭合标签）</li>                <li>使用缩进和换行提高可读性（建议使用4个空格缩进）</li>                <li>为图片添加<code>alt</code>属性，描述图片内容</li>                <li>为表单控件添加<code>label</code>标签</li>                <li>避免使用过时的HTML标签（如<code>&lt;font&gt;</code>、<code>&lt;center&gt;</code>）</li>            </ul>            <h3>8.4 HTML验证工具</h3>            <p>使用HTML验证工具可以检查代码是否符合标准，帮助发现和修复错误。</p>            <p>推荐工具：<a href="https://validator.w3.org/" target="_blank">W3C HTML验证器</a></p>        </section>
-
-        <!-- ============================================
-         正文内容 - 课后练习
+    <!-- ============================================
+         第一部分：HTML5概述
          ============================================ -->
-    <section id="chapter-9">
-        <h2>九、课后练习</h2>
-            <p>
-                请完成以下练习，巩固本节课所学的知识：
-            </p>
-            
-            <ol>
-                <li>创建一个HTML5页面，使用至少5个HTML5新标签</li>
-                <li>实现一个本地存储示例，能够保存和加载用户信息</li>
-                <li>创建一个响应式布局，使用媒体查询实现不同屏幕尺寸下的不同布局</li>
-                <li>检查并修复HTML代码中的错误，确保符合HTML最佳实践</li>
-                <li>使用W3C HTML验证器验证你的HTML代码</li>
-            </ol>
-        </section>
+    
+    <section id="chapter-1">
+        <h2>一、什么是HTML5</h2>
+        <p>HTML5是HTML的第五个主要版本，于2014年正式发布。它带来了许多新特性，让网页开发更加简单和强大。</p>
         
-        <!-- ============================================         实验 01：HTML5新特性实践         ============================================ -->    <section id="lab-1">        <h2>实验 01：HTML5新特性实践</h2>        <div class="lab-card">            <div class="lab-header">                <span>实验：第12次课-HTML5新特性实践</span>                <span id="badge-1" class="status-badge">未运行</span>            </div>            <div class="lab-body">                <div class="panel">                    <div class="panel-label">HTML (可编辑)</div>                    <div class="html-editor" id="html-1" contenteditable="true"><!DOCTYPE html><html lang="zh-CN"><head>    <meta charset="UTF-8">    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>第12次课-HTML5新特性</title></head><body>    <h1>第12次课-HTML5新特性</h1>    <p>在这里编写你的HTML代码，实践第12次课-HTML5新特性的知识。</p>    <!-- 在这里添加你的HTML代码 -->    </body></html>                    </div>                    <!-- 隐藏的原始代码，用于重置功能 -->                    <div id="original-1" style="display: none;"><!DOCTYPE html><html lang="zh-CN"><head>    <meta charset="UTF-8">    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>第12次课-HTML5新特性</title></head><body>    <h1>第12次课-HTML5新特性</h1>    <p>在这里编写你的HTML代码，实践第12次课-HTML5新特性的知识。</p>    <!-- 在这里添加你的HTML代码 -->    </body></html>                    </div>                </div>                <div class="panel">                    <div class="panel-label">预览效果</div>                    <div class="preview-box" id="preview-1">                        <div class="preview-label">预览效果</div>                    </div>                </div>            </div>            <div class="action-bar">                <button class="btn btn-run" onclick="runHtmlExperiment('html-1', 'preview-1', 'badge-1')">▶ 运行代码</button>                <button class="btn btn-reset" onclick="resetHtmlExperiment('html-1', 'preview-1', 'badge-1')">↺ 重置</button>            </div>        </div>    </section>        <!-- ============================================         课程小结区域         ============================================ -->    <section id="summary">        <h2>十、课程小结</h2>            <p>                恭喜你完成了HTML基础课程的学习！在这12节课中，我们学习了HTML的基础知识和高级特性，包括：            </p>            <ul>                <li>HTML基础入门和文档结构</li>                <li>HTML排版与文本格式化</li>                <li>HTML列表、链接和图片</li>                <li>HTML表格基础和进阶</li>                <li>HTML表单基础和进阶</li>                <li>HTML语义化标签</li>                <li>HTML多媒体</li>                <li>HTML5新特性和最佳实践</li>            </ul>            <p>                通过这些课程的学习，你已经掌握了HTML的核心知识和技能，能够设计和开发符合现代Web标准的HTML页面。                接下来，你可以继续学习CSS和JavaScript，进一步提升你的Web开发能力。            </p>            <div class="tip-box">                <span class="tip-title">🎉 学习建议</span>                <p>1. 多写代码，实践是最好的学习方式</p>                <p>2. 阅读优秀的HTML代码，学习别人的经验和技巧</p>                <p>3. 关注Web技术的最新发展，持续学习</p>                <p>4. 参与开源项目或创建自己的项目</p>                <p>5. 加入Web开发社区，与其他开发者交流和分享</p>            </div>    </section></main>
+        <div class="note-box">
+            <span class="tip-title">📖 HTML5的主要改进</span>
+            <p>HTML5相比之前版本有很多改进：</p>
+            <ul>
+                <li><strong>更简洁的语法</strong>：文档声明变得很简单</li>
+                <li><strong>语义化标签</strong>：header、nav、article等（第10课已学）</li>
+                <li><strong>多媒体支持</strong>：audio、video标签（第11课已学）</li>
+                <li><strong>新表单控件</strong>：日期、颜色、范围等（本课学习）</li>
+                <li><strong>新增实用元素</strong>：进度条、详情折叠等（本课学习）</li>
+            </ul>
+        </div>
+        
+        <h3>1.1 HTML5的文档声明</h3>
+        <p>HTML5的文档声明非常简洁：</p>
+        
+        <pre class="html"><code>&lt;!-- HTML5的文档声明 --&gt;
+&lt;!DOCTYPE html&gt;
+
+&lt;!-- 之前版本的文档声明（很复杂） --&gt;
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" 
+    "http://www.w3.org/TR/html4/strict.dtd"&gt;</code></pre>
+        
+        <div class="tip-box">
+            <span class="tip-title">💡 小提示</span>
+            <p>你在前面课程中一直使用的 <code>&lt;!DOCTYPE html&gt;</code> 就是HTML5的文档声明！是不是很简单？</p>
+        </div>
+        
+        <h3>1.2 HTML5的字符编码声明</h3>
+        <p>HTML5简化了字符编码的声明方式：</p>
+        
+        <pre class="html"><code>&lt;!-- HTML5的字符编码声明 --&gt;
+&lt;meta charset="UTF-8"&gt;
+
+&lt;!-- 之前版本的写法 --&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;</code></pre>
+    </section>
+
+
+    <section id="chapter-2">
+        <h2>二、HTML5新增表单控件</h2>
+        <p>HTML5新增了许多实用的表单输入类型，让用户输入数据变得更加方便。</p>
+        
+        <div class="note-box">
+            <span class="tip-title">📖 为什么需要新的表单控件？</span>
+            <p>在HTML5之前，如果想让用户选择日期或颜色，需要借助JavaScript插件。现在HTML5提供了原生支持，浏览器会自动显示相应的选择器界面！</p>
+        </div>
+        
+        <h3>2.1 日期相关输入</h3>
+        <p>HTML5提供了多种日期时间相关的输入类型：</p>
+        
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>类型</th>
+                    <th>说明</th>
+                    <th>示例代码</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>date</code></td>
+                    <td>日期选择器（年月日）</td>
+                    <td><code>&lt;input type="date"&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>time</code></td>
+                    <td>时间选择器（时分）</td>
+                    <td><code>&lt;input type="time"&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>datetime-local</code></td>
+                    <td>日期时间选择器</td>
+                    <td><code>&lt;input type="datetime-local"&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>month</code></td>
+                    <td>年月选择器</td>
+                    <td><code>&lt;input type="month"&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>week</code></td>
+                    <td>年周选择器</td>
+                    <td><code>&lt;input type="week"&gt;</code></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <pre class="html"><code>&lt;!-- 日期输入示例 --&gt;
+&lt;label&gt;选择日期：&lt;/label&gt;
+&lt;input type="date" name="birthday"&gt;
+
+&lt;label&gt;选择时间：&lt;/label&gt;
+&lt;input type="time" name="meeting-time"&gt;
+
+&lt;label&gt;选择日期和时间：&lt;/label&gt;
+&lt;input type="datetime-local" name="event-time"&gt;</code></pre>
+        
+        <h3>2.2 颜色选择器</h3>
+        <p><code>type="color"</code> 可以让用户通过颜色选择器选择颜色：</p>
+        
+        <pre class="html"><code>&lt;label&gt;选择颜色：&lt;/label&gt;
+&lt;input type="color" name="favorite-color" value="#ff0000"&gt;</code></pre>
+        
+        <div class="tip-box">
+            <span class="tip-title">💡 默认颜色</span>
+            <p>可以通过 <code>value</code> 属性设置默认颜色，值必须是十六进制颜色值（如 #ff0000）。</p>
+        </div>
+        
+        <h3>2.3 范围滑块</h3>
+        <p><code>type="range"</code> 显示一个可以拖动的滑块，适合选择数值范围：</p>
+        
+        <pre class="html"><code>&lt;label&gt;音量：&lt;/label&gt;
+&lt;input type="range" name="volume" min="0" max="100" value="50"&gt;
+
+&lt;label&gt;评分（1-5）：&lt;/label&gt;
+&lt;input type="range" name="rating" min="1" max="5" step="1" value="3"&gt;</code></pre>
+        
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>属性</th>
+                    <th>说明</th>
+                    <th>示例</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>min</code></td>
+                    <td>最小值</td>
+                    <td><code>min="0"</code></td>
+                </tr>
+                <tr>
+                    <td><code>max</code></td>
+                    <td>最大值</td>
+                    <td><code>max="100"</code></td>
+                </tr>
+                <tr>
+                    <td><code>step</code></td>
+                    <td>步长（每次变化的值）</td>
+                    <td><code>step="1"</code></td>
+                </tr>
+                <tr>
+                    <td><code>value</code></td>
+                    <td>默认值</td>
+                    <td><code>value="50"</code></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>2.4 数字输入</h3>
+        <p><code>type="number"</code> 限制用户只能输入数字：</p>
+        
+        <pre class="html"><code>&lt;label&gt;数量：&lt;/label&gt;
+&lt;input type="number" name="quantity" min="1" max="99" value="1"&gt;
+
+&lt;label&gt;价格：&lt;/label&gt;
+&lt;input type="number" name="price" min="0" step="0.01" placeholder="0.00"&gt;</code></pre>
+        
+        <h3>2.5 搜索框</h3>
+        <p><code>type="search"</code> 专门用于搜索输入，在某些浏览器中会显示清除按钮：</p>
+        
+        <pre class="html"><code>&lt;label&gt;搜索：&lt;/label&gt;
+&lt;input type="search" name="keyword" placeholder="输入关键词..."&gt;</code></pre>
+        
+        <div class="warning-box">
+            <strong>⚠️ 浏览器兼容性提示</strong>
+            <p>HTML5的新表单控件在不同浏览器中的显示效果可能略有不同。如果浏览器不支持某个类型，会自动回退为普通文本框，不会报错。</p>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         实验 01：表单控件练习
+         ============================================ -->
+    <section id="lab-1">
+        <h2>🔬 实验 01：HTML5表单控件练习</h2>
+        <p>现在让我们动手尝试HTML5的新表单控件！</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 01：HTML5表单控件</span>
+                <span class="status-badge beginner" id="badge-form">动手实践</span>
+            </div>
+            
+            <div class="lab-body split">
+                <!-- 代码编辑区 -->
+                <div class="panel code-editor" id="html-form" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
+&lt;form&gt;
+    &lt;h3&gt;HTML5表单控件演示&lt;/h3&gt;
+    
+    &lt;p&gt;
+        &lt;label&gt;选择生日：&lt;/label&gt;&lt;br&gt;
+        &lt;input type="date" name="birthday"&gt;
+    &lt;/p&gt;
+    
+    &lt;p&gt;
+        &lt;label&gt;选择时间：&lt;/label&gt;&lt;br&gt;
+        &lt;input type="time" name="time"&gt;
+    &lt;/p&gt;
+    
+    &lt;p&gt;
+        &lt;label&gt;选择颜色：&lt;/label&gt;&lt;br&gt;
+        &lt;input type="color" name="color" value="#4285f4"&gt;
+    &lt;/p&gt;
+    
+    &lt;p&gt;
+        &lt;label&gt;满意度（1-10）：&lt;/label&gt;&lt;br&gt;
+        &lt;input type="range" name="rating" min="1" max="10" value="5"&gt;
+    &lt;/p&gt;
+    
+    &lt;p&gt;
+        &lt;label&gt;数量：&lt;/label&gt;&lt;br&gt;
+        &lt;input type="number" name="quantity" min="1" max="99" value="1"&gt;
+    &lt;/p&gt;
+&lt;/form&gt;
+                </div>
+                
+                <!-- 预览区 -->
+                <div class="panel preview-area" id="preview-form">
+                    <div class="panel-label">预览效果</div>
+                </div>
+            </div>
+            
+            <!-- 操作按钮 -->
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runHtmlExperiment('html-form', 'preview-form', 'badge-form')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetHtmlExperiment('html-form', 'preview-form', 'badge-form')">↺ 重置代码</button>
+            </div>
+        </div>
+        
+        <div class="tip-box">
+            <span class="tip-title">🎯 试试看</span>
+            <ul>
+                <li>点击日期输入框，尝试使用日期选择器</li>
+                <li>点击颜色输入框，打开颜色选择器选择颜色</li>
+                <li>拖动滑块，观察值的变化</li>
+                <li>添加一个 <code>type="email"</code> 的输入框</li>
+            </ul>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         第二部分：HTML5新增元素
+         ============================================ -->
+    
+    <section id="chapter-3">
+        <h2>三、进度条与计量器</h2>
+        <p>HTML5新增了两个用于显示数值进度的元素：进度条（progress）和计量器（meter）。</p>
+        
+        <h3>3.1 进度条 &lt;progress&gt;</h3>
+        <p>进度条用于显示任务的完成进度，如文件下载、表单填写等：</p>
+        
+        <pre class="html"><code>&lt;!-- 基本进度条 --&gt;
+&lt;label&gt;下载进度：&lt;/label&gt;
+&lt;progress value="70" max="100"&gt;70%&lt;/progress&gt;
+
+&lt;!-- 不确定进度（没有value属性） --&gt;
+&lt;label&gt;加载中：&lt;/label&gt;
+&lt;progress&gt;&lt;/progress&gt;</code></pre>
+        
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>属性</th>
+                    <th>说明</th>
+                    <th>示例</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>value</code></td>
+                    <td>当前进度值</td>
+                    <td><code>value="70"</code></td>
+                </tr>
+                <tr>
+                    <td><code>max</code></td>
+                    <td>最大值（默认为1）</td>
+                    <td><code>max="100"</code></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>3.2 计量器 &lt;meter&gt;</h3>
+        <p>计量器用于显示已知范围内的数值，如磁盘使用量、考试成绩等：</p>
+        
+        <pre class="html"><code>&lt;!-- 基本计量器 --&gt;
+&lt;label&gt;磁盘使用：&lt;/label&gt;
+&lt;meter value="0.6"&gt;60%&lt;/meter&gt;
+
+&lt;!-- 带范围的计量器 --&gt;
+&lt;label&gt;考试成绩：&lt;/label&gt;
+&lt;meter value="85" min="0" max="100" low="60" high="90" optimum="100"&gt;
+    85分
+&lt;/meter&gt;</code></pre>
+        
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>属性</th>
+                    <th>说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>value</code></td>
+                    <td>当前值（必需）</td>
+                </tr>
+                <tr>
+                    <td><code>min</code></td>
+                    <td>最小值（默认0）</td>
+                </tr>
+                <tr>
+                    <td><code>max</code></td>
+                    <td>最大值（默认1）</td>
+                </tr>
+                <tr>
+                    <td><code>low</code></td>
+                    <td>低值阈值</td>
+                </tr>
+                <tr>
+                    <td><code>high</code></td>
+                    <td>高值阈值</td>
+                </tr>
+                <tr>
+                    <td><code>optimum</code></td>
+                    <td>最优值</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="note-box">
+            <strong>📌 progress vs meter 的区别</strong>
+            <ul>
+                <li><strong>progress</strong>：表示任务的完成进度，值会变化（如下载进度）</li>
+                <li><strong>meter</strong>：表示已知范围内的固定测量值（如磁盘空间）</li>
+            </ul>
+        </div>
+    </section>
+
+
+    <section id="chapter-4">
+        <h2>四、详情与摘要</h2>
+        <p>HTML5提供了原生的折叠/展开功能，无需JavaScript即可实现。</p>
+        
+        <h3>4.1 details和summary标签</h3>
+        <p><code>&lt;details&gt;</code> 和 <code>&lt;summary&gt;</code> 配合使用可以创建可折叠的内容区域：</p>
+        
+        <pre class="html"><code>&lt;details&gt;
+    &lt;summary&gt;点击查看详情&lt;/summary&gt;
+    &lt;p&gt;这是被折叠的内容，点击标题可以展开或收起。&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;!-- 默认展开 --&gt;
+&lt;details open&gt;
+    &lt;summary&gt;常见问题&lt;/summary&gt;
+    &lt;p&gt;这里是问题的答案...&lt;/p&gt;
+&lt;/details&gt;</code></pre>
+        
+        <div class="tip-box">
+            <span class="tip-title">💡 使用场景</span>
+            <p>details标签非常适合用于：</p>
+            <ul>
+                <li>FAQ（常见问题）页面</li>
+                <li>产品参数展示</li>
+                <li>代码示例的展开/收起</li>
+                <li>隐私政策等长文本的折叠</li>
+            </ul>
+        </div>
+        
+        <h3>4.2 属性说明</h3>
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>元素/属性</th>
+                    <th>说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>&lt;details&gt;</code></td>
+                    <td>折叠容器，包裹所有内容</td>
+                </tr>
+                <tr>
+                    <td><code>&lt;summary&gt;</code></td>
+                    <td>始终可见的摘要/标题</td>
+                </tr>
+                <tr>
+                    <td><code>open</code></td>
+                    <td>添加此属性则默认展开</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+
+    <!-- ============================================
+         实验 02：新元素练习
+         ============================================ -->
+    <section id="lab-2">
+        <h2>🔬 实验 02：HTML5新元素练习</h2>
+        <p>现在让我们练习使用进度条和折叠元素！</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 02：进度条与折叠</span>
+                <span class="status-badge beginner" id="badge-elements">动手实践</span>
+            </div>
+            
+            <div class="lab-body split">
+                <!-- 代码编辑区 -->
+                <div class="panel code-editor" id="html-elements" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
+&lt;h3&gt;HTML5新元素演示&lt;/h3&gt;
+
+&lt;h4&gt;进度条示例&lt;/h4&gt;
+&lt;p&gt;
+    &lt;label&gt;下载进度：&lt;/label&gt;
+    &lt;progress value="75" max="100"&gt;75%&lt;/progress&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+    &lt;label&gt;加载中（不确定进度）：&lt;/label&gt;
+    &lt;progress&gt;&lt;/progress&gt;
+&lt;/p&gt;
+
+&lt;h4&gt;计量器示例&lt;/h4&gt;
+&lt;p&gt;
+    &lt;label&gt;磁盘使用：&lt;/label&gt;
+    &lt;meter value="0.7" min="0" max="1"&gt;70%&lt;/meter&gt;
+&lt;/p&gt;
+
+&lt;h4&gt;折叠内容示例&lt;/h4&gt;
+&lt;details&gt;
+    &lt;summary&gt;什么是HTML5？&lt;/summary&gt;
+    &lt;p&gt;HTML5是HTML的第五个主要版本，带来了许多新特性，如语义化标签、多媒体支持、新表单控件等。&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;details open&gt;
+    &lt;summary&gt;为什么要学习HTML？&lt;/summary&gt;
+    &lt;p&gt;HTML是网页的基础，所有网页都是由HTML构建的。学好HTML是成为Web开发者的第一步！&lt;/p&gt;
+&lt;/details&gt;
+                </div>
+                
+                <!-- 预览区 -->
+                <div class="panel preview-area" id="preview-elements">
+                    <div class="panel-label">预览效果</div>
+                </div>
+            </div>
+            
+            <!-- 操作按钮 -->
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runHtmlExperiment('html-elements', 'preview-elements', 'badge-elements')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetHtmlExperiment('html-elements', 'preview-elements', 'badge-elements')">↺ 重置代码</button>
+            </div>
+        </div>
+        
+        <div class="tip-box">
+            <span class="tip-title">🎯 试试看</span>
+            <ul>
+                <li>修改进度条的 value 值，观察变化</li>
+                <li>点击"什么是HTML5？"展开/收起内容</li>
+                <li>添加一个新的 details 元素，写一个你自己的问答</li>
+                <li>尝试移除 open 属性，观察默认状态的变化</li>
+            </ul>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         课程小结区域
+         ============================================ -->
+    <section id="summary">
+        <h2>五、本课小结</h2>
+        
+        <h3>知识点回顾</h3>
+        <ul class="checklist">
+            <li><strong>HTML5文档声明</strong>：<code>&lt;!DOCTYPE html&gt;</code> 简洁明了</li>
+            <li><strong>日期选择器</strong>：<code>type="date"</code>、<code>type="time"</code> 等</li>
+            <li><strong>颜色选择器</strong>：<code>type="color"</code> 打开颜色面板</li>
+            <li><strong>范围滑块</strong>：<code>type="range"</code> 拖动选择数值</li>
+            <li><strong>进度条</strong>：<code>&lt;progress&gt;</code> 显示任务进度</li>
+            <li><strong>计量器</strong>：<code>&lt;meter&gt;</code> 显示测量值</li>
+            <li><strong>折叠内容</strong>：<code>&lt;details&gt;</code> + <code>&lt;summary&gt;</code></li>
+        </ul>
+        
+        <h3>重点记忆</h3>
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>特性</th>
+                    <th>代码示例</th>
+                    <th>用途</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>日期选择</td>
+                    <td><code>&lt;input type="date"&gt;</code></td>
+                    <td>生日、预约日期</td>
+                </tr>
+                <tr>
+                    <td>颜色选择</td>
+                    <td><code>&lt;input type="color"&gt;</code></td>
+                    <td>主题颜色、偏好设置</td>
+                </tr>
+                <tr>
+                    <td>范围滑块</td>
+                    <td><code>&lt;input type="range"&gt;</code></td>
+                    <td>音量、评分、价格区间</td>
+                </tr>
+                <tr>
+                    <td>进度条</td>
+                    <td><code>&lt;progress&gt;</code></td>
+                    <td>下载进度、加载进度</td>
+                </tr>
+                <tr>
+                    <td>折叠内容</td>
+                    <td><code>&lt;details&gt;</code></td>
+                    <td>FAQ、详情展示</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- 下一课预告 -->
+        <div class="note-box">
+            <strong>下一课预告：</strong>
+            <p>恭喜你完成了HTML部分的学习！下一课我们将正式进入CSS的世界，学习【CSS样式写法】，了解如何为网页添加漂亮的样式！</p>
+        </div>
+    </section>
+
+
+</main>
+
 </body>
 </html>
 

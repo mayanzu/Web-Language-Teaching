@@ -6,6 +6,7 @@
     <title>第22课：CSS 布局完全指南</title>
         
     <link rel='stylesheet' href='../统一讲义样式模板.css'>
+    <script src='../js/lecture-utils.js'></script>
 </head>
 <body>
 
@@ -121,18 +122,87 @@
         <!-- 第一部分：传统布局 -->
         <!-- ======================================== -->
         <section id="float">
-            <h2>1. 浮动 (Float)</h2>
-            <p><code>float</code> 属性最初是为了实现“文字环绕图片”的效果而设计的。但在 Flexbox 出现之前，它是网页多列布局的主力军。</p>
+            <h2>一、浮动 (Float)</h2>
+            <p><code>float</code> 属性最初是为了实现"文字环绕图片"的效果而设计的。但在 Flexbox 出现之前，它是网页多列布局的主力军。</p>
+            
+            <div class="note-box">
+                <span class="note-title">📖 历史背景</span>
+                <p>浮动布局是CSS早期最主要的布局方式，许多经典网站（如早期的淘宝、新浪）都是用浮动实现的。虽然现在Flexbox和Grid更加强大，但理解浮动对于维护旧项目和理解CSS发展历程非常重要。</p>
+            </div>
 
             <h3>1.1 基本概念</h3>
-            <ul>
-                <li><code>float: left;</code> 元素向左浮动。</li>
-                <li><code>float: right;</code> 元素向右浮动。</li>
-                <li><strong>脱离文档流</strong>：浮动元素会“漂浮”在普通元素上方（这会导致父容器高度塌陷问题）。</li>
-            </ul>
+            <table class="prop-table">
+                <thead>
+                    <tr>
+                        <th>属性值</th>
+                        <th>说明</th>
+                        <th>效果</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>float: none;</code></td>
+                        <td>默认值，不浮动</td>
+                        <td>元素正常显示在文档流中</td>
+                    </tr>
+                    <tr>
+                        <td><code>float: left;</code></td>
+                        <td>向左浮动</td>
+                        <td>元素脱离文档流，向左移动</td>
+                    </tr>
+                    <tr>
+                        <td><code>float: right;</code></td>
+                        <td>向右浮动</td>
+                        <td>元素脱离文档流，向右移动</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="warning-box">
+                <span class="warning-title">⚠️ 关键概念：脱离文档流</span>
+                <p>浮动元素会"漂浮"在普通元素上方，父容器"看不到"浮动的子元素，导致：</p>
+                <ul>
+                    <li>父容器高度塌陷（高度为0）</li>
+                    <li>后面的元素会跑到浮动元素下面</li>
+                    <li>文字会环绕浮动元素（这是设计初衷）</li>
+                </ul>
+            </div>
 
             <h3 id="float-details">1.2 核心痛点：清除浮动 (Clearfix)</h3>
-            <p>当一个父盒子里的所有子元素都浮动了，父盒子会感知不到子元素的高度，变成“一条线”（高度塌陷）。我们需要“清除浮动”来撑开父盒子。</p>
+            <p>当一个父盒子里的所有子元素都浮动了，父盒子会感知不到子元素的高度，变成"一条线"（高度塌陷）。我们需要"清除浮动"来撑开父盒子。</p>
+            
+            <h4>清除浮动的四种方法</h4>
+            <table class="prop-table">
+                <thead>
+                    <tr>
+                        <th>方法</th>
+                        <th>代码</th>
+                        <th>优缺点</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>额外标签法</td>
+                        <td><code>&lt;div style="clear:both"&gt;&lt;/div&gt;</code></td>
+                        <td>简单但增加无意义标签❌</td>
+                    </tr>
+                    <tr>
+                        <td>父元素overflow</td>
+                        <td><code>overflow: hidden/auto;</code></td>
+                        <td>简洁但可能裁剪内容⚠️</td>
+                    </tr>
+                    <tr>
+                        <td>伪元素clearfix</td>
+                        <td><code>::after { clear: both; }</code></td>
+                        <td>推荐！无副作用✅</td>
+                    </tr>
+                    <tr>
+                        <td>display: flow-root</td>
+                        <td><code>display: flow-root;</code></td>
+                        <td>现代方案，需兼容性考虑</td>
+                    </tr>
+                </tbody>
+            </table>
 
             <div class="lab-card">
                 <div class="lab-header">
@@ -204,19 +274,85 @@
         </section>
 
         <section id="position">
-            <h2>2. 定位 (Position)</h2>
-            <p>定位属性允许你从正常的文档流中“抽出”元素，并将其精准地放置在页面的任意位置。</p>
+            <h2>二、定位 (Position)</h2>
+            <p>定位属性允许你从正常的文档流中"抽出"元素，并将其精准地放置在页面的任意位置。</p>
+            
+            <div class="note-box">
+                <span class="note-title">📖 生活类比</span>
+                <p>想象一个展览馆：</p>
+                <ul>
+                    <li><strong>static</strong>：展品按顺序一件件摆在地上</li>
+                    <li><strong>relative</strong>：某展品稍微移动了一下位置，但地上的位置标签还在</li>
+                    <li><strong>absolute</strong>：展品被吊到天花板上，可以放在任意位置</li>
+                    <li><strong>fixed</strong>：像安全出口标志，无论你走到哪都能看到它</li>
+                </ul>
+            </div>
 
             <h3>2.1 四大金刚</h3>
-            <ul>
-                <li><strong>static</strong> (默认值)：按照正常文档流排列。</li>
-                <li><strong>relative</strong> (相对定位)：相对于<strong>原本在文档流中的位置</strong>进行微调。不脱离文档流（原来的位置坑位还在）。</li>
-                <li><strong>absolute</strong> (绝对定位)：相对于<strong>最近的“非 static”祖先元素</strong>进行定位。脱离文档流。</li>
-                <li><strong>fixed</strong> (固定定位)：相对于<strong>浏览器窗口</strong>定位。滚动页面时它不会动。</li>
-            </ul>
+            <table class="prop-table">
+                <thead>
+                    <tr>
+                        <th>定位类型</th>
+                        <th>参照物</th>
+                        <th>是否脱离文档流</th>
+                        <th>常用场景</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>static</code></td>
+                        <td>无（默认值）</td>
+                        <td>否</td>
+                        <td>正常文档流</td>
+                    </tr>
+                    <tr>
+                        <td><code>relative</code></td>
+                        <td>自身原位置</td>
+                        <td>否（保留原位置）</td>
+                        <td>微调位置、作为absolute的参照</td>
+                    </tr>
+                    <tr>
+                        <td><code>absolute</code></td>
+                        <td>最近的非static祖先</td>
+                        <td>是</td>
+                        <td>角标、弹窗、下拉菜单</td>
+                    </tr>
+                    <tr>
+                        <td><code>fixed</code></td>
+                        <td>浏览器视口</td>
+                        <td>是</td>
+                        <td>固定导航、回到顶部按钮</td>
+                    </tr>
+                    <tr>
+                        <td><code>sticky</code></td>
+                        <td>视口+滚动容器</td>
+                        <td>否（特殊）</td>
+                        <td>粘性导航、表头固定</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="tip-box">
+                <span class="tip-title">💡 定位偏移属性</span>
+                <p>使用<code>top</code>、<code>right</code>、<code>bottom</code>、<code>left</code>来控制元素的偏移量：</p>
+                <ul>
+                    <li><code>top: 10px;</code> 距离参照物顶部10px</li>
+                    <li><code>left: 20px;</code> 距离参照物左侧20px</li>
+                    <li>可以使用负值，如<code>top: -10px;</code>向上偏移</li>
+                </ul>
+            </div>
 
             <h3 id="pos-relative">2.2 黄金搭档：子绝父相</h3>
-            <p>即“子元素绝对定位，父元素相对定位”。这是实现 UI 组件（如角标、关闭按钮、下拉菜单）最常用的技巧。</p>
+            <p>即"子元素绝对定位，父元素相对定位"。这是实现 UI 组件（如角标、关闭按钮、下拉菜单）最常用的技巧。</p>
+            
+            <div class="note-box">
+                <span class="note-title">📖 为什么要"子绝父相"？</span>
+                <ul>
+                    <li><strong>父relative</strong>：给子元素确定参照系，同时不影响自身在文档流中的位置</li>
+                    <li><strong>子absolute</strong>：可以精确定位到父元素的任意位置（如右上角）</li>
+                    <li>如果父元素是static，子元素会一直向上找，直到找到非static祖先或body</li>
+                </ul>
+            </div>
 
             <div class="lab-card">
                 <div class="lab-header">
@@ -284,29 +420,349 @@
             </div>
 
             <h3 id="pos-fixed">2.3 固定定位 (Fixed)</h3>
-            <p>常用于“回到顶部”按钮或固定导航栏。</p>
+            <p>常用于"回到顶部"按钮或固定导航栏。</p>
             <p><strong>注意：</strong> 在本实验的预览框中，fixed 是相对于预览窗口的，但在真实网页中，它会相对于整个浏览器窗口。</p>
+            
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>示例：固定定位代码</span>
+                    <span class="status-badge readonly">只读</span>
+                </div>
+                <div class="lab-body">
+                    <pre class="css"><code>/* 固定在右下角的"回到顶部"按钮 */
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: #007bff;
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* 固定在顶部的导航栏 */
+.fixed-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;  /* 或 width: 100%; */
+    height: 60px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 1000;  /* 确保在最上层 */
+}</code></pre>
+                </div>
+            </div>
+            
+            <h3>2.4 粘性定位 (Sticky)</h3>
+            <p><code>position: sticky</code>是relative和fixed的结合体。元素在滚动到特定位置前表现为relative，到达该位置后"粘住"变为fixed。</p>
+            
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>示例：粘性导航/表头</span>
+                    <span class="status-badge readonly">只读</span>
+                </div>
+                <div class="lab-body">
+                    <pre class="css"><code>/* 粘性导航栏：滚动到顶部时固定 */
+.sticky-nav {
+    position: sticky;
+    top: 0;  /* 滚动到距离顶部0时粘住 */
+    background: white;
+    z-index: 100;
+}
+
+/* 粘性表头：表格滚动时头部固定 */
+table thead {
+    position: sticky;
+    top: 0;
+    background: #f8f9fa;
+}</code></pre>
+                </div>
+            </div>
+            
+            <div class="warning-box">
+                <span class="warning-title">⚠️ sticky的注意事项</span>
+                <ul>
+                    <li>必须指定<code>top</code>、<code>bottom</code>等偏移值之一</li>
+                    <li>父元素不能设置<code>overflow: hidden/auto</code></li>
+                    <li>父元素高度要大于sticky元素，否则没有粘的空间</li>
+                </ul>
+            </div>
+            
+            <h3>2.5 z-index层叠顺序</h3>
+            <p>当多个定位元素重叠时，使用<code>z-index</code>控制谁在上面。数值越大，越在上层。</p>
+            
+            <table class="prop-table">
+                <thead>
+                    <tr>
+                        <th>建议z-index范围</th>
+                        <th>用途</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1-10</td>
+                        <td>普通定位元素</td>
+                    </tr>
+                    <tr>
+                        <td>100-999</td>
+                        <td>固定导航、侧边栏</td>
+                    </tr>
+                    <tr>
+                        <td>1000-9999</td>
+                        <td>模态框、弹窗</td>
+                    </tr>
+                    <tr>
+                        <td>10000+</td>
+                        <td>全局提示、Toast</td>
+                    </tr>
+                </tbody>
+            </table>
         </section>
 
         <!-- ======================================== -->
         <!-- 第二部分：现代布局 -->
         <!-- ======================================== -->
         <section id="flexbox">
-            <h2>3. Flexbox 弹性盒布局 (必学!)</h2>
+            <h2>三、Flexbox 弹性盒布局 (必学!)</h2>
             <div class="tip-box">
                 <strong>为什么叫弹性盒？</strong><br>
-                因为它非常灵活。子元素可以自动放大填充剩余空间，也可以自动缩小适应小屏幕。它是“一维布局”（处理一行或一列）的神器。
+                因为它非常灵活。子元素可以自动放大填充剩余空间，也可以自动缩小适应小屏幕。它是"一维布局"（处理一行或一列）的神器。
+            </div>
+            
+            <div class="note-box">
+                <span class="note-title">📖 Flexbox vs Float</span>
+                <table class="prop-table">
+                    <thead>
+                        <tr>
+                            <th>特性</th>
+                            <th>Float</th>
+                            <th>Flexbox</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>居中对齐</td>
+                            <td>需要计算margin❌</td>
+                            <td>一行代码搞定✅</td>
+                        </tr>
+                        <tr>
+                            <td>等高布局</td>
+                            <td>很难实现❌</td>
+                            <td>默认等高✅</td>
+                        </tr>
+                        <tr>
+                            <td>顺序调整</td>
+                            <td>必须改HTML❌</td>
+                            <td>order属性✅</td>
+                        </tr>
+                        <tr>
+                            <td>响应式</td>
+                            <td>需要大量媒体查询❌</td>
+                            <td>自动适应✅</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
             <h3>3.1 开启 Flex</h3>
             <p>只需给父容器添加 <code>display: flex;</code>，其直接子元素就会变成 flex item，默认横向排列。</p>
+            
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>示例：开启Flex的神奇变化</span>
+                    <span class="status-badge readonly">只读</span>
+                </div>
+                <div class="lab-body">
+                    <pre class="css"><code>/* 未使用Flex：子元素垂直堆叠 */
+.container {
+    /* 默认display: block */
+}
 
-            <h3 id="flex-align">3.2 对齐三剑客</h3>
-            <ul>
-                <li><code>justify-content</code>: <strong>主轴</strong>（通常是水平方向）对齐。常用值：<code>center</code> (居中), <code>space-between</code> (两端对齐), <code>space-around</code> (分散对齐)。</li>
-                <li><code>align-items</code>: <strong>交叉轴</strong>（通常是垂直方向）对齐。常用值：<code>center</code> (垂直居中), <code>stretch</code> (拉伸)。</li>
-                <li><code>flex-direction</code>: 改变主轴方向。常用值：<code>row</code> (默认，横向), <code>column</code> (纵向)。</li>
-            </ul>
+/* 使用Flex后：子元素横向排列 */
+.container {
+    display: flex;  /* 开启弹性盒 */
+}
+
+/* 也可以使用inline-flex */
+.container {
+    display: inline-flex;  /* 容器本身为行内元素 */
+}</code></pre>
+                </div>
+            </div>
+
+            <h3 id="flex-align">3.2 容器属性（设置在父元素上）</h3>
+            
+            <h4>主轴与交叉轴</h4>
+            <div class="note-box">
+                <span class="note-title">📖 轴的概念</span>
+                <ul>
+                    <li><strong>主轴(Main Axis)</strong>：flex-direction定义的方向，默认为水平方向（从左到右）</li>
+                    <li><strong>交叉轴(Cross Axis)</strong>：垂直于主轴的方向，默认为垂直方向（从上到下）</li>
+                </ul>
+            </div>
+            
+            <table class="prop-table">
+                <thead>
+                    <tr>
+                        <th>属性</th>
+                        <th>作用</th>
+                        <th>常用值</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>flex-direction</code></td>
+                        <td>设置主轴方向</td>
+                        <td><code>row</code>(默认) | <code>column</code> | <code>row-reverse</code> | <code>column-reverse</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>justify-content</code></td>
+                        <td>主轴对齐方式</td>
+                        <td><code>flex-start</code> | <code>center</code> | <code>flex-end</code> | <code>space-between</code> | <code>space-around</code> | <code>space-evenly</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>align-items</code></td>
+                        <td>交叉轴对齐方式</td>
+                        <td><code>stretch</code>(默认) | <code>flex-start</code> | <code>center</code> | <code>flex-end</code> | <code>baseline</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>flex-wrap</code></td>
+                        <td>是否换行</td>
+                        <td><code>nowrap</code>(默认) | <code>wrap</code> | <code>wrap-reverse</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>gap</code></td>
+                        <td>子元素间距</td>
+                        <td>如<code>gap: 10px;</code>或<code>gap: 10px 20px;</code></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h4>justify-content详解（主轴对齐）</h4>
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>示例：justify-content各值效果</span>
+                    <span class="status-badge readonly">只读</span>
+                </div>
+                <div class="lab-body">
+                    <pre class="css"><code>/* flex-start：从头排列（默认） */
+.container { justify-content: flex-start; }
+/* [A][B][C]-------------- */
+
+/* center：居中排列 */
+.container { justify-content: center; }
+/* -------[A][B][C]------- */
+
+/* flex-end：从末尾排列 */
+.container { justify-content: flex-end; }
+/* --------------[A][B][C] */
+
+/* space-between：两端对齐，中间等分 */
+.container { justify-content: space-between; }
+/* [A]------[B]------[C] */
+
+/* space-around：每个元素两侧等间距 */
+.container { justify-content: space-around; }
+/* --[A]----[B]----[C]-- */
+
+/* space-evenly：所有间距相等 */
+.container { justify-content: space-evenly; }
+/* ---[A]---[B]---[C]--- */</code></pre>
+                </div>
+            </div>
+            
+            <h3>3.3 子元素属性（设置在子元素上）</h3>
+            <table class="prop-table">
+                <thead>
+                    <tr>
+                        <th>属性</th>
+                        <th>作用</th>
+                        <th>示例</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>flex-grow</code></td>
+                        <td>放大比例（默认0不放大）</td>
+                        <td><code>flex-grow: 1;</code>平分剩余空间</td>
+                    </tr>
+                    <tr>
+                        <td><code>flex-shrink</code></td>
+                        <td>缩小比例（默认1可缩小）</td>
+                        <td><code>flex-shrink: 0;</code>不缩小</td>
+                    </tr>
+                    <tr>
+                        <td><code>flex-basis</code></td>
+                        <td>初始尺寸</td>
+                        <td><code>flex-basis: 200px;</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>flex</code></td>
+                        <td>简写（推荐）</td>
+                        <td><code>flex: 1;</code> = <code>flex: 1 1 0;</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>align-self</code></td>
+                        <td>单独设置交叉轴对齐</td>
+                        <td><code>align-self: center;</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>order</code></td>
+                        <td>排列顺序（默认0）</td>
+                        <td><code>order: -1;</code>排到最前面</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="tip-box">
+                <span class="tip-title">💡 flex简写技巧</span>
+                <ul>
+                    <li><code>flex: 1;</code> → 等分剩余空间，最常用</li>
+                    <li><code>flex: auto;</code> → 等于<code>flex: 1 1 auto;</code></li>
+                    <li><code>flex: none;</code> → 等于<code>flex: 0 0 auto;</code>，固定大小</li>
+                    <li><code>flex: 0 0 200px;</code> → 固定200px不伸缩</li>
+                </ul>
+            </div>
+            
+            <h3>3.4 Flex常见布局场景</h3>
+            
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>示例：完美居中（最常用）</span>
+                    <span class="status-badge readonly">只读</span>
+                </div>
+                <div class="lab-body">
+                    <pre class="css"><code>/* 水平垂直完美居中 - 最简洁的方案 */
+.container {
+    display: flex;
+    justify-content: center;  /* 水平居中 */
+    align-items: center;      /* 垂直居中 */
+    height: 100vh;            /* 全屏高度 */
+}</code></pre>
+                </div>
+            </div>
+            
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>示例：经典三栏布局</span>
+                    <span class="status-badge readonly">只读</span>
+                </div>
+                <div class="lab-body">
+                    <pre class="css"><code>/* 左右固定，中间自适应 */
+.layout {
+    display: flex;
+}
+.left, .right {
+    flex: 0 0 200px;  /* 固定200px */
+}
+.main {
+    flex: 1;  /* 占据剩余空间 */
+}</code></pre>
+                </div>
+            </div>
 
             <div class="lab-card">
                 <div class="lab-header">
@@ -376,15 +832,193 @@
         </section>
 
         <section id="grid">
-            <h2>4. Grid 网格布局</h2>
+            <h2>四、Grid 网格布局</h2>
             <p>如果说 Flexbox 是一维的（一条线），那么 Grid 就是二维的（面）。它能同时处理行和列，非常适合页面整体骨架的搭建。</p>
+            
+            <div class="note-box">
+                <span class="note-title">📖 Flexbox vs Grid 如何选择？</span>
+                <table class="prop-table">
+                    <thead>
+                        <tr>
+                            <th>场景</th>
+                            <th>推荐方案</th>
+                            <th>原因</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>导航栏菜单</td>
+                            <td>Flexbox</td>
+                            <td>一行元素，需要灵活对齐</td>
+                        </tr>
+                        <tr>
+                            <td>页面整体布局</td>
+                            <td>Grid</td>
+                            <td>需要同时控制行和列</td>
+                        </tr>
+                        <tr>
+                            <td>卡片列表</td>
+                            <td>Grid</td>
+                            <td>规则的网格排列</td>
+                        </tr>
+                        <tr>
+                            <td>表单布局</td>
+                            <td>Grid</td>
+                            <td>标签和输入框对齐</td>
+                        </tr>
+                        <tr>
+                            <td>居中单个元素</td>
+                            <td>Flexbox</td>
+                            <td>更简单直接</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
             <h3 id="grid-layout">4.1 核心属性</h3>
-            <ul>
-                <li><code>display: grid;</code>: 开启网格布局。</li>
-                <li><code>grid-template-columns</code>: 定义列宽。例如 <code>100px 1fr 100px</code> 表示左侧100px，中间自适应剩余空间(1fr)，右侧100px。</li>
-                <li><code>grid-gap</code> (或 <code>gap</code>): 定义网格之间的间距。</li>
-            </ul>
+            
+            <h4>容器属性</h4>
+            <table class="prop-table">
+                <thead>
+                    <tr>
+                        <th>属性</th>
+                        <th>作用</th>
+                        <th>常用值示例</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>display: grid;</code></td>
+                        <td>开启网格布局</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td><code>grid-template-columns</code></td>
+                        <td>定义列</td>
+                        <td><code>100px 1fr 100px</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>grid-template-rows</code></td>
+                        <td>定义行</td>
+                        <td><code>60px 1fr 40px</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>gap</code></td>
+                        <td>间距</td>
+                        <td><code>10px</code>或<code>10px 20px</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>grid-template-areas</code></td>
+                        <td>命名区域</td>
+                        <td>见下方示例</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h4>fr单位与repeat函数</h4>
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>示例：Grid常用写法</span>
+                    <span class="status-badge readonly">只读</span>
+                </div>
+                <div class="lab-body">
+                    <pre class="css"><code>/* fr单位：按比例分配剩余空间 */
+.container {
+    grid-template-columns: 1fr 2fr 1fr;  /* 1:2:1 三列 */
+}
+
+/* repeat函数：重复定义 */
+.container {
+    grid-template-columns: repeat(3, 1fr);  /* 等分3列 */
+    grid-template-columns: repeat(4, 100px);  /* 4列各100px */
+}
+
+/* auto-fit/auto-fill：响应式网格 */
+.container {
+    /* 自动适应，每列最小200px，最大1fr */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+/* 混合使用 */
+.container {
+    /* 左侧固定250px，右侧自适应 */
+    grid-template-columns: 250px 1fr;
+}</code></pre>
+                </div>
+            </div>
+            
+            <h4>子元素属性</h4>
+            <table class="prop-table">
+                <thead>
+                    <tr>
+                        <th>属性</th>
+                        <th>作用</th>
+                        <th>示例</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>grid-column</code></td>
+                        <td>列位置/跨度</td>
+                        <td><code>grid-column: 1 / 3;</code>横跨1-3列</td>
+                    </tr>
+                    <tr>
+                        <td><code>grid-row</code></td>
+                        <td>行位置/跨度</td>
+                        <td><code>grid-row: 1 / 3;</code>横跨1-3行</td>
+                    </tr>
+                    <tr>
+                        <td><code>grid-area</code></td>
+                        <td>指定区域名</td>
+                        <td><code>grid-area: header;</code></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>4.2 Grid Area命名布局</h3>
+            <p>使用<code>grid-template-areas</code>可以像画图一样定义布局，非常直观。</p>
+            
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>示例：命名区域布局</span>
+                    <span class="status-badge readonly">只读</span>
+                </div>
+                <div class="lab-body">
+                    <pre class="css"><code>.layout {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    grid-template-rows: 60px 1fr 40px;
+    grid-template-areas:
+        "header header header"    /* 头部横跨3列 */
+        "sidebar main aside"      /* 中间3列 */
+        "footer footer footer";   /* 底部横跨3列 */
+    gap: 10px;
+    min-height: 100vh;
+}
+
+.header { grid-area: header; }
+.sidebar { grid-area: sidebar; }
+.main { grid-area: main; }
+.aside { grid-area: aside; }
+.footer { grid-area: footer; }
+
+/* 使用 . 表示空白区域 */
+grid-template-areas:
+    "header header header"
+    "sidebar main ."      /* 右侧留空 */
+    "footer footer footer";</code></pre>
+                </div>
+            </div>
+            
+            <div class="tip-box">
+                <span class="tip-title">💡 Grid实用技巧</span>
+                <ul>
+                    <li><code>minmax(200px, 1fr)</code>：最小200px，最大可扩展</li>
+                    <li><code>auto-fit</code>：自动填充，尽可能多的列</li>
+                    <li><code>place-items: center;</code>：同时设置水平垂直居中</li>
+                    <li><code>grid-column: span 2;</code>：跨越2列</li>
+                </ul>
+            </div>
 
             <div class="lab-card">
                 <div class="lab-header">
@@ -459,7 +1093,7 @@
         <!-- 第三部分：响应式设计 -->
         <!-- ======================================== -->
         <section id="responsive">
-            <h2>5. 响应式设计 (Responsive Design)</h2>
+            <h2>五、响应式设计 (Responsive Design)</h2>
             <p>现在的网站必须能适应手机、平板和电脑。我们使用“媒体查询” (Media Query) 来实现这一点。</p>
 
             <h3 id="media-query">5.1 媒体查询 @media</h3>
@@ -617,7 +1251,6 @@
         </section>
     </main>
 
-    <script src='../js/lecture-utils.js'></script>
 </body>
 </html>
 
