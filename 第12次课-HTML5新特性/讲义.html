@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第12课：HTML5新特性</title>
+    
+    <!-- 统一样式引用 -->
+    <link rel='stylesheet' href='../统一讲义样式模板.css'>
+    <!-- 通用工具函数库 -->
+    <script src='../js/lecture-utils.js'></script>
+</head>
+<body>
+
+<!-- ============================================
+     侧边栏导航 - 课程目录
+     ============================================ -->
+<nav class="sidebar">
+    <div class="sidebar-nav">
+        <h3>课程导航</h3>
+        <a class="sidebar-link" href="#intro">👋 课程概览</a>
+        
+        <h3>Part 1: HTML5概述</h3>
+        <a class="sidebar-link sub-link" href="#chapter-1">一、什么是HTML5</a>
+        <a class="sidebar-link sub-link" href="#chapter-2">二、HTML5新增表单控件</a>
+        <a class="sidebar-link sub-link" href="#lab-1">🔬 实验 01：表单控件练习</a>
+        
+        <h3>Part 2: HTML5新增元素</h3>
+        <a class="sidebar-link sub-link" href="#chapter-3">三、进度条与计量器</a>
+        <a class="sidebar-link sub-link" href="#chapter-4">四、详情与摘要</a>
+        <a class="sidebar-link sub-link" href="#lab-2">🔬 实验 02：新元素练习</a>
+        
+        <h3>总结与练习</h3>
+        <a class="sidebar-link sub-link" href="#summary">📝 课程小结</a>
+    </div>
+</nav>
+
+
+<!-- ============================================
+     主内容区域
+     ============================================ -->
+<main class="content">
+
+    <!-- ============================================
+         课程头部 - 概览区域
+         ============================================ -->
+    <header id="intro">
+        <h1>第12课：HTML5新特性</h1>
+        <p class="intro">欢迎来到HTML5新特性的学习！HTML5是HTML的最新版本，它引入了许多实用的新功能。本节课我们将学习HTML5中最常用、最实用的新特性，包括新的表单控件和一些有趣的新元素。</p>
+        
+        <!-- 知识点标签列表 -->
+        <div class="pill-list">
+            <span class="pill">HTML5简介</span>
+            <span class="pill">日期选择器</span>
+            <span class="pill">颜色选择器</span>
+            <span class="pill">范围滑块</span>
+            <span class="pill">进度条</span>
+            <span class="pill">详情折叠</span>
+        </div>
+    </header>
+
+
+    <!-- ============================================
+         第一部分：HTML5概述
+         ============================================ -->
+    
+    <section id="chapter-1">
+        <h2>一、什么是HTML5</h2>
+        <p>HTML5是HTML的第五个主要版本，于2014年正式发布。它带来了许多新特性，让网页开发更加简单和强大。</p>
+        
+        <div class="note-box">
+            <span class="tip-title">📖 HTML5的主要改进</span>
+            <p>HTML5相比之前版本有很多改进：</p>
+            <ul>
+                <li><strong>更简洁的语法</strong>：文档声明变得很简单</li>
+                <li><strong>语义化标签</strong>：header、nav、article等（第10课已学）</li>
+                <li><strong>多媒体支持</strong>：audio、video标签（第11课已学）</li>
+                <li><strong>新表单控件</strong>：日期、颜色、范围等（本课学习）</li>
+                <li><strong>新增实用元素</strong>：进度条、详情折叠等（本课学习）</li>
+            </ul>
+        </div>
+        
+        <h3>1.1 HTML5的文档声明</h3>
+        <p>HTML5的文档声明非常简洁：</p>
+        
+        <pre class="html"><code>&lt;!-- HTML5的文档声明 --&gt;
+&lt;!DOCTYPE html&gt;
+
+&lt;!-- 之前版本的文档声明（很复杂） --&gt;
+&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" 
+    "http://www.w3.org/TR/html4/strict.dtd"&gt;</code></pre>
+        
+        <div class="tip-box">
+            <span class="tip-title">💡 小提示</span>
+            <p>你在前面课程中一直使用的 <code>&lt;!DOCTYPE html&gt;</code> 就是HTML5的文档声明！是不是很简单？</p>
+        </div>
+        
+        <h3>1.2 HTML5的字符编码声明</h3>
+        <p>HTML5简化了字符编码的声明方式：</p>
+        
+        <pre class="html"><code>&lt;!-- HTML5的字符编码声明 --&gt;
+&lt;meta charset="UTF-8"&gt;
+
+&lt;!-- 之前版本的写法 --&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"&gt;</code></pre>
+    </section>
+
+
+    <section id="chapter-2">
+        <h2>二、HTML5新增表单控件</h2>
+        <p>HTML5新增了许多实用的表单输入类型，让用户输入数据变得更加方便。</p>
+        
+        <div class="note-box">
+            <span class="tip-title">📖 为什么需要新的表单控件？</span>
+            <p>在HTML5之前，如果想让用户选择日期或颜色，需要借助JavaScript插件。现在HTML5提供了原生支持，浏览器会自动显示相应的选择器界面！</p>
+        </div>
+        
+        <h3>2.1 日期相关输入</h3>
+        <p>HTML5提供了多种日期时间相关的输入类型：</p>
+        
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>类型</th>
+                    <th>说明</th>
+                    <th>示例代码</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>date</code></td>
+                    <td>日期选择器（年月日）</td>
+                    <td><code>&lt;input type="date"&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>time</code></td>
+                    <td>时间选择器（时分）</td>
+                    <td><code>&lt;input type="time"&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>datetime-local</code></td>
+                    <td>日期时间选择器</td>
+                    <td><code>&lt;input type="datetime-local"&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>month</code></td>
+                    <td>年月选择器</td>
+                    <td><code>&lt;input type="month"&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>week</code></td>
+                    <td>年周选择器</td>
+                    <td><code>&lt;input type="week"&gt;</code></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <pre class="html"><code>&lt;!-- 日期输入示例 --&gt;
+&lt;label&gt;选择日期：&lt;/label&gt;
+&lt;input type="date" name="birthday"&gt;
+
+&lt;label&gt;选择时间：&lt;/label&gt;
+&lt;input type="time" name="meeting-time"&gt;
+
+&lt;label&gt;选择日期和时间：&lt;/label&gt;
+&lt;input type="datetime-local" name="event-time"&gt;</code></pre>
+        
+        <h3>2.2 颜色选择器</h3>
+        <p><code>type="color"</code> 可以让用户通过颜色选择器选择颜色：</p>
+        
+        <pre class="html"><code>&lt;label&gt;选择颜色：&lt;/label&gt;
+&lt;input type="color" name="favorite-color" value="#ff0000"&gt;</code></pre>
+        
+        <div class="tip-box">
+            <span class="tip-title">💡 默认颜色</span>
+            <p>可以通过 <code>value</code> 属性设置默认颜色，值必须是十六进制颜色值（如 #ff0000）。</p>
+        </div>
+        
+        <h3>2.3 范围滑块</h3>
+        <p><code>type="range"</code> 显示一个可以拖动的滑块，适合选择数值范围：</p>
+        
+        <pre class="html"><code>&lt;label&gt;音量：&lt;/label&gt;
+&lt;input type="range" name="volume" min="0" max="100" value="50"&gt;
+
+&lt;label&gt;评分（1-5）：&lt;/label&gt;
+&lt;input type="range" name="rating" min="1" max="5" step="1" value="3"&gt;</code></pre>
+        
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>属性</th>
+                    <th>说明</th>
+                    <th>示例</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>min</code></td>
+                    <td>最小值</td>
+                    <td><code>min="0"</code></td>
+                </tr>
+                <tr>
+                    <td><code>max</code></td>
+                    <td>最大值</td>
+                    <td><code>max="100"</code></td>
+                </tr>
+                <tr>
+                    <td><code>step</code></td>
+                    <td>步长（每次变化的值）</td>
+                    <td><code>step="1"</code></td>
+                </tr>
+                <tr>
+                    <td><code>value</code></td>
+                    <td>默认值</td>
+                    <td><code>value="50"</code></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>2.4 数字输入</h3>
+        <p><code>type="number"</code> 限制用户只能输入数字：</p>
+        
+        <pre class="html"><code>&lt;label&gt;数量：&lt;/label&gt;
+&lt;input type="number" name="quantity" min="1" max="99" value="1"&gt;
+
+&lt;label&gt;价格：&lt;/label&gt;
+&lt;input type="number" name="price" min="0" step="0.01" placeholder="0.00"&gt;</code></pre>
+        
+        <h3>2.5 搜索框</h3>
+        <p><code>type="search"</code> 专门用于搜索输入，在某些浏览器中会显示清除按钮：</p>
+        
+        <pre class="html"><code>&lt;label&gt;搜索：&lt;/label&gt;
+&lt;input type="search" name="keyword" placeholder="输入关键词..."&gt;</code></pre>
+        
+        <div class="warning-box">
+            <strong>⚠️ 浏览器兼容性提示</strong>
+            <p>HTML5的新表单控件在不同浏览器中的显示效果可能略有不同。如果浏览器不支持某个类型，会自动回退为普通文本框，不会报错。</p>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         实验 01：表单控件练习
+         ============================================ -->
+    <section id="lab-1">
+        <h2>🔬 实验 01：HTML5表单控件练习</h2>
+        <p>现在让我们动手尝试HTML5的新表单控件！</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 01：HTML5表单控件</span>
+                <span class="status-badge beginner" id="badge-form">动手实践</span>
+            </div>
+            
+            <div class="lab-body split">
+                <!-- 代码编辑区 -->
+                <div class="panel code-editor" id="html-form" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
+&lt;form&gt;
+    &lt;h3&gt;HTML5表单控件演示&lt;/h3&gt;
+    
+    &lt;p&gt;
+        &lt;label&gt;选择生日：&lt;/label&gt;&lt;br&gt;
+        &lt;input type="date" name="birthday"&gt;
+    &lt;/p&gt;
+    
+    &lt;p&gt;
+        &lt;label&gt;选择时间：&lt;/label&gt;&lt;br&gt;
+        &lt;input type="time" name="time"&gt;
+    &lt;/p&gt;
+    
+    &lt;p&gt;
+        &lt;label&gt;选择颜色：&lt;/label&gt;&lt;br&gt;
+        &lt;input type="color" name="color" value="#4285f4"&gt;
+    &lt;/p&gt;
+    
+    &lt;p&gt;
+        &lt;label&gt;满意度（1-10）：&lt;/label&gt;&lt;br&gt;
+        &lt;input type="range" name="rating" min="1" max="10" value="5"&gt;
+    &lt;/p&gt;
+    
+    &lt;p&gt;
+        &lt;label&gt;数量：&lt;/label&gt;&lt;br&gt;
+        &lt;input type="number" name="quantity" min="1" max="99" value="1"&gt;
+    &lt;/p&gt;
+&lt;/form&gt;
+                </div>
+                
+                <!-- 预览区 -->
+                <div class="panel preview-area" id="preview-form">
+                    <div class="panel-label">预览效果</div>
+                </div>
+            </div>
+            
+            <!-- 操作按钮 -->
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runHtmlExperiment('html-form', 'preview-form', 'badge-form')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetHtmlExperiment('html-form', 'preview-form', 'badge-form')">↺ 重置代码</button>
+            </div>
+        </div>
+        
+        <div class="tip-box">
+            <span class="tip-title">🎯 试试看</span>
+            <ul>
+                <li>点击日期输入框，尝试使用日期选择器</li>
+                <li>点击颜色输入框，打开颜色选择器选择颜色</li>
+                <li>拖动滑块，观察值的变化</li>
+                <li>添加一个 <code>type="email"</code> 的输入框</li>
+            </ul>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         第二部分：HTML5新增元素
+         ============================================ -->
+    
+    <section id="chapter-3">
+        <h2>三、进度条与计量器</h2>
+        <p>HTML5新增了两个用于显示数值进度的元素：进度条（progress）和计量器（meter）。</p>
+        
+        <h3>3.1 进度条 &lt;progress&gt;</h3>
+        <p>进度条用于显示任务的完成进度，如文件下载、表单填写等：</p>
+        
+        <pre class="html"><code>&lt;!-- 基本进度条 --&gt;
+&lt;label&gt;下载进度：&lt;/label&gt;
+&lt;progress value="70" max="100"&gt;70%&lt;/progress&gt;
+
+&lt;!-- 不确定进度（没有value属性） --&gt;
+&lt;label&gt;加载中：&lt;/label&gt;
+&lt;progress&gt;&lt;/progress&gt;</code></pre>
+        
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>属性</th>
+                    <th>说明</th>
+                    <th>示例</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>value</code></td>
+                    <td>当前进度值</td>
+                    <td><code>value="70"</code></td>
+                </tr>
+                <tr>
+                    <td><code>max</code></td>
+                    <td>最大值（默认为1）</td>
+                    <td><code>max="100"</code></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>3.2 计量器 &lt;meter&gt;</h3>
+        <p>计量器用于显示已知范围内的数值，如磁盘使用量、考试成绩等：</p>
+        
+        <pre class="html"><code>&lt;!-- 基本计量器 --&gt;
+&lt;label&gt;磁盘使用：&lt;/label&gt;
+&lt;meter value="0.6"&gt;60%&lt;/meter&gt;
+
+&lt;!-- 带范围的计量器 --&gt;
+&lt;label&gt;考试成绩：&lt;/label&gt;
+&lt;meter value="85" min="0" max="100" low="60" high="90" optimum="100"&gt;
+    85分
+&lt;/meter&gt;</code></pre>
+        
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>属性</th>
+                    <th>说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>value</code></td>
+                    <td>当前值（必需）</td>
+                </tr>
+                <tr>
+                    <td><code>min</code></td>
+                    <td>最小值（默认0）</td>
+                </tr>
+                <tr>
+                    <td><code>max</code></td>
+                    <td>最大值（默认1）</td>
+                </tr>
+                <tr>
+                    <td><code>low</code></td>
+                    <td>低值阈值</td>
+                </tr>
+                <tr>
+                    <td><code>high</code></td>
+                    <td>高值阈值</td>
+                </tr>
+                <tr>
+                    <td><code>optimum</code></td>
+                    <td>最优值</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="note-box">
+            <strong>📌 progress vs meter 的区别</strong>
+            <ul>
+                <li><strong>progress</strong>：表示任务的完成进度，值会变化（如下载进度）</li>
+                <li><strong>meter</strong>：表示已知范围内的固定测量值（如磁盘空间）</li>
+            </ul>
+        </div>
+    </section>
+
+
+    <section id="chapter-4">
+        <h2>四、详情与摘要</h2>
+        <p>HTML5提供了原生的折叠/展开功能，无需JavaScript即可实现。</p>
+        
+        <h3>4.1 details和summary标签</h3>
+        <p><code>&lt;details&gt;</code> 和 <code>&lt;summary&gt;</code> 配合使用可以创建可折叠的内容区域：</p>
+        
+        <pre class="html"><code>&lt;details&gt;
+    &lt;summary&gt;点击查看详情&lt;/summary&gt;
+    &lt;p&gt;这是被折叠的内容，点击标题可以展开或收起。&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;!-- 默认展开 --&gt;
+&lt;details open&gt;
+    &lt;summary&gt;常见问题&lt;/summary&gt;
+    &lt;p&gt;这里是问题的答案...&lt;/p&gt;
+&lt;/details&gt;</code></pre>
+        
+        <div class="tip-box">
+            <span class="tip-title">💡 使用场景</span>
+            <p>details标签非常适合用于：</p>
+            <ul>
+                <li>FAQ（常见问题）页面</li>
+                <li>产品参数展示</li>
+                <li>代码示例的展开/收起</li>
+                <li>隐私政策等长文本的折叠</li>
+            </ul>
+        </div>
+        
+        <h3>4.2 属性说明</h3>
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>元素/属性</th>
+                    <th>说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>&lt;details&gt;</code></td>
+                    <td>折叠容器，包裹所有内容</td>
+                </tr>
+                <tr>
+                    <td><code>&lt;summary&gt;</code></td>
+                    <td>始终可见的摘要/标题</td>
+                </tr>
+                <tr>
+                    <td><code>open</code></td>
+                    <td>添加此属性则默认展开</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+
+    <!-- ============================================
+         实验 02：新元素练习
+         ============================================ -->
+    <section id="lab-2">
+        <h2>🔬 实验 02：HTML5新元素练习</h2>
+        <p>现在让我们练习使用进度条和折叠元素！</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 02：进度条与折叠</span>
+                <span class="status-badge beginner" id="badge-elements">动手实践</span>
+            </div>
+            
+            <div class="lab-body split">
+                <!-- 代码编辑区 -->
+                <div class="panel code-editor" id="html-elements" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
+&lt;h3&gt;HTML5新元素演示&lt;/h3&gt;
+
+&lt;h4&gt;进度条示例&lt;/h4&gt;
+&lt;p&gt;
+    &lt;label&gt;下载进度：&lt;/label&gt;
+    &lt;progress value="75" max="100"&gt;75%&lt;/progress&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+    &lt;label&gt;加载中（不确定进度）：&lt;/label&gt;
+    &lt;progress&gt;&lt;/progress&gt;
+&lt;/p&gt;
+
+&lt;h4&gt;计量器示例&lt;/h4&gt;
+&lt;p&gt;
+    &lt;label&gt;磁盘使用：&lt;/label&gt;
+    &lt;meter value="0.7" min="0" max="1"&gt;70%&lt;/meter&gt;
+&lt;/p&gt;
+
+&lt;h4&gt;折叠内容示例&lt;/h4&gt;
+&lt;details&gt;
+    &lt;summary&gt;什么是HTML5？&lt;/summary&gt;
+    &lt;p&gt;HTML5是HTML的第五个主要版本，带来了许多新特性，如语义化标签、多媒体支持、新表单控件等。&lt;/p&gt;
+&lt;/details&gt;
+
+&lt;details open&gt;
+    &lt;summary&gt;为什么要学习HTML？&lt;/summary&gt;
+    &lt;p&gt;HTML是网页的基础，所有网页都是由HTML构建的。学好HTML是成为Web开发者的第一步！&lt;/p&gt;
+&lt;/details&gt;
+                </div>
+                
+                <!-- 预览区 -->
+                <div class="panel preview-area" id="preview-elements">
+                    <div class="panel-label">预览效果</div>
+                </div>
+            </div>
+            
+            <!-- 操作按钮 -->
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runHtmlExperiment('html-elements', 'preview-elements', 'badge-elements')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetHtmlExperiment('html-elements', 'preview-elements', 'badge-elements')">↺ 重置代码</button>
+            </div>
+        </div>
+        
+        <div class="tip-box">
+            <span class="tip-title">🎯 试试看</span>
+            <ul>
+                <li>修改进度条的 value 值，观察变化</li>
+                <li>点击"什么是HTML5？"展开/收起内容</li>
+                <li>添加一个新的 details 元素，写一个你自己的问答</li>
+                <li>尝试移除 open 属性，观察默认状态的变化</li>
+            </ul>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         课程小结区域
+         ============================================ -->
+    <section id="summary">
+        <h2>五、本课小结</h2>
+        
+        <h3>知识点回顾</h3>
+        <ul class="checklist">
+            <li><strong>HTML5文档声明</strong>：<code>&lt;!DOCTYPE html&gt;</code> 简洁明了</li>
+            <li><strong>日期选择器</strong>：<code>type="date"</code>、<code>type="time"</code> 等</li>
+            <li><strong>颜色选择器</strong>：<code>type="color"</code> 打开颜色面板</li>
+            <li><strong>范围滑块</strong>：<code>type="range"</code> 拖动选择数值</li>
+            <li><strong>进度条</strong>：<code>&lt;progress&gt;</code> 显示任务进度</li>
+            <li><strong>计量器</strong>：<code>&lt;meter&gt;</code> 显示测量值</li>
+            <li><strong>折叠内容</strong>：<code>&lt;details&gt;</code> + <code>&lt;summary&gt;</code></li>
+        </ul>
+        
+        <h3>重点记忆</h3>
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>特性</th>
+                    <th>代码示例</th>
+                    <th>用途</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>日期选择</td>
+                    <td><code>&lt;input type="date"&gt;</code></td>
+                    <td>生日、预约日期</td>
+                </tr>
+                <tr>
+                    <td>颜色选择</td>
+                    <td><code>&lt;input type="color"&gt;</code></td>
+                    <td>主题颜色、偏好设置</td>
+                </tr>
+                <tr>
+                    <td>范围滑块</td>
+                    <td><code>&lt;input type="range"&gt;</code></td>
+                    <td>音量、评分、价格区间</td>
+                </tr>
+                <tr>
+                    <td>进度条</td>
+                    <td><code>&lt;progress&gt;</code></td>
+                    <td>下载进度、加载进度</td>
+                </tr>
+                <tr>
+                    <td>折叠内容</td>
+                    <td><code>&lt;details&gt;</code></td>
+                    <td>FAQ、详情展示</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- 下一课预告 -->
+        <div class="note-box">
+            <strong>下一课预告：</strong>
+            <p>恭喜你完成了HTML部分的学习！下一课我们将正式进入CSS的世界，学习【CSS样式写法】，了解如何为网页添加漂亮的样式！</p>
+        </div>
+    </section>
+
+
+</main>
+
+</body>
+</html>
+
+
+
+
+
+

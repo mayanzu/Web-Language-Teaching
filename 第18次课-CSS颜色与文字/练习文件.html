@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第22课练习：CSS颜色与文字</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; display: flex; justify-content: center; padding-top: 50px; min-height: 100vh; }
+        .container { width: 100%; max-width: 800px; background: white; padding: 40px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .todo-box { background: #e3f2fd; border-left: 5px solid #2196f3; padding: 15px; margin-bottom: 30px; border-radius: 4px; }
+        .todo-box h3 { margin: 0 0 10px 0; color: #1565c0; }
+        .preview-area { border: 2px dashed #ccc; padding: 20px; min-height: 200px; border-radius: 4px; }
+        
+        /* --- 请在下方补充CSS代码 --- */
+        
+        .text-demo {
+            /* 任务1：设置字体颜色为 #673ab7 (紫色) */
+            /* color: ... */
+            
+            
+            /* 任务2：设置字体大小为 24px */
+            /* font-size: ... */
+            
+            
+            /* 任务3：设置字体为 "Microsoft YaHei", sans-serif */
+            /* font-family: ... */
+            
+            
+            /* 任务4：设置文字居中对齐 */
+            /* text-align: ... */
+            
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="todo-box">
+            <h3>📝 练习任务</h3>
+            <ol>
+                <li>修改 <code>.text-demo</code> 的文字颜色、大小、字体和对齐方式。</li>
+                <li>尝试使用 RGB 颜色值 (例如 <code>rgb(100, 50, 200)</code>)。</li>
+            </ol>
+        </div>
+
+        <div class="preview-area">
+            <p class="text-demo">
+                这是一段测试文字。<br>
+                Hello World!
+            </p>
+        </div>
+    </div>
+</body>
+</html>

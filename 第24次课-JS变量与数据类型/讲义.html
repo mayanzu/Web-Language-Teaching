@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第24课：JS变量与数据类型</title>
+    
+    <!-- 统一样式引用 -->
+    <link rel='stylesheet' href='../统一讲义样式模板.css'>
+    <!-- 通用工具函数库 -->
+    <script src='../js/lecture-utils.js'></script>
+</head>
+<body>
+
+<!-- ============================================
+     侧边栏导航 - 课程目录
+     ============================================ -->
+<nav class="sidebar">
+    <div class="sidebar-nav">
+        <h3>课程导航</h3>
+        <a class="sidebar-link" href="#intro">👋 课程概览</a>
+        
+        <h3>Part 1: 变量基础</h3>
+        <a class="sidebar-link sub-link" href="#what-is-variable">1.1 什么是变量</a>
+        <a class="sidebar-link sub-link" href="#let-const-var">1.2 let / const / var</a>
+        <a class="sidebar-link sub-link" href="#naming">1.3 命名规则</a>
+        <a class="sidebar-link sub-link" href="#lab-variable">🔬 实验 01</a>
+        
+        <h3>Part 2: 数据类型</h3>
+        <a class="sidebar-link sub-link" href="#types-overview">2.1 类型概览</a>
+        <a class="sidebar-link sub-link" href="#type-string">2.2 字符串</a>
+        <a class="sidebar-link sub-link" href="#type-number">2.3 数字</a>
+        <a class="sidebar-link sub-link" href="#type-boolean">2.4 布尔值</a>
+        <a class="sidebar-link sub-link" href="#type-null-undefined">2.5 Null 和 Undefined</a>
+        <a class="sidebar-link sub-link" href="#lab-types">🔬 实验 02</a>
+        
+        <h3>Part 3: 类型检测与转换</h3>
+        <a class="sidebar-link sub-link" href="#typeof">3.1 typeof 检查类型</a>
+        <a class="sidebar-link sub-link" href="#conversion">3.2 类型转换</a>
+        <a class="sidebar-link sub-link" href="#lab-conversion">🔬 实验 03</a>
+        
+        <h3>Part 4: 综合实验</h3>
+        <a class="sidebar-link sub-link" href="#lab-profile">🔬 综合实验</a>
+        
+        <h3>总结与练习</h3>
+        <a class="sidebar-link sub-link" href="#summary">📝 课程小结</a>
+    </div>
+</nav>
+
+
+<!-- ============================================
+     主内容区域
+     ============================================ -->
+<main class="content">
+
+    <!-- ============================================
+         课程头部 - 概览区域
+         ============================================ -->
+    <header id="intro">
+        <h1>第24课：JS 变量与数据类型</h1>
+        <p class="intro">变量是程序中存储数据的「容器」，数据类型决定了容器里能放什么。本课将教你如何声明变量、了解 JavaScript 中的基础数据类型，以及如何进行类型检测和转换。</p>
+        
+        <!-- 知识点标签列表 -->
+        <div class="pill-list">
+            <span class="pill">let / const / var</span>
+            <span class="pill">变量命名</span>
+            <span class="pill">String 字符串</span>
+            <span class="pill">Number 数字</span>
+            <span class="pill">Boolean 布尔</span>
+            <span class="pill">Null / Undefined</span>
+            <span class="pill">typeof</span>
+            <span class="pill">类型转换</span>
+        </div>
+    </header>
+
+
+    <!-- ============================================
+         第一部分：变量基础
+         ============================================ -->
+    <section id="what-is-variable">
+        <h2>一、什么是变量？</h2>
+        <p>变量就像是一个「带标签的盒子」，你可以往里面放东西，也可以随时取出来用。在编程中，我们用变量来存储各种数据，比如用户名、年龄、分数等。</p>
+        
+        <div class="tip-box">
+            <span class="tip-title">类比理解</span>
+            <p>想象你有一个储物柜：</p>
+            <ul class="checklist">
+                <li><strong>变量名</strong> = 柜子上的标签（比如「我的书」「我的工具」）</li>
+                <li><strong>变量值</strong> = 柜子里放的东西（书、工具等）</li>
+                <li><strong>赋值操作</strong> = 把东西放进柜子（或换成别的东西）</li>
+            </ul>
+        </div>
+
+        <pre><code>// 声明一个变量，就像贴一个标签
+let myName = '小明';   // 在 myName 这个"盒子"里放入"小明"
+
+// 使用变量，就是取出盒子里的内容
+console.log(myName);   // 输出: 小明
+
+// 修改变量，就是换掉盒子里的东西
+myName = '小红';       // 现在 myName 里是"小红"了
+console.log(myName);   // 输出: 小红
+</code></pre>
+    </section>
+
+
+    <section id="let-const-var">
+        <h3>1.1 声明变量：let、const、var</h3>
+        <p>现代 JavaScript 中，我们主要使用 <code>let</code> 和 <code>const</code> 来声明变量。<code>var</code> 是旧的关键字，不推荐使用。</p>
+        
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>关键字</th>
+                    <th>是否可重新赋值</th>
+                    <th>作用域</th>
+                    <th>推荐用法</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>let</code></td>
+                    <td>✅ 可以</td>
+                    <td>块级作用域 <code>{}</code></td>
+                    <td>用于声明<strong>可能会改变</strong>的变量，如计数器、状态值</td>
+                </tr>
+                <tr>
+                    <td><code>const</code></td>
+                    <td>❌ 不可以</td>
+                    <td>块级作用域 <code>{}</code></td>
+                    <td><strong>首选！</strong>用于声明<strong>不会改变</strong>的常量</td>
+                </tr>
+                <tr>
+                    <td><code>var</code></td>
+                    <td>✅ 可以</td>
+                    <td>函数作用域</td>
+                    <td>❌ 不推荐使用，有变量提升等问题</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <pre><code>// 使用 let 声明一个可变的变量
+let score = 100;
+score = 150;  // ✅ 合法，可以重新赋值
+
+// 使用 const 声明一个常量
+const appName = 'MyGame';
+// appName = 'NewGame';  // ❌ 错误！常量不能被重新赋值
+
+// const 对于对象和数组的特殊性
+const user = { name: 'Alice' };
+user.name = 'Bob';  // ✅ 合法！可以修改对象内部的属性
+// user = { name: 'Charlie' };  // ❌ 错误！不能指向新对象
+</code></pre>
+
+        <div class="warning-box">
+            <strong>为什么不推荐使用 var？</strong>
+            <ul class="checklist">
+                <li><strong>变量提升 (Hoisting)</strong>：var 声明的变量会被"提升"到作用域顶部，可能导致意外行为</li>
+                <li><strong>没有块级作用域</strong>：在 if 或 for 中声明的变量会"泄露"到外部</li>
+            </ul>
+<pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>// var 的问题示例
+if (true) {
+    var color = 'blue';
+}
+console.log(color);  // 输出 'blue' - color 泄露到外部！
+
+// 如果使用 let
+if (true) {
+    let theme = 'dark';
+}
+// console.log(theme);  // ❌ 错误！theme 在这里无法访问
+</code></pre>
+            <p style="margin-top: 12px;"><strong>实践建议：</strong>默认使用 <code>const</code>，当确定需要改变值时再换成 <code>let</code>。完全忘记 <code>var</code>。</p>
+        </div>
+    </section>
+
+
+    <section id="naming">
+        <h3>1.2 变量命名规则</h3>
+        <p>给变量起一个好名字至关重要，它能极大提高代码的可读性。</p>
+        
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>规则</th>
+                    <th>说明</th>
+                    <th>示例</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>合法字符</td>
+                    <td>只能使用字母、数字、下划线 <code>_</code> 和 <code>$</code></td>
+                    <td><code>userName</code>, <code>_private</code>, <code>$element</code></td>
+                </tr>
+                <tr>
+                    <td>开头字符</td>
+                    <td>不能以数字开头</td>
+                    <td>✅ <code>name1</code> ❌ <code>1name</code></td>
+                </tr>
+                <tr>
+                    <td>关键字</td>
+                    <td>不能使用 JS 保留关键字</td>
+                    <td>❌ <code>let</code>, <code>if</code>, <code>for</code>, <code>function</code></td>
+                </tr>
+                <tr>
+                    <td>大小写敏感</td>
+                    <td><code>user</code> 和 <code>User</code> 是不同的变量</td>
+                    <td><code>user ≠ User ≠ USER</code></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="note-box">
+            <strong>命名约定（Best Practices）：</strong>
+            <ul class="checklist">
+                <li><strong>小驼峰命名法 (camelCase)</strong>：第一个单词小写，后续每个单词首字母大写。如：<code>userName</code>, <code>totalPrice</code></li>
+                <li><strong>见名知意</strong>：变量名应准确描述所存储的数据。避免 <code>a</code>, <code>b</code>, <code>temp</code> 等无意义名称</li>
+                <li><strong>布尔值命名</strong>：通常以 <code>is</code>, <code>has</code>, <code>can</code> 开头。如：<code>isLoggedIn</code>, <code>hasPermission</code></li>
+                <li><strong>常量命名</strong>：全大写加下划线。如：<code>const MAX_COUNT = 100</code></li>
+            </ul>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         实验 01：变量声明
+         ============================================ -->
+    <section id="lab-variable">
+        <h2>实验 01：变量声明与使用</h2>
+        <p>让我们动手练习声明和使用变量！</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 01：let vs const 实战</span>
+                <span class="status-badge beginner" id="badge-variable">动手实践</span>
+            </div>
+            
+            <div class="lab-body split">
+                <!-- HTML 预览说明 -->
+                <div class="panel html-viewer">
+<div class="panel-label">预览区元素</div>
+&lt;!-- 页面上有这些元素 --&gt;
+&lt;p id="var-output"&gt;等待运行...&lt;/p&gt;
+&lt;p id="let-demo"&gt;let 演示&lt;/p&gt;
+&lt;p id="const-demo"&gt;const 演示&lt;/p&gt;
+                </div>
+                
+                <!-- JS 代码编辑区 -->
+                <div class="panel code-editor" id="code-variable" contenteditable="true">
+<div class="panel-label">JavaScript (可编辑)</div>
+// === 使用 let（值会改变的情况）===
+let temperature = 25;
+let count = 0;
+
+// 修改 let 变量
+temperature = 30;
+count = count + 1;
+count++;  // 等同于 count = count + 1
+
+// === 使用 const（值不会改变的情况）===
+const appName = '我的应用';
+const version = '1.0.0';
+const maxUsers = 1000;
+
+// 显示结果
+const output = document.getElementById('var-output');
+const letDemo = document.getElementById('let-demo');
+const constDemo = document.getElementById('const-demo');
+
+if (output) {
+    output.innerHTML = `温度: ${temperature}°C, 计数: ${count}`;
+}
+if (letDemo) {
+    letDemo.innerHTML = `<strong>let</strong> - 温度可以从 25 变为 ${temperature}`;
+    letDemo.style.color = 'blue';
+}
+if (constDemo) {
+    constDemo.innerHTML = `<strong>const</strong> - ${appName} v${version} (最大 ${maxUsers} 用户)`;
+    constDemo.style.color = 'green';
+}
+                </div>
+            </div>
+            
+            <!-- 操作按钮 -->
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runJsDomExperiment('code-variable', 'badge-variable')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetJsDomExperiment('code-variable', 'variable-preview', 'badge-variable')">↺ 重置代码</button>
+            </div>
+            
+            <!-- 实际预览区 -->
+            <div class="preview-box" id="variable-preview">
+                <p id="var-output">等待运行...</p>
+                <p id="let-demo">let 演示</p>
+                <p id="const-demo">const 演示</p>
+            </div>
+        </div>
+
+        <div class="tip-box">
+            <span class="tip-title">小结</span>
+            <ul class="checklist">
+                <li>用 <code>let</code> 声明需要修改的变量（如温度、计数器）</li>
+                <li>用 <code>const</code> 声明不会改变的常量（如应用名、配置）</li>
+                <li><code>++</code> 是自增运算符，让变量值加 1</li>
+            </ul>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         第二部分：数据类型
+         ============================================ -->
+    <section id="types-overview">
+        <h2>二、JavaScript 数据类型概览</h2>
+        <p>JavaScript 是「动态类型」语言，变量的类型由赋给它的值决定。数据类型分为<strong>基础类型</strong>和<strong>引用类型</strong>。</p>
+        
+        <div class="note-box">
+            <strong>JavaScript 的 8 种数据类型：</strong>
+            <table class="prop-table" style="margin-top: 12px;">
+                <thead>
+                    <tr><th>类型</th><th>分类</th><th>描述</th><th>示例</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>String</code></td>
+                        <td>基础类型</td>
+                        <td>文本数据</td>
+                        <td><code>'Hello'</code>, <code>"World"</code>, <code>`Hi`</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>Number</code></td>
+                        <td>基础类型</td>
+                        <td>数字（整数、小数）</td>
+                        <td><code>42</code>, <code>3.14</code>, <code>NaN</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>Boolean</code></td>
+                        <td>基础类型</td>
+                        <td>真或假</td>
+                        <td><code>true</code>, <code>false</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>Undefined</code></td>
+                        <td>基础类型</td>
+                        <td>未定义的值</td>
+                        <td><code>undefined</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>Null</code></td>
+                        <td>基础类型</td>
+                        <td>空值</td>
+                        <td><code>null</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>Symbol</code></td>
+                        <td>基础类型</td>
+                        <td>唯一标识符（ES6）</td>
+                        <td><code>Symbol('id')</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>BigInt</code></td>
+                        <td>基础类型</td>
+                        <td>大整数（ES2020）</td>
+                        <td><code>9007199254740991n</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>Object</code></td>
+                        <td>引用类型</td>
+                        <td>对象、数组、函数等</td>
+                        <td><code>{}</code>, <code>[]</code>, <code>function(){}</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <p style="margin-top: 20px;"><strong>本课重点：</strong>学习前 5 种最常用的基础类型（String, Number, Boolean, Undefined, Null）。</p>
+    </section>
+
+
+    <section id="type-string">
+        <h3>2.1 字符串 (String)</h3>
+        <p>字符串用于表示文本，必须用引号包裹。JavaScript 支持三种引号：</p>
+        
+        <table class="prop-table">
+            <thead>
+                <tr><th>引号类型</th><th>示例</th><th>说明</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>单引号 <code>' '</code></td>
+                    <td><code>let name = 'Alice';</code></td>
+                    <td>最常用</td>
+                </tr>
+                <tr>
+                    <td>双引号 <code>" "</code></td>
+                    <td><code>let msg = "Hello";</code></td>
+                    <td>与单引号功能相同</td>
+                </tr>
+                <tr>
+                    <td>反引号 <code>` `</code></td>
+                    <td><code>let hi = `Hello, ${name}!`;</code></td>
+                    <td><strong>推荐！</strong>可以嵌入变量和多行</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <pre><code>const userName = 'Bob';
+const userAge = 25;
+
+// 传统拼接方式（繁琐）
+const message1 = 'User ' + userName + ' is ' + userAge + ' years old.';
+
+// 模板字符串（推荐！清晰直观）
+const message2 = `User ${userName} is ${userAge} years old.`;
+
+console.log(message2);  // "User Bob is 25 years old."
+
+// 模板字符串支持多行
+const html = `
+  &lt;div&gt;
+    &lt;h1&gt;${userName}&lt;/h1&gt;
+    &lt;p&gt;年龄：${userAge}&lt;/p&gt;
+  &lt;/div&gt;
+`;
+</code></pre>
+
+        <div class="tip-box">
+            <span class="tip-title">字符串常用操作</span>
+<pre style="margin-top: 10px;"><code>const str = 'Hello World';
+
+str.length         // 11 (字符串长度)
+str.toUpperCase()  // "HELLO WORLD" (转大写)
+str.toLowerCase()  // "hello world" (转小写)
+str.indexOf('World')  // 6 (查找位置)
+str.includes('Hello') // true (是否包含)
+str.slice(0, 5)    // "Hello" (截取)
+str.split(' ')     // ["Hello", "World"] (分割)
+str.replace('World', 'JS')  // "Hello JS" (替换)
+</code></pre>
+        </div>
+    </section>
+
+
+    <section id="type-number">
+        <h3>2.2 数字 (Number)</h3>
+        <p>JavaScript 中只有一种数字类型，不区分整数和浮点数。</p>
+        
+        <pre><code>let integer = 100;       // 整数
+let float = 3.14;        // 小数
+let negative = -50;      // 负数
+let scientific = 2.5e6;  // 2500000 (科学计数法)
+</code></pre>
+
+        <p>数字类型还包含几个特殊值：</p>
+        <ul class="checklist">
+            <li><code>Infinity</code>：正无穷大，例如 <code>1 / 0</code></li>
+            <li><code>-Infinity</code>：负无穷大，例如 <code>-1 / 0</code></li>
+            <li><code>NaN</code>（Not-a-Number）：不是数字，例如 <code>'abc' / 2</code></li>
+        </ul>
+
+        <div class="tip-box">
+            <span class="tip-title">数字常用操作</span>
+<pre style="margin-top: 10px;"><code>// 数学运算
+10 + 5   // 15 (加法)
+10 - 5   // 5  (减法)
+10 * 5   // 50 (乘法)
+10 / 5   // 2  (除法)
+10 % 3   // 1  (取余)
+2 ** 3   // 8  (幂运算)
+
+// Math 对象
+Math.round(4.7)    // 5 (四舍五入)
+Math.floor(4.7)    // 4 (向下取整)
+Math.ceil(4.3)     // 5 (向上取整)
+Math.abs(-5)       // 5 (绝对值)
+Math.max(1, 5, 3)  // 5 (最大值)
+Math.min(1, 5, 3)  // 1 (最小值)
+Math.random()      // 0-1 之间的随机数
+
+// 数字方法
+const num = 3.14159;
+num.toFixed(2)     // "3.14" (保留小数位)
+</code></pre>
+        </div>
+
+        <div class="warning-box">
+            <strong>浮点数精度问题</strong>
+            <p>JavaScript 中的小数运算可能存在精度问题：</p>
+<pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>0.1 + 0.2         // 0.30000000000000004 (不是 0.3!)
+0.1 + 0.2 === 0.3 // false
+
+// 解决方案：使用 toFixed()
+(0.1 + 0.2).toFixed(2)  // "0.30"
+</code></pre>
+        </div>
+    </section>
+
+
+    <section id="type-boolean">
+        <h3>2.3 布尔值 (Boolean)</h3>
+        <p>布尔值只有两个：<code>true</code>（真）和 <code>false</code>（假）。通常用于条件判断。</p>
+        
+        <pre><code>let isLoggedIn = true;
+let hasPermission = false;
+
+let userAge = 20;
+let isAdult = userAge >= 18;  // true
+
+// 比较运算符返回布尔值
+5 > 3      // true
+10 === 10  // true
+'a' !== 'b'  // true
+</code></pre>
+
+        <div class="note-box">
+            <strong>真值 (Truthy) 和 假值 (Falsy)</strong>
+            <p>在条件判断中，以下值会被视为 <code>false</code>（假值）：</p>
+            <ul class="checklist">
+                <li><code>false</code> - 布尔值 false</li>
+                <li><code>0</code> 和 <code>-0</code> - 数字零</li>
+                <li><code>''</code> - 空字符串</li>
+                <li><code>null</code> - 空值</li>
+                <li><code>undefined</code> - 未定义</li>
+                <li><code>NaN</code> - 非数字</li>
+            </ul>
+            <p style="margin-top: 12px;"><strong>其他所有值都是真值</strong>，包括 <code>"0"</code>（字符串）、<code>[]</code>（空数组）、<code>{}</code>（空对象）</p>
+        </div>
+    </section>
+
+
+    <section id="type-null-undefined">
+        <h3>2.4 Null 和 Undefined</h3>
+        <p>这两个类型都表示「没有值」，但语义不同：</p>
+        
+        <table class="prop-table">
+            <thead>
+                <tr><th>类型</th><th>含义</th><th>典型场景</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>undefined</code></td>
+                    <td><strong>未定义</strong> - 变量已声明但未赋值，是默认初始状态</td>
+                    <td><code>let x; console.log(x); // undefined</code></td>
+                </tr>
+                <tr>
+                    <td><code>null</code></td>
+                    <td><strong>空值</strong> - 明确赋予的表示「没有对象」的值</td>
+                    <td><code>let user = null; // 当前没有用户</code></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="tip-box">
+            <span class="tip-title">简单区分</span>
+            <p><code>undefined</code> 是 JavaScript <strong>自动给的</strong>，表示"你忘了给值"</p>
+            <p><code>null</code> 是程序员<strong>手动给的</strong>，表示"我确定这里现在什么都没有"</p>
+<pre style="margin-top: 10px;"><code>// undefined 的常见情况
+let a;
+console.log(a);  // undefined (声明但未赋值)
+
+const obj = { name: 'Alice' };
+console.log(obj.age);  // undefined (访问不存在的属性)
+
+// null 的使用场景
+let currentUser = null;  // 当前没有用户登录
+
+// 比较
+null == undefined   // true (相等运算符)
+null === undefined  // false (严格相等，类型不同)
+typeof null         // "object" (历史遗留 bug)
+typeof undefined    // "undefined"
+</code></pre>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         实验 02：数据类型
+         ============================================ -->
+    <section id="lab-types">
+        <h2>实验 02：数据类型探索</h2>
+        <p>让我们动手探索不同的数据类型！</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 02：各种数据类型</span>
+                <span class="status-badge beginner" id="badge-types">动手实践</span>
+            </div>
+            
+            <div class="lab-body split">
+                <!-- HTML 预览说明 -->
+                <div class="panel html-viewer">
+<div class="panel-label">预览区元素</div>
+&lt;!-- 显示各种类型的数据 --&gt;
+&lt;div id="types-output"&gt;
+  等待运行...
+&lt;/div&gt;
+                </div>
+                
+                <!-- JS 代码编辑区 -->
+                <div class="panel code-editor" id="code-types" contenteditable="true">
+<div class="panel-label">JavaScript (可编辑)</div>
+// 定义各种类型的变量
+const myString = '你好，JavaScript！';
+const myNumber = 42;
+const myFloat = 3.14159;
+const myBoolean = true;
+let myUndefined;
+const myNull = null;
+
+// 获取输出元素
+const output = document.getElementById('types-output');
+
+// 创建展示内容
+if (output) {
+    output.innerHTML = `
+        <p><strong>字符串:</strong> "${myString}" (长度: ${myString.length})</p>
+        <p><strong>整数:</strong> ${myNumber}</p>
+        <p><strong>小数:</strong> ${myFloat.toFixed(2)}</p>
+        <p><strong>布尔值:</strong> ${myBoolean}</p>
+        <p><strong>未定义:</strong> ${myUndefined}</p>
+        <p><strong>空值:</strong> ${myNull}</p>
+        <hr>
+        <p><strong>类型检测:</strong></p>
+        <p>typeof myString = "${typeof myString}"</p>
+        <p>typeof myNumber = "${typeof myNumber}"</p>
+        <p>typeof myBoolean = "${typeof myBoolean}"</p>
+        <p>typeof myUndefined = "${typeof myUndefined}"</p>
+        <p>typeof myNull = "${typeof myNull}" (历史bug)</p>
+    `;
+}
+                </div>
+            </div>
+            
+            <!-- 操作按钮 -->
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runJsDomExperiment('code-types', 'badge-types')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetJsDomExperiment('code-types', 'types-preview', 'badge-types')">↺ 重置代码</button>
+            </div>
+            
+            <!-- 实际预览区 -->
+            <div class="preview-box" id="types-preview">
+                <div id="types-output">等待运行...</div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         第三部分：类型检测与转换
+         ============================================ -->
+    <section id="typeof">
+        <h2>三、使用 typeof 检查类型</h2>
+        <p><code>typeof</code> 是一个运算符，可以返回表示操作数类型的字符串。</p>
+        
+        <pre><code>typeof 18          // "number"
+typeof 'hello'     // "string"
+typeof true        // "boolean"
+typeof undefined   // "undefined"
+typeof {}          // "object"
+typeof []          // "object" (数组也是对象)
+typeof null        // "object" (历史遗留 bug)
+typeof function(){} // "function"
+</code></pre>
+
+        <div class="warning-box">
+            <strong>注意：</strong>
+            <p><code>typeof null</code> 返回 <code>'object'</code> 是 JavaScript 早期版本的一个错误。要检查 null，使用 <code>value === null</code>。</p>
+        </div>
+    </section>
+
+
+    <section id="conversion">
+        <h3>3.1 数据类型转换</h3>
+        <p>在编程中，我们经常需要在不同数据类型之间进行转换。</p>
+        
+        <h4>显式类型转换（手动转换）</h4>
+        <table class="prop-table">
+            <thead>
+                <tr><th>函数</th><th>说明</th><th>示例</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>Number()</code></td>
+                    <td>转换为数字</td>
+                    <td><code>Number('123')</code> → <code>123</code></td>
+                </tr>
+                <tr>
+                    <td><code>String()</code></td>
+                    <td>转换为字符串</td>
+                    <td><code>String(123)</code> → <code>'123'</code></td>
+                </tr>
+                <tr>
+                    <td><code>Boolean()</code></td>
+                    <td>转换为布尔值</td>
+                    <td><code>Boolean(0)</code> → <code>false</code></td>
+                </tr>
+                <tr>
+                    <td><code>parseInt()</code></td>
+                    <td>解析为整数</td>
+                    <td><code>parseInt('28.5px')</code> → <code>28</code></td>
+                </tr>
+                <tr>
+                    <td><code>parseFloat()</code></td>
+                    <td>解析为浮点数</td>
+                    <td><code>parseFloat('28.5px')</code> → <code>28.5</code></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h4>隐式类型转换（自动转换）</h4>
+        <pre><code>// + 运算符的特殊性
+'5' + 3       // "53" (字符串拼接优先)
+5 + '3'       // "53"
+
+// 其他数学运算符会转换为数字
+'10' - 5      // 5
+'10' * 2      // 20
+
+// == 相等运算符会进行隐式转换（不推荐）
+5 == '5'      // true
+
+// === 严格相等不会转换（推荐！）
+5 === '5'     // false
+</code></pre>
+
+        <div class="tip-box">
+            <span class="tip-title">最佳实践</span>
+            <ul class="checklist">
+                <li>在进行数学运算前，明确使用 <code>Number()</code> 或 <code>parseInt()</code> 转换</li>
+                <li>比较值时，始终使用严格相等运算符 <code>===</code> 和 <code>!==</code></li>
+            </ul>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         实验 03：类型转换
+         ============================================ -->
+    <section id="lab-conversion">
+        <h2>实验 03：类型转换实战</h2>
+        <p>让我们练习各种类型转换操作！</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 03：类型转换</span>
+                <span class="status-badge beginner" id="badge-conversion">动手实践</span>
+            </div>
+            
+            <div class="lab-body split">
+                <!-- HTML 预览说明 -->
+                <div class="panel html-viewer">
+<div class="panel-label">预览区元素</div>
+&lt;!-- 输入框和结果展示 --&gt;
+&lt;input id="input-value" value="123"&gt;
+&lt;div id="conversion-output"&gt;...&lt;/div&gt;
+                </div>
+                
+                <!-- JS 代码编辑区 -->
+                <div class="panel code-editor" id="code-conversion" contenteditable="true">
+<div class="panel-label">JavaScript (可编辑)</div>
+// 获取输入值
+const inputEl = document.getElementById('input-value');
+const outputEl = document.getElementById('conversion-output');
+
+if (inputEl && outputEl) {
+    const value = inputEl.value;  // 输入框的值是字符串
+    
+    // 各种转换
+    const toNumber = Number(value);
+    const toInt = parseInt(value);
+    const toFloat = parseFloat(value);
+    const toBool = Boolean(value);
+    
+    // 显示结果
+    outputEl.innerHTML = `
+        <p><strong>原始值:</strong> "${value}" (类型: ${typeof value})</p>
+        <hr>
+        <p><strong>Number():</strong> ${toNumber} (类型: ${typeof toNumber})</p>
+        <p><strong>parseInt():</strong> ${toInt}</p>
+        <p><strong>parseFloat():</strong> ${toFloat}</p>
+        <p><strong>Boolean():</strong> ${toBool}</p>
+        <hr>
+        <p><strong>运算测试:</strong></p>
+        <p>"${value}" + 10 = "${value + 10}" (字符串拼接)</p>
+        <p>Number("${value}") + 10 = ${toNumber + 10} (数字相加)</p>
+    `;
+}
+                </div>
+            </div>
+            
+            <!-- 操作按钮 -->
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runJsDomExperiment('code-conversion', 'badge-conversion')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetJsDomExperiment('code-conversion', 'conversion-preview', 'badge-conversion')">↺ 重置代码</button>
+            </div>
+            
+            <!-- 实际预览区 -->
+            <div class="preview-box" id="conversion-preview">
+                <p>输入值：<input id="input-value" value="123" style="padding: 6px; border: 1px solid #ddd; border-radius: 4px; width: 100px;"></p>
+                <div id="conversion-output" style="margin-top: 15px;">点击「运行代码」查看转换结果</div>
+            </div>
+        </div>
+
+        <div class="note-box">
+            <strong>试试修改输入框的值：</strong>
+            <ul class="checklist">
+                <li>输入 <code>3.14</code> - 看看 parseInt 和 parseFloat 的区别</li>
+                <li>输入 <code>100px</code> - 看看 Number 和 parseInt 的区别</li>
+                <li>输入空值 - 看看会发生什么</li>
+            </ul>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         综合实验
+         ============================================ -->
+    <section id="lab-profile">
+        <h2>综合实验：个人信息卡片</h2>
+        <p>综合运用变量和数据类型，创建一个动态的个人信息展示卡片。</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>综合实验：BMI 计算器</span>
+                <span class="status-badge advanced" id="badge-profile">综合实战</span>
+            </div>
+            
+            <div class="lab-body split">
+                <!-- HTML 预览说明 -->
+                <div class="panel html-viewer">
+<div class="panel-label">HTML 结构</div>
+&lt;h3&gt;BMI 计算器&lt;/h3&gt;
+&lt;p&gt;体重: &lt;input id="weight" value="70"&gt; kg&lt;/p&gt;
+&lt;p&gt;身高: &lt;input id="height" value="175"&gt; cm&lt;/p&gt;
+&lt;div id="bmi-result"&gt;...&lt;/div&gt;
+                </div>
+                
+                <!-- JS 代码编辑区 -->
+                <div class="panel code-editor" id="code-profile" contenteditable="true">
+<div class="panel-label">JavaScript (可编辑)</div>
+// 获取输入元素
+const weightInput = document.getElementById('weight');
+const heightInput = document.getElementById('height');
+const resultDiv = document.getElementById('bmi-result');
+
+if (weightInput && heightInput && resultDiv) {
+    // 获取输入值并转换为数字
+    const weight = Number(weightInput.value);  // 公斤
+    const heightCm = Number(heightInput.value);  // 厘米
+    
+    // 验证输入是否有效
+    if (isNaN(weight) || isNaN(heightCm) || weight <= 0 || heightCm <= 0) {
+        resultDiv.innerHTML = `
+            <p style="color: red;">请输入有效的数字！</p>
+        `;
+    } else {
+        const heightM = heightCm / 100;  // 转换为米
+        
+        // 计算 BMI
+        // 公式: BMI = 体重(kg) / 身高(m)²
+        const bmi = weight / (heightM * heightM);
+        
+        // 判断 BMI 等级
+        let status = '';
+        let color = '';
+        if (bmi < 18.5) {
+            status = '偏瘦';
+            color = 'blue';
+        } else if (bmi < 24) {
+            status = '正常';
+            color = 'green';
+        } else if (bmi < 28) {
+            status = '偏胖';
+            color = 'orange';
+        } else {
+            status = '肥胖';
+            color = 'red';
+        }
+        
+        // 显示结果
+        resultDiv.innerHTML = `
+            <p>体重: <strong>${weight}</strong> kg</p>
+            <p>身高: <strong>${heightCm}</strong> cm = <strong>${heightM.toFixed(2)}</strong> m</p>
+            <hr>
+            <p style="font-size: 24px;">
+                BMI: <strong>${bmi.toFixed(1)}</strong>
+            </p>
+            <p>状态: <strong>${status}</strong></p>
+        `;
+    }
+}
+                </div>
+            </div>
+            
+            <!-- 操作按钮 -->
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runJsDomExperiment('code-profile', 'badge-profile')">▶ 计算 BMI</button>
+                <button class="btn btn-reset" onclick="resetJsDomExperiment('code-profile', 'profile-preview', 'badge-profile')">↺ 重置代码</button>
+            </div>
+            
+            <!-- 实际预览区 -->
+            <div class="preview-box" id="profile-preview">
+                <h3>BMI 计算器</h3>
+                <p>体重: <input id="weight" type="number" value="70" style="padding: 6px; border: 1px solid #ddd; border-radius: 4px; width: 80px;"> kg</p>
+                <p>身高: <input id="height" type="number" value="175" style="padding: 6px; border: 1px solid #ddd; border-radius: 4px; width: 80px;"> cm</p>
+                <div id="bmi-result" style="margin-top: 15px; padding: 15px; background: #f9f9f9; border-radius: 6px;">点击「计算 BMI」查看结果</div>
+            </div>
+        </div>
+
+        <div class="note-box">
+            <strong>知识点运用：</strong>
+            <ul class="checklist">
+                <li><code>const</code> 和 <code>let</code> 声明变量</li>
+                <li><code>Number()</code> 将字符串转换为数字</li>
+                <li>数学运算：除法、幂运算</li>
+                <li><code>toFixed()</code> 保留小数位</li>
+                <li>模板字符串 <code>`${变量}`</code> 组合内容</li>
+                <li>条件判断（if-else）</li>
+            </ul>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         课程小结
+         ============================================ -->
+    <section id="summary">
+        <h2>四、本课小结</h2>
+        
+        <h3>知识点回顾</h3>
+        <ul class="checklist">
+            <li><strong>变量</strong>是程序中用于存储数据的命名容器</li>
+            <li>使用 <code>const</code> 声明常量（优先），使用 <code>let</code> 声明可变变量，避免使用 <code>var</code></li>
+            <li>变量命名遵循<strong>小驼峰命名法</strong>，做到<strong>见名知意</strong></li>
+            <li>JavaScript 有多种<strong>基础数据类型</strong>：String, Number, Boolean, Undefined, Null</li>
+            <li><strong>模板字符串</strong>（反引号）是拼接字符串的现代最佳实践</li>
+            <li><code>undefined</code>（未赋值）和 <code>null</code>（主动赋空）的语义不同</li>
+            <li>使用 <code>typeof</code> 检查变量类型，但注意 <code>typeof null</code> 的特例</li>
+            <li>类型转换分为显式（手动）和隐式（自动），推荐使用 <code>===</code> 进行比较</li>
+        </ul>
+        
+        <h3>重点记忆</h3>
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>概念</th>
+                    <th>要点</th>
+                    <th>示例</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>声明常量</td>
+                    <td>值不能重新赋值</td>
+                    <td><code>const PI = 3.14</code></td>
+                </tr>
+                <tr>
+                    <td>声明变量</td>
+                    <td>值可以重新赋值</td>
+                    <td><code>let count = 0</code></td>
+                </tr>
+                <tr>
+                    <td>模板字符串</td>
+                    <td>使用反引号和 ${}</td>
+                    <td><code>`Hello, ${name}!`</code></td>
+                </tr>
+                <tr>
+                    <td>类型检测</td>
+                    <td>返回类型字符串</td>
+                    <td><code>typeof 123 // "number"</code></td>
+                </tr>
+                <tr>
+                    <td>类型转换</td>
+                    <td>手动转换更安全</td>
+                    <td><code>Number('123')</code></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- 下一课预告 -->
+        <div class="note-box">
+            <strong>下一课预告：</strong>
+            <p>下一课我们将学习<strong>运算符与表达式</strong>：算术运算符、比较运算符、逻辑运算符等。利用本课所学的变量和数据类型，让程序真正地「动起来」进行计算和判断！</p>
+        </div>
+    </section>
+
+
+</main>
+
+</body>
+</html>
+

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第26课练习：数字分析器</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); width: 100%; max-width: 450px; }
+        h1 { text-align: center; color: #333; margin-bottom: 20px; font-size: 22px; }
+        .todo-box { background: #e3f2fd; border-left: 5px solid #2196f3; padding: 15px; margin-bottom: 20px; border-radius: 4px; }
+        .todo-box h3 { margin: 0 0 10px 0; color: #1565c0; font-size: 16px; }
+        .todo-box ol { margin: 0; padding-left: 20px; color: #555; font-size: 14px; }
+        input { width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 16px; box-sizing: border-box; margin-bottom: 15px; text-align: center; }
+        button { width: 100%; padding: 12px; border: none; border-radius: 8px; background: #4caf50; color: white; font-size: 16px; cursor: pointer; margin-bottom: 10px; transition: 0.2s; }
+        button:hover { opacity: 0.9; }
+        button.secondary { background: #2196f3; }
+        #result { padding: 15px; background: #f8f9fa; border: 2px dashed #dee2e6; border-radius: 8px; text-align: center; color: #333; min-height: 40px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔢 数字分析器</h1>
+        
+        <div class="todo-box">
+            <h3>📝 练习任务</h3>
+            <ol>
+                <li>获取输入框的数字。</li>
+                <li>点击"判断奇偶"：使用 <code>if/else</code> 判断数字是奇数还是偶数。</li>
+                <li>点击"计算累加和"：使用 <code>for</code> 循环计算从 1 加到该数字的总和。</li>
+            </ol>
+        </div>
+
+        <input type="number" id="numInput" placeholder="请输入一个正整数" value="10">
+        
+        <button id="checkBtn">判断奇偶 (if/else)</button>
+        <button id="sumBtn" class="secondary">计算 1 到 N 的累加和 (for循环)</button>
+
+        <div id="result">结果将显示在这里</div>
+    </div>
+
+    <script>
+        // 1. 获取元素
+        const input = document.getElementById('numInput');
+        const result = document.getElementById('result');
+        const checkBtn = document.getElementById('checkBtn');
+        const sumBtn = document.getElementById('sumBtn');
+
+        // 2. 任务一：判断奇偶
+        checkBtn.addEventListener('click', function() {
+            const n = Number(input.value);
+            
+            // --- 请补充代码 ---
+            // 提示：使用 n % 2 === 0 判断偶数
+            
+            
+        });
+
+        // 3. 任务二：计算累加和 (1 + 2 + ... + n)
+        sumBtn.addEventListener('click', function() {
+            const n = Number(input.value);
+            let sum = 0;
+
+            // --- 请补充代码 ---
+            // 提示：使用 for (let i = 1; i <= n; i++) { ... }
+            
+            
+            
+            result.innerText = `1 到 ${n} 的累加和是：${sum}`;
+        });
+    </script>
+</body>
+</html>

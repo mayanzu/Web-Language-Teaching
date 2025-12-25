@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第11课：HTML多媒体</title>
+    <link rel='stylesheet' href='../统一讲义样式模板.css'>
+    <script src='../js/lecture-utils.js'></script>
+</head>
+<body>
+
+<!-- ============================================
+     侧边栏导航 - 课程目录
+     ============================================ -->
+<nav class="sidebar">
+    <div class="sidebar-nav">
+        <h3>课程导航</h3>
+        <a class="sidebar-link" href="#intro">👋 课程概览</a>
+        
+        <h3>Part 1: 音频元素</h3>
+        <a class="sidebar-link sub-link" href="#chapter-1">一、音频标签基本使用</a>
+        <a class="sidebar-link sub-link" href="#lab-1">🔬 实验 1：音频播放器练习</a>
+        
+        <h3>Part 2: 视频元素</h3>
+        <a class="sidebar-link sub-link" href="#chapter-2">二、视频标签基本使用</a>
+        <a class="sidebar-link sub-link" href="#lab-2">🔬 实验 2：视频播放器练习</a>
+        
+        <h3>Part 3: 嵌入内容</h3>
+        <a class="sidebar-link sub-link" href="#chapter-3">三、iframe嵌入外部内容</a>
+        <a class="sidebar-link sub-link" href="#lab-3">🔬 实验 3：iframe嵌入练习</a>
+        
+        <h3>总结与练习</h3>
+        <a class="sidebar-link sub-link" href="#summary">📝 课程小结</a>
+    </div>
+</nav>
+
+
+<!-- ============================================
+     主内容区域
+     ============================================ -->
+<main class="content">
+
+    <!-- ============================================
+         课程头部 - 概览区域
+         ============================================ -->
+    <header id="intro">
+        <h1>第11课：HTML多媒体</h1>
+        <p class="intro">
+            欢迎来到HTML多媒体的学习！在前面的课程中，我们学习了HTML的基础结构、文本、列表、链接、图片、表格、表单和语义化标签等内容。
+            本节课我们将学习HTML多媒体元素，包括音频、视频和嵌入内容，这些元素能够让我们的网页更加生动和丰富。
+        </p>
+        
+        <!-- 知识点标签列表 -->
+        <div class="pill-list">
+            <span class="pill">音频标签</span>
+            <span class="pill">视频标签</span>
+            <span class="pill">iframe</span>
+            <span class="pill">多媒体格式</span>
+            <span class="pill">基本属性</span>
+        </div>
+    </header>
+
+    <!-- ============================================
+         正文内容 - 音频标签基本使用
+         ============================================ -->
+    <section id="chapter-1">
+        <h2>一、音频标签基本使用</h2>
+        
+        <h3>1.1 多媒体时代的网页</h3>
+        <p>在HTML5之前，要在网页中播放音频需要使用Flash等插件，这带来了很多问题：</p>
+        
+        <div class="note-box">
+            <strong>💭 Flash时代的问题</strong>
+            <ul>
+                <li>❌ 用户需要安装Flash插件</li>
+                <li>❌ 移动设备（iOS）不支持Flash</li>
+                <li>❌ 安全漏洞频繁，被攻击风险高</li>
+                <li>❌ 消耗大量系统资源</li>
+            </ul>
+            <p>2020年底，Adobe正式终止了Flash的支持。HTML5的 <code>&lt;audio&gt;</code> 和 <code>&lt;video&gt;</code> 标签成为了标准解决方案。</p>
+        </div>
+        
+        <h3>1.2 基本语法</h3>
+        <p>HTML5的<code>&lt;audio&gt;</code>标签允许我们在网页中直接播放音频文件，无需使用第三方插件。</p>
+        <p>最简单的音频播放器只需要使用<code>&lt;audio&gt;</code>标签和<code>src</code>属性，再加上<code>controls</code>属性显示播放控件。</p>
+        
+        <pre class="html"><code>&lt;!-- 基本音频播放器 --&gt;
+&lt;audio src="音频文件路径" controls&gt;
+    您的浏览器不支持音频播放
+&lt;/audio&gt;</code></pre>
+        
+        <div class="tip-box">
+            <span class="tip-title">💡 降级处理</span>
+            <p>开始标签和结束标签之间的文字是"后备内容"（fallback content），只有当浏览器不支持 <code>&lt;audio&gt;</code> 标签时才会显示。现代浏览器基本都支持该标签，所以这段文字通常不会出现。</p>
+        </div>
+        
+        <h3>1.3 支持多种音频格式</h3>
+        <p>不同浏览器支持的音频格式可能不同，为了确保音频在所有浏览器中都能正常播放，我们可以使用 <code>&lt;source&gt;</code> 标签提供多种格式的音频文件。</p>
+        
+        <pre class="html"><code>&lt;!-- 支持多种音频格式 --&gt;
+&lt;audio controls&gt;
+    &lt;source src="music.mp3" type="audio/mpeg"&gt;
+    &lt;source src="music.ogg" type="audio/ogg"&gt;
+    &lt;source src="music.wav" type="audio/wav"&gt;
+    您的浏览器不支持音频播放
+&lt;/audio&gt;</code></pre>
+        
+        <h3>1.4 音频格式对比</h3>
+        <table class="prop-table">
+            <thead>
+                <tr><th>格式</th><th>扩展名</th><th>MIME类型</th><th>特点</th><th>浏览器支持</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>MP3</strong></td><td>.mp3</td><td>audio/mpeg</td><td>最通用、压缩比高</td><td>✅ 全部支持</td></tr>
+                <tr><td><strong>OGG</strong></td><td>.ogg</td><td>audio/ogg</td><td>开源免费、音质好</td><td>Chrome、Firefox、Opera</td></tr>
+                <tr><td><strong>WAV</strong></td><td>.wav</td><td>audio/wav</td><td>无损格式、文件大</td><td>✅ 全部支持</td></tr>
+                <tr><td><strong>AAC</strong></td><td>.aac</td><td>audio/aac</td><td>苹果主推、音质好</td><td>Chrome、Safari、Edge</td></tr>
+            </tbody>
+        </table>
+        
+        <div class="warning-box">
+            <strong>⚠️ 格式选择建议</strong>
+            <p>为了最佳兼容性，建议至少提供 <strong>MP3</strong> 格式。如果追求更好的音质和开源，可以额外提供 <strong>OGG</strong> 格式。浏览器会按顺序尝试，使用第一个能播放的格式。</p>
+        </div>
+        
+        <h3>1.5 常用属性详解</h3>
+        <table class="prop-table">
+            <thead>
+                <tr><th>属性</th><th>值</th><th>描述</th><th>示例</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>src</code></td><td>URL</td>
+                    <td>指定音频文件的路径</td>
+                    <td><code>src="music.mp3"</code></td>
+                </tr>
+                <tr>
+                    <td><code>controls</code></td><td>布尔</td>
+                    <td>显示浏览器默认的播放控件</td>
+                    <td><code>controls</code></td>
+                </tr>
+                <tr>
+                    <td><code>autoplay</code></td><td>布尔</td>
+                    <td>页面加载完成后自动播放</td>
+                    <td><code>autoplay</code></td>
+                </tr>
+                <tr>
+                    <td><code>loop</code></td><td>布尔</td>
+                    <td>循环播放音频</td>
+                    <td><code>loop</code></td>
+                </tr>
+                <tr>
+                    <td><code>muted</code></td><td>布尔</td>
+                    <td>默认静音</td>
+                    <td><code>muted</code></td>
+                </tr>
+                <tr>
+                    <td><code>preload</code></td><td>none/metadata/auto</td>
+                    <td>预加载策略</td>
+                    <td><code>preload="auto"</code></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>1.6 preload属性详解</h3>
+        <table class="prop-table">
+            <thead>
+                <tr><th>值</th><th>描述</th><th>适用场景</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><code>none</code></td><td>不预加载音频</td><td>用户可能不会播放，节省带宽</td></tr>
+                <tr><td><code>metadata</code></td><td>只预加载元数据（时长等）</td><td>默认值，平衡带宽和体验</td></tr>
+                <tr><td><code>auto</code></td><td>预加载整个音频</td><td>用户很可能会播放</td></tr>
+            </tbody>
+        </table>
+        
+        <div class="warning-box">
+            <strong>⚠️ 自动播放的限制</strong>
+            <p>现代浏览器为了改善用户体验，对自动播放做了限制：</p>
+            <ul>
+                <li>有声音的音频无法自动播放（除非用户已与页面交互）</li>
+                <li>静音的音频可以自动播放：<code>autoplay muted</code></li>
+                <li>这是为了防止网站突然播放声音打扰用户</li>
+            </ul>
+        </div>
+        
+        <h3>1.7 音频示例</h3>
+        <div class="tip-box">
+            <span class="tip-title">🎵 音频播放效果</span>
+            <audio controls style="width: 100%;">
+                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                您的浏览器不支持音频播放
+            </audio>
+        </div>
+    </section>
+
+    <!-- ============================================
+         实验 01：音频播放器练习
+         ============================================ -->
+    <section id="lab-1">
+        <h2>实验 01：音频播放器练习</h2>
+        <p>通过这个实验，你将学习如何创建不同样式的音频播放器。</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 01：音频播放器练习</span>
+                <span class="status-badge beginner" id="badge-1">动手实践</span>
+            </div>
+            
+            <div class="lab-body split">
+                <!-- 代码编辑区 -->
+                <div class="panel code-editor" id="html-1" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
+&lt;!-- 基本音频播放器 --&gt;
+&lt;h3&gt;1. 基本音频播放器&lt;/h3&gt;
+&lt;audio src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" controls&gt;
+    您的浏览器不支持音频播放
+&lt;/audio&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;!-- 自动播放（需要用户交互） --&gt;
+&lt;h3&gt;2. 自动播放音频&lt;/h3&gt;
+&lt;audio src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" controls autoplay&gt;
+    您的浏览器不支持音频播放
+&lt;/audio&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;!-- 循环播放音频 --&gt;
+&lt;h3&gt;3. 循环播放音频&lt;/h3&gt;
+&lt;audio src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" controls loop&gt;
+    您的浏览器不支持音频播放
+&lt;/audio&gt;
+                </div>
+                
+                <!-- 预览区 -->
+                <div class="panel preview-area" id="preview-1">
+                    <div class="panel-label">预览效果</div>
+                </div>
+            </div>
+            
+            <!-- 操作按钮 -->
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runHtmlExperiment('html-1', 'preview-1', 'badge-1')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetHtmlExperiment('html-1', 'preview-1', 'badge-1')">↺ 重置代码</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         正文内容 - 视频标签基本使用
+         ============================================ -->
+    <section id="chapter-2">
+        <h2>二、视频标签基本使用</h2>
+        
+        <h3>2.1 视频在网页中的重要性</h3>
+        <p>视频已经成为现代网页的重要组成部分：</p>
+        <ul>
+            <li><strong>产品展示</strong>：电商网站展示商品细节</li>
+            <li><strong>教育培训</strong>：在线课程、教学视频</li>
+            <li><strong>背景视频</strong>：网站首页的动态背景</li>
+            <li><strong>用户生成内容</strong>：社交媒体、视频平台</li>
+        </ul>
+        
+        <p>HTML5的<code>&lt;video&gt;</code>标签允许我们在网页中直接播放视频文件，无需使用第三方插件。</p>
+        
+        <h3>2.2 基本语法</h3>
+        <p>最简单的视频播放器只需要使用<code>&lt;video&gt;</code>标签和<code>src</code>属性，再加上<code>controls</code>属性显示播放控件。</p>
+        
+        <pre class="html"><code>&lt;!-- 基本视频播放器 --&gt;
+&lt;video src="视频文件路径" controls width="640" height="360"&gt;
+    您的浏览器不支持视频播放
+&lt;/video&gt;</code></pre>
+        
+        <h3>2.3 支持多种视频格式</h3>
+        <p>不同浏览器支持的视频格式可能不同，为了确保视频在所有浏览器中都能正常播放，我们可以使用 <code>&lt;source&gt;</code> 标签提供多种格式的视频文件。</p>
+        
+        <pre class="html"><code>&lt;!-- 支持多种视频格式 --&gt;
+&lt;video controls width="640" height="360"&gt;
+    &lt;source src="video.mp4" type="video/mp4"&gt;
+    &lt;source src="video.webm" type="video/webm"&gt;
+    &lt;source src="video.ogg" type="video/ogg"&gt;
+    您的浏览器不支持视频播放
+&lt;/video&gt;</code></pre>
+        
+        <h3>2.4 视频格式对比</h3>
+        <table class="prop-table">
+            <thead>
+                <tr><th>格式</th><th>扩展名</th><th>视频编码</th><th>音频编码</th><th>浏览器支持</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>MP4</strong></td><td>.mp4</td><td>H.264</td><td>AAC</td><td>✅ 全部支持（推荐）</td></tr>
+                <tr><td><strong>WebM</strong></td><td>.webm</td><td>VP8/VP9</td><td>Vorbis/Opus</td><td>Chrome、Firefox、Opera、Edge</td></tr>
+                <tr><td><strong>OGG</strong></td><td>.ogv</td><td>Theora</td><td>Vorbis</td><td>Chrome、Firefox、Opera</td></tr>
+            </tbody>
+        </table>
+        
+        <div class="tip-box">
+            <span class="tip-title">💡 格式选择建议</span>
+            <p><strong>MP4 (H.264)</strong> 是目前最通用的格式，所有现代浏览器都支持。如果只能选一种格式，就选 MP4。</p>
+            <p>如果追求更好的压缩率和开源，可以额外提供 <strong>WebM (VP9)</strong> 格式。</p>
+        </div>
+        
+        <h3>2.5 常用属性详解</h3>
+        <table class="prop-table">
+            <thead>
+                <tr><th>属性</th><th>值</th><th>描述</th><th>示例</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>src</code></td><td>URL</td>
+                    <td>指定视频文件的路径</td>
+                    <td><code>src="video.mp4"</code></td>
+                </tr>
+                <tr>
+                    <td><code>controls</code></td><td>布尔</td>
+                    <td>显示播放控件（播放/暂停、进度条、音量等）</td>
+                    <td><code>controls</code></td>
+                </tr>
+                <tr>
+                    <td><code>width</code></td><td>像素</td>
+                    <td>设置视频的宽度</td>
+                    <td><code>width="640"</code></td>
+                </tr>
+                <tr>
+                    <td><code>height</code></td><td>像素</td>
+                    <td>设置视频的高度</td>
+                    <td><code>height="360"</code></td>
+                </tr>
+                <tr>
+                    <td><code>poster</code></td><td>URL</td>
+                    <td>视频播放前显示的封面图片</td>
+                    <td><code>poster="cover.jpg"</code></td>
+                </tr>
+                <tr>
+                    <td><code>autoplay</code></td><td>布尔</td>
+                    <td>页面加载完成后自动播放</td>
+                    <td><code>autoplay</code></td>
+                </tr>
+                <tr>
+                    <td><code>loop</code></td><td>布尔</td>
+                    <td>循环播放视频</td>
+                    <td><code>loop</code></td>
+                </tr>
+                <tr>
+                    <td><code>muted</code></td><td>布尔</td>
+                    <td>默认静音播放</td>
+                    <td><code>muted</code></td>
+                </tr>
+                <tr>
+                    <td><code>preload</code></td><td>none/metadata/auto</td>
+                    <td>预加载策略</td>
+                    <td><code>preload="metadata"</code></td>
+                </tr>
+                <tr>
+                    <td><code>playsinline</code></td><td>布尔</td>
+                    <td>在iOS上内联播放（不全屏）</td>
+                    <td><code>playsinline</code></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>2.6 poster属性的重要性</h3>
+        <p><code>poster</code> 属性用于设置视频的封面图片，这很重要：</p>
+        <ul>
+            <li><strong>提升用户体验</strong>：用户可以在播放前看到视频内容预览</li>
+            <li><strong>加载时显示</strong>：在视频加载过程中显示封面，避免空白</li>
+            <li><strong>节省带宽</strong>：用户可以先看封面再决定是否播放</li>
+        </ul>
+        
+        <pre class="html"><code>&lt;!-- 带封面图片的视频 --&gt;
+&lt;video controls width="640" height="360" poster="video-cover.jpg"&gt;
+    &lt;source src="video.mp4" type="video/mp4"&gt;
+    您的浏览器不支持视频播放
+&lt;/video&gt;</code></pre>
+        
+        <h3>2.7 背景视频的实现</h3>
+        <p>很多现代网站使用视频作为背景，实现方法如下：</p>
+        
+        <pre class="html"><code>&lt;!-- 背景视频 --&gt;
+&lt;style&gt;
+    .video-background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;  /* 覆盖整个区域 */
+        z-index: -1;        /* 放在最底层 */
+    }
+&lt;/style&gt;
+
+&lt;video class="video-background" autoplay muted loop playsinline&gt;
+    &lt;source src="background.mp4" type="video/mp4"&gt;
+&lt;/video&gt;</code></pre>
+        
+        <div class="warning-box">
+            <strong>⚠️ 背景视频注意事项</strong>
+            <ul>
+                <li>必须使用 <code>muted</code>，否则无法自动播放</li>
+                <li>使用 <code>playsinline</code>，防止iOS全屏播放</li>
+                <li>视频文件要压缩，避免加载过慢</li>
+                <li>提供静态图片作为后备方案</li>
+                <li>考虑用户的网络和电量消耗</li>
+            </ul>
+        </div>
+        
+        <h3>2.8 视频示例</h3>
+        <div class="tip-box">
+            <span class="tip-title">🎬 视频播放效果</span>
+            <video controls width="100%" style="max-width: 640px;" poster="https://picsum.photos/id/1/640/360">
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                <source src="https://www.w3schools.com/html/mov_bbb.webm" type="video/webm">
+                您的浏览器不支持视频播放
+            </video>
+        </div>
+    </section>
+
+    <!-- ============================================
+         实验 02：视频播放器练习
+         ============================================ -->
+    <section id="lab-2">
+        <h2>实验 02：视频播放器练习</h2>
+        <p>通过这个实验，你将学习如何创建不同样式的视频播放器。</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 02：视频播放器练习</span>
+                <span class="status-badge beginner" id="badge-2">动手实践</span>
+            </div>
+            
+            <div class="lab-body split">
+                <!-- 代码编辑区 -->
+                <div class="panel code-editor" id="html-2" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
+&lt;!-- 基本视频播放器 --&gt;
+&lt;h3&gt;1. 基本视频播放器&lt;/h3&gt;
+&lt;video src="https://www.w3schools.com/html/mov_bbb.mp4" controls width="640" height="360"&gt;
+    您的浏览器不支持视频播放
+&lt;/video&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;!-- 带封面图片的视频 --&gt;
+&lt;h3&gt;2. 带封面图片的视频&lt;/h3&gt;
+&lt;video src="https://www.w3schools.com/html/mov_bbb.mp4" controls width="640" height="360" poster="https://picsum.photos/id/2/640/360"&gt;
+    您的浏览器不支持视频播放
+&lt;/video&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;!-- 支持多种格式的视频 --&gt;
+&lt;h3&gt;3. 支持多种格式的视频&lt;/h3&gt;
+&lt;video controls width="640" height="360"&gt;
+    &lt;source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"&gt;
+    &lt;source src="https://www.w3schools.com/html/mov_bbb.webm" type="video/webm"&gt;
+    您的浏览器不支持视频播放
+&lt;/video&gt;
+                </div>
+                
+                <!-- 预览区 -->
+                <div class="panel preview-area" id="preview-2">
+                    <div class="panel-label">预览效果</div>
+                </div>
+            </div>
+            
+            <!-- 操作按钮 -->
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runHtmlExperiment('html-2', 'preview-2', 'badge-2')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetHtmlExperiment('html-2', 'preview-2', 'badge-2')">↺ 重置代码</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         正文内容 - iframe嵌入外部内容
+         ============================================ -->
+    <section id="chapter-3">
+        <h2>三、iframe嵌入外部内容</h2>
+        
+        <h3>3.1 什么是iframe？</h3>
+        <p><code>&lt;iframe&gt;</code>（Inline Frame，内联框架）标签允许我们在网页中嵌入另一个网页或外部内容，就像在页面中开了一个"窗口"，可以显示其他网站的内容。</p>
+        
+        <div class="note-box">
+            <strong>📌 iframe的常见用途</strong>
+            <ul>
+                <li><strong>嵌入地图</strong>：在网页中显示百度地图、高德地图</li>
+                <li><strong>嵌入视频</strong>：嵌入B站、YouTube等平台的视频</li>
+                <li><strong>嵌入社交内容</strong>：微博、推特帖子</li>
+                <li><strong>嵌入第三方工具</strong>：在线表单、日历、聊天窗口</li>
+                <li><strong>广告展示</strong>：展示第三方广告内容</li>
+            </ul>
+        </div>
+        
+        <h3>3.2 基本语法</h3>
+        <p>基本的<code>&lt;iframe&gt;</code>标签使用<code>src</code>属性指定要嵌入的内容的URL。</p>
+        
+        <pre class="html"><code>&lt;!-- 基本iframe用法 --&gt;
+&lt;iframe src="要嵌入的网页地址" width="600" height="400" title="描述文本"&gt;
+    您的浏览器不支持iframe
+&lt;/iframe&gt;</code></pre>
+        
+        <h3>3.3 常用属性详解</h3>
+        <table class="prop-table">
+            <thead>
+                <tr><th>属性</th><th>值</th><th>描述</th><th>示例</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>src</code></td><td>URL</td>
+                    <td>指定要嵌入的内容的URL</td>
+                    <td><code>src="https://example.com"</code></td>
+                </tr>
+                <tr>
+                    <td><code>width</code></td><td>像素/%</td>
+                    <td>设置iframe的宽度</td>
+                    <td><code>width="600"</code> 或 <code>width="100%"</code></td>
+                </tr>
+                <tr>
+                    <td><code>height</code></td><td>像素</td>
+                    <td>设置iframe的高度</td>
+                    <td><code>height="400"</code></td>
+                </tr>
+                <tr>
+                    <td><code>title</code></td><td>文本</td>
+                    <td>描述iframe内容（重要！提高可访问性）</td>
+                    <td><code>title="地图位置"</code></td>
+                </tr>
+                <tr>
+                    <td><code>name</code></td><td>文本</td>
+                    <td>iframe的名称，用于链接跳转</td>
+                    <td><code>name="myframe"</code></td>
+                </tr>
+                <tr>
+                    <td><code>loading</code></td><td>eager/lazy</td>
+                    <td>延迟加载策略</td>
+                    <td><code>loading="lazy"</code></td>
+                </tr>
+                <tr>
+                    <td><code>sandbox</code></td><td>多种值</td>
+                    <td>安全限制（见下文）</td>
+                    <td><code>sandbox="allow-scripts"</code></td>
+                </tr>
+                <tr>
+                    <td><code>allowfullscreen</code></td><td>布尔</td>
+                    <td>允许全屏显示</td>
+                    <td><code>allowfullscreen</code></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>3.4 sandbox安全属性</h3>
+        <p><code>sandbox</code> 属性可以限制iframe中的内容行为，提高安全性：</p>
+        
+        <table class="prop-table">
+            <thead>
+                <tr><th>值</th><th>描述</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><code>sandbox</code>（空值）</td><td>启用所有限制</td></tr>
+                <tr><td><code>allow-scripts</code></td><td>允许执行脚本</td></tr>
+                <tr><td><code>allow-forms</code></td><td>允许提交表单</td></tr>
+                <tr><td><code>allow-same-origin</code></td><td>允许同源访问</td></tr>
+                <tr><td><code>allow-popups</code></td><td>允许弹出窗口</td></tr>
+            </tbody>
+        </table>
+        
+        <div class="warning-box">
+            <strong>⚠️ iframe安全注意事项</strong>
+            <ul>
+                <li>只嵌入你信任的网站内容</li>
+                <li>使用 <code>sandbox</code> 属性限制不必要的权限</li>
+                <li>某些网站（如Google）禁止被iframe嵌入</li>
+                <li>注意跨域安全问题</li>
+            </ul>
+        </div>
+        
+        <h3>3.5 常见应用示例</h3>
+        
+        <h4>3.5.1 嵌入B站视频</h4>
+        <pre class="html"><code>&lt;!-- 嵌入B站视频（从B站分享获取代码）--&gt;
+&lt;iframe src="//player.bilibili.com/player.html?bvid=BV1xx411c7mD" 
+        width="640" height="360" 
+        scrolling="no" border="0" frameborder="no" framespacing="0" 
+        allowfullscreen="true"
+        title="B站视频"&gt;
+&lt;/iframe&gt;</code></pre>
+        
+        <h4>3.5.2 嵌入地图</h4>
+        <pre class="html"><code>&lt;!-- 嵌入百度地图 --&gt;
+&lt;iframe src="https://map.baidu.com/search/..." 
+        width="600" height="400" 
+        title="公司位置" 
+        loading="lazy"
+        style="border: none;"&gt;
+&lt;/iframe&gt;</code></pre>
+        
+        <h4>3.5.3 响应式iframe</h4>
+        <p>使用CSS让iframe自适应宽度：</p>
+        <pre class="html"><code>&lt;style&gt;
+    .iframe-container {
+        position: relative;
+        width: 100%;
+        padding-bottom: 56.25%; /* 16:9比例 */
+        height: 0;
+        overflow: hidden;
+    }
+    .iframe-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+&lt;/style&gt;
+
+&lt;div class="iframe-container"&gt;
+    &lt;iframe src="video-url" title="视频" allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/div&gt;</code></pre>
+        
+        <div class="tip-box">
+            <span class="tip-title">💡 性能优化建议</span>
+            <ul>
+                <li>使用 <code>loading="lazy"</code> 延迟加载不在视口中的iframe</li>
+                <li>只在需要时加载iframe（如用户点击后）</li>
+                <li>避免在页面中使用过多iframe</li>
+                <li>为iframe设置合适的尺寸，避免重排</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ============================================
+         实验 03：iframe嵌入练习
+         ============================================ -->
+    <section id="lab-3">
+        <h2>实验 03：iframe嵌入练习</h2>
+        <p>通过这个实验，你将学习如何使用iframe嵌入不同类型的外部内容。</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 03：iframe嵌入练习</span>
+                <span class="status-badge beginner" id="badge-3">动手实践</span>
+            </div>
+            
+            <div class="lab-body split">
+                <!-- 代码编辑区 -->
+                <div class="panel code-editor" id="html-3" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
+&lt;!-- 嵌入百度地图 --&gt;
+&lt;h3&gt;1. 嵌入百度地图&lt;/h3&gt;
+&lt;iframe src="https://map.baidu.com/" width="600" height="400" title="百度地图" frameborder="0"&gt;
+    您的浏览器不支持iframe
+&lt;/iframe&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;!-- 嵌入W3Schools网站 --&gt;
+&lt;h3&gt;2. 嵌入W3Schools网站&lt;/h3&gt;
+&lt;iframe src="https://www.w3schools.com/html/" width="600" height="400" title="W3Schools HTML教程" frameborder="0"&gt;
+    您的浏览器不支持iframe
+&lt;/iframe&gt;
+                </div>
+                
+                <!-- 预览区 -->
+                <div class="panel preview-area" id="preview-3">
+                    <div class="panel-label">预览效果</div>
+                </div>
+            </div>
+            
+            <!-- 操作按钮 -->
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runHtmlExperiment('html-3', 'preview-3', 'badge-3')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetHtmlExperiment('html-3', 'preview-3', 'badge-3')">↺ 重置代码</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         课程小结区域
+         ============================================ -->
+    <section id="summary">
+        <h2>课程小结</h2>
+        
+        <h3>知识点回顾</h3>
+        <div class="note-box">
+            <p>恭喜你完成了HTML多媒体的学习！本节课我们学习了：</p>
+            <ul class="checklist">
+                <li>✅ <strong>音频标签</strong>：<code>&lt;audio&gt;</code> 基本使用、多格式支持、常用属性</li>
+                <li>✅ <strong>视频标签</strong>：<code>&lt;video&gt;</code> 基本使用、poster封面、背景视频</li>
+                <li>✅ <strong>iframe嵌入</strong>：嵌入地图、视频、第三方内容</li>
+                <li>✅ <strong>媒体格式</strong>：MP3、OGG、MP4、WebM等格式的选择</li>
+                <li>✅ <strong>安全与性能</strong>：sandbox属性、延迟加载</li>
+            </ul>
+        </div>
+        
+        <h3>标签对比表</h3>
+        <table class="prop-table">
+            <thead>
+                <tr><th>标签</th><th>用途</th><th>常用属性</th><th>注意事项</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>&lt;audio&gt;</code></td>
+                    <td>播放音频</td>
+                    <td>src, controls, autoplay, loop, muted</td>
+                    <td>提供MP3格式确保兼容</td>
+                </tr>
+                <tr>
+                    <td><code>&lt;video&gt;</code></td>
+                    <td>播放视频</td>
+                    <td>src, controls, width, height, poster</td>
+                    <td>提供MP4格式确保兼容</td>
+                </tr>
+                <tr>
+                    <td><code>&lt;source&gt;</code></td>
+                    <td>指定媒体源</td>
+                    <td>src, type</td>
+                    <td>放在audio/video内部</td>
+                </tr>
+                <tr>
+                    <td><code>&lt;iframe&gt;</code></td>
+                    <td>嵌入外部内容</td>
+                    <td>src, width, height, title, sandbox</td>
+                    <td>注意安全性，使用sandbox</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>最佳实践</h3>
+        <div class="tip-box">
+            <span class="tip-title">💡 开发建议</span>
+            <ul>
+                <li><strong>提供多种格式</strong>：音频用MP3+OGG，视频用MP4+WebM</li>
+                <li><strong>添加后备内容</strong>：在标签之间添加不支持时的提示文字</li>
+                <li><strong>设置poster</strong>：为视频添加封面图片，提升用户体验</li>
+                <li><strong>注意自动播放</strong>：有声媒体需配合 <code>muted</code> 才能自动播放</li>
+                <li><strong>使用延迟加载</strong>：iframe使用 <code>loading="lazy"</code></li>
+                <li><strong>添加title属性</strong>：为iframe添加描述，提高可访问性</li>
+            </ul>
+        </div>
+        
+        <h3>下节课预告</h3>
+        <div class="note-box">
+            <strong>🎯 第12课：HTML5新特性</strong>
+            <p>下一课我们将学习HTML5的新特性，包括：</p>
+            <ul>
+                <li>HTML5新增的表单控件（date、email、color等）</li>
+                <li>Canvas和SVG绘图</li>
+                <li>地理定位API</li>
+                <li>Web存储（localStorage/sessionStorage）</li>
+            </ul>
+            <p>这将是HTML基础课程的最后一课！💪</p>
+        </div>
+        
+        <h3>课后练习</h3>
+        <div class="warning-box">
+            <strong>📝 动手任务</strong>
+            <ol class="lab-steps">
+                <li>创建一个多媒体展示页面，包含：
+                    <ul>
+                        <li>一个支持多种格式的音频播放器</li>
+                        <li>一个带封面图片的视频播放器</li>
+                        <li>一个嵌入地图的iframe</li>
+                    </ul>
+                </li>
+                <li>尝试实现一个背景视频效果</li>
+                <li>使用响应式CSS让视频自适应宽度</li>
+                <li>为所有多媒体元素添加合适的后备内容</li>
+            </ol>
+        </div>
+    </section>
+
+</main>
+
+</body>
+</html>

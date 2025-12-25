@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第7课练习：HTML表格进阶</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; display: flex; justify-content: center; padding-top: 50px; min-height: 100vh; }
+        .container { width: 100%; max-width: 800px; background: white; padding: 40px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .todo-box { background: #e3f2fd; border-left: 5px solid #2196f3; padding: 15px; margin-bottom: 30px; border-radius: 4px; }
+        .todo-box h3 { margin: 0 0 10px 0; color: #1565c0; }
+        .preview-area { border: 2px dashed #ccc; padding: 20px; min-height: 100px; border-radius: 4px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #999; padding: 10px; text-align: center; }
+        th { background-color: #e0e0e0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="todo-box">
+            <h3>📝 练习任务</h3>
+            <ol>
+                <li>创建一个课程表。</li>
+                <li>使用 <code>colspan</code> 属性合并单元格（例如：午休时间跨越所有列）。</li>
+                <li>使用 <code>rowspan</code> 属性合并单元格（例如：周一和周二上午第一节都是“语文”）。</li>
+                <li>尝试使用 <code>thead</code>, <code>tbody</code>, <code>tfoot</code> 标签组织表格结构。</li>
+            </ol>
+        </div>
+
+        <div class="preview-area">
+            <h3>课程表</h3>
+            <!-- --- 请在下方补充代码 --- -->
+            
+            <!-- 任务：复杂表格 -->
+            <table border="1">
+                <!-- 表头 -->
+                <thead>
+                    <tr>
+                        <th>时间</th>
+                        <th>周一</th>
+                        <th>周二</th>
+                        <th>周三</th>
+                    </tr>
+                </thead>
+                
+                <!-- 表体 -->
+                <tbody>
+                    <!-- 第一节课 -->
+                    <tr>
+                        <td>09:00 - 10:00</td>
+                        <!-- 这里尝试使用 rowspan -->
+                        <td>语文</td>
+                        <td>语文</td>
+                        <td>数学</td>
+                    </tr>
+                    
+                    <!-- 午休 (跨列) -->
+                    <tr>
+                        <td>12:00 - 13:00</td>
+                        <!-- 这里使用 colspan -->
+                        
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</body>
+</html>

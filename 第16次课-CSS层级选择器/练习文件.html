@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第16课练习：CSS层级选择器</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; display: flex; justify-content: center; padding-top: 50px; min-height: 100vh; }
+        .container { width: 100%; max-width: 800px; background: white; padding: 40px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .todo-box { background: #e3f2fd; border-left: 5px solid #2196f3; padding: 15px; margin-bottom: 30px; border-radius: 4px; }
+        .todo-box h3 { margin: 0 0 10px 0; color: #1565c0; }
+        .preview-area { border: 2px dashed #ccc; padding: 20px; min-height: 100px; border-radius: 4px; }
+        
+        /* --- 请在下方补充CSS代码 --- */
+        
+        /* 任务1：子元素选择器 (只选中 .list 的直接子元素 li，不包括嵌套的 li) */
+        /* .list > li { ... } */
+        
+        
+        /* 任务2：相邻兄弟选择器 (选中紧接在 .active 后的 li，设为红色) */
+        /* .active + li { ... } */
+        
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="todo-box">
+            <h3>📝 练习任务</h3>
+            <ol>
+                <li>使用子元素选择器 (<code>&gt;</code>)，将一级列表项文字设为加粗，不要影响二级列表。</li>
+                <li>使用相邻兄弟选择器 (<code>+</code>)，将“项目 2”后面的“项目 3”文字变红。</li>
+            </ol>
+        </div>
+
+        <div class="preview-area">
+            <ul class="list">
+                <li>项目 1</li>
+                <li class="active">项目 2 (Active)</li>
+                <li>项目 3 (应该变红)</li>
+                <li>
+                    项目 4 (包含子列表)
+                    <ul>
+                        <li>子项目 A (不应加粗)</li>
+                        <li>子项目 B (不应加粗)</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

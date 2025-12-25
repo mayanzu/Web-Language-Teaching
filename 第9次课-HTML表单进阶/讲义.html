@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第9课：HTML表单进阶</title>
+    
+    <!-- 统一样式引用 -->
+    <link rel='stylesheet' href='../统一讲义样式模板.css'>
+    <!-- 通用工具函数库 -->
+    <script src='../js/lecture-utils.js'></script>
+</head>
+<body>
+
+<!-- ============================================
+     侧边栏导航 - 课程目录
+     ============================================ -->
+<nav class="sidebar">
+    <div class="sidebar-nav">
+        <h3>课程导航</h3>
+        <a class="sidebar-link" href="#intro">👋 课程概览</a>
+        
+        <h3>Part 1: HTML表单进阶</h3>
+        <a class="sidebar-link sub-link" href="#chapter-1">一、下拉菜单</a>
+        <a class="sidebar-link sub-link" href="#lab-1">🔬 实验 1：下拉菜单练习</a>
+        <a class="sidebar-link sub-link" href="#chapter-2">二、文本域</a>
+        <a class="sidebar-link sub-link" href="#lab-2">🔬 实验 2：文本域练习</a>
+        <a class="sidebar-link sub-link" href="#chapter-3">三、表单分组</a>
+        <a class="sidebar-link sub-link" href="#lab-3">🔬 实验 3：表单分组练习</a>
+        <a class="sidebar-link sub-link" href="#chapter-4">四、表单验证基础</a>
+        <a class="sidebar-link sub-link" href="#lab-4">🔬 实验 4：表单验证练习</a>
+        
+        <h3>总结与练习</h3>
+        <a class="sidebar-link sub-link" href="#lab-5">🔬 实验 5：综合表单练习</a>
+        <a class="sidebar-link sub-link" href="#summary">📝 课程小结</a>
+    </div>
+</nav>
+
+
+<!-- ============================================
+     主内容区域
+     ============================================ -->
+<main class="content">
+
+    <!-- ============================================
+         课程头部 - 概览区域
+         ============================================ -->
+    <header id="intro">
+        <h1>第9课：HTML表单进阶</h1>
+        <p class="intro">
+            在本节课中，我们将学习HTML表单的进阶知识。上节课我们学习了表单的基础知识，本节课我们将深入学习下拉菜单、文本域、表单分组和表单验证等高级表单功能。
+            通过本节课的学习，你将掌握创建复杂表单的技巧，能够设计出更加功能强大、用户体验更好的表单。
+        </p>
+        
+        <!-- 知识点标签列表 -->
+        <div class="pill-list">
+            <span class="pill">下拉菜单</span>
+            <span class="pill">文本域</span>
+            <span class="pill">表单分组</span>
+            <span class="pill">表单验证</span>
+            <span class="pill">fieldset标签</span>
+            <span class="pill">legend标签</span>
+        </div>
+    </header>
+
+
+    <!-- ============================================
+         正文内容 - 下拉菜单
+         ============================================ -->
+    <section id="chapter-1">
+        <h2>一、下拉菜单</h2>
+        <p>
+            <code>&lt;select&gt;</code>和<code>&lt;option&gt;</code>标签用于创建下拉菜单，允许用户从预定义的选项中选择一个或多个选项。
+        </p>
+        
+        <div class="note-box">
+            <span class="tip-title">💡 生活类比</span>
+            <p>
+                下拉菜单就像餐厅的菜单一样——当你点菜时，服务员会给你一份菜单，你只能从菜单上已有的菜品中选择。
+                你不能自己编造菜名，只能从预设的选项中挑选。HTML的下拉菜单工作原理相同：选项是预先设定好的。
+            </p>
+        </div>
+        
+        <h3>1.1 下拉菜单 vs 其他输入方式</h3>
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>输入方式</th>
+                    <th>适用场景</th>
+                    <th>优势</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>下拉菜单 (select)</td>
+                    <td>选项较多（5个以上），只能单选或多选</td>
+                    <td>节省空间，选项清晰</td>
+                </tr>
+                <tr>
+                    <td>单选按钮 (radio)</td>
+                    <td>选项较少（2-5个），需要用户一眼看到所有选项</td>
+                    <td>所有选项可见，比较方便</td>
+                </tr>
+                <tr>
+                    <td>复选框 (checkbox)</td>
+                    <td>可以选多个选项，选项较少</td>
+                    <td>多选直观，状态清晰</td>
+                </tr>
+                <tr>
+                    <td>文本输入 (input)</td>
+                    <td>用户自由输入，无法预设选项</td>
+                    <td>灵活性高</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>1.2 基本下拉菜单</h3>
+        <p>
+            基本的下拉菜单允许用户从一组预定义选项中选择一个选项。下拉菜单由<code>&lt;select&gt;</code>和<code>&lt;option&gt;</code>标签组合使用。
+        </p>
+        
+        <pre class="html"><code>&lt;label for="city"&gt;城市：&lt;/label&gt;
+&lt;select id="city" name="city"&gt;
+    &lt;option value=""&gt;请选择城市&lt;/option&gt;
+    &lt;option value="beijing"&gt;北京&lt;/option&gt;
+    &lt;option value="shanghai"&gt;上海&lt;/option&gt;
+    &lt;option value="guangzhou"&gt;广州&lt;/option&gt;
+    &lt;option value="shenzhen"&gt;深圳&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+        
+        <div class="tip-box">
+            <span class="tip-title">💡 value vs 显示文本</span>
+            <p>
+                注意<code>value</code>属性和显示文本的区别：
+            </p>
+            <ul>
+                <li><strong>value</strong>：提交给服务器的值（通常是英文或代码）</li>
+                <li><strong>显示文本</strong>：用户看到的文字（可以是中文）</li>
+            </ul>
+            <pre class="html"><code>&lt;option value="beijing"&gt;北京&lt;/option&gt;
+&lt;!-- 用户看到"北京"，提交时发送"beijing" --&gt;</code></pre>
+        </div>
+        
+        <h3>1.3 默认选中项</h3>
+        <p>
+            我们可以使用<code>selected</code>属性来指定下拉菜单的默认选中项。
+        </p>
+        
+        <pre class="html"><code>&lt;label for="city"&gt;城市：&lt;/label&gt;
+&lt;select id="city" name="city"&gt;
+    &lt;option value=""&gt;请选择城市&lt;/option&gt;
+    &lt;option value="beijing"&gt;北京&lt;/option&gt;
+    &lt;option value="shanghai" selected&gt;上海&lt;/option&gt;
+    &lt;option value="guangzhou"&gt;广州&lt;/option&gt;
+    &lt;option value="shenzhen"&gt;深圳&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+        
+        <h3>1.4 多选下拉菜单</h3>
+        <p>
+            我们可以使用<code>multiple</code>属性来创建多选下拉菜单，允许用户从选项列表中选择多个选项。
+        </p>
+        
+        <pre class="html"><code>&lt;label for="hobbies"&gt;爱好：&lt;/label&gt;
+&lt;select id="hobbies" name="hobbies" multiple size="3"&gt;
+    &lt;option value="reading"&gt;阅读&lt;/option&gt;
+    &lt;option value="music"&gt;音乐&lt;/option&gt;
+    &lt;option value="sports"&gt;运动&lt;/option&gt;
+    &lt;option value="travel"&gt;旅行&lt;/option&gt;
+    &lt;option value="cooking"&gt;烹饪&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+        
+        <div class="note-box">
+            <span class="tip-title">📖 多选操作提示</span>
+            <p>
+                在多选下拉菜单中，用户可以：
+            </p>
+            <ul>
+                <li>按住<kbd>Ctrl</kbd>键点击选择多个不连续的选项</li>
+                <li>按住<kbd>Shift</kbd>键点击选择连续的多个选项</li>
+                <li><code>size</code>属性控制显示几行选项</li>
+            </ul>
+        </div>
+        
+        <h3>1.5 分组下拉菜单</h3>
+        <p>
+            对于包含大量选项的下拉菜单，我们可以使用<code>&lt;optgroup&gt;</code>标签来对选项进行逻辑分组。
+        </p>
+        
+        <pre class="html"><code>&lt;label for="country"&gt;国家/地区：&lt;/label&gt;
+&lt;select id="country" name="country"&gt;
+    &lt;option value=""&gt;请选择国家/地区&lt;/option&gt;
+    &lt;optgroup label="亚洲"&gt;
+        &lt;option value="china"&gt;中国&lt;/option&gt;
+        &lt;option value="japan"&gt;日本&lt;/option&gt;
+        &lt;option value="korea"&gt;韩国&lt;/option&gt;
+    &lt;/optgroup&gt;
+    &lt;optgroup label="欧洲"&gt;
+        &lt;option value="uk"&gt;英国&lt;/option&gt;
+        &lt;option value="france"&gt;法国&lt;/option&gt;
+        &lt;option value="germany"&gt;德国&lt;/option&gt;
+    &lt;/optgroup&gt;
+&lt;/select&gt;</code></pre>
+
+        <h3>1.6 select标签的常用属性</h3>
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>属性</th>
+                    <th>描述</th>
+                    <th>示例</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>name</code></td>
+                    <td>表单提交时的字段名</td>
+                    <td><code>name="city"</code></td>
+                </tr>
+                <tr>
+                    <td><code>id</code></td>
+                    <td>元素的唯一标识，配合label使用</td>
+                    <td><code>id="city"</code></td>
+                </tr>
+                <tr>
+                    <td><code>multiple</code></td>
+                    <td>允许多选</td>
+                    <td><code>multiple</code></td>
+                </tr>
+                <tr>
+                    <td><code>size</code></td>
+                    <td>显示的选项行数</td>
+                    <td><code>size="5"</code></td>
+                </tr>
+                <tr>
+                    <td><code>disabled</code></td>
+                    <td>禁用下拉菜单</td>
+                    <td><code>disabled</code></td>
+                </tr>
+                <tr>
+                    <td><code>required</code></td>
+                    <td>必须选择一项</td>
+                    <td><code>required</code></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+
+    <!-- ============================================
+         实验 01：下拉菜单练习
+         ============================================ -->
+    <section id="lab-1">
+        <h2>实验 01：下拉菜单练习</h2>
+        <p>通过这个实验，你将学习如何创建不同类型的下拉菜单。</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 01：下拉菜单练习</span>
+                <span class="status-badge beginner" id="badge-1">动手实践</span>
+            </div>
+            
+            <div class="lab-body split">
+                <!-- 代码编辑区 -->
+                <div class="panel code-editor" id="html-1" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
+&lt;form&gt;
+    &lt;label for="city"&gt;城市：&lt;/label&gt;
+    &lt;select id="city" name="city"&gt;
+        &lt;option value=""&gt;请选择城市&lt;/option&gt;
+        &lt;option value="beijing"&gt;北京&lt;/option&gt;
+        &lt;option value="shanghai" selected&gt;上海&lt;/option&gt;
+        &lt;option value="guangzhou"&gt;广州&lt;/option&gt;
+        &lt;option value="shenzhen"&gt;深圳&lt;/option&gt;
+    &lt;/select&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="hobbies"&gt;爱好（多选）：&lt;/label&gt;
+    &lt;select id="hobbies" name="hobbies" multiple size="3"&gt;
+        &lt;option value="reading"&gt;阅读&lt;/option&gt;
+        &lt;option value="music"&gt;音乐&lt;/option&gt;
+        &lt;option value="sports"&gt;运动&lt;/option&gt;
+        &lt;option value="travel"&gt;旅行&lt;/option&gt;
+        &lt;option value="cooking"&gt;烹饪&lt;/option&gt;
+    &lt;/select&gt;
+&lt;/form&gt;
+                </div>
+                
+                <!-- 预览区 -->
+                <div class="panel preview-area" id="preview-1">
+                    <div class="panel-label">预览效果</div>
+                </div>
+            </div>
+            
+            <!-- 操作按钮 -->
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runHtmlExperiment('html-1', 'preview-1', 'badge-1')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetHtmlExperiment('html-1', 'preview-1', 'badge-1')">↺ 重置代码</button>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         正文内容 - 文本域
+         ============================================ -->
+    <section id="chapter-2">
+        <h2>二、文本域</h2>
+        <p>
+            <code>&lt;textarea&gt;</code>标签用于创建多行文本输入框，允许用户输入和编辑大量文本内容，如评论、留言、反馈等。
+        </p>
+        
+        <div class="note-box">
+            <span class="tip-title">💡 生活类比</span>
+            <p>
+                如果说<code>&lt;input type="text"&gt;</code>是一张便签条，那么<code>&lt;textarea&gt;</code>就是一整张稿纸。
+                当你需要写一句话时用便签条（input），当你需要写一段文章时用稿纸（textarea）。
+            </p>
+        </div>
+        
+        <h3>2.1 input vs textarea对比</h3>
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>特性</th>
+                    <th>input type="text"</th>
+                    <th>textarea</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>行数</td>
+                    <td>单行</td>
+                    <td>多行</td>
+                </tr>
+                <tr>
+                    <td>适用场景</td>
+                    <td>姓名、邮箱、标题等短文本</td>
+                    <td>评论、留言、文章等长文本</td>
+                </tr>
+                <tr>
+                    <td>默认值设置</td>
+                    <td>通过value属性</td>
+                    <td>在标签之间写内容</td>
+                </tr>
+                <tr>
+                    <td>换行支持</td>
+                    <td>不支持</td>
+                    <td>支持</td>
+                </tr>
+                <tr>
+                    <td>大小调整</td>
+                    <td>固定宽度</td>
+                    <td>可拖拽调整大小</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>2.2 基本文本域</h3>
+        <p>
+            基本的文本域使用<code>&lt;textarea&gt;</code>标签创建，我们可以使用<code>rows</code>和<code>cols</code>属性来指定文本域的可见行数和列数。
+        </p>
+        
+        <pre class="html"><code>&lt;label for="comments"&gt;评论：&lt;/label&gt;
+&lt;textarea id="comments" name="comments" rows="5" cols="50" placeholder="请输入您的评论..."&gt;&lt;/textarea&gt;</code></pre>
+        
+        <div class="warning-box">
+            <strong>⚠️ 注意：textarea是双标签！</strong>
+            <p>
+                与<code>&lt;input&gt;</code>不同，<code>&lt;textarea&gt;</code>必须有闭合标签：
+            </p>
+            <pre class="html"><code>&lt;!-- ❌ 错误写法 --&gt;
+&lt;textarea /&gt;
+
+&lt;!-- ✅ 正确写法 --&gt;
+&lt;textarea&gt;&lt;/textarea&gt;</code></pre>
+        </div>
+        
+        <h3>2.3 带有默认值的文本域</h3>
+        <p>
+            我们可以在<code>&lt;textarea&gt;</code>标签的开始标签和结束标签之间添加默认文本。
+        </p>
+        
+        <pre class="html"><code>&lt;label for="feedback"&gt;反馈：&lt;/label&gt;
+&lt;textarea id="feedback" name="feedback" rows="5" cols="50"&gt;请在此输入您的反馈意见...
+感谢您的支持！&lt;/textarea&gt;</code></pre>
+
+        <div class="tip-box">
+            <span class="tip-title">💡 默认值注意事项</span>
+            <p>
+                textarea内的空格和换行都会被保留！以下写法会产生意外的空白：
+            </p>
+            <pre class="html"><code>&lt;!-- 会有多余空格 --&gt;
+&lt;textarea&gt;
+    默认文本
+&lt;/textarea&gt;
+
+&lt;!-- 正确写法：内容紧贴标签 --&gt;
+&lt;textarea&gt;默认文本&lt;/textarea&gt;</code></pre>
+        </div>
+        
+        <h3>2.4 文本域的核心属性</h3>
+        <p><code>&lt;textarea&gt;</code>标签支持多种属性，用于控制其外观和行为：</p>
+        
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>属性</th>
+                    <th>描述</th>
+                    <th>示例</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>rows</code></td>
+                    <td>定义文本域的可见行数</td>
+                    <td><code>rows="5"</code></td>
+                </tr>
+                <tr>
+                    <td><code>cols</code></td>
+                    <td>定义文本域的可见列数（字符宽度）</td>
+                    <td><code>cols="50"</code></td>
+                </tr>
+                <tr>
+                    <td><code>placeholder</code></td>
+                    <td>定义文本域为空时显示的提示文本</td>
+                    <td><code>placeholder="请输入评论..."</code></td>
+                </tr>
+                <tr>
+                    <td><code>required</code></td>
+                    <td>指定文本域为必填项</td>
+                    <td><code>required</code></td>
+                </tr>
+                <tr>
+                    <td><code>maxlength</code></td>
+                    <td>限制文本域的最大字符数</td>
+                    <td><code>maxlength="500"</code></td>
+                </tr>
+                <tr>
+                    <td><code>minlength</code></td>
+                    <td>限制文本域的最小字符数</td>
+                    <td><code>minlength="10"</code></td>
+                </tr>
+                <tr>
+                    <td><code>readonly</code></td>
+                    <td>只读，不可编辑但可提交</td>
+                    <td><code>readonly</code></td>
+                </tr>
+                <tr>
+                    <td><code>disabled</code></td>
+                    <td>禁用，不可编辑且不提交</td>
+                    <td><code>disabled</code></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>2.5 控制文本域的大小调整</h3>
+        <p>默认情况下，用户可以拖拽调整textarea的大小。可以使用CSS来控制这个行为：</p>
+        
+        <pre class="css"><code>/* 禁止调整大小 */
+textarea { resize: none; }
+
+/* 只允许垂直调整 */
+textarea { resize: vertical; }
+
+/* 只允许水平调整 */
+textarea { resize: horizontal; }
+
+/* 允许双向调整（默认） */
+textarea { resize: both; }</code></pre>
+    </section>
+
+
+    <!-- ============================================
+         实验 02：文本域练习
+         ============================================ -->
+    <section id="lab-2">
+        <h2>实验 02：文本域练习</h2>
+        <p>通过这个实验，你将学习如何创建和使用文本域。</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 02：文本域练习</span>
+                <span class="status-badge beginner" id="badge-2">动手实践</span>
+            </div>
+            
+            <div class="lab-body split">
+                <!-- 代码编辑区 -->
+                <div class="panel code-editor" id="html-2" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
+&lt;form&gt;
+    &lt;label for="comments"&gt;评论：&lt;/label&gt;
+    &lt;br&gt;
+    &lt;textarea id="comments" name="comments" rows="5" cols="50" placeholder="请输入您的评论..."&gt;&lt;/textarea&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="feedback"&gt;反馈：&lt;/label&gt;
+    &lt;br&gt;
+    &lt;textarea id="feedback" name="feedback" rows="5" cols="50"&gt;请在此输入您的反馈意见...
+感谢您的支持！&lt;/textarea&gt;
+&lt;/form&gt;
+                </div>
+                
+                <!-- 预览区 -->
+                <div class="panel preview-area" id="preview-2">
+                    <div class="panel-label">预览效果</div>
+                </div>
+            </div>
+            
+            <!-- 操作按钮 -->
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runHtmlExperiment('html-2', 'preview-2', 'badge-2')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetHtmlExperiment('html-2', 'preview-2', 'badge-2')">↺ 重置代码</button>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         正文内容 - 表单分组
+         ============================================ -->
+    <section id="chapter-3">
+        <h2>三、表单分组</h2>
+        <p>
+            对于包含多个字段的复杂表单，我们可以使用<code>&lt;fieldset&gt;</code>和<code>&lt;legend&gt;</code>标签来对相关的表单控件进行逻辑分组，使表单结构更加清晰。
+        </p>
+        
+        <div class="note-box">
+            <span class="tip-title">💡 生活类比</span>
+            <p>
+                想象一下填写纸质申请表：通常会把"个人信息"、"教育背景"、"工作经历"分成不同的区块，
+                每个区块都有一个小标题。<code>&lt;fieldset&gt;</code>就是这些区块，<code>&lt;legend&gt;</code>就是区块的小标题。
+            </p>
+        </div>
+        
+        <h3>3.1 为什么要使用表单分组？</h3>
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>优势</th>
+                    <th>说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>视觉组织</td>
+                    <td>相关字段组合在一起，用户更容易理解和填写</td>
+                </tr>
+                <tr>
+                    <td>语义清晰</td>
+                    <td>屏幕阅读器能识别分组，提高无障碍访问</td>
+                </tr>
+                <tr>
+                    <td>批量控制</td>
+                    <td>可以一次性禁用整个分组的所有控件</td>
+                </tr>
+                <tr>
+                    <td>样式管理</td>
+                    <td>便于对不同分组应用不同的CSS样式</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>3.2 fieldset和legend标签的基本使用</h3>
+        <p>
+            <code>&lt;fieldset&gt;</code>标签用于定义表单中的一个逻辑分组，<code>&lt;legend&gt;</code>标签用于定义该分组的标题。
+        </p>
+        
+        <pre class="html"><code>&lt;form&gt;
+    &lt;fieldset&gt;
+        &lt;legend&gt;个人信息&lt;/legend&gt;
+        
+        &lt;label for="username"&gt;用户名：&lt;/label&gt;
+        &lt;input type="text" id="username" name="username" placeholder="请输入用户名"&gt;
+        
+        &lt;br&gt;&lt;br&gt;
+        
+        &lt;label for="email"&gt;邮箱：&lt;/label&gt;
+        &lt;input type="email" id="email" name="email" placeholder="请输入邮箱"&gt;
+    &lt;/fieldset&gt;
+    
+    &lt;fieldset&gt;
+        &lt;legend&gt;密码信息&lt;/legend&gt;
+        
+        &lt;label for="password"&gt;密码：&lt;/label&gt;
+        &lt;input type="password" id="password" name="password" placeholder="请输入密码"&gt;
+        
+        &lt;br&gt;&lt;br&gt;
+        
+        &lt;label for="confirm-password"&gt;确认密码：&lt;/label&gt;
+        &lt;input type="password" id="confirm-password" name="confirm-password" placeholder="请确认密码"&gt;
+    &lt;/fieldset&gt;
+    
+    &lt;br&gt;
+    
+    &lt;input type="submit" value="注册"&gt;
+    &lt;input type="reset" value="重置"&gt;
+&lt;/form&gt;</code></pre>
+        
+        <div class="tip-box">
+            <span class="tip-title">📖 fieldset的默认样式</span>
+            <p>
+                浏览器会为<code>&lt;fieldset&gt;</code>添加默认样式：
+            </p>
+            <ul>
+                <li>一个边框环绕整个分组</li>
+                <li><code>&lt;legend&gt;</code>会嵌入到边框的顶部</li>
+                <li>内部有一定的内边距</li>
+            </ul>
+            <p>这些样式可以通过CSS自定义修改。</p>
+        </div>
+        
+        <h3>3.3 禁用整个字段集</h3>
+        <p>
+            我们可以使用<code>disabled</code>属性来禁用整个字段集，包含在其中的所有表单控件都会被自动禁用。
+        </p>
+        
+        <pre class="html"><code>&lt;fieldset disabled&gt;
+    &lt;legend&gt;高级选项（暂不可用）&lt;/legend&gt;
+    
+    &lt;label for="preferences"&gt;偏好设置：&lt;/label&gt;
+    &lt;select id="preferences" name="preferences"&gt;
+        &lt;option value="option1"&gt;选项1&lt;/option&gt;
+        &lt;option value="option2"&gt;选项2&lt;/option&gt;
+        &lt;option value="option3"&gt;选项3&lt;/option&gt;
+    &lt;/select&gt;
+&lt;/fieldset&gt;</code></pre>
+
+        <div class="warning-box">
+            <strong>⚠️ disabled vs readonly</strong>
+            <p>
+                <code>disabled</code>的fieldset中的表单数据<strong>不会</strong>被提交！
+                如果需要显示但不可编辑的数据，考虑使用<code>readonly</code>属性或CSS样式来实现。
+            </p>
+        </div>
+        
+        <h3>3.4 嵌套fieldset</h3>
+        <p>fieldset可以嵌套使用，形成更细致的分组层次：</p>
+        
+        <pre class="html"><code>&lt;fieldset&gt;
+    &lt;legend&gt;送货地址&lt;/legend&gt;
+    
+    &lt;fieldset&gt;
+        &lt;legend&gt;国内地址&lt;/legend&gt;
+        &lt;!-- 省、市、区、详细地址 --&gt;
+    &lt;/fieldset&gt;
+    
+    &lt;fieldset&gt;
+        &lt;legend&gt;海外地址&lt;/legend&gt;
+        &lt;!-- 国家、城市、邮编、详细地址 --&gt;
+    &lt;/fieldset&gt;
+&lt;/fieldset&gt;</code></pre>
+    </section>
+
+
+    <!-- ============================================
+         实验 03：表单分组练习
+         ============================================ -->
+    <section id="lab-3">
+        <h2>实验 03：表单分组练习</h2>
+        <p>通过这个实验，你将学习如何使用fieldset和legend标签对表单进行分组。</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 03：表单分组练习</span>
+                <span class="status-badge beginner" id="badge-3">动手实践</span>
+            </div>
+            
+            <div class="lab-body split">
+                <!-- 代码编辑区 -->
+                <div class="panel code-editor" id="html-3" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
+&lt;form&gt;
+    &lt;fieldset&gt;
+        &lt;legend&gt;个人信息&lt;/legend&gt;
+        
+        &lt;label for="username"&gt;用户名：&lt;/label&gt;
+        &lt;input type="text" id="username" name="username" placeholder="请输入用户名"&gt;
+        
+        &lt;br&gt;&lt;br&gt;
+        
+        &lt;label for="email"&gt;邮箱：&lt;/label&gt;
+        &lt;input type="email" id="email" name="email" placeholder="请输入邮箱"&gt;
+    &lt;/fieldset&gt;
+    
+    &lt;fieldset&gt;
+        &lt;legend&gt;密码信息&lt;/legend&gt;
+        
+        &lt;label for="password"&gt;密码：&lt;/label&gt;
+        &lt;input type="password" id="password" name="password" placeholder="请输入密码"&gt;
+        
+        &lt;br&gt;&lt;br&gt;
+        
+        &lt;label for="confirm-password"&gt;确认密码：&lt;/label&gt;
+        &lt;input type="password" id="confirm-password" name="confirm-password" placeholder="请确认密码"&gt;
+    &lt;/fieldset&gt;
+    
+    &lt;br&gt;
+    
+    &lt;input type="submit" value="注册"&gt;
+    &lt;input type="reset" value="重置"&gt;
+&lt;/form&gt;
+                </div>
+                
+                <!-- 预览区 -->
+                <div class="panel preview-area" id="preview-3">
+                    <div class="panel-label">预览效果</div>
+                </div>
+            </div>
+            
+            <!-- 操作按钮 -->
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runHtmlExperiment('html-3', 'preview-3', 'badge-3')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetHtmlExperiment('html-3', 'preview-3', 'badge-3')">↺ 重置代码</button>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         正文内容 - 表单验证基础
+         ============================================ -->
+    <section id="chapter-4">
+        <h2>四、表单验证基础</h2>
+        <p>
+            表单验证是确保用户输入的数据符合要求的重要手段，它可以在用户提交表单之前检测并提示错误，提高数据质量和用户体验。
+            HTML5提供了强大的内置表单验证功能，无需编写JavaScript代码即可实现基本的验证规则。
+        </p>
+        
+        <div class="note-box">
+            <span class="tip-title">💡 为什么需要表单验证？</span>
+            <p>
+                想象你在银行填写转账单，如果填错了账号格式，柜员会当场指出让你修改。
+                表单验证就是这个"柜员"，它在数据提交前检查：
+            </p>
+            <ul>
+                <li>必填项是否已填写？</li>
+                <li>邮箱格式是否正确？</li>
+                <li>密码长度是否符合要求？</li>
+                <li>年龄是否在合理范围？</li>
+            </ul>
+        </div>
+        
+        <h3>4.1 客户端验证 vs 服务器端验证</h3>
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>验证类型</th>
+                    <th>位置</th>
+                    <th>优势</th>
+                    <th>劣势</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>客户端验证（HTML5）</td>
+                    <td>浏览器</td>
+                    <td>即时反馈，用户体验好</td>
+                    <td>可被绕过，不可完全信任</td>
+                </tr>
+                <tr>
+                    <td>服务器端验证</td>
+                    <td>服务器</td>
+                    <td>安全可靠，不可绕过</td>
+                    <td>需要网络往返，较慢</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="warning-box">
+            <strong>⚠️ 重要安全提示</strong>
+            <p>
+                HTML5客户端验证只是为了<strong>用户体验</strong>！真正的数据验证必须在服务器端进行。
+                恶意用户可以轻松绕过客户端验证，直接向服务器发送非法数据。
+            </p>
+        </div>
+        
+        <h3>4.2 必填项验证</h3>
+        <p>
+            我们可以使用<code>required</code>属性来指定某个表单字段为必填项，当用户提交表单时，如果必填项为空，浏览器会显示错误提示。
+        </p>
+        
+        <pre class="html"><code>&lt;!-- 文本输入框必填 --&gt;
+&lt;label for="username"&gt;用户名：&lt;/label&gt;
+&lt;input type="text" id="username" name="username" required placeholder="请输入用户名"&gt;
+
+&lt;!-- 密码框必填 --&gt;
+&lt;label for="password"&gt;密码：&lt;/label&gt;
+&lt;input type="password" id="password" name="password" required placeholder="请输入密码"&gt;
+
+&lt;!-- 下拉菜单必填 --&gt;
+&lt;select name="city" required&gt;
+    &lt;option value=""&gt;请选择城市&lt;/option&gt;
+    &lt;option value="beijing"&gt;北京&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+        
+        <h3>4.3 长度验证</h3>
+        <p>
+            我们可以使用<code>minlength</code>和<code>maxlength</code>属性来限制文本输入的最小长度和最大长度。
+        </p>
+        
+        <pre class="html"><code>&lt;!-- 密码长度限制：6-20位 --&gt;
+&lt;label for="password"&gt;密码：&lt;/label&gt;
+&lt;input type="password" id="password" name="password" minlength="6" maxlength="20" placeholder="请输入6-20位密码"&gt;</code></pre>
+        
+        <h3>4.4 数值范围验证</h3>
+        <p>
+            对于数字输入，我们可以使用<code>min</code>和<code>max</code>属性来限制数值的范围。
+        </p>
+        
+        <pre class="html"><code>&lt;!-- 年龄范围限制：18-100岁 --&gt;
+&lt;label for="age"&gt;年龄：&lt;/label&gt;
+&lt;input type="number" id="age" name="age" min="18" max="100" placeholder="请输入18-100之间的年龄"&gt;
+
+&lt;!-- 步进值：只能输入5的倍数 --&gt;
+&lt;label for="quantity"&gt;数量：&lt;/label&gt;
+&lt;input type="number" id="quantity" name="quantity" min="0" max="100" step="5"&gt;</code></pre>
+        
+        <h3>4.5 常用验证属性汇总</h3>
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>属性</th>
+                    <th>适用类型</th>
+                    <th>描述</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>required</code></td>
+                    <td>所有可输入控件</td>
+                    <td>必填项</td>
+                </tr>
+                <tr>
+                    <td><code>minlength</code></td>
+                    <td>text, password, textarea</td>
+                    <td>最小字符数</td>
+                </tr>
+                <tr>
+                    <td><code>maxlength</code></td>
+                    <td>text, password, textarea</td>
+                    <td>最大字符数</td>
+                </tr>
+                <tr>
+                    <td><code>min</code></td>
+                    <td>number, range, date</td>
+                    <td>最小值</td>
+                </tr>
+                <tr>
+                    <td><code>max</code></td>
+                    <td>number, range, date</td>
+                    <td>最大值</td>
+                </tr>
+                <tr>
+                    <td><code>step</code></td>
+                    <td>number, range, date</td>
+                    <td>步进值</td>
+                </tr>
+                <tr>
+                    <td><code>pattern</code></td>
+                    <td>text, password, tel</td>
+                    <td>正则表达式匹配</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>4.6 pattern属性（正则表达式验证）</h3>
+        <p>
+            <code>pattern</code>属性允许使用正则表达式来验证输入内容：
+        </p>
+        
+        <pre class="html"><code>&lt;!-- 只允许字母 --&gt;
+&lt;input type="text" pattern="[A-Za-z]+" title="只能输入英文字母"&gt;
+
+&lt;!-- 手机号格式（以1开头的11位数字） --&gt;
+&lt;input type="tel" pattern="1[3-9]\d{9}" title="请输入正确的手机号"&gt;
+
+&lt;!-- 6位数字验证码 --&gt;
+&lt;input type="text" pattern="\d{6}" title="请输入6位数字验证码"&gt;</code></pre>
+        
+        <div class="tip-box">
+            <span class="tip-title">💡 title属性的作用</span>
+            <p>
+                当验证失败时，浏览器会显示<code>title</code>属性中的提示文字，帮助用户理解正确的输入格式。
+            </p>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         实验 04：表单验证练习
+         ============================================ -->
+    <section id="lab-4">
+        <h2>实验 04：表单验证练习</h2>
+        <p>通过这个实验，你将学习如何使用HTML5的内置表单验证功能。</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 04：表单验证练习</span>
+                <span class="status-badge beginner" id="badge-4">动手实践</span>
+            </div>
+            
+            <div class="lab-body split">
+                <!-- 代码编辑区 -->
+                <div class="panel code-editor" id="html-4" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
+&lt;form&gt;
+    &lt;label for="username"&gt;用户名：&lt;/label&gt;
+    &lt;input type="text" id="username" name="username" required minlength="3" maxlength="15" placeholder="请输入3-15位用户名"&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="password"&gt;密码：&lt;/label&gt;
+    &lt;input type="password" id="password" name="password" required minlength="6" maxlength="20" placeholder="请输入6-20位密码"&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="email"&gt;邮箱：&lt;/label&gt;
+    &lt;input type="email" id="email" name="email" required placeholder="请输入邮箱"&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;label for="age"&gt;年龄：&lt;/label&gt;
+    &lt;input type="number" id="age" name="age" min="18" max="100" placeholder="请输入18-100之间的年龄"&gt;
+    
+    &lt;br&gt;&lt;br&gt;
+    
+    &lt;input type="submit" value="注册"&gt;
+    &lt;input type="reset" value="重置"&gt;
+&lt;/form&gt;
+                </div>
+                
+                <!-- 预览区 -->
+                <div class="panel preview-area" id="preview-4">
+                    <div class="panel-label">预览效果</div>
+                </div>
+            </div>
+            
+            <!-- 操作按钮 -->
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runHtmlExperiment('html-4', 'preview-4', 'badge-4')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetHtmlExperiment('html-4', 'preview-4', 'badge-4')">↺ 重置代码</button>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         实验 05：综合表单练习
+         ============================================ -->
+    <section id="lab-5">
+        <h2>实验 05：综合表单练习</h2>
+        <p>通过这个实验，你将综合运用本节课所学的知识，创建一个完整的表单。</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 05：综合表单练习</span>
+                <span class="status-badge beginner" id="badge-5">动手实践</span>
+            </div>
+            
+            <div class="lab-body split">
+                <!-- 代码编辑区 -->
+                <div class="panel code-editor" id="html-5" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
+&lt;form action="https://example.com/submit" method="post"&gt;
+    &lt;fieldset&gt;
+        &lt;legend&gt;个人信息&lt;/legend&gt;
+        
+        &lt;label for="name"&gt;姓名：&lt;/label&gt;
+        &lt;input type="text" id="name" name="name" required placeholder="请输入姓名"&gt;
+        
+        &lt;br&gt;&lt;br&gt;
+        
+        &lt;label for="gender"&gt;性别：&lt;/label&gt;
+        &lt;select id="gender" name="gender" required&gt;
+            &lt;option value=""&gt;请选择性别&lt;/option&gt;
+            &lt;option value="male"&gt;男&lt;/option&gt;
+            &lt;option value="female"&gt;女&lt;/option&gt;
+        &lt;/select&gt;
+        
+        &lt;br&gt;&lt;br&gt;
+        
+        &lt;label for="email"&gt;邮箱：&lt;/label&gt;
+        &lt;input type="email" id="email" name="email" required placeholder="请输入邮箱"&gt;
+    &lt;/fieldset&gt;
+    
+    &lt;fieldset&gt;
+        &lt;legend&gt;联系方式&lt;/legend&gt;
+        
+        &lt;label for="phone"&gt;电话：&lt;/label&gt;
+        &lt;input type="tel" id="phone" name="phone" required placeholder="请输入电话"&gt;
+        
+        &lt;br&gt;&lt;br&gt;
+        
+        &lt;label for="address"&gt;地址：&lt;/label&gt;
+        &lt;textarea id="address" name="address" rows="3" cols="50" required placeholder="请输入地址"&gt;&lt;/textarea&gt;
+    &lt;/fieldset&gt;
+    
+    &lt;fieldset&gt;
+        &lt;legend&gt;兴趣爱好&lt;/legend&gt;
+        
+        &lt;label&gt;爱好：&lt;/label&gt;
+        &lt;select id="hobbies" name="hobbies" multiple size="3"&gt;
+            &lt;option value="reading"&gt;阅读&lt;/option&gt;
+            &lt;option value="music"&gt;音乐&lt;/option&gt;
+            &lt;option value="sports"&gt;运动&lt;/option&gt;
+            &lt;option value="travel"&gt;旅行&lt;/option&gt;
+        &lt;/select&gt;
+    &lt;/fieldset&gt;
+    
+    &lt;br&gt;
+    
+    &lt;input type="submit" value="提交"&gt;
+    &lt;input type="reset" value="重置"&gt;
+&lt;/form&gt;
+                </div>
+                
+                <!-- 预览区 -->
+                <div class="panel preview-area" id="preview-5">
+                    <div class="panel-label">预览效果</div>
+                </div>
+            </div>
+            
+            <!-- 操作按钮 -->
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runHtmlExperiment('html-5', 'preview-5', 'badge-5')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetHtmlExperiment('html-5', 'preview-5', 'badge-5')">↺ 重置代码</button>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         课程小结
+         ============================================ -->
+    <section id="summary">
+        <h2>课程小结</h2>
+        <p>通过本节课的学习，我们掌握了HTML表单进阶的知识，包括：</p>
+        
+        <ul class="summary-list">
+            <li>下拉菜单的创建和使用，包括基本下拉菜单、默认选中项、多选下拉菜单和分组下拉菜单</li>
+            <li>文本域的创建和使用，包括基本文本域、核心属性和最佳实践</li>
+            <li>使用<code>&lt;fieldset&gt;</code>和<code>&lt;legend&gt;</code>标签进行表单分组</li>
+            <li>HTML5内置表单验证功能，包括必填项验证、长度验证和数值范围验证</li>
+        </ul>
+        
+        <div class="homework">
+            <h3>课后练习</h3>
+            <ol>
+                <li>创建一个完整的在线调查问卷表单，包含以下字段：
+                    <ul>
+                        <li>姓名（文本输入框，必填）</li>
+                        <li>年龄（数字输入框，范围18-100）</li>
+                        <li>性别（下拉菜单，必填）</li>
+                        <li>职业（下拉菜单，必填）</li>
+                        <li>兴趣爱好（多选下拉菜单）</li>
+                        <li>意见反馈（文本域，必填，最大长度500字）</li>
+                    </ul>
+                </li>
+                <li>使用<code>&lt;fieldset&gt;</code>和<code>&lt;legend&gt;</code>标签对表单进行分组</li>
+                <li>为所有必填字段添加<code>required</code>属性</li>
+                <li>为适当的字段添加长度或范围限制</li>
+            </ol>
+        </div>
+    </section>
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第19课：CSS常用元素样式</title>
+        
+    <link rel='stylesheet' href='../统一讲义样式模板.css'>
+    <!-- 通用工具函数库 -->
+    <script src='../js/lecture-utils.js'></script>
+</head>
+<body>
+
+    <!-- 侧边栏导航 -->
+    <nav class="sidebar">
+        <div class="sidebar-nav">
+            <h3>课程导航</h3>
+            <a class="sidebar-link" href="#intro">👋 课程概览</a>
+            
+            <h3>Part 1: 文本相关元素</h3>
+            <a class="sidebar-link sub-link" href="#links">1. 链接样式</a>
+            <a class="sidebar-link sub-link" href="#lists">2. 列表样式</a>
+            
+            <h3>Part 2: 表格与表单</h3>
+            <a class="sidebar-link sub-link" href="#tables">3. 表格样式</a>
+            <a class="sidebar-link sub-link" href="#forms">4. 表单样式</a>
+            
+            <h3>Part 3: 媒体与其他元素</h3>
+            <a class="sidebar-link sub-link" href="#images">5. 图片样式</a>
+            <a class="sidebar-link sub-link" href="#blocks">6. 块级元素样式</a>
+            
+            <h3>总结与练习</h3>
+            <a class="sidebar-link" href="#summary">📝 课程小结</a>
+        </div>
+    </nav>
+
+    <!-- 主内容区 -->
+    <main class="content">
+        <header id="intro">
+            <h1>第19课：CSS常用元素样式</h1>
+            <p class="intro">
+                本节课我们将学习如何为HTML中最常用的元素设计样式，包括链接、列表、表格、表单和图片等。掌握这些元素的样式设计，能够让你的网页更加美观和专业。
+            </p>
+            
+            <!-- 知识点标签列表 -->
+            <div class="pill-list">
+                <span class="pill">链接样式</span>
+                <span class="pill">列表样式</span>
+                <span class="pill">表格样式</span>
+                <span class="pill">表单样式</span>
+                <span class="pill">图片样式</span>
+                <span class="pill">块级元素</span>
+            </div>
+        </header>
+
+        <!-- ======================================== -->
+        <!-- 第一部分：文本相关元素 -->
+        <!-- ======================================== -->
+        <section id="links">
+            <h2>一、链接样式 (Link Styles)</h2>
+            <p>链接是网页中最常用的交互元素，CSS可以控制链接的各种状态和外观。</p>
+
+            <h3>1.1 链接的四种状态</h3>
+            <p>链接有四种基本状态，CSS可以针对每种状态设置不同的样式：</p>
+            
+            <table class="prop-table">
+                <thead>
+                    <tr>
+                        <th>状态</th>
+                        <th>描述</th>
+                        <th>CSS选择器</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>未访问</td>
+                        <td>用户还没有点击过的链接</td>
+                        <td><code>:link</code></td>
+                    </tr>
+                    <tr>
+                        <td>已访问</td>
+                        <td>用户已经点击过的链接</td>
+                        <td><code>:visited</code></td>
+                    </tr>
+                    <tr>
+                        <td>悬停</td>
+                        <td>鼠标指针悬停在链接上时</td>
+                        <td><code>:hover</code></td>
+                    </tr>
+                    <tr>
+                        <td>激活</td>
+                        <td>用户正在点击链接的瞬间</td>
+                        <td><code>:active</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>1.2 链接样式设计</h3>
+            <p>常见的链接样式设计包括颜色、下划线、背景色等：</p>
+            
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 01：链接样式设计</span>
+                    <span id="badge-1" class="status-badge beginner">动手实践</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;div class="link-container"&gt;
+    &lt;a href="#" class="custom-link"&gt;这是一个自定义链接&lt;/a&gt;
+    &lt;br&gt;
+    &lt;a href="#" class="button-link"&gt;按钮样式链接&lt;/a&gt;
+&lt;/div&gt;
+                    </div>
+                    <div class="panel css-editor" id="css-1" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* ---实验目标 --- */
+/* 尝试修改链接的颜色和悬停效果 */
+
+/* 基础链接样式 */
+.custom-link {
+    /* 去除默认下划线 */
+    text-decoration: none;
+    
+    /* 设置链接颜色 */
+    color: #0066cc;
+    
+    /* 添加底部边框替代下划线 */
+    border-bottom: 1px solid #0066cc;
+    
+    /* 过渡效果 */
+    transition: all 0.3s ease;
+}
+
+/* 悬停效果 */
+.custom-link:hover {
+    /* 改变颜色 */
+    color: #004499;
+    
+    /* 改变边框颜色 */
+    border-bottom-color: #004499;
+    
+    /* 添加背景色 */
+    background-color: #e6f2ff;
+}
+
+/* 按钮样式链接 */
+.button-link {
+    /* 去除默认样式 */
+    text-decoration: none;
+    color: white;
+    
+    /* 按钮样式 */
+    background-color: #0066cc;
+    padding: 10px 20px;
+    border-radius: 4px;
+    
+    /* 过渡效果 */
+    transition: all 0.3s ease;
+}
+
+.button-link:hover {
+    background-color: #004499;
+    /* 添加阴影效果 */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="runCssExperiment('css-1', 'preview-1', 'badge-1')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetCssExperiment('css-1', 'preview-1', 'badge-1')">↺ 重置</button>
+                </div>
+                <div class="preview-box" id="preview-1">
+                    <span class="preview-label">效果预览</span>
+                    <div class="link-container">
+                        <a href="#" class="custom-link">这是一个自定义链接</a>
+                        <br>
+                        <a href="#" class="button-link">按钮样式链接</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="lists">
+            <h2>二、列表样式 (List Styles)</h2>
+            <p>HTML中的列表包括无序列表(&lt;ul&gt;)和有序列表(&lt;ol&gt;)，CSS可以控制列表的标记、缩进等样式。</p>
+
+            <h3>2.1 列表标记样式</h3>
+            <p>可以使用<code>list-style-type</code>属性设置列表项的标记类型：</p>
+            
+            <table class="prop-table">
+                <thead>
+                    <tr>
+                        <th>列表类型</th>
+                        <th>常用值</th>
+                        <th>描述</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="5">无序列表 (ul)</td>
+                        <td><code>disc</code></td>
+                        <td>实心圆（默认）</td>
+                    </tr>
+                    <tr>
+                        <td><code>circle</code></td>
+                        <td>空心圆</td>
+                    </tr>
+                    <tr>
+                        <td><code>square</code></td>
+                        <td>实心方块</td>
+                    </tr>
+                    <tr>
+                        <td><code>none</code></td>
+                        <td>无标记</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="5">有序列表 (ol)</td>
+                        <td><code>decimal</code></td>
+                        <td>十进制数字（默认）</td>
+                    </tr>
+                    <tr>
+                        <td><code>lower-roman</code></td>
+                        <td>小写罗马数字</td>
+                    </tr>
+                    <tr>
+                        <td><code>upper-roman</code></td>
+                        <td>大写罗马数字</td>
+                    </tr>
+                    <tr>
+                        <td><code>lower-alpha</code></td>
+                        <td>小写字母</td>
+                    </tr>
+                    <tr>
+                        <td><code>upper-alpha</code></td>
+                        <td>大写字母</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>2.2 自定义列表样式</h3>
+            <p>可以使用<code>list-style-image</code>属性设置自定义图片作为列表标记，或者使用伪元素实现更复杂的列表样式：</p>
+            
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 02：自定义列表样式</span>
+                    <span id="badge-2" class="status-badge beginner">动手实践</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;div class="list-container"&gt;
+    &lt;h3&gt;自定义无序列表：&lt;/h3&gt;
+    &lt;ul class="custom-ul"&gt;
+        &lt;li&gt;列表项 1&lt;/li&gt;
+        &lt;li&gt;列表项 2&lt;/li&gt;
+        &lt;li&gt;列表项 3&lt;/li&gt;
+    &lt;/ul&gt;
+    
+    &lt;h3&gt;自定义有序列表：&lt;/h3&gt;
+    &lt;ol class="custom-ol"&gt;
+        &lt;li&gt;第一步&lt;/li&gt;
+        &lt;li&gt;第二步&lt;/li&gt;
+        &lt;li&gt;第三步&lt;/li&gt;
+    &lt;/ol&gt;
+&lt;/div&gt;
+                    </div>
+                    <div class="panel css-editor" id="css-2" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* ---实验目标 --- */
+/* 尝试修改列表的标记样式 */
+
+/* 自定义无序列表 */
+.custom-ul {
+    /* 移除默认列表样式 */
+    list-style-type: none;
+    /* 移除默认内边距 */
+    padding-left: 0;
+}
+
+.custom-ul li {
+    /* 添加左侧内边距 */
+    padding-left: 25px;
+    /* 相对定位，用于伪元素定位 */
+    position: relative;
+    /* 增加行高，提高可读性 */
+    line-height: 1.8;
+}
+
+/* 使用伪元素创建自定义标记 */
+.custom-ul li::before {
+    /* 内容为实心方块 */
+    content: "■";
+    /* 设置颜色 */
+    color: #0066cc;
+    /* 绝对定位 */
+    position: absolute;
+    /* 定位到左侧 */
+    left: 0;
+    /* 字体大小 */
+    font-size: 12px;
+}
+
+/* 自定义有序列表 */
+.custom-ol {
+    /* 使用小写罗马数字 */
+    list-style-type: lower-roman;
+    /* 增加左侧内边距 */
+    padding-left: 30px;
+}
+
+.custom-ol li {
+    /* 增加行高 */
+    line-height: 1.8;
+    /* 改变颜色 */
+    color: #333;
+}
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="runCssExperiment('css-2', 'preview-2', 'badge-2')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetCssExperiment('css-2', 'preview-2', 'badge-2')">↺ 重置</button>
+                </div>
+                <div class="preview-box" id="preview-2">
+                    <span class="preview-label">效果预览</span>
+                    <div class="list-container">
+                        <h3>自定义无序列表：</h3>
+                        <ul class="custom-ul">
+                            <li>列表项 1</li>
+                            <li>列表项 2</li>
+                            <li>列表项 3</li>
+                        </ul>
+                        
+                        <h3>自定义有序列表：</h3>
+                        <ol class="custom-ol">
+                            <li>第一步</li>
+                            <li>第二步</li>
+                            <li>第三步</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- 第二部分：表格与表单 -->
+        <!-- ======================================== -->
+        <section id="tables">
+            <h2>三、表格样式 (Table Styles)</h2>
+            <p>表格是展示结构化数据的重要元素，CSS可以让表格更加美观和易读。</p>
+
+            <h3>3.1 表格基础样式</h3>
+            <p>表格的基础样式包括边框、间距、对齐方式等：</p>
+            
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 03：表格样式设计</span>
+                    <span id="badge-3" class="status-badge beginner">动手实践</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;table class="custom-table"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;姓名&lt;/th&gt;
+            &lt;th&gt;年龄&lt;/th&gt;
+            &lt;th&gt;城市&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;张三&lt;/td&gt;
+            &lt;td&gt;25&lt;/td&gt;
+            &lt;td&gt;北京&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;李四&lt;/td&gt;
+            &lt;td&gt;30&lt;/td&gt;
+            &lt;td&gt;上海&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;王五&lt;/td&gt;
+            &lt;td&gt;28&lt;/td&gt;
+            &lt;td&gt;广州&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+                    </div>
+                    <div class="panel css-editor" id="css-3" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* ---实验目标 --- */
+/* 尝试修改表格的边框、颜色和对齐方式 */
+
+/* 表格基础样式 */
+.custom-table {
+    /* 合并边框 */
+    border-collapse: collapse;
+    /* 宽度100% */
+    width: 100%;
+    /* 字体大小 */
+    font-size: 14px;
+    /* 边框 */
+    border: 1px solid #ddd;
+}
+
+/* 表头样式 */
+.custom-table th {
+    /* 背景色 */
+    background-color: #f5f5f5;
+    /* 文字颜色 */
+    color: #333;
+    /* 内边距 */
+    padding: 12px;
+    /* 文字对齐 */
+    text-align: left;
+    /* 边框 */
+    border: 1px solid #ddd;
+    /* 字体粗细 */
+    font-weight: bold;
+}
+
+/* 表格内容样式 */
+.custom-table td {
+    /* 内边距 */
+    padding: 12px;
+    /* 边框 */
+    border: 1px solid #ddd;
+    /* 文字颜色 */
+    color: #666;
+}
+
+/* 表格行悬停效果 */
+.custom-table tr:hover {
+    /* 背景色 */
+    background-color: #f9f9f9;
+}
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="runCssExperiment('css-3', 'preview-3', 'badge-3')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetCssExperiment('css-3', 'preview-3', 'badge-3')">↺ 重置</button>
+                </div>
+                <div class="preview-box" id="preview-3">
+                    <span class="preview-label">效果预览</span>
+                    <table class="custom-table">
+                        <thead>
+                            <tr>
+                                <th>姓名</th>
+                                <th>年龄</th>
+                                <th>城市</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>张三</td>
+                                <td>25</td>
+                                <td>北京</td>
+                            </tr>
+                            <tr>
+                                <td>李四</td>
+                                <td>30</td>
+                                <td>上海</td>
+                            </tr>
+                            <tr>
+                                <td>王五</td>
+                                <td>28</td>
+                                <td>广州</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="forms">
+            <h2>四、表单样式 (Form Styles)</h2>
+            <p>表单是用户与网站交互的重要方式，CSS可以让表单元素更加美观和易用。</p>
+
+            <h3>4.1 表单元素样式</h3>
+            <p>常见的表单元素包括输入框、按钮、选择框等：</p>
+            
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 04：表单样式设计</span>
+                    <span id="badge-4" class="status-badge beginner">动手实践</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;form class="custom-form"&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label for="name"&gt;姓名：&lt;/label&gt;
+        &lt;input type="text" id="name" name="name" placeholder="请输入姓名"&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="form-group"&gt;
+        &lt;label for="email"&gt;邮箱：&lt;/label&gt;
+        &lt;input type="email" id="email" name="email" placeholder="请输入邮箱"&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="form-group"&gt;
+        &lt;label for="city"&gt;城市：&lt;/label&gt;
+        &lt;select id="city" name="city"&gt;
+            &lt;option value="beijing"&gt;北京&lt;/option&gt;
+            &lt;option value="shanghai"&gt;上海&lt;/option&gt;
+            &lt;option value="guangzhou"&gt;广州&lt;/option&gt;
+        &lt;/select&gt;
+    &lt;/div&gt;
+    
+    &lt;div class="form-group"&gt;
+        &lt;button type="submit" class="submit-btn"&gt;提交&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+                    </div>
+                    <div class="panel css-editor" id="css-4" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* ---实验目标 --- */
+/* 尝试修改表单元素的样式 */
+
+/* 表单容器样式 */
+.custom-form {
+    /* 设置宽度 */
+    width: 400px;
+    /* 内边距 */
+    padding: 20px;
+    /* 边框 */
+    border: 1px solid #ddd;
+    /* 圆角 */
+    border-radius: 8px;
+    /* 背景色 */
+    background-color: #f9f9f9;
+}
+
+/* 表单组样式 */
+.form-group {
+    /* 底部外边距 */
+    margin-bottom: 15px;
+    /* 块级元素，独占一行 */
+    display: block;
+}
+
+/* 标签样式 */
+.form-group label {
+    /* 块级元素，独占一行 */
+    display: block;
+    /* 底部外边距 */
+    margin-bottom: 5px;
+    /* 文字颜色 */
+    color: #333;
+    /* 字体粗细 */
+    font-weight: bold;
+}
+
+/* 输入框和选择框样式 */
+.form-group input,
+.form-group select {
+    /* 宽度100% */
+    width: 100%;
+    /* 内边距 */
+    padding: 10px;
+    /* 边框 */
+    border: 1px solid #ddd;
+    /* 圆角 */
+    border-radius: 4px;
+    /* 字体大小 */
+    font-size: 14px;
+    /* 盒模型设置 */
+    box-sizing: border-box;
+    /* 过渡效果 */
+    transition: border-color 0.3s ease;
+}
+
+/* 输入框和选择框获得焦点时的样式 */
+.form-group input:focus,
+.form-group select:focus {
+    /* 移除默认轮廓 */
+    outline: none;
+    /* 改变边框颜色 */
+    border-color: #0066cc;
+    /* 添加阴影 */
+    box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2);
+}
+
+/* 提交按钮样式 */
+.submit-btn {
+    /* 背景色 */
+    background-color: #0066cc;
+    /* 文字颜色 */
+    color: white;
+    /* 内边距 */
+    padding: 10px 20px;
+    /* 边框 */
+    border: none;
+    /* 圆角 */
+    border-radius: 4px;
+    /* 字体大小 */
+    font-size: 14px;
+    /* 光标样式 */
+    cursor: pointer;
+    /* 过渡效果 */
+    transition: background-color 0.3s ease;
+}
+
+/* 提交按钮悬停效果 */
+.submit-btn:hover {
+    /* 改变背景色 */
+    background-color: #004499;
+}
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="runCssExperiment('css-4', 'preview-4', 'badge-4')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetCssExperiment('css-4', 'preview-4', 'badge-4')">↺ 重置</button>
+                </div>
+                <div class="preview-box" id="preview-4">
+                    <span class="preview-label">效果预览</span>
+                    <form class="custom-form">
+                        <div class="form-group">
+                            <label for="name">姓名：</label>
+                            <input type="text" id="name" name="name" placeholder="请输入姓名">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">邮箱：</label>
+                            <input type="email" id="email" name="email" placeholder="请输入邮箱">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="city">城市：</label>
+                            <select id="city" name="city">
+                                <option value="beijing">北京</option>
+                                <option value="shanghai">上海</option>
+                                <option value="guangzhou">广州</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button type="submit" class="submit-btn">提交</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- 第三部分：媒体与其他元素 -->
+        <!-- ======================================== -->
+        <section id="images">
+            <h2>五、图片样式 (Image Styles)</h2>
+            <p>图片是网页中重要的视觉元素，CSS可以控制图片的大小、边框、圆角等样式。</p>
+
+            <h3>5.1 图片基础样式</h3>
+            <p>常见的图片样式包括大小、边框、圆角、阴影等：</p>
+            
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 05：图片样式设计</span>
+                    <span id="badge-5" class="status-badge beginner">动手实践</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;div class="image-container"&gt;
+    &lt;img src="https://picsum.photos/200/200" alt="示例图片" class="rounded-img"&gt;
+    &lt;img src="https://picsum.photos/200/200" alt="示例图片" class="bordered-img"&gt;
+    &lt;img src="https://picsum.photos/200/200" alt="示例图片" class="shadow-img"&gt;
+&lt;/div&gt;
+                    </div>
+                    <div class="panel css-editor" id="css-5" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* ---实验目标 --- */
+/* 尝试修改图片的样式 */
+
+/* 图片容器 */
+.image-container {
+    /* 弹性布局 */
+    display: flex;
+    /* 间距 */
+    gap: 20px;
+    /* 内边距 */
+    padding: 20px;
+}
+
+/* 圆角图片 */
+.rounded-img {
+    /* 圆角半径 */
+    border-radius: 50%;
+    /* 宽度 */
+    width: 150px;
+    /* 高度 */
+    height: 150px;
+    /* 对象适配，保持比例 */
+    object-fit: cover;
+}
+
+/* 带边框图片 */
+.bordered-img {
+    /* 宽度 */
+    width: 150px;
+    /* 高度 */
+    height: 150px;
+    /* 对象适配 */
+    object-fit: cover;
+    /* 边框 */
+    border: 3px solid #0066cc;
+    /* 圆角 */
+    border-radius: 8px;
+}
+
+/* 带阴影图片 */
+.shadow-img {
+    /* 宽度 */
+    width: 150px;
+    /* 高度 */
+    height: 150px;
+    /* 对象适配 */
+    object-fit: cover;
+    /* 圆角 */
+    border-radius: 8px;
+    /* 阴影效果 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="runCssExperiment('css-5', 'preview-5', 'badge-5')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetCssExperiment('css-5', 'preview-5', 'badge-5')">↺ 重置</button>
+                </div>
+                <div class="preview-box" id="preview-5">
+                    <span class="preview-label">效果预览</span>
+                    <div class="image-container">
+                        <img src="https://picsum.photos/200/200" alt="示例图片" class="rounded-img">
+                        <img src="https://picsum.photos/200/200" alt="示例图片" class="bordered-img">
+                        <img src="https://picsum.photos/200/200" alt="示例图片" class="shadow-img">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="blocks">
+            <h2>六、块级元素样式 (Block Element Styles)</h2>
+            <p>HTML中的块级元素包括div、h1-h6、p、header、footer等，CSS可以控制它们的布局、背景、边框等样式。</p>
+
+            <h3>6.1 卡片样式设计</h3>
+            <p>卡片是网页中常用的设计模式，通常使用div元素实现：</p>
+            
+            <div class="lab-card">
+                <div class="lab-header">
+                    <span>实验 06：卡片样式设计</span>
+                    <span id="badge-6" class="status-badge beginner">动手实践</span>
+                </div>
+                <div class="lab-body">
+                    <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;div class="card-container"&gt;
+    &lt;div class="card"&gt;
+        &lt;div class="card-header"&gt;
+            <h3>卡片标题</h3>
+        &lt;/div&gt;
+        &lt;div class="card-body"&gt;
+            &lt;p&gt;这是一张示例卡片，用于展示块级元素的样式设计。卡片通常包含标题、内容和操作按钮等部分。&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="card-footer"&gt;
+            &lt;button class="card-btn"&gt;查看详情&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+                    </div>
+                    <div class="panel css-editor" id="css-6" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* ---实验目标 --- */
+/* 尝试修改卡片的样式 */
+
+/* 卡片容器 */
+.card-container {
+    /* 宽度 */
+    width: 300px;
+    /* 内边距 */
+    padding: 20px;
+}
+
+/* 卡片样式 */
+.card {
+    /* 边框 */
+    border: 1px solid #ddd;
+    /* 圆角 */
+    border-radius: 8px;
+    /* 阴影效果 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    /* 背景色 */
+    background-color: white;
+    /* 溢出隐藏 */
+    overflow: hidden;
+}
+
+/* 卡片头部 */
+.card-header {
+    /* 内边距 */
+    padding: 15px;
+    /* 背景色 */
+    background-color: #f5f5f5;
+    /* 边框底部 */
+    border-bottom: 1px solid #ddd;
+}
+
+/* 卡片标题 */
+.card-header h3 {
+    /* margin重置 */
+    margin: 0;
+    /* 文字颜色 */
+    color: #333;
+    /* 字体大小 */
+    font-size: 18px;
+}
+
+/* 卡片内容 */
+.card-body {
+    /* 内边距 */
+    padding: 15px;
+}
+
+/* 卡片内容文字 */
+.card-body p {
+    /* line-height */
+    line-height: 1.6;
+    /* 文字颜色 */
+    color: #666;
+    /* margin重置 */
+    margin: 0;
+}
+
+/* 卡片底部 */
+.card-footer {
+    /* 内边距 */
+    padding: 15px;
+    /* 背景色 */
+    background-color: #f9f9f9;
+    /* 边框顶部 */
+    border-top: 1px solid #ddd;
+    /* 文本右对齐 */
+    text-align: right;
+}
+
+/* 卡片按钮 */
+.card-btn {
+    /* 背景色 */
+    background-color: #0066cc;
+    /* 文字颜色 */
+    color: white;
+    /* 内边距 */
+    padding: 8px 16px;
+    /* 边框 */
+    border: none;
+    /* 圆角 */
+    border-radius: 4px;
+    /* 光标样式 */
+    cursor: pointer;
+    /* 过渡效果 */
+    transition: background-color 0.3s ease;
+}
+
+/* 卡片按钮悬停效果 */
+.card-btn:hover {
+    /* 改变背景色 */
+    background-color: #004499;
+}
+                    </div>
+                </div>
+                <div class="action-bar">
+                    <button class="btn btn-run" onclick="runCssExperiment('css-6', 'preview-6', 'badge-6')">▶ 运行代码</button>
+                    <button class="btn btn-reset" onclick="resetCssExperiment('css-6', 'preview-6', 'badge-6')">↺ 重置</button>
+                </div>
+                <div class="preview-box" id="preview-6">
+                    <span class="preview-label">效果预览</span>
+                    <div class="card-container">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>卡片标题</h3>
+                            </div>
+                            <div class="card-body">
+                                <p>这是一张示例卡片，用于展示块级元素的样式设计。卡片通常包含标题、内容和操作按钮等部分。</p>
+                            </div>
+                            <div class="card-footer">
+                                <button class="card-btn">查看详情</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 课程小结区域 -->
+        <section id="summary">
+            <h2>七、课程小结</h2>
+            <p>
+                本节课我们学习了CSS常用元素的样式设计，包括链接、列表、表格、表单、图片和块级元素等。
+            </p>
+            
+            <h3>知识点回顾</h3>
+            <ul>
+                <li><strong>链接样式</strong>：掌握了链接的四种状态（:link, :visited, :hover, :active）和常见样式设计</li>
+                <li><strong>列表样式</strong>：学习了列表标记类型和自定义列表样式的方法</li>
+                <li><strong>表格样式</strong>：掌握了表格边框合并、表头样式和行悬停效果等</li>
+                <li><strong>表单样式</strong>：学习了输入框、选择框和按钮等表单元素的样式设计</li>
+                <li><strong>图片样式</strong>：掌握了图片的圆角、边框、阴影等样式设计</li>
+                <li><strong>块级元素样式</strong>：学习了卡片等常见块级元素的样式设计</li>
+            </ul>
+            
+            <h3>重点记忆</h3>
+            <div class="tip-box">
+                <span class="tip-title">🎯 核心要点</span>
+                <p>1. 链接样式设计时要考虑四种状态的视觉反馈</p>
+                <p>2. 自定义列表样式时，通常使用伪元素::before创建标记</p>
+                <p>3. 表格样式设计时，首先设置border-collapse: collapse合并边框</p>
+                <p>4. 表单元素获得焦点时，应提供清晰的视觉反馈</p>
+                <p>5. 图片样式设计时，使用object-fit属性控制图片的适配方式</p>
+                <p>6. 卡片是网页中常用的设计模式，通常包含标题、内容和操作按钮</p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

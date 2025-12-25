@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第20课练习：CSS样式进阶</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; display: flex; justify-content: center; padding-top: 50px; min-height: 100vh; }
+        .container { width: 100%; max-width: 800px; background: white; padding: 40px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .todo-box { background: #e3f2fd; border-left: 5px solid #2196f3; padding: 15px; margin-bottom: 30px; border-radius: 4px; }
+        .todo-box h3 { margin: 0 0 10px 0; color: #1565c0; }
+        .preview-area { border: 2px dashed #ccc; padding: 20px; min-height: 200px; border-radius: 4px; display: flex; justify-content: center; align-items: center; }
+        
+        /* --- 请在下方补充CSS代码 --- */
+        
+        .fancy-box {
+            width: 200px;
+            height: 200px;
+            background-color: #fff;
+            
+            /* 任务1：添加圆角 20px */
+            /* border-radius: ... */
+            
+            
+            /* 任务2：添加阴影 (x=5px, y=5px, blur=15px, color=rgba(0,0,0,0.2)) */
+            /* box-shadow: ... */
+            
+            
+            /* 任务3：添加背景图片 (使用 https://via.placeholder.com/200) */
+            /* background-image: ... */
+            
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="todo-box">
+            <h3>📝 练习任务</h3>
+            <ol>
+                <li>给 <code>.fancy-box</code> 添加圆角 (<code>border-radius</code>)。</li>
+                <li>添加阴影效果 (<code>box-shadow</code>)，让它看起来浮起来。</li>
+                <li>设置背景图片 (<code>background-image</code>)。</li>
+            </ol>
+        </div>
+
+        <div class="preview-area">
+            <div class="fancy-box"></div>
+        </div>
+    </div>
+</body>
+</html>

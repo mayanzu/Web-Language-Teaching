@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第18课：CSS颜色与文字</title>
+    
+    <!-- 统一样式引用 -->
+    <link rel='stylesheet' href='../统一讲义样式模板.css'>
+    <!-- 通用工具函数库 -->
+    <script src='../js/lecture-utils.js'></script>
+</head>
+<body>
+
+<!-- ============================================
+     侧边栏导航 - 课程目录
+     ============================================ -->
+<nav class="sidebar">
+    <div class="sidebar-nav">
+        <h3>课程导航</h3>
+        <a class="sidebar-link" href="#intro">👋 课程概览</a>
+        
+        <h3>Part 1: CSS颜色</h3>
+        <a class="sidebar-link sub-link" href="#chapter-1">一、颜色表示法</a>
+        <a class="sidebar-link sub-link" href="#chapter-2">二、常用颜色属性</a>
+        <a class="sidebar-link sub-link" href="#lab-1">🔬 实验 01：颜色实践</a>
+        
+        <h3>Part 2: 文字排版</h3>
+        <a class="sidebar-link sub-link" href="#chapter-3">三、字体属性</a>
+        <a class="sidebar-link sub-link" href="#chapter-4">四、文本样式</a>
+        <a class="sidebar-link sub-link" href="#lab-2">🔬 实验 02：文字排版实践</a>
+        
+        <h3>总结与练习</h3>
+        <a class="sidebar-link sub-link" href="#summary">📝 课程小结</a>
+    </div>
+</nav>
+
+
+<!-- ============================================
+     主内容区域
+     ============================================ -->
+<main class="content">
+
+    <!-- ============================================
+         课程头部 - 概览区域
+         ============================================ -->
+    <header id="intro">
+        <h1>第18课：CSS颜色与文字</h1>
+        <p class="intro">欢迎来到CSS视觉设计的核心课程！颜色和文字是网页设计中最基础也是最重要的元素。本节课我们将学习CSS颜色的各种表示方法，以及如何通过文字排版让内容更加易读和美观。</p>
+        
+        <!-- 知识点标签列表 -->
+        <div class="pill-list">
+            <span class="pill">颜色关键字</span>
+            <span class="pill">十六进制颜色</span>
+            <span class="pill">RGB颜色</span>
+            <span class="pill">字体属性</span>
+            <span class="pill">文本样式</span>
+            <span class="pill">文本对齐</span>
+        </div>
+    </header>
+
+
+    <!-- ============================================
+         第一部分：CSS颜色
+         ============================================ -->
+    
+    <section id="chapter-1">
+        <h2>一、颜色表示法</h2>
+        <p>CSS提供了多种方式来表示颜色，每种方式都有其特点和适用场景。</p>
+        
+        <div class="note-box">
+            <span class="tip-title">📖 生活类比</span>
+            <p>颜色表示法就像不同的语言描述同一个东西：</p>
+            <ul>
+                <li><strong>颜色关键字</strong>：像说"红色"、"蓝色"，简单直接</li>
+                <li><strong>十六进制</strong>：像颜色的"身份证号码"，精确但需要记忆</li>
+                <li><strong>RGB</strong>：像用红、绿、蓝三种颜料调配，直观可控</li>
+            </ul>
+        </div>
+        
+        <h3>1.1 颜色关键字</h3>
+        <p>CSS预定义了140多个颜色名称，可以直接使用英文单词表示颜色：</p>
+        
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>颜色名</th>
+                    <th>中文</th>
+                    <th>说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>red</code></td>
+                    <td>红色</td>
+                    <td>纯红色</td>
+                </tr>
+                <tr>
+                    <td><code>blue</code></td>
+                    <td>蓝色</td>
+                    <td>纯蓝色</td>
+                </tr>
+                <tr>
+                    <td><code>green</code></td>
+                    <td>绿色</td>
+                    <td>纯绿色</td>
+                </tr>
+                <tr>
+                    <td><code>white</code></td>
+                    <td>白色</td>
+                    <td>纯白色</td>
+                </tr>
+                <tr>
+                    <td><code>black</code></td>
+                    <td>黑色</td>
+                    <td>纯黑色</td>
+                </tr>
+                <tr>
+                    <td><code>gray</code></td>
+                    <td>灰色</td>
+                    <td>中灰色</td>
+                </tr>
+                <tr>
+                    <td><code>orange</code></td>
+                    <td>橙色</td>
+                    <td>橙色</td>
+                </tr>
+                <tr>
+                    <td><code>pink</code></td>
+                    <td>粉色</td>
+                    <td>粉红色</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="tip-box">
+            <span class="tip-title">💡 使用建议</span>
+            <p>颜色关键字适合快速测试或简单项目，但在正式项目中建议使用十六进制或RGB，因为：</p>
+            <ul>
+                <li>颜色关键字数量有限，无法表示所有颜色</li>
+                <li>不同浏览器对颜色名的解析可能略有差异</li>
+            </ul>
+        </div>
+        
+        <h3>1.2 十六进制颜色（Hex）</h3>
+        <p>十六进制是最常用的颜色表示法，格式为 <code>#RRGGBB</code>，其中RR、GG、BB分别表示红、绿、蓝三个通道的值（00-FF）。</p>
+        
+        <pre class="css"><code>/* 十六进制颜色示例 */
+.text-red { color: #FF0000; }     /* 纯红色 */
+.text-green { color: #00FF00; }   /* 纯绿色 */
+.text-blue { color: #0000FF; }    /* 纯蓝色 */
+.text-black { color: #000000; }   /* 黑色 */
+.text-white { color: #FFFFFF; }   /* 白色 */
+
+/* 简写形式：当每两位相同时可以简写 */
+.text-red { color: #F00; }        /* 等同于 #FF0000 */
+.text-gray { color: #888; }       /* 等同于 #888888 */</code></pre>
+        
+        <div class="note-box">
+            <strong>📌 理解十六进制颜色</strong>
+            <p>十六进制使用0-9和A-F共16个字符，其中：</p>
+            <ul>
+                <li><code>00</code> = 最小值（0），表示该颜色通道关闭</li>
+                <li><code>FF</code> = 最大值（255），表示该颜色通道全开</li>
+                <li><code>#FF0000</code> = 红色全开，绿蓝关闭 = 纯红色</li>
+            </ul>
+        </div>
+        
+        <h3>1.3 RGB颜色</h3>
+        <p>RGB使用十进制数值表示颜色，更直观易懂，格式为 <code>rgb(红, 绿, 蓝)</code>，每个值范围是0-255。</p>
+        
+        <pre class="css"><code>/* RGB颜色示例 */
+.text-red { color: rgb(255, 0, 0); }      /* 纯红色 */
+.text-green { color: rgb(0, 255, 0); }    /* 纯绿色 */
+.text-blue { color: rgb(0, 0, 255); }     /* 纯蓝色 */
+.text-gray { color: rgb(128, 128, 128); } /* 灰色 */
+
+/* RGBA：带透明度的RGB */
+.text-transparent { color: rgba(255, 0, 0, 0.5); } /* 半透明红色 */
+/* 第四个参数是透明度：0=完全透明，1=完全不透明 */</code></pre>
+        
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>表示法</th>
+                    <th>格式</th>
+                    <th>优点</th>
+                    <th>适用场景</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>颜色关键字</td>
+                    <td><code>red</code></td>
+                    <td>简单易记</td>
+                    <td>快速测试、简单项目</td>
+                </tr>
+                <tr>
+                    <td>十六进制</td>
+                    <td><code>#FF0000</code></td>
+                    <td>最常用、简洁</td>
+                    <td>正式项目、设计稿还原</td>
+                </tr>
+                <tr>
+                    <td>RGB</td>
+                    <td><code>rgb(255,0,0)</code></td>
+                    <td>直观、易调整</td>
+                    <td>动态颜色、JavaScript操作</td>
+                </tr>
+                <tr>
+                    <td>RGBA</td>
+                    <td><code>rgba(255,0,0,0.5)</code></td>
+                    <td>支持透明度</td>
+                    <td>需要透明效果的场景</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+
+    <section id="chapter-2">
+        <h2>二、常用颜色属性</h2>
+        <p>CSS提供了多个属性来控制页面元素的颜色。</p>
+        
+        <h3>2.1 color属性（文字颜色）</h3>
+        <p><code>color</code>属性用于设置文字的颜色：</p>
+        
+        <pre class="css"><code>/* 设置文字颜色 */
+p {
+    color: #333333;    /* 深灰色文字，比纯黑色更柔和 */
+}
+
+a {
+    color: #0066CC;    /* 链接用蓝色 */
+}
+
+.warning {
+    color: #FF0000;    /* 警告文字用红色 */
+}</code></pre>
+        
+        <h3>2.2 background-color属性（背景颜色）</h3>
+        <p><code>background-color</code>属性用于设置元素的背景颜色：</p>
+        
+        <pre class="css"><code>/* 设置背景颜色 */
+body {
+    background-color: #F5F5F5;    /* 浅灰色背景 */
+}
+
+.header {
+    background-color: #333333;    /* 深色头部 */
+    color: white;                  /* 白色文字 */
+}
+
+.highlight {
+    background-color: #FFFF00;    /* 黄色高亮 */
+}</code></pre>
+        
+        <h3>2.3 border-color属性（边框颜色）</h3>
+        <p><code>border-color</code>属性用于设置边框的颜色：</p>
+        
+        <pre class="css"><code>/* 设置边框颜色 */
+.box {
+    border: 2px solid;           /* 先设置边框样式 */
+    border-color: #CCCCCC;       /* 再设置边框颜色 */
+}
+
+/* 也可以一起写 */
+.box {
+    border: 2px solid #CCCCCC;
+}</code></pre>
+        
+        <div class="warning-box">
+            <strong>⚠️ 常见错误</strong>
+            <ul>
+                <li>❌ <code>color: #F5F5F5</code> 用于背景 → 应该用 <code>background-color</code></li>
+                <li>❌ 忘记设置 <code>border-style</code> → 边框不会显示</li>
+                <li>❌ 深色背景配深色文字 → 文字看不清</li>
+            </ul>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         实验 01：颜色实践
+         ============================================ -->
+    <section id="lab-1">
+        <h2>🔬 实验 01：颜色实践</h2>
+        <p>现在让我们动手练习使用CSS颜色！</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 01：CSS颜色练习</span>
+                <span class="status-badge beginner" id="badge-color">动手实践</span>
+            </div>
+            
+            <div class="lab-body split">
+                <!-- HTML 代码编辑区 -->
+                <div class="panel code-editor" id="html-color" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
+&lt;div class="card"&gt;
+    &lt;h2 class="title"&gt;我的卡片标题&lt;/h2&gt;
+    &lt;p class="content"&gt;这是卡片的内容区域，可以放置一些描述文字。&lt;/p&gt;
+    &lt;span class="tag"&gt;标签&lt;/span&gt;
+&lt;/div&gt;
+                </div>
+                
+                <!-- CSS 代码编辑区 -->
+                <div class="panel code-editor" id="css-color" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* 卡片容器样式 */
+.card {
+    background-color: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* 标题样式 */
+.title {
+    color: #333333;
+    margin-bottom: 10px;
+}
+
+/* 内容样式 */
+.content {
+    color: #666666;
+    line-height: 1.6;
+}
+
+/* 标签样式 */
+.tag {
+    background-color: #4285F4;
+    color: #FFFFFF;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+                </div>
+            </div>
+            
+            <!-- 预览区 -->
+            <div class="preview-box" id="preview-color">
+                <div class="panel-label">预览效果</div>
+                <div id="preview-content-color"></div>
+            </div>
+            
+            <!-- 操作按钮 -->
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runHtmlCssExperiment('html-color', 'css-color', 'preview-content-color', 'badge-color')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetHtmlCssExperiment('html-color', 'css-color', 'preview-content-color', 'badge-color')">↺ 重置代码</button>
+            </div>
+        </div>
+        
+        <div class="tip-box">
+            <span class="tip-title">🎯 试试看</span>
+            <ul>
+                <li>修改卡片的背景颜色，尝试使用不同的颜色</li>
+                <li>将标签的背景色改为红色 <code>#FF0000</code></li>
+                <li>尝试使用 <code>rgba()</code> 设置半透明背景</li>
+            </ul>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         第二部分：文字排版
+         ============================================ -->
+    
+    <section id="chapter-3">
+        <h2>三、字体属性</h2>
+        <p>CSS提供了丰富的字体控制属性，让我们可以精确控制文字的显示效果。</p>
+        
+        <div class="note-box">
+            <span class="tip-title">📖 生活类比</span>
+            <p>设置字体就像选择写字用的笔：</p>
+            <ul>
+                <li><strong>font-family</strong>：选择什么牌子的笔（宋体、黑体）</li>
+                <li><strong>font-size</strong>：笔尖的粗细（字号大小）</li>
+                <li><strong>font-weight</strong>：下笔的力度（字体粗细）</li>
+            </ul>
+        </div>
+        
+        <h3>3.1 font-family（字体族）</h3>
+        <p><code>font-family</code>属性用于设置文字使用的字体：</p>
+        
+        <pre class="css"><code>/* 设置字体 */
+body {
+    /* 字体栈：浏览器会按顺序查找可用字体 */
+    font-family: "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+}
+
+/* 常用字体组合 */
+.chinese-text {
+    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.code-text {
+    font-family: "Consolas", "Monaco", monospace;
+}</code></pre>
+        
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>字体类型</th>
+                    <th>常用字体</th>
+                    <th>特点</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>无衬线体</td>
+                    <td>Arial, 微软雅黑, 苹方</td>
+                    <td>现代、简洁，适合屏幕阅读</td>
+                </tr>
+                <tr>
+                    <td>衬线体</td>
+                    <td>Times, 宋体, Georgia</td>
+                    <td>传统、正式，适合印刷品</td>
+                </tr>
+                <tr>
+                    <td>等宽字体</td>
+                    <td>Consolas, Monaco</td>
+                    <td>每个字符宽度相同，适合代码</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h3>3.2 font-size（字号）</h3>
+        <p><code>font-size</code>属性用于设置文字的大小：</p>
+        
+        <pre class="css"><code>/* 设置字号 */
+h1 { font-size: 32px; }    /* 大标题 */
+h2 { font-size: 24px; }    /* 二级标题 */
+h3 { font-size: 18px; }    /* 三级标题 */
+p { font-size: 16px; }     /* 正文 */
+small { font-size: 14px; } /* 小字 */</code></pre>
+        
+        <div class="tip-box">
+            <span class="tip-title">💡 字号建议</span>
+            <p>网页正文的最小字号建议不小于14px，否则在某些设备上可能难以阅读。常见的正文字号为16px。</p>
+        </div>
+        
+        <h3>3.3 font-weight（字体粗细）</h3>
+        <p><code>font-weight</code>属性用于设置文字的粗细程度：</p>
+        
+        <pre class="css"><code>/* 设置字体粗细 */
+.normal { font-weight: normal; }   /* 正常，等于400 */
+.bold { font-weight: bold; }       /* 粗体，等于700 */
+
+/* 也可以用数值表示 */
+.light { font-weight: 300; }       /* 细体 */
+.regular { font-weight: 400; }     /* 正常 */
+.medium { font-weight: 500; }      /* 中等 */
+.bold { font-weight: 700; }        /* 粗体 */</code></pre>
+        
+        <h3>3.4 font-style（字体样式）</h3>
+        <p><code>font-style</code>属性用于设置文字是否倾斜：</p>
+        
+        <pre class="css"><code>/* 设置字体样式 */
+.normal { font-style: normal; }    /* 正常 */
+.italic { font-style: italic; }    /* 斜体 */
+
+/* 常用于强调文字 */
+em {
+    font-style: italic;
+}</code></pre>
+    </section>
+
+
+    <section id="chapter-4">
+        <h2>四、文本样式</h2>
+        <p>除了字体属性，CSS还提供了控制文本显示方式的属性。</p>
+        
+        <h3>4.1 text-align（文本对齐）</h3>
+        <p><code>text-align</code>属性用于设置文本的水平对齐方式：</p>
+        
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>值</th>
+                    <th>效果</th>
+                    <th>使用场景</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>left</code></td>
+                    <td>左对齐（默认）</td>
+                    <td>普通文本内容</td>
+                </tr>
+                <tr>
+                    <td><code>center</code></td>
+                    <td>居中对齐</td>
+                    <td>标题、按钮文字</td>
+                </tr>
+                <tr>
+                    <td><code>right</code></td>
+                    <td>右对齐</td>
+                    <td>日期、价格</td>
+                </tr>
+                <tr>
+                    <td><code>justify</code></td>
+                    <td>两端对齐</td>
+                    <td>报纸、杂志排版</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <pre class="css"><code>/* 文本对齐示例 */
+.title { text-align: center; }     /* 标题居中 */
+.price { text-align: right; }      /* 价格右对齐 */
+.article { text-align: justify; }  /* 文章两端对齐 */</code></pre>
+        
+        <h3>4.2 line-height（行高）</h3>
+        <p><code>line-height</code>属性用于设置文本的行间距，可以提高文本的可读性：</p>
+        
+        <pre class="css"><code>/* 设置行高 */
+p {
+    line-height: 1.6;    /* 推荐值：1.5-1.8 */
+}
+
+/* 不同的写法 */
+.px { line-height: 24px; }    /* 像素值 */
+.ratio { line-height: 1.6; }  /* 比例值（推荐）*/
+.percent { line-height: 160%; }/* 百分比 */</code></pre>
+        
+        <div class="tip-box">
+            <span class="tip-title">💡 行高建议</span>
+            <p>中文网页的行高建议设置为1.5-1.8倍，这样段落阅读起来会更加舒适。</p>
+        </div>
+        
+        <h3>4.3 text-decoration（文本装饰）</h3>
+        <p><code>text-decoration</code>属性用于添加或移除文本的装饰线：</p>
+        
+        <pre class="css"><code>/* 文本装饰示例 */
+a { text-decoration: none; }              /* 移除下划线 */
+.underline { text-decoration: underline; } /* 添加下划线 */
+.del { text-decoration: line-through; }   /* 删除线 */</code></pre>
+        
+        <h3>4.4 text-indent（首行缩进）</h3>
+        <p><code>text-indent</code>属性用于设置段落首行的缩进：</p>
+        
+        <pre class="css"><code>/* 首行缩进 */
+p {
+    text-indent: 2em;    /* 缩进2个字符宽度 */
+}</code></pre>
+    </section>
+
+
+    <!-- ============================================
+         实验 02：文字排版实践
+         ============================================ -->
+    <section id="lab-2">
+        <h2>🔬 实验 02：文字排版实践</h2>
+        <p>现在让我们动手练习文字排版！</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 02：文字排版练习</span>
+                <span class="status-badge beginner" id="badge-text">动手实践</span>
+            </div>
+            
+            <div class="lab-body split">
+                <!-- HTML 代码编辑区 -->
+                <div class="panel code-editor" id="html-text" contenteditable="true">
+<div class="panel-label">HTML (可编辑)</div>
+&lt;article class="article"&gt;
+    &lt;h1 class="title"&gt;文章标题&lt;/h1&gt;
+    &lt;p class="meta"&gt;发布时间：2024年12月24日&lt;/p&gt;
+    &lt;p class="intro"&gt;这是文章的引言部分，用来概括文章的主要内容。&lt;/p&gt;
+    &lt;p class="content"&gt;这是文章的正文内容。良好的排版可以让读者更轻松地阅读和理解文章内容。&lt;/p&gt;
+&lt;/article&gt;
+                </div>
+                
+                <!-- CSS 代码编辑区 -->
+                <div class="panel code-editor" id="css-text" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* 文章容器 */
+.article {
+    font-family: "Microsoft YaHei", sans-serif;
+    max-width: 600px;
+    padding: 20px;
+}
+
+/* 标题样式 */
+.title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* 发布时间 */
+.meta {
+    font-size: 14px;
+    color: #999;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* 引言样式 */
+.intro {
+    font-size: 16px;
+    color: #666;
+    font-style: italic;
+    line-height: 1.8;
+}
+
+/* 正文样式 */
+.content {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.8;
+    text-indent: 2em;
+}
+                </div>
+            </div>
+            
+            <!-- 预览区 -->
+            <div class="preview-box" id="preview-text">
+                <div class="panel-label">预览效果</div>
+                <div id="preview-content-text"></div>
+            </div>
+            
+            <!-- 操作按钮 -->
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runHtmlCssExperiment('html-text', 'css-text', 'preview-content-text', 'badge-text')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetHtmlCssExperiment('html-text', 'css-text', 'preview-content-text', 'badge-text')">↺ 重置代码</button>
+            </div>
+        </div>
+        
+        <div class="tip-box">
+            <span class="tip-title">🎯 试试看</span>
+            <ul>
+                <li>修改标题的字号和颜色</li>
+                <li>调整正文的行高，观察阅读体验的变化</li>
+                <li>尝试修改首行缩进的值</li>
+            </ul>
+        </div>
+    </section>
+
+
+    <!-- ============================================
+         课程小结区域
+         ============================================ -->
+    <section id="summary">
+        <h2>五、本课小结</h2>
+        
+        <h3>知识点回顾</h3>
+        <ul class="checklist">
+            <li><strong>颜色关键字</strong>：使用英文单词表示颜色，如 <code>red</code>、<code>blue</code></li>
+            <li><strong>十六进制颜色</strong>：最常用的颜色表示法，如 <code>#FF0000</code></li>
+            <li><strong>RGB/RGBA颜色</strong>：使用数值表示颜色，支持透明度</li>
+            <li><strong>font-family</strong>：设置字体，使用字体栈确保兼容性</li>
+            <li><strong>font-size</strong>：设置字号，网页正文建议16px左右</li>
+            <li><strong>text-align</strong>：设置文本对齐方式</li>
+            <li><strong>line-height</strong>：设置行高，建议1.5-1.8倍</li>
+        </ul>
+        
+        <h3>重点记忆</h3>
+        <table class="prop-table">
+            <thead>
+                <tr>
+                    <th>属性</th>
+                    <th>作用</th>
+                    <th>常用值</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>color</code></td>
+                    <td>文字颜色</td>
+                    <td><code>#333</code></td>
+                </tr>
+                <tr>
+                    <td><code>background-color</code></td>
+                    <td>背景颜色</td>
+                    <td><code>#F5F5F5</code></td>
+                </tr>
+                <tr>
+                    <td><code>font-size</code></td>
+                    <td>字号</td>
+                    <td><code>16px</code></td>
+                </tr>
+                <tr>
+                    <td><code>line-height</code></td>
+                    <td>行高</td>
+                    <td><code>1.6</code></td>
+                </tr>
+                <tr>
+                    <td><code>text-align</code></td>
+                    <td>文本对齐</td>
+                    <td><code>left</code>/<code>center</code>/<code>right</code></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- 下一课预告 -->
+        <div class="note-box">
+            <strong>下一课预告：</strong>
+            <p>下一课我们将学习【CSS常用元素样式】，包括链接样式、列表样式、长度单位和边框样式等内容，让你能够为各种HTML元素设计美观的样式。</p>
+        </div>
+    </section>
+
+
+</main>
+
+</body>
+</html>
+
+
+
+
+
+
+
+

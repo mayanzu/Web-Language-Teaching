@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第9课练习：HTML表单进阶</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; display: flex; justify-content: center; padding-top: 50px; min-height: 100vh; }
+        .container { width: 100%; max-width: 800px; background: white; padding: 40px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .todo-box { background: #e3f2fd; border-left: 5px solid #2196f3; padding: 15px; margin-bottom: 30px; border-radius: 4px; }
+        .todo-box h3 { margin: 0 0 10px 0; color: #1565c0; }
+        .preview-area { border: 2px dashed #ccc; padding: 20px; min-height: 100px; border-radius: 4px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: inline-block; width: 80px; vertical-align: top; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="todo-box">
+            <h3>📝 练习任务</h3>
+            <ol>
+                <li>创建一个“性别”选择项，使用单选按钮 (<code>input type="radio"</code>)。注意：name 属性必须相同才能互斥。</li>
+                <li>创建一个“爱好”选择项，使用复选框 (<code>input type="checkbox"</code>)。</li>
+                <li>创建一个“城市”下拉菜单，使用 <code>select</code> 和 <code>option</code>。</li>
+                <li>创建一个“自我介绍”多行文本框，使用 <code>textarea</code>。</li>
+            </ol>
+        </div>
+
+        <div class="preview-area">
+            <h3>用户注册</h3>
+            <!-- --- 请在下方补充代码 --- -->
+            
+            <form action="#">
+                <!-- 任务1：单选框 (性别) -->
+                <div class="form-group">
+                    <label>性别：</label>
+                    
+                </div>
+
+                <!-- 任务2：复选框 (爱好) -->
+                <div class="form-group">
+                    <label>爱好：</label>
+                    
+                </div>
+
+                <!-- 任务3：下拉菜单 (城市) -->
+                <div class="form-group">
+                    <label>城市：</label>
+                    
+                </div>
+
+                <!-- 任务4：多行文本 (自我介绍) -->
+                <div class="form-group">
+                    <label>简介：</label>
+                    
+                </div>
+            </form>
+
+        </div>
+    </div>
+</body>
+</html>

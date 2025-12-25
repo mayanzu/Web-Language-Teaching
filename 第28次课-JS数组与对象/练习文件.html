@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第28课练习：幸运抽奖系统</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); width: 100%; max-width: 450px; }
+        h1 { text-align: center; color: #333; margin-bottom: 20px; font-size: 22px; }
+        .todo-box { background: #e3f2fd; border-left: 5px solid #2196f3; padding: 15px; margin-bottom: 20px; border-radius: 4px; }
+        .todo-box h3 { margin: 0 0 10px 0; color: #1565c0; font-size: 16px; }
+        .todo-box ol { margin: 0; padding-left: 20px; color: #555; font-size: 14px; }
+        .input-group { display: flex; gap: 10px; margin-bottom: 15px; }
+        input { flex: 1; padding: 10px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 16px; }
+        button { padding: 10px 20px; border: none; border-radius: 8px; background: #2196f3; color: white; cursor: pointer; font-size: 14px; }
+        button:hover { opacity: 0.9; }
+        .list-box { background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 15px; min-height: 50px; border: 1px solid #eee; }
+        .action-btn { width: 100%; padding: 15px; font-size: 18px; background: #ff9800; font-weight: bold; margin-top: 10px; }
+        #winner { text-align: center; font-size: 24px; font-weight: bold; color: #e91e63; margin-top: 20px; min-height: 36px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎰 幸运抽奖系统</h1>
+        
+        <div class="todo-box">
+            <h3>📝 练习任务</h3>
+            <ol>
+                <li>创建一个空数组 <code>names</code> 用于存储名字。</li>
+                <li>点击"添加"：获取输入框的值，使用 <code>push()</code> 添加到数组。</li>
+                <li>点击"开始抽奖"：生成一个随机索引，从数组中取出对应的名字显示。</li>
+            </ol>
+        </div>
+
+        <div class="input-group">
+            <input type="text" id="nameInput" placeholder="输入参与者姓名">
+            <button id="addBtn">添加名单</button>
+        </div>
+
+        <div class="list-box">
+            <strong>当前名单 (<span id="count">0</span>人):</strong>
+            <div id="nameList" style="color: #666; margin-top: 5px;">(暂无人员)</div>
+        </div>
+
+        <button id="drawBtn" class="action-btn">🎲 开始抽奖</button>
+        <div id="winner"></div>
+    </div>
+
+    <script>
+        // 1. 准备工作
+        const nameInput = document.getElementById('nameInput');
+        const nameListDiv = document.getElementById('nameList');
+        const countSpan = document.getElementById('count');
+        const winnerDiv = document.getElementById('winner');
+
+        // 🎯 任务一：创建一个空数组
+        // const names = ...
+        const names = [];
+
+        // 🎯 任务二：添加名字
+        document.getElementById('addBtn').addEventListener('click', function() {
+            const name = nameInput.value;
+            if (!name) return; // 如果为空则不处理
+
+            // 1. 将 name 添加到 names 数组中 (使用 push)
+            // --- 请补充代码 ---
+            
+            
+            // 2. 更新页面显示 (已写好)
+            nameListDiv.innerText = names.join(', '); // 用逗号连接所有名字
+            countSpan.innerText = names.length;      // 更新人数
+            nameInput.value = '';                    // 清空输入框
+        });
+
+        // 🎯 任务三：随机抽奖
+        document.getElementById('drawBtn').addEventListener('click', function() {
+            if (names.length === 0) {
+                alert('名单为空，无法抽奖！');
+                return;
+            }
+
+            // 1. 生成一个 0 到 names.length - 1 之间的随机整数
+            // 提示：Math.floor(Math.random() * names.length)
+            // const randomIndex = ...
+            
+            
+            // 2. 根据索引从数组中取出名字
+            // const luckyName = ...
+            
+            
+            // 3. 显示中奖者
+            // winnerDiv.innerText = '🎉 中奖者：' + luckyName;
+        });
+    </script>
+</body>
+</html>

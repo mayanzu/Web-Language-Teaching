@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第30课答案：反应测试游戏</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #222; color: white; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .container { text-align: center; width: 100%; max-width: 600px; }
+        h1 { margin-bottom: 10px; }
+        .todo-box { background: #e8f5e9; border-left: 5px solid #4caf50; padding: 15px; margin-bottom: 30px; border-radius: 4px; text-align: left; color: #333; }
+        .todo-box h3 { margin: 0 0 10px 0; color: #2e7d32; font-size: 16px; }
+        .todo-box p { margin: 0; font-size: 14px; }
+        
+        #gameArea { 
+            width: 300px; 
+            height: 300px; 
+            background: #444; 
+            margin: 0 auto; 
+            border-radius: 12px; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            cursor: pointer; 
+            transition: all 0.1s;
+            user-select: none;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        #scoreBoard { font-size: 24px; margin-bottom: 20px; }
+        #message { color: #aaa; margin-top: 10px; min-height: 24px; }
+
+        /* 点击时的动画效果 */
+        .active { transform: scale(0.95); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚡ 反应测试游戏</h1>
+        
+        <div class="todo-box">
+            <h3>✅ 参考答案</h3>
+            <p>本示例展示了 mouseover, mouseout 和 click 三种常见事件的使用。</p>
+        </div>
+
+        <div id="scoreBoard">得分：<span id="score">0</span></div>
+        
+        <div id="gameArea">
+            <span>点我!</span>
+        </div>
+
+        <div id="message">鼠标移入方块试试看...</div>
+    </div>
+
+    <script>
+        const box = document.getElementById('gameArea');
+        const scoreSpan = document.getElementById('score');
+        const msg = document.getElementById('message');
+        let score = 0;
+
+        // 🎯 任务一：鼠标移入事件 (mouseover)
+        box.addEventListener('mouseover', function() {
+            // 1. 修改背景颜色
+            this.style.backgroundColor = '#ff4081';
+            this.style.boxShadow = '0 0 20px rgba(255, 64, 129, 0.6)';
+            
+            // 2. 修改提示文字
+            msg.innerText = '快点击！';
+            msg.style.color = '#ff4081';
+        });
+
+        // 🎯 任务二：鼠标移出事件 (mouseout)
+        box.addEventListener('mouseout', function() {
+            // 1. 恢复背景颜色
+            this.style.backgroundColor = '#444';
+            this.style.boxShadow = 'none';
+            
+            // 2. 恢复提示文字
+            msg.innerText = '鼠标移入方块试试看...';
+            msg.style.color = '#aaa';
+        });
+
+        // 🎯 任务三：点击事件 (click)
+        box.addEventListener('click', function() {
+            // 1. 分数加 1
+            score++;
+            
+            // 2. 更新页面显示
+            scoreSpan.innerText = score;
+            
+            // 3. 添加简单的点击反馈动画
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 100);
+
+            // 额外效果：随机变色
+            const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+            this.style.backgroundColor = randomColor;
+        });
+    </script>
+</body>
+</html>
