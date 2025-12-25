@@ -19,12 +19,33 @@
         
         <h3>Part 1: 图片基础</h3>
         <a class="sidebar-link sub-link" href="#chapter-1">一、图片标签的基本语法</a>
+        <a class="sidebar-link sub-link" href="#section-1-1">1.1 图片标签的基本结构</a>
+        <a class="sidebar-link sub-link" href="#section-1-2">1.2 img标签的特点</a>
+        <a class="sidebar-link sub-link" href="#section-1-3">1.3 图片标签示例</a>
+        <a class="sidebar-link sub-link" href="#section-1-4">1.4 图片加载失败的情况</a>
         <a class="sidebar-link sub-link" href="#chapter-2">二、图片的常用属性</a>
+        <a class="sidebar-link sub-link" href="#section-2-1">2.1 src属性（图片来源）</a>
+        <a class="sidebar-link sub-link" href="#section-2-2">2.2 alt属性（替代文本）</a>
+        <a class="sidebar-link sub-link" href="#section-2-3">2.3 width和height属性</a>
+        <a class="sidebar-link sub-link" href="#section-2-4">2.4 title属性</a>
+        <a class="sidebar-link sub-link" href="#section-2-5">2.5 loading属性（懒加载）</a>
+        <a class="sidebar-link sub-link" href="#section-2-6">2.6 属性综合示例</a>
+        <a class="sidebar-link sub-link" href="#section-2-7">2.7 其他有用的属性</a>
         <a class="sidebar-link sub-link" href="#lab-1">🔬 实验 01：基础图片练习</a>
         
         <h3>Part 2: 高级图片应用</h3>
         <a class="sidebar-link sub-link" href="#chapter-3">三、图片路径（相对路径与绝对路径）</a>
+        <a class="sidebar-link sub-link" href="#section-3-1">3.1 相对路径</a>
+        <a class="sidebar-link sub-link" href="#section-3-2">3.2 绝对路径</a>
+        <a class="sidebar-link sub-link" href="#section-3-3">3.3 相对路径 vs 绝对路径</a>
+        <a class="sidebar-link sub-link" href="#section-3-4">3.4 路径选择建议</a>
         <a class="sidebar-link sub-link" href="#chapter-4">四、常见图片格式</a>
+        <a class="sidebar-link sub-link" href="#section-4-1">4.1 JPG (JPEG)</a>
+        <a class="sidebar-link sub-link" href="#section-4-2">4.2 PNG</a>
+        <a class="sidebar-link sub-link" href="#section-4-3">4.3 GIF</a>
+        <a class="sidebar-link sub-link" href="#section-4-4">4.4 SVG</a>
+        <a class="sidebar-link sub-link" href="#section-4-5">4.5 WebP（现代格式）</a>
+        <a class="sidebar-link sub-link" href="#section-4-6">4.6 图片格式对比总表</a>
         <a class="sidebar-link sub-link" href="#lab-2">🔬 实验 02：综合图片练习</a>
         
         <h3>总结与练习</h3>
@@ -64,7 +85,7 @@
             <p>想象一下你在写一封信，想要在信中放入一张照片。你需要告诉收信人照片的位置（src）以及照片的描述（alt）。如果照片丢失了，收信人至少可以通过描述知道照片原本是什么内容。<code>&lt;img&gt;</code>标签就像这样的"照片占位符"，它告诉浏览器去哪里找图片，以及图片加载失败时显示什么。</p>
         </div>
         
-        <h3>1.1 图片标签的基本结构</h3>
+        <h3 id="section-1-1">1.1 图片标签的基本结构</h3>
         <p>图片标签的基本语法如下：</p>
         
         <div class="lab-card">
@@ -83,7 +104,7 @@
             <li><code>alt</code>属性是推荐的，用于指定图片的替代文本</li>
         </ul>
         
-        <h3>1.2 img标签的特点</h3>
+        <h3 id="section-1-2">1.2 img标签的特点</h3>
         <table class="prop-table">
             <thead>
                 <tr>
@@ -121,7 +142,7 @@
             <p>替换元素（Replaced Element）是指内容由外部资源决定的元素。<code>&lt;img&gt;</code>的实际内容是它引用的图片，<code>&lt;video&gt;</code>的内容是视频，<code>&lt;iframe&gt;</code>的内容是嵌入的页面。这些元素的共同特点是：可以像块级元素一样设置宽高，但又能与文字在同一行显示。</p>
         </div>
         
-        <h3>1.3 图片标签示例</h3>
+        <h3 id="section-1-3">1.3 图片标签示例</h3>
         <div class="lab-card">
             <div class="lab-header">
                 <span>示例：图片标签示例</span>
@@ -139,7 +160,7 @@
             </div>
         </div>
         
-        <h3>1.4 图片加载失败的情况</h3>
+        <h3 id="section-1-4">1.4 图片加载失败的情况</h3>
         <p>当图片无法正常加载时，浏览器会有以下表现：</p>
         
         <div class="lab-card">
@@ -174,7 +195,7 @@
         <h2>二、图片的常用属性</h2>
         <p>图片标签支持多种属性，用于控制图片的行为和外观。熟练掌握这些属性，可以让你的图片展示更加专业。</p>
         
-        <h3>2.1 src属性（图片来源）</h3>
+        <h3 id="section-2-1">2.1 src属性（图片来源）</h3>
         <p><code>src</code>属性是图片标签的核心属性，用于指定图片的URL。这是<strong>必需</strong>的属性，没有它图片无法显示。</p>
         
         <div class="lab-card">
@@ -194,7 +215,7 @@
             </div>
         </div>
         
-        <h3>2.2 alt属性（替代文本）</h3>
+        <h3 id="section-2-2">2.2 alt属性（替代文本）</h3>
         <p><code>alt</code>属性用于指定图片的替代文本，当图片无法显示时，会显示该文本。它对于可访问性和SEO都非常重要。</p>
         
         <div class="note-box">
@@ -251,7 +272,7 @@
             <p>始终为图片添加<code>alt</code>属性，这是良好的Web开发习惯。即使是装饰性图片，也应该写<code>alt=""</code>（空字符串），而不是省略这个属性。</p>
         </div>
         
-        <h3>2.3 width和height属性</h3>
+        <h3 id="section-2-3">2.3 width和height属性</h3>
         <p><code>width</code>和<code>height</code>属性用于指定图片的宽度和高度，单位为像素。</p>
         
         <div class="lab-card">
@@ -281,7 +302,7 @@
             </ul>
         </div>
         
-        <h3>2.4 title属性</h3>
+        <h3 id="section-2-4">2.4 title属性</h3>
         <p><code>title</code>属性用于为图片添加提示文本，当鼠标悬停在图片上时，会显示该文本。</p>
         
         <div class="note-box">
@@ -309,7 +330,7 @@
             </table>
         </div>
         
-        <h3>2.5 loading属性（懒加载）</h3>
+        <h3 id="section-2-5">2.5 loading属性（懒加载）</h3>
         <p><code>loading</code>属性用于指定图片的加载方式，是HTML5新增的原生懒加载属性。</p>
         
         <table class="prop-table">
@@ -360,7 +381,7 @@
             </ul>
         </div>
         
-        <h3>2.6 属性综合示例</h3>
+        <h3 id="section-2-6">2.6 属性综合示例</h3>
         <div class="lab-card">
             <div class="lab-header">
                 <span>示例：图片属性综合使用</span>
@@ -378,7 +399,7 @@
             </div>
         </div>
         
-        <h3>2.7 其他有用的属性</h3>
+        <h3 id="section-2-7">2.7 其他有用的属性</h3>
         <table class="prop-table">
             <thead>
                 <tr>
@@ -490,7 +511,7 @@
             <p>相对路径依赖于当前位置，绝对路径则是一个固定的、完整的地址。</p>
         </div>
         
-        <h3>3.1 相对路径</h3>
+        <h3 id="section-3-1">3.1 相对路径</h3>
         <p>相对路径是相对于当前HTML文件的位置来指定图片的位置，它不包含完整的URL。这是最常用的本地图片引用方式。</p>
         
         <h4>假设目录结构如下：</h4>
@@ -603,7 +624,7 @@
             </ul>
         </div>
         
-        <h3>3.2 绝对路径</h3>
+        <h3 id="section-3-2">3.2 绝对路径</h3>
         <p>绝对路径是完整的URL，它包含协议（如<code>http://</code>或<code>https://</code>）、域名和文件路径。主要用于引用外部网站的图片。</p>
         
         <div class="lab-card">
@@ -631,7 +652,7 @@
             <p>以<code>/</code>开头的路径（如<code>/images/logo.png</code>）是从网站根目录开始的绝对路径，不同于完整的URL。它在网站内部任何位置都指向同一个文件，非常适合大型网站使用。</p>
         </div>
         
-        <h3>3.3 相对路径 vs 绝对路径</h3>
+        <h3 id="section-3-3">3.3 相对路径 vs 绝对路径</h3>
         <table class="prop-table">
             <thead>
                 <tr>
@@ -679,7 +700,7 @@
             </ul>
         </div>
         
-        <h3>3.4 路径选择建议</h3>
+        <h3 id="section-3-4">3.4 路径选择建议</h3>
         <div class="tip-box">
             <span class="tip-title">💡 最佳实践</span>
             <ul>
@@ -708,7 +729,7 @@
             </ul>
         </div>
         
-        <h3>4.1 JPG (JPEG)</h3>
+        <h3 id="section-4-1">4.1 JPG (JPEG)</h3>
         <p>JPG（Joint Photographic Experts Group）是最常用的照片格式，采用有损压缩算法。</p>
         
         <table class="prop-table">
@@ -755,7 +776,7 @@
             </ul>
         </div>
         
-        <h3>4.2 PNG</h3>
+        <h3 id="section-4-2">4.2 PNG</h3>
         <p>PNG（Portable Network Graphics）采用无损压缩，支持透明背景，是Logo和图标的首选格式。</p>
         
         <table class="prop-table">
@@ -822,7 +843,7 @@
             </tbody>
         </table>
         
-        <h3>4.3 GIF</h3>
+        <h3 id="section-4-3">4.3 GIF</h3>
         <p>GIF（Graphics Interchange Format）是一种古老但经典的格式，最大特点是支持动画。</p>
         
         <table class="prop-table">
@@ -865,7 +886,7 @@
             <p>由于只支持256色，GIF不适合用于照片或复杂渐变图片。如今，对于简单动画，可以考虑使用CSS动画或Lottie替代，效果更好且文件更小。</p>
         </div>
         
-        <h3>4.4 SVG</h3>
+        <h3 id="section-4-4">4.4 SVG</h3>
         <p>SVG（Scalable Vector Graphics）是一种矢量图形格式，基于XML描述图形，可以无限缩放而不失真。</p>
         
         <table class="prop-table">
@@ -923,7 +944,7 @@
             </div>
         </div>
         
-        <h3>4.5 WebP（现代格式）</h3>
+        <h3 id="section-4-5">4.5 WebP（现代格式）</h3>
         <p>WebP是Google开发的现代图片格式，结合了JPG和PNG的优点，是目前最推荐的Web图片格式之一。</p>
         
         <table class="prop-table">
@@ -976,7 +997,7 @@
             </div>
         </div>
         
-        <h3>4.6 图片格式对比总表</h3>
+        <h3 id="section-4-6">4.6 图片格式对比总表</h3>
         <table class="prop-table">
             <thead>
                 <tr>

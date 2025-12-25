@@ -19,14 +19,34 @@
         
         <h3>Part 1: 音频元素</h3>
         <a class="sidebar-link sub-link" href="#chapter-1">一、音频标签基本使用</a>
+        <a class="sidebar-link sub-link" href="#section-1-1">1.1 多媒体时代的网页</a>
+        <a class="sidebar-link sub-link" href="#section-1-2">1.2 基本语法</a>
+        <a class="sidebar-link sub-link" href="#section-1-3">1.3 支持多种音频格式</a>
+        <a class="sidebar-link sub-link" href="#section-1-4">1.4 音频格式对比</a>
+        <a class="sidebar-link sub-link" href="#section-1-5">1.5 常用属性详解</a>
+        <a class="sidebar-link sub-link" href="#section-1-6">1.6 preload属性详解</a>
+        <a class="sidebar-link sub-link" href="#section-1-7">1.7 音频示例</a>
         <a class="sidebar-link sub-link" href="#lab-1">🔬 实验 1：音频播放器练习</a>
         
         <h3>Part 2: 视频元素</h3>
         <a class="sidebar-link sub-link" href="#chapter-2">二、视频标签基本使用</a>
+        <a class="sidebar-link sub-link" href="#section-2-1">2.1 视频在网页中的重要性</a>
+        <a class="sidebar-link sub-link" href="#section-2-2">2.2 基本语法</a>
+        <a class="sidebar-link sub-link" href="#section-2-3">2.3 支持多种视频格式</a>
+        <a class="sidebar-link sub-link" href="#section-2-4">2.4 视频格式对比</a>
+        <a class="sidebar-link sub-link" href="#section-2-5">2.5 常用属性详解</a>
+        <a class="sidebar-link sub-link" href="#section-2-6">2.6 poster属性的重要性</a>
+        <a class="sidebar-link sub-link" href="#section-2-7">2.7 背景视频的实现</a>
+        <a class="sidebar-link sub-link" href="#section-2-8">2.8 视频示例</a>
         <a class="sidebar-link sub-link" href="#lab-2">🔬 实验 2：视频播放器练习</a>
         
         <h3>Part 3: 嵌入内容</h3>
         <a class="sidebar-link sub-link" href="#chapter-3">三、iframe嵌入外部内容</a>
+        <a class="sidebar-link sub-link" href="#section-3-1">3.1 什么是iframe？</a>
+        <a class="sidebar-link sub-link" href="#section-3-2">3.2 基本语法</a>
+        <a class="sidebar-link sub-link" href="#section-3-3">3.3 常用属性详解</a>
+        <a class="sidebar-link sub-link" href="#section-3-4">3.4 sandbox安全属性</a>
+        <a class="sidebar-link sub-link" href="#section-3-5">3.5 常见应用示例</a>
         <a class="sidebar-link sub-link" href="#lab-3">🔬 实验 3：iframe嵌入练习</a>
         
         <h3>总结与练习</h3>
@@ -66,7 +86,7 @@
     <section id="chapter-1">
         <h2>一、音频标签基本使用</h2>
         
-        <h3>1.1 多媒体时代的网页</h3>
+        <h3 id="section-1-1">1.1 多媒体时代的网页</h3>
         <p>在HTML5之前，要在网页中播放音频需要使用Flash等插件，这带来了很多问题：</p>
         
         <div class="note-box">
@@ -80,7 +100,7 @@
             <p>2020年底，Adobe正式终止了Flash的支持。HTML5的 <code>&lt;audio&gt;</code> 和 <code>&lt;video&gt;</code> 标签成为了标准解决方案。</p>
         </div>
         
-        <h3>1.2 基本语法</h3>
+        <h3 id="section-1-2">1.2 基本语法</h3>
         <p>HTML5的<code>&lt;audio&gt;</code>标签允许我们在网页中直接播放音频文件，无需使用第三方插件。</p>
         <p>最简单的音频播放器只需要使用<code>&lt;audio&gt;</code>标签和<code>src</code>属性，再加上<code>controls</code>属性显示播放控件。</p>
         
@@ -94,7 +114,7 @@
             <p>开始标签和结束标签之间的文字是"后备内容"（fallback content），只有当浏览器不支持 <code>&lt;audio&gt;</code> 标签时才会显示。现代浏览器基本都支持该标签，所以这段文字通常不会出现。</p>
         </div>
         
-        <h3>1.3 支持多种音频格式</h3>
+        <h3 id="section-1-3">1.3 支持多种音频格式</h3>
         <p>不同浏览器支持的音频格式可能不同，为了确保音频在所有浏览器中都能正常播放，我们可以使用 <code>&lt;source&gt;</code> 标签提供多种格式的音频文件。</p>
         
         <pre class="html"><code>&lt;!-- 支持多种音频格式 --&gt;
@@ -105,7 +125,7 @@
     您的浏览器不支持音频播放
 &lt;/audio&gt;</code></pre>
         
-        <h3>1.4 音频格式对比</h3>
+        <h3 id="section-1-4">1.4 音频格式对比</h3>
         <table class="prop-table">
             <thead>
                 <tr><th>格式</th><th>扩展名</th><th>MIME类型</th><th>特点</th><th>浏览器支持</th></tr>
@@ -123,7 +143,7 @@
             <p>为了最佳兼容性，建议至少提供 <strong>MP3</strong> 格式。如果追求更好的音质和开源，可以额外提供 <strong>OGG</strong> 格式。浏览器会按顺序尝试，使用第一个能播放的格式。</p>
         </div>
         
-        <h3>1.5 常用属性详解</h3>
+        <h3 id="section-1-5">1.5 常用属性详解</h3>
         <table class="prop-table">
             <thead>
                 <tr><th>属性</th><th>值</th><th>描述</th><th>示例</th></tr>
@@ -162,7 +182,7 @@
             </tbody>
         </table>
         
-        <h3>1.6 preload属性详解</h3>
+        <h3 id="section-1-6">1.6 preload属性详解</h3>
         <table class="prop-table">
             <thead>
                 <tr><th>值</th><th>描述</th><th>适用场景</th></tr>
@@ -184,7 +204,7 @@
             </ul>
         </div>
         
-        <h3>1.7 音频示例</h3>
+        <h3 id="section-1-7">1.7 音频示例</h3>
         <div class="tip-box">
             <span class="tip-title">🎵 音频播放效果</span>
             <audio controls style="width: 100%;">
@@ -254,7 +274,7 @@
     <section id="chapter-2">
         <h2>二、视频标签基本使用</h2>
         
-        <h3>2.1 视频在网页中的重要性</h3>
+        <h3 id="section-2-1">2.1 视频在网页中的重要性</h3>
         <p>视频已经成为现代网页的重要组成部分：</p>
         <ul>
             <li><strong>产品展示</strong>：电商网站展示商品细节</li>
@@ -265,7 +285,7 @@
         
         <p>HTML5的<code>&lt;video&gt;</code>标签允许我们在网页中直接播放视频文件，无需使用第三方插件。</p>
         
-        <h3>2.2 基本语法</h3>
+        <h3 id="section-2-2">2.2 基本语法</h3>
         <p>最简单的视频播放器只需要使用<code>&lt;video&gt;</code>标签和<code>src</code>属性，再加上<code>controls</code>属性显示播放控件。</p>
         
         <pre class="html"><code>&lt;!-- 基本视频播放器 --&gt;
@@ -273,7 +293,7 @@
     您的浏览器不支持视频播放
 &lt;/video&gt;</code></pre>
         
-        <h3>2.3 支持多种视频格式</h3>
+        <h3 id="section-2-3">2.3 支持多种视频格式</h3>
         <p>不同浏览器支持的视频格式可能不同，为了确保视频在所有浏览器中都能正常播放，我们可以使用 <code>&lt;source&gt;</code> 标签提供多种格式的视频文件。</p>
         
         <pre class="html"><code>&lt;!-- 支持多种视频格式 --&gt;
@@ -284,7 +304,7 @@
     您的浏览器不支持视频播放
 &lt;/video&gt;</code></pre>
         
-        <h3>2.4 视频格式对比</h3>
+        <h3 id="section-2-4">2.4 视频格式对比</h3>
         <table class="prop-table">
             <thead>
                 <tr><th>格式</th><th>扩展名</th><th>视频编码</th><th>音频编码</th><th>浏览器支持</th></tr>
@@ -302,7 +322,7 @@
             <p>如果追求更好的压缩率和开源，可以额外提供 <strong>WebM (VP9)</strong> 格式。</p>
         </div>
         
-        <h3>2.5 常用属性详解</h3>
+        <h3 id="section-2-5">2.5 常用属性详解</h3>
         <table class="prop-table">
             <thead>
                 <tr><th>属性</th><th>值</th><th>描述</th><th>示例</th></tr>
@@ -361,7 +381,7 @@
             </tbody>
         </table>
         
-        <h3>2.6 poster属性的重要性</h3>
+        <h3 id="section-2-6">2.6 poster属性的重要性</h3>
         <p><code>poster</code> 属性用于设置视频的封面图片，这很重要：</p>
         <ul>
             <li><strong>提升用户体验</strong>：用户可以在播放前看到视频内容预览</li>
@@ -375,7 +395,7 @@
     您的浏览器不支持视频播放
 &lt;/video&gt;</code></pre>
         
-        <h3>2.7 背景视频的实现</h3>
+        <h3 id="section-2-7">2.7 背景视频的实现</h3>
         <p>很多现代网站使用视频作为背景，实现方法如下：</p>
         
         <pre class="html"><code>&lt;!-- 背景视频 --&gt;
@@ -406,7 +426,7 @@
             </ul>
         </div>
         
-        <h3>2.8 视频示例</h3>
+        <h3 id="section-2-8">2.8 视频示例</h3>
         <div class="tip-box">
             <span class="tip-title">🎬 视频播放效果</span>
             <video controls width="100%" style="max-width: 640px;" poster="https://picsum.photos/id/1/640/360">
@@ -479,8 +499,8 @@
     <section id="chapter-3">
         <h2>三、iframe嵌入外部内容</h2>
         
-        <h3>3.1 什么是iframe？</h3>
-        <p><code>&lt;iframe&gt;</code>（Inline Frame，内联框架）标签允许我们在网页中嵌入另一个网页或外部内容，就像在页面中开了一个"窗口"，可以显示其他网站的内容。</p>
+        <h3 id="section-3-1">3.1 什么是iframe？</h3>
+        <p><code>&lt;iframe&gt;</code>（Inline Frame，内联框架）标签允许我们在网页中嵌入另一个网页或外部内容，就像在页面中开了一个“窗口”，可以显示其他网站的内容。</p>
         
         <div class="note-box">
             <strong>📌 iframe的常见用途</strong>
@@ -493,7 +513,7 @@
             </ul>
         </div>
         
-        <h3>3.2 基本语法</h3>
+        <h3 id="section-3-2">3.2 基本语法</h3>
         <p>基本的<code>&lt;iframe&gt;</code>标签使用<code>src</code>属性指定要嵌入的内容的URL。</p>
         
         <pre class="html"><code>&lt;!-- 基本iframe用法 --&gt;
@@ -501,7 +521,7 @@
     您的浏览器不支持iframe
 &lt;/iframe&gt;</code></pre>
         
-        <h3>3.3 常用属性详解</h3>
+        <h3 id="section-3-3">3.3 常用属性详解</h3>
         <table class="prop-table">
             <thead>
                 <tr><th>属性</th><th>值</th><th>描述</th><th>示例</th></tr>
@@ -550,7 +570,7 @@
             </tbody>
         </table>
         
-        <h3>3.4 sandbox安全属性</h3>
+        <h3 id="section-3-4">3.4 sandbox安全属性</h3>
         <p><code>sandbox</code> 属性可以限制iframe中的内容行为，提高安全性：</p>
         
         <table class="prop-table">
@@ -576,7 +596,7 @@
             </ul>
         </div>
         
-        <h3>3.5 常见应用示例</h3>
+        <h3 id="section-3-5">3.5 常见应用示例</h3>
         
         <h4>3.5.1 嵌入B站视频</h4>
         <pre class="html"><code>&lt;!-- 嵌入B站视频（从B站分享获取代码）--&gt;

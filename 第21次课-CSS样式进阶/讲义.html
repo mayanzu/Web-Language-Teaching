@@ -15,23 +15,36 @@
         <a class="sidebar-link" href="#intro">👋 课程概览</a>
         
         <h3>Part 1: CSS进阶特性</h3>
-        <a class="sidebar-link sub-link" href="#css-variables">1. CSS变量</a>
-        <a class="sidebar-link sub-link" href="#calc-function">2. calc()函数</a>
-        <a class="sidebar-link sub-link" href="#box-shadow">3. 阴影效果</a>
-        <a class="sidebar-link sub-link" href="#text-shadow">4. 文字阴影</a>
+        <a class="sidebar-link sub-link" href="#css-variables">一、CSS变量</a>
+        <a class="sidebar-link sub-link" href="#section-1-1">1.1 CSS变量的基本语法</a>
+        <a class="sidebar-link sub-link" href="#section-1-2">1.2 变量的作用域</a>
+        <a class="sidebar-link sub-link" href="#section-1-3">1.3 CSS变量的实际应用场景</a>
+        <a class="sidebar-link sub-link" href="#calc-function">二、calc()函数</a>
+        <a class="sidebar-link sub-link" href="#section-2-1">2.1 calc()的基本语法</a>
+        <a class="sidebar-link sub-link" href="#section-2-2">2.2 calc()的常见应用</a>
+        <a class="sidebar-link sub-link" href="#box-shadow">三、盒阴影</a>
+        <a class="sidebar-link sub-link" href="#section-3-1">3.1 box-shadow语法详解</a>
+        <a class="sidebar-link sub-link" href="#section-3-2">3.2 常用阴影效果</a>
+        <a class="sidebar-link sub-link" href="#text-shadow">四、文字阴影</a>
+        <a class="sidebar-link sub-link" href="#section-4-1">4.1 text-shadow语法</a>
         
         <h3>Part 2: 视觉效果</h3>
-        <a class="sidebar-link sub-link" href="#gradient">5. 渐变</a>
-        <a class="sidebar-link sub-link" href="#transform">6. 变换</a>
-        <a class="sidebar-link sub-link" href="#transition">7. 过渡</a>
-        <a class="sidebar-link sub-link" href="#animation">8. 动画</a>
+        <a class="sidebar-link sub-link" href="#gradient">五、渐变</a>
+        <a class="sidebar-link sub-link" href="#section-5-1">5.1 线性渐变</a>
+        <a class="sidebar-link sub-link" href="#section-5-2">5.2 径向渐变</a>
+        <a class="sidebar-link sub-link" href="#section-5-3">5.3 渐变的实际应用</a>
+        <a class="sidebar-link sub-link" href="#transform">六、变换</a>
+        <a class="sidebar-link sub-link" href="#section-6-1">6.1 常用变换函数</a>
+        <a class="sidebar-link sub-link" href="#section-6-2">6.2 变换原点</a>
+        <a class="sidebar-link sub-link" href="#transition">七、过渡</a>
+        <a class="sidebar-link sub-link" href="#animation">八、动画</a>
         
         <h3>Part 3: 实战练习</h3>
-        <a class="sidebar-link sub-link" href="#lab-variables">9. 实验练习</a>
-        <a class="sidebar-link sub-link" href="#lab-animation">10. 创建动画效果</a>
+        <a class="sidebar-link sub-link" href="#lab-variables">🔬 实验 01</a>
+        <a class="sidebar-link sub-link" href="#lab-animation">🔬 实验 02</a>
         
         <h3>总结与练习</h3>
-        <a class="sidebar-link" href="#summary">📝 课程小结</a>
+        <a class="sidebar-link sub-link" href="#summary">📝 课程小结</a>
     </div>
 </nav>
 <main class="content">
@@ -64,7 +77,7 @@
             <p>这样如果想换主题色，只需要改一处定义，所有地方都会自动更新！</p>
         </div>
         
-        <h3>1.1 CSS变量的基本语法</h3>
+        <h3 id="section-1-1">1.1 CSS变量的基本语法</h3>
         <table class="prop-table">
             <thead>
                 <tr>
@@ -116,7 +129,7 @@
     background: var(--card-bg, #fff);
 }</code></pre>
         
-        <h3>1.2 变量的作用域</h3>
+        <h3 id="section-1-2">1.2 变量的作用域</h3>
         <p>CSS变量支持继承和作用域，可以在不同层级定义不同的值：</p>
         
         <pre class="css"><code>/* 全局变量 */
@@ -145,7 +158,7 @@ p {
             </ul>
         </div>
         
-        <h3>1.3 CSS变量的实际应用场景</h3>
+        <h3 id="section-1-3">1.3 CSS变量的实际应用场景</h3>
         <table class="prop-table">
             <thead>
                 <tr>
@@ -193,7 +206,7 @@ p {
             <p>它能把不同单位的值混合计算，这是纯CSS做不到的！</p>
         </div>
         
-        <h3>2.1 calc()的基本语法</h3>
+        <h3 id="section-2-1">2.1 calc()的基本语法</h3>
         <table class="prop-table">
             <thead>
                 <tr>
@@ -259,7 +272,7 @@ h1 {
             </ul>
         </div>
         
-        <h3>2.2 calc()的常见应用</h3>
+        <h3 id="section-2-2">2.2 calc()的常见应用</h3>
         <table class="prop-table">
             <thead>
                 <tr>
@@ -307,7 +320,7 @@ h1 {
             </ul>
         </div>
         
-        <h3>3.1 box-shadow语法详解</h3>
+        <h3 id="section-3-1">3.1 box-shadow语法详解</h3>
         <pre class="css"><code>/* 语法 */
 box-shadow: 水平偏移 垂直偏移 模糊半径 扩散半径 颜色 inset;
 
@@ -323,7 +336,7 @@ box-shadow: 水平偏移 垂直偏移 模糊半径 扩散半径 颜色 inset;
     ;
 }</code></pre>
         
-        <h3>3.2 常用阴影效果</h3>
+        <h3 id="section-3-2">3.2 常用阴影效果</h3>
         <table class="prop-table">
             <thead>
                 <tr>
@@ -394,7 +407,7 @@ box-shadow: 水平偏移 垂直偏移 模糊半径 扩散半径 颜色 inset;
         <h2>四、文字阴影</h2>
         <p>text-shadow属性用于为文字添加阴影效果，可以增强文字的可读性或创造特殊的视觉效果。</p>
         
-        <h3>4.1 text-shadow语法</h3>
+        <h3 id="section-4-1">4.1 text-shadow语法</h3>
         <pre class="css"><code>/* 基本语法 */
 text-shadow: 水平偏移 垂直偏移 模糊半径 颜色;
 
@@ -435,7 +448,7 @@ h2 {
             </ul>
         </div>
         
-        <h3>5.1 线性渐变</h3>
+        <h3 id="section-5-1">5.1 线性渐变</h3>
         <table class="prop-table">
             <thead>
                 <tr>
@@ -494,7 +507,7 @@ h2 {
     );
 }</code></pre>
         
-        <h3>5.2 径向渐变</h3>
+        <h3 id="section-5-2">5.2 径向渐变</h3>
         <pre class="css"><code>/* 基本径向渐变（圆形） */
 .radial-circle {
     background: radial-gradient(circle, #ff6b6b, #4ecdc4);
@@ -515,7 +528,7 @@ h2 {
     background: radial-gradient(circle closest-side, #ff6b6b, #4ecdc4);
 }</code></pre>
         
-        <h3>5.3 渐变的实际应用</h3>
+        <h3 id="section-5-3">5.3 渐变的实际应用</h3>
         <table class="prop-table">
             <thead>
                 <tr>
@@ -574,7 +587,7 @@ h2 {
             </ul>
         </div>
         
-        <h3>6.1 常用变换函数</h3>
+        <h3 id="section-6-1">6.1 常用变换函数</h3>
         <table class="prop-table">
             <thead>
                 <tr>
@@ -642,7 +655,7 @@ h2 {
     transform: rotate(45deg) scale(1.5) translateY(-20px);
 }</code></pre>
         
-        <h3>6.2 变换原点</h3>
+        <h3 id="section-6-2">6.2 变换原点</h3>
         <p><code>transform-origin</code>属性用于设置变换的中心点，默认是元素的中心。</p>
         
         <table class="prop-table">

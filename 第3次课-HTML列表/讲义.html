@@ -19,12 +19,26 @@
         
         <h3>Part 1: 列表基础</h3>
         <a class="sidebar-link sub-link" href="#chapter-1">一、无序列表</a>
+        <a class="sidebar-link sub-link" href="#section-1-1">1.1 无序列表的基本语法</a>
+        <a class="sidebar-link sub-link" href="#section-1-2">1.2 无序列表的默认样式</a>
+        <a class="sidebar-link sub-link" href="#section-1-3">1.3 无序列表的使用场景</a>
         <a class="sidebar-link sub-link" href="#chapter-2">二、有序列表</a>
+        <a class="sidebar-link sub-link" href="#section-2-1">2.1 有序列表的基本语法</a>
+        <a class="sidebar-link sub-link" href="#section-2-2">2.2 有序列表的HTML属性</a>
+        <a class="sidebar-link sub-link" href="#section-2-3">2.3 编号类型详解</a>
+        <a class="sidebar-link sub-link" href="#section-2-4">2.4 有序列表的使用场景</a>
         <a class="sidebar-link sub-link" href="#lab-1">🔬 实验 01：基础列表练习</a>
         
         <h3>Part 2: 高级列表</h3>
         <a class="sidebar-link sub-link" href="#chapter-3">三、定义列表</a>
+        <a class="sidebar-link sub-link" href="#section-3-1">3.1 定义列表的基本语法</a>
+        <a class="sidebar-link sub-link" href="#section-3-2">3.2 定义列表的特殊用法</a>
+        <a class="sidebar-link sub-link" href="#section-3-3">3.3 定义列表的使用场景</a>
         <a class="sidebar-link sub-link" href="#chapter-4">四、列表嵌套</a>
+        <a class="sidebar-link sub-link" href="#section-4-1">4.1 嵌套列表的基本语法</a>
+        <a class="sidebar-link sub-link" href="#section-4-2">4.2 不同类型列表的嵌套</a>
+        <a class="sidebar-link sub-link" href="#section-4-3">4.3 嵌套层级建议</a>
+        <a class="sidebar-link sub-link" href="#section-4-4">4.4 三种列表对比总结</a>
         <a class="sidebar-link sub-link" href="#lab-2">🔬 实验 02：复杂列表练习</a>
         
         <h3>总结与练习</h3>
@@ -70,7 +84,7 @@
             <p>所以当你的内容没有顺序要求时，就用无序列表！</p>
         </div>
         
-        <h3>1.1 无序列表的基本语法</h3>
+        <h3 id="section-1-1">1.1 无序列表的基本语法</h3>
         <p>无序列表使用<code>&lt;ul&gt;</code>标签定义，列表中的每个项目使用<code>&lt;li&gt;</code>标签定义。</p>
         
         <table class="prop-table">
@@ -110,7 +124,7 @@
             </div>
         </div>
         
-        <h3>1.2 无序列表的默认样式</h3>
+        <h3 id="section-1-2">1.2 无序列表的默认样式</h3>
         <p>无序列表的默认项目符号会根据嵌套层级自动变化：</p>
         
         <table class="prop-table">
@@ -145,7 +159,7 @@
             <p>虽然可以使用CSS的<code>list-style-type</code>属性自定义项目符号，但在纯HTML阶段，我们先了解默认行为。更多自定义将在CSS课程中学习。</p>
         </div>
         
-        <h3>1.3 无序列表的使用场景</h3>
+        <h3 id="section-1-3">1.3 无序列表的使用场景</h3>
         <p>无序列表适用于展示没有特定顺序的项目，常见的使用场景包括：</p>
         
         <table class="prop-table">
@@ -217,7 +231,7 @@
             <p>顺序很重要！不能先炒菜再切菜。当你的内容有顺序要求时，就用有序列表！</p>
         </div>
         
-        <h3>2.1 有序列表的基本语法</h3>
+        <h3 id="section-2-1">2.1 有序列表的基本语法</h3>
         <p>有序列表使用<code>&lt;ol&gt;</code>标签定义，列表中的每个项目同样使用<code>&lt;li&gt;</code>标签定义。</p>
         
         <table class="prop-table">
@@ -257,7 +271,7 @@
             </div>
         </div>
         
-        <h3>2.2 有序列表的HTML属性</h3>
+        <h3 id="section-2-2">2.2 有序列表的HTML属性</h3>
         <p>HTML提供了一些属性来控制有序列表的行为：</p>
         
         <table class="prop-table">
@@ -291,7 +305,7 @@
             </tbody>
         </table>
         
-        <h3>2.3 编号类型详解</h3>
+        <h3 id="section-2-3">2.3 编号类型详解</h3>
         <p><code>type</code>属性支持多种编号类型：</p>
         
         <table class="prop-table">
@@ -360,7 +374,7 @@
             </div>
         </div>
         
-        <h3>2.4 有序列表的使用场景</h3>
+        <h3 id="section-2-4">2.4 有序列表的使用场景</h3>
         <p>有序列表适用于展示有特定顺序的项目，常见的使用场景包括：</p>
         
         <table class="prop-table">
@@ -494,7 +508,7 @@
             <p>比如查"HTML"这个词，词典会告诉你它是"超文本标记语言"。</p>
         </div>
         
-        <h3>3.1 定义列表的基本语法</h3>
+        <h3 id="section-3-1">3.1 定义列表的基本语法</h3>
         <p>定义列表使用<code>&lt;dl&gt;</code>标签定义，术语使用<code>&lt;dt&gt;</code>标签定义，术语的定义使用<code>&lt;dd&gt;</code>标签定义。</p>
         
         <table class="prop-table">
@@ -543,7 +557,7 @@
             </div>
         </div>
         
-        <h3>3.2 定义列表的特殊用法</h3>
+        <h3 id="section-3-2">3.2 定义列表的特殊用法</h3>
         <p>定义列表有一些灵活的用法：</p>
         
         <table class="prop-table">
@@ -596,7 +610,7 @@
             </div>
         </div>
         
-        <h3>3.3 定义列表的使用场景</h3>
+        <h3 id="section-3-3">3.3 定义列表的使用场景</h3>
         <p>定义列表适用于展示术语及其定义，常见的使用场景包括：</p>
         
         <table class="prop-table">
@@ -664,7 +678,7 @@
             <p>大分类下面可以有小分类，小分类下面还可以有更细的分类。</p>
         </div>
         
-        <h3>4.1 嵌套列表的基本语法</h3>
+        <h3 id="section-4-1">4.1 嵌套列表的基本语法</h3>
         <p>列表嵌套是指在一个列表项内部再创建一个完整的列表。嵌套列表可以是相同类型的列表，也可以是不同类型的列表。</p>
         
         <div class="warning-box">
@@ -713,7 +727,7 @@
             </div>
         </div>
         
-        <h3>4.2 不同类型列表的嵌套</h3>
+        <h3 id="section-4-2">4.2 不同类型列表的嵌套</h3>
         <p>我们也可以将不同类型的列表嵌套在一起，例如将有序列表嵌套在无序列表中，或者将无序列表嵌套在有序列表中。</p>
         
         <table class="prop-table">
@@ -773,7 +787,7 @@
             </div>
         </div>
         
-        <h3>4.3 嵌套层级建议</h3>
+        <h3 id="section-4-3">4.3 嵌套层级建议</h3>
         <div class="tip-box">
             <span class="tip-title">💡 最佳实践</span>
             <ul>
@@ -784,7 +798,7 @@
             </ul>
         </div>
         
-        <h3>4.4 三种列表对比总结</h3>
+        <h3 id="section-4-4">4.4 三种列表对比总结</h3>
         <table class="prop-table">
             <thead>
                 <tr>

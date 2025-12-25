@@ -16,15 +16,30 @@
             <a class="sidebar-link" href="#intro">👋 课程概览</a>
             
             <h3>Part 1: CSS复合选择器</h3>
-            <a class="sidebar-link sub-link" href="#descendant-selector">1. 后代选择器</a>
-            <a class="sidebar-link sub-link" href="#child-selector">2. 子选择器</a>
-            <a class="sidebar-link sub-link" href="#adjacent-sibling">3. 相邻兄弟选择器</a>
-            <a class="sidebar-link sub-link" href="#general-sibling">4. 通用兄弟选择器</a>
-            <a class="sidebar-link sub-link" href="#intersection-selector">5. 交集选择器</a>
-            <a class="sidebar-link sub-link" href="#union-selector">6. 并集选择器</a>
+            <a class="sidebar-link sub-link" href="#descendant-selector">一、后代选择器</a>
+            <a class="sidebar-link sub-link" href="#section-1-1">1.1 后代选择器的语法</a>
+            <a class="sidebar-link sub-link" href="#section-1-2">1.2 后代选择器示例</a>
+            <a class="sidebar-link sub-link" href="#section-1-3">1.3 后代选择器的特点</a>
+            <a class="sidebar-link sub-link" href="#child-selector">二、子选择器</a>
+            <a class="sidebar-link sub-link" href="#section-2-1">2.1 子选择器的语法</a>
+            <a class="sidebar-link sub-link" href="#section-2-2">2.2 子选择器示例</a>
+            <a class="sidebar-link sub-link" href="#section-2-3">2.3 子选择器的特点</a>
+            <a class="sidebar-link sub-link" href="#adjacent-sibling">三、相邻兄弟选择器</a>
+            <a class="sidebar-link sub-link" href="#section-3-1">3.1 相邻兄弟选择器的语法</a>
+            <a class="sidebar-link sub-link" href="#section-3-2">3.2 相邻兄弟选择器示例</a>
+            <a class="sidebar-link sub-link" href="#section-3-3">3.3 相邻兄弟选择器的特点</a>
+            <a class="sidebar-link sub-link" href="#general-sibling">四、通用兄弟选择器</a>
+            <a class="sidebar-link sub-link" href="#section-4-1">4.1 通用兄弟选择器的语法</a>
+            <a class="sidebar-link sub-link" href="#section-4-2">4.2 通用兄弟选择器示例</a>
+            <a class="sidebar-link sub-link" href="#section-4-3">4.3 通用兄弟选择器的特点</a>
+            <a class="sidebar-link sub-link" href="#intersection-selector">五、交集选择器</a>
+            <a class="sidebar-link sub-link" href="#section-5-1">5.1 交集选择器的语法</a>
+            <a class="sidebar-link sub-link" href="#section-5-2">5.2 交集选择器示例</a>
+            <a class="sidebar-link sub-link" href="#section-5-3">5.3 交集选择器的特点</a>
+            <a class="sidebar-link sub-link" href="#union-selector">六、并集选择器</a>
             
             <h3>Part 2: 实战练习</h3>
-            <a class="sidebar-link sub-link" href="#exercise">7. 综合练习</a>
+            <a class="sidebar-link sub-link" href="#exercise">七、综合练习</a>
             
             <h3>总结与练习</h3>
             <a class="sidebar-link" href="#summary">📝 课程小结</a>
@@ -54,7 +69,7 @@
             <h2>一、后代选择器</h2>
             <p>后代选择器用于选择某个元素的所有后代元素，无论层级有多深，选择器之间用空格分隔。</p>
             
-            <h3>1.1 后代选择器的语法</h3>
+            <h3 id="section-1-1">1.1 后代选择器的语法</h3>
             <pre class="css"><code>/* 语法：祖先选择器 后代选择器 { 样式规则 } */
 祖先选择器 后代选择器 {
     属性1: 值1;
@@ -68,7 +83,7 @@ div p {
     line-height: 1.5; /* 设置行高为1.5倍 */
 }</code></pre>
             
-            <h3>1.2 后代选择器示例</h3>
+            <h3 id="section-1-2">1.2 后代选择器示例</h3>
             <div class="lab-card">
                 <div class="lab-header">
                     <span>实验 01：后代选择器</span>
@@ -128,7 +143,7 @@ div p {
                 </div>
             </div>
             
-            <h3>1.3 后代选择器的特点</h3>
+            <h3 id="section-1-3">1.3 后代选择器的特点</h3>
             <ul>
                 <li>选择器之间用空格分隔</li>
                 <li>选择所有层级的后代元素，无论嵌套多深</li>
@@ -141,7 +156,7 @@ div p {
             <h2>二、子选择器</h2>
             <p>子选择器用于选择某个元素的直接子元素，只匹配第一层嵌套关系，选择器之间用<code>&gt;</code>分隔。</p>
             
-            <h3>2.1 子选择器的语法</h3>
+            <h3 id="section-2-1">2.1 子选择器的语法</h3>
             <pre class="css"><code>/* 语法：父选择器 > 子选择器 { 样式规则 } */
 父选择器 > 子选择器 {
     属性1: 值1;
@@ -156,7 +171,7 @@ div > p {
     padding: 5px; /* 设置内边距 */
 }</code></pre>
             
-            <h3>2.2 子选择器示例</h3>
+            <h3 id="section-2-2">2.2 子选择器示例</h3>
             <div class="lab-card">
                 <div class="lab-header">
                     <span>实验 02：子选择器</span>
@@ -212,7 +227,7 @@ div > p {
                 </div>
             </div>
             
-            <h3>2.3 子选择器的特点</h3>
+            <h3 id="section-2-3">2.3 子选择器的特点</h3>
             <ul>
                 <li>选择器之间用<code>&gt;</code>符号分隔</li>
                 <li>只选择直接子元素，不匹配深层嵌套的后代元素</li>
@@ -225,7 +240,7 @@ div > p {
             <h2>三、相邻兄弟选择器</h2>
             <p>相邻兄弟选择器用于选择某个元素的下一个直接相邻的兄弟元素，两个元素必须拥有相同的父元素，选择器之间用<code>+</code>分隔。</p>
             
-            <h3>3.1 相邻兄弟选择器的语法</h3>
+            <h3 id="section-3-1">3.1 相邻兄弟选择器的语法</h3>
             <pre class="css"><code>/* 语法：元素1 + 元素2 { 样式规则 } */
 元素1 + 元素2 {
     属性1: 值1;
@@ -241,7 +256,7 @@ h2 + p {
     border-radius: 4px; /* 设置圆角 */
 }</code></pre>
             
-            <h3>3.2 相邻兄弟选择器示例</h3>
+            <h3 id="section-3-2">3.2 相邻兄弟选择器示例</h3>
             <div class="lab-card">
                 <div class="lab-header">
                     <span>实验 03：相邻兄弟选择器</span>
@@ -297,7 +312,7 @@ h2 + p {
                 </div>
             </div>
             
-            <h3>3.3 相邻兄弟选择器的特点</h3>
+            <h3 id="section-3-3">3.3 相邻兄弟选择器的特点</h3>
             <ul>
                 <li>选择器之间用<code>+</code>符号分隔</li>
                 <li>只选择紧接在第一个元素后面的直接相邻的兄弟元素</li>
@@ -310,7 +325,7 @@ h2 + p {
             <h2>四、通用兄弟选择器</h2>
             <p>通用兄弟选择器用于选择某个元素后面的所有兄弟元素，两个元素必须拥有相同的父元素，选择器之间用<code>~</code>分隔。</p>
             
-            <h3>4.1 通用兄弟选择器的语法</h3>
+            <h3 id="section-4-1">4.1 通用兄弟选择器的语法</h3>
             <pre class="css"><code>/* 语法：元素1 ~ 元素2 { 样式规则 } */
 元素1 ~ 元素2 {
     属性1: 值1;
@@ -324,7 +339,7 @@ h2 ~ p {
     font-size: 18px; /* 设置字体大小为18像素 */
 }</code></pre>
             
-            <h3>4.2 通用兄弟选择器示例</h3>
+            <h3 id="section-4-2">4.2 通用兄弟选择器示例</h3>
             <div class="lab-card">
                 <div class="lab-header">
                     <span>实验 04：通用兄弟选择器</span>
@@ -377,7 +392,7 @@ h2 ~ p {
                 </div>
             </div>
             
-            <h3>4.3 通用兄弟选择器的特点</h3>
+            <h3 id="section-4-3">4.3 通用兄弟选择器的特点</h3>
             <ul>
                 <li>选择器之间用<code>~</code>符号分隔</li>
                 <li>选择某个元素后面的所有兄弟元素，无论中间有多少其他元素</li>
@@ -391,7 +406,7 @@ h2 ~ p {
             <h2>五、交集选择器</h2>
             <p>交集选择器用于选择同时满足多个条件的元素，选择器之间直接连接，没有分隔符。</p>
             
-            <h3>5.1 交集选择器的语法</h3>
+            <h3 id="section-5-1">5.1 交集选择器的语法</h3>
             <pre class="css"><code>/* 语法：选择器1选择器2选择器3 { 样式规则 } */
 选择器1选择器2选择器3 {
     属性1: 值1;
@@ -408,7 +423,7 @@ p.highlight {
     border-radius: 4px; /* 设置圆角 */
 }</code></pre>
             
-            <h3>5.2 交集选择器示例</h3>
+            <h3 id="section-5-2">5.2 交集选择器示例</h3>
             <div class="lab-card">
                 <div class="lab-header">
                     <span>实验 05：交集选择器</span>
@@ -463,7 +478,7 @@ p.highlight {
                 </div>
             </div>
             
-            <h3>5.3 交集选择器的特点</h3>
+            <h3 id="section-5-3">5.3 交集选择器的特点</h3>
             <ul>
                 <li>选择器之间没有分隔符，直接连接</li>
                 <li>可以组合多种选择器，如元素选择器+类选择器+ID选择器</li>
