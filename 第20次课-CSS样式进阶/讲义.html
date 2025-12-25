@@ -1,0 +1,480 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第20课：CSS样式进阶</title>
+    
+    <link rel='stylesheet' href='../统一讲义样式模板.css'>
+    <script src='../js/lecture-utils.js'></script>
+</head>
+<body>
+<nav class="sidebar">
+    <div class="sidebar-nav">
+        <h3>课程导航</h3>
+        <a class="sidebar-link" href="#intro">👋 课程概览</a>
+        
+        <a class="sidebar-link" href="#chapter-1">一、CSS变量</a>
+        <a class="sidebar-link" href="#chapter-2">二、calc()函数</a>
+        <a class="sidebar-link" href="#chapter-3">三、盒阴影</a>
+        <a class="sidebar-link" href="#chapter-4">四、文字阴影</a>
+        <a class="sidebar-link" href="#chapter-5">五、渐变</a>
+        <a class="sidebar-link" href="#chapter-6">六、变换</a>
+        <a class="sidebar-link" href="#chapter-7">七、过渡</a>
+        <a class="sidebar-link" href="#chapter-8">八、动画</a>
+        <a class="sidebar-link" href="#chapter-9">九、实验：CSS变量的使用</a>
+        <a class="sidebar-link" href="#chapter-10">十、实验：创建动画效果</a>
+        <a class="sidebar-link" href="#chapter-11">十一、本课小结</a>
+    </div>
+</nav>
+<main class="content">
+    <header id="intro">
+        <h1>第20课：CSS样式进阶</h1>
+        <p class="intro">本课程将介绍CSS的高级特性，包括CSS变量、计算函数、阴影、渐变、变换、过渡和动画等。学习这些进阶特性，可以使你的网页设计更加生动、交互性更强。</p>
+        <div class="pill-list">
+            <span class="pill">CSS变量</span>
+            <span class="pill">calc()函数</span>
+            <span class="pill">盒阴影</span>
+            <span class="pill">文字阴影</span>
+            <span class="pill">渐变</span>
+            <span class="pill">变换</span>
+            <span class="pill">过渡</span>
+            <span class="pill">动画</span>
+        </div>
+    </header>
+
+    <section id="chapter-1">
+        <h2>一、CSS变量</h2>
+        <p>CSS变量（也称为自定义属性）允许你在CSS中定义可重用的值，然后在整个样式表中引用这些值。</p>
+        <pre class="css"><code>/* 定义CSS变量 */
+:root {
+    --primary-color: #2c3e50;
+    --font-size: 16px;
+}
+
+/* 使用CSS变量 */
+p {
+    color: var(--primary-color);
+    font-size: var(--font-size);
+}</code></pre>
+        <div class="tip-box">
+            <span class="tip-title">CSS变量的优点</span>
+            <ul>
+                <li>便于维护：只需要修改一处，所有引用该变量的地方都会更新。</li>
+                <li>提高代码的可读性：变量名可以描述值的用途。</li>
+                <li>支持动态修改：可以通过JavaScript修改CSS变量的值。</li>
+                <li>支持继承：子元素可以继承父元素的CSS变量。</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="chapter-2">
+        <h2>二、calc()函数</h2>
+        <p>calc()函数允许你在CSS中进行数学计算，用于动态计算长度、宽度、字体大小等。</p>
+        <pre class="css"><code>/* 计算宽度 */
+.container {
+    width: calc(100% - 200px);
+}
+
+/* 计算字体大小 */
+h1 {
+    font-size: calc(24px + 2vw);
+}
+
+/* 计算高度 */
+.box {
+    height: calc(100vh - 100px);
+}</code></pre>
+        <div class="note-box">
+            <span class="tip-title">注意事项</span>
+            <ul>
+                <li>calc()函数中的运算符前后必须有空格。</li>
+                <li>calc()函数可以嵌套使用。</li>
+                <li>calc()函数支持加(+)、减(-)、乘(*)、除(/)四种运算符。</li>
+                <li>除号(/)的右边必须是数字。</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="chapter-3">
+        <h2>三、盒阴影</h2>
+        <p>box-shadow属性用于为元素添加阴影效果。</p>
+        <pre class="css"><code>/* 基本语法 */
+.box {
+    box-shadow: 水平偏移 垂直偏移 模糊半径 扩散半径 颜色  inset;
+}
+
+/* 示例 */
+.card {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 多重阴影 */
+.multi-shadow {
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.1),
+        0 4px 8px rgba(0, 0, 0, 0.1);
+}</code></pre>
+        <div class="tip-box">
+            <span class="tip-title">参数说明</span>
+            <ul>
+                <li><strong>水平偏移：</strong>阴影的水平位置，正数向右，负数向左。</li>
+                <li><strong>垂直偏移：</strong>阴影的垂直位置，正数向下，负数向上。</li>
+                <li><strong>模糊半径：</strong>阴影的模糊程度，值越大阴影越模糊。</li>
+                <li><strong>扩散半径：</strong>阴影的大小，正数扩大阴影，负数缩小阴影。</li>
+                <li><strong>颜色：</strong>阴影的颜色。</li>
+                <li><strong>inset：</strong>可选，将外部阴影改为内部阴影。</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="chapter-4">
+        <h2>四、文字阴影</h2>
+        <p>text-shadow属性用于为文字添加阴影效果。</p>
+        <pre class="css"><code>/* 基本语法 */
+h1 {
+    text-shadow: 水平偏移 垂直偏移 模糊半径 颜色;
+}
+
+/* 示例 */
+h1 {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* 多重阴影 */
+h2 {
+    text-shadow: 
+        1px 1px 0 #fff,
+        -1px -1px 0 #fff,
+        1px -1px 0 #fff,
+        -1px 1px 0 #fff,
+        2px 2px 4px rgba(0, 0, 0, 0.3);
+}</code></pre>
+        <div class="note-box">
+            <span class="tip-title">注意事项</span>
+            <ul>
+                <li>text-shadow的参数与box-shadow类似，但没有inset选项。</li>
+                <li>可以添加多个阴影，用逗号分隔。</li>
+                <li>文字阴影可以增强文字的可读性，特别是在复杂背景上。</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="chapter-5">
+        <h2>五、渐变</h2>
+        <p>CSS渐变允许你创建平滑的颜色过渡效果，包括线性渐变和径向渐变。</p>
+        
+        <h3>线性渐变</h3>
+        <pre class="css"><code>/* 基本语法 */
+.linear-gradient {
+    background: linear-gradient(方向, 颜色1, 颜色2, ...);
+}
+
+/* 示例 */
+.gradient-bg {
+    background: linear-gradient(to right, #ff6b6b, #4ecdc4);
+}
+
+/* 带角度的渐变 */
+.angle-gradient {
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+}
+
+/* 带颜色停止点的渐变 */
+.stop-gradient {
+    background: linear-gradient(to right, #ff6b6b 0%, #4ecdc4 50%, #45b7d1 100%);
+}</code></pre>
+        
+        <h3>径向渐变</h3>
+        <pre class="css"><code>/* 基本语法 */
+.radial-gradient {
+    background: radial-gradient(形状 大小 at 位置, 颜色1, 颜色2, ...);
+}
+
+/* 示例 */
+.radial-bg {
+    background: radial-gradient(circle, #ff6b6b, #4ecdc4);
+}
+
+/* 带位置的径向渐变 */
+.position-gradient {
+    background: radial-gradient(circle at top left, #ff6b6b, #4ecdc4);
+}
+
+/* 带大小的径向渐变 */
+.size-gradient {
+    background: radial-gradient(circle closest-side, #ff6b6b, #4ecdc4);
+}</code></pre>
+    </section>
+
+    <section id="chapter-6">
+        <h2>六、变换</h2>
+        <p>transform属性用于对元素进行变换，包括旋转、缩放、平移和倾斜等。</p>
+        <pre class="css"><code>/* 旋转 */
+.rotate {
+    transform: rotate(45deg);
+}
+
+/* 缩放 */
+.scale {
+    transform: scale(1.5);
+}
+
+/* 平移 */
+.translate {
+    transform: translate(50px, 20px);
+}
+
+/* 倾斜 */
+.skew {
+    transform: skew(10deg, 5deg);
+}
+
+/* 组合变换 */
+.combined {
+    transform: rotate(45deg) scale(1.5) translate(50px, 20px);
+}
+
+/* 3D变换 */
+.perspective {
+    perspective: 1000px;
+}
+
+.rotate-3d {
+    transform: rotateX(45deg) rotateY(45deg);
+}</code></pre>
+        <div class="tip-box">
+            <span class="tip-title">常用变换函数</span>
+            <ul>
+                <li><strong>rotate(angle)：</strong>旋转元素。</li>
+                <li><strong>scale(x, y)：</strong>缩放元素。</li>
+                <li><strong>translate(x, y)：</strong>平移元素。</li>
+                <li><strong>skew(x-angle, y-angle)：</strong>倾斜元素。</li>
+                <li><strong>rotateX(angle)：</strong>沿X轴旋转元素。</li>
+                <li><strong>rotateY(angle)：</strong>沿Y轴旋转元素。</li>
+                <li><strong>rotateZ(angle)：</strong>沿Z轴旋转元素。</li>
+                <li><strong>matrix()：</strong>使用矩阵变换。</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="chapter-7">
+        <h2>七、过渡</h2>
+        <p>transition属性用于创建平滑的过渡效果，当元素的CSS属性发生变化时，过渡效果会在指定的时间内完成。</p>
+        <pre class="css"><code>/* 基本语法 */
+.transition {
+    transition: 属性 持续时间 时间函数 延迟时间;
+}
+
+/* 示例 */
+.button {
+    background: #ff6b6b;
+    transition: background 0.3s ease;
+}
+
+.button:hover {
+    background: #4ecdc4;
+}
+
+/* 多个属性过渡 */
+.card {
+    transition: 
+        background 0.3s ease,
+        transform 0.3s ease;
+}
+
+.card:hover {
+    background: #f0f0f0;
+    transform: translateY(-5px);
+}
+
+/* 所有属性过渡 */
+.box {
+    transition: all 0.3s ease;
+}</code></pre>
+        <div class="note-box">
+            <span class="tip-title">时间函数</span>
+            <ul>
+                <li><strong>ease：</strong>默认值，缓入缓出。</li>
+                <li><strong>linear：</strong>匀速。</li>
+                <li><strong>ease-in：</strong>缓入。</li>
+                <li><strong>ease-out：</strong>缓出。</li>
+                <li><strong>ease-in-out：</strong>缓入缓出。</li>
+                <li><strong>cubic-bezier(n,n,n,n)：</strong>自定义贝塞尔曲线。</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="chapter-8">
+        <h2>八、动画</h2>
+        <p>animation属性用于创建复杂的动画效果，通过@keyframes规则定义动画的关键帧。</p>
+        <pre class="css"><code>/* 定义关键帧 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 使用动画 */
+.element {
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* 动画属性 */
+.animated-element {
+    animation-name: fadeIn;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-delay: 0.5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-fill-mode: both;
+    animation-play-state: running;
+}
+
+/* 简写形式 */
+.animated-element {
+    animation: fadeIn 1s ease-in-out 0.5s infinite alternate both running;
+}
+
+/* 定义多个关键帧 */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-30px);
+    }
+    60% {
+        transform: translateY(-15px);
+    }
+}</code></pre>
+    </section>
+
+    <section id="chapter-9">
+        <h2>九、实验：CSS变量的使用</h2>
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验：CSS变量的使用</span>
+                <span class="status-badge beginner">Hands-on</span>
+            </div>
+            <div class="lab-body">
+                <p><strong>目标：</strong>通过实际操作，掌握CSS变量的定义和使用。</p>
+                <ol class="lab-steps">
+                    <li>创建一个HTML文件，包含多个不同的元素。</li>
+                    <li>在:root伪类中定义CSS变量，包括颜色、字体大小、间距等。</li>
+                    <li>在不同的元素中使用这些CSS变量。</li>
+                    <li>创建一个按钮，通过JavaScript修改CSS变量的值，观察元素样式的变化。</li>
+                    <li>总结CSS变量的优缺点和适用场景。</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <section id="chapter-10">
+        <h2>十、实验：创建动画效果</h2>
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验：创建动画效果</span>
+                <span class="status-badge beginner">Hands-on</span>
+            </div>
+            <div class="lab-body">
+                <p><strong>目标：</strong>通过实际操作，掌握CSS动画的创建方法。</p>
+                <ol class="lab-steps">
+                    <li>创建一个HTML文件，包含一个需要添加动画的元素。</li>
+                    <li>使用@keyframes规则定义一个动画，包括多个关键帧。</li>
+                    <li>使用animation属性将动画应用到元素上。</li>
+                    <li>调整动画的持续时间、时间函数、延迟时间和迭代次数等属性。</li>
+                    <li>创建多个不同的动画效果，如淡入淡出、旋转、缩放、平移等。</li>
+                    <li>尝试组合多个动画效果，观察最终的动画效果。</li>
+                </ol>
+            </div>
+        </div>
+    
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验：CSS动画效果创建</span>
+                <span id="badge-1" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
+            </div>
+            <div class="lab-body">
+                <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;div class="container"&gt;
+    &lt;h3&gt;CSS实验&lt;/h3&gt;
+    &lt;p&gt;这是CSS实验的预览效果&lt;/p&gt;
+&lt;/div&gt;
+                </div>
+                <div class="panel css-editor" id="css-1" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* 第20次课-CSS样式进阶实验 */
+.container {
+    width: 200px;
+    height: 200px;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    margin: 20px;
+    /* 在这里添加你的CSS样式 */
+    /* 尝试添加：transform, transition, animation 等 */
+}
+
+/* 在这里添加更多CSS样式 */
+/* 例如动画定义 */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+                </div>
+            </div>
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runCssExperiment('css-1', 'preview-1', 'badge-1')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetCssExperiment('css-1', 'preview-1', 'badge-1')">↺ 重置</button>
+            </div>
+            <div class="preview-box" id="preview-1">
+                <span class="preview-label">效果预览</span>
+                <div class="container">
+                    <h3>CSS实验</h3>
+                    <p>这是CSS实验的预览效果</p>
+                </div>
+            </div>
+        </div>
+</section>
+    <section id="chapter-11">
+        <h2>十一、本课小结</h2>
+        <p>本课程详细介绍了CSS的高级特性，包括：</p>
+        <ul>
+            <li><strong>CSS变量：</strong>允许定义可重用的值，便于维护和动态修改。</li>
+            <li><strong>calc()函数：</strong>用于在CSS中进行数学计算，动态生成值。</li>
+            <li><strong>盒阴影和文字阴影：</strong>用于添加阴影效果，增强视觉层次感。</li>
+            <li><strong>渐变：</strong>包括线性渐变和径向渐变，用于创建平滑的颜色过渡效果。</li>
+            <li><strong>变换：</strong>包括旋转、缩放、平移和倾斜等，用于改变元素的形状和位置。</li>
+            <li><strong>过渡：</strong>用于创建平滑的过渡效果，当元素属性发生变化时。</li>
+            <li><strong>动画：</strong>用于创建复杂的动画效果，通过关键帧定义动画的各个阶段。</li>
+        </ul>
+        <div class="tip-box">
+            <span class="tip-title">学习建议</span>
+            <ul>
+                <li>多动手实践，尝试创建不同的动画效果。</li>
+                <li>注意性能问题，避免过度使用复杂的动画效果。</li>
+                <li>结合实际项目，将这些进阶特性应用到实际开发中。</li>
+                <li>关注CSS的最新发展，学习新的CSS特性。</li>
+            </ul>
+        </div>
+    </section>
+</main>
+</body>
+</html>
+
+
+
+
+
+
+

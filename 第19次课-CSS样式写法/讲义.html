@@ -1,0 +1,351 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第19课：CSS样式写法</title>
+    
+    <link rel='stylesheet' href='../统一讲义样式模板.css'>
+    <script src='../js/lecture-utils.js'></script>
+</head>
+<body>
+<nav class="sidebar">
+    <div class="sidebar-nav">
+        <h3>课程导航</h3>
+        <a class="sidebar-link" href="#intro">👋 课程概览</a>
+        
+        <a class="sidebar-link" href="#chapter-1">一、内联样式</a>
+        <a class="sidebar-link" href="#chapter-2">二、内部样式表</a>
+        <a class="sidebar-link" href="#chapter-3">三、外部样式表</a>
+        <a class="sidebar-link" href="#chapter-4">四、样式优先级</a>
+        <a class="sidebar-link" href="#chapter-5">五、CSS语法规则</a>
+        <a class="sidebar-link" href="#chapter-6">六、CSS注释</a>
+        <a class="sidebar-link" href="#chapter-7">七、实验：三种样式写法对比</a>
+        <a class="sidebar-link" href="#chapter-8">八、实验：样式优先级测试</a>
+        <a class="sidebar-link" href="#chapter-9">九、本课小结</a>
+    </div>
+</nav>
+<main class="content">
+    <header id="intro">
+        <h1>第19课：CSS样式写法</h1>
+        <p class="intro">本课程将详细介绍CSS样式的各种写法，包括内联样式、内部样式表和外部样式表，并讲解它们的优先级和适用场景。学习本课，你将能够灵活运用不同的CSS样式写法来组织和管理网页样式。</p>
+        <div class="pill-list">
+            <span class="pill">内联样式</span>
+            <span class="pill">内部样式表</span>
+            <span class="pill">外部样式表</span>
+            <span class="pill">样式优先级</span>
+            <span class="pill">CSS语法规则</span>
+            <span class="pill">CSS注释</span>
+        </div>
+    </header>
+
+    <section id="chapter-1">
+        <h2>一、内联样式</h2>
+        <p>内联样式是直接在HTML元素的style属性中定义的CSS样式。</p>
+        <p>内联样式的特点是优先级最高，直接作用于单个元素，但是不利于样式的复用和维护。</p>
+        <pre class="html"><code>&lt;p style="color: red; font-size: 20px;"&gt;这是一个红色的段落。&lt;/p&gt;</code></pre>
+        <div class="note-box">
+            <span class="tip-title">注意事项</span>
+            <ul>
+                <li>内联样式使用style属性，属性值是CSS声明的集合。</li>
+                <li>多个CSS声明之间用分号分隔。</li>
+                <li>内联样式的优先级最高，会覆盖其他样式写法。</li>
+                <li>内联样式不利于样式的复用和维护，仅在特殊情况下使用。</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="chapter-2">
+        <h2>二、内部样式表</h2>
+        <p>内部样式表是在HTML文档的head标签中使用style标签定义的CSS样式。</p>
+        <p>内部样式表的特点是作用于当前HTML文档，样式可以复用，但是不利于在多个HTML文档之间共享样式。</p>
+        <pre class="html"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;内部样式表示例&lt;/title&gt;
+    &lt;style&gt;
+        p {
+            color: blue;
+            font-size: 18px;
+        }
+        h1 {
+            color: green;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;这是一个标题&lt;/h1&gt;
+    &lt;p&gt;这是一个蓝色的段落。&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        <div class="note-box">
+            <span class="tip-title">注意事项</span>
+            <ul>
+                <li>内部样式表使用style标签，位于head标签中。</li>
+                <li>style标签中的CSS样式作用于当前HTML文档。</li>
+                <li>内部样式表有利于样式的复用，但是仅作用于当前文档。</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="chapter-3">
+        <h2>三、外部样式表</h2>
+        <p>外部样式表是将CSS样式定义在一个独立的.css文件中，然后在HTML文档中通过link标签引入。</p>
+        <p>外部样式表的特点是可以在多个HTML文档之间共享样式，有利于样式的复用和维护，是实际开发中最常用的样式写法。</p>
+        <div class="note-box">
+            <span class="tip-title">外部样式表的使用步骤</span>
+            <ol>
+                <li>创建一个.css文件，例如style.css。</li>
+                <li>在.css文件中定义CSS样式。</li>
+                <li>在HTML文档的head标签中使用link标签引入.css文件。</li>
+            </ol>
+        </div>
+        <pre class="css"><code>/* style.css */
+p {
+    color: red;
+    font-size: 20px;
+}
+
+h1 {
+    color: blue;
+}</code></pre>
+        <pre class="html"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;外部样式表示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;这是一个标题&lt;/h1&gt;
+    &lt;p&gt;这是一个红色的段落。&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+        <div class="tip-box">
+            <span class="tip-title">外部样式表的优点</span>
+            <ul>
+                <li>样式可以在多个HTML文档之间共享，有利于样式的复用和维护。</li>
+                <li>可以缓存.css文件，提高网页加载速度。</li>
+                <li>将HTML结构和CSS样式分离，有利于代码的组织和管理。</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="chapter-4">
+        <h2>四、样式优先级</h2>
+        <p>当一个HTML元素应用了多种样式写法时，CSS会根据一定的优先级规则来决定最终应用哪个样式。</p>
+        <p>样式优先级从高到低依次为：</p>
+        <ol>
+            <li>!important声明</li>
+            <li>内联样式</li>
+            <li>ID选择器</li>
+            <li>类选择器、属性选择器、伪类选择器</li>
+            <li>元素选择器、伪元素选择器</li>
+            <li>通配符选择器</li>
+            <li>继承的样式</li>
+        </ol>
+        <div class="warning-box">
+            <span class="tip-title">注意事项</span>
+            <ul>
+                <li>!important声明会覆盖所有其他样式，但是应尽量避免使用，因为它会破坏样式的正常优先级关系。</li>
+                <li>选择器的优先级可以通过计算选择器的特异性来确定。</li>
+                <li>当多个样式的优先级相同时，后面定义的样式会覆盖前面定义的样式。</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="chapter-5">
+        <h2>五、CSS语法规则</h2>
+        <p>CSS语法由选择器和声明块组成。</p>
+        <pre class="css"><code>选择器 {
+    属性1: 值1;
+    属性2: 值2;
+    /* 注释 */
+}</code></pre>
+        <div class="note-box">
+            <span class="tip-title">CSS语法详解</span>
+            <ul>
+                <li><strong>选择器：</strong>用于选择要应用样式的HTML元素。</li>
+                <li><strong>声明块：</strong>用花括号{}包裹，包含一个或多个CSS声明。</li>
+                <li><strong>CSS声明：</strong>由属性和值组成，属性和值之间用冒号:分隔，多个声明之间用分号;分隔。</li>
+                <li><strong>注释：</strong>用于解释CSS代码，不会被浏览器解析。</li>
+            </ul>
+        </div>
+        <h3>CSS属性值的单位</h3>
+        <p>CSS属性值可以使用多种单位，常见的单位包括：</p>
+        <table class="prop-table">
+            <thead>
+            <tr><th>单位</th><th>描述</th><th>示例</th></tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>px</td>
+                <td>像素，固定单位</td>
+                <td>font-size: 16px;</td>
+            </tr>
+            <tr>
+                <td>em</td>
+                <td>相对于父元素的字体大小</td>
+                <td>font-size: 1.2em;</td>
+            </tr>
+            <tr>
+                <td>rem</td>
+                <td>相对于根元素的字体大小</td>
+                <td>font-size: 1.2rem;</td>
+            </tr>
+            <tr>
+                <td>%</td>
+                <td>百分比，相对于父元素的宽度或高度</td>
+                <td>width: 50%;</td>
+            </tr>
+            <tr>
+                <td>vw</td>
+                <td>视口宽度的1%</td>
+                <td>width: 50vw;</td>
+            </tr>
+            <tr>
+                <td>vh</td>
+                <td>视口高度的1%</td>
+                <td>height: 50vh;</td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="chapter-6">
+        <h2>六、CSS注释</h2>
+        <p>CSS注释用于解释CSS代码，提高代码的可读性和可维护性。</p>
+        <p>CSS注释以/*开头，以*/结尾，中间可以包含任意文本。</p>
+        <pre class="css"><code>/* 这是一个CSS注释 */
+p {
+    color: red; /* 这是设置段落文本颜色为红色 */
+    font-size: 16px;
+}</code></pre>
+        <div class="tip-box">
+            <span class="tip-title">CSS注释的使用建议</span>
+            <ul>
+                <li>在CSS文件的开头添加注释，说明文件的用途和作者信息。</li>
+                <li>在重要的样式规则前添加注释，说明样式的用途。</li>
+                <li>使用注释来分隔不同的样式模块，提高代码的组织性。</li>
+                <li>避免使用过多的注释，只在必要时添加。</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="chapter-7">
+        <h2>七、实验：三种样式写法对比</h2>
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验：三种样式写法对比</span>
+                <span class="status-badge beginner">Hands-on</span>
+            </div>
+            <div class="lab-body">
+                <p><strong>目标：</strong>通过实际操作，对比内联样式、内部样式表和外部样式表的优缺点。</p>
+                <ol class="lab-steps">
+                    <li>创建一个HTML文件，包含标题、段落和链接等元素。</li>
+                    <li>使用内联样式为这些元素添加样式。</li>
+                    <li>将内联样式改为内部样式表。</li>
+                    <li>将内部样式表改为外部样式表。</li>
+                    <li>对比三种样式写法的优缺点，总结它们的适用场景。</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <section id="chapter-8">
+        <h2>八、实验：样式优先级测试</h2>
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验：样式优先级测试</span>
+                <span class="status-badge beginner">Hands-on</span>
+            </div>
+            <div class="lab-body">
+                <p><strong>目标：</strong>测试不同样式写法和选择器的优先级关系。</p>
+                <ol class="lab-steps">
+                    <li>创建一个HTML文件，包含一个div元素，设置id和class属性。</li>
+                    <li>使用内联样式为div元素设置背景颜色为红色。</li>
+                    <li>使用内部样式表，通过id选择器为div元素设置背景颜色为蓝色。</li>
+                    <li>使用内部样式表，通过类选择器为div元素设置背景颜色为绿色。</li>
+                    <li>使用内部样式表，通过元素选择器为div元素设置背景颜色为黄色。</li>
+                    <li>观察div元素的最终背景颜色，理解样式优先级的规则。</li>
+                    <li>在某个样式声明中添加!important，观察效果。</li>
+                </ol>
+            </div>
+        </div>
+    
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验：CSS样式写法实践</span>
+                <span id="badge-1" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
+            </div>
+            <div class="lab-body">
+                <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;div class="container"&gt;
+    &lt;h3&gt;CSS实验&lt;/h3&gt;
+    &lt;p&gt;这是CSS实验的预览效果&lt;/p&gt;
+&lt;/div&gt;
+                </div>
+                <div class="panel css-editor" id="css-1" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>
+/* 第19次课-CSS样式写法实验 */
+.container {
+    width: 200px;
+    height: 200px;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border: 2px solid #333;
+    border-radius: 10px;
+    margin: 20px;
+    /* 在这里添加你的CSS样式 */
+}
+
+/* 在这里添加更多CSS样式 */
+                </div>
+            </div>
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runCssExperiment('css-1', 'preview-1', 'badge-1')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetCssExperiment('css-1', 'preview-1', 'badge-1')">↺ 重置</button>
+            </div>
+            <div class="preview-box" id="preview-1">
+                <span class="preview-label">效果预览</span>
+                <div class="container">
+                    <h3>CSS实验</h3>
+                    <p>这是CSS实验的预览效果</p>
+                </div>
+            </div>
+        </div>
+</section>
+    <section id="chapter-9">
+        <h2>九、本课小结</h2>
+        <p>本课程详细介绍了CSS样式的各种写法，包括：</p>
+        <ul>
+            <li><strong>内联样式：</strong>直接在HTML元素的style属性中定义，优先级最高，但是不利于样式的复用和维护。</li>
+            <li><strong>内部样式表：</strong>在HTML文档的head标签中使用style标签定义，作用于当前HTML文档，样式可以复用。</li>
+            <li><strong>外部样式表：</strong>将CSS样式定义在独立的.css文件中，通过link标签引入，是实际开发中最常用的样式写法。</li>
+            <li><strong>样式优先级：</strong>!important声明 > 内联样式 > ID选择器 > 类选择器 > 元素选择器 > 通配符选择器 > 继承的样式。</li>
+            <li><strong>CSS语法：</strong>由选择器和声明块组成，声明块包含一个或多个CSS声明。</li>
+            <li><strong>CSS注释：</strong>用于解释CSS代码，提高代码的可读性和可维护性。</li>
+        </ul>
+        <div class="tip-box">
+            <span class="tip-title">学习建议</span>
+            <ul>
+                <li>在实际开发中，优先使用外部样式表来组织和管理CSS样式。</li>
+                <li>理解样式优先级的规则，避免使用!important声明。</li>
+                <li>使用CSS注释来提高代码的可读性和可维护性。</li>
+                <li>通过实验和练习，熟练掌握不同的CSS样式写法。</li>
+            </ul>
+        </div>
+    </section>
+</main>
+</body>
+</html>
+
+
+
+
+
+

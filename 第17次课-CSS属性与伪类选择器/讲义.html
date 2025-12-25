@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -15,18 +15,19 @@
             <a class="sidebar-link" href="#intro">👋 课程概览</a>
             
             <h3>Part 1: CSS属性选择器</h3>
-            <a class="sidebar-link sub-link" href="#attribute-selectors">1. 基础属性选择器</a>
-            <a class="sidebar-link sub-link" href="#string-selectors">2. 字符串匹配属性选择器</a>
+            <a class="sidebar-link sub-link" href="#chapter-1">一、基础属性选择器</a>
+            <a class="sidebar-link sub-link" href="#chapter-2">二、字符串匹配属性选择器</a>
             
             <h3>Part 2: CSS伪类选择器</h3>
-            <a class="sidebar-link sub-link" href="#interaction-pseudos">3. 交互状态伪类</a>
-            <a class="sidebar-link sub-link" href="#link-pseudos">4. 链接伪类（LVHA）</a>
-            <a class="sidebar-link sub-link" href="#structural-pseudos">5. 结构位置伪类</a>
-            <a class="sidebar-link sub-link" href="#logic-pseudos">6. 排除逻辑伪类</a>
-            <a class="sidebar-link sub-link" href="#pseudo-elements">7. 伪元素选择器</a>
+            <a class="sidebar-link sub-link" href="#chapter-3">三、交互状态伪类</a>
+            <a class="sidebar-link sub-link" href="#chapter-4">四、链接伪类</a>
+            <a class="sidebar-link sub-link" href="#chapter-5">五、结构位置伪类</a>
+            <a class="sidebar-link sub-link" href="#chapter-6">六、排除逻辑伪类</a>
+            <a class="sidebar-link sub-link" href="#chapter-7">七、伪元素选择器</a>
+            <a class="sidebar-link sub-link" href="#chapter-8">八、综合实践</a>
             
             <h3>总结与练习</h3>
-            <a class="sidebar-link" href="#summary">📝 课程小结</a>
+            <a class="sidebar-link sub-link" href="#chapter-9">九、课程小结</a>
         </div>
     </nav>
 
@@ -49,11 +50,11 @@
         </header>
 
         <!-- 第一部分：CSS属性选择器 -->
-        <section id="attribute-selectors">
+        <section id="chapter-1">
             <h2>一、基础属性选择器</h2>
             <p>基础属性选择器允许我们根据元素的属性来选择元素，包括属性存在匹配和属性值精确匹配。</p>
 
-            <h3>1.1 属性存在匹配：[属性名]</h3>
+            <h3 id="section-1-1">1.1 属性存在匹配：[属性名]</h3>
             <p>存在匹配选择器用于选择所有带有指定属性的元素，无论属性值是什么。语法为 <code>[属性名]</code>。</p>
             
             <div class="note-box">
@@ -69,7 +70,7 @@
     cursor: not-allowed;
 }</code></pre>
 
-            <h3>1.2 属性值精确匹配：[属性="值"]</h3>
+            <h3 id="section-1-2">1.2 属性值精确匹配：[属性="值"]</h3>
             <p>精确匹配选择器用于选择属性值完全等于指定值的元素。语法为 <code>[属性="值"]</code>。</p>
             
             <div class="note-box">
@@ -152,11 +153,11 @@ button, input {
             </div>
         </section>
 
-        <section id="string-selectors">
+        <section id="chapter-2">
             <h2>二、字符串匹配属性选择器</h2>
             <p>字符串匹配选择器允许我们根据属性值的部分内容来选择元素，包括开头匹配、结尾匹配和包含匹配。</p>
 
-            <h3>2.1 开头匹配：[属性^="值"]</h3>
+            <h3 id="section-2-1">2.1 开头匹配：[属性^="值"]</h3>
             <p>开头匹配选择器用于选择属性值以指定字符串开头的元素。语法为 <code>[属性^="值"]</code>。</p>
             
             <div class="note-box">
@@ -170,7 +171,7 @@ a[href^="https"] {
     font-weight: bold;
 }</code></pre>
 
-            <h3>2.2 结尾匹配：[属性$="值"]</h3>
+            <h3 id="section-2-2">2.2 结尾匹配：[属性$="值"]</h3>
             <p>结尾匹配选择器用于选择属性值以指定字符串结尾的元素。语法为 <code>[属性$="值"]</code>。</p>
             
             <div class="note-box">
@@ -190,7 +191,7 @@ a[href$=".pdf"]::after {
     color: #999;
 }</code></pre>
 
-            <h3>2.3 包含匹配：[属性*="值"]</h3>
+            <h3 id="section-2-3">2.3 包含匹配：[属性*="值"]</h3>
             <p>包含匹配选择器用于选择属性值包含指定字符串的元素。语法为 <code>[属性*="值"]</code>。</p>
             
             <div class="note-box">
@@ -282,11 +283,11 @@ a {
         </section>
 
         <!-- 第二部分：CSS伪类选择器 -->
-        <section id="interaction-pseudos">
+        <section id="chapter-3">
             <h2>三、交互状态伪类</h2>
             <p>交互状态伪类用于选择处于特定状态的元素，如悬停、焦点和激活状态。</p>
 
-            <h3>2.1 悬停状态：:hover</h3>
+            <h3 id="section-2-1">2.1 悬停状态：:hover</h3>
             <p>悬停状态伪类用于选择鼠标悬停在上面的元素。语法为 <code>:hover</code>。</p>
             
             <div class="note-box">
@@ -302,7 +303,7 @@ button:hover {
     border-color: #0066CC;
 }</code></pre>
 
-            <h3>2.2 焦点状态：:focus</h3>
+            <h3 id="section-2-2">2.2 焦点状态：:focus</h3>
             <p>焦点状态伪类用于选择获得焦点的元素，通常用于表单元素。语法为 <code>:focus</code>。</p>
             
             <div class="note-box">
@@ -317,7 +318,7 @@ input:focus {
     background-color: #E8F2FF;
 }</code></pre>
 
-            <h3>2.3 激活状态：:active</h3>
+            <h3 id="section-2-3">2.3 激活状态：:active</h3>
             <p>激活状态伪类用于选择正在被点击的元素。语法为 <code>:active</code>。</p>
             
             <div class="note-box">
@@ -411,11 +412,11 @@ button:active {
             </div>
         </section>
 
-        <section id="link-pseudos">
+        <section id="chapter-4">
             <h2>四、链接伪类（LVHA）</h2>
             <p>链接伪类用于控制超链接在不同状态下的样式。LVHA是四个链接状态伪类的首字母缩写，代表了它们应该遵循的顺序。</p>
 
-            <h3>3.1 LVHA顺序</h3>
+            <h3 id="section-3-1">3.1 LVHA顺序</h3>
             <p>LVHA的顺序是 <code>:link</code>、<code>:visited</code>、<code>:hover</code>、<code>:active</code>。这个顺序非常重要，因为CSS遵循后写的样式覆盖先写的样式的规则。</p>
             
             <div class="note-box">
@@ -499,11 +500,11 @@ a:active {
             </div>
         </section>
 
-        <section id="structural-pseudos">
+        <section id="chapter-5">
             <h2>五、结构位置伪类</h2>
             <p>结构位置伪类用于根据元素在文档结构中的位置来选择元素。</p>
 
-            <h3>4.1 第一个和最后一个子元素</h3>
+            <h3 id="section-4-1">4.1 第一个和最后一个子元素</h3>
             <p>使用 <code>:first-child</code> 和 <code>:last-child</code> 可以选择第一个和最后一个子元素。</p>
             
             <div class="note-box">
@@ -523,7 +524,7 @@ li:last-child {
     font-weight: bold;
 }</code></pre>
 
-            <h3>4.2 第N个子元素：:nth-child(N)</h3>
+            <h3 id="section-4-2">4.2 第N个子元素：:nth-child(N)</h3>
             <p>使用 <code>:nth-child(N)</code> 可以选择第N个子元素，N可以是数字、关键字或表达式。</p>
             
             <div class="note-box">
@@ -546,7 +547,7 @@ li:nth-child(2n+1) {
     background-color: #e9e9e9;
 }</code></pre>
 
-            <h3>4.3 奇数和偶数快捷方式</h3>
+            <h3 id="section-4-3">4.3 奇数和偶数快捷方式</h3>
             <p>CSS提供了 <code>odd</code> 和 <code>even</code> 关键字来简化奇数和偶数的选择。</p>
             
             <pre class="css"><code>/* 等价于 :nth-child(2n+1) */
@@ -644,11 +645,11 @@ li:nth-child(even) {
             </div>
         </section>
 
-        <section id="logic-pseudos">
+        <section id="chapter-6">
             <h2>六、排除逻辑伪类</h2>
             <p>排除逻辑伪类用于选择不匹配特定条件的元素。</p>
 
-            <h3>5.1 排除选择器：:not()</h3>
+            <h3 id="section-5-1">5.1 排除选择器：:not()</h3>
             <p>排除选择器用于选择不匹配指定选择器的元素。语法为 <code>:not(选择器)</code>。</p>
             
             <div class="note-box">
@@ -735,11 +736,11 @@ button:not([disabled]):hover {
             </div>
         </section>
 
-        <section id="pseudo-elements">
+        <section id="chapter-7">
             <h2>七、伪元素选择器</h2>
             <p>伪元素选择器用于选择元素的特定部分，如首字母、第一行或在元素前后插入内容。</p>
 
-            <h3>6.1 ::before 和 ::after</h3>
+            <h3 id="section-6-1">6.1 ::before 和 ::after</h3>
             <p><code>::before</code> 和 <code>::after</code> 伪元素用于在元素前后插入内容。它们必须配合 <code>content</code> 属性使用。</p>
             
             <div class="note-box">
@@ -759,7 +760,7 @@ p::after {
     color: #666;
 }</code></pre>
 
-            <h3>6.2 ::first-letter</h3>
+            <h3 id="section-6-2">6.2 ::first-letter</h3>
             <p><code>::first-letter</code> 伪元素用于选择文本的第一个字母。</p>
             
             <div class="note-box">
@@ -776,7 +777,7 @@ p::first-letter {
     margin-right: 5px;
 }</code></pre>
 
-            <h3>6.3 ::first-line</h3>
+            <h3 id="section-6-3">6.3 ::first-line</h3>
             <p><code>::first-line</code> 伪元素用于选择文本的第一行。</p>
             
             <div class="note-box">
@@ -888,7 +889,7 @@ p::first-line {
             </div>
         </section>
 
-        <section id="practice">
+        <section id="chapter-8">
             <h2>八、综合实践：表单美化</h2>
             <p>现在让我们综合运用属性选择器和伪类选择器来美化一个表单。</p>
 
@@ -1145,13 +1146,13 @@ input:valid:not(:placeholder-shown) {
         <!-- ============================================ -->
         <!-- 课程小结区域 -->
         <!-- ============================================ -->
-        <section id="summary">
-            <h2>七、课程小结</h2>
+        <section id="chapter-9">
+            <h2>九、课程小结</h2>
             <p>
                 CSS属性选择器和伪类选择器是CSS中强大的选择器类型，它们允许我们根据元素的属性和状态来精确选择和样式化元素。
             </p>
             
-            <h3>7.1 属性选择器总结</h3>
+            <h3 id="section-7-1">7.1 属性选择器总结</h3>
             <table class="prop-table">
                 <thead>
                     <tr>
@@ -1189,7 +1190,7 @@ input:valid:not(:placeholder-shown) {
                 </tbody>
             </table>
 
-            <h3>7.2 伪类选择器总结</h3>
+            <h3 id="section-7-2">7.2 伪类选择器总结</h3>
             <table class="prop-table">
                 <thead>
                     <tr>
@@ -1258,7 +1259,7 @@ input:valid:not(:placeholder-shown) {
                 </tbody>
             </table>
 
-            <h3>7.3 伪元素选择器总结</h3>
+            <h3 id="section-7-3">7.3 伪元素选择器总结</h3>
             <table class="prop-table">
                 <thead>
                     <tr>
@@ -1286,7 +1287,7 @@ input:valid:not(:placeholder-shown) {
                 </tbody>
             </table>
 
-            <h3>7.4 最佳实践</h3>
+            <h3 id="section-7-4">7.4 最佳实践</h3>
             <ol>
                 <li>使用属性选择器来样式化表单元素，如不同类型的输入框</li>
                 <li>使用伪类选择器来提升用户体验，如悬停效果和焦点状态</li>

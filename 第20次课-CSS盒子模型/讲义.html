@@ -15,21 +15,21 @@
         <a class="sidebar-link" href="#intro">👋 课程概览</a>
         
         <h3>Part 1: 盒子模型</h3>
-        <a class="sidebar-link sub-link" href="#box-model-intro">1. 盒子模型简介</a>
-        <a class="sidebar-link sub-link" href="#box-model-components">2. 模型组成</a>
-        <a class="sidebar-link sub-link" href="#content-area">3. 内容区域</a>
-        <a class="sidebar-link sub-link" href="#padding-area">4. 内边距</a>
-        <a class="sidebar-link sub-link" href="#border-area">5. 边框</a>
-        <a class="sidebar-link sub-link" href="#margin-area">6. 外边距</a>
+        <a class="sidebar-link sub-link" href="#chapter-1">一、盒子模型简介</a>
+        <a class="sidebar-link sub-link" href="#chapter-2">二、盒子模型组成</a>
+        <a class="sidebar-link sub-link" href="#chapter-3">三、内容区域</a>
+        <a class="sidebar-link sub-link" href="#chapter-4">四、内边距</a>
+        <a class="sidebar-link sub-link" href="#chapter-5">五、边框</a>
+        <a class="sidebar-link sub-link" href="#chapter-6">六、外边距</a>
         
         <h3>Part 2: 进阶知识</h3>
-        <a class="sidebar-link sub-link" href="#box-sizing">7. box-sizing属性</a>
-        <a class="sidebar-link sub-link" href="#margin-collapse">8. 外边距合并</a>
+        <a class="sidebar-link sub-link" href="#chapter-7">七、box-sizing属性</a>
+        <a class="sidebar-link sub-link" href="#chapter-8">八、外边距合并</a>
         
         <h3>Part 3: 实战练习</h3>
-        <a class="sidebar-link sub-link" href="#lab-box-model">9. 实验练习</a>
-        <a class="sidebar-link sub-link" href="#lab-box-sizing">10. box-sizing实验</a>
-        <a class="sidebar-link sub-link" href="#summary">11. 课程小结</a>
+        <a class="sidebar-link sub-link" href="#chapter-9">九、盒子模型实验</a>
+        <a class="sidebar-link sub-link" href="#chapter-10">十、box-sizing实验</a>
+        <a class="sidebar-link sub-link" href="#chapter-11">十一、课程小结</a>
     </div>
 </nav>
 <main class="content">
@@ -47,7 +47,7 @@
         </div>
     </header>
 
-    <section id="box-model-intro">
+    <section id="chapter-1">
         <h2>一、盒子模型简介</h2>
         <p>CSS盒子模型是CSS布局的基础，它将HTML元素看作一个矩形的盒子，包括内容区域、内边距、边框和外边距四个部分。</p>
         <p>盒子模型决定了元素在页面中的大小、位置和与其他元素的关系。</p>
@@ -63,7 +63,7 @@
             </ul>
         </div>
         
-        <h3>1.1 为什么要学习盒子模型？</h3>
+        <h3 id="section-1-1">1.1 为什么要学习盒子模型？</h3>
         <p>盒子模型是CSS布局的核心概念，掌握它能帮你：</p>
         <ul>
             <li>准确控制元素的尺寸和间距</li>
@@ -96,7 +96,7 @@
         </div>
     </section>
 
-    <section id="box-model-components">
+    <section id="chapter-2">
         <h2>二、盒子模型组成</h2>
         <p>CSS盒子模型由以下四个部分组成，从内到外依次是：</p>
         
@@ -146,7 +146,7 @@
             </ul>
         </div>
         
-        <h3>2.1 使用开发者工具查看盒子模型</h3>
+        <h3 id="section-2-1">2.1 使用开发者工具查看盒子模型</h3>
         <p>在浏览器中，你可以使用开发者工具（F12）直观地查看任何元素的盒子模型：</p>
         <ol class="lab-steps">
             <li>按 <strong>F12</strong> 打开开发者工具</li>
@@ -157,11 +157,11 @@
         </ol>
     </section>
 
-    <section id="content-area">
+    <section id="chapter-3">
         <h2>三、内容区域 (Content)</h2>
         <p>内容区域是元素实际内容的区域，由 <code>width</code> 和 <code>height</code> 属性控制。这是盒子最核心的部分。</p>
         
-        <h3>3.1 设置内容尺寸</h3>
+        <h3 id="section-3-1">3.1 设置内容尺寸</h3>
         <pre class="css"><code>/* 固定尺寸 */
 .box {
     width: 300px;    /* 内容区域宽度 */
@@ -182,7 +182,7 @@
     max-height: 500px;  /* 最大高度 */
 }</code></pre>
         
-        <h3>3.2 常用尺寸单位</h3>
+        <h3 id="section-3-2">3.2 常用尺寸单位</h3>
         <table class="prop-table">
             <thead>
                 <tr><th>单位</th><th>类型</th><th>说明</th><th>示例</th></tr>
@@ -244,11 +244,11 @@
         </div>
     </section>
 
-    <section id="padding-area">
+    <section id="chapter-4">
         <h2>四、内边距 (Padding)</h2>
         <p>内边距是内容区域与边框之间的空白区域，由 <code>padding</code> 属性控制。内边距会<strong>撑大元素的总尺寸</strong>（在标准盒模型下）。</p>
         
-        <h3>4.1 padding 的写法</h3>
+        <h3 id="section-4-1">4.1 padding 的写法</h3>
         <pre class="css"><code>/* 方式1：单独设置每个方向 */
 .box {
     padding-top: 10px;
@@ -283,7 +283,7 @@
             <p>可以联想时钟：12点（上）→ 3点（右）→ 6点（下）→ 9点（左）</p>
         </div>
 
-        <h3>4.2 padding 的特点</h3>
+        <h3 id="section-4-2">4.2 padding 的特点</h3>
         <ul class="checklist">
             <li><strong>会增加元素的总尺寸</strong>（在标准盒模型下）</li>
             <li><strong>背景色会延伸到内边距区域</strong>（与内容区域相同）</li>
@@ -319,11 +319,11 @@
         </div>
     </section>
 
-    <section id="border-area">
+    <section id="chapter-5">
         <h2>五、边框 (Border)</h2>
         <p>边框是围绕内容区域和内边距的可见边界线，由 <code>border</code> 属性控制。边框也会<strong>增加元素的总尺寸</strong>。</p>
         
-        <h3>5.1 边框的三要素</h3>
+        <h3 id="section-5-1">5.1 边框的三要素</h3>
         <p>边框由三个部分组成：<strong>宽度</strong>、<strong>样式</strong>、<strong>颜色</strong>。</p>
         
         <pre class="css"><code>/* 完整写法 */
@@ -346,7 +346,7 @@
     border-left: 5px double orange;
 }</code></pre>
 
-        <h3>5.2 边框样式（border-style）</h3>
+        <h3 id="section-5-2">5.2 边框样式（border-style）</h3>
         <table class="prop-table">
             <thead>
                 <tr><th>值</th><th>效果</th><th>说明</th></tr>
@@ -364,7 +364,7 @@
             </tbody>
         </table>
 
-        <h3>5.3 圆角边框（border-radius）</h3>
+        <h3 id="section-5-3">5.3 圆角边框（border-radius）</h3>
         <p>使用 <code>border-radius</code> 可以创建圆角效果：</p>
         <pre class="css"><code>/* 四个角相同圆角 */
 .rounded {
@@ -410,11 +410,11 @@
         </div>
     </section>
 
-    <section id="margin-area">
+    <section id="chapter-6">
         <h2>六、外边距 (Margin)</h2>
         <p>外边距是元素与其他元素之间的空白区域，由 <code>margin</code> 属性控制。外边距<strong>不会增加元素自身的尺寸</strong>，但会影响元素在页面中的位置。</p>
         
-        <h3>6.1 margin 的写法</h3>
+        <h3 id="section-6-1">6.1 margin 的写法</h3>
         <p>margin 的语法与 padding 完全相同（顺时针方向）：</p>
         <pre class="css"><code>/* 单独设置每个方向 */
 .box {
@@ -432,7 +432,7 @@
     margin: 20px;                 /* 四个方向相同 */
 }</code></pre>
 
-        <h3>6.2 使用 margin 实现水平居中</h3>
+        <h3 id="section-6-2">6.2 使用 margin 实现水平居中</h3>
         <p>这是 margin 最常用的技巧之一：</p>
         <pre class="css"><code>/* 块级元素水平居中 */
 .center-block {
@@ -453,7 +453,7 @@
             <p><strong>注意：</strong>这只对<strong>块级元素</strong>有效，且必须设置<strong>明确的宽度</strong>。</p>
         </div>
 
-        <h3>6.3 margin 的特点</h3>
+        <h3 id="section-6-3">6.3 margin 的特点</h3>
         <table class="prop-table">
             <thead>
                 <tr><th>特点</th><th>说明</th><th>与 padding 对比</th></tr>
@@ -482,7 +482,7 @@
             </tbody>
         </table>
 
-        <h3>6.4 负 margin 的应用</h3>
+        <h3 id="section-6-4">6.4 负 margin 的应用</h3>
         <pre class="css"><code>/* 使用负 margin 让元素重叠 */
 .overlap {
     margin-top: -20px;  /* 向上移动20px，覆盖上方元素 */
@@ -501,11 +501,11 @@
         </div>
     </section>
 
-    <section id="box-sizing">
+    <section id="chapter-7">
         <h2>七、box-sizing 属性（重要！）</h2>
         <p><code>box-sizing</code> 属性决定了 <code>width</code> 和 <code>height</code> 的计算方式。这是现代CSS中<strong>最重要的属性之一</strong>。</p>
         
-        <h3>7.1 两种盒模型对比</h3>
+        <h3 id="section-7-1">7.1 两种盒模型对比</h3>
         <table class="prop-table">
             <thead>
                 <tr><th>属性值</th><th>width/height 包含</th><th>实际总宽度计算</th></tr>
@@ -524,7 +524,7 @@
             </tbody>
         </table>
 
-        <h3>7.2 具体计算示例</h3>
+        <h3 id="section-7-2">7.2 具体计算示例</h3>
         <pre class="css"><code>/* 标准盒模型（content-box） */
 .content-box-demo {
     box-sizing: content-box;  /* 默认值 */
@@ -558,7 +558,7 @@
             </ul>
         </div>
 
-        <h3>7.3 全局设置 border-box（最佳实践）</h3>
+        <h3 id="section-7-3">7.3 全局设置 border-box（最佳实践）</h3>
         <pre class="css"><code>/* 推荐：在 CSS 文件开头添加 */
 *, *::before, *::after {
     box-sizing: border-box;
@@ -582,7 +582,7 @@ html {
         </div>
     </section>
 
-    <section id="margin-collapse">
+    <section id="chapter-8">
         <h2>八、外边距合并（Margin Collapse）</h2>
         <p>外边距合并是CSS中一个<strong>经常让人困惑</strong>的特性：当两个垂直方向的外边距相遇时，它们会合并成一个外边距，取较大的那个值。</p>
         
@@ -595,7 +595,7 @@ html {
             </ul>
         </div>
 
-        <h3>8.1 三种外边距合并情况</h3>
+        <h3 id="section-8-1">8.1 三种外边距合并情况</h3>
         
         <h4>情况1：相邻兄弟元素</h4>
         <pre class="html"><code>&lt;div style="margin-bottom: 30px;"&gt;上面的盒子&lt;/div&gt;
@@ -616,7 +616,7 @@ html {
 }
 /* 这个空元素的实际高度为 0，上下 margin 会合并成 30px */</code></pre>
 
-        <h3>8.2 如何避免外边距合并</h3>
+        <h3 id="section-8-2">8.2 如何避免外边距合并</h3>
         <div class="warning-box">
             <strong>解决父子元素 margin 合并的方法：</strong>
 <pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>/* 方法1：给父元素添加 padding */
@@ -657,7 +657,7 @@ html {
         </div>
     </section>
 
-    <section id="lab-box-model">
+    <section id="chapter-9">
         <h2>九、实验：CSS盒子模型交互式演示</h2>
         <p>通过这个交互式实验，你可以直观地了解CSS盒子模型的各个部分及其影响。</p>
         
@@ -721,7 +721,7 @@ html {
         </div>
     </section>
 
-    <section id="lab-box-sizing">
+    <section id="chapter-10">
         <h2>十、实验：box-sizing属性</h2>
         <div class="lab-card">
             <div class="lab-header">
@@ -790,7 +790,7 @@ html {
             </div>
         </div>
     </section>
-    <section id="summary">
+    <section id="chapter-11">
         <h2>十一、本课小结</h2>
         
         <h3>知识点回顾</h3>

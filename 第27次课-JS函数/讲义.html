@@ -21,28 +21,21 @@
         <a class="sidebar-link" href="#intro">👋 课程概览</a>
         
         <h3>Part 1: 函数基础</h3>
-        <a class="sidebar-link sub-link" href="#why-function">1.1 为什么需要函数</a>
-        <a class="sidebar-link sub-link" href="#function-declare">1.2 函数声明与调用</a>
-        <a class="sidebar-link sub-link" href="#lab-greet">🔬 实验 01：问候函数</a>
+        <a class="sidebar-link sub-link" href="#chapter-1">一、为什么需要函数</a>
+        <a class="sidebar-link sub-link" href="#chapter-2">二、函数声明与调用</a>
         
         <h3>Part 2: 参数与返回值</h3>
-        <a class="sidebar-link sub-link" href="#parameters">2.1 参数详解</a>
-        <a class="sidebar-link sub-link" href="#return-value">2.2 返回值</a>
-        <a class="sidebar-link sub-link" href="#lab-calc">🔬 实验 02：计算器函数</a>
+        <a class="sidebar-link sub-link" href="#chapter-3">三、参数详解</a>
         
         <h3>Part 3: 函数进阶</h3>
-        <a class="sidebar-link sub-link" href="#function-expression">3.1 函数表达式</a>
-        <a class="sidebar-link sub-link" href="#arrow-function">3.2 箭头函数</a>
-        <a class="sidebar-link sub-link" href="#lab-arrow">🔬 实验 03：箭头函数</a>
+        <a class="sidebar-link sub-link" href="#chapter-4">四、函数表达式</a>
         
         <h3>Part 4: 作用域</h3>
-        <a class="sidebar-link sub-link" href="#scope">4.1 作用域基础</a>
-        <a class="sidebar-link sub-link" href="#closure">4.2 闭包初探</a>
-        <a class="sidebar-link sub-link" href="#lab-counter">🔬 实验 04：计数器闭包</a>
+        <a class="sidebar-link sub-link" href="#chapter-5">五、作用域</a>
         
         <h3>总结与练习</h3>
-        <a class="sidebar-link sub-link" href="#comprehensive">🔬 综合案例：密码生成器</a>
-        <a class="sidebar-link sub-link" href="#summary">📝 课程小结</a>
+        <a class="sidebar-link sub-link" href="#chapter-6">六、综合案例</a>
+        <a class="sidebar-link sub-link" href="#chapter-7">七、课程小结</a>
     </div>
 </nav>
 
@@ -74,7 +67,7 @@
          Part 1: 函数基础
          ============================================ -->
 
-    <section id="why-function">
+    <section id="chapter-1">
         <h2>一、为什么需要函数？</h2>
         <p>想象你正在开发一个程序，需要多次计算两个数的和。如果每次都重复写相同的代码：</p>
         
@@ -122,10 +115,10 @@ let result3 = add(100, 200); // 300
     </section>
 
 
-    <section id="function-declare">
+    <section id="chapter-2">
         <h2>二、函数声明与调用</h2>
         
-        <h3>2.1 函数声明的语法</h3>
+        <h3 id="section-2-1">2.1 函数声明的语法</h3>
         <p>创建函数的标准方式是<strong>函数声明</strong>：</p>
         
 <pre class="js"><code>function 函数名(参数1, 参数2, ...) {
@@ -171,7 +164,7 @@ let result3 = add(100, 200); // 300
             </tbody>
         </table>
         
-        <h3>2.2 函数调用</h3>
+        <h3 id="section-2-2">2.2 函数调用</h3>
         <p>函数定义后不会自动执行，需要<strong>调用</strong>才能运行：</p>
         
 <pre class="js"><code>// 定义函数
@@ -270,11 +263,11 @@ function generateGreeting() {
          Part 2: 参数与返回值
          ============================================ -->
 
-    <section id="parameters">
+    <section id="chapter-3">
         <h2>三、参数详解</h2>
         <p>参数让函数更加灵活，可以处理不同的输入数据。</p>
         
-        <h3>3.1 形参与实参</h3>
+        <h3 id="section-3-1">3.1 形参与实参</h3>
         <table class="prop-table">
             <thead>
                 <tr>
@@ -309,7 +302,7 @@ function multiply(a, b) {
 let result = multiply(10, 5);  // 50
 </code></pre>
         
-        <h3>3.2 参数默认值</h3>
+        <h3 id="section-3-2">3.2 参数默认值</h3>
         <p>ES6 允许为参数设置默认值，当调用时未传入该参数时使用默认值：</p>
         
 <pre class="js"><code>function greet(name = '访客', greeting = '你好') {
@@ -321,7 +314,7 @@ console.log(greet('小明'));        // "你好，小明！"
 console.log(greet('小明', '早上好')); // "早上好，小明！"
 </code></pre>
         
-        <h3>3.3 多个参数</h3>
+        <h3 id="section-3-3">3.3 多个参数</h3>
         <p>函数可以接收任意数量的参数，但参数过多会使函数难以使用：</p>
         
 <pre class="js"><code>// 计算商品总价
@@ -354,7 +347,7 @@ createUser({ name: '小明', age: 18, email: 'test@example.com' });
 
 
     <section id="return-value">
-        <h3>3.4 返回值</h3>
+        <h3 id="section-3-4">3.4 返回值</h3>
         <p><code>return</code> 语句用于从函数中返回一个值，并<strong>立即结束函数执行</strong>。</p>
         
 <pre class="js"><code>function divide(a, b) {
@@ -499,7 +492,7 @@ function doCalculate(operation) {
          Part 3: 函数进阶
          ============================================ -->
 
-    <section id="function-expression">
+    <section id="chapter-4">
         <h2>四、函数表达式</h2>
         <p>除了函数声明，还可以用<strong>函数表达式</strong>创建函数：</p>
         
@@ -566,7 +559,7 @@ const sayBye = function() {
 
 
     <section id="arrow-function">
-        <h3>4.2 箭头函数 (Arrow Function)</h3>
+        <h3 id="section-4-2">4.2 箭头函数 (Arrow Function)</h3>
         <p>ES6 引入了更简洁的函数写法——箭头函数：</p>
         
 <pre class="js"><code>// 传统函数
@@ -699,11 +692,11 @@ function processArray() {
          Part 4: 作用域
          ============================================ -->
 
-    <section id="scope">
+    <section id="chapter-5">
         <h2>五、作用域 (Scope)</h2>
         <p>作用域决定了变量在代码中的<strong>可访问范围</strong>。理解作用域对于编写正确、无 bug 的代码至关重要。</p>
         
-        <h3>5.1 全局作用域与局部作用域</h3>
+        <h3 id="section-5-1">5.1 全局作用域与局部作用域</h3>
         <table class="prop-table">
             <thead>
                 <tr>
@@ -772,7 +765,7 @@ function createCounter() {
 
 
     <section id="closure">
-        <h3>5.2 闭包 (Closure) 初探</h3>
+        <h3 id="section-5-2">5.2 闭包 (Closure) 初探</h3>
         <p>闭包是 JavaScript 中一个强大但容易让人困惑的概念。简单来说：</p>
         <p><strong>闭包 = 函数 + 函数能访问的外部变量</strong></p>
         
@@ -909,7 +902,7 @@ updateDisplay();
          综合案例
          ============================================ -->
 
-    <section id="comprehensive">
+    <section id="chapter-6">
         <h2>六、综合案例：随机密码生成器</h2>
         <p>综合运用本课所学的函数知识，创建一个功能完整的密码生成器。</p>
         
@@ -1059,7 +1052,7 @@ function evaluateStrength(pwd) {
          课程小结
          ============================================ -->
 
-    <section id="summary">
+    <section id="chapter-7">
         <h2>七、本课小结</h2>
         
         <h3>知识点回顾</h3>

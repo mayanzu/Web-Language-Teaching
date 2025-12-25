@@ -1,0 +1,423 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第21课：CSS盒子模型</title>
+    
+    <link rel='stylesheet' href='../统一讲义样式模板.css'>
+    <script src='../js/lecture-utils.js'></script>
+</head>
+<body>
+<nav class="sidebar">
+    <div class="sidebar-nav">
+        <h3>课程导航</h3>
+        <a class="sidebar-link" href="#intro">👋 课程概览</a>
+        
+        <a class="sidebar-link" href="#chapter-1">一、盒子模型简介</a>
+        <a class="sidebar-link" href="#chapter-2">二、盒子模型组成</a>
+        <a class="sidebar-link" href="#chapter-3">三、内容区域</a>
+        <a class="sidebar-link" href="#chapter-4">四、内边距区域</a>
+        <a class="sidebar-link" href="#chapter-5">五、边框区域</a>
+        <a class="sidebar-link" href="#chapter-6">六、外边距区域</a>
+        <a class="sidebar-link" href="#chapter-7">七、box-sizing属性</a>
+        <a class="sidebar-link" href="#chapter-8">八、外边距合并</a>
+        <a class="sidebar-link" href="#chapter-9">九、实验：CSS盒子模型交互式演示</a>
+        <a class="sidebar-link" href="#chapter-10">十、实验：box-sizing属性</a>
+        <a class="sidebar-link" href="#chapter-11">十一、本课小结</a>
+    </div>
+</nav>
+<main class="content">
+    <header id="intro">
+        <h1>第21课：CSS盒子模型</h1>
+        <p class="intro">本课程将详细介绍CSS盒子模型，包括盒子模型的组成、各部分的作用以及相关属性的使用。学习本课，你将能够准确控制网页元素的大小和间距。</p>
+        <div class="pill-list">
+            <span class="pill">盒子模型</span>
+            <span class="pill">内容区域</span>
+            <span class="pill">内边距</span>
+            <span class="pill">边框</span>
+            <span class="pill">外边距</span>
+            <span class="pill">box-sizing</span>
+            <span class="pill">外边距合并</span>
+        </div>
+    </header>
+
+    <section id="chapter-1">
+        <h2>一、盒子模型简介</h2>
+        <p>CSS盒子模型是CSS布局的基础，它将HTML元素看作一个矩形的盒子，包括内容区域、内边距、边框和外边距四个部分。</p>
+        <p>盒子模型决定了元素在页面中的大小、位置和与其他元素的关系。</p>
+        <div class="note-box">
+            <span class="tip-title">盒子模型的两种标准</span>
+            <ul>
+                <li><strong>W3C标准盒子模型：</strong>元素的宽度和高度仅包括内容区域的宽度和高度。</li>
+                <li><strong>IE盒子模型：</strong>元素的宽度和高度包括内容区域、内边距和边框的宽度和高度。</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="chapter-2">
+        <h2>二、盒子模型组成</h2>
+        <p>CSS盒子模型由以下四个部分组成：</p>
+        <ol>
+            <li><strong>内容区域 (Content Area)：</strong>元素实际内容的区域，包括文本、图片等。</li>
+            <li><strong>内边距 (Padding Area)：</strong>内容区域与边框之间的空间。</li>
+            <li><strong>边框 (Border Area)：</strong>围绕内容区域和内边距的边界。</li>
+            <li><strong>外边距 (Margin Area)：</strong>元素与其他元素之间的空间。</li>
+        </ol>
+        <div class="tip-box">
+            <span class="tip-title">盒子模型的层次结构</span>
+            <p>从内到外依次是：内容区域 → 内边距 → 边框 → 外边距</p>
+        </div>
+    </section>
+
+    <section id="chapter-3">
+        <h2>三、内容区域</h2>
+        <p>内容区域是元素实际内容的区域，由width和height属性控制。</p>
+        <pre class="css"><code>.content-area {
+    width: 300px;
+    height: 200px;
+    background: #ff6b6b;
+}</code></pre>
+        <div class="note-box">
+            <span class="tip-title">注意事项</span>
+            <ul>
+                <li>width和height属性仅适用于块级元素和替换元素。</li>
+                <li>对于行内元素，width和height属性通常不起作用。</li>
+                <li>内容区域的大小会影响元素的整体大小。</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="chapter-4">
+        <h2>四、内边距区域</h2>
+        <p>内边距是内容区域与边框之间的空间，由padding属性控制。</p>
+        <pre class="css"><code>/* 简写形式 */
+.padding-area {
+    padding: 20px; /* 上下左右内边距都是20px */
+    padding: 10px 20px; /* 上下内边距10px，左右内边距20px */
+    padding: 10px 20px 30px; /* 上内边距10px，左右内边距20px，下内边距30px */
+    padding: 10px 20px 30px 40px; /* 上10px，右20px，下30px，左40px（顺时针方向） */
+}
+
+/* 单个方向内边距 */
+.padding-single {
+    padding-top: 10px;
+    padding-right: 20px;
+    padding-bottom: 30px;
+    padding-left: 40px;
+}</code></pre>
+        <div class="tip-box">
+            <span class="tip-title">内边距的特点</span>
+            <ul>
+                <li>内边距会增加元素的整体大小。</li>
+                <li>内边距的背景颜色与内容区域的背景颜色相同。</li>
+                <li>内边距不能为负值。</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="chapter-5">
+        <h2>五、边框区域</h2>
+        <p>边框是围绕内容区域和内边距的边界，由border属性控制。</p>
+        <pre class="css"><code>/* 简写形式 */
+.border-area {
+    border: 2px solid #2c3e50;
+}
+
+/* 单个方向边框 */
+.border-single {
+    border-top: 2px solid #2c3e50;
+    border-right: 2px dashed #ff6b6b;
+    border-bottom: 2px dotted #4ecdc4;
+    border-left: 2px double #95a5a6;
+}
+
+/* 边框样式 */
+.border-style {
+    border-style: solid; /* 实线 */
+    border-style: dashed; /* 虚线 */
+    border-style: dotted; /* 点线 */
+    border-style: double; /* 双线 */
+    border-style: groove; /* 槽线 */
+    border-style: ridge; /* 脊线 */
+    border-style: inset; /* 内凹 */
+    border-style: outset; /* 外凸 */
+}
+
+/* 边框颜色 */
+.border-color {
+    border-color: #2c3e50 #ff6b6b #4ecdc4 #95a5a6;
+}
+
+/* 边框宽度 */
+.border-width {
+    border-width: 2px 4px 6px 8px;
+}</code></pre>
+        <div class="note-box">
+            <span class="tip-title">边框的特点</span>
+            <ul>
+                <li>边框会增加元素的整体大小。</li>
+                <li>边框可以设置不同的样式、颜色和宽度。</li>
+                <li>边框可以单独设置上、右、下、左四个方向。</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="chapter-6">
+        <h2>六、外边距区域</h2>
+        <p>外边距是元素与其他元素之间的空间，由margin属性控制。</p>
+        <pre class="css"><code>/* 简写形式 */
+.margin-area {
+    margin: 20px; /* 上下左右外边距都是20px */
+    margin: 10px 20px; /* 上下外边距10px，左右外边距20px */
+    margin: 10px 20px 30px; /* 上外边距10px，左右外边距20px，下外边距30px */
+    margin: 10px 20px 30px 40px; /* 上10px，右20px，下30px，左40px（顺时针方向） */
+}
+
+/* 单个方向外边距 */
+.margin-single {
+    margin-top: 10px;
+    margin-right: 20px;
+    margin-bottom: 30px;
+    margin-left: 40px;
+}
+
+/* 居中对齐 */
+.center {
+    margin: 0 auto;
+    width: 50%;
+}</code></pre>
+        <div class="tip-box">
+            <span class="tip-title">外边距的特点</span>
+            <ul>
+                <li>外边距不会增加元素的整体大小，但会影响元素与其他元素之间的距离。</li>
+                <li>外边距可以为负值，用于重叠元素。</li>
+                <li>可以使用margin: 0 auto;将块级元素水平居中。</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="chapter-7">
+        <h2>七、box-sizing属性</h2>
+        <p>box-sizing属性用于控制元素的宽度和高度的计算方式。</p>
+        <pre class="css"><code>/* W3C标准盒子模型 */
+.box-sizing-content {
+    box-sizing: content-box;
+    width: 300px;
+    padding: 20px;
+    border: 10px solid #2c3e50;
+    /* 实际宽度：300px + 20px*2 + 10px*2 = 360px */
+}
+
+/* IE盒子模型 */
+.box-sizing-border {
+    box-sizing: border-box;
+    width: 300px;
+    padding: 20px;
+    border: 10px solid #2c3e50;
+    /* 实际宽度：300px（包含padding和border） */
+}</code></pre>
+        <div class="tip-box">
+            <span class="tip-title">box-sizing属性的取值</span>
+            <ul>
+                <li><strong>content-box：</strong>默认值，W3C标准盒子模型。</li>
+                <li><strong>border-box：</strong>IE盒子模型，宽度和高度包含padding和border。</li>
+                <li><strong>inherit：</strong>继承父元素的box-sizing值。</li>
+            </ul>
+        </div>
+        <div class="note-box">
+            <span class="tip-title">最佳实践</span>
+            <p>建议在CSS文件的开头添加以下代码，将所有元素的box-sizing设置为border-box：</p>
+            <pre class="css"><code>* {
+    box-sizing: border-box;
+}</code></pre>
+            <p>这样可以使元素的宽度和高度计算更加直观和易于控制。</p>
+        </div>
+    </section>
+
+    <section id="chapter-8">
+        <h2>八、外边距合并</h2>
+        <p>外边距合并是指两个或多个相邻元素的外边距会合并成一个外边距。</p>
+        <p>外边距合并只发生在垂直方向上，水平方向上的外边距不会合并。</p>
+        <h3>外边距合并的情况</h3>
+        <ol>
+            <li><strong>相邻元素的外边距合并：</strong>当两个相邻元素的上下外边距相遇时，它们会合并成一个外边距，取较大的那个值。</li>
+            <li><strong>父元素和子元素的外边距合并：</strong>当父元素没有内边距或边框时，子元素的上外边距会与父元素的上外边距合并。</li>
+            <li><strong>空元素的外边距合并：</strong>当一个元素没有内容、内边距和边框时，它的上下外边距会合并。</li>
+        </ol>
+        <div class="warning-box">
+            <span class="tip-title">避免外边距合并的方法</span>
+            <ul>
+                <li>为父元素添加内边距或边框。</li>
+                <li>为父元素添加overflow: hidden;。</li>
+                <li>使用flexbox或grid布局。</li>
+                <li>使用绝对定位或固定定位。</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="chapter-9">
+        <h2>九、实验：CSS盒子模型交互式演示</h2>
+        <p>通过这个交互式实验，你可以直观地了解CSS盒子模型的各个部分及其影响。</p>
+        
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 01：CSS盒子模型演示</span>
+                <span id="badge-1" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
+            </div>
+            <div class="lab-body">
+                <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;div class="box-container"&gt;
+    &lt;div class="box"&gt;盒子模型&lt;/div&gt;
+&lt;/div&gt;
+                </div>
+                <div class="panel css-editor" id="css-1" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>.box {
+    /* 内容区域 */
+    width: 150px;
+    height: 150px;
+    background-color: #f0f0f0;
+    
+    /* 内边距区域 */
+    padding: 20px;
+    
+    /* 边框区域 */
+    border: 5px solid #2c3e50;
+    
+    /* 外边距区域 */
+    margin: 20px;
+    
+    /* 其他样式 */
+    font-size: 16px;
+    text-align: center;
+    line-height: 120px;
+    color: #2c3e50;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 盒子模型背景色展示 */
+.box-container {
+    background-color: #e8f4f8;
+    border: 1px dashed #2196f3;
+    padding: 40px;
+    margin: 20px;
+}
+                </div>
+            </div>
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runCssExperiment('css-1', 'preview-1', 'badge-1')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetCssExperiment('css-1', 'preview-1', 'badge-1')">↺ 重置</button>
+            </div>
+            <div class="preview-box" id="preview-1">
+                <span class="preview-label">效果预览</span>
+                <div class="box-container">
+                    <div class="box">盒子模型</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="chapter-10">
+        <h2>十、实验：box-sizing属性</h2>
+        <div class="lab-card">
+            <div class="lab-header">
+                <span>实验 02：box-sizing属性对比</span>
+                <span id="badge-2" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
+            </div>
+            <div class="lab-body">
+                <div class="panel html-viewer">
+<div class="panel-label">HTML</div>
+&lt;div class="box-sizing-container"&gt;
+    &lt;div class="box-content"&gt;content-box&lt;/div&gt;
+    &lt;div class="box-border"&gt;border-box&lt;/div&gt;
+&lt;/div&gt;
+                </div>
+                <div class="panel css-editor" id="css-2" contenteditable="true">
+<div class="panel-label">CSS (可编辑)</div>/* box-sizing属性实验 */
+.box-sizing-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px dashed #ccc;
+}
+
+/* W3C标准盒子模型 */
+.box-content {
+    box-sizing: content-box;
+    width: 150px;
+    height: 150px;
+    padding: 20px;
+    border: 10px solid #ff6b6b;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #ff6b6b;
+}
+
+/* IE盒子模型 */
+.box-border {
+    box-sizing: border-box;
+    width: 150px;
+    height: 150px;
+    padding: 20px;
+    border: 10px solid #4ecdc4;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #4ecdc4;
+}
+                </div>
+            </div>
+            <div class="action-bar">
+                <button class="btn btn-run" onclick="runCssExperiment('css-2', 'preview-2', 'badge-2')">▶ 运行代码</button>
+                <button class="btn btn-reset" onclick="resetCssExperiment('css-2', 'preview-2', 'badge-2')">↺ 重置</button>
+            </div>
+            <div class="preview-box" id="preview-2">
+                <span class="preview-label">效果预览</span>
+                <div class="box-sizing-container">
+                    <div class="box-content">content-box</div>
+                    <div class="box-border">border-box</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="chapter-11">
+        <h2>十一、本课小结</h2>
+        <p>本课程详细介绍了CSS盒子模型，包括：</p>
+        <ul>
+            <li><strong>盒子模型简介：</strong>CSS布局的基础，将HTML元素看作一个矩形的盒子。</li>
+            <li><strong>盒子模型组成：</strong>内容区域、内边距、边框和外边距。</li>
+            <li><strong>内容区域：</strong>元素实际内容的区域，由width和height属性控制。</li>
+            <li><strong>内边距：</strong>内容区域与边框之间的空间，由padding属性控制。</li>
+            <li><strong>边框：</strong>围绕内容区域和内边距的边界，由border属性控制。</li>
+            <li><strong>外边距：</strong>元素与其他元素之间的空间，由margin属性控制。</li>
+            <li><strong>box-sizing属性：</strong>控制元素的宽度和高度的计算方式，推荐使用border-box。</li>
+            <li><strong>外边距合并：</strong>垂直方向上的外边距会合并，取较大的值。</li>
+        </ul>
+        <div class="tip-box">
+            <span class="tip-title">学习建议</span>
+            <ul>
+                <li>多动手实践，尝试不同的盒子模型属性组合。</li>
+                <li>使用浏览器的开发者工具查看元素的盒子模型。</li>
+                <li>记住box-sizing: border-box;的使用场景和优势。</li>
+                <li>理解外边距合并的规则，避免意外的布局问题。</li>
+            </ul>
+        </div>
+    </section>
+</main>
+
+</body>
+</html>
+
+
+
+
+
+

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -22,12 +22,26 @@
         
         <h3>Part 1: CSS颜色</h3>
         <a class="sidebar-link sub-link" href="#chapter-1">一、颜色表示法</a>
+        <a class="sidebar-link sub-link" href="#section-1-1">1.1 颜色关键字</a>
+        <a class="sidebar-link sub-link" href="#section-1-2">1.2 十六进制颜色（Hex）</a>
+        <a class="sidebar-link sub-link" href="#section-1-3">1.3 RGB颜色</a>
         <a class="sidebar-link sub-link" href="#chapter-2">二、常用颜色属性</a>
+        <a class="sidebar-link sub-link" href="#section-2-1">2.1 color属性（文字颜色）</a>
+        <a class="sidebar-link sub-link" href="#section-2-2">2.2 background-color属性（背景颜色）</a>
+        <a class="sidebar-link sub-link" href="#section-2-3">2.3 border-color属性（边框颜色）</a>
         <a class="sidebar-link sub-link" href="#lab-1">🔬 实验 01：颜色实践</a>
         
         <h3>Part 2: 文字排版</h3>
         <a class="sidebar-link sub-link" href="#chapter-3">三、字体属性</a>
+        <a class="sidebar-link sub-link" href="#section-3-1">3.1 font-family（字体族）</a>
+        <a class="sidebar-link sub-link" href="#section-3-2">3.2 font-size（字号）</a>
+        <a class="sidebar-link sub-link" href="#section-3-3">3.3 font-weight（字体粗细）</a>
+        <a class="sidebar-link sub-link" href="#section-3-4">3.4 font-style（字体样式）</a>
         <a class="sidebar-link sub-link" href="#chapter-4">四、文本样式</a>
+        <a class="sidebar-link sub-link" href="#section-4-1">4.1 text-align（文本对齐）</a>
+        <a class="sidebar-link sub-link" href="#section-4-2">4.2 line-height（行高）</a>
+        <a class="sidebar-link sub-link" href="#section-4-3">4.3 text-decoration（文本装饰）</a>
+        <a class="sidebar-link sub-link" href="#section-4-4">4.4 text-indent（首行缩进）</a>
         <a class="sidebar-link sub-link" href="#lab-2">🔬 实验 02：文字排版实践</a>
         
         <h3>总结与练习</h3>
@@ -78,7 +92,7 @@
             </ul>
         </div>
         
-        <h3>1.1 颜色关键字</h3>
+        <h3 id="section-1-1">1.1 颜色关键字</h3>
         <p>CSS预定义了140多个颜色名称，可以直接使用英文单词表示颜色：</p>
         
         <table class="prop-table">
@@ -142,7 +156,7 @@
             </ul>
         </div>
         
-        <h3>1.2 十六进制颜色（Hex）</h3>
+        <h3 id="section-1-2">1.2 十六进制颜色（Hex）</h3>
         <p>十六进制是最常用的颜色表示法，格式为 <code>#RRGGBB</code>，其中RR、GG、BB分别表示红、绿、蓝三个通道的值（00-FF）。</p>
         
         <pre class="css"><code>/* 十六进制颜色示例 */
@@ -166,7 +180,7 @@
             </ul>
         </div>
         
-        <h3>1.3 RGB颜色</h3>
+        <h3 id="section-1-3">1.3 RGB颜色</h3>
         <p>RGB使用十进制数值表示颜色，更直观易懂，格式为 <code>rgb(红, 绿, 蓝)</code>，每个值范围是0-255。</p>
         
         <pre class="css"><code>/* RGB颜色示例 */
@@ -222,7 +236,7 @@
         <h2>二、常用颜色属性</h2>
         <p>CSS提供了多个属性来控制页面元素的颜色。</p>
         
-        <h3>2.1 color属性（文字颜色）</h3>
+        <h3 id="section-2-1">2.1 color属性（文字颜色）</h3>
         <p><code>color</code>属性用于设置文字的颜色：</p>
         
         <pre class="css"><code>/* 设置文字颜色 */
@@ -238,7 +252,7 @@ a {
     color: #FF0000;    /* 警告文字用红色 */
 }</code></pre>
         
-        <h3>2.2 background-color属性（背景颜色）</h3>
+        <h3 id="section-2-2">2.2 background-color属性（背景颜色）</h3>
         <p><code>background-color</code>属性用于设置元素的背景颜色：</p>
         
         <pre class="css"><code>/* 设置背景颜色 */
@@ -255,7 +269,7 @@ body {
     background-color: #FFFF00;    /* 黄色高亮 */
 }</code></pre>
         
-        <h3>2.3 border-color属性（边框颜色）</h3>
+        <h3 id="section-2-3">2.3 border-color属性（边框颜色）</h3>
         <p><code>border-color</code>属性用于设置边框的颜色：</p>
         
         <pre class="css"><code>/* 设置边框颜色 */
@@ -380,7 +394,7 @@ body {
             </ul>
         </div>
         
-        <h3>3.1 font-family（字体族）</h3>
+        <h3 id="section-3-1">3.1 font-family（字体族）</h3>
         <p><code>font-family</code>属性用于设置文字使用的字体：</p>
         
         <pre class="css"><code>/* 设置字体 */
@@ -425,7 +439,7 @@ body {
             </tbody>
         </table>
         
-        <h3>3.2 font-size（字号）</h3>
+        <h3 id="section-3-2">3.2 font-size（字号）</h3>
         <p><code>font-size</code>属性用于设置文字的大小：</p>
         
         <pre class="css"><code>/* 设置字号 */
@@ -440,7 +454,7 @@ small { font-size: 14px; } /* 小字 */</code></pre>
             <p>网页正文的最小字号建议不小于14px，否则在某些设备上可能难以阅读。常见的正文字号为16px。</p>
         </div>
         
-        <h3>3.3 font-weight（字体粗细）</h3>
+        <h3 id="section-3-3">3.3 font-weight（字体粗细）</h3>
         <p><code>font-weight</code>属性用于设置文字的粗细程度：</p>
         
         <pre class="css"><code>/* 设置字体粗细 */
@@ -453,7 +467,7 @@ small { font-size: 14px; } /* 小字 */</code></pre>
 .medium { font-weight: 500; }      /* 中等 */
 .bold { font-weight: 700; }        /* 粗体 */</code></pre>
         
-        <h3>3.4 font-style（字体样式）</h3>
+        <h3 id="section-3-4">3.4 font-style（字体样式）</h3>
         <p><code>font-style</code>属性用于设置文字是否倾斜：</p>
         
         <pre class="css"><code>/* 设置字体样式 */
@@ -471,7 +485,7 @@ em {
         <h2>四、文本样式</h2>
         <p>除了字体属性，CSS还提供了控制文本显示方式的属性。</p>
         
-        <h3>4.1 text-align（文本对齐）</h3>
+        <h3 id="section-4-1">4.1 text-align（文本对齐）</h3>
         <p><code>text-align</code>属性用于设置文本的水平对齐方式：</p>
         
         <table class="prop-table">
@@ -511,7 +525,7 @@ em {
 .price { text-align: right; }      /* 价格右对齐 */
 .article { text-align: justify; }  /* 文章两端对齐 */</code></pre>
         
-        <h3>4.2 line-height（行高）</h3>
+        <h3 id="section-4-2">4.2 line-height（行高）</h3>
         <p><code>line-height</code>属性用于设置文本的行间距，可以提高文本的可读性：</p>
         
         <pre class="css"><code>/* 设置行高 */
@@ -529,7 +543,7 @@ p {
             <p>中文网页的行高建议设置为1.5-1.8倍，这样段落阅读起来会更加舒适。</p>
         </div>
         
-        <h3>4.3 text-decoration（文本装饰）</h3>
+        <h3 id="section-4-3">4.3 text-decoration（文本装饰）</h3>
         <p><code>text-decoration</code>属性用于添加或移除文本的装饰线：</p>
         
         <pre class="css"><code>/* 文本装饰示例 */
@@ -537,7 +551,7 @@ a { text-decoration: none; }              /* 移除下划线 */
 .underline { text-decoration: underline; } /* 添加下划线 */
 .del { text-decoration: line-through; }   /* 删除线 */</code></pre>
         
-        <h3>4.4 text-indent（首行缩进）</h3>
+        <h3 id="section-4-4">4.4 text-indent（首行缩进）</h3>
         <p><code>text-indent</code>属性用于设置段落首行的缩进：</p>
         
         <pre class="css"><code>/* 首行缩进 */

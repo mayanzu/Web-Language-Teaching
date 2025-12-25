@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -22,12 +22,29 @@
         
         <h3>Part 1: HTML表单基础</h3>
         <a class="sidebar-link sub-link" href="#chapter-1">一、表单结构</a>
+        <a class="sidebar-link sub-link" href="#section-1-1">1.1 表单的基本语法</a>
+        <a class="sidebar-link sub-link" href="#section-1-2">1.2 表单的重要属性</a>
+        <a class="sidebar-link sub-link" href="#section-1-3">1.3 GET vs POST：核心区别</a>
+        <a class="sidebar-link sub-link" href="#section-1-4">1.4 label标签的使用</a>
+        <a class="sidebar-link sub-link" href="#section-1-5">1.5 name属性的重要性</a>
         <a class="sidebar-link sub-link" href="#lab-1">🔬 实验 1：简单搜索表单</a>
         <a class="sidebar-link sub-link" href="#chapter-2">二、文本输入控件</a>
+        <a class="sidebar-link sub-link" href="#section-2-1">2.1 常用文本输入控件</a>
+        <a class="sidebar-link sub-link" href="#section-2-2">2.2 输入控件的常用属性</a>
+        <a class="sidebar-link sub-link" href="#section-2-3">2.3 表单验证属性</a>
         <a class="sidebar-link sub-link" href="#lab-2">🔬 实验 2：各种文本输入框</a>
         <a class="sidebar-link sub-link" href="#chapter-3">三、单选按钮与复选框</a>
+        <a class="sidebar-link sub-link" href="#section-3-1">3.1 单选按钮</a>
+        <a class="sidebar-link sub-link" href="#section-3-2">3.2 复选框</a>
+        <a class="sidebar-link sub-link" href="#section-3-3">3.3 单个复选框的应用</a>
+        <a class="sidebar-link sub-link" href="#section-3-4">3.4 常见错误与最佳实践</a>
         <a class="sidebar-link sub-link" href="#lab-3">🔬 实验 3：选择控件练习</a>
         <a class="sidebar-link sub-link" href="#chapter-4">四、表单按钮</a>
+        <a class="sidebar-link sub-link" href="#section-4-1">4.1 按钮类型概览</a>
+        <a class="sidebar-link sub-link" href="#section-4-2">4.2 提交按钮</a>
+        <a class="sidebar-link sub-link" href="#section-4-3">4.3 重置按钮</a>
+        <a class="sidebar-link sub-link" href="#section-4-4">4.4 input vs button 按钮的区别</a>
+        <a class="sidebar-link sub-link" href="#section-4-5">4.5 普通按钮</a>
         <a class="sidebar-link sub-link" href="#lab-4">🔬 实验 4：按钮类型比较</a>
         
         <h3>总结与练习</h3>
@@ -95,7 +112,7 @@
             </ul>
         </div>
         
-        <h3>1.1 表单的基本语法</h3>
+        <h3 id="section-1-1">1.1 表单的基本语法</h3>
         <p>一个完整的HTML表单通常具有以下结构：</p>
         
         <div class="lab-card">
@@ -114,7 +131,7 @@
             </div>
         </div>
         
-        <h3>1.2 表单的重要属性</h3>
+        <h3 id="section-1-2">1.2 表单的重要属性</h3>
         <p><code>&lt;form&gt;</code>标签的核心属性：</p>
         
         <table class="prop-table">
@@ -159,7 +176,7 @@
             </tbody>
         </table>
         
-        <h3>1.3 GET vs POST：核心区别</h3>
+        <h3 id="section-1-3">1.3 GET vs POST：核心区别</h3>
         <p>表单提交主要有两种方法：GET和POST，选择正确的方法非常重要。</p>
         
         <table class="prop-table">
@@ -208,7 +225,7 @@
             </ul>
         </div>
         
-        <h3>1.4 label标签的使用</h3>
+        <h3 id="section-1-4">1.4 label标签的使用</h3>
         <p><code>&lt;label&gt;</code>标签用于关联表单控件和文本描述，是表单可访问性的关键。</p>
         
         <div class="note-box">
@@ -240,7 +257,7 @@
             </div>
         </div>
         
-        <h3>1.5 name属性的重要性</h3>
+        <h3 id="section-1-5">1.5 name属性的重要性</h3>
         <p><code>name</code>属性是表单控件提交数据时的键名，没有name的控件不会被提交。</p>
         
         <div class="lab-card">
@@ -321,7 +338,7 @@
             </ul>
         </div>
         
-        <h3>2.1 常用文本输入控件</h3>
+        <h3 id="section-2-1">2.1 常用文本输入控件</h3>
         <p>以下是最常用的文本输入控件：</p>
         
         <table class="prop-table">
@@ -397,7 +414,7 @@
             </tbody>
         </table>
         
-        <h3>2.2 输入控件的常用属性</h3>
+        <h3 id="section-2-2">2.2 输入控件的常用属性</h3>
         <p>输入控件支持多种属性，以下是最常用的几个：</p>
         
         <table class="prop-table">
@@ -470,7 +487,7 @@
             </ul>
         </div>
         
-        <h3>2.3 表单验证属性</h3>
+        <h3 id="section-2-3">2.3 表单验证属性</h3>
         <p>HTML5提供了内置的表单验证功能，无需JavaScript即可实现基本验证。</p>
         
         <div class="lab-card">
@@ -608,7 +625,7 @@
             </table>
         </div>
         
-        <h3>3.1 单选按钮</h3>
+        <h3 id="section-3-1">3.1 单选按钮</h3>
         <p>
             <code>type="radio"</code>用于创建单选按钮，允许用户从一组选项中选择一个选项。
             <strong>关键点：同一组的单选按钮必须具有相同的<code>name</code>属性</strong>。
@@ -651,7 +668,7 @@
             </ul>
         </div>
         
-        <h3>3.2 复选框</h3>
+        <h3 id="section-3-2">3.2 复选框</h3>
         <p>
             <code>type="checkbox"</code>用于创建复选框，允许用户从一组选项中选择多个选项。
             同一组的复选框通常具有相同的<code>name</code>属性（服务器会收到数组）。
@@ -684,7 +701,7 @@
             </div>
         </div>
         
-        <h3>3.3 单个复选框的应用</h3>
+        <h3 id="section-3-3">3.3 单个复选框的应用</h3>
         <p>单个复选框常用于"同意协议"这类场景：</p>
         
         <div class="lab-card">
@@ -703,7 +720,7 @@
             </div>
         </div>
         
-        <h3>3.4 常见错误与最佳实践</h3>
+        <h3 id="section-3-4">3.4 常见错误与最佳实践</h3>
         
         <div class="warning-box">
             <span class="warning-title">⚠️ 常见错误</span>
@@ -790,7 +807,7 @@
             表单通常包含提交按钮和重置按钮，用于提交表单数据和重置表单内容。按钮是表单交互的核心元素。
         </p>
         
-        <h3>4.1 按钮类型概览</h3>
+        <h3 id="section-4-1">4.1 按钮类型概览</h3>
         <table class="prop-table">
             <thead>
                 <tr>
@@ -822,7 +839,7 @@
             </tbody>
         </table>
         
-        <h3>4.2 提交按钮</h3>
+        <h3 id="section-4-2">4.2 提交按钮</h3>
         <p>
             <code>type="submit"</code>用于创建提交按钮，点击它会提交表单数据到<code>action</code>属性指定的URL。
         </p>
@@ -845,7 +862,7 @@
             </div>
         </div>
         
-        <h3>4.3 重置按钮</h3>
+        <h3 id="section-4-3">4.3 重置按钮</h3>
         <p>
             <code>type="reset"</code>用于创建重置按钮，点击它会将表单中的所有控件重置为<strong>默认值</strong>（不是清空，而是回到初始状态）。
         </p>
@@ -875,7 +892,7 @@
             </ul>
         </div>
         
-        <h3>4.4 input vs button 按钮的区别</h3>
+        <h3 id="section-4-4">4.4 input vs button 按钮的区别</h3>
         
         <table class="prop-table">
             <thead>
@@ -904,7 +921,7 @@
             </tbody>
         </table>
         
-        <h3>4.5 普通按钮</h3>
+        <h3 id="section-4-5">4.5 普通按钮</h3>
         <p><code>type="button"</code>创建普通按钮，不会自动提交或重置，需要配合JavaScript使用。</p>
         
         <div class="lab-card">

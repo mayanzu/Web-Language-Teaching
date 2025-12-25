@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -20,30 +20,21 @@
         <h3>课程导航</h3>
         <a class="sidebar-link" href="#intro">👋 课程概览</a>
         
-        <h3>Part 1: DOM基础</h3>
-        <a class="sidebar-link sub-link" href="#section-1-1">1.1 什么是DOM</a>
-        <a class="sidebar-link sub-link" href="#section-1-2">1.2 DOM树结构</a>
-        <a class="sidebar-link sub-link" href="#lab-1">🔬 实验 01</a>
-        
-        <h3>Part 2: 选择元素</h3>
-        <a class="sidebar-link sub-link" href="#section-2-1">2.1 基本选择方法</a>
-        <a class="sidebar-link sub-link" href="#section-2-2">2.2 CSS选择器</a>
-        <a class="sidebar-link sub-link" href="#lab-2">🔬 实验 02</a>
-        
-        <h3>Part 3: 操作元素</h3>
-        <a class="sidebar-link sub-link" href="#section-3-1">3.1 读取内容</a>
-        <a class="sidebar-link sub-link" href="#section-3-2">3.2 修改内容</a>
-        <a class="sidebar-link sub-link" href="#section-3-3">3.3 操作样式</a>
-        <a class="sidebar-link sub-link" href="#lab-3">🔬 实验 03</a>
-        
-        <h3>Part 4: 创建删除元素</h3>
-        <a class="sidebar-link sub-link" href="#section-4-1">4.1 创建元素</a>
-        <a class="sidebar-link sub-link" href="#section-4-2">4.2 删除元素</a>
-        <a class="sidebar-link sub-link" href="#lab-4">🔬 实验 04</a>
-        <a class="sidebar-link sub-link" href="#real-world-demo">5. 真实案例展示</a>
-        
-        <h3>总结与练习</h3>
-        <a class="sidebar-link sub-link" href="#summary">📝 课程小结</a>
+        <a class="sidebar-link" href="#chapter-1">一、什么是DOM？</a>
+        <a class="sidebar-link sub-link" href="#section-1-1">1.1 DOM树结构</a>
+        <a class="sidebar-link" href="#chapter-2">实验 01：认识DOM树</a>
+        <a class="sidebar-link" href="#chapter-3">二、选择元素的方法</a>
+        <a class="sidebar-link sub-link" href="#section-3-1">3.1 CSS选择器</a>
+        <a class="sidebar-link" href="#chapter-4">实验 02：元素选择练习</a>
+        <a class="sidebar-link" href="#chapter-5">三、操作元素内容</a>
+        <a class="sidebar-link sub-link" href="#section-5-1">5.1 修改内容</a>
+        <a class="sidebar-link sub-link" href="#section-5-2">5.2 操作样式</a>
+        <a class="sidebar-link" href="#chapter-6">实验 03：内容与样式操作</a>
+        <a class="sidebar-link" href="#chapter-7">四、创建和删除元素</a>
+        <a class="sidebar-link sub-link" href="#section-7-1">7.1 删除元素</a>
+        <a class="sidebar-link" href="#chapter-8">实验 04：综合实战</a>
+        <a class="sidebar-link" href="#chapter-9">五、真实案例展示</a>
+        <a class="sidebar-link" href="#chapter-10">六、本课小结</a>
     </div>
 </nav>
 
@@ -76,7 +67,7 @@
          Part 1: DOM基础
          ============================================ -->
 
-    <section id="section-1-1">
+    <section id="chapter-1">
         <h2>一、什么是DOM？</h2>
         <p>DOM（Document Object Model，文档对象模型）是浏览器提供的一套编程接口，它将HTML文档表示为一个树形结构，让JavaScript可以访问和操作网页中的每个元素。</p>
         
@@ -113,7 +104,7 @@ function addToCart() {
     </section>
 
 
-    <section id="section-1-2">
+    <section id="chapter-1">
         <h3>1.2 DOM树结构</h3>
         <p>浏览器解析HTML代码时，会将每个标签转换为DOM节点，构建成树状结构：</p>
         
@@ -188,7 +179,7 @@ function addToCart() {
     <!-- ============================================
          实验 01：DOM树认识
          ============================================ -->
-    <section id="lab-1">
+    <section id="chapter-2">
         <h2>实验 01：认识DOM树</h2>
         <p>通过控制台查看DOM结构。</p>
         
@@ -256,7 +247,7 @@ document.getElementById('output').innerText = info;
          Part 2: 选择元素
          ============================================ -->
 
-    <section id="section-2-1">
+    <section id="chapter-3">
         <h2>二、选择元素的方法</h2>
         <p>要操作网页元素，第一步是选中它们。JavaScript提供了多种选择器方法。</p>
         
@@ -295,7 +286,7 @@ console.log(boxes.length);  // class为box的元素数量
     </section>
 
 
-    <section id="section-2-2">
+    <section id="chapter-5">
         <h3>2.2 CSS选择器方法（推荐）</h3>
         
         <h4>querySelector - 选择第一个匹配元素</h4>
@@ -386,7 +377,7 @@ const items = document.querySelectorAll('.item');
     <!-- ============================================
          实验 02：元素选择练习
          ============================================ -->
-    <section id="lab-2">
+    <section id="chapter-4">
         <h2>实验 02：元素选择练习</h2>
         <p>练习使用不同的选择器方法。</p>
         
@@ -467,7 +458,7 @@ function selectSpecial() {
          Part 3: 操作元素
          ============================================ -->
 
-    <section id="section-3-1">
+    <section id="chapter-5">
         <h2>三、操作元素内容</h2>
         
         <h3>3.1 读取元素内容</h3>
@@ -532,7 +523,7 @@ console.log(img.alt);  // "头像"
     </section>
 
 
-    <section id="section-3-2">
+    <section id="section-5-1">
         <h3>3.2 修改元素内容</h3>
         
 <pre class="js"><code>const title = document.getElementById('title');
@@ -584,7 +575,7 @@ img.removeAttribute('alt');
     </section>
 
 
-    <section id="section-3-3">
+    <section id="section-5-2">
         <h3>3.3 操作元素样式</h3>
         
         <h4>方式一：通过style属性</h4>
@@ -634,7 +625,7 @@ box.classList.replace('old', 'new');
     <!-- ============================================
          实验 03：内容与样式操作
          ============================================ -->
-    <section id="lab-3">
+    <section id="chapter-6">
         <h2>实验 03：内容与样式操作</h2>
         <p>练习修改元素的内容和样式。</p>
         
@@ -723,7 +714,7 @@ function toggleSize() {
          Part 4: 创建删除元素
          ============================================ -->
 
-    <section id="section-4-1">
+    <section id="chapter-7">
         <h2>四、创建和删除元素</h2>
         
         <h3>4.1 创建元素</h3>
@@ -778,7 +769,7 @@ document.body.appendChild(newCard);
     </section>
 
 
-    <section id="section-4-2">
+    <section id="section-7-1">
         <h3>4.2 删除元素</h3>
         
 <pre class="js"><code>// 方式一：remove() - 直接删除元素本身
@@ -839,7 +830,7 @@ while (container.firstChild) {
     <!-- ============================================
          实验 04：综合实战
          ============================================ -->
-    <section id="lab-4">
+    <section id="chapter-8">
         <h2>实验 04：综合实战</h2>
         <p>综合运用所学知识，构建一个待办事项列表。</p>
         
@@ -968,7 +959,7 @@ function clearAll() {
     <!-- ============================================
          真实案例展示
          ============================================ -->
-    <section id="real-world-demo">
+    <section id="chapter-9">
         <h2>五、真实案例展示</h2>
         
         <div class="lab-card">
@@ -1009,7 +1000,7 @@ function postComment(text) {
     <!-- ============================================
          课程小结区域
          ============================================ -->
-    <section id="summary">
+    <section id="chapter-10">
         <h2>六、本课小结</h2>
         
         <h3>知识点回顾</h3>

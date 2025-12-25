@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -16,22 +16,46 @@
             <a class="sidebar-link" href="#intro">👋 课程概览</a>
             
             <h3>Part 1: CSS基础选择器</h3>
-            <a class="sidebar-link sub-link" href="#element-selector">1. 元素选择器</a>
-            <a class="sidebar-link sub-link" href="#id-selector">2. ID选择器</a>
-            <a class="sidebar-link sub-link" href="#class-selector">3. 类选择器</a>
-            <a class="sidebar-link sub-link" href="#group-selector">4. 分组选择器</a>
-            <a class="sidebar-link sub-link" href="#universal-selector">5. 通配符选择器</a>
+            <a class="sidebar-link sub-link" href="#chapter-1">一、元素选择器</a>
+            <a class="sidebar-link sub-link" href="#section-1-1">1.1 元素选择器的语法</a>
+            <a class="sidebar-link sub-link" href="#section-1-2">1.2 元素选择器示例</a>
+            <a class="sidebar-link sub-link" href="#section-1-3">1.3 元素选择器的特点</a>
+            <a class="sidebar-link sub-link" href="#chapter-2">二、ID选择器</a>
+            <a class="sidebar-link sub-link" href="#section-2-1">2.1 ID选择器的语法</a>
+            <a class="sidebar-link sub-link" href="#section-2-2">2.2 ID选择器示例</a>
+            <a class="sidebar-link sub-link" href="#section-2-3">2.3 ID选择器的特点</a>
+            <a class="sidebar-link sub-link" href="#chapter-3">三、类选择器</a>
+            <a class="sidebar-link sub-link" href="#section-3-1">3.1 类选择器的语法</a>
+            <a class="sidebar-link sub-link" href="#section-3-2">3.2 类选择器示例</a>
+            <a class="sidebar-link sub-link" href="#section-3-3">3.3 类选择器的特点</a>
+            <a class="sidebar-link sub-link" href="#chapter-4">四、分组选择器</a>
+            <a class="sidebar-link sub-link" href="#section-4-1">4.1 分组选择器的语法</a>
+            <a class="sidebar-link sub-link" href="#section-4-2">4.2 分组选择器示例</a>
+            <a class="sidebar-link sub-link" href="#section-4-3">4.3 分组选择器的特点</a>
+            <a class="sidebar-link sub-link" href="#chapter-5">五、通配符选择器</a>
+            <a class="sidebar-link sub-link" href="#section-5-1">5.1 通配符选择器的语法</a>
+            <a class="sidebar-link sub-link" href="#section-5-2">5.2 通配符选择器的应用场景</a>
+            <a class="sidebar-link sub-link" href="#section-5-3">5.3 通配符选择器的注意事项</a>
+            <a class="sidebar-link sub-link" href="#section-5-4">5.4 通配符选择器示例</a>
             
             <h3>Part 2: 选择器进阶</h3>
-            <a class="sidebar-link sub-link" href="#selector-performance">6. 选择器性能优化</a>
-            <a class="sidebar-link sub-link" href="#selector-practical">7. 选择器实际应用场景</a>
-            <a class="sidebar-link sub-link" href="#selector-best-practices">8. 选择器最佳实践</a>
+            <a class="sidebar-link sub-link" href="#chapter-6">六、选择器最佳实践</a>
+            <a class="sidebar-link sub-link" href="#section-6-1">6.1 选择器优先级回顾</a>
+            <a class="sidebar-link sub-link" href="#section-6-2">6.2 选择器使用建议</a>
+            <a class="sidebar-link sub-link" href="#section-6-3">6.3 选择器命名规范</a>
+            <a class="sidebar-link sub-link" href="#chapter-7">七、选择器实际应用示例</a>
+            <a class="sidebar-link sub-link" href="#section-7-1">7.1 页面基础样式</a>
+            <a class="sidebar-link sub-link" href="#section-7-2">7.2 组件样式示例</a>
             
             <h3>Part 3: 实战练习</h3>
-            <a class="sidebar-link sub-link" href="#exercise">9. 综合练习</a>
+            <a class="sidebar-link sub-link" href="#chapter-8">八、综合练习</a>
             
             <h3>总结与练习</h3>
-            <a class="sidebar-link" href="#summary">📝 课程小结</a>
+            <a class="sidebar-link sub-link" href="#chapter-9">九、课程小结</a>
+            <a class="sidebar-link sub-link" href="#section-9-1">9.1 核心知识点</a>
+            <a class="sidebar-link sub-link" href="#section-9-2">9.2 选择器优先级</a>
+            <a class="sidebar-link sub-link" href="#section-9-3">9.3 最佳实践</a>
+            <a class="sidebar-link sub-link" href="#section-9-4">9.4 学习建议</a>
         </div>
     </nav>
 
@@ -53,11 +77,11 @@
         </header>
 
         <!-- 第一部分：CSS基础选择器 -->
-        <section id="element-selector">
+        <section id="chapter-1">
             <h2>一、元素选择器</h2>
             <p>元素选择器是最基础的CSS选择器，它根据HTML元素的名称来选择元素。例如，<code>p</code>选择器会选择页面中所有的<code>&lt;p&gt;</code>元素。</p>
             
-            <h3>1.1 元素选择器的语法</h3>
+            <h3 id="section-1-1">1.1 元素选择器的语法</h3>
             <pre class="css"><code>/* 语法：元素名称 { 样式规则 } */
 元素名称 {
     属性1: 值1;
@@ -71,7 +95,7 @@ p {
     line-height: 1.5; /* 设置行高为1.5倍 */
 }</code></pre>
             
-            <h3>1.2 元素选择器示例</h3>
+            <h3 id="section-1-2">1.2 元素选择器示例</h3>
             <div class="lab-card">
                 <div class="lab-header">
                     <span>实验 01：元素选择器</span>
@@ -129,7 +153,7 @@ h1 {
                 </div>
             </div>
             
-            <h3>1.3 元素选择器的特点</h3>
+            <h3 id="section-1-3">1.3 元素选择器的特点</h3>
             <ul>
                 <li>选择所有指定名称的HTML元素</li>
                 <li>语法简单，易于理解和使用</li>
@@ -138,11 +162,11 @@ h1 {
             </ul>
         </section>
 
-        <section id="id-selector">
+        <section id="chapter-2">
             <h2>二、ID选择器</h2>
             <p>ID选择器使用HTML元素的<code>id</code>属性来选择元素，ID选择器以<code>#</code>开头。每个HTML文档中的ID应该是唯一的，不能重复。</p>
             
-            <h3>2.1 ID选择器的语法</h3>
+            <h3 id="section-2-1">2.1 ID选择器的语法</h3>
             <pre class="css"><code>/* 语法：#id值 { 样式规则 } */
 #id值 {
     属性1: 值1;
@@ -157,7 +181,7 @@ h1 {
     font-weight: bold; /* 设置文字加粗 */
 }</code></pre>
             
-            <h3>2.2 ID选择器示例</h3>
+            <h3 id="section-2-2">2.2 ID选择器示例</h3>
             <div class="lab-card">
                 <div class="lab-header">
                     <span>实验 02：ID选择器</span>
@@ -210,7 +234,7 @@ h1 {
                 </div>
             </div>
             
-            <h3>2.3 ID选择器的特点</h3>
+            <h3 id="section-2-3">2.3 ID选择器的特点</h3>
             <ul>
                 <li>选择具有特定ID的唯一HTML元素</li>
                 <li>语法以#开头，如#header</li>
@@ -220,11 +244,11 @@ h1 {
             </ul>
         </section>
 
-        <section id="class-selector">
+        <section id="chapter-3">
             <h2>三、类选择器</h2>
             <p>类选择器使用HTML元素的<code>class</code>属性来选择元素，类选择器以<code>.</code>开头。一个HTML元素可以有多个类，多个HTML元素可以共享同一个类。</p>
             
-            <h3>3.1 类选择器的语法</h3>
+            <h3 id="section-3-1">3.1 类选择器的语法</h3>
             <pre class="css"><code>/* 语法：.类名 { 样式规则 } */
 .类名 {
     属性1: 值1;
@@ -238,7 +262,7 @@ h1 {
     text-decoration: underline; /* 设置下划线 */
 }</code></pre>
             
-            <h3>3.2 类选择器示例</h3>
+            <h3 id="section-3-2">3.2 类选择器示例</h3>
             <div class="lab-card">
                 <div class="lab-header">
                     <span>实验 03：类选择器</span>
@@ -291,7 +315,7 @@ h1 {
                 </div>
             </div>
             
-            <h3>3.3 类选择器的特点</h3>
+            <h3 id="section-3-3">3.3 类选择器的特点</h3>
             <ul>
                 <li>选择具有特定类名的所有HTML元素</li>
                 <li>语法以.开头，如.highlight</li>
@@ -302,11 +326,11 @@ h1 {
             </ul>
         </section>
 
-        <section id="group-selector">
+        <section id="chapter-4">
             <h2>四、分组选择器</h2>
             <p>分组选择器允许将多个选择器组合在一起，共享相同的样式，选择器之间用逗号分隔。这可以减少重复代码，提高CSS的可维护性。</p>
             
-            <h3>4.1 分组选择器的语法</h3>
+            <h3 id="section-4-1">4.1 分组选择器的语法</h3>
             <pre class="css"><code>/* 语法：选择器1, 选择器2, 选择器3 { 样式规则 } */
 选择器1, 选择器2, 选择器3 {
     属性1: 值1;
@@ -321,7 +345,7 @@ h1, h2, h3 {
     border-bottom: 1px solid #ccc; /* 设置底部边框 */
 }</code></pre>
             
-            <h3>4.2 分组选择器示例</h3>
+            <h3 id="section-4-2">4.2 分组选择器示例</h3>
             <div class="lab-card">
                 <div class="lab-header">
                     <span>实验 04：分组选择器</span>
@@ -374,7 +398,7 @@ h1, h2, h3 {
                 </div>
             </div>
             
-            <h3>4.3 分组选择器的特点</h3>
+            <h3 id="section-4-3">4.3 分组选择器的特点</h3>
             <ul>
                 <li>多个选择器共享相同的样式规则</li>
                 <li>选择器之间用逗号分隔</li>
@@ -384,11 +408,11 @@ h1, h2, h3 {
             </ul>
         </section>
 
-        <section id="universal-selector">
+        <section id="chapter-5">
             <h2>五、通配符选择器</h2>
             <p>通配符选择器<code>*</code>会选择文档中的所有HTML元素，包括HTML根元素、所有嵌套元素和文本节点。它通常用于设置全局样式或重置浏览器默认样式。</p>
             
-            <h3>5.1 通配符选择器的语法</h3>
+            <h3 id="section-5-1">5.1 通配符选择器的语法</h3>
             <pre class="css"><code>/* 语法：* { 样式规则 } */
 * {
     属性1: 值1;
@@ -402,7 +426,7 @@ h1, h2, h3 {
     box-sizing: border-box; /* 设置盒模型为border-box */
 }</code></pre>
             
-            <h3>5.2 通配符选择器的应用场景</h3>
+            <h3 id="section-5-2">5.2 通配符选择器的应用场景</h3>
             <div class="note-box">
                 <span class="tip-title">主要用途</span>
                 <ul>
@@ -412,7 +436,7 @@ h1, h2, h3 {
                 </ul>
             </div>
             
-            <h3>5.3 通配符选择器的注意事项</h3>
+            <h3 id="section-5-3">5.3 通配符选择器的注意事项</h3>
             <div class="warning-box">
                 <span class="tip-title">⚠️ 谨慎使用</span>
                 <p>1. 通配符选择器会影响所有元素，包括嵌套很深的元素，可能导致性能问题</p>
@@ -421,7 +445,7 @@ h1, h2, h3 {
                 <p>4. 建议仅在CSS重置或必要的全局样式设置时使用</p>
             </div>
             
-            <h3>5.4 通配符选择器示例</h3>
+            <h3 id="section-5-4">5.4 通配符选择器示例</h3>
             <pre class="html"><code>&lt;!DOCTYPE html&gt;
 &lt;html lang="zh-CN"&gt;
 &lt;head&gt;
@@ -464,11 +488,11 @@ h1, h2, h3 {
         </section>
 
         <!-- 第二部分：选择器进阶 -->
-        <section id="selector-performance">
+        <section id="chapter-6">
             <h2>六、选择器最佳实践</h2>
             <p>了解选择器的最佳实践可以帮助你编写更高效、更易维护的CSS代码。</p>
             
-            <h3>6.1 选择器优先级回顾</h3>
+            <h3 id="section-6-1">6.1 选择器优先级回顾</h3>
             <div class="tip-box">
                 <span class="tip-title">📌 优先级顺序</span>
                 <p>从高到低的优先级顺序：</p>
@@ -482,7 +506,7 @@ h1, h2, h3 {
                 </ol>
             </div>
             
-            <h3>6.2 选择器使用建议</h3>
+            <h3 id="section-6-2">6.2 选择器使用建议</h3>
             <div class="note-box">
                 <span class="tip-title">推荐做法</span>
                 <ul>
@@ -494,7 +518,7 @@ h1, h2, h3 {
                 </ul>
             </div>
             
-            <h3>6.3 选择器命名规范</h3>
+            <h3 id="section-6-3">6.3 选择器命名规范</h3>
             <p>好的选择器命名可以提高代码的可读性和可维护性：</p>
             <ul>
                 <li><strong>语义化命名</strong>：类名应该反映元素的用途，而不是样式，如 <code>.btn-primary</code> 比 <code>.blue-button</code> 更好</li>
@@ -503,11 +527,11 @@ h1, h2, h3 {
             </ul>
         </section>
         
-        <section id="selector-practical">
+        <section id="chapter-7">
             <h2>七、选择器实际应用示例</h2>
             <p>让我们通过一些简单的例子，看看基础选择器在实际项目中的应用：</p>
             
-            <h3>7.1 页面基础样式</h3>
+            <h3 id="section-7-1">7.1 页面基础样式</h3>
             <pre class="css"><code>/* 使用通配符选择器重置默认样式 */
 * {
     margin: 0;
@@ -537,7 +561,7 @@ h1, h2, h3 {
     margin-bottom: 10px;
 }</code></pre>
             
-            <h3>7.2 组件样式示例</h3>
+            <h3 id="section-7-2">7.2 组件样式示例</h3>
             <pre class="css"><code>/* 按钮组件样式 */
 .btn {
     display: inline-block;
@@ -583,7 +607,7 @@ h1, h2, h3 {
 
         
         <!-- 第三部分：实战练习 -->
-        <section id="exercise">
+        <section id="chapter-8">
             <h2>八、综合练习</h2>
             <p>现在让我们来做一个综合练习，使用各种基础选择器来样式化一个简单的页面。</p>
             
@@ -695,13 +719,13 @@ h1, h2 {
         <!-- ============================================ -->
         <!-- 课程小结区域 -->
         <!-- ============================================ -->
-        <section id="summary">
+        <section id="chapter-9">
             <h2>九、课程小结</h2>
             <p>
                 本节课我们学习了CSS基础选择器，它们是CSS的核心，用于选择要样式化的HTML元素。
             </p>
             
-            <h3>9.1 核心知识点</h3>
+            <h3 id="section-9-1">9.1 核心知识点</h3>
             <table class="prop-table">
                 <thead>
                     <tr>
@@ -745,7 +769,7 @@ h1, h2 {
                 </tbody>
             </table>
             
-            <h3>9.2 选择器优先级</h3>
+            <h3 id="section-9-2">9.2 选择器优先级</h3>
             <div class="tip-box">
                 <span class="tip-title">📌 优先级顺序（从高到低）</span>
                 <ol>
@@ -758,7 +782,7 @@ h1, h2 {
                 </ol>
             </div>
             
-            <h3>9.3 最佳实践</h3>
+            <h3 id="section-9-3">9.3 最佳实践</h3>
             <div class="note-box">
                 <span class="tip-title">推荐做法</span>
                 <ul>
@@ -771,7 +795,7 @@ h1, h2 {
                 </ul>
             </div>
             
-            <h3>9.4 学习建议</h3>
+            <h3 id="section-9-4">9.4 学习建议</h3>
             <ul>
                 <li>多练习使用不同类型的选择器，熟悉它们的用法和优先级</li>
                 <li>使用浏览器的开发者工具来调试和测试选择器</li>

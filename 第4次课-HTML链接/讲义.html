@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -19,12 +19,26 @@
         
         <h3>Part 1: 链接基础</h3>
         <a class="sidebar-link sub-link" href="#chapter-1">一、链接的基本语法</a>
+        <a class="sidebar-link sub-link" href="#section-1-1">1.1 链接的基本结构</a>
+        <a class="sidebar-link sub-link" href="#section-1-2">1.2 URL的类型</a>
+        <a class="sidebar-link sub-link" href="#section-1-3">1.3 外部链接示例</a>
+        <a class="sidebar-link sub-link" href="#section-1-4">1.4 相对路径与绝对路径</a>
         <a class="sidebar-link sub-link" href="#chapter-2">二、链接的常用属性</a>
+        <a class="sidebar-link sub-link" href="#section-2-1">2.1 target属性</a>
+        <a class="sidebar-link sub-link" href="#section-2-2">2.2 title属性</a>
+        <a class="sidebar-link sub-link" href="#section-2-3">2.3 rel属性与链接安全</a>
+        <a class="sidebar-link sub-link" href="#section-2-4">2.4 download属性</a>
         <a class="sidebar-link sub-link" href="#lab-1">🔬 实验 01：基础链接练习</a>
         
         <h3>Part 2: 高级链接</h3>
         <a class="sidebar-link sub-link" href="#chapter-3">三、内部链接与锚点</a>
+        <a class="sidebar-link sub-link" href="#section-3-1">3.1 内部链接</a>
+        <a class="sidebar-link sub-link" href="#section-3-2">3.2 锚点链接</a>
+        <a class="sidebar-link sub-link" href="#section-3-3">3.3 跨页面锚点链接</a>
         <a class="sidebar-link sub-link" href="#chapter-4">四、特殊链接（邮件与电话）</a>
+        <a class="sidebar-link sub-link" href="#section-4-1">4.1 邮件链接</a>
+        <a class="sidebar-link sub-link" href="#section-4-2">4.2 电话链接</a>
+        <a class="sidebar-link sub-link" href="#section-4-3">4.3 其他特殊协议</a>
         <a class="sidebar-link sub-link" href="#lab-2">🔬 实验 02：综合链接练习</a>
         
         <h3>总结与练习</h3>
@@ -70,7 +84,7 @@
             <p>互联网之所以叫"网"，正是因为无数链接把网页织成了一张大网！</p>
         </div>
         
-        <h3>1.1 链接的基本结构</h3>
+        <h3 id="section-1-1">1.1 链接的基本结构</h3>
         <p>在HTML中，链接使用<code>&lt;a&gt;</code>标签定义（a代表anchor，锚点）。链接的基本语法如下：</p>
         
         <table class="prop-table">
@@ -114,7 +128,7 @@
             </div>
         </div>
         
-        <h3>1.2 URL的类型</h3>
+        <h3 id="section-1-2">1.2 URL的类型</h3>
         <p>href属性中的URL（统一资源定位符）可以是不同类型的地址：</p>
         
         <table class="prop-table">
@@ -154,7 +168,7 @@
             </tbody>
         </table>
         
-        <h3>1.3 外部链接示例</h3>
+        <h3 id="section-1-3">1.3 外部链接示例</h3>
         <p>外部链接是指向其他网站的链接，它的URL通常以<code>http://</code>或<code>https://</code>开头。</p>
         
         <div class="lab-card">
@@ -178,7 +192,7 @@
             <p>现代网站都推荐使用https，它能保护用户数据安全。如果链接的网站支持https，应优先使用https链接。</p>
         </div>
         
-        <h3>1.4 相对路径与绝对路径</h3>
+        <h3 id="section-1-4">1.4 相对路径与绝对路径</h3>
         <p>在链接本站内部页面时，理解相对路径非常重要：</p>
         
         <table class="prop-table">
@@ -232,7 +246,7 @@
         <h2>二、链接的常用属性</h2>
         <p>链接标签支持多种属性，用于控制链接的行为和外观。掌握这些属性可以让链接更加实用和安全。</p>
         
-        <h3>2.1 target属性</h3>
+        <h3 id="section-2-1">2.1 target属性</h3>
         <p><code>target</code>属性用于指定在何处打开链接，常用值包括：</p>
         
         <table class="prop-table">
@@ -291,7 +305,7 @@
             <p>但不要滥用新窗口，过多的新窗口会让用户感到困扰！</p>
         </div>
         
-        <h3>2.2 title属性</h3>
+        <h3 id="section-2-2">2.2 title属性</h3>
         <p><code>title</code>属性用于为链接添加提示文本，当鼠标悬停在链接上时会显示。这有助于提升用户体验和可访问性。</p>
         
         <div class="lab-card">
@@ -306,7 +320,7 @@
             </div>
         </div>
         
-        <h3>2.3 rel属性与链接安全</h3>
+        <h3 id="section-2-3">2.3 rel属性与链接安全</h3>
         <p>当使用<code>target="_blank"</code>打开新窗口时，存在安全隐患。新打开的页面可以通过<code>window.opener</code>访问原页面，可能被用于恶意目的。</p>
         
         <table class="prop-table">
@@ -360,7 +374,7 @@
             <p>这是现代Web开发的安全标准！</p>
         </div>
         
-        <h3>2.4 download属性</h3>
+        <h3 id="section-2-4">2.4 download属性</h3>
         <p><code>download</code>属性告诉浏览器下载链接资源而不是导航到它。可以指定下载的文件名。</p>
         
         <pre class="html"><code>&lt;!-- 下载文件，使用原文件名 --&gt;
@@ -455,7 +469,7 @@
             <p>长页面中的"返回顶部"功能就是用锚点实现的！</p>
         </div>
         
-        <h3>3.1 内部链接</h3>
+        <h3 id="section-3-1">3.1 内部链接</h3>
         <p>内部链接是指向同一网站内其他页面的链接，它使用相对路径。</p>
         
         <div class="lab-card">
@@ -475,7 +489,7 @@
             </div>
         </div>
         
-        <h3>3.2 锚点链接</h3>
+        <h3 id="section-3-2">3.2 锚点链接</h3>
         <p>锚点链接用于跳转到同一页面内的特定位置。创建锚点链接需要两个步骤：</p>
         
         <table class="prop-table">
@@ -528,7 +542,7 @@
             </div>
         </div>
         
-        <h3>3.3 跨页面锚点链接</h3>
+        <h3 id="section-3-3">3.3 跨页面锚点链接</h3>
         <p>你还可以链接到其他页面的特定位置，只需在URL后面加上锚点：</p>
         
         <pre class="html"><code>&lt;!-- 链接到其他页面的特定位置 --&gt;
@@ -552,7 +566,7 @@
         <h2>四、特殊链接（邮件与电话）</h2>
         <p>HTML支持创建特殊类型的链接，例如邮件链接和电话链接，它们可以直接调用用户设备上的相关应用。</p>
         
-        <h3>4.1 邮件链接</h3>
+        <h3 id="section-4-1">4.1 邮件链接</h3>
         <p>邮件链接使用<code>mailto:</code>协议，当用户点击邮件链接时，会打开默认的邮件客户端。</p>
         
         <table class="prop-table">
@@ -612,7 +626,7 @@
             </div>
         </div>
         
-        <h3>4.2 电话链接</h3>
+        <h3 id="section-4-2">4.2 电话链接</h3>
         <p>电话链接使用<code>tel:</code>协议，当用户点击电话链接时，会打开默认的电话应用。这在移动端网页特别有用。</p>
         
         <div class="lab-card">
@@ -632,7 +646,7 @@
             </div>
         </div>
         
-        <h3>4.3 其他特殊协议</h3>
+        <h3 id="section-4-3">4.3 其他特殊协议</h3>
         <table class="prop-table">
             <thead>
                 <tr>

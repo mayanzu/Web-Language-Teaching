@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -22,13 +22,28 @@
         
         <h3>Part 1: HTML表格进阶</h3>
         <a class="sidebar-link sub-link" href="#chapter-1">一、合并单元格基础</a>
+        <a class="sidebar-link sub-link" href="#section-1-1">1.1 colspan属性：合并列单元格</a>
+        <a class="sidebar-link sub-link" href="#section-1-2">1.2 rowspan属性：合并行单元格</a>
+        <a class="sidebar-link sub-link" href="#section-1-3">1.3 合并单元格的计算规则</a>
+        <a class="sidebar-link sub-link" href="#section-1-4">1.4 常见错误排查</a>
         <a class="sidebar-link sub-link" href="#lab-1">🔬 实验 1：colspan合并列</a>
         <a class="sidebar-link sub-link" href="#lab-2">🔬 实验 2：rowspan合并行</a>
         <a class="sidebar-link sub-link" href="#chapter-2">二、合并单元格示例</a>
+        <a class="sidebar-link sub-link" href="#section-2-1">2.1 示例1：多级表头设计</a>
+        <a class="sidebar-link sub-link" href="#section-2-2">2.2 示例2：复杂日程表</a>
         <a class="sidebar-link sub-link" href="#lab-3">🔬 实验 3：多级表头设计</a>
         <a class="sidebar-link sub-link" href="#chapter-3">三、复杂表格制作</a>
+        <a class="sidebar-link sub-link" href="#section-3-1">3.1 复杂表格制作步骤</a>
+        <a class="sidebar-link sub-link" href="#section-3-2">3.2 实战：课程表分析</a>
+        <a class="sidebar-link sub-link" href="#section-3-3">3.3 复杂表格制作技巧</a>
+        <a class="sidebar-link sub-link" href="#section-3-4">3.4 表格调试方法</a>
         <a class="sidebar-link sub-link" href="#lab-4">🔬 实验 4：课程表制作</a>
         <a class="sidebar-link sub-link" href="#chapter-4">四、表格语义化</a>
+        <a class="sidebar-link sub-link" href="#section-4-1">4.1 语义化表格的基本结构</a>
+        <a class="sidebar-link sub-link" href="#section-4-2">4.2 完整的语义化表格示例</a>
+        <a class="sidebar-link sub-link" href="#section-4-3">4.3 scope属性详解</a>
+        <a class="sidebar-link sub-link" href="#section-4-4">4.4 语义化表格的最佳实践</a>
+        <a class="sidebar-link sub-link" href="#section-4-5">4.5 复杂表格的可访问性处理</a>
         <a class="sidebar-link sub-link" href="#lab-5">🔬 实验 5：语义化表格练习</a>
         
         <h3>总结与练习</h3>
@@ -91,7 +106,7 @@
             </ul>
         </div>
         
-        <h3>1.1 colspan属性：合并列单元格</h3>
+        <h3 id="section-1-1">1.1 colspan属性：合并列单元格</h3>
         <p>
             <code>colspan</code>属性用于合并水平方向的单元格，指定一个单元格应横跨多少列。
         </p>
@@ -131,7 +146,7 @@
             </div>
         </div>
         
-        <h3>1.2 rowspan属性：合并行单元格</h3>
+        <h3 id="section-1-2">1.2 rowspan属性：合并行单元格</h3>
         <p>
             <code>rowspan</code>属性用于合并垂直方向的单元格，指定一个单元格应纵跨多少行。
         </p>
@@ -175,7 +190,7 @@
             </div>
         </div>
         
-        <h3>1.3 合并单元格的计算规则</h3>
+        <h3 id="section-1-3">1.3 合并单元格的计算规则</h3>
         <p>使用合并单元格时，最重要的是<strong>保持每行的"格子总数"一致</strong>。</p>
         
         <table class="prop-table">
@@ -215,7 +230,7 @@
             </ul>
         </div>
         
-        <h3>1.4 常见错误排查</h3>
+        <h3 id="section-1-4">1.4 常见错误排查</h3>
         <div class="note-box">
             <span class="note-title">📖 调试技巧</span>
             <p>如果表格显示不正确，检查以下问题：</p>
@@ -330,7 +345,7 @@
             现在让我们通过实际例子来学习如何使用<code>colspan</code>和<code>rowspan</code>属性创建各种复杂的表格结构。
         </p>
         
-        <h3>2.1 示例1：多级表头设计</h3>
+        <h3 id="section-2-1">2.1 示例1：多级表头设计</h3>
         <p>多级表头是合并单元格的常见应用场景，它可以帮助我们创建更有层次结构的数据表格。</p>
         
         <div class="example-box">
@@ -362,7 +377,7 @@
 &lt;/table&gt;</code></pre>
         </div>
         
-        <h3>2.2 示例2：复杂日程表</h3>
+        <h3 id="section-2-2">2.2 示例2：复杂日程表</h3>
         <p>日程表是另一个常见的合并单元格应用场景，它可以帮助我们清晰地展示时间安排。</p>
         
         <div class="example-box">
@@ -481,7 +496,7 @@
             </ul>
         </div>
         
-        <h3>3.1 复杂表格制作步骤</h3>
+        <h3 id="section-3-1">3.1 复杂表格制作步骤</h3>
         <p>创建复杂表格通常需要以下几个步骤：</p>
         
         <ol class="lab-steps">
@@ -493,7 +508,7 @@
             <li><strong>验证检查</strong>：检查表格是否正确显示</li>
         </ol>
         
-        <h3>3.2 实战：课程表分析</h3>
+        <h3 id="section-3-2">3.2 实战：课程表分析</h3>
         <p>以一个标准课程表为例，分析其结构：</p>
         
         <div class="lab-card">
@@ -522,7 +537,7 @@
             </div>
         </div>
         
-        <h3>3.3 复杂表格制作技巧</h3>
+        <h3 id="section-3-3">3.3 复杂表格制作技巧</h3>
         
         <table class="prop-table">
             <thead>
@@ -562,7 +577,7 @@
             <p>例如：一行有3个td，其中一个colspan="2"，则显示列数 = 3 + (2-1) = 4列</p>
         </div>
         
-        <h3>3.4 表格调试方法</h3>
+        <h3 id="section-3-4">3.4 表格调试方法</h3>
         <div class="warning-box">
             <span class="warning-title">⚠️ 常见问题及解决方法</span>
             <ul>
@@ -690,7 +705,7 @@
             </ul>
         </div>
         
-        <h3>4.1 语义化表格的基本结构</h3>
+        <h3 id="section-4-1">4.1 语义化表格的基本结构</h3>
         <p>一个完整的语义化表格应该包含以下结构元素：</p>
         
         <table class="prop-table">
@@ -740,7 +755,7 @@
             </tbody>
         </table>
         
-        <h3>4.2 完整的语义化表格示例</h3>
+        <h3 id="section-4-2">4.2 完整的语义化表格示例</h3>
         <div class="lab-card">
             <div class="lab-header">
                 <span>示例：完整的语义化表格结构</span>
@@ -786,7 +801,7 @@
             </div>
         </div>
         
-        <h3>4.3 scope属性详解</h3>
+        <h3 id="section-4-3">4.3 scope属性详解</h3>
         <p><code>scope</code>属性用于指定<code>&lt;th&gt;</code>单元格是行标题还是列标题，帮助屏幕阅读器理解表格结构。</p>
         
         <table class="prop-table">
@@ -821,7 +836,7 @@
             </tbody>
         </table>
         
-        <h3>4.4 语义化表格的最佳实践</h3>
+        <h3 id="section-4-4">4.4 语义化表格的最佳实践</h3>
         
         <div class="tip-box">
             <span class="tip-title">💡 语义化表格最佳实践</span>
@@ -834,7 +849,7 @@
             </ul>
         </div>
         
-        <h3>4.5 复杂表格的可访问性处理</h3>
+        <h3 id="section-4-5">4.5 复杂表格的可访问性处理</h3>
         <p>当表格结构复杂时（如多级表头），可以使用<code>id</code>和<code>headers</code>属性来明确关联：</p>
         
         <div class="lab-card">

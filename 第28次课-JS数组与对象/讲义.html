@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -20,30 +20,21 @@
         <h3>课程导航</h3>
         <a class="sidebar-link" href="#intro">👋 课程概览</a>
         
-        <h3>Part 1: 数组基础</h3>
-        <a class="sidebar-link sub-link" href="#section-1-1">1.1 什么是数组</a>
-        <a class="sidebar-link sub-link" href="#section-1-2">1.2 创建数组</a>
-        <a class="sidebar-link sub-link" href="#section-1-3">1.3 访问与修改元素</a>
-        <a class="sidebar-link sub-link" href="#lab-1">🔬 实验 01</a>
-        
-        <h3>Part 2: 数组方法</h3>
-        <a class="sidebar-link sub-link" href="#section-2-1">2.1 常用数组方法</a>
-        <a class="sidebar-link sub-link" href="#section-2-2">2.2 高阶数组方法</a>
-        <a class="sidebar-link sub-link" href="#lab-2">🔬 实验 02</a>
-        
-        <h3>Part 3: 对象基础</h3>
-        <a class="sidebar-link sub-link" href="#section-3-1">3.1 什么是对象</a>
-        <a class="sidebar-link sub-link" href="#section-3-2">3.2 创建与访问对象</a>
-        <a class="sidebar-link sub-link" href="#section-3-3">3.3 对象方法</a>
-        <a class="sidebar-link sub-link" href="#lab-3">🔬 实验 03</a>
-        
-        <h3>Part 4: 综合应用</h3>
-        <a class="sidebar-link sub-link" href="#section-4-1">4.1 数组与对象结合</a>
-        <a class="sidebar-link sub-link" href="#lab-4">🔬 实验 04</a>
-        <a class="sidebar-link sub-link" href="#real-world-demo">5. 真实案例展示</a>
-        
-        <h3>总结与练习</h3>
-        <a class="sidebar-link sub-link" href="#summary">📝 课程小结</a>
+        <a class="sidebar-link" href="#chapter-1">一、什么是数组？</a>
+        <a class="sidebar-link sub-link" href="#section-1-1">1.1 创建数组</a>
+        <a class="sidebar-link sub-link" href="#section-1-2">1.2 访问与修改元素</a>
+        <a class="sidebar-link" href="#chapter-2">实验 01：数组基础操作</a>
+        <a class="sidebar-link" href="#chapter-3">二、常用数组方法</a>
+        <a class="sidebar-link sub-link" href="#section-3-1">3.1 高阶数组方法</a>
+        <a class="sidebar-link" href="#chapter-4">实验 02：数组方法练习</a>
+        <a class="sidebar-link" href="#chapter-5">三、什么是对象？</a>
+        <a class="sidebar-link sub-link" href="#section-5-1">5.1 创建与访问对象</a>
+        <a class="sidebar-link sub-link" href="#section-5-2">5.2 对象方法</a>
+        <a class="sidebar-link" href="#chapter-6">实验 03：对象操作练习</a>
+        <a class="sidebar-link" href="#chapter-7">四、数组与对象的结合</a>
+        <a class="sidebar-link" href="#chapter-8">实验 04：综合实战</a>
+        <a class="sidebar-link" href="#chapter-9">五、真实案例展示</a>
+        <a class="sidebar-link" href="#chapter-10">六、本课小结</a>
     </div>
 </nav>
 
@@ -76,7 +67,7 @@
          Part 1: 数组基础
          ============================================ -->
 
-    <section id="section-1-1">
+    <section id="chapter-1">
         <h2>一、什么是数组？</h2>
         <p>数组是一种特殊的数据结构，用于在单个变量中存储多个值。可以把数组想象成一个有编号的储物柜，每个格子都可以存放一个物品。</p>
         
@@ -100,7 +91,7 @@
     </section>
 
 
-    <section id="section-1-2">
+    <section id="section-1-1">
         <h3>1.2 创建数组</h3>
         <p>JavaScript提供了多种创建数组的方式：</p>
         
@@ -145,7 +136,7 @@ let arr7 = Array.from([1, 2, 3], x => x * 2);  // [2, 4, 6]
     </section>
 
 
-    <section id="section-1-3">
+    <section id="section-1-2">
         <h3>1.3 访问与修改数组元素</h3>
         <p>使用方括号语法 <code>[]</code> 和索引来访问数组元素：</p>
         
@@ -199,7 +190,7 @@ console.log(arr);  // [1, 2, 3, empty × 2]
     <!-- ============================================
          实验 01：数组基础操作
          ============================================ -->
-    <section id="lab-1">
+    <section id="chapter-2">
         <h2>实验 01：数组基础操作</h2>
         <p>练习创建数组和访问数组元素。</p>
         
@@ -262,7 +253,7 @@ document.getElementById('last').textContent = scores[scores.length - 1];
          Part 2: 数组方法
          ============================================ -->
 
-    <section id="section-2-1">
+    <section id="chapter-3">
         <h2>二、常用数组方法</h2>
         <p>JavaScript数组提供了丰富的内置方法，让我们能够方便地操作数组数据。</p>
         
@@ -434,7 +425,7 @@ console.log(scores);  // [95, 92, 85, 78]
     </section>
 
 
-    <section id="section-2-2">
+    <section id="chapter-5">
         <h3>2.2 高阶数组方法</h3>
         <p>高阶方法接受函数作为参数，是现代JavaScript中处理数组的核心方式。</p>
         
@@ -554,7 +545,7 @@ console.log(adultNames);  // ['小红', '小刚']
     <!-- ============================================
          实验 02：数组方法练习
          ============================================ -->
-    <section id="lab-2">
+    <section id="chapter-4">
         <h2>实验 02：数组方法练习</h2>
         <p>练习使用数组的各种方法处理数据。</p>
         
@@ -633,7 +624,7 @@ function showTop3() {
          Part 3: 对象基础
          ============================================ -->
 
-    <section id="section-3-1">
+    <section id="chapter-5">
         <h2>三、什么是对象？</h2>
         <p>对象是JavaScript中最重要的数据类型之一。对象用于存储键值对（属性名-属性值）的集合，可以表示真实世界中的实体。</p>
         
@@ -677,7 +668,7 @@ function showTop3() {
     </section>
 
 
-    <section id="section-3-2">
+    <section id="section-5-1">
         <h3>3.2 创建与访问对象</h3>
         
         <h4>创建对象</h4>
@@ -750,7 +741,7 @@ console.log(person);  // { name: '李四', age: 25 }
     </section>
 
 
-    <section id="section-3-3">
+    <section id="section-5-2">
         <h3>3.3 对象方法</h3>
         <p>对象的属性值可以是函数，这种函数称为"方法"。方法定义了对象能执行的动作。</p>
         
@@ -837,7 +828,7 @@ console.log(merged2);  // 同上
     <!-- ============================================
          实验 03：对象操作练习
          ============================================ -->
-    <section id="lab-3">
+    <section id="chapter-6">
         <h2>实验 03：对象操作练习</h2>
         <p>练习创建和操作对象。</p>
         
@@ -924,7 +915,7 @@ function updateAge() {
          Part 4: 综合应用
          ============================================ -->
 
-    <section id="section-4-1">
+    <section id="chapter-7">
         <h2>四、数组与对象的结合</h2>
         <p>在实际开发中，数组和对象经常结合使用。最常见的场景是"对象数组"——用数组存储多个同类型的对象。</p>
         
@@ -1008,7 +999,7 @@ printUser(person);  // '张三，25岁'
     <!-- ============================================
          实验 04：综合实战
          ============================================ -->
-    <section id="lab-4">
+    <section id="chapter-8">
         <h2>实验 04：综合实战</h2>
         <p>综合运用数组和对象的知识，构建一个简单的学生管理系统。</p>
         
@@ -1132,7 +1123,7 @@ function sortByScore() {
     <!-- ============================================
          真实案例展示
          ============================================ -->
-    <section id="real-world-demo">
+    <section id="chapter-9">
         <h2>五、真实案例展示</h2>
         
         <div class="lab-card">
@@ -1172,7 +1163,7 @@ console.log(expensive);
     <!-- ============================================
          课程小结区域
          ============================================ -->
-    <section id="summary">
+    <section id="chapter-10">
         <h2>六、本课小结</h2>
         
         <h3>知识点回顾</h3>

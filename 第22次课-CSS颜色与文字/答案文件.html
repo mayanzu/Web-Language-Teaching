@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第22课答案：CSS颜色与文字</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f0f2f5; display: flex; justify-content: center; padding-top: 50px; min-height: 100vh; }
+        .container { width: 100%; max-width: 800px; background: white; padding: 40px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .todo-box { background: #e8f5e9; border-left: 5px solid #4caf50; padding: 15px; margin-bottom: 30px; border-radius: 4px; }
+        .todo-box h3 { margin: 0 0 10px 0; color: #2e7d32; }
+        .preview-area { border: 2px solid #4caf50; padding: 20px; min-height: 200px; border-radius: 4px; }
+        
+        .text-demo {
+            color: #673ab7;
+            font-size: 24px;
+            font-family: "Microsoft YaHei", sans-serif;
+            text-align: center;
+            line-height: 1.5; /* 额外：行高 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="todo-box">
+            <h3>✅ 参考答案</h3>
+            <p>CSS提供了丰富的文本控制属性。</p>
+        </div>
+
+        <div class="preview-area">
+            <p class="text-demo">
+                这是一段测试文字。<br>
+                Hello World!
+            </p>
+        </div>
+    </div>
+</body>
+</html>
