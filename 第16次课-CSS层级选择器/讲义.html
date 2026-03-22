@@ -354,30 +354,20 @@ body div.container ul li a span { ... }
                     <div class="panel code-editor" id="html-2" contenteditable="true">
 <div class="panel-label">HTML (可编辑)</div>
 &lt;div class="article"&gt;
-    &lt;h2&gt;直接子元素标题（加粗蓝色）&lt;/h2&gt;
-    &lt;p&gt;直接子元素段落（加粗蓝色）&lt;/p&gt;
-    
+    &lt;h2&gt;直接子标题&lt;/h2&gt;
+    &lt;p&gt;直接子段落&lt;/p&gt;
     &lt;div class="content"&gt;
-        &lt;!-- 这些元素在.content内，不是.article的直接子元素，不会受影响 --&gt;
-        &lt;h2&gt;嵌套在div中的标题（正常样式）&lt;/h2&gt;
-        &lt;p&gt;嵌套在div中的段落（正常样式）&lt;/p&gt;
+        &lt;h2&gt;嵌套标题（不受影响）&lt;/h2&gt;
     &lt;/div&gt;
-    
-    &lt;p&gt;另一个直接子元素段落（加粗蓝色）&lt;/p&gt;
+    &lt;p&gt;另一个直接子段落&lt;/p&gt;
 &lt;/div&gt;
                     </div>
-                    
+
                     <!-- CSS 代码编辑区 -->
                     <div class="panel code-editor" id="css-2" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
-/* 子代选择器：只选择.article的直接子元素h2和p */
-.article > h2,
-.article > p {
-    font-weight: bold;
-    color: #0066cc;
-    padding: 8px;
-    margin: 8px 0;
-}
+/* 子代选择器 */
+.article > h2, .article > p { font-weight: bold; color: #0066cc; padding: 8px; }
                     </div>
                 </div>
                 
@@ -465,32 +455,18 @@ h2 + p {
                     <div class="panel code-editor" id="html-3" contenteditable="true">
 <div class="panel-label">HTML (可编辑)</div>
 &lt;h2&gt;章节标题&lt;/h2&gt;
-&lt;p&gt;紧跟在h2后的段落（红色斜体）&lt;/p&gt;
-&lt;p&gt;不紧跟h2的段落（不受影响）&lt;/p&gt;
-
+&lt;p&gt;紧跟标题的段落（红色）&lt;/p&gt;
+&lt;p&gt;非紧跟段落（不受影响）&lt;/p&gt;
 &lt;p class="highlight"&gt;高亮段落&lt;/p&gt;
-&lt;p&gt;紧跟在高亮段落后的段落（加粗黄色）&lt;/p&gt;
-&lt;p&gt;另一个段落（不受影响）&lt;/p&gt;
+&lt;p&gt;紧跟高亮的段落（加粗）&lt;/p&gt;
                     </div>
-                    
+
                     <!-- CSS 代码编辑区 -->
                     <div class="panel code-editor" id="css-3" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
-/* 相邻兄弟选择器：选择h2后面的第一个p元素 */
-h2 + p {
-    color: red;
-    font-style: italic;
-    padding: 10px;
-    background: #ffe6e6;
-}
-
-/* 相邻兄弟选择器：选择.highlight后面的第一个p元素 */
-.highlight + p {
-    font-weight: bold;
-    background: #fff3cd;
-    padding: 10px;
-    color: #856404;
-}
+/* 相邻兄弟选择器 */
+h2 + p { color: red; font-style: italic; }
+.highlight + p { font-weight: bold; background: #fff3cd; }
                     </div>
                 </div>
                 
@@ -597,37 +573,19 @@ input:invalid + .error-message {
                     <div class="panel code-editor" id="html-4" contenteditable="true">
 <div class="panel-label">HTML (可编辑)</div>
 &lt;h3&gt;小节标题&lt;/h3&gt;
-&lt;li&gt;列表项1（绿色）&lt;/li&gt;
-&lt;li&gt;列表项2（绿色）&lt;/li&gt;
-&lt;p&gt;段落元素&lt;/p&gt;
-&lt;li&gt;列表项3（绿色）&lt;/li&gt;
-&lt;li&gt;列表项4（绿色）&lt;/li&gt;
-
-&lt;div class="active"&gt;激活的项目&lt;/div&gt;
-&lt;div class="item"&gt;项目1（蓝色背景）&lt;/div&gt;
-&lt;div class="item"&gt;项目2（蓝色背景）&lt;/div&gt;
-&lt;div&gt;普通div（不受影响）&lt;/div&gt;
-&lt;div class="item"&gt;项目3（蓝色背景）&lt;/div&gt;
+&lt;li&gt;列表项1&lt;/li&gt;
+&lt;li&gt;列表项2&lt;/li&gt;
+&lt;div class="active"&gt;激活项&lt;/div&gt;
+&lt;div class="item"&gt;项目1&lt;/div&gt;
+&lt;div class="item"&gt;项目2&lt;/div&gt;
                     </div>
-                    
+
                     <!-- CSS 代码编辑区 -->
                     <div class="panel code-editor" id="css-4" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
-/* 通用兄弟选择器：选择h3后面所有的li兄弟元素 */
-h3 ~ li {
-    color: green;
-    font-weight: bold;
-    padding: 8px;
-    margin: 5px 0;
-}
-
-/* 通用兄弟选择器：选择.active后面所有的.item兄弟元素 */
-.active ~ .item {
-    background-color: #e3f2fd;
-    border-left: 4px solid #0066cc;
-    padding: 10px;
-    margin: 8px 0;
-}
+/* 通用兄弟选择器 */
+h3 ~ li { color: green; font-weight: bold; }
+.active ~ .item { background: #e3f2fd; border-left: 3px solid #0066cc; padding: 8px; }
                     </div>
                 </div>
                 
@@ -726,197 +684,26 @@ input:checked ~ label {
                     <!-- HTML 代码编辑区 -->
                     <div class="panel code-editor" id="html-5" contenteditable="true">
 <div class="panel-label">HTML (可编辑)</div>
-&lt;div class="complex-nav"&gt;
-    &lt;header class="site-header"&gt;
-        &lt;div class="logo"&gt;网站Logo&lt;/div&gt;
-        &lt;nav class="main-nav"&gt;
-            &lt;ul class="nav-list"&gt;
-                &lt;li class="nav-item"&gt;
-                    &lt;a href="#" class="nav-link"&gt;首页&lt;/a&gt;
-                &lt;/li&gt;
-                &lt;li class="nav-item has-dropdown"&gt;
-                    &lt;a href="#" class="nav-link"&gt;产品中心&lt;/a&gt;
-                    &lt;ul class="dropdown-menu"&gt;
-                        &lt;li class="dropdown-item"&gt;
-                            &lt;a href="#" class="dropdown-link"&gt;产品1&lt;/a&gt;
-                        &lt;/li&gt;
-                        &lt;li class="dropdown-item"&gt;
-                            &lt;a href="#" class="dropdown-link"&gt;产品2&lt;/a&gt;
-                        &lt;/li&gt;
-                        &lt;li class="dropdown-item"&gt;
-                            &lt;a href="#" class="dropdown-link"&gt;产品3&lt;/a&gt;
-                        &lt;/li&gt;
-                    &lt;/ul&gt;
-                &lt;/li&gt;
-                &lt;li class="nav-item"&gt;
-                    &lt;a href="#" class="nav-link"&gt;联系我们&lt;/a&gt;
-                &lt;/li&gt;
-            &lt;/ul&gt;
-        &lt;/nav&gt;
-    &lt;/header&gt;
-    
-    &lt;main class="site-main"&gt;
-        &lt;section class="hero"&gt;
-            &lt;h1&gt;层级选择器高级应用&lt;/h1&gt;
-            &lt;p&gt;这个实验展示了如何使用CSS层级选择器创建复杂的导航菜单和页面布局&lt;/p&gt;
-        &lt;/section&gt;
-        
-        &lt;section class="content-section"&gt;
-            &lt;h2&gt;主要内容区域&lt;/h2&gt;
-            &lt;div class="content-grid"&gt;
-                &lt;article class="content-card"&gt;
-                    &lt;h3&gt;内容卡片1&lt;/h3&gt;
-                    &lt;p&gt;这是内容卡片的描述文本，使用层级选择器可以轻松控制卡片的样式。&lt;/p&gt;
-                &lt;/article&gt;
-                &lt;article class="content-card"&gt;
-                    &lt;h3&gt;内容卡片2&lt;/h3&gt;
-                    &lt;p&gt;这是内容卡片的描述文本，使用层级选择器可以轻松控制卡片的样式。&lt;/p&gt;
-                &lt;/article&gt;
-            &lt;/div&gt;
-        &lt;/section&gt;
-    &lt;/main&gt;
+&lt;div class="nav"&gt;
+    &lt;a href="#"&gt;首页&lt;/a&gt;
+    &lt;a href="#"&gt;产品&lt;/a&gt;
+    &lt;a href="#"&gt;关于&lt;/a&gt;
 &lt;/div&gt;
+&lt;article class="card"&gt;
+    &lt;h3&gt;标题&lt;/h3&gt;
+    &lt;p&gt;内容描述&lt;/p&gt;
+&lt;/article&gt;
                     </div>
                     
                     <!-- CSS 代码编辑区 -->
                     <div class="panel code-editor" id="css-5" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
-/* 第16次课-复杂导航菜单布局实验 */
-/* 复杂场景下的层级选择器应用 */
-
-/* 基础样式重置 */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    color: #333;
-}
-
-/* 1. 网站头部样式 */
-.site-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #0066cc;
-    color: white;
-    padding: 15px 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-/* 2. Logo样式 */
-.logo {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-/* 3. 导航列表样式 */
-.nav-list {
-    display: flex;
-    list-style: none;
-    gap: 10px;
-}
-
-/* 4. 导航项样式 */
-.nav-item {
-    position: relative;
-}
-
-/* 5. 导航链接样式 */
-.nav-link {
-    display: block;
-    color: white;
-    text-decoration: none;
-    padding: 10px 15px;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-}
-
-/* 6. 导航链接悬停效果 */
-.nav-link:hover {
-    background-color: rgba(255,255,255,0.2);
-}
-
-/* 7. 下拉菜单容器 */
-.dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: white;
-    color: #333;
-    list-style: none;
-    min-width: 150px;
-    border-radius: 4px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    z-index: 100;
-}
-
-/* 8. 带有下拉菜单的导航项悬停效果 */
-.nav-item.has-dropdown:hover > .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-}
-
-/* 9. 下拉菜单链接样式 */
-.dropdown-link {
-    display: block;
-    padding: 10px 15px;
-    color: #333;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-/* 10. 下拉菜单链接悬停效果 */
-.dropdown-link:hover {
-    background-color: #f5f5f5;
-    color: #0066cc;
-}
-
-/* 11. Hero区域样式 */
-.hero {
-    text-align: center;
-    padding: 60px 20px;
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    margin-bottom: 30px;
-}
-
-/* 12. Hero标题样式 */
-.hero h1 {
-    color: #0066cc;
-    margin-bottom: 10px;
-    font-size: 36px;
-}
-
-/* 13. 内容网格布局 */
-.content-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
-}
-
-/* 14. 内容卡片样式 */
-.content-card {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
-}
-
-/* 15. 内容卡片悬停效果 */
-.content-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-}
+/* 综合实验：层级选择器应用 */
+.nav { background: #0066cc; padding: 15px; }
+.nav a { color: #fff; text-decoration: none; margin-right: 15px; }
+.nav a:hover { text-decoration: underline; }
+.card { background: #fff; padding: 20px; margin-top: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+.card h3 { color: #0066cc; }
                     </div>
                 </div>
                 
