@@ -102,37 +102,18 @@ p {
                     <!-- HTML 代码编辑区 -->
                     <div class="panel code-editor" id="html-1" contenteditable="true">
 <div class="panel-label">HTML (可编辑)</div>
-&lt;!DOCTYPE html&gt;
-&lt;html lang="zh-CN"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;元素选择器示例&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h1&gt;元素选择器演示&lt;/h1&gt;
-    &lt;p&gt;这是一个段落，将被元素选择器选中。&lt;/p&gt;
-    &lt;div&gt;这是一个div，不会被p选择器选中。&lt;/div&gt;
-    &lt;p&gt;这是另一个段落，也会被元素选择器选中。&lt;/p&gt;
-&lt;/body&gt;
-&lt;/html&gt;
+&lt;h1&gt;标题&lt;/h1&gt;
+&lt;p&gt;段落1&lt;/p&gt;
+&lt;div&gt;div元素&lt;/div&gt;
+&lt;p&gt;段落2&lt;/p&gt;
                     </div>
-                    
+
                     <!-- CSS 代码编辑区 -->
                     <div class="panel code-editor" id="css-1" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
-/* 元素选择器：选择所有p元素 */
-p {
-    color: blue;
-    font-size: 18px;
-    line-height: 1.5;
-}
-
-/* 元素选择器：选择所有h1元素 */
-h1 {
-    color: green;
-    text-align: center;
-}
+/* 元素选择器 */
+p { color: blue; font-size: 18px; }
+h1 { color: green; text-align: center; }
                     </div>
                 </div>
                 
@@ -188,32 +169,16 @@ h1 {
                     <!-- HTML 代码编辑区 -->
                     <div class="panel code-editor" id="html-2" contenteditable="true">
 <div class="panel-label">HTML (可编辑)</div>
-&lt;!DOCTYPE html&gt;
-&lt;html lang="zh-CN"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;ID选择器示例&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h1&gt;ID选择器演示&lt;/h1&gt;
-    &lt;p&gt;普通段落&lt;/p&gt;
-    &lt;p id="special"&gt;这个段落有ID "special"，会被ID选择器选中。&lt;/p&gt;
-    &lt;p&gt;另一个普通段落&lt;/p&gt;
-&lt;/body&gt;
-&lt;/html&gt;
+&lt;p&gt;普通段落&lt;/p&gt;
+&lt;p id="special"&gt;ID选择器选中段落&lt;/p&gt;
+&lt;p&gt;另一个段落&lt;/p&gt;
                     </div>
-                    
+
                     <!-- CSS 代码编辑区 -->
                     <div class="panel code-editor" id="css-2" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
 /* ID选择器 */
-#special {
-    background-color: #ffffcc;
-    padding: 10px;
-    border: 1px solid #ffcc00;
-    font-weight: bold;
-}
+#special { background: #ffffcc; padding: 10px; border: 1px solid #ffcc00; font-weight: bold; }
                     </div>
                 </div>
                 
@@ -269,23 +234,12 @@ h1 {
                     <!-- HTML 代码编辑区 -->
                     <div class="panel code-editor" id="html-3" contenteditable="true">
 <div class="panel-label">HTML (可编辑)</div>
-&lt;!DOCTYPE html&gt;
-&lt;html lang="zh-CN"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;类选择器示例&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h1&gt;类选择器演示&lt;/h1&gt;
-    &lt;p&gt;普通段落&lt;/p&gt;
-    &lt;p class="highlight"&gt;带highlight类的段落&lt;/p&gt;
-    &lt;div class="highlight"&gt;带highlight类的div&lt;/div&gt;
-    &lt;p class="highlight"&gt;另一个带highlight类的段落&lt;/p&gt;
-&lt;/body&gt;
-&lt;/html&gt;
+&lt;p&gt;普通段落&lt;/p&gt;
+&lt;p class="highlight"&gt;高亮段落1&lt;/p&gt;
+&lt;div class="highlight"&gt;高亮div&lt;/div&gt;
+&lt;p class="highlight"&gt;高亮段落2&lt;/p&gt;
                     </div>
-                    
+
                     <!-- CSS 代码编辑区 -->
                     <div class="panel code-editor" id="css-3" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
@@ -352,32 +306,17 @@ h1, h2, h3 {
                     <!-- HTML 代码编辑区 -->
                     <div class="panel code-editor" id="html-4" contenteditable="true">
 <div class="panel-label">HTML (可编辑)</div>
-&lt;!DOCTYPE html&gt;
-&lt;html lang="zh-CN"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;分组选择器示例&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h1&gt;一级标题&lt;/h1&gt;
-    &lt;h2&gt;二级标题&lt;/h2&gt;
-    &lt;h3&gt;三级标题&lt;/h3&gt;
-    &lt;p&gt;普通段落&lt;/p&gt;
-&lt;/body&gt;
-&lt;/html&gt;
+&lt;h1&gt;标题1&lt;/h1&gt;
+&lt;h2&gt;标题2&lt;/h2&gt;
+&lt;h3&gt;标题3&lt;/h3&gt;
+&lt;p&gt;段落&lt;/p&gt;
                     </div>
-                    
+
                     <!-- CSS 代码编辑区 -->
                     <div class="panel code-editor" id="css-4" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
-/* 分组选择器：同时选择h1, h2, h3元素 */
-h1, h2, h3 {
-    color: #333;
-    font-family: Arial, sans-serif;
-    margin-top: 20px;
-    border-bottom: 1px solid #ccc;
-}
+/* 分组选择器 */
+h1, h2, h3 { color: #333; border-bottom: 1px solid #ccc; }
                     </div>
                 </div>
                 
