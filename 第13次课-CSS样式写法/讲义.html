@@ -527,19 +527,14 @@ p {
                 </div>
                 <div class="panel css-editor" id="css-1" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
-/* 第19次课-CSS样式写法实验 */
+/* 容器样式 - 尝试修改以下属性 */
 .container {
     width: 200px;
-    height: 200px;
-    background-color: #f0f0f0;
     padding: 20px;
     border: 2px solid #333;
     border-radius: 10px;
-    margin: 20px;
-    /* 在这里添加你的CSS样式 */
+    background-color: #f0f0f0;
 }
-
-/* 在这里添加更多CSS样式 */
                 </div>
             </div>
             <div class="action-bar">
@@ -613,105 +608,33 @@ p {
 <div class="panel-label">HTML (可编辑)</div>
 &lt;div class="card card--featured"&gt;
     &lt;div class="card__header"&gt;
-        &lt;h3 class="card__title"&gt;BEM命名规范示例&lt;/h3&gt;
-        &lt;p class="card__subtitle"&gt;这是一个演示BEM命名规范的卡片组件&lt;/p&gt;
+        &lt;h3 class="card__title"&gt;BEM命名规范&lt;/h3&gt;
     &lt;/div&gt;
     &lt;div class="card__content"&gt;
-        &lt;p&gt;BEM命名规范使用Block__Element--Modifier的格式，使CSS类名更加清晰和可维护。&lt;/p&gt;
+        &lt;p&gt;Block__Element--Modifier&lt;/p&gt;
     &lt;/div&gt;
     &lt;div class="card__footer"&gt;
-        &lt;button class="btn btn--primary"&gt;主要按钮&lt;/button&gt;
-        &lt;button class="btn btn--secondary"&gt;次要按钮&lt;/button&gt;
+        &lt;button class="btn btn--primary"&gt;确定&lt;/button&gt;
     &lt;/div&gt;
 &lt;/div&gt;
                 </div>
-                
+
                 <!-- CSS 代码编辑区 -->
                 <div class="panel code-editor" id="css-3" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
-/* 第13次课-CSS架构与命名规范实验 */
-/* BEM命名规范示例 */
-
-/* Block: card */
+/* BEM: Block__Element--Modifier */
 .card {
-    width: 300px;
-    background-color: white;
+    padding: 20px;
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 20px;
-    margin: 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
 }
-
-/* Block modifier: card--featured */
-.card--featured {
-    border-color: #0066cc;
-    box-shadow: 0 4px 8px rgba(0,102,204,0.2);
-    transform: translateY(-5px);
-}
-
-/* Element: card__header */
-.card__header {
-    margin-bottom: 15px;
-}
-
-/* Element: card__title */
-.card__title {
-    margin: 0;
-    color: #333;
-    font-size: 24px;
-}
-
-/* Element: card__subtitle */
-.card__subtitle {
-    margin: 5px 0 0 0;
-    color: #666;
-    font-size: 14px;
-}
-
-/* Element: card__content */
-.card__content {
-    margin-bottom: 20px;
-    line-height: 1.6;
-}
-
-/* Element: card__footer */
-.card__footer {
-    display: flex;
-    gap: 10px;
-}
-
-/* Block: btn */
-.btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
-}
-
-/* Block modifier: btn--primary */
-.btn--primary {
-    background-color: #0066cc;
-    color: white;
-}
-
-/* Block modifier: btn--secondary */
-.btn--secondary {
-    background-color: #6c757d;
-    color: white;
-}
-
-/* Hover effects */
-.btn--primary:hover {
-    background-color: #0052a3;
-}
-
-.btn--secondary:hover {
-    background-color: #5a6268;
-}
+.card--featured { border-color: #0066cc; }
+.card__header { margin-bottom: 10px; }
+.card__title { font-size: 20px; color: #333; }
+.card__content { color: #666; }
+.card__footer { margin-top: 15px; }
+.btn { padding: 8px 16px; border-radius: 4px; border: none; }
+.btn--primary { background: #0066cc; color: #fff; }
                 </div>
             </div>
             
