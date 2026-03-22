@@ -448,36 +448,27 @@
                 <!-- 代码编辑区 -->
                 <div class="panel code-editor" id="html-image-basic" contenteditable="true">
 <div class="panel-label">HTML (可编辑)</div>
-&lt;!DOCTYPE html&gt;
-&lt;html lang="zh-CN"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;title&gt;基础图片练习&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h1&gt;基础图片练习&lt;/h1&gt;
-    
-    &lt;h2&gt;1. 我的相册&lt;/h2&gt;
-    
-    &lt;h3&gt;风景照片&lt;/h3&gt;
-    &lt;img src="https://picsum.photos/id/1/400/300" alt="美丽的风景"&gt;
-    
-    &lt;h3&gt;城市照片&lt;/h3&gt;
-    &lt;img src="https://picsum.photos/id/2/400/300" alt="繁华的城市"&gt;
-    
-    &lt;h3&gt;动物照片&lt;/h3&gt;
-    &lt;img src="https://picsum.photos/id/3/400/300" alt="可爱的动物"&gt;
-    
-    &lt;h2&gt;2. 练习任务&lt;/h2&gt;
-    &lt;p&gt;请修改以上代码，完成以下任务：&lt;/p&gt;
-    &lt;ol&gt;
-        &lt;li&gt;为所有图片添加width和height属性，设置合适的尺寸&lt;/li&gt;
-        &lt;li&gt;为所有图片添加title属性，描述图片内容&lt;/li&gt;
-        &lt;li&gt;为所有图片添加loading="lazy"属性&lt;/li&gt;
-        &lt;li&gt;尝试修改图片ID（如id/1改为id/10），查看不同图片&lt;/li&gt;
-    &lt;/ol&gt;
-&lt;/body&gt;
-&lt;/html&gt;
+&lt;h1&gt;基础图片练习&lt;/h1&gt;
+
+&lt;h2&gt;1. 我的相册&lt;/h2&gt;
+
+&lt;h3&gt;风景照片&lt;/h3&gt;
+&lt;img src="https://picsum.photos/id/1/400/300" alt="美丽的风景"&gt;
+
+&lt;h3&gt;城市照片&lt;/h3&gt;
+&lt;img src="https://picsum.photos/id/2/400/300" alt="繁华的城市"&gt;
+
+&lt;h3&gt;动物照片&lt;/h3&gt;
+&lt;img src="https://picsum.photos/id/3/400/300" alt="可爱的动物"&gt;
+
+&lt;h2&gt;2. 练习任务&lt;/h2&gt;
+&lt;p&gt;请修改以上代码，完成以下任务：&lt;/p&gt;
+&lt;ol&gt;
+    &lt;li&gt;为所有图片添加width和height属性，设置合适的尺寸&lt;/li&gt;
+    &lt;li&gt;为所有图片添加title属性，描述图片内容&lt;/li&gt;
+    &lt;li&gt;为所有图片添加loading="lazy"属性&lt;/li&gt;
+    &lt;li&gt;尝试修改图片ID（如id/1改为id/10），查看不同图片&lt;/li&gt;
+&lt;/ol&gt;
                 </div>
                 
                 <!-- 预览区 -->
@@ -1090,72 +1081,32 @@
                 <!-- 代码编辑区 -->
                 <div class="panel code-editor" id="html-image-advanced" contenteditable="true">
 <div class="panel-label">HTML (可编辑)</div>
-&lt;!DOCTYPE html&gt;
-&lt;html lang="zh-CN"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;title&gt;综合图片练习&lt;/title&gt;
-    &lt;style&gt;
-        .image-gallery {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        .gallery-item {
-            width: 300px;
-            border: 1px solid #ddd;
-            padding: 10px;
-            border-radius: 5px;
-        }
-        .gallery-item img {
-            max-width: 100%;
-            height: auto;
-        }
-    &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h1&gt;综合图片练习&lt;/h1&gt;
-    
-    &lt;h2&gt;1. 我的图片库&lt;/h2&gt;
-    
-    &lt;div class="image-gallery"&gt;
-        &lt;div class="gallery-item"&gt;
-            &lt;h3&gt;风景照片 (JPG)&lt;/h3&gt;
-            &lt;img src="https://picsum.photos/id/10/300/200" alt="风景照片" loading="lazy"&gt;
-            &lt;p&gt;这是一张使用JPG格式的风景照片。&lt;/p&gt;
-        &lt;/div&gt;
-        
-        &lt;div class="gallery-item"&gt;
-            &lt;h3&gt;网站Logo (PNG)&lt;/h3&gt;
-            &lt;img src="https://via.placeholder.com/300x200/007bff/ffffff?text=Website+Logo" alt="网站Logo" loading="lazy"&gt;
-            &lt;p&gt;这是一个使用PNG格式的网站Logo。&lt;/p&gt;
-        &lt;/div&gt;
-        
-        &lt;div class="gallery-item"&gt;
-            &lt;h3&gt;简单动画 (GIF)&lt;/h3&gt;
-            &lt;img src="https://media.giphy.com/media/3o7aD9T8ZRXqfQv04o/giphy.gif" alt="简单动画" loading="lazy" width="300" height="200"&gt;
-            &lt;p&gt;这是一个使用GIF格式的简单动画。&lt;/p&gt;
-        &lt;/div&gt;
-        
-        &lt;div class="gallery-item"&gt;
-            &lt;h3&gt;矢量图形 (SVG)&lt;/h3&gt;
-            &lt;svg width="300" height="200" xmlns="http://www.w3.org/2000/svg" style="background-color: #f0f0f0;"&gt;
-                &lt;circle cx="150" cy="100" r="80" fill="#28a745"&gt;&lt;/circle&gt;
-                &lt;text x="150" y="115" font-family="Arial" font-size="24" fill="white" text-anchor="middle"&gt;SVG图形&lt;/text&gt;
-            &lt;/svg&gt;
-            &lt;p&gt;这是一个使用SVG格式的矢量图形。&lt;/p&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-    
-    &lt;h2&gt;2. 练习任务&lt;/h2&gt;
-    &lt;ol&gt;
-        &lt;li&gt;为每个图片添加合适的title属性&lt;/li&gt;
-        &lt;li&gt;调整gallery-item的CSS样式，改变边框颜色和间距&lt;/li&gt;
-        &lt;li&gt;添加更多的图片到图片库中&lt;/li&gt;
-        &lt;li&gt;尝试使用相对路径引用本地图片（如果有）&lt;/li&gt;
-    &lt;/ol&gt;
-&lt;/body&gt;
-&lt;/html&gt;
+&lt;h1&gt;综合图片练习&lt;/h1&gt;
+
+&lt;h2&gt;1. 我的图片库&lt;/h2&gt;
+
+&lt;h3&gt;风景照片 (JPG)&lt;/h3&gt;
+&lt;img src="https://picsum.photos/id/10/300/200" alt="风景照片" loading="lazy"&gt;
+
+&lt;h3&gt;网站Logo (PNG)&lt;/h3&gt;
+&lt;img src="https://via.placeholder.com/300x200/007bff/ffffff?text=Website+Logo" alt="网站Logo" loading="lazy"&gt;
+
+&lt;h3&gt;简单动画 (GIF)&lt;/h3&gt;
+&lt;img src="https://media.giphy.com/media/3o7aD9T8ZRXqfQv04o/giphy.gif" alt="简单动画" loading="lazy" width="300" height="200"&gt;
+
+&lt;h3&gt;矢量图形 (SVG)&lt;/h3&gt;
+&lt;svg width="300" height="200" xmlns="http://www.w3.org/2000/svg" style="background-color: #f0f0f0;"&gt;
+    &lt;circle cx="150" cy="100" r="80" fill="#28a745"&gt;&lt;/circle&gt;
+    &lt;text x="150" y="115" font-family="Arial" font-size="24" fill="white" text-anchor="middle"&gt;SVG图形&lt;/text&gt;
+&lt;/svg&gt;
+
+&lt;h2&gt;2. 练习任务&lt;/h2&gt;
+&lt;ol&gt;
+    &lt;li&gt;为每个图片添加合适的title属性&lt;/li&gt;
+    &lt;li&gt;尝试修改图片尺寸和样式&lt;/li&gt;
+    &lt;li&gt;添加更多的图片到图片库中&lt;/li&gt;
+    &lt;li&gt;尝试使用相对路径引用本地图片（如果有）&lt;/li&gt;
+&lt;/ol&gt;
                 </div>
                 
                 <!-- 预览区 -->
