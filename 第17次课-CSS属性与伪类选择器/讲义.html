@@ -122,49 +122,19 @@ input[type="password"] {
                     <!-- HTML 代码编辑区 -->
                     <div class="panel code-editor" id="html-1" contenteditable="true">
 <div class="panel-label">HTML (可编辑)</div>
-&lt;!-- 1. 普通按钮 --&gt;
 &lt;button&gt;普通按钮&lt;/button&gt;
-
-&lt;!-- 2. 禁用按钮 (有 disabled 属性) --&gt;
-&lt;button disabled&gt;我被禁用了&lt;/button&gt;
-
-&lt;br&gt;&lt;br&gt;
-
-&lt;!-- 3. 文本框 (type="text") --&gt;
-&lt;input type="text" value="普通文本"&gt;
-
-&lt;!-- 4. 密码框 (type="password") --&gt;
-&lt;input type="password" value="123456"&gt;
+&lt;button disabled&gt;禁用按钮&lt;/button&gt;
+&lt;input type="text" value="文本框"&gt;
+&lt;input type="password" value="密码"&gt;
                     </div>
-                    
+
                     <!-- CSS 代码编辑区 -->
                     <div class="panel code-editor" id="css-1" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
-/* 1. 存在匹配：选择所有带有 disabled 属性的元素 */
-[disabled] {
-    background-color: #f5f5f5;
-    color: #aaaaaa;
-    border: 1px dashed #ccc;
-    cursor: not-allowed;
-    padding: 8px 16px;
-}
-
-/* 2. 精确匹配：选择 type 等于 password 的 input 元素 */
-input[type="password"] {
-    border: 2px solid #FF3B30;
-    background-color: #FFF0F0;
-    color: red;
-    padding: 8px;
-}
-
-/* 给所有按钮和输入框添加基础样式 */
-button, input {
-    padding: 8px 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    margin-right: 10px;
-}
+/* 属性选择器 */
+[disabled] { background: #f5f5f5; color: #aaa; cursor: not-allowed; }
+input[type="password"] { border: 2px solid #FF3B30; }
+button, input { padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
                     </div>
                 </div>
                 
