@@ -210,7 +210,6 @@ console.log(arr);  // [1, 2, 3, empty × 2]
             </div>
             
             <div class="lab-body split">
-                <!-- HTML 预览说明 -->
                 <div class="panel html-viewer">
 <div class="panel-label">HTML 预览</div>
 &lt;h3&gt;学生成绩管理&lt;/h3&gt;
@@ -219,23 +218,14 @@ console.log(arr);  // [1, 2, 3, empty × 2]
 &lt;p&gt;第一名成绩：&lt;span id="first"&gt;&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;最后一名成绩：&lt;span id="last"&gt;&lt;/span&gt;&lt;/p&gt;
                 </div>
-                
-                <!-- JS 代码编辑区 -->
+
                 <div class="panel code-editor" id="code-lab1" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
-// 创建成绩数组
 let scores = [85, 92, 78, 95, 88, 76, 90];
 
-// 显示成绩列表
 document.getElementById('scores-display').textContent = scores.join(', ');
-
-// 显示学生人数
 document.getElementById('count').textContent = scores.length + ' 人';
-
-// 显示第一名成绩（索引0）
 document.getElementById('first').textContent = scores[0];
-
-// 显示最后一名成绩
 document.getElementById('last').textContent = scores[scores.length - 1];
                 </div>
             </div>
@@ -574,38 +564,28 @@ console.log(adultNames);  // ['小红', '小刚']
 &lt;button onclick="showTop3()"&gt;前三名&lt;/button&gt;
 &lt;div id="result"&gt;&lt;/div&gt;
                 </div>
-                
+
                 <div class="panel code-editor" id="code-lab2" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
-// 成绩数据
 const scores = [85, 92, 78, 95, 88, 56, 90, 72, 68, 99];
 
-// 显示全部成绩
 function showAll() {
-    const result = '全部成绩：' + scores.join(', ');
-    document.getElementById('result').innerHTML = result;
+    document.getElementById('result').innerHTML = '全部成绩：' + scores.join(', ');
 }
 
-// 显示及格名单（>= 60分）
 function showPassed() {
     const passed = scores.filter(s => s >= 60);
-    const result = `及格人数：${passed.length}人&lt;br&gt;成绩：${passed.join(', ')}`;
-    document.getElementById('result').innerHTML = result;
+    document.getElementById('result').innerHTML = `及格人数：${passed.length}人&lt;br&gt;成绩：${passed.join(', ')}`;
 }
 
-// 计算平均分
 function showAverage() {
-    const sum = scores.reduce((total, s) => total + s, 0);
-    const avg = (sum / scores.length).toFixed(2);
+    const avg = (scores.reduce((a, b) => a + b, 0) / scores.length).toFixed(2);
     document.getElementById('result').innerHTML = '平均分：' + avg;
 }
 
-// 显示前三名
 function showTop3() {
-    const sorted = [...scores].sort((a, b) => b - a);
-    const top3 = sorted.slice(0, 3);
-    const result = `🥇 ${top3[0]}分&lt;br&gt;🥈 ${top3[1]}分&lt;br&gt;🥉 ${top3[2]}分`;
-    document.getElementById('result').innerHTML = result;
+    const sorted = [...scores].sort((a, b) => b - a).slice(0, 3);
+    document.getElementById('result').innerHTML = `🥇 ${sorted[0]}分&lt;br&gt;🥈 ${sorted[1]}分&lt;br&gt;🥉 ${sorted[2]}分`;
 }
                 </div>
             </div>
@@ -856,44 +836,29 @@ console.log(merged2);  // 同上
 &lt;button onclick="addHobby()"&gt;添加爱好&lt;/button&gt;
 &lt;button onclick="updateAge()"&gt;过生日&lt;/button&gt;
                 </div>
-                
+
                 <div class="panel code-editor" id="code-lab3" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
-// 创建个人信息对象
 let person = {
-    name: '小明',
-    age: 20,
-    city: '北京',
-    hobbies: ['编程', '游戏'],
-    
-    // 自我介绍方法
-    introduce() {
-        return `大家好，我是${this.name}，${this.age}岁，来自${this.city}`;
-    }
+    name: '小明', age: 20, city: '北京', hobbies: ['编程', '游戏'],
+    introduce() { return `大家好，我是${this.name}，${this.age}岁，来自${this.city}`; }
 };
 
-// 显示信息卡片
 function showCard() {
-    let html = `
+    document.getElementById('card').innerHTML = `
         &lt;p&gt;&lt;strong&gt;姓名：&lt;/strong&gt;${person.name}&lt;/p&gt;
         &lt;p&gt;&lt;strong&gt;年龄：&lt;/strong&gt;${person.age}&lt;/p&gt;
         &lt;p&gt;&lt;strong&gt;城市：&lt;/strong&gt;${person.city}&lt;/p&gt;
         &lt;p&gt;&lt;strong&gt;爱好：&lt;/strong&gt;${person.hobbies.join('、')}&lt;/p&gt;
         &lt;p&gt;&lt;em&gt;${person.introduce()}&lt;/em&gt;&lt;/p&gt;
     `;
-    document.getElementById('card').innerHTML = html;
 }
 
-// 添加爱好
 function addHobby() {
     let hobby = prompt('请输入新爱好：');
-    if (hobby) {
-        person.hobbies.push(hobby);
-        showCard();
-    }
+    if (hobby) { person.hobbies.push(hobby); showCard(); }
 }
 
-// 过生日
 function updateAge() {
     person.age++;
     alert(`生日快乐！${person.name}现在${person.age}岁了！`);
@@ -1034,75 +999,40 @@ printUser(person);  // '张三，25岁'
 &lt;/div&gt;
 &lt;div id="student-list"&gt;&lt;/div&gt;
                 </div>
-                
+
                 <div class="panel code-editor" id="code-lab4" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
-// 学生数据
-let students = [
-    { id: 1, name: '小明', score: 85 },
-    { id: 2, name: '小红', score: 92 },
-    { id: 3, name: '小刚', score: 78 }
-];
+let students = [{ id: 1, name: '小明', score: 85 }, { id: 2, name: '小红', score: 92 }, { id: 3, name: '小刚', score: 78 }];
 let nextId = 4;
 
-// 添加学生
 function addStudent() {
     const name = document.getElementById('name-input').value;
     const score = Number(document.getElementById('score-input').value);
-    
-    if (!name || isNaN(score)) {
-        alert('请输入有效的姓名和成绩');
-        return;
-    }
-    
+    if (!name || isNaN(score)) { alert('请输入有效的姓名和成绩'); return; }
     students.push({ id: nextId++, name, score });
     document.getElementById('name-input').value = '';
     document.getElementById('score-input').value = '';
     showAllStudents();
 }
 
-// 显示全部学生
 function showAllStudents() {
-    const html = students.map(s => 
-        `&lt;p&gt;${s.id}. ${s.name} - ${s.score}分 
-        &lt;span onclick="removeStudent(${s.id})" style="color:red;cursor:pointer"&gt;[删除]&lt;/span&gt;&lt;/p&gt;`
-    ).join('');
+    const html = students.map(s => `&lt;p&gt;${s.id}. ${s.name} - ${s.score}分 &lt;span onclick="removeStudent(${s.id})" style="color:red;cursor:pointer"&gt;[删除]&lt;/span&gt;&lt;/p&gt;`).join('');
     document.getElementById('student-list').innerHTML = html || '暂无学生';
 }
 
-// 删除学生
-function removeStudent(id) {
-    students = students.filter(s => s.id !== id);
-    showAllStudents();
-}
+function removeStudent(id) { students = students.filter(s => s.id !== id); showAllStudents(); }
 
-// 显示统计信息
 function showStats() {
-    if (students.length === 0) {
-        document.getElementById('student-list').innerHTML = '暂无数据';
-        return;
-    }
-    
+    if (!students.length) { document.getElementById('student-list').innerHTML = '暂无数据'; return; }
     const total = students.length;
     const avg = (students.reduce((sum, s) => sum + s.score, 0) / total).toFixed(2);
     const max = Math.max(...students.map(s => s.score));
     const min = Math.min(...students.map(s => s.score));
     const passed = students.filter(s => s.score >= 60).length;
-    
-    document.getElementById('student-list').innerHTML = `
-        &lt;p&gt;总人数：${total}&lt;/p&gt;
-        &lt;p&gt;平均分：${avg}&lt;/p&gt;
-        &lt;p&gt;最高分：${max}&lt;/p&gt;
-        &lt;p&gt;最低分：${min}&lt;/p&gt;
-        &lt;p&gt;及格人数：${passed}&lt;/p&gt;
-    `;
+    document.getElementById('student-list').innerHTML = `&lt;p&gt;总人数：${total}&lt;/p&gt;&lt;p&gt;平均分：${avg}&lt;/p&gt;&lt;p&gt;最高分：${max}&lt;/p&gt;&lt;p&gt;最低分：${min}&lt;/p&gt;&lt;p&gt;及格人数：${passed}&lt;/p&gt;`;
 }
 
-// 按成绩排序
-function sortByScore() {
-    students.sort((a, b) => b.score - a.score);
-    showAllStudents();
-}
+function sortByScore() { students.sort((a, b) => b.score - a.score); showAllStudents(); }
                 </div>
             </div>
             

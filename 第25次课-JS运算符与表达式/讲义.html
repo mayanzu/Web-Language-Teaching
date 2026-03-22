@@ -303,22 +303,18 @@ console.log(100 % 30 === 0);  // false，100不能被30整除
     &lt;p&gt;&lt;strong&gt;总计: ￥...&lt;/strong&gt;&lt;/p&gt;
 &lt;/div&gt;
                 </div>
-                
+
                 <div class="panel code-editor" id="code-cart" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
-// --- 商品信息 ---
-const priceA = 15.5;  // 商品A单价
-const countA = 2;     // 商品A数量
+const priceA = 15.5;
+const countA = 2;
+const priceB = 30;
+const countB = 1;
 
-const priceB = 30;    // 商品B单价
-const countB = 1;     // 商品B数量
-
-// --- 计算过程 ---
 const totalA = priceA * countA;
 const totalB = priceB * countB;
 const finalTotal = totalA + totalB;
 
-// --- 显示结果 ---
 const outputDiv = document.getElementById('cart-output');
 outputDiv.innerHTML = `
     &lt;p&gt;商品A: ￥${priceA} * ${countA}件 = ￥${totalA}&lt;/p&gt;
@@ -428,7 +424,7 @@ console.log(++b);  // b 变为 6，然后打印 6
 &lt;button onclick="increment()"&gt;增加 +1&lt;/button&gt;
 &lt;button onclick="decrement()"&gt;减少 -1&lt;/button&gt;
                 </div>
-                
+
                 <div class="panel code-editor" id="code-counter" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
 let currentCount = 0;
@@ -738,28 +734,18 @@ true || check();   // 控制台无输出
     &lt;p&gt;审查结果: ...&lt;/p&gt;
 &lt;/div&gt;
                 </div>
-                
+
                 <div class="panel code-editor" id="code-gate" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
-// --- 访客信息 ---
 const age = 25;
 const hasTicket = true;
 const isVIP = false;
 
-// --- 入场规则 ---
-// 规则1: 必须持有门票
 const rule1 = hasTicket;
-
-// 规则2: 年龄必须在 12 到 65 岁之间
 const rule2 = age >= 12 && age <= 65;
-
-// 规则3: VIP客户不受年龄限制
 const rule3 = isVIP;
-
-// 最终判断: (满足规则1和规则2) 或者 满足规则3
 const canEnter = (rule1 && rule2) || rule3;
 
-// --- 显示结果 ---
 const outputDiv = document.getElementById('gate-output');
 const message = canEnter ? ' 允许入场' : '⛔ 拒绝入场';
 
@@ -956,27 +942,20 @@ NaN          // 非数字
 &lt;p&gt;优惠券: 减10元&lt;/p&gt;
 &lt;div id="discount-output"&gt;&lt;/div&gt;
                 </div>
-                
+
                 <div class="panel code-editor" id="code-discount" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
-const originalPrice = 120;     // 商品原价
-const memberDiscount = 0.8;    // 会员折扣 8折
-const couponValue = 10;        // 优惠券减10元
-
+const originalPrice = 120;
+const memberDiscount = 0.8;
+const couponValue = 10;
 const isMember = true;
 const hasCoupon = false;
 
-// 计算会员价（使用短路求值）
 let price = originalPrice;
 isMember && (price *= memberDiscount);
-
-// 计算用券价
 hasCoupon && (price -= couponValue);
-
-// 最终价格不能低于 0
 const finalPrice = price < 0 ? 0 : price;
 
-// 显示结果
 const output = document.getElementById('discount-output');
 output.innerHTML = `
     &lt;hr&gt;

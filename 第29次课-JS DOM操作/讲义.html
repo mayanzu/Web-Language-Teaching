@@ -211,23 +211,17 @@ function addToCart() {
 &lt;/div&gt;
 &lt;div id="output"&gt;&lt;/div&gt;
                 </div>
-                
+
                 <div class="panel code-editor" id="code-lab1" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
-// 获取容器元素
 const container = document.getElementById('container');
-
-// 查看子元素
 const children = container.children;
 let info = `容器有 ${children.length} 个子元素：\n`;
 
 for (let i = 0; i < children.length; i++) {
     info += `${i + 1}. <${children[i].tagName.toLowerCase()}>\n`;
 }
-
-// 查看父元素
 info += `\n父元素: <${container.parentElement.tagName.toLowerCase()}>`;
-
 document.getElementById('output').innerText = info;
                 </div>
             </div>
@@ -408,36 +402,26 @@ const items = document.querySelectorAll('.item');
 &lt;button onclick="selectSpecial()"&gt;选择特殊盒子&lt;/button&gt;
 &lt;div id="select-output"&gt;&lt;/div&gt;
                 </div>
-                
+
                 <div class="panel code-editor" id="code-lab2" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
 function selectById() {
-    // 通过ID选择标题
     const title = document.getElementById('title');
-    document.getElementById('select-output').innerText = 
-        ` 找到标题: "${title.innerText}"`;
+    document.getElementById('select-output').innerText = ` 找到标题: "${title.innerText}"`;
 }
 
 function selectByClass() {
-    // 通过class选择所有盒子
     const boxes = document.querySelectorAll('.box');
     let result = ` 找到${boxes.length}个盒子:\n`;
-    boxes.forEach((box, index) => {
-        result += `${index + 1}. ${box.innerText}\n`;
-    });
+    boxes.forEach((box, i) => result += `${i + 1}. ${box.innerText}\n`);
     document.getElementById('select-output').innerText = result;
 }
 
 function selectSpecial() {
-    // 使用组合选择器选择特殊盒子
     const special = document.querySelector('.box.special');
-    if (special) {
-        document.getElementById('select-output').innerText = 
-            ` 找到特殊盒子: "${special.innerText}"`;
-    } else {
-        document.getElementById('select-output').innerText = 
-            ' 未找到特殊盒子';
-    }
+    document.getElementById('select-output').innerText = special
+        ? ` 找到特殊盒子: "${special.innerText}"`
+        : ' 未找到特殊盒子';
 }
                 </div>
             </div>
@@ -659,30 +643,18 @@ box.classList.replace('old', 'new');
   &lt;p&gt;这是可以编辑的内容区域&lt;/p&gt;
 &lt;/div&gt;
                 </div>
-                
+
                 <div class="panel code-editor" id="code-lab3" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
 function changeTitle() {
     const input = document.getElementById('titleInput');
     const title = document.getElementById('displayTitle');
-    
-    if (input.value.trim()) {
-        title.innerText = input.value;
-        input.value = '';
-    } else {
-        alert('请输入标题');
-    }
+    if (input.value.trim()) { title.innerText = input.value; input.value = ''; }
+    else alert('请输入标题');
 }
 
-function toggleTheme() {
-    const box = document.getElementById('display-box');
-    box.classList.toggle('dark-theme');
-}
-
-function toggleSize() {
-    const box = document.getElementById('display-box');
-    box.classList.toggle('large-text');
-}
+function toggleTheme() { document.getElementById('display-box').classList.toggle('dark-theme'); }
+function toggleSize() { document.getElementById('display-box').classList.toggle('large-text'); }
                 </div>
             </div>
             
@@ -860,56 +832,38 @@ while (container.firstChild) {
 &lt;/div&gt;
 &lt;div id="todoList"&gt;&lt;/div&gt;
                 </div>
-                
+
                 <div class="panel code-editor" id="code-lab4" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
 function addTodo() {
     const input = document.getElementById('todoInput');
     const text = input.value.trim();
-    
-    if (!text) {
-        alert('请输入内容');
-        return;
-    }
-    
-    // 创建待办项
+    if (!text) { alert('请输入内容'); return; }
+
     const item = document.createElement('div');
     item.className = 'todo-item';
-    
-    // 创建文本
+
     const span = document.createElement('span');
     span.innerText = text;
-    
-    // 创建完成按钮
+
     const doneBtn = document.createElement('button');
     doneBtn.innerText = '✓';
     doneBtn.className = 'done-btn';
-    doneBtn.onclick = function() {
-        span.classList.toggle('completed');
-    };
-    
-    // 创建删除按钮
+    doneBtn.onclick = () => span.classList.toggle('completed');
+
     const delBtn = document.createElement('button');
     delBtn.innerText = '✕';
     delBtn.className = 'del-btn';
-    delBtn.onclick = function() {
-        item.remove();
-    };
-    
-    // 组装
+    delBtn.onclick = () => item.remove();
+
     item.appendChild(doneBtn);
     item.appendChild(span);
     item.appendChild(delBtn);
-    
     document.getElementById('todoList').appendChild(item);
     input.value = '';
 }
 
-function clearAll() {
-    if (confirm('确定清空所有待办？')) {
-        document.getElementById('todoList').innerHTML = '';
-    }
-}
+function clearAll() { if (confirm('确定清空所有待办？')) document.getElementById('todoList').innerHTML = ''; }
                 </div>
             </div>
             

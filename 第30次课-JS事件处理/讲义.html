@@ -207,29 +207,15 @@ btn.removeEventListener('click', handleClick);
 &lt;button id="subBtn"&gt;-1&lt;/button&gt;
 &lt;button id="resetBtn"&gt;重置&lt;/button&gt;
                 </div>
-                
+
                 <div class="panel code-editor" id="code-lab1" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
 let count = 0;
 const countSpan = document.getElementById('count');
 
-// +1 按钮
-document.getElementById('addBtn').addEventListener('click', function() {
-    count++;
-    countSpan.innerText = count;
-});
-
-// -1 按钮
-document.getElementById('subBtn').addEventListener('click', function() {
-    count--;
-    countSpan.innerText = count;
-});
-
-// 重置按钮
-document.getElementById('resetBtn').addEventListener('click', function() {
-    count = 0;
-    countSpan.innerText = count;
-});
+document.getElementById('addBtn').addEventListener('click', () => { count++; countSpan.innerText = count; });
+document.getElementById('subBtn').addEventListener('click', () => { count--; countSpan.innerText = count; });
+document.getElementById('resetBtn').addEventListener('click', () => { count = 0; countSpan.innerText = count; });
                 </div>
             </div>
             
@@ -483,53 +469,27 @@ form.addEventListener('submit', function(e) {
 &lt;p&gt;状态：&lt;span id="status"&gt;等待输入&lt;/span&gt;&lt;/p&gt;
 &lt;div id="searchResult"&gt;&lt;/div&gt;
                 </div>
-                
+
                 <div class="panel code-editor" id="code-lab2" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
 const input = document.getElementById('searchInput');
 const charCount = document.getElementById('charCount');
 const status = document.getElementById('status');
 const result = document.getElementById('searchResult');
-
-// 模拟数据
 const data = ['JavaScript', 'HTML', 'CSS', 'Python', 'Java', 'React', 'Vue'];
 
-// 实时输入
 input.addEventListener('input', function() {
     charCount.innerText = this.value.length;
-    
-    // 搜索匹配
     const keyword = this.value.toLowerCase();
     if (keyword) {
-        const matches = data.filter(item => 
-            item.toLowerCase().includes(keyword)
-        );
-        result.innerHTML = matches.length 
-            ? matches.map(m => `&lt;div&gt;${m}&lt;/div&gt;`).join('')
-            : '&lt;div&gt;无匹配结果&lt;/div&gt;';
-    } else {
-        result.innerHTML = '';
-    }
+        const matches = data.filter(item => item.toLowerCase().includes(keyword));
+        result.innerHTML = matches.length ? matches.map(m => `&lt;div&gt;${m}&lt;/div&gt;`).join('') : '&lt;div&gt;无匹配结果&lt;/div&gt;';
+    } else result.innerHTML = '';
 });
 
-// 获得焦点
-input.addEventListener('focus', function() {
-    status.innerText = '正在输入...';
-    this.style.borderColor = '#0066CC';
-});
-
-// 失去焦点
-input.addEventListener('blur', function() {
-    status.innerText = '输入完成';
-    this.style.borderColor = '#ddd';
-});
-
-// 按Enter键
-input.addEventListener('keyup', function(e) {
-    if (e.key === 'Enter') {
-        alert('搜索: ' + this.value);
-    }
-});
+input.addEventListener('focus', () => { status.innerText = '正在输入...'; input.style.borderColor = '#0066CC'; });
+input.addEventListener('blur', () => { status.innerText = '输入完成'; input.style.borderColor = '#ddd'; });
+input.addEventListener('keyup', e => { if (e.key === 'Enter') alert('搜索: ' + input.value); });
                 </div>
             </div>
             
@@ -702,37 +662,17 @@ document.getElementById('child').addEventListener('click', function(e) {
 &lt;p&gt;位置：&lt;span id="position"&gt;(0, 0)&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;事件类型：&lt;span id="eventType"&gt;-&lt;/span&gt;&lt;/p&gt;
                 </div>
-                
+
                 <div class="panel code-editor" id="code-lab3" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
 const area = document.getElementById('trackArea');
 const posSpan = document.getElementById('position');
 const typeSpan = document.getElementById('eventType');
 
-// 鼠标移动
-area.addEventListener('mousemove', function(e) {
-    posSpan.innerText = `(${e.clientX}, ${e.clientY})`;
-    typeSpan.innerText = e.type;
-});
-
-// 鼠标进入
-area.addEventListener('mouseenter', function(e) {
-    this.style.backgroundColor = '#e3f2fd';
-    typeSpan.innerText = e.type;
-});
-
-// 鼠标离开
-area.addEventListener('mouseleave', function(e) {
-    this.style.backgroundColor = '#f0f0f0';
-    typeSpan.innerText = e.type;
-    posSpan.innerText = '(-, -)';
-});
-
-// 点击
-area.addEventListener('click', function(e) {
-    typeSpan.innerText = e.type;
-    alert(`点击位置: (${e.clientX}, ${e.clientY})`);
-});
+area.addEventListener('mousemove', e => { posSpan.innerText = `(${e.clientX}, ${e.clientY})`; typeSpan.innerText = e.type; });
+area.addEventListener('mouseenter', e => { area.style.backgroundColor = '#e3f2fd'; typeSpan.innerText = e.type; });
+area.addEventListener('mouseleave', e => { area.style.backgroundColor = '#f0f0f0'; typeSpan.innerText = e.type; posSpan.innerText = '(-, -)'; });
+area.addEventListener('click', e => { typeSpan.innerText = e.type; alert(`点击位置: (${e.clientX}, ${e.clientY})`); });
                 </div>
             </div>
             
@@ -841,26 +781,17 @@ function addTodo(text) {
 &lt;div id="gameBoard"&gt;&lt;/div&gt;
 &lt;button id="startBtn"&gt;开始游戏&lt;/button&gt;
                 </div>
-                
+
                 <div class="panel code-editor" id="code-lab4" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
-let score = 0;
-let targetColor = '';
+let score = 0, targetColor = '';
 const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7', '#dfe6e9'];
-
 const board = document.getElementById('gameBoard');
 const scoreSpan = document.getElementById('score');
 const targetSpan = document.getElementById('targetColor');
 
-// 开始游戏
-document.getElementById('startBtn').addEventListener('click', function() {
-    score = 0;
-    scoreSpan.innerText = score;
-    createCards();
-    setTarget();
-});
+document.getElementById('startBtn').addEventListener('click', () => { score = 0; scoreSpan.innerText = score; createCards(); setTarget(); });
 
-// 创建卡片
 function createCards() {
     board.innerHTML = '';
     for (let i = 0; i < 9; i++) {
@@ -871,7 +802,6 @@ function createCards() {
     }
 }
 
-// 设置目标颜色
 function setTarget() {
     const cards = board.querySelectorAll('.game-card');
     const randomCard = cards[Math.floor(Math.random() * cards.length)];
@@ -880,20 +810,13 @@ function setTarget() {
     targetSpan.innerText = '点击这个颜色!';
 }
 
-// 事件委托处理点击
-board.addEventListener('click', function(e) {
+board.addEventListener('click', e => {
     if (e.target.classList.contains('game-card')) {
         if (e.target.style.backgroundColor === targetColor) {
-            score += 10;
-            scoreSpan.innerText = score;
-            e.target.style.opacity = '0.3';
-            setTimeout(() => {
-                createCards();
-                setTarget();
-            }, 500);
+            score += 10; scoreSpan.innerText = score; e.target.style.opacity = '0.3';
+            setTimeout(() => { createCards(); setTarget(); }, 500);
         } else {
-            score = Math.max(0, score - 5);
-            scoreSpan.innerText = score;
+            score = Math.max(0, score - 5); scoreSpan.innerText = score;
             e.target.classList.add('shake');
             setTimeout(() => e.target.classList.remove('shake'), 300);
         }

@@ -219,34 +219,19 @@ greet();  //  调用函数，输出 Hi!
 &lt;button onclick="generateGreeting()"&gt;生成问候&lt;/button&gt;
 &lt;div id="greet-result"&gt;&lt;/div&gt;
                 </div>
-                
+
                 <div class="panel code-editor" id="code-greet" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
-// 定义问候函数
 function greet(name) {
-    // 获取当前小时
     const hour = new Date().getHours();
-    let greeting;
-    
-    // 根据时间选择问候语
-    if (hour < 12) {
-        greeting = '早上好';
-    } else if (hour < 18) {
-        greeting = '下午好';
-    } else {
-        greeting = '晚上好';
-    }
-    
+    let greeting = hour < 12 ? '早上好' : (hour < 18 ? '下午好' : '晚上好');
     return `${greeting}，${name}！欢迎来学习 JavaScript！`;
 }
 
 function generateGreeting() {
     const nameInput = document.getElementById('name-input');
     const resultDiv = document.getElementById('greet-result');
-    
-    // 调用问候函数
-    const message = greet(nameInput.value);
-    resultDiv.innerHTML = `&lt;p style="font-size: 20px;"&gt;${message}&lt;/p&gt;`;
+    resultDiv.innerHTML = `&lt;p style="font-size: 20px;"&gt;${greet(nameInput.value)}&lt;/p&gt;`;
 }
                 </div>
             </div>
@@ -419,57 +404,23 @@ console.log(result);  // undefined
 &lt;button onclick="doCalculate('div')"&gt;÷&lt;/button&gt;
 &lt;div id="calc-result"&gt;&lt;/div&gt;
                 </div>
-                
+
                 <div class="panel code-editor" id="code-calc" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
-// 四则运算函数
-function add(a, b) {
-    return a + b;
-}
-
-function subtract(a, b) {
-    return a - b;
-}
-
-function multiply(a, b) {
-    return a * b;
-}
-
-function divide(a, b) {
-    if (b === 0) {
-        return '错误：除数不能为0';
-    }
-    return a / b;
-}
+const ops = {
+    add: (a, b) => a + b,
+    sub: (a, b) => a - b,
+    mul: (a, b) => a * b,
+    div: (a, b) => b === 0 ? '错误：除数不能为0' : a / b
+};
+const symbols = { add: '+', sub: '-', mul: '×', div: '÷' };
 
 function doCalculate(operation) {
     const a = Number(document.getElementById('num1').value);
     const b = Number(document.getElementById('num2').value);
     const resultDiv = document.getElementById('calc-result');
-    
-    let result;
-    let symbol;
-    
-    switch (operation) {
-        case 'add':
-            result = add(a, b);
-            symbol = '+';
-            break;
-        case 'sub':
-            result = subtract(a, b);
-            symbol = '-';
-            break;
-        case 'mul':
-            result = multiply(a, b);
-            symbol = '×';
-            break;
-        case 'div':
-            result = divide(a, b);
-            symbol = '÷';
-            break;
-    }
-    
-    resultDiv.innerHTML = `&lt;p style="font-size: 24px;"&gt;${a} ${symbol} ${b} = ${result}&lt;/p&gt;`;
+    const result = ops[operation](a, b);
+    resultDiv.innerHTML = `&lt;p style="font-size: 24px;"&gt;${a} ${symbols[operation]} ${b} = ${result}&lt;/p&gt;`;
 }
                 </div>
             </div>
@@ -649,27 +600,18 @@ const sayHi = () => console.log('Hi!');
 &lt;button onclick="processArray()"&gt;处理数组&lt;/button&gt;
 &lt;div id="array-result"&gt;&lt;/div&gt;
                 </div>
-                
+
                 <div class="panel code-editor" id="code-arrow" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
 function processArray() {
     const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     const resultDiv = document.getElementById('array-result');
-    
-    // 使用箭头函数进行数组操作
-    
-    // 1. map: 每个元素翻倍
+
     const doubled = numbers.map(n => n * 2);
-    
-    // 2. filter: 筛选偶数
     const evens = numbers.filter(n => n % 2 === 0);
-    
-    // 3. reduce: 计算总和
     const sum = numbers.reduce((acc, n) => acc + n, 0);
-    
-    // 4. find: 找到第一个大于5的数
     const firstBig = numbers.find(n => n > 5);
-    
+
     resultDiv.innerHTML = `
         &lt;p&gt;&lt;strong&gt;原数组:&lt;/strong&gt; [${numbers.join(', ')}]&lt;/p&gt;
         &lt;p&gt;&lt;strong&gt;翻倍 (map):&lt;/strong&gt; [${doubled.join(', ')}]&lt;/p&gt;
@@ -832,58 +774,29 @@ console.log(counter2());  // 1（独立的 count）
 &lt;button onclick="resetCounter()"&gt;重置&lt;/button&gt;
 &lt;p id="counter-info"&gt;&lt;/p&gt;
                 </div>
-                
+
                 <div class="panel code-editor" id="code-closure" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
-// 使用闭包创建计数器
 function createCounter(initialValue = 0) {
-    let count = initialValue;  // 私有变量
-    
-    // 返回一个包含多个方法的对象
+    let count = initialValue;
     return {
-        increment: function() {
-            count++;
-            return count;
-        },
-        decrement: function() {
-            count--;
-            return count;
-        },
-        reset: function() {
-            count = initialValue;
-            return count;
-        },
-        getCount: function() {
-            return count;
-        }
+        increment: () => ++count,
+        decrement: () => --count,
+        reset: () => count = initialValue,
+        getCount: () => count
     };
 }
 
-// 创建计数器实例
 const myCounter = createCounter(0);
 
 function updateDisplay() {
     document.getElementById('counter-display').innerText = myCounter.getCount();
-    document.getElementById('counter-info').innerText = 
-        `count 变量被闭包保护，外部无法直接访问`;
+    document.getElementById('counter-info').innerText = 'count 变量被闭包保护，外部无法直接访问';
 }
 
-function increment() {
-    myCounter.increment();
-    updateDisplay();
-}
-
-function decrement() {
-    myCounter.decrement();
-    updateDisplay();
-}
-
-function resetCounter() {
-    myCounter.reset();
-    updateDisplay();
-}
-
-// 初始化显示
+function increment() { myCounter.increment(); updateDisplay(); }
+function decrement() { myCounter.decrement(); updateDisplay(); }
+function resetCounter() { myCounter.reset(); updateDisplay(); }
 updateDisplay();
                 </div>
             </div>
@@ -933,10 +846,9 @@ updateDisplay();
 &lt;button onclick="generatePassword()"&gt;生成密码&lt;/button&gt;
 &lt;div id="pwd-result"&gt;&lt;/div&gt;
                 </div>
-                
+
                 <div class="panel code-editor" id="code-password" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
-// 字符集定义
 const CHARS = {
     upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
     lower: 'abcdefghijklmnopqrstuvwxyz',
@@ -944,11 +856,9 @@ const CHARS = {
     symbols: '!@#$%^&*()_+-=[]{}|;:,.<>?'
 };
 
-// 获取随机字符
-const getRandomChar = (str) => str[Math.floor(Math.random() * str.length)];
+const getRandomChar = str => str[Math.floor(Math.random() * str.length)];
 
-// 打乱字符串
-const shuffleString = (str) => {
+const shuffleString = str => {
     const arr = str.split('');
     for (let i = arr.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -957,46 +867,28 @@ const shuffleString = (str) => {
     return arr.join('');
 };
 
-// 生成密码的主函数
-function createPasswordGenerator() {
-    return function(length, options) {
-        let charPool = '';
-        let password = '';
-        
-        // 根据选项构建字符池
-        if (options.upper) {
-            charPool += CHARS.upper;
-            password += getRandomChar(CHARS.upper);  // 确保至少包含一个
-        }
-        if (options.lower) {
-            charPool += CHARS.lower;
-            password += getRandomChar(CHARS.lower);
-        }
-        if (options.numbers) {
-            charPool += CHARS.numbers;
-            password += getRandomChar(CHARS.numbers);
-        }
-        if (options.symbols) {
-            charPool += CHARS.symbols;
-            password += getRandomChar(CHARS.symbols);
-        }
-        
-        if (charPool === '') {
-            return '请至少选择一种字符类型';
-        }
-        
-        // 填充剩余长度
-        while (password.length < length) {
-            password += getRandomChar(charPool);
-        }
-        
-        // 打乱顺序
-        return shuffleString(password);
-    };
-}
+const generatePwd = (length, options) => {
+    let charPool = '', password = '';
+    if (options.upper) { charPool += CHARS.upper; password += getRandomChar(CHARS.upper); }
+    if (options.lower) { charPool += CHARS.lower; password += getRandomChar(CHARS.lower); }
+    if (options.numbers) { charPool += CHARS.numbers; password += getRandomChar(CHARS.numbers); }
+    if (options.symbols) { charPool += CHARS.symbols; password += getRandomChar(CHARS.symbols); }
+    if (!charPool) return '请至少选择一种字符类型';
+    while (password.length < length) password += getRandomChar(charPool);
+    return shuffleString(password);
+};
 
-// 使用闭包创建生成器
-const generatePwd = createPasswordGenerator();
+function evaluateStrength(pwd) {
+    let score = 0;
+    if (pwd.length >= 8) score++;
+    if (pwd.length >= 12) score++;
+    if (/[A-Z]/.test(pwd)) score++;
+    if (/[a-z]/.test(pwd)) score++;
+    if (/[0-9]/.test(pwd)) score++;
+    if (/[^A-Za-z0-9]/.test(pwd)) score++;
+    const levels = [' 极弱', '弱', '🔸 一般', ' 强', '💪 很强', '🔒 极强'];
+    return levels[Math.min(score, 5)];
+}
 
 function generatePassword() {
     const length = Number(document.getElementById('pwd-length').value);
@@ -1006,30 +898,11 @@ function generatePassword() {
         numbers: document.getElementById('include-num').checked,
         symbols: document.getElementById('include-symbol').checked
     };
-    
     const password = generatePwd(length, options);
-    const strength = evaluateStrength(password);
-    
     document.getElementById('pwd-result').innerHTML = `
-        &lt;p style="font-size: 24px; font-family: monospace; 
-           background: #f0f0f0; padding: 15px; border-radius: 6px;
-           word-break: break-all;"&gt;${password}&lt;/p&gt;
-        &lt;p&gt;密码强度: ${strength}&lt;/p&gt;
+        &lt;p style="font-size: 24px; font-family: monospace; background: #f0f0f0; padding: 15px; border-radius: 6px; word-break: break-all;"&gt;${password}&lt;/p&gt;
+        &lt;p&gt;密码强度: ${evaluateStrength(password)}&lt;/p&gt;
     `;
-}
-
-// 评估密码强度
-function evaluateStrength(pwd) {
-    let score = 0;
-    if (pwd.length >= 8) score++;
-    if (pwd.length >= 12) score++;
-    if (/[A-Z]/.test(pwd)) score++;
-    if (/[a-z]/.test(pwd)) score++;
-    if (/[0-9]/.test(pwd)) score++;
-    if (/[^A-Za-z0-9]/.test(pwd)) score++;
-    
-    const levels = [' 极弱', '弱', '🔸 一般', ' 强', '💪 很强', '🔒 极强'];
-    return levels[Math.min(score, 5)];
 }
                 </div>
             </div>

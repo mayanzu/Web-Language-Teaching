@@ -228,38 +228,23 @@ if (num > 10) {
 &lt;button onclick="evaluateScore()"&gt;评定等级&lt;/button&gt;
 &lt;div id="grade-result"&gt;&lt;/div&gt;
                 </div>
-                
+
                 <div class="panel code-editor" id="code-grade" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
 function evaluateScore() {
     const scoreInput = document.getElementById('score-input');
     const resultDiv = document.getElementById('grade-result');
     const score = Number(scoreInput.value);
-    
-    let grade = '';
-    let comment = '';
-    
-    if (score >= 90) {
-        grade = 'A 优秀';
-        comment = '非常棒！继续保持！';
-    } else if (score >= 80) {
-        grade = 'B 良好';
-        comment = '很不错，再接再厉！';
-    } else if (score >= 70) {
-        grade = 'C 中等';
-        comment = '还可以，需要更加努力。';
-    } else if (score >= 60) {
-        grade = 'D 及格';
-        comment = '刚刚及格，要加油了！';
-    } else {
-        grade = 'F 不及格';
-        comment = '需要认真复习，下次一定能过！';
-    }
-    
-    resultDiv.innerHTML = `
-        &lt;p style="font-size: 20px; font-weight: bold;"&gt;等级: ${grade}&lt;/p&gt;
-        &lt;p&gt;${comment}&lt;/p&gt;
-    `;
+
+    let grade = '', comment = '';
+
+    if (score >= 90) { grade = 'A 优秀'; comment = '非常棒！继续保持！'; }
+    else if (score >= 80) { grade = 'B 良好'; comment = '很不错，再接再厉！'; }
+    else if (score >= 70) { grade = 'C 中等'; comment = '还可以，需要更加努力。'; }
+    else if (score >= 60) { grade = 'D 及格'; comment = '刚刚及格，要加油了！'; }
+    else { grade = 'F 不及格'; comment = '需要认真复习，下次一定能过！'; }
+
+    resultDiv.innerHTML = `&lt;p style="font-size: 20px; font-weight: bold;"&gt;等级: ${grade}&lt;/p&gt;&lt;p&gt;${comment}&lt;/p&gt;`;
 }
                 </div>
             </div>
@@ -436,46 +421,19 @@ switch (fruit) {
 &lt;button onclick="checkWeekday()"&gt;查询&lt;/button&gt;
 &lt;div id="weekday-result"&gt;&lt;/div&gt;
                 </div>
-                
+
                 <div class="panel code-editor" id="code-weekday" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
 function checkWeekday() {
     const dayInput = document.getElementById('day-input');
     const resultDiv = document.getElementById('weekday-result');
     const day = Number(dayInput.value);
-    
-    let dayName;
-    let isWeekend = false;
-    
-    switch (day) {
-        case 1:
-            dayName = '星期一';
-            break;
-        case 2:
-            dayName = '星期二';
-            break;
-        case 3:
-            dayName = '星期三';
-            break;
-        case 4:
-            dayName = '星期四';
-            break;
-        case 5:
-            dayName = '星期五';
-            break;
-        case 6:
-            dayName = '星期六';
-            isWeekend = true;
-            break;
-        case 7:
-            dayName = '星期日';
-            isWeekend = true;
-            break;
-        default:
-            dayName = '无效输入';
-    }
-    
+
+    const days = ['', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'];
+    const isWeekend = day === 6 || day === 7;
+    const dayName = days[day] || '无效输入';
     const weekendMsg = isWeekend ? ' 周末啦！' : ' 工作日';
+
     resultDiv.innerHTML = `&lt;p&gt;&lt;strong&gt;${dayName}&lt;/strong&gt; - ${weekendMsg}&lt;/p&gt;`;
 }
                 </div>
@@ -608,22 +566,18 @@ for (let i = 0; i < fruits.length; i++) {
 &lt;button onclick="generateTable()"&gt;生成乘法表&lt;/button&gt;
 &lt;div id="table-output"&gt;&lt;/div&gt;
                 </div>
-                
+
                 <div class="panel code-editor" id="code-table" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
 function generateTable() {
     const outputDiv = document.getElementById('table-output');
     let html = '';
-    
-    // 外层循环：控制行（被乘数）
     for (let i = 1; i <= 9; i++) {
-        // 内层循环：控制列（乘数）
         for (let j = 1; j <= i; j++) {
             html += `${j} × ${i} = ${i * j}&nbsp;&nbsp;&nbsp;`;
         }
         html += '&lt;br&gt;';
     }
-    
     outputDiv.innerHTML = html;
 }
                 </div>
@@ -809,35 +763,27 @@ for (let i = 1; i <= 10; i++) {
 &lt;button onclick="checkPrime()"&gt;判断质数&lt;/button&gt;
 &lt;div id="prime-result"&gt;&lt;/div&gt;
                 </div>
-                
+
                 <div class="panel code-editor" id="code-prime" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
 function checkPrime() {
     const numInput = document.getElementById('num-input');
     const resultDiv = document.getElementById('prime-result');
     const num = Number(numInput.value);
-    
-    // 小于2的数不是质数
+
     if (num < 2) {
         resultDiv.innerHTML = `&lt;p&gt;${num} 不是质数（质数必须大于1）&lt;/p&gt;`;
         return;
     }
-    
+
     let isPrime = true;
-    
-    // 从2开始，检查到 num 的平方根即可
     for (let i = 2; i <= Math.sqrt(num); i++) {
-        if (num % i === 0) {
-            isPrime = false;
-            break;  // 找到因数，不是质数，提前退出
-        }
+        if (num % i === 0) { isPrime = false; break; }
     }
-    
-    if (isPrime) {
-        resultDiv.innerHTML = `&lt;p style="color: green;"&gt; ${num} 是质数！&lt;/p&gt;`;
-    } else {
-        resultDiv.innerHTML = `&lt;p style="color: orange;"&gt; ${num} 不是质数&lt;/p&gt;`;
-    }
+
+    resultDiv.innerHTML = isPrime
+        ? `&lt;p style="color: green;"&gt; ${num} 是质数！&lt;/p&gt;`
+        : `&lt;p style="color: orange;"&gt; ${num} 不是质数&lt;/p&gt;`;
 }
                 </div>
             </div>
@@ -885,48 +831,32 @@ function checkPrime() {
 &lt;div id="game-log"&gt;&lt;/div&gt;
 &lt;div id="game-status"&gt;&lt;/div&gt;
                 </div>
-                
+
                 <div class="panel code-editor" id="code-game" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
-// 游戏状态
-let targetNumber;
-let attempts;
-let isGameOver;
+let targetNumber, attempts, isGameOver;
 const maxAttempts = 10;
 
-// 初始化游戏
 function initGame() {
-    // Math.random() 生成 0-1 之间的随机数
-    // Math.floor() 向下取整
     targetNumber = Math.floor(Math.random() * 100) + 1;
     attempts = 0;
     isGameOver = false;
-    document.getElementById('game-log').innerHTML = 
-        '&lt;p&gt;游戏开始！请输入你的猜测...&lt;/p&gt;';
+    document.getElementById('game-log').innerHTML = '&lt;p&gt;游戏开始！请输入你的猜测...&lt;/p&gt;';
     document.getElementById('game-status').innerHTML = '';
 }
 
-// 玩家猜测
 function makeGuess() {
-    if (isGameOver) {
-        alert('游戏已结束，请点击"重新开始"');
-        return;
-    }
-    
+    if (isGameOver) { alert('游戏已结束，请点击"重新开始"'); return; }
+
     const input = document.getElementById('guess-input');
     const guess = Number(input.value);
-    
-    // 输入验证
-    if (!guess || guess < 1 || guess > 100) {
-        alert('请输入 1-100 之间的数字！');
-        return;
-    }
-    
+
+    if (!guess || guess < 1 || guess > 100) { alert('请输入 1-100 之间的数字！'); return; }
+
     attempts++;
     const logDiv = document.getElementById('game-log');
     const statusDiv = document.getElementById('game-status');
-    
-    // 判断猜测结果
+
     if (guess === targetNumber) {
         logDiv.innerHTML += `&lt;p style="color: green;"&gt; 第${attempts}次: ${guess} - 恭喜猜对了！&lt;/p&gt;`;
         statusDiv.innerHTML = `&lt;h3 style="color: green;"&gt; 你赢了！用了 ${attempts} 次！&lt;/h3&gt;`;
@@ -936,8 +866,7 @@ function makeGuess() {
     } else {
         logDiv.innerHTML += `&lt;p&gt;第${attempts}次: ${guess} - 太大了 ⬇️&lt;/p&gt;`;
     }
-    
-    // 检查是否用完机会
+
     if (attempts >= maxAttempts && !isGameOver) {
         logDiv.innerHTML += `&lt;p style="color: red;"&gt;机会用完了！&lt;/p&gt;`;
         statusDiv.innerHTML = `&lt;h3 style="color: red;"&gt; 游戏结束！答案是 ${targetNumber}&lt;/h3&gt;`;
@@ -945,16 +874,10 @@ function makeGuess() {
     } else if (!isGameOver) {
         statusDiv.innerHTML = `&lt;p&gt;剩余机会: ${maxAttempts - attempts} 次&lt;/p&gt;`;
     }
-    
     input.value = '';
 }
 
-function resetGame() {
-    initGame();
-    document.getElementById('guess-input').value = '';
-}
-
-// 页面加载时初始化
+function resetGame() { initGame(); document.getElementById('guess-input').value = ''; }
 initGame();
                 </div>
             </div>

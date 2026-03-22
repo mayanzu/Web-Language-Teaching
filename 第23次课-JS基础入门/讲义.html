@@ -444,35 +444,15 @@
             <div class="lab-body split">
                 <!-- HTML 预览说明 -->
                 <div class="panel html-viewer">
-<div class="panel-label">HTML 结构说明</div>
-&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-  &lt;title&gt;我的第一个 JS 程序&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;h1 id="title"&gt;欢迎学习 JavaScript！&lt;/h1&gt;
-  &lt;p id="message"&gt;等待 JS 修改...&lt;/p&gt;
-  
-  &lt;script&gt;
-    // 你的代码写在这里
-  &lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
+<div class="panel-label">HTML 预览</div>
+&lt;h1 id="title"&gt;欢迎学习 JavaScript！&lt;/h1&gt;
+&lt;p id="message"&gt;等待 JS 修改...&lt;/p&gt;
                 </div>
-                
-                <!-- JS 代码编辑区 -->
+
                 <div class="panel code-editor" id="code-hello" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
-// 实验：使用 alert 弹出欢迎信息
-// alert() 会在浏览器中弹出一个提示框
-
 alert('你好！这是我的第一行 JavaScript 代码！');
-
-// console.log() 会在控制台输出信息
 console.log('程序运行成功！');
-
-// 尝试修改弹窗内容，然后点击运行
                 </div>
             </div>
             
@@ -514,25 +494,16 @@ console.log('程序运行成功！');
             </div>
             
             <div class="lab-body split">
-                <!-- HTML 预览说明 -->
                 <div class="panel html-viewer">
-<div class="panel-label">HTML 结构</div>
-&lt;!-- 页面上有这些元素 --&gt;
+<div class="panel-label">HTML 预览</div>
 &lt;h2 id="demo-title"&gt;原始标题&lt;/h2&gt;
 &lt;p id="demo-text"&gt;这是原始文字&lt;/p&gt;
-
-&lt;!-- JS 会修改这些元素的内容 --&gt;
                 </div>
-                
-                <!-- JS 代码编辑区 -->
+
                 <div class="panel code-editor" id="code-dom" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
-// 第 1 步：通过 id 找到页面上的元素
 const titleElement = document.getElementById('demo-title');
 const textElement = document.getElementById('demo-text');
-
-// 第 2 步：修改元素的文字内容
-// TODO：把下面这行的文字改成你想要的内容
 
 if (titleElement) {
     titleElement.textContent = '我的第一个 JS 实验成功了！';
@@ -584,32 +555,22 @@ if (textElement) {
             </div>
             
             <div class="lab-body split">
-                <!-- HTML 预览说明 -->
                 <div class="panel html-viewer">
-<div class="panel-label">HTML 结构</div>
-&lt;!-- 页面上有这些元素 --&gt;
+<div class="panel-label">HTML 预览</div>
 &lt;p id="click-text"&gt;点击按钮试试！&lt;/p&gt;
 &lt;button id="my-btn"&gt;点我变色&lt;/button&gt;
-
-&lt;!-- JS 会给按钮添加点击事件 --&gt;
                 </div>
-                
-                <!-- JS 代码编辑区 -->
+
                 <div class="panel code-editor" id="code-event" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
-// 第 1 步：找到按钮和文字元素
 const btn = document.getElementById('my-btn');
 const text = document.getElementById('click-text');
 
-// 第 2 步：给按钮添加「点击」事件监听器
 if (btn && text) {
     btn.addEventListener('click', function() {
-        // 点击时执行的代码
         text.textContent = ' 你点击了按钮！';
         text.style.color = 'red';
         text.style.fontSize = '24px';
-        
-        // 弹出提示
         alert('恭喜你触发了点击事件！');
     });
 }
@@ -659,40 +620,32 @@ if (btn && text) {
             </div>
             
             <div class="lab-body split">
-                <!-- HTML 预览说明 -->
                 <div class="panel html-viewer">
-<div class="panel-label">HTML 结构</div>
+<div class="panel-label">HTML 预览</div>
 &lt;h3&gt;计数器演示&lt;/h3&gt;
 &lt;p id="counter-display"&gt;当前计数: 0&lt;/p&gt;
 &lt;button onclick="increment()"&gt;+1&lt;/button&gt;
 &lt;button onclick="decrement()"&gt;-1&lt;/button&gt;
 &lt;button onclick="resetCounter()"&gt;重置&lt;/button&gt;
                 </div>
-                
-                <!-- JS 代码编辑区 -->
+
                 <div class="panel code-editor" id="code-counter" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
-// 定义一个变量存储计数
 let count = 0;
-
-// 获取显示元素
 const display = document.getElementById('counter-display');
 
-// 增加计数的函数
 function increment() {
     count++;
     display.textContent = '当前计数: ' + count;
     display.style.color = count > 0 ? 'green' : (count < 0 ? 'red' : 'black');
 }
 
-// 减少计数的函数
 function decrement() {
     count--;
     display.textContent = '当前计数: ' + count;
     display.style.color = count > 0 ? 'green' : (count < 0 ? 'red' : 'black');
 }
 
-// 重置计数的函数
 function resetCounter() {
     count = 0;
     display.textContent = '当前计数: ' + count;

@@ -238,40 +238,30 @@ if (true) {
             </div>
             
             <div class="lab-body split">
-                <!-- HTML 预览说明 -->
                 <div class="panel html-viewer">
 <div class="panel-label">预览区元素</div>
-&lt;!-- 页面上有这些元素 --&gt;
 &lt;p id="var-output"&gt;等待运行...&lt;/p&gt;
 &lt;p id="let-demo"&gt;let 演示&lt;/p&gt;
 &lt;p id="const-demo"&gt;const 演示&lt;/p&gt;
                 </div>
-                
-                <!-- JS 代码编辑区 -->
+
                 <div class="panel code-editor" id="code-variable" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
-// === 使用 let（值会改变的情况）===
 let temperature = 25;
 let count = 0;
-
-// 修改 let 变量
 temperature = 30;
-count = count + 1;
-count++;  // 等同于 count = count + 1
+count++;
+count++;
 
-// === 使用 const（值不会改变的情况）===
 const appName = '我的应用';
 const version = '1.0.0';
 const maxUsers = 1000;
 
-// 显示结果
 const output = document.getElementById('var-output');
 const letDemo = document.getElementById('let-demo');
 const constDemo = document.getElementById('const-demo');
 
-if (output) {
-    output.innerHTML = `温度: ${temperature}°C, 计数: ${count}`;
-}
+if (output) output.innerHTML = `温度: ${temperature}°C, 计数: ${count}`;
 if (letDemo) {
     letDemo.innerHTML = `<strong>let</strong> - 温度可以从 25 变为 ${temperature}`;
     letDemo.style.color = 'blue';
@@ -589,19 +579,13 @@ typeof undefined    // "undefined"
             </div>
             
             <div class="lab-body split">
-                <!-- HTML 预览说明 -->
                 <div class="panel html-viewer">
 <div class="panel-label">预览区元素</div>
-&lt;!-- 显示各种类型的数据 --&gt;
-&lt;div id="types-output"&gt;
-  等待运行...
-&lt;/div&gt;
+&lt;div id="types-output"&gt;等待运行...&lt;/div&gt;
                 </div>
-                
-                <!-- JS 代码编辑区 -->
+
                 <div class="panel code-editor" id="code-types" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
-// 定义各种类型的变量
 const myString = '你好，JavaScript！';
 const myNumber = 42;
 const myFloat = 3.14159;
@@ -609,25 +593,23 @@ const myBoolean = true;
 let myUndefined;
 const myNull = null;
 
-// 获取输出元素
 const output = document.getElementById('types-output');
 
-// 创建展示内容
 if (output) {
     output.innerHTML = `
-        <p><strong>字符串:</strong> "${myString}" (长度: ${myString.length})</p>
-        <p><strong>整数:</strong> ${myNumber}</p>
-        <p><strong>小数:</strong> ${myFloat.toFixed(2)}</p>
-        <p><strong>布尔值:</strong> ${myBoolean}</p>
-        <p><strong>未定义:</strong> ${myUndefined}</p>
-        <p><strong>空值:</strong> ${myNull}</p>
-        <hr>
-        <p><strong>类型检测:</strong></p>
-        <p>typeof myString = "${typeof myString}"</p>
-        <p>typeof myNumber = "${typeof myNumber}"</p>
-        <p>typeof myBoolean = "${typeof myBoolean}"</p>
-        <p>typeof myUndefined = "${typeof myUndefined}"</p>
-        <p>typeof myNull = "${typeof myNull}" (历史bug)</p>
+        &lt;p&gt;&lt;strong&gt;字符串:&lt;/strong&gt; "${myString}" (长度: ${myString.length})&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;整数:&lt;/strong&gt; ${myNumber}&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;小数:&lt;/strong&gt; ${myFloat.toFixed(2)}&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;布尔值:&lt;/strong&gt; ${myBoolean}&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;未定义:&lt;/strong&gt; ${myUndefined}&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;空值:&lt;/strong&gt; ${myNull}&lt;/p&gt;
+        &lt;hr&gt;
+        &lt;p&gt;&lt;strong&gt;类型检测:&lt;/strong&gt;&lt;/p&gt;
+        &lt;p&gt;typeof myString = "${typeof myString}"&lt;/p&gt;
+        &lt;p&gt;typeof myNumber = "${typeof myNumber}"&lt;/p&gt;
+        &lt;p&gt;typeof myBoolean = "${typeof myBoolean}"&lt;/p&gt;
+        &lt;p&gt;typeof myUndefined = "${typeof myUndefined}"&lt;/p&gt;
+        &lt;p&gt;typeof myNull = "${typeof myNull}" (历史bug)&lt;/p&gt;
     `;
 }
                 </div>
@@ -749,42 +731,35 @@ typeof function(){} // "function"
             </div>
             
             <div class="lab-body split">
-                <!-- HTML 预览说明 -->
                 <div class="panel html-viewer">
 <div class="panel-label">预览区元素</div>
-&lt;!-- 输入框和结果展示 --&gt;
 &lt;input id="input-value" value="123"&gt;
 &lt;div id="conversion-output"&gt;...&lt;/div&gt;
                 </div>
-                
-                <!-- JS 代码编辑区 -->
+
                 <div class="panel code-editor" id="code-conversion" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
-// 获取输入值
 const inputEl = document.getElementById('input-value');
 const outputEl = document.getElementById('conversion-output');
 
 if (inputEl && outputEl) {
-    const value = inputEl.value;  // 输入框的值是字符串
-    
-    // 各种转换
+    const value = inputEl.value;
     const toNumber = Number(value);
     const toInt = parseInt(value);
     const toFloat = parseFloat(value);
     const toBool = Boolean(value);
-    
-    // 显示结果
+
     outputEl.innerHTML = `
-        <p><strong>原始值:</strong> "${value}" (类型: ${typeof value})</p>
-        <hr>
-        <p><strong>Number():</strong> ${toNumber} (类型: ${typeof toNumber})</p>
-        <p><strong>parseInt():</strong> ${toInt}</p>
-        <p><strong>parseFloat():</strong> ${toFloat}</p>
-        <p><strong>Boolean():</strong> ${toBool}</p>
-        <hr>
-        <p><strong>运算测试:</strong></p>
-        <p>"${value}" + 10 = "${value + 10}" (字符串拼接)</p>
-        <p>Number("${value}") + 10 = ${toNumber + 10} (数字相加)</p>
+        &lt;p&gt;&lt;strong&gt;原始值:&lt;/strong&gt; "${value}" (类型: ${typeof value})&lt;/p&gt;
+        &lt;hr&gt;
+        &lt;p&gt;&lt;strong&gt;Number():&lt;/strong&gt; ${toNumber} (类型: ${typeof toNumber})&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;parseInt():&lt;/strong&gt; ${toInt}&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;parseFloat():&lt;/strong&gt; ${toFloat}&lt;/p&gt;
+        &lt;p&gt;&lt;strong&gt;Boolean():&lt;/strong&gt; ${toBool}&lt;/p&gt;
+        &lt;hr&gt;
+        &lt;p&gt;&lt;strong&gt;运算测试:&lt;/strong&gt;&lt;/p&gt;
+        &lt;p&gt;"${value}" + 10 = "${value + 10}" (字符串拼接)&lt;/p&gt;
+        &lt;p&gt;Number("${value}") + 10 = ${toNumber + 10} (数字相加)&lt;/p&gt;
     `;
 }
                 </div>
@@ -828,7 +803,6 @@ if (inputEl && outputEl) {
             </div>
             
             <div class="lab-body split">
-                <!-- HTML 预览说明 -->
                 <div class="panel html-viewer">
 <div class="panel-label">HTML 结构</div>
 &lt;h3&gt;BMI 计算器&lt;/h3&gt;
@@ -836,58 +810,35 @@ if (inputEl && outputEl) {
 &lt;p&gt;身高: &lt;input id="height" value="175"&gt; cm&lt;/p&gt;
 &lt;div id="bmi-result"&gt;...&lt;/div&gt;
                 </div>
-                
-                <!-- JS 代码编辑区 -->
+
                 <div class="panel code-editor" id="code-profile" contenteditable="true">
 <div class="panel-label">JavaScript (可编辑)</div>
-// 获取输入元素
 const weightInput = document.getElementById('weight');
 const heightInput = document.getElementById('height');
 const resultDiv = document.getElementById('bmi-result');
 
 if (weightInput && heightInput && resultDiv) {
-    // 获取输入值并转换为数字
-    const weight = Number(weightInput.value);  // 公斤
-    const heightCm = Number(heightInput.value);  // 厘米
-    
-    // 验证输入是否有效
+    const weight = Number(weightInput.value);
+    const heightCm = Number(heightInput.value);
+
     if (isNaN(weight) || isNaN(heightCm) || weight <= 0 || heightCm <= 0) {
-        resultDiv.innerHTML = `
-            <p>请输入有效的数字！</p>
-        `;
+        resultDiv.innerHTML = `&lt;p&gt;请输入有效的数字！&lt;/p&gt;`;
     } else {
-        const heightM = heightCm / 100;  // 转换为米
-        
-        // 计算 BMI
-        // 公式: BMI = 体重(kg) / 身高(m)²
+        const heightM = heightCm / 100;
         const bmi = weight / (heightM * heightM);
-        
-        // 判断 BMI 等级
+
         let status = '';
-        let color = '';
-        if (bmi < 18.5) {
-            status = '偏瘦';
-            color = 'blue';
-        } else if (bmi < 24) {
-            status = '正常';
-            color = 'green';
-        } else if (bmi < 28) {
-            status = '偏胖';
-            color = 'orange';
-        } else {
-            status = '肥胖';
-            color = 'red';
-        }
-        
-        // 显示结果
+        if (bmi < 18.5) status = '偏瘦';
+        else if (bmi < 24) status = '正常';
+        else if (bmi < 28) status = '偏胖';
+        else status = '肥胖';
+
         resultDiv.innerHTML = `
-            <p>体重: <strong>${weight}</strong> kg</p>
-            <p>身高: <strong>${heightCm}</strong> cm = <strong>${heightM.toFixed(2)}</strong> m</p>
-            <hr>
-            <p>
-                BMI: <strong>${bmi.toFixed(1)}</strong>
-            </p>
-            <p>状态: <strong>${status}</strong></p>
+            &lt;p&gt;体重: &lt;strong&gt;${weight}&lt;/strong&gt; kg&lt;/p&gt;
+            &lt;p&gt;身高: &lt;strong&gt;${heightCm}&lt;/strong&gt; cm = &lt;strong&gt;${heightM.toFixed(2)}&lt;/strong&gt; m&lt;/p&gt;
+            &lt;hr&gt;
+            &lt;p&gt;BMI: &lt;strong&gt;${bmi.toFixed(1)}&lt;/strong&gt;&lt;/p&gt;
+            &lt;p&gt;状态: &lt;strong&gt;${status}&lt;/strong&gt;&lt;/p&gt;
         `;
     }
 }
