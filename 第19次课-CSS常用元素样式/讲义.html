@@ -123,56 +123,10 @@
                     </div>
                     <div class="panel css-editor" id="css-1" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
-/* ---实验目标 --- */
-/* 尝试修改链接的颜色和悬停效果 */
-
-/* 基础链接样式 */
-.custom-link {
-    /* 去除默认下划线 */
-    text-decoration: none;
-    
-    /* 设置链接颜色 */
-    color: #0066cc;
-    
-    /* 添加底部边框替代下划线 */
-    border-bottom: 1px solid #0066cc;
-    
-    /* 过渡效果 */
-    transition: all 0.3s ease;
-}
-
-/* 悬停效果 */
-.custom-link:hover {
-    /* 改变颜色 */
-    color: #004499;
-    
-    /* 改变边框颜色 */
-    border-bottom-color: #004499;
-    
-    /* 添加背景色 */
-    background-color: #e6f2ff;
-}
-
-/* 按钮样式链接 */
-.button-link {
-    /* 去除默认样式 */
-    text-decoration: none;
-    color: white;
-    
-    /* 按钮样式 */
-    background-color: #0066cc;
-    padding: 10px 20px;
-    border-radius: 4px;
-    
-    /* 过渡效果 */
-    transition: all 0.3s ease;
-}
-
-.button-link:hover {
-    background-color: #004499;
-    /* 添加阴影效果 */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
+.custom-link { text-decoration: none; color: #0066cc; border-bottom: 1px solid #0066cc; transition: all 0.3s ease; }
+.custom-link:hover { color: #004499; border-bottom-color: #004499; background-color: #e6f2ff; }
+.button-link { text-decoration: none; color: white; background-color: #0066cc; padding: 10px 20px; border-radius: 4px; transition: all 0.3s ease; }
+.button-link:hover { background-color: #004499; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
                     </div>
                 </div>
                 <div class="action-bar">
@@ -276,54 +230,11 @@
                     </div>
                     <div class="panel css-editor" id="css-2" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
-/* ---实验目标 --- */
-/* 尝试修改列表的标记样式 */
-
-/* 自定义无序列表 */
-.custom-ul {
-    /* 移除默认列表样式 */
-    list-style-type: none;
-    /* 移除默认内边距 */
-    padding-left: 0;
-}
-
-.custom-ul li {
-    /* 添加左侧内边距 */
-    padding-left: 25px;
-    /* 相对定位，用于伪元素定位 */
-    position: relative;
-    /* 增加行高，提高可读性 */
-    line-height: 1.8;
-}
-
-/* 使用伪元素创建自定义标记 */
-.custom-ul li::before {
-    /* 内容为实心方块 */
-    content: "■";
-    /* 设置颜色 */
-    color: #0066cc;
-    /* 绝对定位 */
-    position: absolute;
-    /* 定位到左侧 */
-    left: 0;
-    /* 字体大小 */
-    font-size: 12px;
-}
-
-/* 自定义有序列表 */
-.custom-ol {
-    /* 使用小写罗马数字 */
-    list-style-type: lower-roman;
-    /* 增加左侧内边距 */
-    padding-left: 30px;
-}
-
-.custom-ol li {
-    /* 增加行高 */
-    line-height: 1.8;
-    /* 改变颜色 */
-    color: #333;
-}
+.custom-ul { list-style-type: none; padding-left: 0; }
+.custom-ul li { padding-left: 25px; position: relative; line-height: 1.8; }
+.custom-ul li::before { content: "■"; color: #0066cc; position: absolute; left: 0; font-size: 12px; }
+.custom-ol { list-style-type: lower-roman; padding-left: 30px; }
+.custom-ol li { line-height: 1.8; color: #333; }
                     </div>
                 </div>
                 <div class="action-bar">
@@ -398,52 +309,10 @@
                     </div>
                     <div class="panel css-editor" id="css-3" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
-/* ---实验目标 --- */
-/* 尝试修改表格的边框、颜色和对齐方式 */
-
-/* 表格基础样式 */
-.custom-table {
-    /* 合并边框 */
-    border-collapse: collapse;
-    /* 宽度100% */
-    width: 100%;
-    /* 字体大小 */
-    font-size: 14px;
-    /* 边框 */
-    border: 1px solid #ddd;
-}
-
-/* 表头样式 */
-.custom-table th {
-    /* 背景色 */
-    background-color: #f5f5f5;
-    /* 文字颜色 */
-    color: #333;
-    /* 内边距 */
-    padding: 12px;
-    /* 文字对齐 */
-    text-align: left;
-    /* 边框 */
-    border: 1px solid #ddd;
-    /* 字体粗细 */
-    font-weight: bold;
-}
-
-/* 表格内容样式 */
-.custom-table td {
-    /* 内边距 */
-    padding: 12px;
-    /* 边框 */
-    border: 1px solid #ddd;
-    /* 文字颜色 */
-    color: #666;
-}
-
-/* 表格行悬停效果 */
-.custom-table tr:hover {
-    /* 背景色 */
-    background-color: #f9f9f9;
-}
+.custom-table { border-collapse: collapse; width: 100%; font-size: 14px; border: 1px solid #ddd; }
+.custom-table th { background-color: #f5f5f5; color: #333; padding: 12px; text-align: left; border: 1px solid #ddd; font-weight: bold; }
+.custom-table td { padding: 12px; border: 1px solid #ddd; color: #666; }
+.custom-table tr:hover { background-color: #f9f9f9; }
                     </div>
                 </div>
                 <div class="action-bar">
@@ -524,98 +393,13 @@
                     </div>
                     <div class="panel css-editor" id="css-4" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
-/* ---实验目标 --- */
-/* 尝试修改表单元素的样式 */
-
-/* 表单容器样式 */
-.custom-form {
-    /* 设置宽度 */
-    width: 400px;
-    /* 内边距 */
-    padding: 20px;
-    /* 边框 */
-    border: 1px solid #ddd;
-    /* 圆角 */
-    border-radius: 8px;
-    /* 背景色 */
-    background-color: #f9f9f9;
-}
-
-/* 表单组样式 */
-.form-group {
-    /* 底部外边距 */
-    margin-bottom: 15px;
-    /* 块级元素，独占一行 */
-    display: block;
-}
-
-/* 标签样式 */
-.form-group label {
-    /* 块级元素，独占一行 */
-    display: block;
-    /* 底部外边距 */
-    margin-bottom: 5px;
-    /* 文字颜色 */
-    color: #333;
-    /* 字体粗细 */
-    font-weight: bold;
-}
-
-/* 输入框和选择框样式 */
-.form-group input,
-.form-group select {
-    /* 宽度100% */
-    width: 100%;
-    /* 内边距 */
-    padding: 10px;
-    /* 边框 */
-    border: 1px solid #ddd;
-    /* 圆角 */
-    border-radius: 4px;
-    /* 字体大小 */
-    font-size: 14px;
-    /* 盒模型设置 */
-    box-sizing: border-box;
-    /* 过渡效果 */
-    transition: border-color 0.3s ease;
-}
-
-/* 输入框和选择框获得焦点时的样式 */
-.form-group input:focus,
-.form-group select:focus {
-    /* 移除默认轮廓 */
-    outline: none;
-    /* 改变边框颜色 */
-    border-color: #0066cc;
-    /* 添加阴影 */
-    box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2);
-}
-
-/* 提交按钮样式 */
-.submit-btn {
-    /* 背景色 */
-    background-color: #0066cc;
-    /* 文字颜色 */
-    color: white;
-    /* 内边距 */
-    padding: 10px 20px;
-    /* 边框 */
-    border: none;
-    /* 圆角 */
-    border-radius: 4px;
-    /* 字体大小 */
-    font-size: 14px;
-    /* 光标样式 */
-    cursor: pointer;
-    /* 过渡效果 */
-    transition: background-color 0.3s ease;
-}
-
-/* 提交按钮悬停效果 */
-.submit-btn:hover {
-    /* 改变背景色 */
-    background-color: #004499;
-}
+.custom-form { width: 400px; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9; }
+.form-group { margin-bottom: 15px; display: block; }
+.form-group label { display: block; margin-bottom: 5px; color: #333; font-weight: bold; }
+.form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; box-sizing: border-box; transition: border-color 0.3s ease; }
+.form-group input:focus, .form-group select:focus { outline: none; border-color: #0066cc; box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2); }
+.submit-btn { background-color: #0066cc; color: white; padding: 10px 20px; border: none; border-radius: 4px; font-size: 14px; cursor: pointer; transition: background-color 0.3s ease; }
+.submit-btn:hover { background-color: #004499; }
                     </div>
                 </div>
                 <div class="action-bar">
@@ -678,58 +462,10 @@
                     </div>
                     <div class="panel css-editor" id="css-5" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
-/* ---实验目标 --- */
-/* 尝试修改图片的样式 */
-
-/* 图片容器 */
-.image-container {
-    /* 弹性布局 */
-    display: flex;
-    /* 间距 */
-    gap: 20px;
-    /* 内边距 */
-    padding: 20px;
-}
-
-/* 圆角图片 */
-.rounded-img {
-    /* 圆角半径 */
-    border-radius: 50%;
-    /* 宽度 */
-    width: 150px;
-    /* 高度 */
-    height: 150px;
-    /* 对象适配，保持比例 */
-    object-fit: cover;
-}
-
-/* 带边框图片 */
-.bordered-img {
-    /* 宽度 */
-    width: 150px;
-    /* 高度 */
-    height: 150px;
-    /* 对象适配 */
-    object-fit: cover;
-    /* 边框 */
-    border: 3px solid #0066cc;
-    /* 圆角 */
-    border-radius: 8px;
-}
-
-/* 带阴影图片 */
-.shadow-img {
-    /* 宽度 */
-    width: 150px;
-    /* 高度 */
-    height: 150px;
-    /* 对象适配 */
-    object-fit: cover;
-    /* 圆角 */
-    border-radius: 8px;
-    /* 阴影效果 */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
+.image-container { display: flex; gap: 20px; padding: 20px; }
+.rounded-img { border-radius: 50%; width: 150px; height: 150px; object-fit: cover; }
+.bordered-img { width: 150px; height: 150px; object-fit: cover; border: 3px solid #0066cc; border-radius: 8px; }
+.shadow-img { width: 150px; height: 150px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); }
                     </div>
                 </div>
                 <div class="action-bar">
@@ -778,102 +514,15 @@
                     </div>
                     <div class="panel css-editor" id="css-6" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
-/* ---实验目标 --- */
-/* 尝试修改卡片的样式 */
-
-/* 卡片容器 */
-.card-container {
-    /* 宽度 */
-    width: 300px;
-    /* 内边距 */
-    padding: 20px;
-}
-
-/* 卡片样式 */
-.card {
-    /* 边框 */
-    border: 1px solid #ddd;
-    /* 圆角 */
-    border-radius: 8px;
-    /* 阴影效果 */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    /* 背景色 */
-    background-color: white;
-    /* 溢出隐藏 */
-    overflow: hidden;
-}
-
-/* 卡片头部 */
-.card-header {
-    /* 内边距 */
-    padding: 15px;
-    /* 背景色 */
-    background-color: #f5f5f5;
-    /* 边框底部 */
-    border-bottom: 1px solid #ddd;
-}
-
-/* 卡片标题 */
-.card-header h3 {
-    /* margin重置 */
-    margin: 0;
-    /* 文字颜色 */
-    color: #333;
-    /* 字体大小 */
-    font-size: 18px;
-}
-
-/* 卡片内容 */
-.card-body {
-    /* 内边距 */
-    padding: 15px;
-}
-
-/* 卡片内容文字 */
-.card-body p {
-    /* line-height */
-    line-height: 1.6;
-    /* 文字颜色 */
-    color: #666;
-    /* margin重置 */
-    margin: 0;
-}
-
-/* 卡片底部 */
-.card-footer {
-    /* 内边距 */
-    padding: 15px;
-    /* 背景色 */
-    background-color: #f9f9f9;
-    /* 边框顶部 */
-    border-top: 1px solid #ddd;
-    /* 文本右对齐 */
-    text-align: right;
-}
-
-/* 卡片按钮 */
-.card-btn {
-    /* 背景色 */
-    background-color: #0066cc;
-    /* 文字颜色 */
-    color: white;
-    /* 内边距 */
-    padding: 8px 16px;
-    /* 边框 */
-    border: none;
-    /* 圆角 */
-    border-radius: 4px;
-    /* 光标样式 */
-    cursor: pointer;
-    /* 过渡效果 */
-    transition: background-color 0.3s ease;
-}
-
-/* 卡片按钮悬停效果 */
-.card-btn:hover {
-    /* 改变背景色 */
-    background-color: #004499;
-}
+.card-container { width: 300px; padding: 20px; }
+.card { border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); background-color: white; overflow: hidden; }
+.card-header { padding: 15px; background-color: #f5f5f5; border-bottom: 1px solid #ddd; }
+.card-header h3 { margin: 0; color: #333; font-size: 18px; }
+.card-body { padding: 15px; }
+.card-body p { line-height: 1.6; color: #666; margin: 0; }
+.card-footer { padding: 15px; background-color: #f9f9f9; border-top: 1px solid #ddd; text-align: right; }
+.card-btn { background-color: #0066cc; color: white; padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.3s ease; }
+.card-btn:hover { background-color: #004499; }
                     </div>
                 </div>
                 <div class="action-bar">

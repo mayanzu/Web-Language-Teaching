@@ -223,39 +223,13 @@
                     </div>
                     
                     <!-- CSS 代码编辑区 -->
-                    <div class="panel code-editor" id="css-1" contenteditable="true">
-<div class="panel-label">CSS (可编辑)</div>
-.container {
-  background-color: #eee;
-  border: 2px dashed #999;
-  /* 如果不清除浮动，这个灰色背景将看不见（高度为0） */
-}
-
-.box {
-  width: 100px;
-  height: 100px;
-  color: white;
-  text-align: center;
-  line-height: 100px;
-}
-
-.left {
-  background: #ff5252;
-  float: left;  /* 尝试注释掉这行看看 */
-}
-
-.right {
-  background: #2196f3;
-  float: right; /* 尝试改为 left 看看 */
-}
-
-/* --- 经典 Clearfix Hack (必背) --- */
-/* 向容器末尾添加一个看不见的“墙”来撑开高度 */
-.clearfix::after {
-  content: "";
-  display: block;
-  clear: both;
-}
+                    <div class=”panel code-editor” id=”css-1” contenteditable=”true”>
+<div class=”panel-label”>CSS (可编辑)</div>
+.container { background-color: #eee; border: 2px dashed #999; }
+.box { width: 100px; height: 100px; color: white; text-align: center; line-height: 100px; }
+.left { background: #ff5252; float: left; }
+.right { background: #2196f3; float: right; }
+.clearfix::after { content: “”; display: block; clear: both; }
                     </div>
                 </div>
                 
@@ -376,33 +350,8 @@
                     <!-- CSS 代码编辑区 -->
                     <div class="panel code-editor" id="css-2" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
-.card {
-  width: 200px;
-  height: 120px;
-  background: white;
-  border: 1px solid #ccc;
-  padding: 20px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  
-  /* 关键一步：父元素设为 relative，
-     确立坐标系参照物 */
-  position: relative; 
-  top: 20px;
-  left: 20px;
-}
-
-.badge {
-  background: #ff4757;
-  color: white;
-  padding: 4px 8px;
-  font-size: 12px;
-  border-radius: 4px;
-  
-  /* 绝对定位：飞到父元素的右上角 */
-  position: absolute;
-  top: -10px;    /* 向上突出一点 */
-  right: -10px;  /* 向右突出一点 */
-}
+.card { width: 200px; height: 120px; background: white; border: 1px solid #ccc; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); position: relative; top: 20px; left: 20px; }
+.badge { background: #ff4757; color: white; padding: 4px 8px; font-size: 12px; border-radius: 4px; position: absolute; top: -10px; right: -10px; }
                     </div>
                 </div>
                 
@@ -789,29 +738,8 @@ table thead {
                     <!-- CSS 代码编辑区 -->
                     <div class="panel code-editor" id="css-3" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
-.navbar {
-  height: 60px;
-  background: #333;
-  color: white;
-  padding: 0 20px;
-  
-  /* 1. 开启弹性布局 */
-  display: flex;
-  
-  /* 2. 垂直居中 (交叉轴) */
-  align-items: center;
-  
-  /* 3. 水平两端对齐 (主轴) */
-  /* 尝试改为 center, flex-start, space-around */
-  justify-content: space-between;
-}
-
-.menu span {
-  margin: 0 10px;
-  cursor: pointer;
-  color: #ccc;
-}
-
+.navbar { height: 60px; background: #333; color: white; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; }
+.menu span { margin: 0 10px; cursor: pointer; color: #ccc; }
 .logo { font-weight: bold; font-size: 1.2em; }
 .user { background: #0066cc; padding: 5px 15px; border-radius: 4px; }
                     </div>
@@ -1041,37 +969,12 @@ grid-template-areas:
                     <!-- CSS 代码编辑区 -->
                     <div class="panel code-editor" id="css-4" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
-.grid-container {
-  display: grid;
-  height: 300px;
-  gap: 10px; /* 间隙 */
-  
-  /* 定义两列：侧边栏25%，内容区自适应(1fr) */
-  grid-template-columns: 1fr 3fr; 
-  
-  /* 定义三行：头、中间、底 */
-  grid-template-rows: 50px 1fr 40px;
-  
-  /* 定义区域名称 (高级技巧) */
-  grid-template-areas: 
-    "header header"
-    "sidebar main"
-    "footer footer";
-}
-
+.grid-container { display: grid; height: 300px; gap: 10px; grid-template-columns: 1fr 3fr; grid-template-rows: 50px 1fr 40px; grid-template-areas: "header header" "sidebar main" "footer footer"; }
 .header { grid-area: header; background: #ff7675; }
 .sidebar { grid-area: sidebar; background: #74b9ff; }
 .main { grid-area: main; background: #55efc4; }
 .footer { grid-area: footer; background: #dfe6e9; }
-
-/* 基础样式 */
-.grid-container > div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  font-weight: bold;
-}
+.grid-container > div { display: flex; justify-content: center; align-items: center; color: #fff; font-weight: bold; }
                     </div>
                 </div>
                 
@@ -1125,30 +1028,8 @@ grid-template-areas:
                     <!-- CSS 代码编辑区 -->
                     <div class="panel code-editor" id="css-5" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
-.responsive-box {
-  background: #6c5ce7;
-  color: white;
-  padding: 40px;
-  font-size: 20px;
-  text-align: center;
-  transition: all 0.5s;
-  border-radius: 8px;
-}
-
-/* --- 媒体查询核心 --- */
-
-/* 当宽度小于 600px 时 (模拟手机) */
-@media (max-width: 600px) {
-  .responsive-box {
-    background: #e17055; /* 变红 */
-    font-size: 14px;      /* 字体变小 */
-  }
-  .responsive-box .info::after {
-    content: " (手机模式)";
-    display: block;
-    font-weight: bold;
-  }
-}
+.responsive-box { background: #6c5ce7; color: white; padding: 40px; font-size: 20px; text-align: center; transition: all 0.5s; border-radius: 8px; }
+@media (max-width: 600px) { .responsive-box { background: #e17055; font-size: 14px; } .responsive-box .info::after { content: " (手机模式)"; display: block; font-weight: bold; } }
                     </div>
                 </div>
                 
@@ -1184,7 +1065,6 @@ grid-template-areas:
                 <!-- CSS 代码编辑区 -->
                 <div class="panel code-editor" id="css-6" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
-/* CSS布局练习 */
 .container { padding: 20px; border: 2px solid #333; border-radius: 10px; }
                 </div>
             </div>
