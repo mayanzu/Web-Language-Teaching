@@ -18,31 +18,31 @@
 <nav class="sidebar">
     <div class="sidebar-nav">
         <h3>课程导航</h3>
-        <a class="sidebar-link" href="#intro">👋 课程概览</a>
+        <a class="sidebar-link" href="#intro">课程概览</a>
         
         <h3>Part 1: 函数基础</h3>
         <a class="sidebar-link sub-link" href="#why-function">1.1 为什么需要函数</a>
         <a class="sidebar-link sub-link" href="#function-declare">1.2 函数声明与调用</a>
-        <a class="sidebar-link sub-link" href="#lab-greet">🔬 实验 01：问候函数</a>
+        <a class="sidebar-link sub-link" href="#lab-greet">实验 01：问候函数</a>
         
         <h3>Part 2: 参数与返回值</h3>
         <a class="sidebar-link sub-link" href="#parameters">2.1 参数详解</a>
         <a class="sidebar-link sub-link" href="#return-value">2.2 返回值</a>
-        <a class="sidebar-link sub-link" href="#lab-calc">🔬 实验 02：计算器函数</a>
+        <a class="sidebar-link sub-link" href="#lab-calc">实验 02：计算器函数</a>
         
         <h3>Part 3: 函数进阶</h3>
         <a class="sidebar-link sub-link" href="#function-expression">3.1 函数表达式</a>
         <a class="sidebar-link sub-link" href="#arrow-function">3.2 箭头函数</a>
-        <a class="sidebar-link sub-link" href="#lab-arrow">🔬 实验 03：箭头函数</a>
+        <a class="sidebar-link sub-link" href="#lab-arrow">实验 03：箭头函数</a>
         
         <h3>Part 4: 作用域</h3>
         <a class="sidebar-link sub-link" href="#scope">4.1 作用域基础</a>
         <a class="sidebar-link sub-link" href="#closure">4.2 闭包初探</a>
-        <a class="sidebar-link sub-link" href="#lab-counter">🔬 实验 04：计数器闭包</a>
+        <a class="sidebar-link sub-link" href="#lab-counter">实验 04：计数器闭包</a>
         
         <h3>总结与练习</h3>
-        <a class="sidebar-link sub-link" href="#comprehensive">🔬 综合案例：密码生成器</a>
-        <a class="sidebar-link sub-link" href="#summary">📝 课程小结</a>
+        <a class="sidebar-link sub-link" href="#comprehensive">综合案例：密码生成器</a>
+        <a class="sidebar-link sub-link" href="#summary">本课小结</a>
     </div>
 </nav>
 
@@ -190,12 +190,12 @@ sayHello();  // 可以多次调用
                 <li><strong>定义函数</strong>：只是告诉 JavaScript "有这么一个函数"，不会执行</li>
                 <li><strong>调用函数</strong>：函数名 + <code>()</code>，才会真正执行函数体</li>
             </ul>
-<pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>function greet() {
+<pre><code>function greet() {
     console.log('Hi!');
 }
 
-greet;    // ❌ 只是引用函数，不会执行
-greet();  // ✅ 调用函数，输出 Hi!
+greet;    //  只是引用函数，不会执行
+greet();  //  调用函数，输出 Hi!
 </code></pre>
         </div>
     </section>
@@ -339,10 +339,10 @@ console.log(total);  // 160
         <div class="tip-box">
             <span class="tip-title">参数数量建议</span>
             <p>一般建议函数参数不超过 3 个。如果需要更多参数，考虑使用对象来传递：</p>
-<pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>// ❌ 参数太多，难以记住顺序
+<pre><code>//  参数太多，难以记住顺序
 function createUser(name, age, email, phone, address) { }
 
-// ✅ 使用对象，清晰明了
+//  使用对象，清晰明了
 function createUser(options) {
     const { name, age, email } = options;
     // ...
@@ -483,13 +483,13 @@ function doCalculate(operation) {
                 <h3>简易计算器</h3>
                 <p>数字1: <input id="num1" type="number" value="10" style="padding: 6px; border: 1px solid #ddd; border-radius: 4px; width: 80px;"></p>
                 <p>数字2: <input id="num2" type="number" value="3" style="padding: 6px; border: 1px solid #ddd; border-radius: 4px; width: 80px;"></p>
-                <div style="margin: 15px 0;">
+                <div>
                     <button class="btn btn-run" onclick="doCalculate('add')">+</button>
                     <button class="btn btn-run" onclick="doCalculate('sub')">-</button>
                     <button class="btn btn-run" onclick="doCalculate('mul')">×</button>
                     <button class="btn btn-run" onclick="doCalculate('div')">÷</button>
                 </div>
-                <div id="calc-result" style="padding: 15px; background: #f9f9f9; border-radius: 6px; min-height: 50px;"></div>
+                <div id="calc-result"></div>
             </div>
         </div>
     </section>
@@ -549,13 +549,13 @@ add2(1, 2);  // 3
         <div class="note-box">
             <strong>什么是提升 (Hoisting)？</strong>
             <p>JavaScript 会在代码执行前，先把函数声明"提升"到作用域顶部：</p>
-<pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>// ✅ 函数声明：可以先调用
+<pre><code>//  函数声明：可以先调用
 sayHi();  // "Hi!"
 function sayHi() {
     console.log('Hi!');
 }
 
-// ❌ 函数表达式：不能先调用
+//  函数表达式：不能先调用
 sayBye();  // 报错：Cannot access 'sayBye' before initialization
 const sayBye = function() {
     console.log('Bye!');
@@ -624,9 +624,9 @@ const sayHi = () => console.log('Hi!');
         <div class="tip-box">
             <span class="tip-title">何时使用箭头函数？</span>
             <ul class="checklist">
-                <li>✅ 简单的单行函数</li>
-                <li>✅ 回调函数（如数组方法中的回调）</li>
-                <li>⚠️ 箭头函数没有自己的 <code>this</code>，在需要 <code>this</code> 的场景要小心使用</li>
+                <li> 简单的单行函数</li>
+                <li> 回调函数（如数组方法中的回调）</li>
+                <li>箭头函数没有自己的 <code>this</code>，在需要 <code>this</code> 的场景要小心使用</li>
             </ul>
         </div>
     </section>
@@ -738,30 +738,30 @@ function myFunction() {
     // 局部变量（函数作用域）
     let localVar = '我是局部变量';
     
-    console.log(globalVar);  // ✅ 可以访问全局变量
-    console.log(localVar);   // ✅ 可以访问局部变量
+    console.log(globalVar);  //  可以访问全局变量
+    console.log(localVar);   //  可以访问局部变量
     
     if (true) {
         // 块级作用域
         let blockVar = '我是块级变量';
-        console.log(blockVar);  // ✅ 可以访问
+        console.log(blockVar);  //  可以访问
     }
-    // console.log(blockVar);  // ❌ 错误：blockVar 不存在
+    // console.log(blockVar);  //  错误：blockVar 不存在
 }
 
 myFunction();
-console.log(globalVar);  // ✅ 可以访问
-// console.log(localVar);   // ❌ 错误：localVar 不存在
+console.log(globalVar);  //  可以访问
+// console.log(localVar);   //  错误：localVar 不存在
 </code></pre>
         
         <div class="warning-box">
             <strong>避免全局变量污染</strong>
             <p>过多的全局变量会导致命名冲突和难以调试的 bug。尽量将变量限制在需要的作用域内：</p>
-<pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>// ❌ 不好：污染全局作用域
+<pre><code>//  不好：污染全局作用域
 var count = 0;
 var name = 'test';
 
-// ✅ 好：封装在函数内
+//  好：封装在函数内
 function createCounter() {
     let count = 0;  // 局部变量
     // ...
@@ -1028,7 +1028,7 @@ function evaluateStrength(pwd) {
     if (/[0-9]/.test(pwd)) score++;
     if (/[^A-Za-z0-9]/.test(pwd)) score++;
     
-    const levels = ['❌ 极弱', '⚠️ 弱', '🔸 一般', '✅ 强', '💪 很强', '🔒 极强'];
+    const levels = [' 极弱', '弱', '🔸 一般', ' 强', '💪 很强', '🔒 极强'];
     return levels[Math.min(score, 5)];
 }
                 </div>
@@ -1060,7 +1060,7 @@ function evaluateStrength(pwd) {
          ============================================ -->
 
     <section id="summary">
-        <h2>七、本课小结</h2>
+        <h2>本课小结</h2>
         
         <h3>知识点回顾</h3>
         <ul class="checklist">
@@ -1110,6 +1110,26 @@ function evaluateStrength(pwd) {
         <div class="note-box">
             <strong>下一课预告：</strong>
             <p>我们将学习 <strong>数组与对象</strong>——JavaScript 中最重要的数据结构。数组用于管理列表数据，对象用于组织复杂信息，它们是构建任何应用的基础。</p>
+        </div>
+
+        <div class="warning-box">
+            <strong>常见错误提醒</strong>
+            <ul>
+                <li><strong>函数提升</strong>：函数声明会被提升，可以在定义之前调用；但函数表达式不会被提升</li>
+                <li><strong>return换行</strong>：<code>return</code>后换行，JavaScript会自动在行尾添加分号，导致返回undefined</li>
+                <li><strong>箭头函数this</strong>：箭头函数没有自己的this，会继承外层函数的this</li>
+                <li><strong>参数个数</strong>：调用函数时传入的参数个数可以少于或多于定义时的参数，不会报错</li>
+            </ul>
+        </div>
+
+        <div class="homework">
+            <h3>课后练习</h3>
+            <ol>
+                <li>编写一个计算矩形面积的函数，接收width和height参数</li>
+                <li>编写一个函数，判断一个数是否为质数（只能被1和自身整除）</li>
+                <li>使用箭头函数重写上述函数，比较两种写法的区别</li>
+                <li>创建一个闭包计数器函数，每次调用返回值递增1</li>
+            </ol>
         </div>
     </section>
 

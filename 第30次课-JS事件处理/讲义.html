@@ -18,31 +18,31 @@
 <nav class="sidebar">
     <div class="sidebar-nav">
         <h3>课程导航</h3>
-        <a class="sidebar-link" href="#intro">👋 课程概览</a>
+        <a class="sidebar-link" href="#intro">课程概览</a>
         
         <h3>Part 1: 事件基础</h3>
         <a class="sidebar-link sub-link" href="#section-1-1">一、什么是事件</a>
         <a class="sidebar-link sub-link" href="#section-1-2">1.1 事件绑定方式</a>
-        <a class="sidebar-link sub-link" href="#lab-1">🔬 实验 01</a>
+        <a class="sidebar-link sub-link" href="#lab-1">实验 01</a>
         
         <h3>Part 2: 常用事件</h3>
         <a class="sidebar-link sub-link" href="#section-2-1">二、鼠标事件</a>
         <a class="sidebar-link sub-link" href="#section-2-2">2.1 键盘事件</a>
         <a class="sidebar-link sub-link" href="#section-2-3">2.2 表单事件</a>
-        <a class="sidebar-link sub-link" href="#lab-2">🔬 实验 02</a>
+        <a class="sidebar-link sub-link" href="#lab-2">实验 02</a>
         
         <h3>Part 3: 事件对象</h3>
         <a class="sidebar-link sub-link" href="#section-3-1">三、事件对象属性</a>
         <a class="sidebar-link sub-link" href="#section-3-2">3.1 阻止默认行为</a>
-        <a class="sidebar-link sub-link" href="#lab-3">🔬 实验 03</a>
+        <a class="sidebar-link sub-link" href="#lab-3">实验 03</a>
         
         <h3>Part 4: 综合应用</h3>
         <a class="sidebar-link sub-link" href="#section-4-1">四、事件委托</a>
-        <a class="sidebar-link sub-link" href="#lab-4">🔬 实验 04</a>
+        <a class="sidebar-link sub-link" href="#lab-4">实验 04</a>
         <a class="sidebar-link sub-link" href="#real-world-demo">五、真实案例展示</a>
         
         <h3>总结与练习</h3>
-        <a class="sidebar-link sub-link" href="#summary">📝 课程小结</a>
+        <a class="sidebar-link sub-link" href="#summary">本课小结</a>
     </div>
 </nav>
 
@@ -80,7 +80,7 @@
         <p>事件是浏览器中发生的「动作」或「事情」，可以是用户触发的（如点击），也可以是浏览器触发的（如页面加载完成）。</p>
         
         <div class="tip-box">
-            <span class="tip-title">💡 生活中的类比</span>
+            <span class="tip-title">生活中的类比</span>
             <ul class="checklist">
                 <li><strong>门铃：</strong>按下门铃（事件）→ 铃声响起（响应）</li>
                 <li><strong>电梯：</strong>按下楼层按钮（事件）→ 电梯运行（响应）</li>
@@ -240,8 +240,8 @@ document.getElementById('resetBtn').addEventListener('click', function() {
             
             <div class="preview-box">
                 <h3>点击计数器</h3>
-                <p style="font-size: 24px;">点击次数：<span id="count" style="color: var(--color-accent); font-weight: bold;">0</span></p>
-                <div style="margin-top: 15px;">
+                <p>点击次数：<span id="count" style="color: var(--color-accent); font-weight: bold;">0</span></p>
+                <div>
                     <button class="btn btn-run" id="addBtn">+1</button>
                     <button class="btn btn-run" id="subBtn" style="margin-left: 10px;">-1</button>
                     <button class="btn btn-reset" id="resetBtn" style="margin-left: 10px;">重置</button>
@@ -452,7 +452,7 @@ form.addEventListener('submit', function(e) {
 </code></pre>
 
         <div class="tip-box">
-            <span class="tip-title">💡 input vs change</span>
+            <span class="tip-title">input vs change</span>
             <ul class="checklist">
                 <li><code>input</code>：每次输入内容改变都会触发，适合实时响应</li>
                 <li><code>change</code>：值改变且失去焦点后触发，适合最终确认</li>
@@ -477,7 +477,7 @@ form.addEventListener('submit', function(e) {
             <div class="lab-body split">
                 <div class="panel html-viewer">
 <div class="panel-label">HTML 预览</div>
-&lt;h3&gt;🔍 实时搜索&lt;/h3&gt;
+&lt;h3&gt;实时搜索&lt;/h3&gt;
 &lt;input id="searchInput" placeholder="输入搜索内容..."&gt;
 &lt;p&gt;字数：&lt;span id="charCount"&gt;0&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;状态：&lt;span id="status"&gt;等待输入&lt;/span&gt;&lt;/p&gt;
@@ -539,7 +539,7 @@ input.addEventListener('keyup', function(e) {
             </div>
             
             <div class="preview-box">
-                <h3>🔍 实时搜索</h3>
+                <h3>实时搜索</h3>
                 <input id="searchInput" placeholder="输入搜索内容..." style="padding: 10px; width: 250px; border: 2px solid #ddd; border-radius: 6px; font-size: 16px;">
                 <p>字数：<span id="charCount" style="font-weight: bold;">0</span></p>
                 <p>状态：<span id="status" style="color: #666;">等待输入</span></p>
@@ -697,7 +697,7 @@ document.getElementById('child').addEventListener('click', function(e) {
             <div class="lab-body split">
                 <div class="panel html-viewer">
 <div class="panel-label">HTML 预览</div>
-&lt;h3&gt;🎯 鼠标追踪器&lt;/h3&gt;
+&lt;h3&gt;鼠标追踪器&lt;/h3&gt;
 &lt;div id="trackArea"&gt;在此区域移动鼠标&lt;/div&gt;
 &lt;p&gt;位置：&lt;span id="position"&gt;(0, 0)&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;事件类型：&lt;span id="eventType"&gt;-&lt;/span&gt;&lt;/p&gt;
@@ -742,9 +742,9 @@ area.addEventListener('click', function(e) {
             </div>
             
             <div class="preview-box">
-                <h3>🎯 鼠标追踪器</h3>
+                <h3>鼠标追踪器</h3>
                 <div id="trackArea" style="width: 100%; height: 150px; background: #f0f0f0; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; color: #666; cursor: crosshair; transition: background 0.3s;">在此区域移动鼠标</div>
-                <p style="margin-top: 15px;">位置：<span id="position" style="font-weight: bold; color: var(--color-accent);">(0, 0)</span></p>
+                <p>位置：<span id="position" style="font-weight: bold; color: var(--color-accent);">(0, 0)</span></p>
                 <p>事件类型：<span id="eventType" style="font-weight: bold;">-</span></p>
             </div>
         </div>
@@ -778,7 +778,7 @@ container.addEventListener('click', function(e) {
 </code></pre>
 
         <div class="tip-box">
-            <span class="tip-title">💡 事件委托的优势</span>
+            <span class="tip-title">事件委托的优势</span>
             <ul class="checklist">
                 <li><strong>减少内存占用：</strong>只需绑定一个事件监听器</li>
                 <li><strong>动态元素支持：</strong>新添加的子元素自动拥有事件处理</li>
@@ -975,7 +975,7 @@ emailInput.addEventListener('blur', function() {
     }
 });
 </code></pre>
-                <p style="margin-top: 10px; color: #666; font-size: 18px;">事件处理是构建交互式网页的核心，几乎所有用户操作都通过事件来响应。</p>
+                <p>事件处理是构建交互式网页的核心，几乎所有用户操作都通过事件来响应。</p>
             </div>
         </div>
     </section>
@@ -985,7 +985,7 @@ emailInput.addEventListener('blur', function() {
          课程小结区域
          ============================================ -->
     <section id="summary">
-        <h2>六、本课小结</h2>
+        <h2>本课小结</h2>
         
         <h3>知识点回顾</h3>
         <ul class="checklist">
@@ -1038,7 +1038,7 @@ emailInput.addEventListener('blur', function() {
         
         <!-- 课程总结 -->
         <div class="note-box">
-            <strong>🎉 JavaScript基础课程完结！</strong>
+            <strong> JavaScript基础课程完结！</strong>
             <p>恭喜你完成了JavaScript基础课程的学习！从变量、数据类型、运算符，到控制结构、函数、数组与对象，再到DOM操作和事件处理，你已经掌握了JavaScript的核心知识。</p>
             <p>接下来可以尝试：</p>
             <ul class="checklist">
@@ -1047,6 +1047,26 @@ emailInput.addEventListener('blur', function() {
                 <li>学习前端框架（React、Vue）</li>
             </ul>
         </div>
+
+        <div class="warning-box">
+            <strong>常见错误提醒</strong>
+            <ul>
+                <li><strong>事件冒泡</strong>：在内层元素上绑定事件，事件会向上传播到外层元素，使用<code>event.stopPropagation()</code>阻止</li>
+                <li><strong>默认行为</strong>：表单提交、链接跳转等是元素的默认行为，使用<code>event.preventDefault()</code>阻止</li>
+                <li><strong>this指向</strong>：在事件处理函数中，this指向绑定事件的元素，但箭头函数没有自己的this</li>
+                <li><strong>事件监听器引用</strong>：使用removeEventListener移除时，需要传入与addEventListener相同的函数引用，不能用匿名函数</li>
+            </ul>
+        </div>
+
+        <div class="homework">
+            <h3>课后练习</h3>
+            <ol>
+                <li>实现一个下拉菜单，鼠标悬停时显示菜单，点击外部时关闭菜单</li>
+                <li>创建一个表单，监听提交事件，阻止默认行为，验证表单后显示确认消息</li>
+                <li>实现一个键盘事件监听器，检测用户是否按下了Ctrl+S并阻止默认保存行为</li>
+                <li>制作一个可拖拽的卡片组件，使用mousedown、mousemove、mouseup事件实现拖拽功能</li>
+            </ol>
+        </div>
     </section>
 
 
@@ -1054,10 +1074,6 @@ emailInput.addEventListener('blur', function() {
 
 </body>
 </html>
-
-
-
-
 
 
 

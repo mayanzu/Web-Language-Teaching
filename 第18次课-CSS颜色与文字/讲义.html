@@ -18,7 +18,7 @@
 <nav class="sidebar">
     <div class="sidebar-nav">
         <h3>课程导航</h3>
-        <a class="sidebar-link" href="#intro">👋 课程概览</a>
+        <a class="sidebar-link" href="#intro">课程概览</a>
         
         <h3>Part 1: CSS颜色</h3>
         <a class="sidebar-link sub-link" href="#chapter-1">一、颜色表示法</a>
@@ -29,7 +29,7 @@
         <a class="sidebar-link sub-link section-link" href="#section-2-1">2.1 color属性</a>
         <a class="sidebar-link sub-link section-link" href="#section-2-2">2.2 background-color属性</a>
         <a class="sidebar-link sub-link section-link" href="#section-2-3">2.3 border-color属性</a>
-        <a class="sidebar-link sub-link" href="#lab-1">🔬 实验 01：颜色实践</a>
+        <a class="sidebar-link sub-link" href="#lab-1">实验 01：颜色实践</a>
         
         <h3>Part 2: 文字排版</h3>
         <a class="sidebar-link sub-link" href="#chapter-3">三、字体属性</a>
@@ -42,10 +42,10 @@
         <a class="sidebar-link sub-link section-link" href="#section-4-2">4.2 line-height</a>
         <a class="sidebar-link sub-link section-link" href="#section-4-3">4.3 text-decoration</a>
         <a class="sidebar-link sub-link section-link" href="#section-4-4">4.4 text-indent</a>
-        <a class="sidebar-link sub-link" href="#lab-2">🔬 实验 02：文字排版实践</a>
+        <a class="sidebar-link sub-link" href="#lab-2">实验 02：文字排版实践</a>
         
         <h3>总结与练习</h3>
-        <a class="sidebar-link sub-link" href="#summary">📝 课程小结</a>
+        <a class="sidebar-link sub-link" href="#summary">本课小结</a>
         <a class="sidebar-link sub-link section-link" href="#section-5-1">5.1 知识点回顾</a>
         <a class="sidebar-link sub-link section-link" href="#section-5-2">5.2 重点记忆</a>
     </div>
@@ -85,7 +85,7 @@
         <p>CSS提供了多种方式来表示颜色，每种方式都有其特点和适用场景。</p>
         
         <div class="note-box">
-            <span class="tip-title">📖 生活类比</span>
+            <span class="tip-title">生活类比</span>
             <p>颜色表示法就像不同的语言描述同一个东西：</p>
             <ul>
                 <li><strong>颜色关键字</strong>：像说"红色"、"蓝色"，简单直接</li>
@@ -150,7 +150,7 @@
         </table>
         
         <div class="tip-box">
-            <span class="tip-title">💡 使用建议</span>
+            <span class="tip-title">使用建议</span>
             <p>颜色关键字适合快速测试或简单项目，但在正式项目中建议使用十六进制或RGB，因为：</p>
             <ul>
                 <li>颜色关键字数量有限，无法表示所有颜色</li>
@@ -173,7 +173,7 @@
 .text-gray { color: #888; }       /* 等同于 #888888 */</code></pre>
         
         <div class="note-box">
-            <strong>📌 理解十六进制颜色</strong>
+            <strong>理解十六进制颜色</strong>
             <p>十六进制使用0-9和A-F共16个字符，其中：</p>
             <ul>
                 <li><code>00</code> = 最小值（0），表示该颜色通道关闭</li>
@@ -286,11 +286,11 @@ body {
 }</code></pre>
         
         <div class="warning-box">
-            <strong>⚠️ 常见错误</strong>
+            <strong>常见错误</strong>
             <ul>
-                <li>❌ <code>color: #F5F5F5</code> 用于背景 → 应该用 <code>background-color</code></li>
-                <li>❌ 忘记设置 <code>border-style</code> → 边框不会显示</li>
-                <li>❌ 深色背景配深色文字 → 文字看不清</li>
+                <li> <code>color: #F5F5F5</code> 用于背景 → 应该用 <code>background-color</code></li>
+                <li> 忘记设置 <code>border-style</code> → 边框不会显示</li>
+                <li> 深色背景配深色文字 → 文字看不清</li>
             </ul>
         </div>
     </section>
@@ -300,7 +300,7 @@ body {
          实验 01：颜色实践
          ============================================ -->
     <section id="lab-1">
-        <h2>🔬 实验 01：颜色实践</h2>
+        <h2>实验 01：颜色实践</h2>
         <p>现在让我们动手练习使用CSS颜色！</p>
         
         <div class="lab-card">
@@ -368,7 +368,7 @@ body {
         </div>
         
         <div class="tip-box">
-            <span class="tip-title">🎯 试试看</span>
+            <span class="tip-title">试试看</span>
             <ul>
                 <li>修改卡片的背景颜色，尝试使用不同的颜色</li>
                 <li>将标签的背景色改为红色 <code>#FF0000</code></li>
@@ -387,7 +387,7 @@ body {
         <p>CSS提供了丰富的字体控制属性，让我们可以精确控制文字的显示效果。</p>
         
         <div class="note-box">
-            <span class="tip-title">📖 生活类比</span>
+            <span class="tip-title">生活类比</span>
             <p>设置字体就像选择写字用的笔：</p>
             <ul>
                 <li><strong>font-family</strong>：选择什么牌子的笔（宋体、黑体）</li>
@@ -452,7 +452,7 @@ p { font-size: 16px; }     /* 正文 */
 small { font-size: 14px; } /* 小字 */</code></pre>
         
         <div class="tip-box">
-            <span class="tip-title">💡 字号建议</span>
+            <span class="tip-title">字号建议</span>
             <p>网页正文的最小字号建议不小于14px，否则在某些设备上可能难以阅读。常见的正文字号为16px。</p>
         </div>
         
@@ -541,7 +541,7 @@ p {
 .percent { line-height: 160%; }/* 百分比 */</code></pre>
         
         <div class="tip-box">
-            <span class="tip-title">💡 行高建议</span>
+            <span class="tip-title">行高建议</span>
             <p>中文网页的行高建议设置为1.5-1.8倍，这样段落阅读起来会更加舒适。</p>
         </div>
         
@@ -567,7 +567,7 @@ p {
          实验 02：文字排版实践
          ============================================ -->
     <section id="lab-2">
-        <h2>🔬 实验 02：文字排版实践</h2>
+        <h2>实验 02：文字排版实践</h2>
         <p>现在让我们动手练习文字排版！</p>
         
         <div class="lab-card">
@@ -647,7 +647,7 @@ p {
         </div>
         
         <div class="tip-box">
-            <span class="tip-title">🎯 试试看</span>
+            <span class="tip-title">试试看</span>
             <ul>
                 <li>修改标题的字号和颜色</li>
                 <li>调整正文的行高，观察阅读体验的变化</li>
@@ -661,7 +661,7 @@ p {
          课程小结区域
          ============================================ -->
     <section id="summary">
-        <h2>五、本课小结</h2>
+        <h2>本课小结</h2>
         
         <h3 id="section-5-1">5.1 知识点回顾</h3>
         <ul class="checklist">

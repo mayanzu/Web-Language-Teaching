@@ -18,32 +18,32 @@
 <nav class="sidebar">
     <div class="sidebar-nav">
         <h3>课程导航</h3>
-        <a class="sidebar-link" href="#intro">👋 课程概览</a>
+        <a class="sidebar-link" href="#intro">课程概览</a>
         
         <h3>Part 1: DOM基础</h3>
         <a class="sidebar-link sub-link" href="#section-1-1">一、什么是DOM</a>
         <a class="sidebar-link sub-link" href="#section-1-2">1.1 DOM树结构</a>
-        <a class="sidebar-link sub-link" href="#lab-1">🔬 实验 01</a>
+        <a class="sidebar-link sub-link" href="#lab-1">实验 01</a>
         
         <h3>Part 2: 选择元素</h3>
         <a class="sidebar-link sub-link" href="#section-2-1">二、基本选择方法</a>
         <a class="sidebar-link sub-link" href="#section-2-2">2.1 CSS选择器</a>
-        <a class="sidebar-link sub-link" href="#lab-2">🔬 实验 02</a>
+        <a class="sidebar-link sub-link" href="#lab-2">实验 02</a>
         
         <h3>Part 3: 操作元素</h3>
         <a class="sidebar-link sub-link" href="#section-3-1">三、读取内容</a>
         <a class="sidebar-link sub-link" href="#section-3-2">3.1 修改内容</a>
         <a class="sidebar-link sub-link" href="#section-3-3">3.2 操作样式</a>
-        <a class="sidebar-link sub-link" href="#lab-3">🔬 实验 03</a>
+        <a class="sidebar-link sub-link" href="#lab-3">实验 03</a>
         
         <h3>Part 4: 创建删除元素</h3>
         <a class="sidebar-link sub-link" href="#section-4-1">四、创建元素</a>
         <a class="sidebar-link sub-link" href="#section-4-2">4.1 删除元素</a>
-        <a class="sidebar-link sub-link" href="#lab-4">🔬 实验 04</a>
+        <a class="sidebar-link sub-link" href="#lab-4">实验 04</a>
         <a class="sidebar-link sub-link" href="#real-world-demo">五、真实案例展示</a>
         
         <h3>总结与练习</h3>
-        <a class="sidebar-link sub-link" href="#summary">📝 课程小结</a>
+        <a class="sidebar-link sub-link" href="#summary">本课小结</a>
     </div>
 </nav>
 
@@ -81,7 +81,7 @@
         <p>DOM（Document Object Model，文档对象模型）是浏览器提供的一套编程接口，它将HTML文档表示为一个树形结构，让JavaScript可以访问和操作网页中的每个元素。</p>
         
         <div class="tip-box">
-            <span class="tip-title">💡 生活中的类比</span>
+            <span class="tip-title">生活中的类比</span>
             <ul class="checklist">
                 <li><strong>DOM操作 = 遥控器：</strong>就像用遥控器控制电视（换台、调音量），JavaScript通过DOM控制网页（改文字、换颜色）</li>
                 <li><strong>没有DOM = 静态海报：</strong>网页只能展示固定内容，无法响应用户操作</li>
@@ -415,13 +415,13 @@ function selectById() {
     // 通过ID选择标题
     const title = document.getElementById('title');
     document.getElementById('select-output').innerText = 
-        `✅ 找到标题: "${title.innerText}"`;
+        ` 找到标题: "${title.innerText}"`;
 }
 
 function selectByClass() {
     // 通过class选择所有盒子
     const boxes = document.querySelectorAll('.box');
-    let result = `✅ 找到${boxes.length}个盒子:\n`;
+    let result = ` 找到${boxes.length}个盒子:\n`;
     boxes.forEach((box, index) => {
         result += `${index + 1}. ${box.innerText}\n`;
     });
@@ -433,10 +433,10 @@ function selectSpecial() {
     const special = document.querySelector('.box.special');
     if (special) {
         document.getElementById('select-output').innerText = 
-            `✅ 找到特殊盒子: "${special.innerText}"`;
+            ` 找到特殊盒子: "${special.innerText}"`;
     } else {
         document.getElementById('select-output').innerText = 
-            '❌ 未找到特殊盒子';
+            ' 未找到特殊盒子';
     }
 }
                 </div>
@@ -452,7 +452,7 @@ function selectSpecial() {
                 <div class="box" style="padding: 10px; margin: 5px 0; background: #e0e0e0; border-radius: 4px;">盒子1</div>
                 <div class="box" style="padding: 10px; margin: 5px 0; background: #e0e0e0; border-radius: 4px;">盒子2</div>
                 <div class="box special" style="padding: 10px; margin: 5px 0; background: #ffeb3b; border-radius: 4px;">特殊盒子</div>
-                <div style="margin-top: 15px;">
+                <div>
                     <button class="btn btn-run" onclick="selectById()">选择标题</button>
                     <button class="btn btn-run" onclick="selectByClass()" style="margin-left: 10px;">选择所有盒子</button>
                     <button class="btn btn-run" onclick="selectSpecial()" style="margin-left: 10px;">选择特殊盒子</button>
@@ -555,10 +555,10 @@ content.innerHTML = '';
         <div class="warning-box">
             <strong>innerHTML的安全风险！</strong>
             <p>使用innerHTML设置用户输入的内容时要小心XSS攻击：</p>
-<pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>// ❌ 危险！用户输入可能包含恶意脚本
+<pre><code>//  危险！用户输入可能包含恶意脚本
 element.innerHTML = userInput;
 
-// ✅ 安全！使用innerText会转义HTML
+//  安全！使用innerText会转义HTML
 element.innerText = userInput;
 </code></pre>
         </div>
@@ -620,7 +620,7 @@ box.classList.replace('old', 'new');
 </code></pre>
 
         <div class="tip-box">
-            <span class="tip-title">💡 推荐使用classList</span>
+            <span class="tip-title">推荐使用classList</span>
             <p>classList比直接修改style更好：</p>
             <ul class="checklist">
                 <li>样式定义在CSS文件中，便于维护</li>
@@ -693,15 +693,15 @@ function toggleSize() {
             
             <div class="preview-box">
                 <h3>✏️ 动态编辑器</h3>
-                <div style="margin-bottom: 15px;">
+                <div>
                     <input id="titleInput" placeholder="输入新标题" style="padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
                     <button class="btn btn-run" onclick="changeTitle()" style="margin-left: 10px;">修改标题</button>
                 </div>
-                <div style="margin-bottom: 15px;">
+                <div>
                     <button class="btn btn-run" onclick="toggleTheme()">切换主题</button>
                     <button class="btn btn-run" onclick="toggleSize()" style="margin-left: 10px;">切换大小</button>
                 </div>
-                <div id="display-box" style="padding: 20px; background: #fff3cd; border-radius: 8px; transition: all 0.3s;">
+                <div id="display-box">
                     <h2 id="displayTitle">默认标题</h2>
                     <p>这是可以编辑的内容区域</p>
                 </div>
@@ -920,7 +920,7 @@ function clearAll() {
             
             <div class="preview-box">
                 <h3>📋 待办事项</h3>
-                <div style="margin: 15px 0;">
+                <div>
                     <input id="todoInput" placeholder="输入待办事项" style="padding: 8px; border: 1px solid #ddd; border-radius: 4px; width: 200px;">
                     <button class="btn btn-run" onclick="addTodo()" style="margin-left: 10px;">添加</button>
                     <button class="btn btn-reset" onclick="clearAll()" style="margin-left: 10px;">清空</button>
@@ -1000,7 +1000,7 @@ function postComment(text) {
     list.insertBefore(comment, list.firstChild);
 }
 </code></pre>
-                <p style="margin-top: 10px; color: #666; font-size: 18px;">DOM操作是构建动态交互网页的核心技术。</p>
+                <p>DOM操作是构建动态交互网页的核心技术。</p>
             </div>
         </div>
     </section>
@@ -1010,7 +1010,7 @@ function postComment(text) {
          课程小结区域
          ============================================ -->
     <section id="summary">
-        <h2>六、本课小结</h2>
+        <h2>本课小结</h2>
         
         <h3>知识点回顾</h3>
         <ul class="checklist">
@@ -1065,6 +1065,26 @@ function postComment(text) {
         <div class="note-box">
             <strong>下一课预告：</strong>
             <p>下一课我们将学习【JS事件处理】。学会监听用户的点击、输入、滚动等操作，让网页能够真正响应用户交互！</p>
+        </div>
+
+        <div class="warning-box">
+            <strong>常见错误提醒</strong>
+            <ul>
+                <li><strong>DOM未加载</strong>：脚本在DOM元素创建之前执行，<code>getElementById</code>返回null。确保脚本在DOMContentLoaded事件后执行</li>
+                <li><strong>事件重复绑定</strong>：多次调用<code>addEventListener</code>会绑定多个处理器，使用<code>removeEventListener</code>移除或使用标识位</li>
+                <li><strong>innerHTML vs textContent</strong>：使用innerHTML插入用户输入可能导致XSS攻击，应优先使用textContent</li>
+                <li><strong>querySelector选择错误</strong>：<code>querySelector('.item')</code>只选第一个匹配元素，<code>querySelectorAll('.item')</code>选所有</li>
+            </ul>
+        </div>
+
+        <div class="homework">
+            <h3>课后练习</h3>
+            <ol>
+                <li>创建一个待办事项列表，可以添加、删除和标记完成待办项</li>
+                <li>实现一个简单的表格，当鼠标悬停在某一行时，该行高亮显示</li>
+                <li>创建一个图片画廊，点击缩略图时在模态框中显示大图</li>
+                <li>实现一个标签页切换组件，点击不同标签显示不同内容</li>
+            </ol>
         </div>
     </section>
 

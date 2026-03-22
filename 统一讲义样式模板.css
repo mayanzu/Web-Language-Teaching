@@ -271,7 +271,7 @@ pre.css::before {
 }
 
 /* 提示框 */
-.tip-box, .note-box, .warning-box {
+.tip-box, .note-box, .warning-box, .example-box {
     border-radius: 6px;
     padding: 20px 24px;
     margin: 24px 0;
@@ -280,7 +280,10 @@ pre.css::before {
     border: 1px solid var(--border-color);
 }
 
-.tip-title {
+.tip-title,
+.note-title,
+.warning-title,
+.example-box h5 {
     font-weight: 600;
     color: var(--color-heading);
     margin-bottom: 10px;
@@ -398,6 +401,37 @@ table tr:hover td {
     padding-left: 28px;
     position: relative;
     margin-bottom: 10px;
+}
+
+/* 总结列表 */
+.summary-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.summary-list li {
+    padding-left: 28px;
+    position: relative;
+    margin-bottom: 12px;
+}
+
+/* 作业框 */
+.homework {
+    background: #fafbfc;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 20px 24px;
+    margin: 24px 0;
+}
+
+.homework h3 {
+    margin-top: 0;
+}
+
+/* 文本颜色 */
+.text-muted {
+    color: var(--color-text-light);
+    font-size: 0.9em;
 }
 
 /* 实验室卡片 */

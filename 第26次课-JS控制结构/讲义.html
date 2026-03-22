@@ -18,34 +18,34 @@
 <nav class="sidebar">
     <div class="sidebar-nav">
         <h3>课程导航</h3>
-        <a class="sidebar-link" href="#intro">👋 课程概览</a>
+        <a class="sidebar-link" href="#intro">课程概览</a>
         
         <h3>Part 1: 条件控制</h3>
         <a class="sidebar-link sub-link" href="#why-control">1.1 为什么需要控制</a>
         <a class="sidebar-link sub-link" href="#if-basic">1.2 if 语句基础</a>
         <a class="sidebar-link sub-link" href="#if-else">1.3 if...else</a>
         <a class="sidebar-link sub-link" href="#if-elseif">1.4 多重分支</a>
-        <a class="sidebar-link sub-link" href="#lab-grade">🔬 实验 01：成绩评定</a>
+        <a class="sidebar-link sub-link" href="#lab-grade">实验 01：成绩评定</a>
         
         <h3>Part 2: 高级条件</h3>
         <a class="sidebar-link sub-link" href="#nested-if">2.1 嵌套 if</a>
         <a class="sidebar-link sub-link" href="#ternary">2.2 三元运算符</a>
         <a class="sidebar-link sub-link" href="#switch">2.3 switch 语句</a>
-        <a class="sidebar-link sub-link" href="#lab-weekday">🔬 实验 02：星期查询</a>
+        <a class="sidebar-link sub-link" href="#lab-weekday">实验 02：星期查询</a>
         
         <h3>Part 3: 循环控制</h3>
         <a class="sidebar-link sub-link" href="#for-loop">3.1 for 循环</a>
-        <a class="sidebar-link sub-link" href="#lab-multiplication">🔬 实验 03：乘法表</a>
+        <a class="sidebar-link sub-link" href="#lab-multiplication">实验 03：乘法表</a>
         <a class="sidebar-link sub-link" href="#while-loop">3.2 while 循环</a>
         <a class="sidebar-link sub-link" href="#do-while">3.3 do...while</a>
         
         <h3>Part 4: 流程控制</h3>
         <a class="sidebar-link sub-link" href="#break-continue">4.1 break 与 continue</a>
-        <a class="sidebar-link sub-link" href="#lab-prime">🔬 实验 04：质数判断</a>
+        <a class="sidebar-link sub-link" href="#lab-prime">实验 04：质数判断</a>
         
         <h3>总结与练习</h3>
-        <a class="sidebar-link sub-link" href="#comprehensive">🔬 综合案例：猜数字</a>
-        <a class="sidebar-link sub-link" href="#summary">📝 课程小结</a>
+        <a class="sidebar-link sub-link" href="#comprehensive">综合案例：猜数字</a>
+        <a class="sidebar-link sub-link" href="#summary">本课小结</a>
     </div>
 </nav>
 
@@ -142,10 +142,10 @@ if (temperature > 25) {
         <div class="tip-box">
             <span class="tip-title">代码块与花括号</span>
             <p>虽然当代码块只有一行时可以省略花括号，但<strong>强烈建议始终使用花括号</strong>，这能避免很多潜在的错误：</p>
-<pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>// ❌ 不推荐（容易出错）
+<pre><code>//  不推荐（容易出错）
 if (age >= 18) console.log('成年人');
 
-// ✅ 推荐（清晰、安全）
+//  推荐（清晰、安全）
 if (age >= 18) {
     console.log('成年人');
 }
@@ -198,12 +198,12 @@ if (score >= 90) {
         <div class="warning-box">
             <strong>重要特性：互斥执行</strong>
             <p><code>if...else if...else</code> 结构中，<strong>只有第一个条件为 <code>true</code> 的分支会被执行</strong>，后面所有分支都会被跳过，即使它们的条件也为 <code>true</code>：</p>
-<pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>let num = 15;
+<pre><code>let num = 15;
 
 if (num > 10) {
-    console.log('大于10');  // ✅ 这个会执行
+    console.log('大于10');  //  这个会执行
 } else if (num > 5) {
-    console.log('大于5');   // ❌ 不会执行，虽然条件也为 true
+    console.log('大于5');   //  不会执行，虽然条件也为 true
 }
 </code></pre>
         </div>
@@ -348,8 +348,8 @@ if (age >= 18) {
         <div class="note-box">
             <strong>何时使用三元运算符？</strong>
             <ul>
-                <li>✅ 适合：简单的二选一赋值</li>
-                <li>❌ 不适合：复杂逻辑或需要执行多条语句</li>
+                <li> 适合：简单的二选一赋值</li>
+                <li> 不适合：复杂逻辑或需要执行多条语句</li>
             </ul>
         </div>
     </section>
@@ -402,7 +402,7 @@ console.log(dayName);  // "星期三"
         <div class="warning-box">
             <strong>别忘了 break！</strong>
             <p>如果忘记写 <code>break</code>，代码会"穿透"到下一个 case：</p>
-<pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>let fruit = 'apple';
+<pre><code>let fruit = 'apple';
 switch (fruit) {
     case 'apple':
         console.log('苹果');
@@ -475,7 +475,7 @@ function checkWeekday() {
             dayName = '无效输入';
     }
     
-    const weekendMsg = isWeekend ? '🎉 周末啦！' : '💼 工作日';
+    const weekendMsg = isWeekend ? ' 周末啦！' : ' 工作日';
     resultDiv.innerHTML = `&lt;p&gt;&lt;strong&gt;${dayName}&lt;/strong&gt; - ${weekendMsg}&lt;/p&gt;`;
 }
                 </div>
@@ -666,14 +666,14 @@ while (count <= 5) {
         <div class="warning-box">
             <strong>避免死循环！</strong>
             <p>如果循环条件永远为 <code>true</code>，程序会一直循环下去，导致页面卡死：</p>
-<pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>// ❌ 错误示例：死循环！
+<pre><code>//  错误示例：死循环！
 let i = 1;
 while (i <= 5) {
     console.log(i);
     // 忘记写 i++，i 永远是 1
 }
 
-// ✅ 正确示例
+//  正确示例
 let i = 1;
 while (i <= 5) {
     console.log(i);
@@ -834,9 +834,9 @@ function checkPrime() {
     }
     
     if (isPrime) {
-        resultDiv.innerHTML = `&lt;p style="color: green;"&gt;✅ ${num} 是质数！&lt;/p&gt;`;
+        resultDiv.innerHTML = `&lt;p style="color: green;"&gt; ${num} 是质数！&lt;/p&gt;`;
     } else {
-        resultDiv.innerHTML = `&lt;p style="color: orange;"&gt;❌ ${num} 不是质数&lt;/p&gt;`;
+        resultDiv.innerHTML = `&lt;p style="color: orange;"&gt; ${num} 不是质数&lt;/p&gt;`;
     }
 }
                 </div>
@@ -928,8 +928,8 @@ function makeGuess() {
     
     // 判断猜测结果
     if (guess === targetNumber) {
-        logDiv.innerHTML += `&lt;p style="color: green;"&gt;🎉 第${attempts}次: ${guess} - 恭喜猜对了！&lt;/p&gt;`;
-        statusDiv.innerHTML = `&lt;h3 style="color: green;"&gt;✅ 你赢了！用了 ${attempts} 次！&lt;/h3&gt;`;
+        logDiv.innerHTML += `&lt;p style="color: green;"&gt; 第${attempts}次: ${guess} - 恭喜猜对了！&lt;/p&gt;`;
+        statusDiv.innerHTML = `&lt;h3 style="color: green;"&gt; 你赢了！用了 ${attempts} 次！&lt;/h3&gt;`;
         isGameOver = true;
     } else if (guess < targetNumber) {
         logDiv.innerHTML += `&lt;p&gt;第${attempts}次: ${guess} - 太小了 ⬆️&lt;/p&gt;`;
@@ -940,7 +940,7 @@ function makeGuess() {
     // 检查是否用完机会
     if (attempts >= maxAttempts && !isGameOver) {
         logDiv.innerHTML += `&lt;p style="color: red;"&gt;机会用完了！&lt;/p&gt;`;
-        statusDiv.innerHTML = `&lt;h3 style="color: red;"&gt;❌ 游戏结束！答案是 ${targetNumber}&lt;/h3&gt;`;
+        statusDiv.innerHTML = `&lt;h3 style="color: red;"&gt; 游戏结束！答案是 ${targetNumber}&lt;/h3&gt;`;
         isGameOver = true;
     } else if (!isGameOver) {
         statusDiv.innerHTML = `&lt;p&gt;剩余机会: ${maxAttempts - attempts} 次&lt;/p&gt;`;
@@ -968,7 +968,7 @@ initGame();
                 <h3>猜数字游戏</h3>
                 <p>我想了一个 1-100 之间的数字，你能猜出来吗？</p>
                 <p>你有 10 次机会！</p>
-                <div style="margin: 15px 0;">
+                <div>
                     <input id="guess-input" type="number" min="1" max="100" placeholder="输入1-100" style="padding: 8px; border: 1px solid #ddd; border-radius: 4px; width: 150px; margin-right: 10px;">
                     <button class="btn btn-run" onclick="makeGuess()">猜！</button>
                     <button class="btn btn-reset" onclick="resetGame()" style="margin-left: 5px;">重新开始</button>
@@ -985,7 +985,7 @@ initGame();
          ============================================ -->
 
     <section id="summary">
-        <h2>八、本课小结</h2>
+        <h2>本课小结</h2>
         
         <h3>知识点回顾</h3>
         <ul class="checklist">

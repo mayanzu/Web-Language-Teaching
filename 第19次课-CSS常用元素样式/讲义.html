@@ -15,7 +15,7 @@
     <nav class="sidebar">
         <div class="sidebar-nav">
             <h3>课程导航</h3>
-            <a class="sidebar-link" href="#intro">👋 课程概览</a>
+            <a class="sidebar-link" href="#intro">课程概览</a>
             
             <a class="sidebar-link" href="#links">一、链接样式</a>
             <a class="sidebar-link sub-link" href="#section-1-1">1.1 链接的四种状态</a>
@@ -37,7 +37,7 @@
             <a class="sidebar-link" href="#blocks">六、块级元素样式</a>
             <a class="sidebar-link sub-link" href="#section-6-1">6.1 卡片样式设计</a>
             
-            <a class="sidebar-link" href="#summary">七、课程小结</a>
+            <a class="sidebar-link sub-link" href="#summary">七、课程小结</a>
             <a class="sidebar-link sub-link" href="#section-7-1">知识点回顾</a>
             <a class="sidebar-link sub-link" href="#section-7-2">重点记忆</a>
         </div>
@@ -901,7 +901,7 @@
 
         <!-- 课程小结区域 -->
         <section id="summary">
-            <h2>七、课程小结</h2>
+            <h2>本课小结</h2>
             <p>
                 本节课我们学习了CSS常用元素的样式设计，包括链接、列表、表格、表单、图片和块级元素等。
             </p>
@@ -918,13 +918,34 @@
             
             <h3 id="section-7-2">重点记忆</h3>
             <div class="tip-box">
-                <span class="tip-title">🎯 核心要点</span>
+                <span class="tip-title">核心要点</span>
                 <p>1. 链接样式设计时要考虑四种状态的视觉反馈</p>
                 <p>2. 自定义列表样式时，通常使用伪元素::before创建标记</p>
                 <p>3. 表格样式设计时，首先设置border-collapse: collapse合并边框</p>
                 <p>4. 表单元素获得焦点时，应提供清晰的视觉反馈</p>
                 <p>5. 图片样式设计时，使用object-fit属性控制图片的适配方式</p>
                 <p>6. 卡片是网页中常用的设计模式，通常包含标题、内容和操作按钮</p>
+            </div>
+
+            <div class="warning-box">
+                <strong>常见错误提醒</strong>
+                <ul>
+                    <li><strong>链接样式顺序</strong>：LVHA顺序很重要（:link -> :visited -> :hover -> :active），顺序不对可能导致某些状态不生效</li>
+                    <li><strong>border-collapse遗漏</strong>：表格边框合并不使用<code>border-collapse: collapse</code>，会导致双线边框</li>
+                    <li><strong>表单焦点缺失</strong>：没有为表单元素设置:focus样式，用户不知道当前焦点在哪里</li>
+                    <li><strong>图片变形</strong>：使用固定宽高而不设置object-fit，会导致图片变形</li>
+                </ul>
+            </div>
+
+            <div class="homework">
+                <h3>课后练习</h3>
+                <ol>
+                    <li>创建一个导航菜单，链接有独特的悬停效果</li>
+                    <li>设计一个斑马纹表格（奇偶行不同颜色），并添加表头样式</li>
+                    <li>美化一个注册表单，包括输入框、下拉框和按钮的样式</li>
+                    <li>为一张图片添加圆角和阴影效果</li>
+                    <li>制作一个产品卡片组件，包含图片、标题、描述和价格</li>
+                </ol>
             </div>
         </section>
     </main>

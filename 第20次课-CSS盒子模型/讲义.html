@@ -12,7 +12,7 @@
 <nav class="sidebar">
     <div class="sidebar-nav">
         <h3>课程导航</h3>
-        <a class="sidebar-link" href="#intro">👋 课程概览</a>
+        <a class="sidebar-link" href="#intro">课程概览</a>
         
         <h3>Part 1: 盒子模型基础</h3>
         <a class="sidebar-link sub-link" href="#box-model-intro">一、盒子模型简介</a>
@@ -27,11 +27,11 @@
         <a class="sidebar-link sub-link" href="#margin-collapse">八、外边距合并</a>
         
         <h3>Part 3: 实战练习</h3>
-        <a class="sidebar-link sub-link" href="#lab-box-model">🔬 实验 01</a>
-        <a class="sidebar-link sub-link" href="#lab-box-sizing">🔬 实验 02</a>
+        <a class="sidebar-link sub-link" href="#lab-box-model">实验 01</a>
+        <a class="sidebar-link sub-link" href="#lab-box-sizing">实验 02</a>
         
         <h3>总结与练习</h3>
-        <a class="sidebar-link sub-link" href="#summary">📝 课程小结</a>
+        <a class="sidebar-link sub-link" href="#summary">本课小结</a>
     </div>
 </nav>
 <main class="content">
@@ -55,7 +55,7 @@
         <p>盒子模型决定了元素在页面中的大小、位置和与其他元素的关系。</p>
         
         <div class="tip-box">
-            <span class="tip-title">💡 类比理解</span>
+            <span class="tip-title">类比理解</span>
             <p>把每个HTML元素想象成一个<strong>快递包裹</strong>：</p>
             <ul class="checklist">
                 <li><strong>内容（Content）</strong> = 包裹里的物品本身</li>
@@ -224,7 +224,7 @@
         </table>
 
         <div class="note-box">
-            <span class="tip-title">⚠️ 注意事项</span>
+            <span class="tip-title">注意事项</span>
             <ul class="checklist">
                 <li><code>width</code> 和 <code>height</code> 属性<strong>仅对块级元素和替换元素有效</strong></li>
                 <li>对于行内元素（如 <code>&lt;span&gt;</code>），设置宽高不会生效</li>
@@ -235,7 +235,7 @@
         <div class="warning-box">
             <strong>常见问题：内容溢出</strong>
             <p>当内容超出设定的尺寸时，默认会溢出显示。使用 <code>overflow</code> 属性控制溢出行为：</p>
-<pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>.overflow-control {
+<pre><code>.overflow-control {
     width: 200px;
     height: 100px;
     overflow: visible;  /* 默认，内容溢出可见 */
@@ -294,7 +294,7 @@
         </ul>
 
         <div class="note-box">
-            <span class="tip-title">💡 实际应用场景</span>
+            <span class="tip-title">实际应用场景</span>
             <ul>
                 <li><strong>按钮</strong>：给文字周围添加呼吸空间，提升点击体验</li>
                 <li><strong>卡片</strong>：让内容不紧贴边框，更美观</li>
@@ -304,7 +304,7 @@
 
         <div class="warning-box">
             <strong>常见问题：padding 导致元素变大</strong>
-<pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>/* 问题示例：期望宽度300px，实际变成340px */
+<pre><code>/* 问题示例：期望宽度300px，实际变成340px */
 .problem-box {
     width: 300px;
     padding: 20px;  /* 左右各加20px */
@@ -393,7 +393,7 @@
 }</code></pre>
 
         <div class="tip-box">
-            <span class="tip-title">💡 实用技巧</span>
+            <span class="tip-title">实用技巧</span>
             <ul class="checklist">
                 <li>想要<strong>圆形</strong>？设置 <code>border-radius: 50%;</code>（宽高需相等）</li>
                 <li>想要<strong>胶囊</strong>？设置 <code>border-radius</code> 为高度的一半</li>
@@ -450,7 +450,7 @@
 }</code></pre>
 
         <div class="tip-box">
-            <span class="tip-title">💡 margin: auto 的原理</span>
+            <span class="tip-title">margin: auto 的原理</span>
             <p><code>auto</code> 让浏览器自动计算左右外边距，使其相等，从而实现居中。</p>
             <p><strong>注意：</strong>这只对<strong>块级元素</strong>有效，且必须设置<strong>明确的宽度</strong>。</p>
         </div>
@@ -463,8 +463,8 @@
             <tbody>
                 <tr>
                     <td>负值</td>
-                    <td>✅ 可以使用负值，让元素重叠</td>
-                    <td>❌ padding 不能使用负值</td>
+                    <td> 可以使用负值，让元素重叠</td>
+                    <td> padding 不能使用负值</td>
                 </tr>
                 <tr>
                     <td>背景</td>
@@ -552,7 +552,7 @@
 }</code></pre>
 
         <div class="note-box">
-            <span class="tip-title">🎯 为什么推荐使用 border-box？</span>
+            <span class="tip-title">为什么推荐使用 border-box？</span>
             <ul class="checklist">
                 <li><strong>更直观</strong>：设置 width: 200px，元素就是 200px，不用心算</li>
                 <li><strong>响应式友好</strong>：使用百分比宽度时，不用担心 padding 撑破布局</li>
@@ -575,7 +575,7 @@ html {
 }</code></pre>
 
         <div class="warning-box">
-            <strong>⚠️ 注意事项</strong>
+            <strong>注意事项</strong>
             <ul class="checklist">
                 <li>如果项目中途引入 <code>border-box</code>，可能会影响已有布局</li>
                 <li>第三方库可能使用不同的 box-sizing，需要注意兼容</li>
@@ -589,7 +589,7 @@ html {
         <p>外边距合并是CSS中一个<strong>经常让人困惑</strong>的特性：当两个垂直方向的外边距相遇时，它们会合并成一个外边距，取较大的那个值。</p>
         
         <div class="tip-box">
-            <span class="tip-title">💡 关键要点</span>
+            <span class="tip-title">关键要点</span>
             <ul class="checklist">
                 <li>外边距合并<strong>只发生在垂直方向</strong>（上下），水平方向不会</li>
                 <li>只发生在<strong>普通文档流</strong>中的块级元素之间</li>
@@ -621,7 +621,7 @@ html {
         <h3>8.2 如何避免外边距合并</h3>
         <div class="warning-box">
             <strong>解决父子元素 margin 合并的方法：</strong>
-<pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>/* 方法1：给父元素添加 padding */
+<pre><code>/* 方法1：给父元素添加 padding */
 .parent {
     padding-top: 1px;  /* 哪怕1px也能阻止合并 */
 }
@@ -649,7 +649,7 @@ html {
         </div>
 
         <div class="note-box">
-            <span class="tip-title">🎯 实际开发建议</span>
+            <span class="tip-title">实际开发建议</span>
             <ul class="checklist">
                 <li>了解外边距合并的存在，遇到奇怪的间距问题时首先排查它</li>
                 <li>使用开发者工具检查元素的盒模型，看看 margin 是否符合预期</li>
@@ -660,7 +660,7 @@ html {
     </section>
 
     <section id="lab-box-model">
-        <h2>九、实验：CSS盒子模型交互式演示</h2>
+        <h2>实验：CSS盒子模型交互式演示</h2>
         <p>通过这个交互式实验，你可以直观地了解CSS盒子模型的各个部分及其影响。</p>
         
         <div class="lab-card">
@@ -724,7 +724,7 @@ html {
     </section>
 
     <section id="lab-box-sizing">
-        <h2>十、实验：box-sizing属性</h2>
+        <h2>实验：box-sizing属性</h2>
         <div class="lab-card">
             <div class="lab-header">
                 <span>实验 02：box-sizing属性对比</span>
@@ -793,19 +793,19 @@ html {
         </div>
     </section>
     <section id="summary">
-        <h2>十一、本课小结</h2>
+        <h2>本课小结</h2>
         
         <h3>知识点回顾</h3>
         <div class="note-box">
             <p>恭喜你！学完了CSS盒子模型这个核心概念：</p>
             <ul class="checklist">
-                <li>✅ <strong>盒子模型组成</strong>：内容（Content）→ 内边距（Padding）→ 边框（Border）→ 外边距（Margin）</li>
-                <li>✅ <strong>内容区域</strong>：由 width/height 控制，只对块级元素有效</li>
-                <li>✅ <strong>内边距</strong>：撑大元素，背景色可见，不能为负</li>
-                <li>✅ <strong>边框</strong>：三要素（宽度、样式、颜色），border-radius 创建圆角</li>
-                <li>✅ <strong>外边距</strong>：可为负值，margin: auto 实现居中</li>
-                <li>✅ <strong>box-sizing</strong>：推荐全局使用 border-box</li>
-                <li>✅ <strong>外边距合并</strong>：垂直方向发生，多种方法可避免</li>
+                <li> <strong>盒子模型组成</strong>：内容（Content）→ 内边距（Padding）→ 边框（Border）→ 外边距（Margin）</li>
+                <li> <strong>内容区域</strong>：由 width/height 控制，只对块级元素有效</li>
+                <li> <strong>内边距</strong>：撑大元素，背景色可见，不能为负</li>
+                <li> <strong>边框</strong>：三要素（宽度、样式、颜色），border-radius 创建圆角</li>
+                <li> <strong>外边距</strong>：可为负值，margin: auto 实现居中</li>
+                <li> <strong>box-sizing</strong>：推荐全局使用 border-box</li>
+                <li> <strong>外边距合并</strong>：垂直方向发生，多种方法可避免</li>
             </ul>
         </div>
         
@@ -840,7 +840,7 @@ html {
         
         <h3>最佳实践</h3>
         <div class="tip-box">
-            <span class="tip-title">💡 开发建议</span>
+            <span class="tip-title">开发建议</span>
             <ul>
                 <li>在项目开始时就全局设置 <code>box-sizing: border-box;</code></li>
                 <li>使用开发者工具（F12）检查元素的盒模型</li>
@@ -852,7 +852,7 @@ html {
         
         <h3>下节课预告</h3>
         <div class="note-box">
-            <strong>🎯 第21课：CSS样式进阶</strong>
+            <strong>第21课：CSS样式进阶</strong>
             <p>下一课我们将学习更多CSS样式技巧，包括：</p>
             <ul>
                 <li>背景样式（background）</li>
@@ -865,7 +865,7 @@ html {
         
         <h3>课后练习</h3>
         <div class="warning-box">
-            <strong>📝 动手任务</strong>
+            <strong>动手任务</strong>
             <ol class="lab-steps">
                 <li>创建一个卡片组件，使用盒子模型设置合适的padding、border和margin</li>
                 <li>实现一个圆形头像，使用 border-radius: 50%</li>

@@ -18,32 +18,32 @@
 <nav class="sidebar">
     <div class="sidebar-nav">
         <h3>课程导航</h3>
-        <a class="sidebar-link" href="#intro">👋 课程概览</a>
+        <a class="sidebar-link" href="#intro">课程概览</a>
         
         <h3>Part 1: 数组基础</h3>
         <a class="sidebar-link sub-link" href="#section-1-1">一、什么是数组</a>
         <a class="sidebar-link sub-link" href="#section-1-2">1.1 创建数组</a>
         <a class="sidebar-link sub-link" href="#section-1-3">1.2 访问与修改元素</a>
-        <a class="sidebar-link sub-link" href="#lab-1">🔬 实验 01</a>
+        <a class="sidebar-link sub-link" href="#lab-1">实验 01</a>
         
         <h3>Part 2: 数组方法</h3>
         <a class="sidebar-link sub-link" href="#section-2-1">二、常用数组方法</a>
         <a class="sidebar-link sub-link" href="#section-2-2">2.1 高阶数组方法</a>
-        <a class="sidebar-link sub-link" href="#lab-2">🔬 实验 02</a>
+        <a class="sidebar-link sub-link" href="#lab-2">实验 02</a>
         
         <h3>Part 3: 对象基础</h3>
         <a class="sidebar-link sub-link" href="#section-3-1">三、什么是对象</a>
         <a class="sidebar-link sub-link" href="#section-3-2">3.1 创建与访问对象</a>
         <a class="sidebar-link sub-link" href="#section-3-3">3.2 对象方法</a>
-        <a class="sidebar-link sub-link" href="#lab-3">🔬 实验 03</a>
+        <a class="sidebar-link sub-link" href="#lab-3">实验 03</a>
         
         <h3>Part 4: 综合应用</h3>
         <a class="sidebar-link sub-link" href="#section-4-1">四、数组与对象结合</a>
-        <a class="sidebar-link sub-link" href="#lab-4">🔬 实验 04</a>
+        <a class="sidebar-link sub-link" href="#lab-4">实验 04</a>
         <a class="sidebar-link sub-link" href="#real-world-demo">五、真实案例展示</a>
         
         <h3>总结与练习</h3>
-        <a class="sidebar-link sub-link" href="#summary">📝 课程小结</a>
+        <a class="sidebar-link sub-link" href="#summary">本课小结</a>
     </div>
 </nav>
 
@@ -81,7 +81,7 @@
         <p>数组是一种特殊的数据结构，用于在单个变量中存储多个值。可以把数组想象成一个有编号的储物柜，每个格子都可以存放一个物品。</p>
         
         <div class="tip-box">
-            <span class="tip-title">💡 生活中的数组</span>
+            <span class="tip-title">生活中的数组</span>
             <ul class="checklist">
                 <li><strong>班级名单：</strong>按座号排列的学生姓名</li>
                 <li><strong>购物清单：</strong>要购买的商品列表</li>
@@ -174,10 +174,10 @@ console.log(colors);  // ['红', '青', '蓝', '黄', '紫']
         <div class="warning-box">
             <strong>常见错误！</strong>
             <p>索引从0开始，不是从1开始。<code>arr[1]</code> 是第二个元素，不是第一个！</p>
-<pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>// ❌ 错误：以为索引从1开始
+<pre><code>//  错误：以为索引从1开始
 let first = colors[1];  // 这是第二个元素！
 
-// ✅ 正确：索引从0开始
+//  正确：索引从0开始
 let first = colors[0];  // 这才是第一个元素
 </code></pre>
         </div>
@@ -533,9 +533,9 @@ console.log(numbers.every(num => num > 3));  // false
 </code></pre>
 
         <div class="tip-box">
-            <span class="tip-title">💡 链式调用</span>
+            <span class="tip-title">链式调用</span>
             <p>高阶方法可以链式调用，组合使用更加强大：</p>
-<pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>let users = [
+<pre><code>let users = [
     { name: '小明', age: 17, score: 85 },
     { name: '小红', age: 25, score: 92 },
     { name: '小刚', age: 30, score: 78 }
@@ -617,13 +617,13 @@ function showTop3() {
             
             <div class="preview-box">
                 <h3>成绩统计分析</h3>
-                <div style="margin: 15px 0;">
+                <div>
                     <button class="btn btn-run" onclick="showAll()">显示全部</button>
                     <button class="btn btn-run" onclick="showPassed()" style="margin-left: 10px;">及格名单</button>
                     <button class="btn btn-run" onclick="showAverage()" style="margin-left: 10px;">平均分</button>
                     <button class="btn btn-run" onclick="showTop3()" style="margin-left: 10px;">前三名</button>
                 </div>
-                <div id="result" style="padding: 15px; background: #f9f9f9; border-radius: 6px; min-height: 60px; font-size: 18px;"></div>
+                <div id="result"></div>
             </div>
         </div>
     </section>
@@ -638,7 +638,7 @@ function showTop3() {
         <p>对象是JavaScript中最重要的数据类型之一。对象用于存储键值对（属性名-属性值）的集合，可以表示真实世界中的实体。</p>
         
         <div class="tip-box">
-            <span class="tip-title">💡 对象的类比</span>
+            <span class="tip-title">对象的类比</span>
             <p>把对象想象成一张"名片"或"身份证"：</p>
             <ul class="checklist">
                 <li><strong>属性名</strong>：相当于表单的标签（姓名、年龄、地址）</li>
@@ -783,7 +783,7 @@ person.greet('大家好');  // '大家好，我是张三'
         <div class="warning-box">
             <strong>关于 this 关键字</strong>
             <p><code>this</code> 在对象方法中指向调用该方法的对象。注意：箭头函数没有自己的 <code>this</code>！</p>
-<pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>// ❌ 箭头函数中的this不是对象本身
+<pre><code>//  箭头函数中的this不是对象本身
 let obj = {
     name: '测试',
     wrong: () => {
@@ -791,7 +791,7 @@ let obj = {
     }
 };
 
-// ✅ 普通函数中的this指向对象
+//  普通函数中的this指向对象
 let obj2 = {
     name: '测试',
     right: function() {
@@ -909,7 +909,7 @@ function updateAge() {
             
             <div class="preview-box">
                 <h3>个人信息卡片</h3>
-                <div id="card" style="padding: 15px; background: #f9f9f9; border-radius: 6px; margin: 15px 0; min-height: 100px;"></div>
+                <div id="card"></div>
                 <div>
                     <button class="btn btn-run" onclick="showCard()">显示信息</button>
                     <button class="btn btn-run" onclick="addHobby()" style="margin-left: 10px;">添加爱好</button>
@@ -1113,17 +1113,17 @@ function sortByScore() {
             
             <div class="preview-box">
                 <h3>学生管理系统</h3>
-                <div style="margin: 15px 0;">
+                <div>
                     <input id="name-input" placeholder="姓名" style="padding: 8px; margin-right: 10px; border: 1px solid #ddd; border-radius: 4px;">
                     <input id="score-input" type="number" placeholder="成绩" style="padding: 8px; margin-right: 10px; border: 1px solid #ddd; border-radius: 4px; width: 80px;">
                     <button class="btn btn-run" onclick="addStudent()">添加学生</button>
                 </div>
-                <div style="margin: 15px 0;">
+                <div>
                     <button class="btn btn-run" onclick="showAllStudents()">显示全部</button>
                     <button class="btn btn-run" onclick="showStats()" style="margin-left: 10px;">统计信息</button>
                     <button class="btn btn-run" onclick="sortByScore()" style="margin-left: 10px;">按成绩排序</button>
                 </div>
-                <div id="student-list" style="padding: 15px; background: #f9f9f9; border-radius: 6px; min-height: 100px;"></div>
+                <div id="student-list"></div>
             </div>
         </div>
     </section>
@@ -1163,7 +1163,7 @@ console.log('总价：' + total);  // 13196
 let expensive = cart.filter(item => item.price > 1000);
 console.log(expensive);
 </code></pre>
-                <p style="margin-top: 10px; color: #666; font-size: 18px;">如果没有数组和对象，我们将无法有效地管理和处理这些复杂的数据结构。</p>
+                <p>如果没有数组和对象，我们将无法有效地管理和处理这些复杂的数据结构。</p>
             </div>
         </div>
     </section>
@@ -1173,7 +1173,7 @@ console.log(expensive);
          课程小结区域
          ============================================ -->
     <section id="summary">
-        <h2>六、本课小结</h2>
+        <h2>本课小结</h2>
         
         <h3>知识点回顾</h3>
         <ul class="checklist">
@@ -1227,6 +1227,27 @@ console.log(expensive);
         <div class="note-box">
             <strong>下一课预告：</strong>
             <p>下一课我们将学习【JS DOM操作】。学会使用JavaScript操作网页元素，实现动态的页面交互效果。</p>
+        </div>
+
+        <div class="warning-box">
+            <strong>常见错误提醒</strong>
+            <ul>
+                <li><strong>数组引用</strong>：对象赋值是引用赋值，修改新对象会影响原对象。要使用深拷贝：<code>const newArr = [...oldArr]</code></li>
+                <li><strong>splice vs slice</strong>：<code>splice</code>修改原数组（删除/插入），<code>slice</code>不修改原数组（返回新数组）</li>
+                <li><strong>sort默认字典序</strong>：<code>[10, 2].sort()</code>返回<code>[10, 2]</code>，因为默认按字符串排序。要数字排序需要传入比较函数</li>
+                <li><strong>this指向</strong>：对象方法中的this指向对象本身，但setTimeout中的this会丢失，指向window</li>
+            </ul>
+        </div>
+
+        <div class="homework">
+            <h3>课后练习</h3>
+            <ol>
+                <li>创建一个学生数组，每个学生有name和score属性，使用filter找出不及格的学生</li>
+                <li>使用map将一个数字数组中的每个数平方，返回新数组</li>
+                <li>使用reduce计算一个数字数组的总和和平均值</li>
+                <li>创建一个个人名片对象，包含name、age、hobbies数组，使用解构赋值提取属性</li>
+                <li>实现一个购物车数组，包含多个商品对象，实现添加、删除和计算总价的功能</li>
+            </ol>
         </div>
     </section>
 

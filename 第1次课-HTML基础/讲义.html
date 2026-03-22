@@ -15,7 +15,7 @@
 <nav class="sidebar">
     <div class="sidebar-nav">
         <h3>课程导航</h3>
-        <a class="sidebar-link" href="#intro">👋 课程概览</a>
+        <a class="sidebar-link" href="#intro">课程概览</a>
         
         <h3>Part 1: 认识HTML</h3>
         <a class="sidebar-link sub-link" href="#chapter-1">一、什么是HTML</a>
@@ -28,7 +28,7 @@
         <a class="sidebar-link sub-link" href="#section-2-1">2.1 基本结构</a>
         <a class="sidebar-link sub-link" href="#section-2-2">2.2 各部分详细说明</a>
         <a class="sidebar-link sub-link" href="#section-2-3">2.3 head中常见的元素</a>
-        <a class="sidebar-link sub-link" href="#lab-1">🔬 实验 01：第一个HTML页面</a>
+        <a class="sidebar-link sub-link" href="#lab-1">实验 01：第一个HTML页面</a>
         
         <h3>Part 2: HTML语法基础</h3>
         <a class="sidebar-link sub-link" href="#chapter-3">三、HTML标签语法</a>
@@ -45,10 +45,10 @@
         <a class="sidebar-link sub-link" href="#section-4-5">4.5 布尔属性</a>
         <a class="sidebar-link sub-link" href="#chapter-5">五、HTML注释</a>
         <a class="sidebar-link sub-link" href="#section-5-1">5.1 注释的语法</a>
-        <a class="sidebar-link sub-link" href="#lab-2">🔬 实验 02：HTML语法练习</a>
+        <a class="sidebar-link sub-link" href="#lab-2">实验 02：HTML语法练习</a>
         
         <h3>总结与练习</h3>
-        <a class="sidebar-link sub-link" href="#summary">📝 课程小结</a>
+        <a class="sidebar-link sub-link" href="#summary">本课小结</a>
     </div>
 </nav>
 
@@ -82,7 +82,7 @@
         <p>HTML是<strong>H</strong>yper<strong>T</strong>ext <strong>M</strong>arkup <strong>L</strong>anguage的缩写，中文名叫「<strong>超文本标记语言</strong>」。</p>
         
         <div class="note-box">
-            <strong>🔍 名词解释</strong>
+            <strong>名词解释</strong>
             <ul>
                 <li><strong>超文本（HyperText）</strong>：不仅包含普通文字，还包含链接、图片、视频等多种元素</li>
                 <li><strong>标记（Markup）</strong>：使用特殊的标签来标识内容的类型和结构</li>
@@ -91,7 +91,7 @@
         </div>
         
         <div class="tip-box">
-            <span class="tip-title">💡 简单理解</span>
+            <span class="tip-title">简单理解</span>
             <p>你可以把HTML想象成搭积木的说明书。它告诉浏览器："这里放一个标题，那里放一段文字"。就像给房子规划房间的位置一样。</p>
         </div>
         
@@ -111,7 +111,7 @@
         </table>
         
         <div class="tip-box">
-            <span class="tip-title">💡 趣味知识</span>
+            <span class="tip-title">趣味知识</span>
             <p>HTML的发明者蒂姆·伯纳斯-李（Tim Berners-Lee）被称为"互联网之父"。1989年，他在欧洲核子研究中心（CERN）工作时，为了方便科学家们共享研究文档，发明了万维网（WWW）和HTML。今天我们能够浏览网页，都要感谢他的伟大发明！</p>
         </div>
         
@@ -160,12 +160,12 @@
         </table>
         
         <div class="warning-box">
-            <strong>⚠️ 重要提示</strong>
+            <strong>重要提示</strong>
             <p>HTML只负责网页的结构，不负责样式和交互！</p>
             <ul>
-                <li>❌ HTML不能改变文字颜色（需要CSS）</li>
-                <li>❌ HTML不能实现动画效果（需要CSS/JavaScript）</li>
-                <li>❌ HTML不能响应用户点击（需要JavaScript）</li>
+                <li> HTML不能改变文字颜色（需要CSS）</li>
+                <li> HTML不能实现动画效果（需要CSS/JavaScript）</li>
+                <li> HTML不能响应用户点击（需要JavaScript）</li>
             </ul>
         </div>
         
@@ -190,7 +190,7 @@
         </table>
         
         <div class="tip-box">
-            <span class="tip-title">💡 VS Code 小技巧</span>
+            <span class="tip-title">VS Code 小技巧</span>
             <p>在VS Code中，输入 <code>!</code> 然后按 <code>Tab</code> 键，可以快速生成HTML5基本结构！这是VS Code的Emmet功能。</p>
         </div>
     </section>
@@ -219,8 +219,8 @@
 &lt;/html&gt;</code></pre>
         
         <div class="note-box">
-            <strong>📌 结构图解</strong>
-            <pre style="font-family: monospace; line-height: 1.5;">
+            <strong>结构图解</strong>
+            <pre>
 ┌─────────────────────────────────┐
 │  &lt;!DOCTYPE html&gt;   ← 文档类型声明  │
 │  ┌───────────────────────────┐  │
@@ -257,25 +257,25 @@
                     <td><code>&lt;!DOCTYPE html&gt;</code></td>
                     <td>文档类型声明</td>
                     <td>告诉浏览器这是HTML5文档，必须放在第一行</td>
-                    <td>✅ 必须</td>
+                    <td> 必须</td>
                 </tr>
                 <tr>
                     <td><code>&lt;html lang="zh-CN"&gt;</code></td>
                     <td>根元素</td>
                     <td>包含整个网页的所有内容，lang指定语言</td>
-                    <td>✅ 必须</td>
+                    <td> 必须</td>
                 </tr>
                 <tr>
                     <td><code>&lt;head&gt;</code></td>
                     <td>文档头部</td>
                     <td>包含网页的元信息（不在页面上显示）</td>
-                    <td>✅ 必须</td>
+                    <td> 必须</td>
                 </tr>
                 <tr>
                     <td><code>&lt;meta charset="UTF-8"&gt;</code></td>
                     <td>字符编码</td>
                     <td>让网页能正确显示中文和特殊符号</td>
-                    <td>✅ 必须</td>
+                    <td> 必须</td>
                 </tr>
                 <tr>
                     <td><code>&lt;meta name="viewport"...&gt;</code></td>
@@ -287,13 +287,13 @@
                     <td><code>&lt;title&gt;</code></td>
                     <td>页面标题</td>
                     <td>显示在浏览器标签页上的文字</td>
-                    <td>✅ 必须</td>
+                    <td> 必须</td>
                 </tr>
                 <tr>
                     <td><code>&lt;body&gt;</code></td>
                     <td>文档主体</td>
                     <td>包含所有在页面上显示的内容</td>
-                    <td>✅ 必须</td>
+                    <td> 必须</td>
                 </tr>
             </tbody>
         </table>
@@ -327,24 +327,24 @@
 &lt;/head&gt;</code></pre>
         
         <div class="warning-box">
-            <strong>⚠️ 常见错误</strong>
+            <strong>常见错误</strong>
             <ul>
-                <li>❌ 忘记写 <code>&lt;!DOCTYPE html&gt;</code> - 可能导致浏览器进入"怪异模式"</li>
-                <li>❌ 忘记设置字符编码 - 中文可能显示为乱码</li>
-                <li>❌ 把内容写在 <code>&lt;head&gt;</code> 里 - head里的内容不会显示在页面上</li>
-                <li>❌ 多个 <code>&lt;body&gt;</code> 标签 - 一个HTML文档只能有一个body</li>
+                <li> 忘记写 <code>&lt;!DOCTYPE html&gt;</code> - 可能导致浏览器进入"怪异模式"</li>
+                <li> 忘记设置字符编码 - 中文可能显示为乱码</li>
+                <li> 把内容写在 <code>&lt;head&gt;</code> 里 - head里的内容不会显示在页面上</li>
+                <li> 多个 <code>&lt;body&gt;</code> 标签 - 一个HTML文档只能有一个body</li>
             </ul>
         </div>
         
         <div class="tip-box">
-            <span class="tip-title">💡 为什么需要 UTF-8？</span>
+            <span class="tip-title">为什么需要 UTF-8？</span>
             <p>UTF-8是一种通用的字符编码，可以正确显示世界上几乎所有语言的字符，包括中文、日文、韩文、阿拉伯文等。如果不设置字符编码，中文可能会显示成"锟斤拷"这样的乱码。</p>
         </div>
     </section>
 
     <!-- ============================================         实验 01：创建第一个HTML页面         ============================================ -->
     <section id="lab-1">
-        <h2>🔬 实验 01：创建第一个HTML页面</h2>
+        <h2>实验 01：创建第一个HTML页面</h2>
         <p>现在让我们动手创建你人生中的第一个HTML页面吧！</p>
         
         <div class="lab-card">
@@ -384,7 +384,7 @@
         </div>
         
         <div class="tip-box">
-            <span class="tip-title">🎯 试试看</span>
+            <span class="tip-title">试试看</span>
             <ul>
                 <li>修改 <code>&lt;title&gt;</code> 标签中的文字，看看浏览器标签页标题是否变化</li>
                 <li>修改 <code>&lt;h1&gt;</code> 和 <code>&lt;p&gt;</code> 标签中的文字，个性化你的页面</li>
@@ -405,8 +405,8 @@
         <p>标签（Tag）是HTML的基本单位，用尖括号 <code>&lt;&gt;</code> 包围。标签告诉浏览器如何处理其中的内容。</p>
         
         <div class="note-box">
-            <strong>📌 标签的基本形式</strong>
-            <pre style="font-family: monospace;">
+            <strong>标签的基本形式</strong>
+            <pre>
   开始标签        结束标签
      ↓               ↓
    &lt;p&gt;  这是一段文字  &lt;/p&gt;
@@ -475,14 +475,14 @@
         <h3 id="section-3-5">3.5 标签的嵌套</h3>
         <p>标签可以嵌套使用，但必须正确闭合，遵循"后进先出"的原则：</p>
         
-        <pre class="html"><code>&lt;!-- ✅ 正确的嵌套 --&gt;
+        <pre class="html"><code>&lt;!--  正确的嵌套 --&gt;
 &lt;p&gt;这是&lt;strong&gt;重要的&lt;/strong&gt;内容。&lt;/p&gt;
 
-&lt;!-- ❌ 错误的嵌套（标签交叉）--&gt;
+&lt;!--  错误的嵌套（标签交叉）--&gt;
 &lt;p&gt;这是&lt;strong&gt;重要的&lt;/p&gt;&lt;/strong&gt;内容。</code></pre>
         
         <div class="warning-box">
-            <strong>⚠️ 嵌套规则</strong>
+            <strong>嵌套规则</strong>
             <ul>
                 <li>标签必须成对闭合，不能交叉</li>
                 <li>块级元素（如div、p）可以包含行内元素（如span、a）</li>
@@ -501,8 +501,8 @@
         <p>属性总是在开始标签中定义，格式为 <code>属性名="属性值"</code>。</p>
         
         <div class="note-box">
-            <strong>📌 属性语法图解</strong>
-            <pre style="font-family: monospace;">
+            <strong>属性语法图解</strong>
+            <pre>
     属性名   属性值
       ↓       ↓
 &lt;p align="center"&gt;这段文字居中显示&lt;/p&gt;
@@ -622,7 +622,7 @@
 &lt;video controls autoplay muted&gt;     &lt;!-- 视频自动播放 --&gt;</code></pre>
         
         <div class="tip-box">
-            <span class="tip-title">💡 属性使用建议</span>
+            <span class="tip-title">属性使用建议</span>
             <ul>
                 <li>属性名使用<strong>小写字母</strong></li>
                 <li>属性值用<strong>双引号</strong>包围</li>
@@ -648,7 +648,7 @@
  --&gt;</code></pre>
         
         <div class="tip-box">
-            <span class="tip-title">💡 注释的作用</span>
+            <span class="tip-title">注释的作用</span>
             <ul>
                 <li>解释代码的功能和用途</li>
                 <li>临时隐藏代码，方便调试</li>
@@ -659,7 +659,7 @@
 
     <!-- ============================================         实验 02：HTML语法练习         ============================================ -->
     <section id="lab-2">
-        <h2>🔬 实验 02：HTML语法练习</h2>
+        <h2>实验 02：HTML语法练习</h2>
         <p>现在让我们练习使用HTML标签、属性和注释！</p>
         
         <div class="lab-card">
@@ -707,7 +707,7 @@
         </div>
         
         <div class="tip-box">
-            <span class="tip-title">🎯 实验任务</span>
+            <span class="tip-title">实验任务</span>
             <ul>
                 <li>添加一个新的二级标题和段落</li>
                 <li>使用style属性修改文字颜色和大小</li>
@@ -719,17 +719,17 @@
 
     <!-- ============================================         课程小结区域         ============================================ -->
     <section id="summary">
-        <h2>📝 本课小结</h2>
+        <h2>本课小结</h2>
         
         <h3>知识点回顾</h3>
         <div class="note-box">
             <p>恭喜你！今天你学会了HTML的基础知识：</p>
             <ul class="checklist">
-                <li>✅ <strong>HTML概念</strong>：HTML是超文本标记语言，用于创建网页结构</li>
-                <li>✅ <strong>HTML文档结构</strong>：掌握了HTML文档的基本结构（DOCTYPE、html、head、body）</li>
-                <li>✅ <strong>标签语法</strong>：学会了双标签和单标签的用法</li>
-                <li>✅ <strong>HTML属性</strong>：了解了如何使用属性增强标签功能</li>
-                <li>✅ <strong>HTML注释</strong>：学会了使用注释提高代码可读性</li>
+                <li> <strong>HTML概念</strong>：HTML是超文本标记语言，用于创建网页结构</li>
+                <li> <strong>HTML文档结构</strong>：掌握了HTML文档的基本结构（DOCTYPE、html、head、body）</li>
+                <li> <strong>标签语法</strong>：学会了双标签和单标签的用法</li>
+                <li> <strong>HTML属性</strong>：了解了如何使用属性增强标签功能</li>
+                <li> <strong>HTML注释</strong>：学会了使用注释提高代码可读性</li>
             </ul>
         </div>
         
@@ -767,7 +767,7 @@
         
         <h3>最佳实践</h3>
         <div class="tip-box">
-            <span class="tip-title">💡 HTML编写建议</span>
+            <span class="tip-title">HTML编写建议</span>
             <ul>
                 <li>总是使用DOCTYPE声明</li>
                 <li>使用小写字母书写标签和属性</li>
@@ -779,7 +779,7 @@
         
         <h3>下节课预告</h3>
         <div class="tip-box">
-            <span class="tip-title">🎯 第2课：基础文本标签</span>
+            <span class="tip-title">第2课：基础文本标签</span>
             <p>下节课我们将学习HTML中最常用的文本标签，包括：</p>
             <ul>
                 <li>标题标签（h1-h6）</li>
@@ -792,7 +792,7 @@
         
         <h3>课后作业</h3>
         <div class="warning-box">
-            <span class="warning-title">📝 作业要求</span>
+            <span class="warning-title">作业要求</span>
             <p>请创建一个关于你自己的HTML页面，要求包含：</p>
             <ol>
                 <li>完整的HTML5文档结构</li>

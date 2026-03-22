@@ -12,7 +12,7 @@
     <nav class="sidebar">
         <div class="sidebar-nav">
             <h3>课程导航</h3>
-            <a class="sidebar-link" href="#intro">👋 课程概览</a>
+            <a class="sidebar-link" href="#intro">课程概览</a>
             
             <h3>一、基础属性选择器</h3>
             <a class="sidebar-link" href="#attribute-selectors">一、基础属性选择器</a>
@@ -55,7 +55,7 @@
             <a class="sidebar-link" href="#practice">八、综合实践</a>
             
             <h3>总结与练习</h3>
-            <a class="sidebar-link" href="#summary">📝 课程小结</a>
+            <a class="sidebar-link sub-link" href="#summary">本课小结</a>
         </div>
     </nav>
 
@@ -1175,7 +1175,7 @@ input:valid:not(:placeholder-shown) {
         <!-- 课程小结区域 -->
         <!-- ============================================ -->
         <section id="summary">
-            <h2>七、课程小结</h2>
+            <h2>本课小结</h2>
             <p>
                 CSS属性选择器和伪类选择器是CSS中强大的选择器类型，它们允许我们根据元素的属性和状态来精确选择和样式化元素。
             </p>
@@ -1325,6 +1325,27 @@ input:valid:not(:placeholder-shown) {
                 <li>遵循LVHA顺序编写链接样式</li>
                 <li>使用过渡效果（transition）让状态变化更平滑</li>
             </ol>
+
+            <div class="warning-box">
+                <strong>常见错误提醒</strong>
+                <ul>
+                    <li><strong>:first-child vs :first-of-type</strong>：<code>:first-child</code>要求必须是父元素的第一个子元素，<code>:first-of-type</code>只要求是某种类型的第一个</li>
+                    <li><strong>:nth-child(2)</strong>：选择第2个子元素，不论类型；<code>:nth-of-type(2)</code>选择某类型的第2个</li>
+                    <li><strong>伪元素双冒号</strong>：<code>::before</code>和<code>::after</code>是伪元素，用双冒号；<code>:hover</code>是伪类，用单冒号</li>
+                    <li><strong>属性选择器引号</strong>：属性值有空格或特殊字符时必须加引号，如<code>[class="btn primary"]</code></li>
+                </ul>
+            </div>
+
+            <div class="homework">
+                <h3>课后练习</h3>
+                <ol>
+                    <li>使用属性选择器，为所有<code>type="text"</code>的输入框设置样式</li>
+                    <li>使用<code>:hover</code>伪类，创建一个有悬停效果的卡片组件</li>
+                    <li>使用<code>:nth-child</code>为表格的奇偶行设置不同的背景色</li>
+                    <li>使用<code>:not(:last-child)</code>为一个列表的每个项目（除最后一个）添加下边框</li>
+                    <li>使用<code>::before</code>伪元素为每个标题前添加装饰性符号</li>
+                </ol>
+            </div>
         </section>
     </main>
 </body>

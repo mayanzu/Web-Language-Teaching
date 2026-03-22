@@ -18,7 +18,7 @@
 <nav class="sidebar">
     <div class="sidebar-nav">
         <h3>课程导航</h3>
-        <a class="sidebar-link" href="#intro">👋 课程概览</a>
+        <a class="sidebar-link" href="#intro">课程概览</a>
         
         <h3>Part 1: 网页基础</h3>
         <a class="sidebar-link sub-link" href="#what-is-webpage">1.1 网页是什么</a>
@@ -33,15 +33,15 @@
         <h3>Part 3: 写第一行代码</h3>
         <a class="sidebar-link sub-link" href="#how-to-embed">3.1 三种写法</a>
         <a class="sidebar-link sub-link" href="#script-position">3.2 脚本位置</a>
-        <a class="sidebar-link sub-link" href="#lab-hello">🔬 实验 01</a>
+        <a class="sidebar-link sub-link" href="#lab-hello">实验 01</a>
         
         <h3>Part 4: 进阶实验</h3>
-        <a class="sidebar-link sub-link" href="#lab-dom">🔬 实验 02</a>
-        <a class="sidebar-link sub-link" href="#lab-event">🔬 实验 03</a>
-        <a class="sidebar-link sub-link" href="#lab-comprehensive">🔬 综合实验</a>
+        <a class="sidebar-link sub-link" href="#lab-dom">实验 02</a>
+        <a class="sidebar-link sub-link" href="#lab-event">实验 03</a>
+        <a class="sidebar-link sub-link" href="#lab-comprehensive">综合实验</a>
         
         <h3>总结与练习</h3>
-        <a class="sidebar-link sub-link" href="#summary">📝 课程小结</a>
+        <a class="sidebar-link sub-link" href="#summary">本课小结</a>
     </div>
 </nav>
 
@@ -247,7 +247,7 @@
                     <li><strong>实时评论</strong>：发表评论后立即显示在页面上，不用刷新</li>
                     <li><strong>图片预览</strong>：点击图片弹出大图浏览器，可以左右切换</li>
                 </ul>
-                <p style="margin-top: 10px; color: #666; font-size: 14px;">如果没有 JavaScript，你每次点赞都要刷新整个页面，体验会非常糟糕。</p>
+                <p class="text-muted">如果没有 JavaScript，你每次点赞都要刷新整个页面，体验会非常糟糕。</p>
             </div>
         </div>
 
@@ -264,7 +264,7 @@
                     <li><strong>购物车计算</strong>：加减商品数量，总价自动重新计算</li>
                     <li><strong>倒计时</strong>：限时抢购的倒计时，每秒自动更新</li>
                 </ul>
-                <p style="margin-top: 10px; color: #666; font-size: 14px;">想象一下，如果每次改数量都要刷新页面，你还会愿意网购吗？</p>
+                <p class="text-muted">想象一下，如果每次改数量都要刷新页面，你还会愿意网购吗？</p>
             </div>
         </div>
 
@@ -281,7 +281,7 @@
                     <li><strong>自动播放下一集</strong>：当前视频结束后，倒计时自动播放下一集</li>
                     <li><strong>进度记忆</strong>：记录你看到第几分钟，下次打开自动跳转到上次位置</li>
                 </ul>
-                <p style="margin-top: 10px; color: #666; font-size: 14px;">没有 JavaScript，你连播放/暂停按钮都点不了。</p>
+                <p class="text-muted">没有 JavaScript，你连播放/暂停按钮都点不了。</p>
             </div>
         </div>
     </section>
@@ -371,7 +371,7 @@
         <div class="note-box">
             <strong>控制台是你的好朋友</strong>
             <p>控制台（Console）是程序员最常用的工具之一。以后你写代码遇到问题，第一时间就要按 F12 打开控制台，看看有没有报错信息。</p>
-            <p style="margin-top: 10px;"><strong>打开控制台的方法：</strong>按 <code>F12</code> 键，然后点击「Console」标签。</p>
+            <p><strong>打开控制台的方法：</strong>按 <code>F12</code> 键，然后点击「Console」标签。</p>
         </div>
     </section>
 
@@ -389,19 +389,19 @@
                     <td><strong>放在 &lt;head&gt; 中</strong></td>
                     <td>代码组织清晰</td>
                     <td>会阻塞页面加载<br>JS 可能找不到 body 中的元素</td>
-                    <td>❌ 不推荐</td>
+                    <td> 不推荐</td>
                 </tr>
                 <tr>
                     <td><strong>放在 &lt;body&gt; 底部</strong></td>
                     <td>页面内容先加载<br>能找到所有 HTML 元素</td>
                     <td>大型项目文件较多时管理稍复杂</td>
-                    <td>✅ <strong>强烈推荐</strong></td>
+                    <td> <strong>强烈推荐</strong></td>
                 </tr>
                 <tr>
                     <td><strong>放在 &lt;head&gt; 中加 defer</strong></td>
                     <td>兼具清晰性和性能<br>异步下载，不阻塞渲染</td>
                     <td>需要理解 defer 的工作原理</td>
-                    <td>✅ 现代最佳实践</td>
+                    <td> 现代最佳实践</td>
                 </tr>
             </tbody>
         </table>
@@ -409,14 +409,14 @@
         <div class="warning-box">
             <strong>记住原则：</strong>
             <p>如果 JS 需要操作页面元素，要么放在元素后面，要么使用 defer。</p>
-<pre style="background: var(--code-bg); padding: 10px; border-radius: 6px;"><code>// ❌ 错误：这时 #demo 还不存在
+<pre><code>//  错误：这时 #demo 还不存在
 &lt;head&gt;
   &lt;script&gt;
     document.getElementById('demo').textContent = 'Hello';
   &lt;/script&gt;
 &lt;/head&gt;
 
-// ✅ 正确：此时 #demo 已经存在
+//  正确：此时 #demo 已经存在
 &lt;body&gt;
   &lt;div id="demo"&gt;原始内容&lt;/div&gt;
   &lt;script&gt;
@@ -605,7 +605,7 @@ const text = document.getElementById('click-text');
 if (btn && text) {
     btn.addEventListener('click', function() {
         // 点击时执行的代码
-        text.textContent = '🎉 你点击了按钮！';
+        text.textContent = ' 你点击了按钮！';
         text.style.color = 'red';
         text.style.fontSize = '24px';
         
@@ -734,7 +734,7 @@ function resetCounter() {
          课程小结
          ============================================ -->
     <section id="summary">
-        <h2>四、本课小结</h2>
+        <h2>本课小结</h2>
         
         <h3>知识点回顾</h3>
         <ul class="checklist">
@@ -789,6 +789,26 @@ function resetCounter() {
         <div class="note-box">
             <strong>下一课预告：</strong>
             <p>下一课我们会正式进入「写程序」状态，从<strong>变量和数据类型</strong>开始：程序如何记住一段信息？数字和字符串有什么不同？这些内容会成为后面所有运算和逻辑的基础。</p>
+        </div>
+
+        <div class="warning-box">
+            <strong>常见错误提醒</strong>
+            <ul>
+                <li><strong>大小写错误</strong>：JavaScript对大小写敏感，<code>getElementById</code>不能写成<code>getElementbyId</code></li>
+                <li><strong>引号错误</strong>：字符串必须使用配对的引号，<code>'hello"</code>会导致语法错误</li>
+                <li><strong>script放置位置</strong>：如果脚本在DOM元素之前执行，<code>getElementById</code>可能返回null</li>
+                <li><strong>== 与 ===</strong>：尽量使用严格相等<code>===</code>，避免类型转换带来的意外结果</li>
+            </ul>
+        </div>
+
+        <div class="homework">
+            <h3>课后练习</h3>
+            <ol>
+                <li>在页面加载完成后，使用<code>console.log</code>输出一句自我介绍</li>
+                <li>创建一个简单的计算器页面，包含两个输入框和四个按钮，点击按钮在控制台输出计算结果</li>
+                <li>使用DOM操作，为一个按钮添加点击事件，点击后在页面上显示"按钮被点击了"</li>
+                <li>尝试在页面中添加一个计时器，每秒更新一次页面上的数字</li>
+            </ol>
         </div>
     </section>
 

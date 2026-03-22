@@ -12,7 +12,7 @@
     <nav class="sidebar">
         <div class="sidebar-nav">
             <h3>课程导航</h3>
-            <a class="sidebar-link" href="#intro">👋 课程概览</a>
+            <a class="sidebar-link" href="#intro">课程概览</a>
             
             <h3>一、层级选择器概述</h3>
             <a class="sidebar-link" href="#introduction">一、层级选择器概述</a>
@@ -56,7 +56,7 @@
             <a class="sidebar-link sub-link" href="#section-6-2">6.2 综合实验</a>
             
             <h3>总结与练习</h3>
-            <a class="sidebar-link" href="#summary">📝 课程小结</a>
+            <a class="sidebar-link sub-link" href="#summary">本课小结</a>
         </div>
     </nav>
 
@@ -83,7 +83,7 @@
             <p>CSS层级选择器是基于HTML文档的层级结构（树形结构）来选择元素的选择器。HTML文档中的元素通过嵌套关系形成父子、兄弟等层级关系，层级选择器正是利用这些关系来精确定位元素。</p>
             
             <div class="note-box">
-                <span class="tip-title">💡 生活类比：家族关系</span>
+                <span class="tip-title">生活类比：家族关系</span>
                 <p>
                     把HTML结构想象成一个家族：
                 </p>
@@ -163,14 +163,14 @@
             </ul>
             
             <div class="warning-box">
-                <strong>⚠️ 使用建议</strong>
+                <strong>使用建议</strong>
                 <p>
                     层级选择器虽然强大，但不要嵌套太深！建议层级不超过3层。
                 </p>
-                <pre class="css"><code>/* ❌ 太深了，不推荐 */
+                <pre class="css"><code>/*  太深了，不推荐 */
 body div.container ul li a span { ... }
 
-/* ✅ 简洁清晰 */
+/*  简洁清晰 */
 .nav-link span { ... }</code></pre>
             </div>
         </section>
@@ -180,7 +180,7 @@ body div.container ul li a span { ... }
             <p>后代选择器使用空格来选择某个元素的后代元素。后代元素可以是子元素、孙元素等任意层级的后代。</p>
 
             <div class="note-box">
-                <span class="tip-title">💡 生活类比</span>
+                <span class="tip-title">生活类比</span>
                 <p>后代选择器就像说"张家的所有后代"——不管是儿子、孙子、曾孙，只要是张家的后代都算。同样，<code>.box span</code>会选中<code>.box</code>内部所有的<code>span</code>，不管嵌套多深。</p>
             </div>
 
@@ -307,7 +307,7 @@ body div.container ul li a span { ... }
             <p>子代选择器使用 <code>&gt;</code> 来选择某个元素的直接子元素。与后代选择器不同，它只选择直接的子元素。</p>
 
             <div class="note-box">
-                <span class="tip-title">💡 生活类比</span>
+                <span class="tip-title">生活类比</span>
                 <p>子代选择器就像说"张三的亲生孩子"——只选择直接的子女，不包括孙子孙女。如果张三有儿子，儿子又有孩子，那孙子不会被选中。</p>
             </div>
 
@@ -428,7 +428,7 @@ body div.container ul li a span { ... }
             <p>相邻兄弟选择器使用 <code>+</code> 来选择紧跟在指定元素后面的第一个兄弟元素。</p>
 
             <div class="note-box">
-                <span class="tip-title">💡 生活类比</span>
+                <span class="tip-title">生活类比</span>
                 <p>相邻兄弟选择器就像说"排队时，小明后面紧挨着的那个人"——只选择紧跟在后面的第一个，不是所有后面的人。</p>
             </div>
             
@@ -445,7 +445,7 @@ h2 + p {
 /* 选择紧跟在 h2 后面的第一个 p 元素 */</code></pre>
             
             <div class="warning-box">
-                <strong>⚠️ 注意事项</strong>
+                <strong>注意事项</strong>
                 <ul>
                     <li>两个元素必须有<strong>相同的父元素</strong></li>
                     <li>只选择<strong>紧挨着的</strong>下一个兄弟，中间不能有其他元素</li>
@@ -542,7 +542,7 @@ input:invalid + .error-message {
             <p>通用兄弟选择器使用 <code>~</code> 来选择指定元素后面的所有兄弟元素。</p>
 
             <div class="note-box">
-                <span class="tip-title">💡 生活类比</span>
+                <span class="tip-title">生活类比</span>
                 <p>通用兄弟选择器就像说"排队时，小明后面的所有人"——不只是紧挨着的，而是后面排的所有人（只要是同一队的）。</p>
             </div>
             
@@ -938,7 +938,7 @@ body {
         <!-- 课程小结区域 -->
         <!-- ============================================ -->
         <section id="summary">
-            <h2>七、课程小结</h2>
+            <h2>本课小结</h2>
             <p>
                 本节课我们学习了CSS层级选择器，它们是根据元素在文档结构中的位置来选择元素的强大工具。
             </p>
@@ -953,7 +953,7 @@ body {
             
             <h3>7.2 重点记忆</h3>
             <div class="tip-box">
-                <span class="tip-title">📌 选择器优先级</span>
+                <span class="tip-title">选择器优先级</span>
                 <p>层级选择器的优先级取决于其组成部分的优先级，组合选择器不会改变单个选择器的优先级。</p>
                 <p>ID选择器 > 类选择器 > 元素选择器</p>
             </div>

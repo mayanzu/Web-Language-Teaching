@@ -12,7 +12,7 @@
 <nav class="sidebar">
     <div class="sidebar-nav">
         <h3>课程导航</h3>
-        <a class="sidebar-link" href="#intro">👋 课程概览</a>
+        <a class="sidebar-link" href="#intro">课程概览</a>
         
         <h3>Part 1: CSS基础概念</h3>
         <a class="sidebar-link sub-link" href="#css-intro">一、CSS基础概念</a>
@@ -57,11 +57,11 @@
         <a class="sidebar-link sub-link" href="#section-8-5">8.5 CSS Reset和Normalize.css</a>
         
         <h3>Part 5: 实战练习</h3>
-        <a class="sidebar-link sub-link" href="#lab-comparison">🔬 实验：三种样式写法对比</a>
-        <a class="sidebar-link sub-link" href="#lab-priority">🔬 实验：样式优先级测试</a>
+        <a class="sidebar-link sub-link" href="#lab-comparison">实验：三种样式写法对比</a>
+        <a class="sidebar-link sub-link" href="#lab-priority">实验：样式优先级测试</a>
         
         <h3>总结与练习</h3>
-        <a class="sidebar-link" href="#summary">📝 课程小结</a>
+        <a class="sidebar-link sub-link" href="#summary">本课小结</a>
     </div>
 </nav>
 <main class="content">
@@ -176,7 +176,7 @@ p {
         </ul>
         
         <div class="warning-box">
-            <span class="tip-title">⚠️ 注意事项</span>
+            <span class="tip-title">注意事项</span>
             <p>在实际开发中，应尽量避免使用内联样式，因为它违反了内容与表现分离的原则，不利于样式的维护和复用。</p>
         </div>
     </section>
@@ -245,7 +245,7 @@ p {
         </ul>
         
         <div class="tip-box">
-            <span class="tip-title">📌 最佳实践</span>
+            <span class="tip-title">最佳实践</span>
             <p>1. 始终将style标签放在head标签中</p>
             <p>2. 使用CSS注释组织样式，提高可读性</p>
             <p>3. 按逻辑顺序组织样式，便于查找和修改</p>
@@ -340,7 +340,7 @@ p {
         </ul>
         
         <div class="tip-box">
-            <span class="tip-title">📌 最佳实践</span>
+            <span class="tip-title">最佳实践</span>
             <p>1. 使用有意义的文件名，如style.css、main.css等</p>
             <p>2. 将CSS文件放在专门的css目录中，便于管理</p>
             <p>3. 按功能组织CSS代码，如先重置样式，再基础样式，最后组件样式</p>
@@ -404,13 +404,13 @@ p {
 }</code></pre>
         
         <div class="warning-box">
-            <span class="tip-title">⚠️ !important使用建议</span>
+            <span class="tip-title">!important使用建议</span>
             <p>尽量避免使用!important，因为它会破坏CSS的正常优先级规则，导致样式难以维护。只有在特殊情况下，如覆盖第三方库样式时，才考虑使用。</p>
         </div>
         
         <h3 id="section-6-4">6.4 优先级的最佳实践</h3>
         <div class="tip-box">
-            <span class="tip-title">📌 最佳实践</span>
+            <span class="tip-title">最佳实践</span>
             <p>1. 优先使用类选择器，避免过度依赖ID选择器</p>
             <p>2. 保持选择器简单，避免复杂的嵌套选择器</p>
             <p>3. 合理组织样式顺序，后定义的样式会覆盖先定义的相同优先级样式</p>
@@ -463,7 +463,7 @@ p {
         
         <h3 id="section-7-2">7.2 单位使用建议</h3>
         <div class="tip-box">
-            <span class="tip-title">📌 最佳实践</span>
+            <span class="tip-title">最佳实践</span>
             <p>1. 字体大小建议使用rem或em，便于响应式调整</p>
             <p>2. 固定尺寸使用px，如边框宽度、内边距等</p>
             <p>3. 百分比常用于宽度设置，实现自适应布局</p>
@@ -471,28 +471,8 @@ p {
         </div>
     </section>
 
-    <section id="comment">
-        <h2>六、CSS注释</h2>
-        <p>CSS注释用于解释CSS代码，提高代码的可读性和可维护性。</p>
-        <p>CSS注释以/*开头，以*/结尾，中间可以包含任意文本。</p>
-        <pre class="css"><code>/* 这是一个CSS注释 */
-p {
-    color: red; /* 这是设置段落文本颜色为红色 */
-    font-size: 16px;
-}</code></pre>
-        <div class="tip-box">
-            <span class="tip-title">CSS注释的使用建议</span>
-            <ul>
-                <li>在CSS文件的开头添加注释，说明文件的用途和作者信息。</li>
-                <li>在重要的样式规则前添加注释，说明样式的用途。</li>
-                <li>使用注释来分隔不同的样式模块，提高代码的组织性。</li>
-                <li>避免使用过多的注释，只在必要时添加。</li>
-            </ul>
-        </div>
-    </section>
-
     <section id="lab-comparison">
-        <h2>七、实验：三种样式写法对比</h2>
+        <h2>实验：三种样式写法对比</h2>
         <div class="lab-card">
             <div class="lab-header">
                 <span>实验：三种样式写法对比</span>
@@ -512,7 +492,7 @@ p {
     </section>
 
     <section id="lab-priority">
-        <h2>八、实验：样式优先级测试</h2>
+        <h2>实验：样式优先级测试</h2>
         <div class="lab-card">
             <div class="lab-header">
                 <span>实验：样式优先级测试</span>
@@ -535,7 +515,7 @@ p {
         <div class="lab-card">
             <div class="lab-header">
                 <span>实验：CSS样式写法实践</span>
-                <span id="badge-1" class="status-badge status-inactive">当前状态：无样式 (Raw)</span>
+                <span id="badge-1" class="status-badge beginner">当前状态：无样式 (Raw)</span>
             </div>
             <div class="lab-body">
                 <div class="panel html-viewer">
@@ -600,7 +580,7 @@ p {
         
         <h3 id="section-8-4">8.4 基础最佳实践</h3>
         <div class="tip-box">
-            <span class="tip-title">📌 核心最佳实践</span>
+            <span class="tip-title">核心最佳实践</span>
             <ul>
                 <li><strong>使用外部样式表</strong>：将样式与结构分离，便于维护</li>
                 <li><strong>优先使用类选择器</strong>：比ID选择器更灵活，比元素选择器更具体</li>
@@ -621,7 +601,7 @@ p {
     </section>
     
     <section id="lab-css-architecture">
-        <h2>十、实验：CSS架构与命名规范</h2>
+        <h2>实验：CSS架构与命名规范</h2>
         <div class="lab-card">
             <div class="lab-header">
                 <span>实验 03：BEM命名规范实践</span>
@@ -750,7 +730,7 @@ p {
     </section>
     
     <section id="lab-css-preprocessor">
-        <h2>十一、实验：CSS预处理器基础</h2>
+        <h2>实验：CSS预处理器基础</h2>
         <div class="lab-card">
             <div class="lab-header">
                 <span>实验 04：Sass基础语法</span>
@@ -839,7 +819,7 @@ $border-radius: 4px;
                 </div>
                 
                 <div class="tip-box">
-                    <span class="tip-title">📌 Sass编译说明</span>
+                    <span class="tip-title">Sass编译说明</span>
                     <p>Sass是一种CSS预处理器，需要编译成CSS才能在浏览器中使用。你可以使用以下工具进行编译：</p>
                     <ul>
                         <li><strong>命令行工具：</strong>使用<code>sass</code>命令行工具</li>
@@ -852,7 +832,7 @@ $border-radius: 4px;
     </section>
     
     <section id="summary">
-        <h2>九、本课小结</h2>
+        <h2>本课小结</h2>
         <p>本课程详细介绍了CSS样式的各种写法和最佳实践，包括：</p>
         <ul>
             <li><strong>CSS基础概念：</strong>CSS的作用、语法规则和工作原理</li>

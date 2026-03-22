@@ -12,7 +12,7 @@
 <nav class="sidebar">
     <div class="sidebar-nav">
         <h3>课程导航</h3>
-        <a class="sidebar-link" href="#intro">👋 课程概览</a>
+        <a class="sidebar-link" href="#intro">课程概览</a>
         
         <h3>Part 1: CSS进阶特性</h3>
         <a class="sidebar-link sub-link" href="#css-variables">一、CSS变量</a>
@@ -40,11 +40,11 @@
         <a class="sidebar-link sub-link" href="#animation">八、动画</a>
         
         <h3>Part 3: 实战练习</h3>
-        <a class="sidebar-link sub-link" href="#lab-variables">🔬 实验 01</a>
-        <a class="sidebar-link sub-link" href="#lab-animation">🔬 实验 02</a>
+        <a class="sidebar-link sub-link" href="#lab-variables">实验 01</a>
+        <a class="sidebar-link sub-link" href="#lab-animation">实验 02</a>
         
         <h3>总结与练习</h3>
-        <a class="sidebar-link sub-link" href="#summary">📝 课程小结</a>
+        <a class="sidebar-link sub-link" href="#summary">本课小结</a>
     </div>
 </nav>
 <main class="content">
@@ -68,7 +68,7 @@
         <p>CSS变量（也称为自定义属性）允许你在CSS中定义可重用的值，然后在整个样式表中引用这些值。这是现代CSS开发中非常重要的特性。</p>
         
         <div class="note-box">
-            <span class="tip-title">📖 生活类比</span>
+            <span class="tip-title">生活类比</span>
             <p>CSS变量就像给颜色起了个"外号"：</p>
             <ul>
                 <li>不用CSS变量：每次写颜色都要写 <code>#2c3e50</code></li>
@@ -148,7 +148,7 @@ p {
 }</code></pre>
         
         <div class="tip-box">
-            <span class="tip-title">💡 CSS变量的优点</span>
+            <span class="tip-title">CSS变量的优点</span>
             <ul>
                 <li><strong>便于维护</strong>：只需要修改一处，所有引用该变量的地方都会更新</li>
                 <li><strong>提高可读性</strong>：变量名可以描述值的用途（如<code>--primary-color</code>比<code>#2c3e50</code>更易懂）</li>
@@ -197,7 +197,7 @@ p {
         <p>calc()函数允许你在CSS中进行数学计算，用于动态计算长度、宽度、字体大小等。它是实现响应式布局的利器。</p>
         
         <div class="note-box">
-            <span class="tip-title">📖 生活类比</span>
+            <span class="tip-title">生活类比</span>
             <p>calc()就像一个内置的计算器：</p>
             <ul>
                 <li>想让元素宽度是"父元素宽度减去200px"？用 <code>calc(100% - 200px)</code></li>
@@ -263,7 +263,7 @@ h1 {
 }</code></pre>
         
         <div class="warning-box">
-            <span class="warning-title">⚠️ 重要注意事项</span>
+            <span class="warning-title">重要注意事项</span>
             <ul>
                 <li><strong>运算符两边必须有空格</strong>：<code>calc(100%-20px)</code> 是错误的，应该写 <code>calc(100% - 20px)</code></li>
                 <li><strong>乘除法的一侧必须是纯数字</strong>：<code>calc(10px * 2)</code> 正确，<code>calc(10px * 2px)</code> 错误</li>
@@ -311,7 +311,7 @@ h1 {
         <p>box-shadow属性用于为元素添加阴影效果，可以创造出深度感和层次感，是现代UI设计的常用技巧。</p>
         
         <div class="note-box">
-            <span class="tip-title">📖 生活类比</span>
+            <span class="tip-title">生活类比</span>
             <p>盒阴影就像物体在光照下产生的影子：</p>
             <ul>
                 <li>光源位置决定阴影的方向（偏移值）</li>
@@ -393,7 +393,7 @@ box-shadow: 水平偏移 垂直偏移 模糊半径 扩散半径 颜色 inset;
 }</code></pre>
         
         <div class="tip-box">
-            <span class="tip-title">💡 阴影设计技巧</span>
+            <span class="tip-title">阴影设计技巧</span>
             <ul>
                 <li><strong>使用半透明黑色</strong>：<code>rgba(0,0,0,0.1)</code> 比纯灰色更自然</li>
                 <li><strong>多重阴影更真实</strong>：叠加多层阴影模拟真实光影</li>
@@ -440,7 +440,7 @@ h2 {
         <p>CSS渐变允许你创建平滑的颜色过渡效果，包括线性渐变和径向渐变。渐变可以作为背景使用，替代纯色或图片。</p>
         
         <div class="note-box">
-            <span class="tip-title">📖 生活类比</span>
+            <span class="tip-title">生活类比</span>
             <p>渐变就像日出日落时的天空：</p>
             <ul>
                 <li><strong>线性渐变</strong>：像地平线上的日落，颜色沿一个方向渐变</li>
@@ -562,7 +562,7 @@ h2 {
         </table>
         
         <div class="tip-box">
-            <span class="tip-title">💡 渐变设计技巧</span>
+            <span class="tip-title">渐变设计技巧</span>
             <ul>
                 <li><strong>颜色选择</strong>：相近色渐变柔和，对比色渐变醒目</li>
                 <li><strong>透明度渐变</strong>：可以使用rgba()创建透明渐变，用于叠加效果</li>
@@ -577,7 +577,7 @@ h2 {
         <p>transform属性用于对元素进行变换，包括旋转、缩放、平移和倾斜等。变换不会影响页面布局，非常适合做动画效果。</p>
         
         <div class="note-box">
-            <span class="tip-title">📖 生活类比</span>
+            <span class="tip-title">生活类比</span>
             <p>transform就像对照片进行编辑：</p>
             <ul>
                 <li><strong>rotate（旋转）</strong>：把照片转个角度</li>
@@ -686,7 +686,7 @@ h2 {
         </table>
         
         <div class="warning-box">
-            <span class="warning-title">⚠️ 变换注意事项</span>
+            <span class="warning-title">变换注意事项</span>
             <ul>
                 <li><strong>不影响布局</strong>：变换后的元素不会影响其他元素的位置</li>
                 <li><strong>顺序很重要</strong>：多个变换的执行顺序会影响最终效果</li>
@@ -816,7 +816,7 @@ h2 {
     </section>
 
     <section id="lab-variables">
-        <h2>九、实验：CSS变量的使用</h2>
+        <h2>实验：CSS变量的使用</h2>
         <div class="lab-card">
             <div class="lab-header">
                 <span>实验 01：CSS变量的使用</span>
@@ -890,7 +890,7 @@ h2 {
     </section>
 
     <section id="lab-animation">
-        <h2>十、实验：创建动画效果</h2>
+        <h2>实验：创建动画效果</h2>
         <div class="lab-card">
             <div class="lab-header">
                 <span>实验 02：CSS变换与过渡</span>
@@ -1021,7 +1021,7 @@ h2 {
         </div>
 </section>
     <section id="summary">
-        <h2>十一、本课小结</h2>
+        <h2>本课小结</h2>
         <p>本课程详细介绍了CSS的高级特性，包括：</p>
         <ul>
             <li><strong>CSS变量：</strong>允许定义可重用的值，便于维护和动态修改。</li>

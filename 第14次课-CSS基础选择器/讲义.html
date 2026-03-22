@@ -13,7 +13,7 @@
     <nav class="sidebar">
         <div class="sidebar-nav">
             <h3>课程导航</h3>
-            <a class="sidebar-link" href="#intro">👋 课程概览</a>
+            <a class="sidebar-link" href="#intro">课程概览</a>
             
             <h3>Part 1: CSS基础选择器</h3>
             <a class="sidebar-link sub-link" href="#element-selector">一、元素选择器</a>
@@ -51,7 +51,7 @@
             <a class="sidebar-link sub-link" href="#exercise">八、综合练习</a>
             
             <h3>总结与练习</h3>
-            <a class="sidebar-link" href="#summary">📝 课程小结</a>
+            <a class="sidebar-link sub-link" href="#summary">本课小结</a>
         </div>
     </nav>
 
@@ -434,7 +434,7 @@ h1, h2, h3 {
             
             <h3 id="section-5-3">5.3 通配符选择器的注意事项</h3>
             <div class="warning-box">
-                <span class="tip-title">⚠️ 谨慎使用</span>
+                <span class="tip-title">谨慎使用</span>
                 <p>1. 通配符选择器会影响所有元素，包括嵌套很深的元素，可能导致性能问题</p>
                 <p>2. 它的优先级最低，任何其他选择器都会覆盖它的样式</p>
                 <p>3. 避免在大型项目中过度使用，尤其是在复杂的页面结构中</p>
@@ -490,7 +490,7 @@ h1, h2, h3 {
             
             <h3 id="section-6-1">6.1 选择器优先级回顾</h3>
             <div class="tip-box">
-                <span class="tip-title">📌 优先级顺序</span>
+                <span class="tip-title">优先级顺序</span>
                 <p>从高到低的优先级顺序：</p>
                 <ol>
                     <li>!important声明（尽量避免使用）</li>
@@ -716,7 +716,7 @@ h1, h2 {
         <!-- 课程小结区域 -->
         <!-- ============================================ -->
         <section id="summary">
-            <h2>九、课程小结</h2>
+            <h2>本课小结</h2>
             <p>
                 本节课我们学习了CSS基础选择器，它们是CSS的核心，用于选择要样式化的HTML元素。
             </p>
@@ -767,7 +767,7 @@ h1, h2 {
             
             <h3>9.2 选择器优先级</h3>
             <div class="tip-box">
-                <span class="tip-title">📌 优先级顺序（从高到低）</span>
+                <span class="tip-title">优先级顺序（从高到低）</span>
                 <ol>
                     <li>!important声明（尽量避免使用）</li>
                     <li>内联样式（style属性）</li>
@@ -798,6 +798,25 @@ h1, h2 {
                 <li>尝试创建简单的网页，使用各种选择器为元素添加样式</li>
                 <li>阅读优秀的CSS代码，学习他人的最佳实践</li>
             </ul>
+
+            <div class="warning-box">
+                <strong>常见错误提醒</strong>
+                <ul>
+                    <li><strong>ID重复</strong>：在一个页面中使用了相同的ID，如两个元素都有<code>id="header"</code>。ID应该是唯一的。</li>
+                    <li><strong>选择器优先级混乱</strong>：没有理解优先级规则，导致样式被覆盖。</li>
+                    <li><strong>通配符滥用</strong>：使用<code>* { margin: 0; padding: 0; }</code>后没有为特定元素重新设置外边距。</li>
+                </ul>
+            </div>
+
+            <div class="homework">
+                <h3>课后练习</h3>
+                <ol>
+                    <li>创建一个简单的个人资料页面，使用ID选择器设置页面主要区域样式</li>
+                    <li>使用类选择器为多个元素设置相同的样式，如所有标题使用<code>.title</code>类</li>
+                    <li>练习使用分组选择器，如<code>h1, h2, h3 { color: #333; }</code></li>
+                    <li>使用通配符选择器重置默认样式，然后为特定元素设置样式</li>
+                </ol>
+            </div>
         </section>
     </main>
 </body>

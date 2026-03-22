@@ -13,7 +13,7 @@
     <nav class="sidebar">
         <div class="sidebar-nav">
             <h3>课程导航</h3>
-            <a class="sidebar-link" href="#intro">👋 课程概览</a>
+            <a class="sidebar-link" href="#intro">课程概览</a>
             
             <h3>Part 1: CSS复合选择器</h3>
             <a class="sidebar-link sub-link" href="#descendant-selector">一、后代选择器</a>
@@ -42,7 +42,7 @@
             <a class="sidebar-link sub-link" href="#exercise">七、综合练习</a>
             
             <h3>总结与练习</h3>
-            <a class="sidebar-link" href="#summary">📝 课程小结</a>
+            <a class="sidebar-link sub-link" href="#summary">本课小结</a>
         </div>
     </nav>
 
@@ -922,7 +922,7 @@ div.article {
         <!-- 课程小结区域 -->
         <!-- ============================================ -->
         <section id="summary">
-            <h2>八、课程小结</h2>
+            <h2>本课小结</h2>
             <p>
                 本节课我们学习了CSS复合选择器，它们是由两个或多个基础选择器组合而成，可以更精确地选择HTML元素。
             </p>
@@ -939,7 +939,7 @@ div.article {
             
             <h3>8.2 重点记忆</h3>
             <div class="tip-box">
-                <span class="tip-title">📌 选择器组合技巧</span>
+                <span class="tip-title">选择器组合技巧</span>
                 <p>1. 后代选择器 vs 子选择器：后代选择器选择所有后代，子选择器只选择直接子元素</p>
                 <p>2. 兄弟选择器：相邻兄弟选择器只选择下一个元素，通用兄弟选择器选择所有后面的元素</p>
                 <p>3. 交集选择器：可以结合多种条件，如元素+类+ID</p>
@@ -953,6 +953,26 @@ div.article {
                 <li>考虑选择器的性能，避免不必要的通配符和复杂选择器</li>
                 <li>选择器名称要语义化，便于理解和维护</li>
             </ol>
+
+            <div class="warning-box">
+                <strong>常见错误提醒</strong>
+                <ul>
+                    <li><strong>空格遗漏</strong>：后代选择器<code>div p</code>中的空格不可或缺，<code>divp</code>是无效选择器</li>
+                    <li><strong>混淆>和空格</strong>：<code>div p</code>选所有后代，<code>div > p</code>只选直接子元素</li>
+                    <li><strong>相邻兄弟选择器限制</strong>：<code>h2 + p</code>只选紧挨着的下一个p，不选后面所有的p</li>
+                    <li><strong>交集选择器书写</strong>：<code>p.highlight</code>中间没有空格，有空格则变成后代选择器</li>
+                </ul>
+            </div>
+
+            <div class="homework">
+                <h3>课后练习</h3>
+                <ol>
+                    <li>使用后代选择器，选择<code>.article</code>内部的所有<code>&lt;p&gt;</code>标签</li>
+                    <li>使用子选择器，只选择<code>&lt;ul&gt;</code>的直接<code>&lt;li&gt;</code>子元素，不选择嵌套列表中的li</li>
+                    <li>使用相邻兄弟选择器，为<code>&lt;h2&gt;</code>后面的第一个<code>&lt;p&gt;</code>添加特殊样式</li>
+                    <li>综合练习：创建一个导航菜单，使用复合选择器设置不同层级菜单项的样式</li>
+                </ol>
+            </div>
         </section>
     </main>
 </body>

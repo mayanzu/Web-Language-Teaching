@@ -15,7 +15,7 @@
 <nav class="sidebar">
     <div class="sidebar-nav">
         <h3>课程导航</h3>
-        <a class="sidebar-link" href="#intro">👋 课程概览</a>
+        <a class="sidebar-link" href="#intro">课程概览</a>
         
         <h3>Part 1: 图片基础</h3>
         <a class="sidebar-link sub-link" href="#chapter-1">一、图片标签的基本语法</a>
@@ -31,7 +31,7 @@
         <a class="sidebar-link sub-link" href="#section-2-5">2.5 loading属性（懒加载）</a>
         <a class="sidebar-link sub-link" href="#section-2-6">2.6 属性综合示例</a>
         <a class="sidebar-link sub-link" href="#section-2-7">2.7 其他有用的属性</a>
-        <a class="sidebar-link sub-link" href="#lab-1">🔬 实验 01：基础图片练习</a>
+        <a class="sidebar-link sub-link" href="#lab-1">实验 01：基础图片练习</a>
         
         <h3>Part 2: 高级图片应用</h3>
         <a class="sidebar-link sub-link" href="#chapter-3">三、图片路径（相对路径与绝对路径）</a>
@@ -46,10 +46,10 @@
         <a class="sidebar-link sub-link" href="#section-4-4">4.4 SVG</a>
         <a class="sidebar-link sub-link" href="#section-4-5">4.5 WebP（现代格式）</a>
         <a class="sidebar-link sub-link" href="#section-4-6">4.6 图片格式对比总表</a>
-        <a class="sidebar-link sub-link" href="#lab-2">🔬 实验 02：综合图片练习</a>
+        <a class="sidebar-link sub-link" href="#lab-2">实验 02：综合图片练习</a>
         
         <h3>总结与练习</h3>
-        <a class="sidebar-link sub-link" href="#summary">📝 课程小结</a>
+        <a class="sidebar-link sub-link" href="#summary">本课小结</a>
     </div>
 </nav>
 
@@ -81,7 +81,7 @@
         <p>在HTML中，图片使用<code>&lt;img&gt;</code>标签定义，它是一个自闭合标签，不需要结束标签。图片是网页中最重要的视觉元素之一，能够传达文字难以表达的信息。</p>
         
         <div class="note-box">
-            <span class="note-title">📖 生活类比</span>
+            <span class="note-title">生活类比</span>
             <p>想象一下你在写一封信，想要在信中放入一张照片。你需要告诉收信人照片的位置（src）以及照片的描述（alt）。如果照片丢失了，收信人至少可以通过描述知道照片原本是什么内容。<code>&lt;img&gt;</code>标签就像这样的"照片占位符"，它告诉浏览器去哪里找图片，以及图片加载失败时显示什么。</p>
         </div>
         
@@ -138,7 +138,7 @@
         </table>
         
         <div class="tip-box">
-            <span class="tip-title">💡 什么是替换元素？</span>
+            <span class="tip-title">什么是替换元素？</span>
             <p>替换元素（Replaced Element）是指内容由外部资源决定的元素。<code>&lt;img&gt;</code>的实际内容是它引用的图片，<code>&lt;video&gt;</code>的内容是视频，<code>&lt;iframe&gt;</code>的内容是嵌入的页面。这些元素的共同特点是：可以像块级元素一样设置宽高，但又能与文字在同一行显示。</p>
         </div>
         
@@ -181,7 +181,7 @@
         </div>
         
         <div class="warning-box">
-            <span class="warning-title">⚠️ 常见错误</span>
+            <span class="warning-title">常见错误</span>
             <ul>
                 <li><strong>忘记写src属性</strong>：图片无法显示</li>
                 <li><strong>路径错误</strong>：找不到图片文件</li>
@@ -219,7 +219,7 @@
         <p><code>alt</code>属性用于指定图片的替代文本，当图片无法显示时，会显示该文本。它对于可访问性和SEO都非常重要。</p>
         
         <div class="note-box">
-            <span class="note-title">📖 alt属性的重要性</span>
+            <span class="note-title">alt属性的重要性</span>
             <p>alt属性不仅仅是"图片描述"，它有多重作用：</p>
             <ul>
                 <li><strong>可访问性</strong>：屏幕阅读器会朗读alt文本，帮助视障用户理解图片内容</li>
@@ -268,7 +268,7 @@
         </table>
         
         <div class="tip-box">
-            <span class="tip-title">💡 重要提示</span>
+            <span class="tip-title">重要提示</span>
             <p>始终为图片添加<code>alt</code>属性，这是良好的Web开发习惯。即使是装饰性图片，也应该写<code>alt=""</code>（空字符串），而不是省略这个属性。</p>
         </div>
         
@@ -293,7 +293,7 @@
         </div>
         
         <div class="warning-box">
-            <span class="warning-title">⚠️ 为什么要设置width和height？</span>
+            <span class="warning-title">为什么要设置width和height？</span>
             <p>设置图片尺寸不仅仅是为了控制大小，更重要的是<strong>防止布局偏移（CLS）</strong>：</p>
             <ul>
                 <li>浏览器在图片加载前就知道要留出多大空间</li>
@@ -306,7 +306,7 @@
         <p><code>title</code>属性用于为图片添加提示文本，当鼠标悬停在图片上时，会显示该文本。</p>
         
         <div class="note-box">
-            <span class="note-title">📖 title vs alt 的区别</span>
+            <span class="note-title">title vs alt 的区别</span>
             <table class="prop-table">
                 <thead>
                     <tr>
@@ -372,7 +372,7 @@
         </div>
         
         <div class="tip-box">
-            <span class="tip-title">💡 懒加载的好处</span>
+            <span class="tip-title">懒加载的好处</span>
             <ul>
                 <li>减少初始页面加载时间</li>
                 <li>节省用户流量（未滚动到的图片不会加载）</li>
@@ -435,7 +435,7 @@
 
     <!-- ============================================         实验 01：基础图片练习         ============================================ -->
     <section id="lab-1">
-        <h2>🔬 实验 01：基础图片练习</h2>
+        <h2>实验 01：基础图片练习</h2>
         <p>现在让我们动手练习创建基础图片！</p>
         
         <div class="lab-card">
@@ -502,7 +502,7 @@
         <p>在HTML中，我们可以使用两种方式指定图片的位置：相对路径和绝对路径。理解路径的概念对于正确引用图片至关重要。</p>
         
         <div class="note-box">
-            <span class="note-title">📖 生活类比</span>
+            <span class="note-title">生活类比</span>
             <p>假设你在商场里要告诉朋友某家店的位置：</p>
             <ul>
                 <li><strong>相对路径</strong>：从你当前位置出发 → "往前走，右转，第三家店"</li>
@@ -615,7 +615,7 @@
         </div>
         
         <div class="tip-box">
-            <span class="tip-title">💡 记忆技巧</span>
+            <span class="tip-title">记忆技巧</span>
             <ul>
                 <li><code>./</code> = 当前目录（可省略）</li>
                 <li><code>../</code> = 返回上一级目录</li>
@@ -648,7 +648,7 @@
         </div>
         
         <div class="note-box">
-            <span class="note-title">📖 根目录路径 vs 完整URL</span>
+            <span class="note-title">根目录路径 vs 完整URL</span>
             <p>以<code>/</code>开头的路径（如<code>/images/logo.png</code>）是从网站根目录开始的绝对路径，不同于完整的URL。它在网站内部任何位置都指向同一个文件，非常适合大型网站使用。</p>
         </div>
         
@@ -664,23 +664,23 @@
             <tbody>
                 <tr>
                     <td>灵活性</td>
-                    <td>✅ 高，网站迁移时不需要修改</td>
-                    <td>❌ 低，网站迁移时需要修改</td>
+                    <td> 高，网站迁移时不需要修改</td>
+                    <td> 低，网站迁移时需要修改</td>
                 </tr>
                 <tr>
                     <td>性能</td>
-                    <td>✅ 略高，不需要DNS解析</td>
-                    <td>❌ 略低，需要DNS解析</td>
+                    <td> 略高，不需要DNS解析</td>
+                    <td> 略低，需要DNS解析</td>
                 </tr>
                 <tr>
                     <td>代码长度</td>
-                    <td>✅ 短，易读易维护</td>
-                    <td>❌ 长，不够简洁</td>
+                    <td> 短，易读易维护</td>
+                    <td> 长，不够简洁</td>
                 </tr>
                 <tr>
                     <td>本地测试</td>
-                    <td>✅ 可以直接打开HTML测试</td>
-                    <td>❌ 外部图片需要网络</td>
+                    <td> 可以直接打开HTML测试</td>
+                    <td> 外部图片需要网络</td>
                 </tr>
                 <tr>
                     <td>适用场景</td>
@@ -691,7 +691,7 @@
         </table>
         
         <div class="warning-box">
-            <span class="warning-title">⚠️ 路径常见错误</span>
+            <span class="warning-title">路径常见错误</span>
             <ul>
                 <li><strong>使用反斜杠</strong>：Windows习惯用<code>\</code>，但HTML中必须用<code>/</code></li>
                 <li><strong>大小写错误</strong>：Linux服务器区分大小写，<code>Photo.jpg</code>≠<code>photo.jpg</code></li>
@@ -702,7 +702,7 @@
         
         <h3 id="section-3-4">3.4 路径选择建议</h3>
         <div class="tip-box">
-            <span class="tip-title">💡 最佳实践</span>
+            <span class="tip-title">最佳实践</span>
             <ul>
                 <li><strong>本地图片</strong>：使用相对路径，便于迁移和维护</li>
                 <li><strong>外部图片</strong>：使用完整URL的绝对路径</li>
@@ -718,7 +718,7 @@
         <p>网页中常用的图片格式有JPG、PNG、GIF、SVG和WebP，它们各有特点，适用于不同的场景。选择正确的图片格式可以在保证质量的同时减小文件大小。</p>
         
         <div class="note-box">
-            <span class="note-title">📖 生活类比</span>
+            <span class="note-title">生活类比</span>
             <p>不同的图片格式就像不同的容器：</p>
             <ul>
                 <li><strong>JPG</strong>：像压缩袋，能大幅减小体积，但多次压缩会损坏物品</li>
@@ -750,11 +750,11 @@
                 </tr>
                 <tr>
                     <td>透明背景</td>
-                    <td>❌ 不支持</td>
+                    <td> 不支持</td>
                 </tr>
                 <tr>
                     <td>动画</td>
-                    <td>❌ 不支持</td>
+                    <td> 不支持</td>
                 </tr>
                 <tr>
                     <td>文件大小</td>
@@ -768,7 +768,7 @@
         </table>
         
         <div class="tip-box">
-            <span class="tip-title">💡 JPG压缩质量建议</span>
+            <span class="tip-title">JPG压缩质量建议</span>
             <ul>
                 <li><strong>80-90%</strong>：高质量，适合重要展示图片</li>
                 <li><strong>60-80%</strong>：平衡质量和大小，适合一般用途</li>
@@ -797,11 +797,11 @@
                 </tr>
                 <tr>
                     <td>透明背景</td>
-                    <td>✅ 支持（包括半透明Alpha通道）</td>
+                    <td> 支持（包括半透明Alpha通道）</td>
                 </tr>
                 <tr>
                     <td>动画</td>
-                    <td>❌ 不支持（APNG支持，但兼容性差）</td>
+                    <td> 不支持（APNG支持，但兼容性差）</td>
                 </tr>
                 <tr>
                     <td>文件大小</td>
@@ -864,11 +864,11 @@
                 </tr>
                 <tr>
                     <td>透明背景</td>
-                    <td>⚠️ 仅支持完全透明（无半透明）</td>
+                    <td>仅支持完全透明（无半透明）</td>
                 </tr>
                 <tr>
                     <td>动画</td>
-                    <td>✅ 支持帧动画</td>
+                    <td> 支持帧动画</td>
                 </tr>
                 <tr>
                     <td>文件大小</td>
@@ -882,7 +882,7 @@
         </table>
         
         <div class="warning-box">
-            <span class="warning-title">⚠️ GIF的局限性</span>
+            <span class="warning-title">GIF的局限性</span>
             <p>由于只支持256色，GIF不适合用于照片或复杂渐变图片。如今，对于简单动画，可以考虑使用CSS动画或Lottie替代，效果更好且文件更小。</p>
         </div>
         
@@ -903,19 +903,19 @@
                 </tr>
                 <tr>
                     <td>缩放</td>
-                    <td>✅ 无限缩放，永远清晰</td>
+                    <td> 无限缩放，永远清晰</td>
                 </tr>
                 <tr>
                     <td>透明背景</td>
-                    <td>✅ 支持</td>
+                    <td> 支持</td>
                 </tr>
                 <tr>
                     <td>动画</td>
-                    <td>✅ 支持CSS和SMIL动画</td>
+                    <td> 支持CSS和SMIL动画</td>
                 </tr>
                 <tr>
                     <td>交互</td>
-                    <td>✅ 支持JavaScript操作</td>
+                    <td> 支持JavaScript操作</td>
                 </tr>
                 <tr>
                     <td>文件大小</td>
@@ -965,11 +965,11 @@
                 </tr>
                 <tr>
                     <td>透明背景</td>
-                    <td>✅ 支持半透明</td>
+                    <td> 支持半透明</td>
                 </tr>
                 <tr>
                     <td>动画</td>
-                    <td>✅ 支持（替代GIF）</td>
+                    <td> 支持（替代GIF）</td>
                 </tr>
                 <tr>
                     <td>文件大小</td>
@@ -1012,36 +1012,36 @@
                 <tr>
                     <td><strong>JPG</strong></td>
                     <td>有损</td>
-                    <td>❌</td>
-                    <td>❌</td>
+                    <td></td>
+                    <td></td>
                     <td>照片、复杂图像</td>
                 </tr>
                 <tr>
                     <td><strong>PNG</strong></td>
                     <td>无损</td>
-                    <td>✅</td>
-                    <td>❌</td>
+                    <td></td>
+                    <td></td>
                     <td>Logo、图标、截图</td>
                 </tr>
                 <tr>
                     <td><strong>GIF</strong></td>
                     <td>无损</td>
-                    <td>⚠️</td>
-                    <td>✅</td>
+                    <td></td>
+                    <td></td>
                     <td>简单动画、表情包</td>
                 </tr>
                 <tr>
                     <td><strong>SVG</strong></td>
                     <td>矢量</td>
-                    <td>✅</td>
-                    <td>✅</td>
+                    <td></td>
+                    <td></td>
                     <td>Logo、图标、图表</td>
                 </tr>
                 <tr>
                     <td><strong>WebP</strong></td>
                     <td>有损/无损</td>
-                    <td>✅</td>
-                    <td>✅</td>
+                    <td></td>
+                    <td></td>
                     <td>通用，推荐使用</td>
                 </tr>
             </tbody>
@@ -1049,7 +1049,7 @@
         
         <h3>4.7 图片格式选择流程</h3>
         <div class="tip-box">
-            <span class="tip-title">💡 如何选择正确的图片格式？</span>
+            <span class="tip-title">如何选择正确的图片格式？</span>
             <p>按照以下决策流程选择：</p>
             <ol>
                 <li><strong>需要动画？</strong> → GIF（简单）或 WebP（复杂）</li>
@@ -1063,7 +1063,7 @@
         
         <h3>4.8 图片优化技巧</h3>
         <div class="note-box">
-            <span class="note-title">📖 性能优化建议</span>
+            <span class="note-title">性能优化建议</span>
             <ul>
                 <li><strong>压缩图片</strong>：使用TinyPNG、Squoosh等工具压缩</li>
                 <li><strong>选择正确格式</strong>：根据内容选择最合适的格式</li>
@@ -1077,7 +1077,7 @@
 
     <!-- ============================================         实验 02：综合图片练习         ============================================ -->
     <section id="lab-2">
-        <h2>🔬 实验 02：综合图片练习</h2>
+        <h2>实验 02：综合图片练习</h2>
         <p>现在让我们练习创建更复杂的图片应用，包括相对路径和不同图片格式！</p>
         
         <div class="lab-card">
@@ -1174,18 +1174,18 @@
 
     <!-- ============================================         课程小结区域         ============================================ -->
     <section id="summary">
-        <h2>📝 本课小结</h2>
+        <h2>本课小结</h2>
         
         <h3>知识点回顾</h3>
         <div class="note-box">
             <p>恭喜你！今天你学会了HTML图片的使用：</p>
             <ul class="checklist">
-                <li>✅ <strong>图片标签</strong>：使用<code>&lt;img&gt;</code>标签和<code>src</code>属性插入图片</li>
-                <li>✅ <strong>图片属性</strong>：掌握了<code>alt</code>、<code>width</code>、<code>height</code>、<code>title</code>、<code>loading</code>等常用属性</li>
-                <li>✅ <strong>相对路径</strong>：相对于当前HTML文件的位置指定图片路径</li>
-                <li>✅ <strong>绝对路径</strong>：使用完整URL指定图片位置</li>
-                <li>✅ <strong>图片格式</strong>：了解了JPG、PNG、GIF、SVG等格式的特点和适用场景</li>
-                <li>✅ <strong>图片优化</strong>：学会了使用<code>loading="lazy"</code>进行延迟加载</li>
+                <li> <strong>图片标签</strong>：使用<code>&lt;img&gt;</code>标签和<code>src</code>属性插入图片</li>
+                <li> <strong>图片属性</strong>：掌握了<code>alt</code>、<code>width</code>、<code>height</code>、<code>title</code>、<code>loading</code>等常用属性</li>
+                <li> <strong>相对路径</strong>：相对于当前HTML文件的位置指定图片路径</li>
+                <li> <strong>绝对路径</strong>：使用完整URL指定图片位置</li>
+                <li> <strong>图片格式</strong>：了解了JPG、PNG、GIF、SVG等格式的特点和适用场景</li>
+                <li> <strong>图片优化</strong>：学会了使用<code>loading="lazy"</code>进行延迟加载</li>
             </ul>
         </div>
         
@@ -1223,7 +1223,7 @@
         
         <h3>最佳实践</h3>
         <div class="tip-box">
-            <span class="tip-title">💡 HTML图片编写建议</span>
+            <span class="tip-title">HTML图片编写建议</span>
             <ul>
                 <li>始终为图片添加<code>alt</code>属性，提高可访问性和SEO</li>
                 <li>使用<code>width</code>和<code>height</code>属性防止布局偏移</li>
@@ -1236,7 +1236,7 @@
         
         <h3>下节课预告</h3>
         <div class="tip-box">
-            <span class="tip-title">🎯 第6课：HTML表格基础</span>
+            <span class="tip-title">第6课：HTML表格基础</span>
             <p>下节课我们将学习HTML中的表格标签，包括：</p>
             <ul>
                 <li>表格的基本语法</li>
@@ -1250,7 +1250,7 @@
         
         <h3>课后作业</h3>
         <div class="warning-box">
-            <span class="warning-title">📝 作业要求</span>
+            <span class="warning-title">作业要求</span>
             <p>请创建一个HTML页面，展示你最喜欢的5张图片，要求包含：</p>
             <ol>
                 <li>完整的HTML5文档结构</li>
