@@ -212,56 +212,20 @@ img[src*="logo"] {
                     <!-- HTML 代码编辑区 -->
                     <div class="panel code-editor" id="html-2" contenteditable="true">
 <div class="panel-label">HTML (可编辑)</div>
-&lt;div class="link-list"&gt;
-  &lt;!-- 安全链接 (https开头) --&gt;
-  &lt;a href="https://bank.com"&gt;安全支付&lt;/a&gt;
-  &lt;br&gt;
-  
-  &lt;!-- 普通链接 (http开头) --&gt;
-  &lt;a href="http://game.com"&gt;网页游戏&lt;/a&gt;
-  &lt;br&gt;
-  
-  &lt;!-- PDF文件 (pdf结尾) --&gt;
-  &lt;a href="report.pdf"&gt;下载报告&lt;/a&gt;
-  &lt;br&gt;
-  
-  &lt;!-- 图片链接 (包含image关键词) --&gt;
-  &lt;a href="image-gallery.html"&gt;查看图片&lt;/a&gt;
-&lt;/div&gt;
+&lt;a href="https://bank.com"&gt;安全链接&lt;/a&gt;
+&lt;a href="http://game.com"&gt;普通链接&lt;/a&gt;
+&lt;a href="report.pdf"&gt;PDF文档&lt;/a&gt;
+&lt;a href="image-gallery.html"&gt;图片链接&lt;/a&gt;
                     </div>
                     <!-- CSS 代码编辑区 -->
                     <div class="panel code-editor" id="css-2" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
-/* 1. ^= (开头匹配) */
-/* 选中所有 href 以 "https" 开头的链接，设为绿色 */
-a[href^="https"] {
-    color: #34C759; /* 绿色 */
-    font-weight: bold;
-}
-
-/* 2. $= (结尾匹配) */
-/* 选中所有 href 以 ".pdf" 结尾的链接，设为橙色 */
-a[href$=".pdf"] {
-    color: #FF9500; /* 橙色 */
-}
-/* 高级技巧：使用伪元素自动加文字 */
-a[href$=".pdf"]::after {
-    content: " [PDF文档]";
-    font-size: 12px;
-    color: #999;
-}
-
-/* 3. *= (包含匹配) */
-/* 选中所有 href 包含 "image" 的链接，设为蓝色 */
-a[href*="image"] {
-    color: #0066CC; /* 蓝色 */
-}
-
-/* 基础样式优化 */
-a {
-    text-decoration: none;
-    font-size: 16px;
-    line-height: 2;
+/* 字符串匹配属性选择器 */
+a[href^="https"] { color: #34C759; font-weight: bold; }
+a[href$=".pdf"] { color: #FF9500; }
+a[href$=".pdf"]::after { content: " [PDF]"; font-size: 12px; color: #999; }
+a[href*="image"] { color: #0066CC; }
+a { text-decoration: none; line-height: 2; }
     color: #333;
     display: inline-block;
     margin: 5px 0;
@@ -339,63 +303,18 @@ button:active {
                     <!-- HTML 代码编辑区 -->
                     <div class="panel code-editor" id="html-3" contenteditable="true">
 <div class="panel-label">HTML (可编辑)</div>
-&lt;!-- 一个普通的按钮 --&gt;
-&lt;button class="magic-btn"&gt;
-  鼠标悬停我
-&lt;/button&gt;
-
-&lt;br&gt;&lt;br&gt;
-
-&lt;!-- 一个普通的输入框 --&gt;
+&lt;button class="magic-btn"&gt;悬停按钮&lt;/button&gt;
 &lt;input class="magic-input" placeholder="点击输入..."&gt;
                     </div>
                     <!-- CSS 代码编辑区 -->
                     <div class="panel code-editor" id="css-3" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
-/* 按钮的基础样式 */
-.magic-btn {
-    padding: 12px 24px;
-    background: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    transition: all 0.3s; /* 让变化有动画过程，看起来更平滑 */
-}
-
-/* 1. :hover (鼠标悬停) */
-/* 当鼠标移上去时，变蓝并放大 */
-.magic-btn:hover {
-    background-color: #0066CC;
-    color: white;
-    transform: scale(1.1); /* 放大1.1倍 */
-    border-color: #0066CC;
-    box-shadow: 0 4px 8px rgba(0,102,204,0.2); /* 添加阴影效果 */
-}
-
-/* 2. :active (鼠标点击) */
-/* 当按钮被点击时，稍微缩小 */
-.magic-btn:active {
-    transform: scale(0.95); /* 缩小到0.95倍 */
-    box-shadow: 0 2px 4px rgba(0,102,204,0.3); /* 调整阴影 */
-}
-
-/* 输入框基础样式 */
-.magic-input {
-    padding: 10px 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    transition: all 0.3s;
-}
-
-/* 3. :focus (获得焦点) */
-/* 当输入框被点击激活时 */
-.magic-input:focus {
-    outline: none; /* 移除默认的焦点轮廓 */
-    border: 2px solid #0066CC;
-    background-color: #E8F2FF;
-    box-shadow: 0 0 0 3px rgba(0,102,204,0.1); /* 焦点光环效果 */
-}
+/* 交互状态伪类 */
+.magic-btn { padding: 12px 24px; border: 1px solid #ccc; border-radius: 4px; transition: all 0.3s; }
+.magic-btn:hover { background: #0066CC; color: #fff; transform: scale(1.1); }
+.magic-btn:active { transform: scale(0.95); }
+.magic-input { padding: 10px; border: 1px solid #ccc; border-radius: 4px; transition: all 0.3s; }
+.magic-input:focus { outline: none; border-color: #0066CC; background: #E8F2FF; }
                     </div>
                 </div>
                 <!-- 预览区 -->
@@ -437,53 +356,19 @@ a:active { color: #F44336; }     /* 正在点击 */</code></pre>
                     <!-- HTML 代码编辑区 -->
                     <div class="panel code-editor" id="html-4" contenteditable="true">
 <div class="panel-label">HTML (可编辑)</div>
-&lt;div class="link-demo"&gt;
-  &lt;h4&gt;试试点击下面的链接：&lt;/h4&gt;
-  
-  &lt;a href="#link1"&gt;链接 1：关于我们&lt;/a&gt;
-  &lt;br&gt;
-  &lt;a href="#link2"&gt;链接 2：产品介绍&lt;/a&gt;
-  &lt;br&gt;
-  &lt;a href="#link3"&gt;链接 3：联系方式&lt;/a&gt;
-&lt;/div&gt;
+&lt;a href="#"&gt;链接 1&lt;/a&gt;
+&lt;a href="#"&gt;链接 2&lt;/a&gt;
+&lt;a href="#"&gt;链接 3&lt;/a&gt;
                     </div>
                     <!-- CSS 代码编辑区 -->
                     <div class="panel code-editor" id="css-4" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
-/* === LVHA 顺序（必须按这个顺序写！） === */
-
-/* 1. :link - 未访问的链接 */
-a:link {
-    color: #0066CC;           /* 蓝色 */
-    text-decoration: none;    /* 去掉下划线 */
-}
-
-/* 2. :visited - 已访问的链接 */
-a:visited {
-    color: #9C27B0;           /* 紫色 */
-}
-
-/* 3. :hover - 鼠标悬停 */
-a:hover {
-    color: #FF9500;           /* 橙色 */
-    text-decoration: underline; /* 加下划线 */
-    font-weight: bold;        /* 加粗 */
-    transform: translateX(5px); /* 向右移动5像素 */
-}
-
-/* 4. :active - 正在点击 */
-a:active {
-    color: #F44336;           /* 红色 */
-    transform: scale(0.95);   /* 稍微缩小 */
-}
-
-/* 基础样式 */
-.link-demo a {
-    display: block;
-    padding: 10px 0;
-    font-size: 16px;
-    transition: all 0.2s;     /* 所有变化都有0.2秒的过渡动画 */
-}
+/* LVHA伪类顺序 */
+a:link { color: #0066CC; text-decoration: none; }
+a:visited { color: #9C27B0; }
+a:hover { color: #FF9500; text-decoration: underline; }
+a:active { color: #F44336; }
+a { display: block; padding: 8px 0; transition: all 0.2s; }
                     </div>
                 </div>
                 <!-- 预览区 -->
@@ -568,67 +453,24 @@ li:nth-child(even) {
                     <div class="panel code-editor" id="html-5" contenteditable="true">
 <div class="panel-label">HTML (可编辑)</div>
 &lt;ul class="list-demo"&gt;
-    &lt;li&gt;第1个列表项&lt;/li&gt;
-    &lt;li&gt;第2个列表项&lt;/li&gt;
-    &lt;li&gt;第3个列表项&lt;/li&gt;
-    &lt;li&gt;第4个列表项&lt;/li&gt;
-    &lt;li&gt;第5个列表项&lt;/li&gt;
-    &lt;li&gt;第6个列表项&lt;/li&gt;
+    &lt;li&gt;列表项1&lt;/li&gt;
+    &lt;li&gt;列表项2&lt;/li&gt;
+    &lt;li&gt;列表项3&lt;/li&gt;
+    &lt;li&gt;列表项4&lt;/li&gt;
+    &lt;li&gt;列表项5&lt;/li&gt;
+    &lt;li&gt;列表项6&lt;/li&gt;
 &lt;/ul&gt;
                     </div>
                     <!-- CSS 代码编辑区 -->
                     <div class="panel code-editor" id="css-5" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
-/* 列表基础样式 */
-.list-demo {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    overflow: hidden;
-}
-
-.list-demo li {
-    padding: 12px 15px;
-    border-bottom: 1px solid #eee;
-    transition: all 0.2s;
-}
-
-.list-demo li:last-child {
-    border-bottom: none;
-}
-
-/* 1. 第一个子元素 */
-.list-demo li:first-child {
-    color: red;
-    font-weight: bold;
-    background-color: #fff5f5;
-}
-
-/* 2. 最后一个子元素 */
-.list-demo li:last-child {
-    color: blue;
-    font-weight: bold;
-    background-color: #f0f8ff;
-}
-
-/* 3. 偶数位置的子元素 */
-.list-demo li:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-/* 4. 第3个子元素 */
-.list-demo li:nth-child(3) {
-    font-style: italic;
-    color: green;
-    background-color: #f0fff4;
-}
-
-/* 5. 所有3的倍数位置的子元素 */
-.list-demo li:nth-child(3n) {
-    border-left: 4px solid #0066cc;
-}
+/* 结构位置伪类 */
+.list-demo { list-style: none; padding: 0; }
+.list-demo li { padding: 10px; border-bottom: 1px solid #eee; }
+.list-demo li:first-child { color: red; font-weight: bold; }
+.list-demo li:last-child { color: blue; }
+.list-demo li:nth-child(even) { background: #f9f9f9; }
+.list-demo li:nth-child(3) { color: green; font-style: italic; }
                     </div>
                 </div>
                 <!-- 预览区 -->
@@ -675,51 +517,18 @@ input:not([disabled]) {
                     <!-- HTML 代码编辑区 -->
                     <div class="panel code-editor" id="html-6" contenteditable="true">
 <div class="panel-label">HTML (可编辑)</div>
-&lt;!-- 普通按钮 --&gt;
 &lt;button&gt;普通按钮&lt;/button&gt;
-
-&lt;!-- 禁用按钮 --&gt;
-&lt;button disabled&gt;我被禁用了&lt;/button&gt;
-
-&lt;br&gt;&lt;br&gt;
-
-&lt;!-- 普通输入框 --&gt;
+&lt;button disabled&gt;禁用按钮&lt;/button&gt;
 &lt;input type="text" value="普通文本"&gt;
-
-&lt;!-- 禁用输入框 --&gt;
 &lt;input type="text" value="禁用文本" disabled&gt;
                     </div>
                     <!-- CSS 代码编辑区 -->
                     <div class="panel code-editor" id="css-6" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
-/* 所有元素的基础样式 */
-button, input {
-    padding: 10px 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px;
-    margin-right: 10px;
-    transition: all 0.2s;
-}
-
-/* 1. 选择所有没有 disabled 属性的元素 */
-:not([disabled]) {
-    cursor: pointer;
-}
-
-/* 2. 选择所有没有 disabled 属性的 input 元素 */
-input:not([disabled]) {
-    border: 2px solid #0066CC;
-    background-color: #f0f8ff;
-}
-
-/* 3. 选择所有不是禁用状态的按钮 */
-button:not([disabled]):hover {
-    background-color: #0066CC;
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,102,204,0.2);
-}
+/* :not()排除伪类 */
+button, input { padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
+input:not([disabled]) { border-color: #0066CC; background: #f0f8ff; }
+button:not([disabled]):hover { background: #0066CC; color: #fff; }
                     </div>
                 </div>
                 <!-- 预览区 -->
@@ -798,76 +607,18 @@ p::first-line {
                     <!-- HTML 代码编辑区 -->
                     <div class="panel code-editor" id="html-7" contenteditable="true">
 <div class="panel-label">HTML (可编辑)</div>
-&lt;div class="pseudo-demo"&gt;
-    &lt;h3&gt;伪元素演示&lt;/h3&gt;
-    &lt;p&gt;这是一个段落，用于演示伪元素的效果。伪元素是CSS中非常强大的工具，可以用来创建各种视觉效果。&lt;/p&gt;
-    &lt;p&gt;通过伪元素，我们可以在不修改HTML结构的情况下，为元素添加装饰性内容或特殊样式。&lt;/p&gt;
-    &lt;a href="#"&gt;这是一个链接&lt;/a&gt;
-&lt;/div&gt;
+&lt;p&gt;段落文本演示伪元素效果。&lt;/p&gt;
+&lt;a href="#"&gt;链接文本&lt;/a&gt;
                     </div>
                     <!-- CSS 代码编辑区 -->
                     <div class="panel code-editor" id="css-7" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
-/* 1. ::before - 在元素前插入内容 */
-a::before {
-    content: "→ ";
-    color: #0066CC;
-    font-weight: bold;
-}
-
-/* 2. ::after - 在元素后插入内容 */
-p::after {
-    content: " [END]";
-    font-size: 12px;
-    color: #999;
-    font-style: italic;
-}
-
-/* 3. ::first-letter - 选择首字母 */
-p::first-letter {
-    font-size: 2.5em;
-    font-weight: bold;
-    color: #0066CC;
-    float: left;
-    margin-right: 8px;
-    line-height: 1;
-    font-family: 'Georgia', serif;
-}
-
-/* 4. ::first-line - 选择第一行 */
-p::first-line {
-    font-weight: bold;
-    color: #333;
-    font-size: 1.1em;
-}
-
-/* 基础样式 */
-.pseudo-demo {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #eee;
-    border-radius: 4px;
-    background-color: #fafafa;
-}
-
-.pseudo-demo h3 {
-    color: #0066CC;
-    margin-bottom: 15px;
-}
-
-.pseudo-demo p {
-    line-height: 1.8;
-    margin-bottom: 15px;
-    text-align: justify;
-}
-
-.pseudo-demo a {
-    color: #0066CC;
-    text-decoration: none;
-    font-weight: bold;
-    transition: all 0.2s;
-}
+/* 伪元素选择器 */
+a::before { content: "→ "; color: #0066CC; }
+p::after { content: " [END]"; font-size: 12px; color: #999; }
+p::first-letter { font-size: 2.5em; font-weight: bold; color: #0066CC; float: left; }
+p { line-height: 1.8; }
+                    </div>
 
 .pseudo-demo a:hover {
     color: #FF9500;
@@ -901,125 +652,22 @@ p::first-line {
                     <div class="panel code-editor" id="html-8" contenteditable="true">
 <div class="panel-label">HTML (可编辑)</div>
 &lt;div class="form-beautify"&gt;
-    &lt;h2&gt;用户注册表单&lt;/h2&gt;
-    
-    &lt;form&gt;
-        &lt;div class="form-group"&gt;
-            &lt;label for="username"&gt;用户名&lt;/label&gt;
-            &lt;input type="text" id="username" name="username" placeholder="请输入用户名" required&gt;
-        &lt;/div&gt;
-        
-        &lt;div class="form-group"&gt;
-            &lt;label for="email"&gt;电子邮箱&lt;/label&gt;
-            &lt;input type="email" id="email" name="email" placeholder="请输入电子邮箱" required&gt;
-        &lt;/div&gt;
-        
-        &lt;div class="form-group"&gt;
-            &lt;label for="password"&gt;密码&lt;/label&gt;
-            &lt;input type="password" id="password" name="password" placeholder="请输入密码" required minlength="6"&gt;
-        &lt;/div&gt;
-        
-        &lt;div class="form-group"&gt;
-            &lt;label for="confirm-password"&gt;确认密码&lt;/label&gt;
-            &lt;input type="password" id="confirm-password" name="confirm-password" placeholder="请再次输入密码" required minlength="6"&gt;
-        &lt;/div&gt;
-        
-        &lt;div class="form-group"&gt;
-            &lt;label for="gender"&gt;性别&lt;/label&gt;
-            &lt;select id="gender" name="gender"&gt;
-                &lt;option value=""&gt;请选择性别&lt;/option&gt;
-                &lt;option value="male"&gt;男&lt;/option&gt;
-                &lt;option value="female"&gt;女&lt;/option&gt;
-                &lt;option value="other"&gt;其他&lt;/option&gt;
-            &lt;/select&gt;
-        &lt;/div&gt;
-        
-        &lt;div class="form-group"&gt;
-            &lt;div class="checkbox-group"&gt;
-                &lt;input type="checkbox" id="agree" name="agree" required&gt;
-                &lt;label for="agree"&gt;我同意&lt;a href="#"&gt;服务条款&lt;/a&gt;和&lt;a href="#"&gt;隐私政策&lt;/a&gt;&lt;/label&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-        
-        &lt;div class="form-actions"&gt;
-            &lt;button type="submit" class="btn btn-primary"&gt;注册&lt;/button&gt;
-            &lt;button type="reset" class="btn btn-secondary"&gt;重置&lt;/button&gt;
-        &lt;/div&gt;
-    &lt;/form&gt;
+    &lt;h2&gt;用户注册&lt;/h2&gt;
+    &lt;input type="text" placeholder="用户名"&gt;
+    &lt;input type="email" placeholder="邮箱"&gt;
+    &lt;input type="password" placeholder="密码"&gt;
+    &lt;button&gt;注册&lt;/button&gt;
 &lt;/div&gt;
                     </div>
                     <!-- CSS 代码编辑区 -->
                     <div class="panel code-editor" id="css-8" contenteditable="true">
 <div class="panel-label">CSS (可编辑)</div>
-/* 表单容器样式 */
-.form-beautify {
-    max-width: 500px;
-    margin: 20px auto;
-    padding: 30px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-/* 表单标题样式 */
-.form-beautify h2 {
-    color: #0066CC;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-/* 表单组样式 */
-.form-group {
-    margin-bottom: 20px;
-}
-
-/* 标签样式 */
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #555;
-    font-size: 14px;
-}
-
-/* 输入框基础样式 */
-input, select {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
-    transition: all 0.3s ease;
-    font-family: inherit;
-    background-color: white;
-}
-
-/* 使用属性选择器样式化不同类型的输入框 */
-input[type="text"],
-input[type="email"] {
-    /* 文本输入框的特殊样式 */
-}
-
-input[type="password"] {
-    /* 密码框的特殊样式 */
-    letter-spacing: 2px; /* 密码字符间距 */
-}
-
-/* 下拉选择框样式 */
-select {
-    cursor: pointer;
-    appearance: none;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%23666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>');
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-    padding-right: 40px;
-}
-
-/* 复选框组样式 */
-.checkbox-group {
-    display: flex;
-    align-items: flex-start;
-}
+/* 表单美化综合练习 */
+.form-beautify { max-width: 400px; margin: 20px auto; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+.form-beautify h2 { color: #0066CC; text-align: center; }
+.form-beautify input { width: 100%; padding: 12px; margin-bottom: 15px; border: 2px solid #ddd; border-radius: 4px; }
+.form-beautify input:focus { border-color: #0066CC; outline: none; }
+.form-beautify button { width: 100%; padding: 12px; background: #0066CC; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
 
 .checkbox-group input[type="checkbox"] {
     width: auto;
